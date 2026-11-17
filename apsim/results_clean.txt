@@ -1,0 +1,38 @@
+case                               drift rms m drift max m     judge m    jitter m    roll deg   pitch deg       % fix      fix Hz      age ms drift m/min  events
+ap_apb_100m_calm_s1                      0.428       0.663        1.44       0.767       0.379       0.145        49.2        12.3         162        0.66  
+ap_apb_100m_calm_s1_attfc                 16.8        30.1        50.6        40.9        19.6        10.4        52.3        13.1         108        52.5  16.51s FLY-AWAY: 30.1 m from the hold point; ALT_HOLD, vision stopped
+ap_apb_100m_w20g40_holdout_field_s102        3.31        5.09        26.2        12.6        6.12        2.64        42.5        10.6         165        3.92  
+ap_apb_100m_w20g40_holdout_quarry_s101       0.701        1.44        27.2        14.7        7.34        3.11        62.2        15.5         149        1.36  
+ap_apb_100m_w20g40_holdout_water_s103       0.768        1.28        25.6        11.9        5.18        3.48        67.8          17         138        1.19  
+ap_apb_100m_w20g40_s1                    0.445       0.715        26.8        14.6        6.99        3.26        47.1        11.8         167       0.854  
+ap_apb_100m_w20g40_s1_attfc               14.9          30        22.8        13.6        3.65       0.637        36.1        9.02         137         353  5.32s FLY-AWAY: 30.0 m from the hold point; ALT_HOLD, vision stopped
+ap_apb_100m_w20g40_s2                     1.35        1.74        25.5          12        6.11        1.48        60.3        15.1         153       0.413  
+ap_apb_100m_w20g40_s3                    0.597           1        26.6        13.9        6.67        3.13        57.3        14.3         155        1.37  
+ap_apb_122m_calm_s1                      0.939        1.34        2.93        2.37       0.978       0.445        64.4        16.1         148        1.38  
+ap_apb_122m_w20g40_s1                    0.476       0.828        32.6        17.8        6.93        3.32        59.1        14.8         152        1.16  
+ap_apb_50m_calm_s1                       0.544       0.716       0.889       0.483       0.389       0.198        40.1          10         180       0.342  
+ap_apb_50m_w20g40_s1                     0.444       0.776        13.3        7.49        7.03        3.38        61.9        15.5         152       0.521  
+ap_gps_100m_calm_s1                      0.219       0.237         1.1         0.3       0.118        0.13           -           -           -      0.0354  
+ap_gps_100m_w20g40_s1                    0.457       0.937        26.9        14.6        6.94        3.35           -           -           -       0.235  
+ap_gps_122m_calm_s1                      0.282       0.308        1.35       0.301       0.112      0.0908           -           -           -      0.0377  
+ap_gps_122m_w20g40_s1                    0.415       0.953        32.5        17.5        6.82        3.35           -           -           -       0.238  
+ap_gps_50m_calm_s1                       0.222       0.245       0.644       0.146       0.117       0.131           -           -           -      0.0343  
+ap_gps_50m_w20g40_s1                     0.457       0.971        13.7        7.48           7        3.35           -           -           -       0.238  
+ap_none_100m_calm_s1                      1.28        2.48        1.61        1.18       0.144      0.0762           -           -           -        2.78  
+ap_none_100m_w20g40_s1                     176         268         178        97.3         2.4        0.66           -           -           -         317  
+ap_none_122m_calm_s1                      2.74         5.3        2.88        1.51      0.0592      0.0153           -           -           -        5.25  
+ap_none_122m_w20g40_s1                     176         268         179          98        2.52       0.636           -           -           -         316  
+ap_none_50m_calm_s1                        2.1        3.73        2.17        1.16      0.0563      0.0365           -           -           -        3.89  
+ap_none_50m_w20g40_s1                      190         284         191         104        3.37        0.86           -           -           -         341  
+ap_truth_100m_calm_s1                    0.152       0.273        0.84       0.407       0.125       0.176           -        29.9           -     0.00855  
+ap_truth_100m_w20g40_s1                  0.373       0.988          27        14.9        7.05        3.39           -        30.1           -       0.236  
+ap_truth_122m_calm_s1                    0.244       0.448         1.1       0.725       0.078       0.311           -        31.7           -      0.0077  
+ap_truth_122m_w20g40_s1                   0.38       0.882        32.6        17.8        6.92        3.38           -        31.8           -       0.225  
+ap_truth_50m_calm_s1                     0.146       0.284       0.458        0.21       0.188      0.0844           -        26.4           -      0.0156  
+ap_truth_50m_w20g40_s1                   0.372       0.926        13.4        7.36        6.91        3.43           -        26.7           -       0.227  
+
+ArduCopter 4.6 SITL (Orqa mil-mavl), SITL quad model, 60 s holds. Columns as px4sim/results.txt.
+drift: true horizontal distance from the hold point. apb = the onboard program (apb_main run_live, fc_link)
+with a 10x slower CPU, over a 11520 B/s relay; truth = true position as the fix; gps = GNSS Loiter,
+no vision; none = no GNSS, no vision (ALT_HOLD). Sets: ottawa2019fall and seeds 1-9 = tuning; holdout_*
+sites with seeds 101+ = hold-out.

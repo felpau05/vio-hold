@@ -1,0 +1,76 @@
+[pr_none_50m_s11] hold starts, mode 3, 0.7 s after the vision feed started
+[pr_none_50m_s11] rms 0.427  p95 0.758  max 0.817  drift_m_per_min 0.208  roll_rms_deg 5.9  pitch_rms_deg 3.39  judge_rms 10.5  judge_jitter_rms 6.32  fix_rate_hz 14.3  frac_ok 1  frac_lost 0  proc_ms_mean 68
+{
+ "case": "pr_none_50m_s11",
+ "events": [
+  [
+   0.0,
+   "hold starts, mode 3, 0.7 s after the vision feed started"
+  ]
+ ],
+ "climb_s": 26.4,
+ "ekf_yaw_minus_true_deg": 12.12,
+ "onboard": [
+  [
+   4.07,
+   "connected",
+   "px4, clock ready True, ATTITUDE 100 Hz"
+  ],
+  [
+   14.2,
+   "run",
+   "FAIL no usable video frame in 10 s. Check the camera and video_device."
+  ],
+  [
+   116.52,
+   "done",
+   "stopped after 2 start(s); frame age when taken p50 32 ms, p95 52 ms; SCALED_IMU 0 Hz, 0 rows kept"
+  ]
+ ],
+ "params_fail": [],
+ "onboard_exit": 0,
+ "clock_err_ms_mean": 0.9091397246136547,
+ "clock_err_ms_absmax": 1.007092096301676,
+ "handover_ms_p50": 13.229861499439721,
+ "handover_ms_p95": 17.944661399269535,
+ "frames": 1500,
+ "processed": 860,
+ "fixes": 860,
+ "fix_rate_hz": 14.332377841477234,
+ "pct_frames_fix": 57.333333333333336,
+ "frac_init": 0.0,
+ "frac_ok": 1.0,
+ "frac_degraded": 0.0,
+ "frac_lost": 0.0,
+ "proc_ms_mean": 67.9789534883721,
+ "age_ms_p50": 151.0,
+ "age_ms_p95": 195.21999999999997,
+ "hold_why": {},
+ "reanchors": 0,
+ "rms": 0.42683507474360427,
+ "p95": 0.7581600949639746,
+ "max": 0.8170983318853168,
+ "end": 0.3200762412478548,
+ "drift_m_per_min": 0.20831218049972558,
+ "roll_rms_deg": 5.9013077362553705,
+ "pitch_rms_deg": 3.386779680209558,
+ "tilt_mean_deg": 9.708368952188597,
+ "judge_rms": 10.538119459784262,
+ "judge_p95": 18.50534704608129,
+ "judge_max": 19.351267720067238,
+ "judge_jitter_rms": 6.324743300176369,
+ "height_mean": 49.564782295419455,
+ "seconds": 60.004000000000005,
+ "px4_hgt_err_m": [
+  -0.12,
+  0.18
+ ],
+ "px4_yaw_err_deg": [
+  -4.59,
+  1.99,
+  -1.04
+ ],
+ "ev_delay_ms": 101.2,
+ "hold_py_md5": "ad3ebe25dc",
+ "px4_text": []
+}

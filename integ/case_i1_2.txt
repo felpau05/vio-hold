@@ -1,0 +1,13 @@
+[apb_122m_w20g40] hold starts, mode 3, 0.7 s after the vision feed started
+[apb_122m_w20g40] rms 0.738  p95 1.17  max 1.31  drift_m_per_min 0.852  roll_rms_deg 5.08  pitch_rms_deg 3.99  judge_rms 26.1  judge_jitter_rms 14.3  fix_rate_hz 23.5  frac_ok 1  frac_lost 0  proc_ms_mean 36.3
+case                           drift rms m drift max m     judge m    jitter m    roll deg   pitch deg       % fix      fix Hz      age ms drift m/min  events
+apb_100m_w20g40                       0.65        1.18        21.4        11.7        5.02        4.15        65.3        16.3         145       0.346  
+apb_122m_w20g40                      0.738        1.31        26.1        14.3        5.08        3.99        94.1        23.5         102       0.852  
+truth_100m_w20g40                    0.474       0.938        21.2        11.7        5.02        3.95        99.9          25           -       0.465  
+truth_122m_w20g40                    0.452        1.04        26.4        14.4        5.06        4.03        99.9          25           -       0.429  
+
+drift rms/max: true horizontal distance from the hold point over the 60 s hold. drift m/min: linear-fit
+speed. roll/pitch: RMS about the mean. judge: distance of the picture centre's ground point from the
+hold point (RMS); jitter: its RMS about its own mean (the judge-view wander without the steady wind
+tilt). % fix: fixes sent per rendered PAL frame; fix Hz: fixes sent per second; age: capture to send.
+apb = the onboard program (apb_main run) with a 10x slower CPU; truth = the true position as the fix.

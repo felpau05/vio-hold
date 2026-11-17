@@ -1,0 +1,17 @@
+fake PX4: firmware px4, clock ready True, ATTITUDE 100 Hz
+recording: 302 frames, 1217 attitude rows, mode '? field=top 360x288'
+  calib: PASS picture top = rear, mirrored (residual 0.08 deg; next best right 10.78 deg, 131x)
+  calib: INFO video delay 68 ms, readout -19 ms, focal scale 0.952, tilt roll +1.02 pitch -1.58 twist -1.01 deg
+  calib: FAIL focal scale is outside 0.98-1.02: do the lens check (G2) before you fly.
+  calib: PASS settings written; calibrated = true
+PASS calib exit code 0 and calibrated = true: rc 0, calibrated True
+PASS picture top = rear: rear
+PASS mirrored: True
+PASS video delay 70 ms (within 5 ms): 68.0 ms
+PASS readout -18 ms (within 4.5 ms, sign right): -19.0 ms
+PASS focal scale 0.95 (within 0.01): 0.9517
+PASS mount (top, mirror, tilt, twist) as one matrix within 0.5 deg of camera.py's: 0.08 deg; found tilt [1.02, -1.58] twist -1.01 (camera.py: tilt [1.0, -1.5] twist +1.0 as a physical turn)
+PASS 'apb_main.py run' without the flag: exit 1, says: FAIL not calibrated. Run 'apb_main.py calib'.
+PASS run_live without the flag (same source and FC link): will not start: not calibrated. Run 'apb_main.py calib'.
+PASS with the calibrated settings run has no start problem: none
+ALL PASS

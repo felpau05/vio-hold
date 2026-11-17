@@ -1,0 +1,1 @@
+20:52 rc=0 107s | apb 100 w20g40 60 seed=11 label=c_base_100m_w20g40_s11 | [c_base_100m_w20g40_s11] rms 0.777  p95 1.2  max 1.32  drift_m_per_min 0.678  roll_rms_deg 8.43  pitch_rms_deg 2.66  judge_rms 26.9  fix_rate_hz 5.72  pct_frames_fix 22.9  age_ms_p50 243  onboard_att_

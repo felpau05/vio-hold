@@ -1,0 +1,10 @@
+test_basics: rc=1 1 FAIL in 26 s
+test_fc_link: rc=3 3 FAIL in 25 s
+test_run: rc=0 ALL PASS in 28 s (files in /tmp/tmp2dlz0t5e)
+test_bench: rc=0 ALL PASS in 17 s
+test_calib: rc=0 ALL PASS in 110 s
+test_replay_chunks: rc=0 ALL PASS
+test_wind_assist: rc=0 ALL PASS
+test_ap_sitl: rc=1 1 FAIL
+sim_test.timing_test: rc=0 timing_test PASSED
+rc=0

@@ -1,0 +1,9 @@
+Static OSD overlay on 20 % of the picture, 100 m, drift 0.5 m/s north from 5 s, 6 seeds pooled
+ case                                    sent    RMS (m)  vs no overlay  RMS after 5 s  false-fix  confident-wrong  RMS per seed
+ no overlay                               99.7%   0.337     +0.0%         0.331       0.0%         0          0.32 0.30 0.35 0.35 0.35 0.37
+ overlay + band mask                      99.7%   0.332     -1.6%         0.323       0.0%         0          0.34 0.29 0.39 0.32 0.32 0.32
+ overlay + built mask                     99.7%   0.330     -2.3%         0.325       0.0%         0          0.32 0.29 0.36 0.33 0.33 0.34
+ overlay, no mask                         99.5%   0.349     +3.4%         0.349       0.0%         0          0.31 0.31 0.36 0.36 0.35 0.39
+ no overlay, ground 40 % contrast         99.7%   0.338     +0.3%         0.335       0.0%         0          0.33 0.29 0.36 0.35 0.36 0.34
+ overlay, no mask, ground 40 % contrast   95.7%   0.559    +65.8%         0.594       0.3%         1          0.77 0.41 0.49 0.62 0.44 0.55
+built mask: overlay pixels left as ground 0.00% of the picture; masked area 9.5% of the picture

@@ -1,0 +1,8 @@
+Hold.process at 360 x 240, cv2.setNumThreads(1), CPU governor 'powersave', 100 m ottawa2019fall
+ setting                                                   mean ms  p95 ms  max ms   RMS m  fixes sent
+ version 1 (300 corners, LK 21x21, 3 levels, 3 LK calls)      8.5     9.7     9.9    0.29    99.7%
+ version 2 defaults (150 corners, LK 15x15, 2 levels)         2.3     2.5     2.6    0.30    99.7%
+ version 2, backward check every 2nd frame                    1.9     2.4     2.5    0.31    99.7%
+ version 2, 80 corners, backward check every 2nd frame        1.4     1.7     1.8    0.33    99.7%
+ version 2 defaults, frames at 12.5 per second                2.4     2.7     2.7    0.27    99.3%
+ version 2 defaults, frames at 8.3 per second                 2.5     2.7     2.8    0.27    97.0%

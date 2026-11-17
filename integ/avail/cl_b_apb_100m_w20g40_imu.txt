@@ -1,0 +1,71 @@
+[b_apb_100m_w20g40_imu] hold starts, mode 3, 0.8 s after the vision feed started
+[b_apb_100m_w20g40_imu] rms 3.23  p95 5.61  max 6.06  drift_m_per_min 5.36  roll_rms_deg 5.41  pitch_rms_deg 4.36  judge_rms 23.6  judge_jitter_rms 12.5  fix_rate_hz 6.52  frac_ok 0.993  frac_lost 0.00248  proc_ms_mean 147
+{
+ "case": "b_apb_100m_w20g40_imu",
+ "events": [
+  [
+   0.0,
+   "hold starts, mode 3, 0.8 s after the vision feed started"
+  ]
+ ],
+ "climb_s": 37.5,
+ "ekf_yaw_minus_true_deg": 12.91,
+ "onboard": [
+  [
+   5.09,
+   "connected",
+   "px4, clock ready True, ATTITUDE 100 Hz"
+  ],
+  [
+   116.57,
+   "done",
+   "stopped after 1 start(s); frame age when taken p50 21 ms, p95 52 ms"
+  ]
+ ],
+ "params_fail": [],
+ "onboard_exit": 0,
+ "clock_err_ms_mean": 0.6165445016676457,
+ "clock_err_ms_absmax": 1.3496712728908733,
+ "handover_ms_p50": 13.852801013854332,
+ "handover_ms_p95": 22.586977959872456,
+ "frames": 1500,
+ "processed": 403,
+ "fixes": 391,
+ "fix_rate_hz": 6.5157978936141845,
+ "pct_frames_fix": 26.066666666666666,
+ "frac_init": 0.0024813895781637717,
+ "frac_ok": 0.9925558312655087,
+ "frac_degraded": 0.0024813895781637717,
+ "frac_lost": 0.0024813895781637717,
+ "proc_ms_mean": 147.43995037220841,
+ "age_ms_p50": 212.1,
+ "age_ms_p95": 407.6,
+ "hold_why": {
+  "picture broken up": 1,
+  "picture just after a broken-up one": 1,
+  "init": 1,
+  "good fix 1 of 10": 1,
+  "good fix 2 of 10": 1,
+  "good fix 3 of 10": 1,
+  "good fix 4 of 10": 1,
+  "good fix 5 of 10": 1
+ },
+ "reanchors": 1,
+ "rms": 3.2266543690841987,
+ "p95": 5.608494366077531,
+ "max": 6.064948440387143,
+ "end": 5.148933141931706,
+ "drift_m_per_min": 5.359382515962356,
+ "roll_rms_deg": 5.4106797221262255,
+ "pitch_rms_deg": 4.360395524139366,
+ "tilt_mean_deg": 9.920660942987077,
+ "judge_rms": 23.647992918129678,
+ "judge_p95": 39.31227254078609,
+ "judge_max": 47.77670637790649,
+ "judge_jitter_rms": 12.546513972036257,
+ "height_mean": 99.5199251662187,
+ "seconds": 60.008,
+ "ev_delay_ms": 101.2,
+ "hold_py_md5": "44cf559a1e",
+ "px4_text": []
+}

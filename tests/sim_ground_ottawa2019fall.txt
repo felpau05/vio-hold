@@ -1,0 +1,8 @@
+6 seeds x 20 s per row, PAL 25 fps, video noise 3.7 grey (x-correlation 0.58); false-fix / out-50 = share of sent fixes outside the 99 % / 50 % bound of cov (ideal 1 % / 50 %)
+ottawa2019fall    50 m  fixes sent 99.8%  lost  0.0%  rms   0.17 m  p95   0.29 m  worst   0.47 m  false-fix  0.0%  out-50  5.9%  rms per seed 0.18 0.20 0.17 0.16 0.16 0.16
+ottawa2019fall   100 m  fixes sent 99.8%  lost  0.0%  rms   0.34 m  p95   0.57 m  worst   0.95 m  false-fix  0.0%  out-50  6.4%  rms per seed 0.30 0.35 0.33 0.35 0.35 0.33
+ottawa2019fall   150 m  fixes sent 99.3%  lost  0.0%  rms   0.54 m  p95   0.91 m  worst   1.46 m  false-fix  0.0%  out-50  9.9%  rms per seed 0.45 0.51 0.51 0.56 0.63 0.54
+ottawa2019fall   200 m  fixes sent 99.8%  lost  0.0%  rms   0.71 m  p95   1.18 m  worst   1.80 m  false-fix  0.0%  out-50  8.9%  rms per seed 0.60 0.63 0.69 0.78 0.83 0.70
+ottawa2019fall   300 m  fixes sent 99.8%  lost  0.0%  rms   1.07 m  p95   1.79 m  worst   2.69 m  false-fix  0.0%  out-50  9.9%  rms per seed 0.91 0.97 1.11 1.16 1.17 1.05
+ottawa2019fall   400 m  fixes sent 99.8%  lost  0.0%  rms   1.52 m  p95   2.55 m  worst   4.11 m  false-fix  0.0%  out-50 13.7%  rms per seed 1.24 1.34 1.47 1.67 1.73 1.57
+wrote sim_ground_ottawa2019fall.png and sim_ground_view_ottawa2019fall.png

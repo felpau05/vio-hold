@@ -1,0 +1,2 @@
+PASS video delay 58 ms (was 100), readout +26 ms (was +18), residual 0.45 deg, 20 deg/s
+PASS settings written. Start run again, then set VISO_DELAY_MS from 'apb_main.py delay' after the hover.

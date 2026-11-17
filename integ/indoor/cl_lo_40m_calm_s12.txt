@@ -1,0 +1,95 @@
+[lo_40m_calm_s12] hold starts, mode 3, 0.7 s after the vision feed started
+[lo_40m_calm_s12] PX4 left Position mode (mode 2)
+[lo_40m_calm_s12] rms 0.175  p95 0.256  max 0.676  drift_m_per_min 0.217  roll_rms_deg 0.438  pitch_rms_deg 0.391  judge_rms 0.591  judge_jitter_rms 0.477  fix_rate_hz 13.5  frac_ok 0.982  frac_lost 0  proc_ms_mean 67.8
+{
+ "case": "lo_40m_calm_s12",
+ "events": [
+  [
+   0.0,
+   "hold starts, mode 3, 0.7 s after the vision feed started"
+  ],
+  [
+   59.0,
+   "PX4 left Position mode (mode 2)"
+  ]
+ ],
+ "climb_s": 24.2,
+ "ekf_yaw_minus_true_deg": 12.05,
+ "onboard": [
+  [
+   5.04,
+   "connected",
+   "px4, clock ready True, ATTITUDE 100 Hz"
+  ],
+  [
+   121.34,
+   "hang",
+   "no frame taken for 10.9 s; stacks in /home/paul/Videos/vio-hold-attempt/px4sim/runs/lo_40m_calm_s12_onboard_fault.txt"
+  ],
+  [
+   121.4,
+   "done",
+   "stopped after 1 start(s); frame age when taken p50 34 ms, p95 7621 ms; SCALED_IMU 0 Hz, 0 rows kept"
+  ]
+ ],
+ "params_fail": [],
+ "onboard_exit": 0,
+ "clock_err_ms_mean": 0.8744764293054903,
+ "clock_err_ms_absmax": 1.0300098906270705,
+ "handover_ms_p50": 12.622162999832653,
+ "handover_ms_p95": 16.19876209983886,
+ "frames": 1500,
+ "processed": 932,
+ "fixes": 809,
+ "fix_rate_hz": 13.482434504366376,
+ "pct_frames_fix": 53.93333333333333,
+ "frac_init": 0.0,
+ "frac_ok": 0.9817596566523605,
+ "frac_degraded": 0.018240343347639486,
+ "frac_lost": 0.0,
+ "proc_ms_mean": 67.82875536480687,
+ "age_ms_p50": 149.3,
+ "age_ms_p95": 191.05999999999997,
+ "hold_why": {
+  "send rate limit": 97,
+  "waiting for image motion that proves the picture is live": 17,
+  "attitude 1 Hz, under 40 Hz": 1,
+  "attitude 5 Hz, under 40 Hz": 1,
+  "attitude 8 Hz, under 40 Hz": 1,
+  "attitude 12 Hz, under 40 Hz": 1,
+  "attitude 16 Hz, under 40 Hz": 1,
+  "attitude 21 Hz, under 40 Hz": 1
+ },
+ "reanchors": 0,
+ "rms": 0.17512619480518477,
+ "p95": 0.25576772467953274,
+ "max": 0.6762983176828813,
+ "end": 0.6762983176828813,
+ "drift_m_per_min": 0.2174308047748812,
+ "roll_rms_deg": 0.43799165745127305,
+ "pitch_rms_deg": 0.3913597134391499,
+ "tilt_mean_deg": 0.033241613052409136,
+ "judge_rms": 0.5911187864708554,
+ "judge_p95": 0.9432168259749166,
+ "judge_max": 2.065369703183539,
+ "judge_jitter_rms": 0.476631753784364,
+ "height_mean": 39.58106533323601,
+ "seconds": 60.004,
+ "px4_hgt_err_m": [
+  -0.07,
+  0.09
+ ],
+ "px4_yaw_err_deg": [
+  1.52,
+  7.19,
+  6.14
+ ],
+ "ev_delay_ms": 101.2,
+ "hold_py_md5": "ad3ebe25dc",
+ "px4_text": [
+  [
+   58.86,
+   "Failsafe activated\t"
+  ]
+ ]
+}

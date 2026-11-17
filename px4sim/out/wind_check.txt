@@ -1,0 +1,7 @@
+w20g40 seed 1: mean  20.0 km/h  peak  40.0  min   0.0  std  7.9  from 265.1 deg
+w20g40 seed 2: mean  20.0 km/h  peak  40.0  min   7.9  std  6.2  from 272.2 deg
+w20g40 seed 3: mean  20.0 km/h  peak  40.0  min   0.0  std  8.2  from 258.1 deg
+w30g55 seed 1: mean  30.0 km/h  peak  55.0  min   4.2  std  9.9  from 265.3 deg
+w30g55 seed 2: mean  30.0 km/h  peak  55.0  min  14.9  std  7.8  from 272.2 deg
+w30g55 seed 3: mean  30.0 km/h  peak  55.0  min   4.1  std 10.3  from 258.5 deg
+SIH_WIND_N/E are 'wind from' components: from 270 deg (west) gives SIH_WIND_E < 0, and SIH drag pushes the drone east

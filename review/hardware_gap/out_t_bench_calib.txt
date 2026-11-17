@@ -1,0 +1,13 @@
+A. sim_test.timing_test replay (pure rotation at 1.5 m, latency 60 ms, attitude lag 3 ms)
+   sweep found latency 58 ms (expected 57), readout 18 ms (true 16)  -> timing_test assertion PASSES
+B. far scene (60 m), hand pivot 0.2 m, latency 75 ms, true readout 16 ms
+   nominal mount                      -> found turn   0 deg, mirror False, tilt roll -0.58 pitch +0.13 yaw -0.04 deg, focal x1.001, latency 72 ms (true 72), readout 17 ms; residual 0.152 deg vs next-best orientation 7.908 deg
+   tilt roll +3 pitch -2, focal -5%   -> found turn   0 deg, mirror False, tilt roll +2.33 pitch -2.03 yaw -0.03 deg, focal x0.953, latency 72 ms (true 72), readout 14 ms; residual 0.152 deg vs next-best orientation 9.201 deg
+   picture turned 180                 -> found turn 180 deg, mirror False, tilt roll -0.34 pitch -0.09 yaw +0.23 deg, focal x1.001, latency 72 ms (true 72), readout 17 ms; residual 0.147 deg vs next-best orientation 8.491 deg
+   picture turned 90                  -> found turn  90 deg, mirror False, tilt roll -0.17 pitch +0.01 yaw +0.23 deg, focal x1.001, latency 70 ms (true 72), readout 13 ms; residual 0.150 deg vs next-best orientation 7.882 deg
+   picture mirrored left-right        -> found turn   0 deg, mirror True , tilt roll -0.29 pitch +0.08 yaw -0.14 deg, focal x1.003, latency 72 ms (true 72), readout 17 ms; residual 0.161 deg vs next-best orientation 8.127 deg
+done in 53 s
+
+real	0m54.025s
+user	1m13.877s
+sys	0m10.232s

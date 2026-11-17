@@ -1,0 +1,1 @@
+{"run": "ours_gyro_50m_w20g40.npz", "ground": "night_lights", "t": [45.0, 62.0], "still": false, "freeze": null, "frames": 425, "sent": 0, "sent_pct": 0.0, "first_sent_s": null, "sent_while_frozen": 0, "err_rms": null, "err_max": null, "outside_99": null, "n_median": null, "step_ms_mean": 2.45, "whys": {"init": 213, "no ground": 212}}

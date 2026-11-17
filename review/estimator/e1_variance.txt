@@ -1,0 +1,21 @@
+PART A  ottawa2019fall, 20 s hover, 6 seeds per height (sim_ground settings)
+ h(m)  RMS per seed (m)                         false-fix per seed            anchor offset RMS  jitter RMS  sent var (m^2, trace)  pooled false-fix
+  100  0.35 0.40 0.35 0.40 0.54 0.38               4%   13%    5%   13%   36%    7%   0.29             0.29         0.073               12.9%
+  200  0.66 0.82 0.66 0.84 1.15 0.69               3%   14%    5%   15%   42%    5%   0.55             0.61         0.289               14.0%
+  300  1.06 1.49 1.06 1.40 1.85 1.09               6%   29%    9%   22%   47%    8%   0.95             0.97         0.649               19.8%
+  400  1.48 2.05 1.55 1.95 2.59 1.58               8%   31%   13%   26%   51%   13%   1.38             1.32         1.143               23.7%
+  -> per-axis error/height: anchor sigma = anchor RMS/(sqrt2 h), frame sigma = jitter RMS/(sqrt2 h)
+      100 m: anchor 0.116 deg, frame 0.118 deg (Hold assumes ATT_NOISE 0.150 deg once, as trace = 0.106 deg per axis)
+      200 m: anchor 0.112 deg, frame 0.123 deg (Hold assumes ATT_NOISE 0.150 deg once, as trace = 0.106 deg per axis)
+      300 m: anchor 0.128 deg, frame 0.131 deg (Hold assumes ATT_NOISE 0.150 deg once, as trace = 0.106 deg per axis)
+      400 m: anchor 0.139 deg, frame 0.133 deg (Hold assumes ATT_NOISE 0.150 deg once, as trace = 0.106 deg per axis)
+
+PART B  ablation at 300 m, 3 s, 16 seeds each (pooled; each run gives one anchor sample)
+ source switched off            RMS(m)  anchor RMS  jitter RMS  false-fix
+ all (sim_ground)                1.48    1.26        0.78      26.3%
+ no vibration                    1.27    1.03        0.74      16.7%
+ no FC attitude noise            1.11    1.04        0.39       1.0%
+ no timing error/lag             1.26    1.02        0.74      14.9%
+ no attitude bias                1.29    1.03        0.77      17.7%
+ no video noise                  1.48    1.25        0.79      26.3%
+ all off                         0.16    0.14        0.09       0.0%

@@ -1,0 +1,36 @@
+A. PX4 v1.15.4 Onboard streams on the APB link (MAV_0_RATE 0 -> 11520 B/s)
+   requested bandwidth of advertised streams: 25604 B/s (with a global origin set: 28266)
+   no ULog streaming                rate_mult 0.45 -> ATTITUDE  45.0 Hz, ATTITUDE_QUATERNION 22.5 Hz, HIGHRES_IMU 22.5 Hz
+   with origin set                  rate_mult 0.41 -> ATTITUDE  40.8 Hz, ATTITUDE_QUATERNION 20.4 Hz, HIGHRES_IMU 20.4 Hz
+   ULog streaming on (70 % share)   rate_mult 0.13 -> ATTITUDE  13.5 Hz, ATTITUDE_QUATERNION  6.7 Hz, HIGHRES_IMU  6.7 Hz
+   biggest consumers: ODOMETRY 7350 B/s, ATTITUDE 4000 B/s, HIGHRES_IMU 3750 B/s, ATTITUDE_QUATERNION 3000 B/s, LOCAL_POSITION_NED 1200 B/s
+   UART4 TX buffer 1500 B drains in 65 ms at 23040 B/s; one burst of ODOMETRY+HIGHRES_IMU+ATTITUDE_QUATERNION+LOCAL_POSITION_NED+ATTITUDE (460 B) takes 20 ms
+B. hold error vs attitude feed (Ottawa photo, sim hover)
+  --- 100 m
+    attitude 100 Hz (sim assumption)                    sent  100%  rms   0.34 m  p95   0.56 m  worst   0.81 m  false-fix  4.0%
+    attitude 45 Hz (PX4 Onboard default here)           sent  100%  rms   0.39 m  p95   0.69 m  worst   1.01 m  false-fix 12.2%
+    attitude 30 Hz                                      sent  100%  rms   0.62 m  p95   1.03 m  worst   1.28 m  false-fix 46.9%
+    attitude 13 Hz (ULog streaming on)                  sent  100%  rms   1.10 m  p95   1.82 m  worst   2.52 m  false-fix 81.1%
+    attitude 100 Hz, time_boot_ms truncation            sent  100%  rms   0.28 m  p95   0.47 m  worst   0.72 m  false-fix  0.8%
+    attitude 46 Hz, stamped on arrival (+1..21 ms)      sent   94%  rms   1.64 m  p95   2.62 m  worst   3.67 m  false-fix 93.8%
+  --- 200 m
+    attitude 100 Hz (sim assumption)                    sent  100%  rms   1.20 m  p95   1.91 m  worst   2.42 m  false-fix 46.4%
+    attitude 45 Hz (PX4 Onboard default here)           sent  100%  rms   0.72 m  p95   1.21 m  worst   1.88 m  false-fix  7.2%
+    attitude 30 Hz                                      sent  100%  rms   1.58 m  p95   2.54 m  worst   3.16 m  false-fix 65.8%
+    attitude 13 Hz (ULog streaming on)                  sent  100%  rms   2.56 m  p95   4.06 m  worst   5.07 m  false-fix 90.8%
+    attitude 100 Hz, time_boot_ms truncation            sent  100%  rms   0.76 m  p95   1.23 m  worst   1.61 m  false-fix  8.3%
+    attitude 46 Hz, stamped on arrival (+1..21 ms)      sent   92%  rms   2.44 m  p95   4.00 m  worst   6.78 m  false-fix 81.6%
+C. online: Hold.process called when the frame arrives (t0 + capture latency), attitude only as it arrives
+   attitude 100.0 Hz, capture latency  20 ms: fixes sent   3%; failures {'attitude late': 278}
+   attitude 100.0 Hz, capture latency  35 ms: fixes sent  82%; failures {'attitude late': 53}
+   attitude 100.0 Hz, capture latency  60 ms: fixes sent 100%; failures {}
+   attitude  46.0 Hz, capture latency  20 ms: fixes sent   0%; failures {'attitude late': 288}
+   attitude  46.0 Hz, capture latency  35 ms: fixes sent  49%; failures {'attitude late': 151}
+   attitude  46.0 Hz, capture latency  60 ms: fixes sent 100%; failures {}
+   attitude  14.0 Hz, capture latency  20 ms: fixes sent   0%; failures {'attitude late': 295}
+   attitude  14.0 Hz, capture latency  35 ms: fixes sent   1%; failures {'attitude late': 256}
+   attitude  14.0 Hz, capture latency  60 ms: fixes sent  50%; failures {'attitude late': 148}
+
+real	1m30.639s
+user	4m55.324s
+sys	0m51.722s

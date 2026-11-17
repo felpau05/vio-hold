@@ -1,0 +1,76 @@
+[lt_final_field_s11] hold starts, mode 3, 0.7 s after the vision feed started
+[lt_final_field_s11] rms 1.36  p95 2.31  max 2.5  drift_m_per_min 1.96  roll_rms_deg 5.96  pitch_rms_deg 3.46  judge_rms 21.3  judge_jitter_rms 12.7  fix_rate_hz 10.2  frac_ok 0.854  frac_lost 0.00408  proc_ms_mean 79.7
+{
+ "case": "lt_final_field_s11",
+ "events": [
+  [
+   0.0,
+   "hold starts, mode 3, 0.7 s after the vision feed started"
+  ]
+ ],
+ "climb_s": 37.5,
+ "ekf_yaw_minus_true_deg": 9.94,
+ "onboard": [
+  [
+   5.02,
+   "connected",
+   "px4, clock ready True, ATTITUDE 100 Hz"
+  ],
+  [
+   15.11,
+   "run",
+   "FAIL no usable video frame in 10 s. Check the camera and video_device."
+  ],
+  [
+   116.51,
+   "done",
+   "stopped after 2 start(s); frame age when taken p50 26 ms, p95 50 ms; SCALED_IMU 0 Hz, 0 rows kept"
+  ]
+ ],
+ "params_fail": [],
+ "onboard_exit": 0,
+ "clock_err_ms_mean": 0.8089514341210864,
+ "clock_err_ms_absmax": 0.8758849997150264,
+ "handover_ms_p50": 12.505223501648288,
+ "handover_ms_p95": 14.687331137974978,
+ "frames": 1500,
+ "processed": 735,
+ "fixes": 612,
+ "fix_rate_hz": 10.2,
+ "pct_frames_fix": 40.8,
+ "frac_init": 0.005442176870748299,
+ "frac_ok": 0.854421768707483,
+ "frac_degraded": 0.1360544217687075,
+ "frac_lost": 0.004081632653061225,
+ "proc_ms_mean": 79.65401360544217,
+ "age_ms_p50": 167.3,
+ "age_ms_p95": 204.5,
+ "hold_why": {
+  "whole picture: halves disagree": 97,
+  "init": 3,
+  "good fix 1 of 10": 2,
+  "19 consistent points": 2,
+  "good fix 2 of 10": 2,
+  "good fix 3 of 10": 2,
+  "good fix 4 of 10": 2,
+  "good fix 5 of 10": 2
+ },
+ "reanchors": 3,
+ "rms": 1.3648967459764447,
+ "p95": 2.3116336529409343,
+ "max": 2.499490413063903,
+ "end": 0.791949458039473,
+ "drift_m_per_min": 1.9554345100351262,
+ "roll_rms_deg": 5.961460579960345,
+ "pitch_rms_deg": 3.4649443443175523,
+ "tilt_mean_deg": 9.73983181371972,
+ "judge_rms": 21.250023039524265,
+ "judge_p95": 36.26574525029829,
+ "judge_max": 40.12802606820861,
+ "judge_jitter_rms": 12.746409890059482,
+ "height_mean": 99.50235076474873,
+ "seconds": 60.0,
+ "ev_delay_ms": 101.2,
+ "hold_py_md5": "3335f7bc2f",
+ "px4_text": []
+}

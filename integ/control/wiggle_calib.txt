@@ -1,0 +1,2 @@
+{"label": "c_wig_40m_w20g40_s12", "frames": 91, "matches": 3488, "rate_dps": 33.1, "found_delay_ms": 62.0, "true_delay_ms": 60.4, "setting_ms": 100.4, "error_ms": 1.6, "found_readout_ms": 24.0, "true_readout_ms": 18.4, "resid_deg": 0.627}
+{"label": "c_wig_100m_w20g40_s11", "frames": 90, "matches": 4395, "rate_dps": 32.1, "found_delay_ms": 64.0, "true_delay_ms": 60.4, "setting_ms": 100.4, "error_ms": 3.6, "found_readout_ms": 24.0, "true_readout_ms": 18.4, "resid_deg": 0.445}

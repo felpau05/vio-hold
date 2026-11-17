@@ -1,0 +1,71 @@
+  c_base_100m_w20g40_s11                       rms 0.94 max 1.42 roll 8.24 pitch 2.91 fixHz 12.1 age 171 
+  c_base_100m_w20g40_s12                       rms 2.32 max 2.73 roll 5.71 pitch 2.26 fixHz 12.2 age 166 
+  c_base_100m_w20g40_s13                       rms 1.08 max 1.57 roll 6.76 pitch 2.03 fixHz 11.8 age 166 
+c_base_100m: n 3  RMS middle 1.08 worst 2.32 | max middle 1.57 worst 2.73 | tilt wobble middle 7.05 deg
+  c_d140_100m_w20g40_s11                       rms 0.77 max 1.27 roll 8.39 pitch 2.69 fixHz 12.1 age 167 
+  c_d140_100m_w20g40_s12                       rms 0.87 max 1.32 roll 5.62 pitch 2.17 fixHz 12.1 age 170 
+  c_d140_100m_w20g40_s13                       rms 0.55 max 0.92 roll 6.62 pitch 1.87 fixHz 12.0 age 170 
+c_d140_100m: n 3  RMS middle 0.77 worst 0.87 | max middle 1.27 worst 1.32 | tilt wobble middle 6.88 deg
+  c_trust_100m_w20g40_s11                      rms 0.62 max 1.24 roll 9.31 pitch 5.15 fixHz 12.0 age 170 
+  c_trust_100m_w20g40_s12                      rms 1.47 max 2.69 roll 7.75 pitch 5.56 fixHz 11.9 age 170 
+  c_trust_100m_w20g40_s13                      rms 0.49 max 1.01 roll 8.16 pitch 3.27 fixHz 12.0 age 169 
+c_trust_100m: n 3  RMS middle 0.62 worst 1.47 | max middle 1.24 worst 2.69 | tilt wobble middle 9.54 deg
+  c_spd_100m_w20g40_s11                        rms 7.11 max 30.01 roll 9.09 pitch 4.35 fixHz 10.7 age 170 ArduCopter left Loiter (mode 9): EKF primary changed:0; EKF variance; EKF Failsa
+  c_spd_100m_w20g40_s12                        rms 2.06 max 3.77 roll 8.64 pitch 5.84 fixHz 11.5 age 170 
+c_spd_100m: n 2  RMS middle 4.59 worst 7.11 | max middle 16.89 worst 30.01 | tilt wobble middle 10.25 deg
+  c_spd2_100m_w20g40_s11                       rms 3.18 max 5.80 roll 9.75 pitch 6.15 fixHz 10.8 age 168 
+  c_spd2_100m_w20g40_s12                       rms 2.39 max 5.01 roll 8.12 pitch 6.58 fixHz 11.3 age 168 
+c_spd2_100m: n 2  RMS middle 2.79 worst 3.18 | max middle 5.40 worst 5.80 | tilt wobble middle 10.99 deg
+  c_d140_40m_w20g40_s11                        rms 0.37 max 0.72 roll 8.57 pitch 2.61 fixHz 12.2 age 164 
+  c_d140_40m_w20g40_s12                        rms 0.28 max 0.51 roll 5.59 pitch 2.33 fixHz 12.2 age 167 
+  c_d140_40m_w20g40_s13                        rms 0.49 max 0.86 roll 6.84 pitch 1.88 fixHz 12.1 age 167 
+c_d140_40m: n 3  RMS middle 0.37 worst 0.49 | max middle 0.72 worst 0.86 | tilt wobble middle 7.09 deg
+  c_spd2_40m_w20g40_s11                        rms 0.43 max 1.07 roll 8.50 pitch 2.63 fixHz 12.0 age 171 
+  c_spd2_40m_w20g40_s12                        rms 0.47 max 0.78 roll 5.73 pitch 2.27 fixHz 12.0 age 170 
+c_spd2_40m: n 2  RMS middle 0.45 worst 0.47 | max middle 0.92 worst 1.07 | tilt wobble middle 7.53 deg
+  c_wig_100m_w20g40_s11                        rms 4.49 max 9.20 roll 12.57 pitch 10.30 fixHz 9.7 age 211 
+  c_wig_40m_w20g40_s12                         rms 2.59 max 4.25 roll 8.89 pitch 9.90 fixHz 11.6 age 210 
+c_wig_: n 2  RMS middle 3.54 worst 4.49 | max middle 6.72 worst 9.20 | tilt wobble middle 14.78 deg
+  c_wigfix_100m_w20g40_s11                     rms 0.64 max 1.04 roll 8.10 pitch 3.28 fixHz 12.0 age 172 
+  c_wigfix_40m_w20g40_s12                      rms 0.28 max 0.64 roll 5.68 pitch 2.29 fixHz 12.1 age 169 
+c_wigfix: n 2  RMS middle 0.46 worst 0.64 | max middle 0.84 worst 1.04 | tilt wobble middle 7.43 deg
+  c_i2p15_100m_w20g40_s11                      rms 0.72 max 1.13 roll 8.72 pitch 2.69 fixHz 12.0 age 171 
+  c_i2p15_100m_w20g40_s12                      rms 0.60 max 0.85 roll 5.72 pitch 2.25 fixHz 12.0 age 171 
+  c_i2p15_100m_w20g40_s13                      rms 0.86 max 1.19 roll 6.78 pitch 2.16 fixHz 12.1 age 170 
+c_i2p15_100m: n 3  RMS middle 0.72 worst 0.86 | max middle 1.13 worst 1.19 | tilt wobble middle 7.12 deg
+  c_i2p15_40m_w20g40_s11                       rms 0.23 max 0.52 roll 8.52 pitch 2.53 fixHz 12.0 age 170 
+  c_i2p15_40m_w20g40_s12                       rms 0.15 max 0.25 roll 5.64 pitch 2.31 fixHz 12.1 age 169 
+  c_i2p15_40m_w20g40_s13                       rms 0.23 max 0.44 roll 6.80 pitch 1.93 fixHz 12.1 age 170 
+c_i2p15_40m: n 3  RMS middle 0.23 worst 0.23 | max middle 0.44 worst 0.52 | tilt wobble middle 7.07 deg
+  c_veli2_100m_w20g40_s11                      rms 0.84 max 1.16 roll 8.59 pitch 2.54 fixHz 12.1 age 170 
+c_veli2_100m: n 1  RMS middle 0.84 worst 0.84 | max middle 1.16 worst 1.16 | tilt wobble middle 8.96 deg
+  c_d140_60m_w20g40_s11                        rms 0.49 max 0.79 roll 8.39 pitch 2.68 fixHz 11.9 age 170 
+  c_d140_60m_w20g40_s12                        rms 0.59 max 1.03 roll 5.63 pitch 2.28 fixHz 12.2 age 167 
+  c_d140_60m_w20g40_s13                        rms 0.43 max 0.75 roll 6.75 pitch 1.86 fixHz 11.9 age 174 
+c_d140_60m: n 3  RMS middle 0.49 worst 0.59 | max middle 0.79 worst 1.03 | tilt wobble middle 7.00 deg
+  c_wa_100m_w20g40_s11                         rms 1.70 max 2.38 roll 8.40 pitch 3.32 fixHz 12.0 age 171 
+c_wa_100m: n 1  RMS middle 1.70 worst 1.70 | max middle 2.38 worst 2.38 | tilt wobble middle 9.04 deg
+  c_wa2_100m_w20g40_s11                        rms 1.40 max 1.89 roll 8.61 pitch 2.78 fixHz 11.8 age 177 pilot selects GUIDED
+  c_wa2_100m_w20g40_s12                        rms 0.54 max 0.79 roll 5.86 pitch 2.18 fixHz 12.1 age 169 pilot selects GUIDED
+  c_wa2_100m_w20g40_s13                        rms 0.79 max 1.87 roll 6.62 pitch 2.09 fixHz 12.0 age 172 pilot selects GUIDED
+c_wa2_100m: n 3  RMS middle 0.79 worst 1.40 | max middle 1.87 worst 1.89 | tilt wobble middle 6.94 deg
+  c_wa3_100m_w20g40_s11                        rms 0.57 max 0.98 roll 8.47 pitch 2.68 fixHz 11.9 age 173 pilot selects GUIDED
+  c_wa3_100m_w20g40_s12                        rms 0.46 max 0.72 roll 5.78 pitch 2.18 fixHz 12.0 age 171 pilot selects GUIDED
+  c_wa3_100m_w20g40_s13                        rms 0.32 max 0.54 roll 6.53 pitch 2.13 fixHz 12.0 age 171 pilot selects GUIDED
+c_wa3_100m: n 3  RMS middle 0.46 worst 0.57 | max middle 0.72 worst 0.98 | tilt wobble middle 6.87 deg
+  c_wa3_60m_w20g40_s11                         rms 0.61 max 0.82 roll 8.35 pitch 2.77 fixHz 12.0 age 170 pilot selects GUIDED
+  c_wa3_60m_w20g40_s12                         rms 1.18 max 1.39 roll 5.77 pitch 2.46 fixHz 12.0 age 171 pilot selects GUIDED
+  c_wa3_60m_w20g40_s13                         rms 0.72 max 1.15 roll 6.71 pitch 1.97 fixHz 12.0 age 171 pilot selects GUIDED
+c_wa3_60m: n 3  RMS middle 0.72 worst 1.18 | max middle 1.15 worst 1.39 | tilt wobble middle 6.99 deg
+  c_hoD_100m_holdout_lawn_s104                 rms 5.81 max 7.73 roll 7.84 pitch 2.49 fixHz 11.8 age 177 
+  c_hoD_100m_holdout_quarry_s105               rms 0.88 max 1.59 roll 7.80 pitch 2.55 fixHz 12.1 age 168 
+  c_hoD_100m_holdout_water_s106                rms 0.87 max 1.49 roll 6.16 pitch 2.16 fixHz 12.1 age 170 
+c_hoD_100m: n 3  RMS middle 0.88 worst 5.81 | max middle 1.59 worst 7.73 | tilt wobble middle 8.21 deg
+  c_hoD_30m_holdout_lawn_s107                  rms 0.75 max 1.21 roll 6.52 pitch 1.91 fixHz 11.2 age 170 
+  c_hoD_30m_holdout_quarry_s108                rms 0.30 max 0.69 roll 5.81 pitch 2.67 fixHz 12.1 age 169 
+  c_hoD_30m_holdout_water_s109                 rms 0.38 max 1.00 roll 6.23 pitch 2.07 fixHz 12.1 age 170 
+c_hoD_30m: n 3  RMS middle 0.38 worst 0.75 | max middle 1.00 worst 1.21 | tilt wobble middle 6.57 deg
+  c_hoB_30m_holdout_lawn_s107                  rms 0.96 max 1.44 roll 6.55 pitch 2.03 fixHz 11.0 age 179 
+  c_hoB_30m_holdout_quarry_s108                rms 0.31 max 0.73 roll 5.74 pitch 2.55 fixHz 11.8 age 178 
+  c_hoB_30m_holdout_water_s109                 rms 0.25 max 0.61 roll 6.36 pitch 2.13 fixHz 11.7 age 178 
+c_hoB_30m: n 3  RMS middle 0.31 worst 0.96 | max middle 0.73 worst 1.44 | tilt wobble middle 6.71 deg

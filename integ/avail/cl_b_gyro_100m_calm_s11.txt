@@ -1,0 +1,62 @@
+[b_gyro_100m_calm_s11] hold starts, mode 3, 0.7 s after the vision feed started
+[b_gyro_100m_calm_s11] rms 0.626  p95 0.98  max 1.02  drift_m_per_min 0.537  roll_rms_deg 0.585  pitch_rms_deg 0.666  judge_rms 2.1  judge_jitter_rms 1.82  fix_rate_hz 16.2  frac_ok 1  frac_lost 0  proc_ms_mean 59.9
+{
+ "case": "b_gyro_100m_calm_s11",
+ "events": [
+  [
+   0.0,
+   "hold starts, mode 3, 0.7 s after the vision feed started"
+  ]
+ ],
+ "climb_s": 37.5,
+ "ekf_yaw_minus_true_deg": 11.56,
+ "onboard": [
+  [
+   5.03,
+   "connected",
+   "px4, clock ready True, ATTITUDE 100 Hz"
+  ],
+  [
+   116.51,
+   "done",
+   "stopped after 1 start(s); frame age when taken p50 31 ms, p95 51 ms; SCALED_IMU 0 Hz, 0 rows kept"
+  ]
+ ],
+ "params_fail": [],
+ "onboard_exit": 0,
+ "clock_err_ms_mean": 0.8851615966338314,
+ "clock_err_ms_absmax": 1.0240848799440982,
+ "handover_ms_p50": 12.467722001019865,
+ "handover_ms_p95": 14.383910410833776,
+ "frames": 1500,
+ "processed": 970,
+ "fixes": 970,
+ "fix_rate_hz": 16.16558896073595,
+ "pct_frames_fix": 64.66666666666667,
+ "frac_init": 0.0,
+ "frac_ok": 1.0,
+ "frac_degraded": 0.0,
+ "frac_lost": 0.0,
+ "proc_ms_mean": 59.887731958762885,
+ "age_ms_p50": 144.2,
+ "age_ms_p95": 171.52999999999997,
+ "hold_why": {},
+ "reanchors": 0,
+ "rms": 0.6255857501588008,
+ "p95": 0.9802884430679522,
+ "max": 1.0237357765808037,
+ "end": 0.6097216488621114,
+ "drift_m_per_min": 0.5368214417722221,
+ "roll_rms_deg": 0.5846964124227297,
+ "pitch_rms_deg": 0.6659172438395413,
+ "tilt_mean_deg": 0.034945460624621845,
+ "judge_rms": 2.09822715891986,
+ "judge_p95": 3.6024444446473036,
+ "judge_max": 4.813748337620083,
+ "judge_jitter_rms": 1.816040947563892,
+ "height_mean": 99.55330532998671,
+ "seconds": 60.004000000000005,
+ "ev_delay_ms": 101.2,
+ "hold_py_md5": "d8b5e86060",
+ "px4_text": []
+}

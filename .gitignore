@@ -1,0 +1,23 @@
+# Large or generated files stay out of git
+px4sim/PX4-Autopilot/
+videos/
+ground/*.jpg
+.snapshots/
+__pycache__/
+*.pyc
+*.npz
+*.mp4
+*.avi
+apsim/ardupilot/
+.clip-1
+real/
+tests/clip_out/
+tools/wheels/
+
+# Simulator and flight logs: rewritten on every run, too big for git
+*.BIN
+runs/
+logs/
+*.lock
+tests_apb/out_*.txt
+tools/deploy.env

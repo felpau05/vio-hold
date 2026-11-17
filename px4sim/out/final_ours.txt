@@ -1,0 +1,45 @@
+[final_ours_50m_w20g40] hold starts, mode 3, 5.6 s after the vision feed started
+[final_ours_50m_w20g40] rms 10.5  p95 19.3  max 19.9  drift_m_per_min 39.7  roll_rms_deg 14.8  pitch_rms_deg 9.9  judge_rms 25.8  judge_jitter_rms 20.7  fix_rate_hz 22.7  frac_ok 0.877  frac_lost 0.012  proc_ms_mean 5.25  late_ms_p95 7.6
+{
+ "case": "final_ours_50m_w20g40",
+ "events": [
+  [
+   0.0,
+   "hold starts, mode 3, 5.6 s after the vision feed started"
+  ]
+ ],
+ "climb_s": 26.4,
+ "ekf_yaw_minus_true_deg": 12.19,
+ "rms": 10.533138946577242,
+ "p95": 19.25802002122336,
+ "max": 19.86050930798837,
+ "end": 9.452767960019429,
+ "drift_m_per_min": 39.73224762149654,
+ "roll_rms_deg": 14.764093607002184,
+ "pitch_rms_deg": 9.89883324733598,
+ "tilt_mean_deg": 8.79119120278997,
+ "judge_rms": 25.79674855654664,
+ "judge_p95": 44.864542884680766,
+ "judge_max": 51.86367903389266,
+ "judge_jitter_rms": 20.711847446337288,
+ "height_mean": 48.6568004715591,
+ "seconds": 30.008000000000003,
+ "frames": 749,
+ "fix_rate_hz": 22.660623833644358,
+ "frac_init": 0.0053404539385847796,
+ "frac_ok": 0.87716955941255,
+ "frac_degraded": 0.1054739652870494,
+ "frac_lost": 0.012016021361815754,
+ "proc_ms_mean": 5.249024842332959,
+ "late_ms_p95": 7.5999999999964984,
+ "ev_delay_ms": 101.2,
+ "hold_why": {
+  "waiting for image motion that proves the picture is live": 120,
+  "picture broken up": 35,
+  "fit out of range": 15,
+  "image motion does not match the attitude": 7,
+  "picture just after a broken-up one": 4
+ },
+ "hold_py_md5": "a987701e23",
+ "px4_text": []
+}

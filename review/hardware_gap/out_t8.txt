@@ -1,0 +1,31 @@
+--- 100 m, wander +-5 m
+  exact (sim: +0.5 m bias, 0.15 m noise)           sent  100%  rms   0.35 m  p95   0.57 m  worst   0.80 m  false-fix  4.0%
+  height scale +2%                                 sent  100%  rms   0.34 m  p95   0.57 m  worst   0.86 m  false-fix  3.8%
+  height scale -2%                                 sent  100%  rms   0.45 m  p95   0.72 m  worst   0.96 m  false-fix 21.2%
+  height scale +5%                                 sent  100%  rms   0.54 m  p95   0.91 m  worst   1.22 m  false-fix 28.7%
+  height scale -5%                                 sent  100%  rms   0.47 m  p95   0.72 m  worst   0.96 m  false-fix 25.9%
+  height scale +10%                                sent  100%  rms   0.52 m  p95   0.83 m  worst   1.06 m  false-fix 23.5%
+  height scale -10%                                sent  100%  rms   0.75 m  p95   1.04 m  worst   1.28 m  false-fix 83.0%
+  ground under the hold 5 m lower than take-off    sent  100%  rms   0.32 m  p95   0.54 m  worst   0.76 m  false-fix  3.7%
+  drift 1 m/min, 5 min into the hold (5..5.3 m)    sent  100%  rms   0.56 m  p95   0.88 m  worst   1.18 m  false-fix 30.7%
+--- 200 m, wander +-5 m
+  exact (sim: +0.5 m bias, 0.15 m noise)           sent  100%  rms   0.70 m  p95   1.16 m  worst   1.49 m  false-fix  5.8%
+  height scale +2%                                 sent  100%  rms   1.05 m  p95   1.68 m  worst   2.42 m  false-fix 31.2%
+  height scale -2%                                 sent  100%  rms   0.89 m  p95   1.48 m  worst   2.12 m  false-fix 22.7%
+  height scale +5%                                 sent  100%  rms   0.78 m  p95   1.28 m  worst   2.22 m  false-fix  8.7%
+  height scale -5%                                 sent  100%  rms   1.14 m  p95   1.71 m  worst   2.41 m  false-fix 46.9%
+  height scale +10%                                sent  100%  rms   0.85 m  p95   1.45 m  worst   2.05 m  false-fix 12.4%
+  height scale -10%                                sent  100%  rms   0.86 m  p95   1.34 m  worst   1.95 m  false-fix 24.9%
+  ground under the hold 5 m lower than take-off    sent  100%  rms   0.96 m  p95   1.59 m  worst   2.17 m  false-fix 30.2%
+  drift 1 m/min, 5 min into the hold (5..5.3 m)    sent  100%  rms   0.67 m  p95   1.15 m  worst   1.68 m  false-fix  4.7%
+B. true height 3 m, drone moves 2 m east in 10 s; baro height = true + error
+  baro +3.0 m (true 3): reported east move / true move = +1.02; state 'ok' on 98% of frames
+  baro +2.0 m (true 3): reported east move / true move = +0.65; state 'ok' on 99% of frames
+  baro +1.0 m (true 3): reported east move / true move = +0.33; state 'ok' on 100% of frames
+  baro +0.5 m (true 3): reported east move / true move = +0.16; state 'ok' on 98% of frames
+  baro -0.5 m (true 3): reported east move / true move = -0.19; state 'ok' on 93% of frames
+  baro exactly 0.0 m: Hold.process raises ZeroDivisionError (float division by zero) -> the program dies
+
+real	1m33.122s
+user	7m9.263s
+sys	1m39.960s

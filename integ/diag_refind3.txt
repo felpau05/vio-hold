@@ -1,0 +1,71 @@
+[diag_refind] hold starts, mode 3, 1.7 s after the vision feed started
+[diag_refind] rms 2.92  p95 4.92  max 5.1  drift_m_per_min 14.1  roll_rms_deg 6.68  pitch_rms_deg 3.25  judge_rms 20.7  judge_jitter_rms 13.5  fix_rate_hz 11.2  frac_ok 0.857  frac_lost 0.0119  proc_ms_mean 55.3
+{
+ "case": "diag_refind",
+ "events": [
+  [
+   0.0,
+   "hold starts, mode 3, 1.7 s after the vision feed started"
+  ]
+ ],
+ "climb_s": 37.5,
+ "ekf_yaw_minus_true_deg": 12.63,
+ "onboard": [
+  [
+   4.01,
+   "connected",
+   "px4, clock ready True, ATTITUDE 100 Hz"
+  ],
+  [
+   87.51,
+   "done",
+   "stopped after 1 start(s); frame age when taken p50 24 ms, p95 49 ms"
+  ]
+ ],
+ "params_fail": [],
+ "onboard_exit": 0,
+ "clock_err_ms_mean": 0.7764996134296156,
+ "clock_err_ms_absmax": 0.8801390482204852,
+ "handover_ms_p50": 12.480389006668702,
+ "handover_ms_p95": 16.336540493648496,
+ "frames": 750,
+ "processed": 504,
+ "fixes": 337,
+ "fix_rate_hz": 11.231835755232636,
+ "pct_frames_fix": 44.93333333333333,
+ "frac_init": 0.005952380952380952,
+ "frac_ok": 0.8571428571428571,
+ "frac_degraded": 0.125,
+ "frac_lost": 0.011904761904761904,
+ "proc_ms_mean": 55.304365079365084,
+ "age_ms_p50": 142.8,
+ "age_ms_p95": 169.92000000000002,
+ "hold_why": {
+  "picture broken up": 33,
+  "picture just after a broken-up one": 20,
+  "good fix 1 of 10": 14,
+  "good fix 2 of 10": 11,
+  "good fix 3 of 10": 11,
+  "good fix 4 of 10": 11,
+  "good fix 5 of 10": 11,
+  "good fix 8 of 10": 10
+ },
+ "reanchors": 0,
+ "rms": 2.9222352065889314,
+ "p95": 4.919568088610699,
+ "max": 5.101801605500623,
+ "end": 4.628563344698756,
+ "drift_m_per_min": 14.070557722043349,
+ "roll_rms_deg": 6.6764239169157955,
+ "pitch_rms_deg": 3.250423491901136,
+ "tilt_mean_deg": 9.617575156686742,
+ "judge_rms": 20.733721147351616,
+ "judge_p95": 40.87446425981008,
+ "judge_max": 47.40876991607923,
+ "judge_jitter_rms": 13.500110503635828,
+ "height_mean": 99.61972845070424,
+ "seconds": 30.003999999999998,
+ "ev_delay_ms": 101.2,
+ "hold_py_md5": "a9aef33d47",
+ "px4_text": []
+}

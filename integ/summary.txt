@@ -1,0 +1,21 @@
+variant height wind    runs  RMS m (each seed)         max m (each seed)        holds 1 m / 2 m
+apb       100 calm       1  0.72                       1.96                     yes
+apb       122 calm       1  0.66                       1.26                     yes
+apb        30 w20g40     1  0.45                       0.97                     yes
+apb        60 w20g40     1  0.58                       1.19                     yes
+apb       100 w20g40     3  0.65 0.75 0.70             1.18 1.51 1.55           yes
+apb       122 w20g40     3  0.74 0.68 1.08             1.31 1.39 1.75           NO
+apb       200 w20g40     1  1.31                       3.09                     NO
+apb       100 w30g55     3  0.77 0.75 0.93             1.38 1.58 1.74           yes
+apb       122 w30g55     3  0.90 1.00 1.06             1.67 1.78 1.79           NO
+truth     100 calm       1  0.10                       0.16                     yes
+truth     122 calm       1  0.14                       0.20                     yes
+truth      30 w20g40     1  0.46                       1.08                     yes
+truth      60 w20g40     1  0.47                       1.11                     yes
+truth     100 w20g40     1  0.47                       0.94                     yes
+truth     122 w20g40     1  0.45                       1.04                     yes
+truth     200 w20g40     1  0.48                       1.07                     yes
+truth     100 w30g55     1  0.63                       1.36                     yes
+truth     122 w30g55     2  0.63 0.52                  1.28 1.39                yes
+w20g40: highest tested height where every run (and every lower height) holds within 1 m RMS and 2 m max: 100 m (tested [30, 60, 100, 122, 200])
+w30g55: highest tested height where every run (and every lower height) holds within 1 m RMS and 2 m max: 100 m (tested [100, 122])

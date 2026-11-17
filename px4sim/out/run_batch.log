@@ -1,0 +1,16 @@
+slice first 4-6 exit 0 took 123 s
+slice first 6-8 exit 0 took 158 s
+slice first 8-10 exit 0 took 130 s
+slice first 10-12 exit 0 took 178 s
+slice first 12-14 exit 0 took 127 s
+slice first 14-16 exit 0 took 177 s
+slice more 0-2 exit 0 took 226 s
+slice more 2-4 exit 0 took 144 s
+slice more 4-6 exit 0 took 201 s
+slice more 6-8 exit 0 took 181 s
+slice more 8-10 exit 0 took 180 s
+slice more 10-12 exit 0 took 190 s
+slice more 12-14 exit 0 took 182 s
+slice more 14-16 exit 0 took 255 s
+slice more 16-18 exit 0 took 106 s
+done

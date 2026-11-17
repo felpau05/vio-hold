@@ -1,0 +1,78 @@
+[dm200_100m_w_s11] hold starts, mode 3, 0.7 s after the vision feed started
+[dm200_100m_w_s11] rms 0.584  p95 1.08  max 1.19  drift_m_per_min 0.215  roll_rms_deg 5.98  pitch_rms_deg 3.64  judge_rms 21.2  judge_jitter_rms 12.8  fix_rate_hz 14.5  frac_ok 1  frac_lost 0  proc_ms_mean 67.1
+{
+ "case": "dm200_100m_w_s11",
+ "events": [
+  [
+   0.0,
+   "hold starts, mode 3, 0.7 s after the vision feed started"
+  ]
+ ],
+ "climb_s": 37.4,
+ "ekf_yaw_minus_true_deg": 13.39,
+ "onboard": [
+  [
+   5.06,
+   "connected",
+   "px4, clock ready True, ATTITUDE 100 Hz"
+  ],
+  [
+   5.16,
+   "param",
+   "FAIL param EKF2_DELAY_MAX = 200.0; need 300. Run 'apb_main.py check --set-params', then reboot the FC."
+  ],
+  [
+   116.53,
+   "done",
+   "stopped after 1 start(s); frame age when taken p50 32 ms, p95 51 ms; SCALED_IMU 0 Hz, 0 rows kept"
+  ]
+ ],
+ "params_fail": [
+  "FAIL param EKF2_DELAY_MAX = 200.0; need 300. Run 'apb_main.py check --set-params', then reboot the FC."
+ ],
+ "onboard_exit": 0,
+ "clock_err_ms_mean": 0.8797769699171454,
+ "clock_err_ms_absmax": 1.026702377799893,
+ "handover_ms_p50": 12.87676400033888,
+ "handover_ms_p95": 16.14781439957369,
+ "frames": 1500,
+ "processed": 870,
+ "fixes": 870,
+ "fix_rate_hz": 14.5,
+ "pct_frames_fix": 58.0,
+ "frac_init": 0.0,
+ "frac_ok": 1.0,
+ "frac_degraded": 0.0,
+ "frac_lost": 0.0,
+ "proc_ms_mean": 67.10655172413793,
+ "age_ms_p50": 151.64999999999998,
+ "age_ms_p95": 187.51999999999998,
+ "hold_why": {},
+ "reanchors": 0,
+ "rms": 0.5844705964006826,
+ "p95": 1.0834006698761713,
+ "max": 1.1856156783882332,
+ "end": 0.3961023936713374,
+ "drift_m_per_min": 0.21459572488837184,
+ "roll_rms_deg": 5.982835475586025,
+ "pitch_rms_deg": 3.636631593931351,
+ "tilt_mean_deg": 9.70162179556243,
+ "judge_rms": 21.205273162472093,
+ "judge_p95": 35.53171889926401,
+ "judge_max": 40.32557990959614,
+ "judge_jitter_rms": 12.75013064308236,
+ "height_mean": 99.52515446081667,
+ "seconds": 60.0,
+ "px4_hgt_err_m": [
+  -0.05,
+  0.21
+ ],
+ "px4_yaw_err_deg": [
+  -2.65,
+  5.47,
+  -1.96
+ ],
+ "ev_delay_ms": 101.2,
+ "hold_py_md5": "ad3ebe25dc",
+ "px4_text": []
+}

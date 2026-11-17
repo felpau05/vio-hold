@@ -1,0 +1,13 @@
+nose north                                 est move N  +1.97 E  -0.00  (true +2.0, +0.0)  err  0.03 m  state ok
+nose east (yaw 90)                         est move N  +1.99 E  -0.00  (true +2.0, +0.0)  err  0.01 m  state ok
+nose south-west (yaw -135), move east      est move N  +0.00 E  +1.98  (true +0.0, +2.0)  err  0.02 m  state ok
+pitch +10 deg                              est move N  +1.97 E  +0.00  (true +2.0, +0.0)  err  0.03 m  state ok
+roll +10 deg, yaw 30                       est move N  +1.98 E  -0.00  (true +2.0, +0.0)  err  0.02 m  state ok
+picture top -> right wing (both)           est move N  +1.99 E  -0.00  (true +2.0, +0.0)  err  0.01 m  state ok
+picture mirrored (both)                    est move N  +1.98 E  +0.00  (true +2.0, +0.0)  err  0.02 m  state ok
+mount tilt (4, -3) twist 8, pitch 8 (both) est move N  +1.98 E  -0.00  (true +2.0, +0.0)  err  0.02 m  state ok
+readout -16 ms (both)                      est move N  +2.00 E  +0.00  (true +2.0, +0.0)  err  0.00 m  state ok
+default true lens differs from model       est move N  +1.97 E  -0.06  (true +2.0, +0.0)  err  0.06 m  state ok
+MISMATCH: true top rear, Hold assumes front est move N  -1.98 E  +0.00  (true +2.0, +0.0)  err  3.98 m  state ok
+PASS
+check_camera rc=0

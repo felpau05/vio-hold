@@ -1,0 +1,4 @@
+apb_100m_w20g40: sim clock 0.9809 x wall time; wall-minus-sim offset change p5 16.4 p50 19.1 p95 25.1 max 34.2 ms per s
+fc_link.Clock(nbins=30) on wall time during the hold: error mean 3.1 ms, p95 16.7 ms, max 19.5 ms
+fc_link.Clock(nbins=10) on wall time during the hold: error mean 1.1 ms, p95 9.4 ms, max 11.8 ms
+fc_link.Clock(nbins=5) on wall time during the hold: error mean 1.1 ms, p95 10.0 ms, max 13.8 ms

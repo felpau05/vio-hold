@@ -1,0 +1,8 @@
+HOLD-OUT, open loop (sim_ground renderer), 20 s hovers, seeds 101-106 pooled; rms/p95/worst in m
+holdout_quarry   100 m  sent 99.8%  rms 0.33  p95 0.56  worst 0.93  outside 99% 0.0%  rms per seed median 0.33 worst 0.38
+holdout_quarry   122 m  sent 99.8%  rms 0.41  p95 0.68  worst 1.08  outside 99% 0.0%  rms per seed median 0.40 worst 0.48
+holdout_field    100 m  sent 60.8%  rms 0.84  p95 1.78  worst 2.99  outside 99% 0.0%  rms per seed median 0.61 worst 1.22
+holdout_field    122 m  sent 98.0%  rms 1.46  p95 2.65  worst 4.99  outside 99% 2.2%  rms per seed median 1.25 worst 2.05
+holdout_water    100 m  sent 99.8%  rms 0.34  p95 0.56  worst 0.87  outside 99% 0.0%  rms per seed median 0.35 worst 0.36
+holdout_water    122 m  sent 99.8%  rms 0.41  p95 0.68  worst 1.14  outside 99% 0.0%  rms per seed median 0.41 worst 0.45
+rc=0

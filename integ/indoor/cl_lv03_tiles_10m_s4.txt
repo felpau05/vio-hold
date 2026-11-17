@@ -1,0 +1,73 @@
+[lv03_tiles_10m_s4] hold starts, mode 3, 0.7 s after the vision feed started
+[lv03_tiles_10m_s4] rms 0.101  p95 0.17  max 0.206  drift_m_per_min 0.126  roll_rms_deg 0.262  pitch_rms_deg 0.202  judge_rms 0.142  judge_jitter_rms 0.115  fix_rate_hz 13.8  frac_ok 0.908  frac_lost 0  proc_ms_mean 62.1
+{
+ "case": "lv03_tiles_10m_s4",
+ "events": [
+  [
+   0.0,
+   "hold starts, mode 3, 0.7 s after the vision feed started"
+  ]
+ ],
+ "climb_s": 17.9,
+ "ekf_yaw_minus_true_deg": 12.9,
+ "onboard": [
+  [
+   4.03,
+   "connected",
+   "px4, clock ready True, ATTITUDE 100 Hz"
+  ],
+  [
+   96.53,
+   "done",
+   "stopped after 1 start(s); frame age when taken p50 32 ms, p95 61 ms; SCALED_IMU 0 Hz, 0 rows kept"
+  ]
+ ],
+ "params_fail": [],
+ "onboard_exit": 0,
+ "clock_err_ms_mean": 0.8011210727941027,
+ "clock_err_ms_absmax": 0.9372892814525358,
+ "handover_ms_p50": 22.533692999900268,
+ "handover_ms_p95": 31.32746064998173,
+ "frames": 1000,
+ "processed": 608,
+ "fixes": 552,
+ "fix_rate_hz": 13.7986201379862,
+ "pct_frames_fix": 55.2,
+ "frac_init": 0.0,
+ "frac_ok": 0.9078947368421053,
+ "frac_degraded": 0.09210526315789473,
+ "frac_lost": 0.0,
+ "proc_ms_mean": 62.14243421052631,
+ "age_ms_p50": 151.6,
+ "age_ms_p95": 220.93499999999997,
+ "hold_why": {
+  "waiting for image motion that proves the picture is live": 56
+ },
+ "reanchors": 0,
+ "rms": 0.10137463513845867,
+ "p95": 0.16983746754515194,
+ "max": 0.20622129541196765,
+ "end": 0.08115875686280885,
+ "drift_m_per_min": 0.12576593232733554,
+ "roll_rms_deg": 0.26191995631234527,
+ "pitch_rms_deg": 0.20158813068204098,
+ "tilt_mean_deg": 0.015624642437115928,
+ "judge_rms": 0.14160424087733176,
+ "judge_p95": 0.2511381830085354,
+ "judge_max": 0.2986442911385549,
+ "judge_jitter_rms": 0.11457047275637784,
+ "height_mean": 9.604261480160506,
+ "seconds": 40.004000000000005,
+ "px4_hgt_err_m": [
+  -0.1,
+  0.06
+ ],
+ "px4_yaw_err_deg": [
+  0.74,
+  2.51,
+  2.25
+ ],
+ "ev_delay_ms": 104.2,
+ "hold_py_md5": "ad3ebe25dc",
+ "px4_text": []
+}

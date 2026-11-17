@@ -1,0 +1,24 @@
+case                                    rms m  max m   %fix  fixHz   age  set        seed  events
+b_apb_100m_w20g40_prairie_v2             1.77   2.98   34.3    8.6   142  tuning        1  0s hold starts, mode 3, 0.7 s after the vision feed started
+b_apb_100m_calm_stillstart_v2            0.65   1.05   65.5   16.4   144  tuning        1  0s hold starts, mode 3, 2.7 s after the vision feed started
+b_gyro_100m_w20g40_s11                   0.74   1.62   64.9   16.2   145  validation   11  0s hold starts, mode 3, 0.7 s after the vision feed started
+b_gyro_100m_w20g40_s12                   0.58   1.25   63.3   15.8   146  validation   12  0s hold starts, mode 3, 0.7 s after the vision feed started
+b_gyro_100m_w20g40_s13                   0.72   1.39   64.4   16.1   146  validation   13  0s hold starts, mode 3, 0.7 s after the vision feed started
+b_imu_100m_w20g40_s11                    2.75   5.63   66.7   16.7   143  validation   11  0s hold starts, mode 3, 0.7 s after the vision feed started
+b_imu_100m_w20g40_s12                    1.74   3.28   64.0   16.0   146  validation   12  0s hold starts, mode 3, 0.7 s after the vision feed started
+b_imu_100m_w20g40_s13                    1.25   2.85   65.3   16.3   144  validation   13  0s hold starts, mode 3, 0.6 s after the vision feed started
+b_gyro_100m_calm_s11                     0.63   1.02   64.7   16.2   144  validation   11  0s hold starts, mode 3, 0.7 s after the vision feed started
+b_gyro_100m_calm_s12                     0.41   0.79   64.1   16.0   145  validation   12  0s hold starts, mode 3, 0.7 s after the vision feed started
+b_imu_100m_calm_s11                      1.87   4.04   65.1   16.3   145  validation   11  0s hold starts, mode 3, 0.7 s after the vision feed started
+b_imu_100m_calm_s12                      2.10   4.49   66.1   16.5   144  validation   12  0s hold starts, mode 3, 0.7 s after the vision feed started
+b_gyro_122m_w20g40_s11                   1.20   1.95   64.5   16.1   146  validation   11  0s hold starts, mode 3, 2.7 s after the vision feed started
+b_imu_122m_w20g40_s11                    4.42   9.80   64.9   16.2   142  validation   11  0s hold starts, mode 3, 0.7 s after the vision feed started
+b_gyro_122m_calm_s11                     0.99   1.63   64.6   16.1   145  validation   11  0s hold starts, mode 3, 0.7 s after the vision feed started
+b_imu_122m_calm_s11                      2.55   7.34   63.0   15.8   148  validation   11  0s hold starts, mode 3, 0.7 s after the vision feed started
+gps_100m_w20g40                          0.49   1.04      -      -     -  tuning        1  0s hold starts, mode 3, 1.0 s after the vision feed started
+gps_100m_calm                            0.06   0.15      -      -     -  tuning        1  0s hold starts, mode 3, 0.4 s after the vision feed started
+gps_122m_calm                            0.10   0.16      -      -     -  tuning        1  0s hold starts, mode 3, 0.7 s after the vision feed started
+gps_122m_w20g40                          0.47   1.03      -      -     -  tuning        1  0s hold starts, mode 3, 0.8 s after the vision feed started
+b_apb_100m_w20g40_holdout_quarry_s101    0.91   1.77   62.5   15.6   148  hold-out    101  0s hold starts, mode 3, 0.7 s after the vision feed started
+b_apb_100m_w20g40_holdout_field_s102    11.35  30.00   12.1    3.0   143  hold-out    102  0s hold starts, mode 3, 0.7 s after the vision feed started; 17s PX4 left Position mode (mode 2); 59.29s FLY-A
+b_apb_100m_w20g40_holdout_water_s103     0.62   1.40   65.0   16.2   146  hold-out    103  0s hold starts, mode 3, 0.7 s after the vision feed started

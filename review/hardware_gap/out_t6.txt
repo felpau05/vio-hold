@@ -1,0 +1,17 @@
+closed loop, 100 m, 30 s, steady wind push 0.36 m/s^2
+  nominal                                max distance    0.5 m, final    0.4 m, fixes sent  99%, lost frames   0% -> holds
+      distance over time:    5s:   0.3   10s:   0.2   15s:   0.2   20s:   0.2   25s:   0.3   30s:   0.4
+  frame stamp 20 ms early                max distance    8.0 m, final    4.9 m, fixes sent  45%, lost frames   0% -> poor (>5 m)
+      distance over time:    5s:   3.2   10s:   2.9   15s:   3.1   20s:   5.7   25s:   4.8   30s:   4.9
+  frame stamp 40 ms late                 max distance   42.1 m, final   40.3 m, fixes sent  33%, lost frames   5% -> FLY-AWAY (>20 m)
+      distance over time:    5s:  19.6   10s:  36.1   15s:  38.7   20s:  30.8   25s:  10.5   30s:  40.3
+  picture turned 180 deg                 max distance 1556.2 m, final 1556.2 m, fixes sent  46%, lost frames   5% -> FLY-AWAY (>20 m)
+      distance over time:    5s:  34.7   10s: 154.5   15s: 359.2   20s: 656.2   25s:1054.9   30s:1556.2
+  picture mirrored left-right            max distance 1320.7 m, final 1320.7 m, fixes sent  51%, lost frames   4% -> FLY-AWAY (>20 m)
+      distance over time:    5s:  27.0   10s: 105.1   15s: 278.8   20s: 538.4   25s: 882.4   30s:1320.7
+  picture turned 90 deg                  max distance  885.4 m, final  885.4 m, fixes sent  53%, lost frames   4% -> FLY-AWAY (>20 m)
+      distance over time:    5s:  37.7   10s: 158.7   15s: 322.8   20s: 495.2   25s: 697.1   30s: 885.4
+
+real	1m59.358s
+user	4m59.027s
+sys	2m16.151s

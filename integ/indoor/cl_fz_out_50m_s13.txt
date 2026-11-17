@@ -1,0 +1,79 @@
+[fz_out_50m_s13] hold starts, mode 3, 0.7 s after the vision feed started
+[fz_out_50m_s13] rms 0.389  p95 0.586  max 0.667  drift_m_per_min 0.608  roll_rms_deg 0.498  pitch_rms_deg 0.592  judge_rms 0.941  judge_jitter_rms 0.861  fix_rate_hz 15.5  frac_ok 0.963  frac_lost 0  proc_ms_mean 58.7
+{
+ "case": "fz_out_50m_s13",
+ "events": [
+  [
+   0.0,
+   "hold starts, mode 3, 0.7 s after the vision feed started"
+  ]
+ ],
+ "climb_s": 26.5,
+ "ekf_yaw_minus_true_deg": 11.54,
+ "onboard": [
+  [
+   4.02,
+   "connected",
+   "px4, clock ready True, ATTITUDE 100 Hz"
+  ],
+  [
+   14.12,
+   "run",
+   "FAIL no usable video frame in 10 s. Check the camera and video_device."
+  ],
+  [
+   116.51,
+   "done",
+   "stopped after 2 start(s); frame age when taken p50 28 ms, p95 51 ms; SCALED_IMU 0 Hz, 0 rows kept"
+  ]
+ ],
+ "params_fail": [],
+ "onboard_exit": 0,
+ "clock_err_ms_mean": 0.7466926963637666,
+ "clock_err_ms_absmax": 0.8307250864021398,
+ "handover_ms_p50": 12.63203399980739,
+ "handover_ms_p95": 18.04700680008864,
+ "frames": 1500,
+ "processed": 966,
+ "fixes": 928,
+ "fix_rate_hz": 15.46460471937075,
+ "pct_frames_fix": 61.86666666666667,
+ "frac_init": 0.0,
+ "frac_ok": 0.9627329192546584,
+ "frac_degraded": 0.037267080745341616,
+ "frac_lost": 0.0,
+ "proc_ms_mean": 58.712318840579705,
+ "age_ms_p50": 140.3,
+ "age_ms_p95": 192.795,
+ "hold_why": {
+  "waiting for image motion that proves the picture is live": 36,
+  "send rate limit": 2
+ },
+ "reanchors": 0,
+ "rms": 0.38878214364072594,
+ "p95": 0.5857913941018945,
+ "max": 0.6666525152764536,
+ "end": 0.6097216477932026,
+ "drift_m_per_min": 0.6081772016868617,
+ "roll_rms_deg": 0.4979926899783944,
+ "pitch_rms_deg": 0.592254870497573,
+ "tilt_mean_deg": 0.0269002403029051,
+ "judge_rms": 0.9406644666718664,
+ "judge_p95": 1.60057907331431,
+ "judge_max": 3.1593680836941123,
+ "judge_jitter_rms": 0.8606592073125696,
+ "height_mean": 49.58121781959863,
+ "seconds": 60.008,
+ "px4_hgt_err_m": [
+  -0.04,
+  0.11
+ ],
+ "px4_yaw_err_deg": [
+  -1.01,
+  6.18,
+  6.18
+ ],
+ "ev_delay_ms": 101.2,
+ "hold_py_md5": "ad3ebe25dc",
+ "px4_text": []
+}

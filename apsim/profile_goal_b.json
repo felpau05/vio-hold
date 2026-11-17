@@ -1,0 +1,269 @@
+{
+ "_firmware": "ArduCopter 4.6 (Orqa mil-mavl branch, SITL quad model). Names checked against the built firmware.",
+ "_not_final": "Simulator gains for the default SITL quad, not the 2.3 kg 10-inch drone. Use as a starting point and the direction of each effect; check on the real drone with a short hover first.",
+ "_set_on_the_day": "VISO_DELAY_MS from 'apb_main.py delay <run log>' after the first hover (140 in apsim); video_delay_s and readout_s from 'apb_main.py timing <raw chunks of the stick wiggle>'.",
+ "send_speed": false,
+ "cov_scale": 1.0,
+ "_goal": "B: tightest hold at 5 to 40 m (tested at 40 m and, on hold-out ground, 30 m; wind 20 gusting 40 km/h).",
+ "_choice": "Faster integral and position gain: PSC_VELXY_I 1 -> 2, PSC_POSXY_P 1 -> 1.5. At 40 m it cut the drift on every seed; at 100 m it did nothing measurable. Not tested below 30 m or indoors.",
+ "params_ardupilot": {
+  "EK3_SRC1_VELXY": 0,
+  "PSC_POSXY_P": 1.5,
+  "PSC_VELXY_I": 2.0
+ },
+ "_measured": {
+  "VISO_DELAY_MS 100 -> 140 (measured)": {
+   "before": {
+    "runs": 3,
+    "rms_middle": 1.08,
+    "rms_worst": 2.32,
+    "max_middle": 1.57,
+    "max_worst": 2.73,
+    "tilt_wobble_deg_middle": 7.05,
+    "each": [
+     "c_base_100m_w20g40_s11: 0.94 / 1.42",
+     "c_base_100m_w20g40_s12: 2.32 / 2.73",
+     "c_base_100m_w20g40_s13: 1.08 / 1.57"
+    ]
+   },
+   "after": {
+    "runs": 3,
+    "rms_middle": 0.77,
+    "rms_worst": 0.87,
+    "max_middle": 1.27,
+    "max_worst": 1.32,
+    "tilt_wobble_deg_middle": 6.88,
+    "each": [
+     "c_d140_100m_w20g40_s11: 0.77 / 1.27",
+     "c_d140_100m_w20g40_s12: 0.87 / 1.32",
+     "c_d140_100m_w20g40_s13: 0.55 / 0.92"
+    ]
+   },
+   "data": "VALIDATION seeds 11-13, ottawa2019fall, 100 m w20g40"
+  },
+  "trust: cov_scale 0.1 + VISO_POS_M_NSE 0.15 (dropped)": {
+   "with": {
+    "runs": 3,
+    "rms_middle": 0.62,
+    "rms_worst": 1.47,
+    "max_middle": 1.24,
+    "max_worst": 2.69,
+    "tilt_wobble_deg_middle": 9.54,
+    "each": [
+     "c_trust_100m_w20g40_s11: 0.62 / 1.24",
+     "c_trust_100m_w20g40_s12: 1.47 / 2.69",
+     "c_trust_100m_w20g40_s13: 0.49 / 1.01"
+    ]
+   },
+   "without": {
+    "runs": 3,
+    "rms_middle": 0.77,
+    "rms_worst": 0.87,
+    "max_middle": 1.27,
+    "max_worst": 1.32,
+    "tilt_wobble_deg_middle": 6.88,
+    "each": [
+     "c_d140_100m_w20g40_s11: 0.77 / 1.27",
+     "c_d140_100m_w20g40_s12: 0.87 / 1.32",
+     "c_d140_100m_w20g40_s13: 0.55 / 0.92"
+    ]
+   },
+   "data": "VALIDATION seeds 11-13, 100 m w20g40"
+  },
+  "speed from fix differences (dropped)": {
+   "100m_v1": {
+    "runs": 2,
+    "rms_middle": 4.59,
+    "rms_worst": 7.11,
+    "max_middle": 16.89,
+    "max_worst": 30.01,
+    "tilt_wobble_deg_middle": 10.25,
+    "each": [
+     "c_spd_100m_w20g40_s11: 7.11 / 30.01",
+     "c_spd_100m_w20g40_s12: 2.06 / 3.77"
+    ]
+   },
+   "100m_v2": {
+    "runs": 2,
+    "rms_middle": 2.79,
+    "rms_worst": 3.18,
+    "max_middle": 5.4,
+    "max_worst": 5.8,
+    "tilt_wobble_deg_middle": 10.99,
+    "each": [
+     "c_spd2_100m_w20g40_s11: 3.18 / 5.80",
+     "c_spd2_100m_w20g40_s12: 2.39 / 5.01"
+    ]
+   },
+   "40m_v2": {
+    "runs": 2,
+    "rms_middle": 0.45,
+    "rms_worst": 0.47,
+    "max_middle": 0.92,
+    "max_worst": 1.07,
+    "tilt_wobble_deg_middle": 7.53,
+    "each": [
+     "c_spd2_40m_w20g40_s11: 0.43 / 1.07",
+     "c_spd2_40m_w20g40_s12: 0.47 / 0.78"
+    ]
+   },
+   "without_100m": {
+    "runs": 3,
+    "rms_middle": 0.77,
+    "rms_worst": 0.87,
+    "max_middle": 1.27,
+    "max_worst": 1.32,
+    "tilt_wobble_deg_middle": 6.88,
+    "each": [
+     "c_d140_100m_w20g40_s11: 0.77 / 1.27",
+     "c_d140_100m_w20g40_s12: 0.87 / 1.32",
+     "c_d140_100m_w20g40_s13: 0.55 / 0.92"
+    ]
+   },
+   "without_40m": {
+    "runs": 3,
+    "rms_middle": 0.37,
+    "rms_worst": 0.49,
+    "max_middle": 0.72,
+    "max_worst": 0.86,
+    "tilt_wobble_deg_middle": 7.09,
+    "each": [
+     "c_d140_40m_w20g40_s11: 0.37 / 0.72",
+     "c_d140_40m_w20g40_s12: 0.28 / 0.51",
+     "c_d140_40m_w20g40_s13: 0.49 / 0.86"
+    ]
+   },
+   "data": "VALIDATION seeds 11-13"
+  },
+  "wind assist v2 (experiment, NOT in a profile; settings wind_assist)": {
+   "100m": {
+    "runs": 3,
+    "rms_middle": 0.79,
+    "rms_worst": 1.4,
+    "max_middle": 1.87,
+    "max_worst": 1.89,
+    "tilt_wobble_deg_middle": 6.94,
+    "each": [
+     "c_wa2_100m_w20g40_s11: 1.40 / 1.89",
+     "c_wa2_100m_w20g40_s12: 0.54 / 0.79",
+     "c_wa2_100m_w20g40_s13: 0.79 / 1.87"
+    ]
+   },
+   "100m_loiter": {
+    "runs": 3,
+    "rms_middle": 0.77,
+    "rms_worst": 0.87,
+    "max_middle": 1.27,
+    "max_worst": 1.32,
+    "tilt_wobble_deg_middle": 6.88,
+    "each": [
+     "c_d140_100m_w20g40_s11: 0.77 / 1.27",
+     "c_d140_100m_w20g40_s12: 0.87 / 1.32",
+     "c_d140_100m_w20g40_s13: 0.55 / 0.92"
+    ]
+   },
+   "60m": null,
+   "60m_loiter": {
+    "runs": 3,
+    "rms_middle": 0.49,
+    "rms_worst": 0.59,
+    "max_middle": 0.79,
+    "max_worst": 1.03,
+    "tilt_wobble_deg_middle": 7.0,
+    "each": [
+     "c_d140_60m_w20g40_s11: 0.49 / 0.79",
+     "c_d140_60m_w20g40_s12: 0.59 / 1.03",
+     "c_d140_60m_w20g40_s13: 0.43 / 0.75"
+    ]
+   },
+   "20m": null,
+   "20m_loiter": null,
+   "data": "VALIDATION seeds 11-13, stock gains, pilot selects GUIDED"
+  },
+  "PSC_VELXY_I 2 + PSC_POSXY_P 1.5": {
+   "100m": {
+    "runs": 3,
+    "rms_middle": 0.72,
+    "rms_worst": 0.86,
+    "max_middle": 1.13,
+    "max_worst": 1.19,
+    "tilt_wobble_deg_middle": 7.12,
+    "each": [
+     "c_i2p15_100m_w20g40_s11: 0.72 / 1.13",
+     "c_i2p15_100m_w20g40_s12: 0.60 / 0.85",
+     "c_i2p15_100m_w20g40_s13: 0.86 / 1.19"
+    ]
+   },
+   "100m_stock": {
+    "runs": 3,
+    "rms_middle": 0.77,
+    "rms_worst": 0.87,
+    "max_middle": 1.27,
+    "max_worst": 1.32,
+    "tilt_wobble_deg_middle": 6.88,
+    "each": [
+     "c_d140_100m_w20g40_s11: 0.77 / 1.27",
+     "c_d140_100m_w20g40_s12: 0.87 / 1.32",
+     "c_d140_100m_w20g40_s13: 0.55 / 0.92"
+    ]
+   },
+   "40m": {
+    "runs": 3,
+    "rms_middle": 0.23,
+    "rms_worst": 0.23,
+    "max_middle": 0.44,
+    "max_worst": 0.52,
+    "tilt_wobble_deg_middle": 7.07,
+    "each": [
+     "c_i2p15_40m_w20g40_s11: 0.23 / 0.52",
+     "c_i2p15_40m_w20g40_s12: 0.15 / 0.25",
+     "c_i2p15_40m_w20g40_s13: 0.23 / 0.44"
+    ]
+   },
+   "40m_stock": {
+    "runs": 3,
+    "rms_middle": 0.37,
+    "rms_worst": 0.49,
+    "max_middle": 0.72,
+    "max_worst": 0.86,
+    "tilt_wobble_deg_middle": 7.09,
+    "each": [
+     "c_d140_40m_w20g40_s11: 0.37 / 0.72",
+     "c_d140_40m_w20g40_s12: 0.28 / 0.51",
+     "c_d140_40m_w20g40_s13: 0.49 / 0.86"
+    ]
+   },
+   "data": "VALIDATION seeds 11-13, 100 and 40 m w20g40"
+  }
+ },
+ "_holdout_this_profile": {
+  "30m_w20g40": {
+   "runs": 3,
+   "rms_middle": 0.31,
+   "rms_worst": 0.96,
+   "max_middle": 0.73,
+   "max_worst": 1.44,
+   "tilt_wobble_deg_middle": 6.71,
+   "each": [
+    "c_hoB_30m_holdout_lawn_s107: 0.96 / 1.44",
+    "c_hoB_30m_holdout_quarry_s108: 0.31 / 0.73",
+    "c_hoB_30m_holdout_water_s109: 0.25 / 0.61"
+   ]
+  },
+  "30m_w20g40_stock_gains": {
+   "runs": 3,
+   "rms_middle": 0.38,
+   "rms_worst": 0.75,
+   "max_middle": 1.0,
+   "max_worst": 1.21,
+   "tilt_wobble_deg_middle": 6.57,
+   "each": [
+    "c_hoD_30m_holdout_lawn_s107: 0.75 / 1.21",
+    "c_hoD_30m_holdout_quarry_s108: 0.30 / 0.69",
+    "c_hoD_30m_holdout_water_s109: 0.38 / 1.00"
+   ]
+  },
+  "data": "HOLD-OUT sites holdout_lawn s107, holdout_quarry s108, holdout_water s109"
+ },
+ "_px4_untested": "Same direction on PX4: MPC_XY_VEL_I_ACC (default 0.4) and MPC_XY_P (default 0.95) up (research/papers_control.md S3). Not run."
+}

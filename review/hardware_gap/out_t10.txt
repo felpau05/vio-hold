@@ -1,0 +1,8 @@
+100 m, drone drifts 0.5 m/s east; video bad from 5 s to 10 s
+  frozen frame (same buffer repeated)    during the bad video: fixes sent 100% ('ok'   9%, lost   0%); error of the last fix sent 3.77 m (drift in 5 s = 2.5 m)
+  frozen frame + fresh sensor noise      during the bad video: fixes sent 100% ('ok'  10%, lost   0%); error of the last fix sent 4.11 m (drift in 5 s = 2.5 m)
+  grabber NO SIGNAL screen               during the bad video: fixes sent 100% ('ok'   0%, lost   0%); error of the last fix sent 4.47 m (drift in 5 s = 2.5 m)
+
+real	0m11.425s
+user	0m45.315s
+sys	0m18.023s

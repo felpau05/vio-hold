@@ -1,0 +1,36 @@
+[truth_50m_calm] hold starts, mode 3, 2.4 s after the vision feed started
+[truth_50m_calm] rms 0.0399  p95 0.0663  max 0.0812  drift_m_per_min 0.0165  roll_rms_deg 0.135  pitch_rms_deg 0.132  judge_rms 0.467  judge_jitter_rms 0.185  fix_rate_hz 24.9  frac_ok 1  frac_lost 0  proc_ms_mean 0.655  late_ms_p95 7.6
+Exception in thread Thread-6 (estimator_loop):
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/threading.py", line 1073, in _bootstrap_inner
+    self.run()
+  File "/usr/lib/python3.12/threading.py", line 1010, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/paul/Videos/vio-hold-attempt/px4sim/sitl.py", line 316, in estimator_loop
+    e = hold.process(img, t0, link.att, link.hgt)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/paul/Videos/vio-hold-attempt/hold.py", line 542, in process
+    r = self._track(kf, img, t0, att, hgt, tref)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/paul/Videos/vio-hold-attempt/hold.py", line 468, in _track
+    g, _, okr, hh = self._rays(p2[ok], t0, rows, att, hgt)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/paul/Videos/vio-hold-attempt/hold.py", line 306, in _rays
+    b = np.einsum("nij,nj->ni", attitude_R(att, t), f)
+                                ^^^^^^^^^^^^^^^^^^
+  File "/home/paul/Videos/vio-hold-attempt/hold.py", line 142, in attitude_R
+    np.interp(t, a[:, 0], unwrapped_yaw(att)))
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/paul/.venvs/vio/lib/python3.12/site-packages/numpy/lib/_function_base_impl.py", line 1687, in interp
+    return interp_func(x, xp, fp, left, right)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: fp and xp are not of the same length.
+[ours_50m_calm] PX4 never accepted Position mode
+[ours_50m_calm] 
+case                                 rms m       p95 m       max m drift m/min    roll deg   pitch deg     judge m    jitter m      fix Hz          ok  events
+ours_50m_calm                            -           -           -           -           -           -           -           -           -           -  
+truth_50m_calm                      0.0399      0.0663      0.0812      0.0165       0.135       0.132       0.467       0.185        24.9           1  
+
+rms/p95/max: true horizontal distance from the hold point over the hold. drift: linear-fit speed.
+roll/pitch: RMS about the mean. judge: distance of the picture centre's ground point from the hold
+point (RMS); jitter: its RMS about its own mean. fix Hz: fixes sent per second; ok: share of 'ok' frames.

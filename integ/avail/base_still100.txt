@@ -1,0 +1,1 @@
+{"run": "apb_100m_calm.npz", "ground": "ottawa2019fall", "t": [60.0, 75.0], "still": 1, "freeze": null, "frames": 375, "sent": 0, "sent_pct": 0.0, "first_sent_s": null, "sent_while_frozen": 0, "err_rms": null, "err_max": null, "outside_99": null, "n_median": null, "whys": {"waiting for image motion that proves the picture is live": 374, "init": 1}}

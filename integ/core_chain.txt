@@ -1,0 +1,6 @@
+run_regression rc=0 98s
+bad_pictures rc=0 20s
+overlay rc=0 22s
+interface_check rc=0 2s
+clip_replay rc=0 52s
+clip_check rc=0 98s

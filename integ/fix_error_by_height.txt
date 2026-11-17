@@ -1,0 +1,5 @@
+apb_30m_w20g40: fixes in hold 983, error after removing the mean: RMS N 0.092 E 0.061 m, mean N -0.04 E -0.21
+apb_60m_w20g40: fixes in hold 978, error after removing the mean: RMS N 0.126 E 0.111 m, mean N 0.20 E -0.30
+apb_100m_w20g40: fixes in hold 980, error after removing the mean: RMS N 0.251 E 0.210 m, mean N -0.17 E -0.62
+apb_122m_w20g40: fixes in hold 1411, error after removing the mean: RMS N 0.328 E 0.274 m, mean N -0.66 E -0.49
+apb_200m_w20g40: fixes in hold 954, error after removing the mean: RMS N 0.544 E 0.501 m, mean N -1.67 E -0.67

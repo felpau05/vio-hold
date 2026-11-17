@@ -1,0 +1,37 @@
+[truth_50m_calm_medium] hold starts, mode 3, 2.3 s after the vision feed started
+[truth_50m_calm_medium] rms 0.0717  p95 0.101  max 0.11  drift_m_per_min 0.249  roll_rms_deg 0.149  pitch_rms_deg 0.176  judge_rms 0.456  judge_jitter_rms 0.228  fix_rate_hz 2.75  frac_ok 1  frac_lost 0  proc_ms_mean 4.04  late_ms_p95 1.56e+05
+{
+ "case": "truth_50m_calm_medium",
+ "events": [
+  [
+   0.0,
+   "hold starts, mode 3, 2.3 s after the vision feed started"
+  ]
+ ],
+ "climb_s": 124.0,
+ "ekf_yaw_minus_true_deg": 11.5,
+ "rms": 0.07169486311083978,
+ "p95": 0.10053029942470358,
+ "max": 0.11049105932967011,
+ "end": 0.04447797040929302,
+ "drift_m_per_min": 0.24921869745749803,
+ "roll_rms_deg": 0.1494445913602767,
+ "pitch_rms_deg": 0.1761817669028061,
+ "tilt_mean_deg": 0.021509698255015794,
+ "judge_rms": 0.45568857726558887,
+ "judge_p95": 0.6870958943393446,
+ "judge_max": 1.5570329291686293,
+ "judge_jitter_rms": 0.2276742240463455,
+ "height_mean": 49.080729281767965,
+ "seconds": 20.0,
+ "frames": 55,
+ "fix_rate_hz": 2.75,
+ "frac_init": 0.0,
+ "frac_ok": 1.0,
+ "frac_degraded": 0.0,
+ "frac_lost": 0.0,
+ "proc_ms_mean": 4.03636363634932,
+ "late_ms_p95": 155959.2,
+ "ev_delay_ms": 101.2,
+ "px4_text": []
+}

@@ -1,0 +1,83 @@
+[in_wood_15m_s1] hold starts, mode 3, 0.8 s after the vision feed started
+[in_wood_15m_s1] PX4 left Position mode (mode 2)
+[in_wood_15m_s1] rms 0.254  p95 0.485  max 0.53  drift_m_per_min 0.613  roll_rms_deg 0.294  pitch_rms_deg 0.234  judge_rms 0.266  judge_jitter_rms 0.255  fix_rate_hz 10.6  frac_ok 0.797  frac_lost 0  proc_ms_mean 70
+{
+ "case": "in_wood_15m_s1",
+ "events": [
+  [
+   0.0,
+   "hold starts, mode 3, 0.8 s after the vision feed started"
+  ],
+  [
+   38.0,
+   "PX4 left Position mode (mode 2)"
+  ]
+ ],
+ "climb_s": 18.8,
+ "ekf_yaw_minus_true_deg": 13.2,
+ "onboard": [
+  [
+   4.08,
+   "connected",
+   "px4, clock ready True, ATTITUDE 100 Hz"
+  ],
+  [
+   96.57,
+   "done",
+   "stopped after 1 start(s); frame age when taken p50 31 ms, p95 64 ms; SCALED_IMU 0 Hz, 0 rows kept"
+  ]
+ ],
+ "params_fail": [],
+ "onboard_exit": 0,
+ "clock_err_ms_mean": 0.6949837968836972,
+ "clock_err_ms_absmax": 0.8975885559436847,
+ "handover_ms_p50": 24.640281999609215,
+ "handover_ms_p95": 44.888676249615834,
+ "frames": 1000,
+ "processed": 532,
+ "fixes": 424,
+ "fix_rate_hz": 10.598940105989401,
+ "pct_frames_fix": 42.4,
+ "frac_init": 0.0,
+ "frac_ok": 0.7969924812030075,
+ "frac_degraded": 0.20300751879699247,
+ "frac_lost": 0.0,
+ "proc_ms_mean": 69.96879699248119,
+ "age_ms_p50": 147.45,
+ "age_ms_p95": 271.16499999999996,
+ "hold_why": {
+  "waiting for image motion that proves the picture is live": 108
+ },
+ "reanchors": 0,
+ "rms": 0.2535161619320483,
+ "p95": 0.4853979534079602,
+ "max": 0.5303119954219488,
+ "end": 0.05026514986199137,
+ "drift_m_per_min": 0.6131957433602614,
+ "roll_rms_deg": 0.2943345639049378,
+ "pitch_rms_deg": 0.23407959675122755,
+ "tilt_mean_deg": 0.01868832916963142,
+ "judge_rms": 0.2655330563059514,
+ "judge_p95": 0.5058410091589796,
+ "judge_max": 0.6000282565118307,
+ "judge_jitter_rms": 0.25528430014184433,
+ "height_mean": 14.622047921602418,
+ "seconds": 40.004,
+ "px4_hgt_err_m": [
+  -0.09,
+  0.06
+ ],
+ "px4_yaw_err_deg": [
+  -1.56,
+  3.47,
+  -1.32
+ ],
+ "ev_delay_ms": 104.2,
+ "hold_py_md5": "05d076f903",
+ "px4_text": [
+  [
+   37.79,
+   "Failsafe activated\t"
+  ]
+ ]
+}

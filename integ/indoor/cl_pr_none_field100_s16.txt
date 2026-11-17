@@ -1,0 +1,78 @@
+[pr_none_field100_s16] hold starts, mode 3, 1.0 s after the vision feed started
+[pr_none_field100_s16] rms 1.19  p95 1.96  max 2.43  drift_m_per_min 1.68  roll_rms_deg 5.05  pitch_rms_deg 2.62  judge_rms 21.1  judge_jitter_rms 10.9  fix_rate_hz 6  frac_ok 0.997  frac_lost 0  proc_ms_mean 165
+{
+ "case": "pr_none_field100_s16",
+ "events": [
+  [
+   0.0,
+   "hold starts, mode 3, 1.0 s after the vision feed started"
+  ]
+ ],
+ "climb_s": 37.3,
+ "ekf_yaw_minus_true_deg": 12.58,
+ "onboard": [
+  [
+   4.07,
+   "connected",
+   "px4, clock ready True, ATTITUDE 100 Hz"
+  ],
+  [
+   14.2,
+   "run",
+   "FAIL no usable video frame in 10 s. Check the camera and video_device."
+  ],
+  [
+   116.73,
+   "done",
+   "stopped after 2 start(s); frame age when taken p50 26 ms, p95 56 ms; SCALED_IMU 0 Hz, 0 rows kept"
+  ]
+ ],
+ "params_fail": [],
+ "onboard_exit": 0,
+ "clock_err_ms_mean": 1.0244528384774645,
+ "clock_err_ms_absmax": 1.3169447458665218,
+ "handover_ms_p50": 19.73307149989978,
+ "handover_ms_p95": 24.44646229998852,
+ "frames": 1500,
+ "processed": 361,
+ "fixes": 360,
+ "fix_rate_hz": 6.0,
+ "pct_frames_fix": 24.0,
+ "frac_init": 0.0,
+ "frac_ok": 0.997229916897507,
+ "frac_degraded": 0.002770083102493075,
+ "frac_lost": 0.0,
+ "proc_ms_mean": 164.5781163434903,
+ "age_ms_p50": 253.45,
+ "age_ms_p95": 314.49,
+ "hold_why": {
+  "whole picture: weak peak": 1
+ },
+ "reanchors": 0,
+ "rms": 1.1866194127059448,
+ "p95": 1.9602499800383397,
+ "max": 2.429821774037202,
+ "end": 0.9885384198541924,
+ "drift_m_per_min": 1.6838136028586663,
+ "roll_rms_deg": 5.053462285716106,
+ "pitch_rms_deg": 2.619025941063405,
+ "tilt_mean_deg": 10.661983765859693,
+ "judge_rms": 21.072374597576726,
+ "judge_p95": 38.88777155845279,
+ "judge_max": 46.518155018543204,
+ "judge_jitter_rms": 10.881294048760948,
+ "height_mean": 99.53101919424851,
+ "seconds": 60.0,
+ "px4_hgt_err_m": [
+  -0.02,
+  0.16
+ ],
+ "px4_yaw_err_deg": [
+  0.52,
+  3.27,
+  1.0
+ ],
+ "ev_delay_ms": 101.2,
+ "hold_py_md5": "ad3ebe25dc",
+ "px4_text": []
+}

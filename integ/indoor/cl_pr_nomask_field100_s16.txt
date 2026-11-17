@@ -1,0 +1,99 @@
+[pr_nomask_field100_s16] hold starts, mode 3, 3.8 s after the vision feed started
+[pr_nomask_field100_s16] PX4 left Position mode (mode 2)
+[pr_nomask_field100_s16] FLY-AWAY: 30.0 m from the hold point; vision stopped, Altitude mode
+[pr_nomask_field100_s16] rms 12.5  p95 23.7  max 30  drift_m_per_min 58.6  roll_rms_deg 9.66  pitch_rms_deg 1.19  judge_rms 21  judge_jitter_rms 18.5  fix_rate_hz 0.229  frac_ok 0.0262  frac_lost 0.101  proc_ms_mean 79.2
+{
+ "case": "pr_nomask_field100_s16",
+ "events": [
+  [
+   0.0,
+   "hold starts, mode 3, 3.8 s after the vision feed started"
+  ],
+  [
+   5.0,
+   "PX4 left Position mode (mode 2)"
+  ],
+  [
+   21.79,
+   "FLY-AWAY: 30.0 m from the hold point; vision stopped, Altitude mode"
+  ]
+ ],
+ "climb_s": 37.5,
+ "ekf_yaw_minus_true_deg": 13.0,
+ "onboard": [
+  [
+   4.05,
+   "connected",
+   "px4, clock ready True, ATTITUDE 100 Hz"
+  ],
+  [
+   81.32,
+   "done",
+   "stopped after 1 start(s); frame age when taken p50 36 ms, p95 66 ms; SCALED_IMU 0 Hz, 0 rows kept"
+  ]
+ ],
+ "params_fail": [],
+ "onboard_exit": 0,
+ "clock_err_ms_mean": 0.9701338333386903,
+ "clock_err_ms_absmax": 1.1079035502561396,
+ "handover_ms_p50": 27.919942999915293,
+ "handover_ms_p95": 42.13646319981308,
+ "frames": 545,
+ "processed": 267,
+ "fixes": 5,
+ "fix_rate_hz": 0.2294419970631425,
+ "pct_frames_fix": 0.9174311926605505,
+ "frac_init": 0.46441947565543074,
+ "frac_ok": 0.026217228464419477,
+ "frac_degraded": 0.40823970037453183,
+ "frac_lost": 0.10112359550561797,
+ "proc_ms_mean": 79.22209737827716,
+ "age_ms_p50": 160.6,
+ "age_ms_p95": 215.16,
+ "hold_why": {
+  "waiting for image motion that proves the picture is live": 165,
+  "init": 27,
+  "19 consistent points": 8,
+  "17 consistent points": 5,
+  "whole picture: weak peak": 4,
+  "16 consistent points": 4,
+  "good fix 1 of 10": 4,
+  "good fix 2 of 10": 4
+ },
+ "reanchors": 27,
+ "rms": 12.465202979619042,
+ "p95": 23.651493398188872,
+ "max": 30.010553285689817,
+ "end": 30.010553285689817,
+ "drift_m_per_min": 58.596599975916476,
+ "roll_rms_deg": 9.661113332366382,
+ "pitch_rms_deg": 1.1943282075171104,
+ "tilt_mean_deg": 7.675166490752036,
+ "judge_rms": 21.049699552481858,
+ "judge_p95": 40.408256033123116,
+ "judge_max": 57.175780664491135,
+ "judge_jitter_rms": 18.527771783690486,
+ "height_mean": 99.43481536249745,
+ "seconds": 21.791999999999994,
+ "px4_hgt_err_m": [
+  0.02,
+  0.3
+ ],
+ "px4_yaw_err_deg": [
+  -0.43,
+  2.92,
+  -0.08
+ ],
+ "ev_delay_ms": 101.2,
+ "hold_py_md5": "ad3ebe25dc",
+ "px4_text": [
+  [
+   4.88,
+   "Failsafe activated\t"
+  ],
+  [
+   11.55,
+   "Failsafe activated\t"
+  ]
+ ]
+}

@@ -1,0 +1,22 @@
+floor_concrete   h  2 m  corners 600  std   8.1  MAD(1/8)  5.0
+floor_concrete   h  5 m  corners 600  std   7.8  MAD(1/8)  4.0
+floor_concrete   h 10 m  corners 600  std   7.2  MAD(1/8)  3.0
+floor_concrete   h 15 m  corners 600  std   6.9  MAD(1/8)  3.0
+floor_tiles      h  2 m  corners 600  std  10.9  MAD(1/8)  4.0
+floor_tiles      h  5 m  corners 600  std   8.2  MAD(1/8)  3.0
+floor_tiles      h 10 m  corners 600  std   6.5  MAD(1/8)  2.0
+floor_tiles      h 15 m  corners 600  std   5.5  MAD(1/8)  1.0
+floor_carpet     h  2 m  corners 600  std   9.4  MAD(1/8)  3.0
+floor_carpet     h  5 m  corners 600  std   6.4  MAD(1/8)  2.0
+floor_carpet     h 10 m  corners 600  std   5.3  MAD(1/8)  2.0
+floor_carpet     h 15 m  corners 600  std   4.9  MAD(1/8)  2.0
+floor_wood       h  2 m  corners 600  std  16.0  MAD(1/8)  8.0
+floor_wood       h  5 m  corners 600  std  12.9  MAD(1/8)  5.0
+floor_wood       h 10 m  corners 600  std  10.6  MAD(1/8)  4.0
+floor_wood       h 15 m  corners 600  std   8.9  MAD(1/8)  3.0
+floor_shiny      h  2 m  corners 600  std  12.4  MAD(1/8)  3.0
+floor_shiny      h  5 m  corners 600  std  12.6  MAD(1/8)  3.0
+floor_shiny      h 10 m  corners 600  std  12.3  MAD(1/8)  3.0
+floor_shiny      h 15 m  corners 600  std  11.8  MAD(1/8)  4.0
+holdout_floor_a: renders (360x288); not looked at
+holdout_floor_b: renders (360x288); not looked at

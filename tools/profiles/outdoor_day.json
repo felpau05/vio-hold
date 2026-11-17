@@ -1,0 +1,6 @@
+{
+ "_why": {
+  "min_height_m": "H9 example value. EVENT_DAY step 7 climbs to 20 m before Position mode. Every sim and SITL run used it."
+ },
+ "min_height_m": 15.0
+}

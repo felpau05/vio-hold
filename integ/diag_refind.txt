@@ -1,0 +1,86 @@
+[diag_refind] hold starts, mode 3, 1.7 s after the vision feed started
+[diag_refind] PX4 left Position mode (mode 2)
+[diag_refind] FLY-AWAY: 30.0 m from the hold point; vision stopped, Altitude mode
+[diag_refind] rms 8.43  p95 23  max 30  drift_m_per_min 45.3  roll_rms_deg 4.86  pitch_rms_deg 3.21  judge_rms 16.4  judge_jitter_rms 10  fix_rate_hz 6.3  frac_ok 0.875  frac_lost 0.00481  proc_ms_mean 51.9
+{
+ "case": "diag_refind",
+ "events": [
+  [
+   0.0,
+   "hold starts, mode 3, 1.7 s after the vision feed started"
+  ],
+  [
+   16.0,
+   "PX4 left Position mode (mode 2)"
+  ],
+  [
+   23.18,
+   "FLY-AWAY: 30.0 m from the hold point; vision stopped, Altitude mode"
+  ]
+ ],
+ "climb_s": 37.5,
+ "ekf_yaw_minus_true_deg": 12.1,
+ "onboard": [
+  [
+   5.03,
+   "connected",
+   "px4, clock ready True, ATTITUDE 101 Hz"
+  ],
+  [
+   72.36,
+   "hang",
+   "no frame taken for 3.3 s; stacks in /home/paul/Videos/vio-hold-attempt/px4sim/runs/diag_refind_onboard_fault.txt"
+  ]
+ ],
+ "params_fail": [],
+ "onboard_exit": "still running (hung)",
+ "clock_err_ms_mean": 0.948995909445601,
+ "clock_err_ms_absmax": 1.3038142538022157,
+ "handover_ms_p50": 13.036955991992727,
+ "handover_ms_p95": 18.44760810927255,
+ "frames": 579,
+ "processed": 208,
+ "fixes": 146,
+ "fix_rate_hz": 6.298533218291631,
+ "pct_frames_fix": 25.215889464594127,
+ "frac_init": 0.0,
+ "frac_ok": 0.875,
+ "frac_degraded": 0.1201923076923077,
+ "frac_lost": 0.004807692307692308,
+ "proc_ms_mean": 51.924519230769235,
+ "age_ms_p50": 143.85000000000002,
+ "age_ms_p95": 172.075,
+ "hold_why": {
+  "picture broken up": 15,
+  "picture just after a broken-up one": 9,
+  "good fix 1 of 10": 6,
+  "good fix 2 of 10": 4,
+  "good fix 3 of 10": 4,
+  "good fix 4 of 10": 4,
+  "good fix 5 of 10": 4,
+  "good fix 6 of 10": 4
+ },
+ "reanchors": 0,
+ "rms": 8.433978979196025,
+ "p95": 22.986115234608928,
+ "max": 30.036327250850977,
+ "end": 30.036327250850977,
+ "drift_m_per_min": 45.32913257111287,
+ "roll_rms_deg": 4.860067654077298,
+ "pitch_rms_deg": 3.2086481835166154,
+ "tilt_mean_deg": 5.230667373195434,
+ "judge_rms": 16.359612705071278,
+ "judge_p95": 26.63064021292765,
+ "judge_max": 37.74009336760623,
+ "judge_jitter_rms": 10.029090113580999,
+ "height_mean": 99.49065883711975,
+ "seconds": 23.18,
+ "ev_delay_ms": 101.2,
+ "hold_py_md5": "67d963e35e",
+ "px4_text": [
+  [
+   16.0,
+   "Failsafe activated\t"
+  ]
+ ]
+}

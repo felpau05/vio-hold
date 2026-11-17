@@ -1,0 +1,2 @@
+b_apb_100m_calm_stillstart rc=0
+b_apb_100m_w20g40_imu rc=0

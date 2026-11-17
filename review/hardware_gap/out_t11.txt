@@ -1,0 +1,94 @@
+EKF2 parameter defaults in PX4 v1.15.4:
+  EKF2_EV_CTRL       default 15  (External vision (EV) sensor aiding)
+  EKF2_EV_DELAY      default 0  (Vision Position Estimator delay relative to IMU measurements)
+  EKF2_EVP_NOISE     default 0.1  (Measurement noise for vision position observations used to lower bound)
+  EKF2_EV_NOISE_MD   default 0  (External vision (EV) noise mode)
+  EKF2_EVP_GATE      default 5.0  (Gate size for vision position fusion)
+  EKF2_HGT_REF       default 1  (Determines the reference source of height data used by the EKF)
+  EKF2_GPS_CTRL      default 7  (GNSS sensor aiding)
+  EKF2_NOAID_TOUT    default 5000000  (Maximum lapsed time from last fusion of measurements that constrain)
+  EKF2_DELAY_MAX     default 200  (Maximum delay of all the aiding sensors)
+VISION_POSITION_ESTIMATE handler (frame and time stamp):
+    mavlink_receiver.cpp:1237: MavlinkReceiver::handle_message_vision_position_estimate(mavlink_message_t *msg)
+    mavlink_receiver.cpp:1238: {
+    mavlink_receiver.cpp:1239: 	mavlink_vision_position_estimate_t vpe;
+    mavlink_receiver.cpp:1240: 	mavlink_msg_vision_position_estimate_decode(msg, &vpe);
+    mavlink_receiver.cpp:1241: 
+    mavlink_receiver.cpp:1242: 	// fill vehicle_odometry from Mavlink VISION_POSITION_ESTIMATE
+    mavlink_receiver.cpp:1243: 	vehicle_odometry_s odom{vehicle_odometry_empty};
+    mavlink_receiver.cpp:1244: 
+    mavlink_receiver.cpp:1245: 	odom.timestamp_sample = _mavlink_timesync.sync_stamp(vpe.usec);
+    mavlink_receiver.cpp:1246: 
+    mavlink_receiver.cpp:1247: 	odom.pose_frame = vehicle_odometry_s::POSE_FRAME_NED;
+    mavlink_receiver.cpp:1248: 	odom.position[0] = vpe.x;
+    mavlink_receiver.cpp:1249: 	odom.position[1] = vpe.y;
+    mavlink_receiver.cpp:1250: 	odom.position[2] = vpe.z;
+    mavlink_receiver.cpp:1251: 
+    mavlink_receiver.cpp:1252: 	const matrix::Quatf q(matrix::Eulerf(vpe.roll, vpe.pitch, vpe.yaw));
+    mavlink_receiver.cpp:1253: 	q.copyTo(odom.q);
+    mavlink_receiver.cpp:1257: 	//  (states: x, y, z, roll, pitch, yaw; first six entries are the first ROW, next five entries are the second ROW, etc.).
+    mavlink_receiver.cpp:1258: 	//  If unknown, assign NaN value to first element in the array.
+    mavlink_receiver.cpp:1259: 	odom.position_variance[0] = vpe.covariance[0];  // X  row 0, col 0
+    mavlink_receiver.cpp:1260: 	odom.position_variance[1] = vpe.covariance[6];  // Y  row 1, col 1
+    mavlink_receiver.cpp:1261: 	odom.position_variance[2] = vpe.covariance[11]; // Z  row 2, col 2
+Timesync: arrival time until converged; converged = 500 exchanges with RTT < 10 ms:
+    Timesync.cpp:128: 		return usec + (int64_t)_time_offset;
+    Timesync.cpp:129: 
+    Timesync.cpp:130: 	} else {
+    Timesync.cpp:131: 		return hrt_absolute_time();
+    Timesync.cpp:132: 	}
+    Timesync.cpp:133: }
+    Timesync.cpp:134: 
+    Timesync.hpp:76: static constexpr uint32_t CONVERGENCE_WINDOW = 500;
+    Timesync.hpp:88: static constexpr uint64_t MAX_RTT_SAMPLE = 10_ms;
+EV position in a NED frame is used only after yaw alignment; with GNSS on it becomes a biased aid:
+    ev_pos_control.cpp:52: 					     && _control_status.flags.tilt_align
+    ev_pos_control.cpp:53: 					     && PX4_ISFINITE(ev_sample.pos(0))
+    ev_pos_control.cpp:54: 					     && PX4_ISFINITE(ev_sample.pos(1));
+    ev_pos_control.cpp:55: 
+    ev_pos_control.cpp:56: 	// correct position for offset relative to IMU
+    ev_pos_control.cpp:57: 	const Vector3f pos_offset_body = _params.ev_pos_body - _params.imu_pos_body;
+    ev_pos_control.cpp:58: 	const Vector3f pos_offset_earth = _R_to_earth * pos_offset_body;
+    ev_pos_control.cpp:59: 
+    ev_pos_control.cpp:60: 	const bool bias_fusion_was_active = _ev_pos_b_est.fusionActive();
+    ev_pos_control.cpp:61: 
+    ev_pos_control.cpp:62: 	// rotate measurement into correct earth frame if required
+    ev_pos_control.cpp:63: 	Vector3f pos{NAN, NAN, NAN};
+    ev_pos_control.cpp:64: 	Matrix3f pos_cov{};
+    ev_pos_control.cpp:65: 
+    ev_pos_control.cpp:66: 	switch (ev_sample.pos_frame) {
+    ev_pos_control.cpp:67: 	case PositionFrame::LOCAL_FRAME_NED:
+    ev_pos_control.cpp:68: 		if (_control_status.flags.yaw_align) {
+    ev_pos_control.cpp:69: 			pos = ev_sample.pos - pos_offset_earth;
+    ev_pos_control.cpp:70: 			pos_cov = matrix::diag(ev_sample.position_var);
+    ev_pos_control.cpp:71: 
+    ev_pos_control.cpp:72: 			if (_control_status.flags.gps) {
+    ev_pos_control.cpp:73: 				_ev_pos_b_est.setFusionActive();
+    ev_pos_control.cpp:74: 
+    ev_pos_control.cpp:75: 			} else {
+    ev_pos_control.cpp:76: 				_ev_pos_b_est.setFusionInactive();
+    ev_pos_control.cpp:77: 			}
+    ev_pos_control.cpp:78: 
+    ev_pos_control.cpp:79: 		} else {
+    ev_pos_control.cpp:80: 			continuing_conditions_passing = false;
+    ev_pos_control.cpp:81: 			_ev_pos_b_est.setFusionInactive();
+    ev_pos_control.cpp:82: 			_ev_pos_b_est.reset();
+    ev_pos_control.cpp:219: 	_nb_ev_pos_reset_available = 5;
+EV yaw (default on) resets the EKF heading to the yaw in our message:
+    ev_yaw_control.cpp:145: 
+    ev_yaw_control.cpp:146: 				} else {
+    ev_yaw_control.cpp:147: 					// reset yaw to EV and set yaw_align
+    ev_yaw_control.cpp:148: 					ECL_INFO("starting %s fusion, resetting state", AID_SRC_NAME);
+    ev_yaw_control.cpp:149: 					resetQuatStateYaw(aid_src.observation, aid_src.observation_variance);
+EV samples farther apart than 200 ms do not start fusion:
+    common.h:70: static constexpr uint64_t EV_MAX_INTERVAL       = 200e3;  ///< Maximum allowable time interval between external vision system measurements (uSec)
+    ev_control.cpp:57: 				&& ((ev_sample.time_us - _ev_sample_prev.time_us) < EV_MAX_INTERVAL)
+Hold (AUTO_LOITER) needs a global position; Position mode does not:
+    mode_requirements.cpp:103: 	setRequirement(vehicle_status_s::NAVIGATION_STATE_AUTO_LOITER, flags.mode_req_global_position);
+Onboard-mode ATTITUDE request and bandwidth scaling, ULog share:
+    mavlink_main.cpp:1466: 		configure_stream_local("ATTITUDE", 100.0f);
+    mavlink_main.cpp:1473: 		configure_stream_local("ODOMETRY", 30.0f);
+    mavlink_main.cpp:2095: 		_datarate = _baudrate / 20;
+    mavlink_main.cpp:1301: 	float bandwidth_mult = (float)(_datarate * mavlink_ulog_streaming_rate_inv - const_rate) / rate;
+    mavlink_main.h:493: 		_mavlink_ulog = MavlinkULog::try_start(_datarate, 0.7f, target_system, target_component);
+    ATTITUDE.hpp:73: 			msg.time_boot_ms = att.timestamp / 1000;

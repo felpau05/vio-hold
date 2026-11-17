@@ -1,0 +1,3 @@
+regression rc=0 07:00:44
+bad_pictures rc=0 07:01:02
+apb_run_all rc=0 07:03:42

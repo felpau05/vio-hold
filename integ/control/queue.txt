@@ -1,0 +1,83 @@
+apb 100 w20g40 60 seed=11 label=c_base_100m_w20g40_s11
+apb 100 w20g40 60 seed=12 label=c_base_100m_w20g40_s12
+apb 100 w20g40 60 seed=13 label=c_base_100m_w20g40_s13
+apb 40 w20g40 60 seed=11 'ap={"VISO_DELAY_MS":140}' label=c_d140_40m_w20g40_s11
+apb 40 w20g40 60 seed=12 'ap={"VISO_DELAY_MS":140}' label=c_d140_40m_w20g40_s12
+apb 40 w20g40 60 seed=13 'ap={"VISO_DELAY_MS":140}' label=c_d140_40m_w20g40_s13
+truth 100 w20g40 60 seed=11 feed_delay_s=0.15 feed_noise_m=0.1 feed_hz=12 'ap={"VISO_POS_M_NSE":0.5}' label=c_px_base_100m_w20g40_s11
+apb 100 w20g40 60 seed=11 wiggle_s=8 est_delay_err_s=0.04 'settings={"raw_record":true,"log_dir":"/home/paul/Videos/vio-hold-attempt/apsim/runs/c_wig_100m_w20g40_s11_raw"}' 'ap={"VISO_DELAY_MS":180}' label=c_wig_100m_w20g40_s11
+apb 100 w20g40 60 seed=11 'ap={"VISO_DELAY_MS":140}' label=c_d140_100m_w20g40_s11
+apb 100 w20g40 60 seed=11 wiggle_s=8 est_delay_err_s=0.04 'settings={"raw_record":true,"log_dir":"/home/paul/Videos/vio-hold-attempt/apsim/runs/c_wig_100m_w20g40_s11_raw"}' 'ap={"VISO_DELAY_MS":180}' label=c_wig_100m_w20g40_s11
+apb 100 w20g40 60 seed=12 'ap={"VISO_DELAY_MS":140}' label=c_d140_100m_w20g40_s12
+apb 100 w20g40 60 seed=11 'settings={"video_delay_s":0.064,"readout_s":0.024}' 'ap={"VISO_DELAY_MS":144}' label=c_wigfix_100m_w20g40_s11
+apb 40 w20g40 60 seed=12 wiggle_s=8 est_delay_err_s=0.04 'settings={"raw_record":true,"log_dir":"/home/paul/Videos/vio-hold-attempt/apsim/runs/c_wig_40m_w20g40_s12_raw"}' 'ap={"VISO_DELAY_MS":180}' label=c_wig_40m_w20g40_s12
+apb 100 w20g40 60 seed=13 'ap={"VISO_DELAY_MS":140}' label=c_d140_100m_w20g40_s13
+apb 100 w20g40 60 seed=11 'settings={"cov_scale":0.1}' 'ap={"VISO_DELAY_MS":140,"VISO_POS_M_NSE":0.15}' label=c_trust_100m_w20g40_s11
+apb 40 w20g40 60 seed=12 'settings={"video_delay_s":0.062,"readout_s":0.024}' 'ap={"VISO_DELAY_MS":142}' label=c_wigfix_40m_w20g40_s12
+apb 100 w20g40 60 seed=12 'settings={"cov_scale":0.1}' 'ap={"VISO_DELAY_MS":140,"VISO_POS_M_NSE":0.15}' label=c_trust_100m_w20g40_s12
+apb 100 w20g40 60 seed=13 'settings={"cov_scale":0.1}' 'ap={"VISO_DELAY_MS":140,"VISO_POS_M_NSE":0.15}' label=c_trust_100m_w20g40_s13
+apb 100 w20g40 60 seed=11 'settings={"send_speed":true}' 'ap={"VISO_DELAY_MS":140,"EK3_SRC1_VELXY":6,"VISO_VEL_M_NSE":0.3}' label=c_spd_100m_w20g40_s11
+apb 100 w20g40 60 seed=12 'settings={"send_speed":true}' 'ap={"VISO_DELAY_MS":140,"EK3_SRC1_VELXY":6,"VISO_VEL_M_NSE":0.3}' label=c_spd_100m_w20g40_s12
+apb 100 w20g40 60 seed=11 'settings={"send_speed":true}' 'ap={"VISO_DELAY_MS":140,"EK3_SRC1_VELXY":6,"VISO_VEL_M_NSE":0.3}' label=c_spd2_100m_w20g40_s11
+apb 100 w20g40 60 seed=12 'settings={"send_speed":true}' 'ap={"VISO_DELAY_MS":140,"EK3_SRC1_VELXY":6,"VISO_VEL_M_NSE":0.3}' label=c_spd2_100m_w20g40_s12
+apb 40 w20g40 60 seed=11 'settings={"send_speed":true}' 'ap={"VISO_DELAY_MS":140,"EK3_SRC1_VELXY":6,"VISO_VEL_M_NSE":0.3}' label=c_spd2_40m_w20g40_s11
+apb 40 w20g40 60 seed=12 'settings={"send_speed":true}' 'ap={"VISO_DELAY_MS":140,"EK3_SRC1_VELXY":6,"VISO_VEL_M_NSE":0.3}' label=c_spd2_40m_w20g40_s12
+truth 100 w20g40 60 seed=12 feed_delay_s=0.15 feed_noise_m=0.1 feed_hz=12 'ap={"VISO_POS_M_NSE":0.5}' label=c_px_base_100m_w20g40_s12
+truth 100 w20g40 60 seed=11 feed_delay_s=0.15 feed_noise_m=0.1 feed_hz=12 'ap={"VISO_POS_M_NSE":0.5,"PSC_POSXY_P":1.5}' label=c_px_posp15_100m_w20g40_s11
+truth 100 w20g40 60 seed=12 feed_delay_s=0.15 feed_noise_m=0.1 feed_hz=12 'ap={"VISO_POS_M_NSE":0.5,"PSC_POSXY_P":1.5}' label=c_px_posp15_100m_w20g40_s12
+truth 100 w20g40 60 seed=11 feed_delay_s=0.15 feed_noise_m=0.1 feed_hz=12 'ap={"VISO_POS_M_NSE":0.5,"PSC_POSXY_P":0.7}' label=c_px_posp07_100m_w20g40_s11
+truth 100 w20g40 60 seed=12 feed_delay_s=0.15 feed_noise_m=0.1 feed_hz=12 'ap={"VISO_POS_M_NSE":0.5,"PSC_POSXY_P":0.7}' label=c_px_posp07_100m_w20g40_s12
+truth 100 w20g40 60 seed=11 feed_delay_s=0.15 feed_noise_m=0.1 feed_hz=12 'ap={"VISO_POS_M_NSE":0.5,"PSC_VELXY_P":3.0}' label=c_px_velp3_100m_w20g40_s11
+truth 100 w20g40 60 seed=12 feed_delay_s=0.15 feed_noise_m=0.1 feed_hz=12 'ap={"VISO_POS_M_NSE":0.5,"PSC_VELXY_P":3.0}' label=c_px_velp3_100m_w20g40_s12
+truth 100 w20g40 60 seed=11 feed_delay_s=0.15 feed_noise_m=0.1 feed_hz=12 'ap={"VISO_POS_M_NSE":0.5,"PSC_VELXY_I":2.0}' label=c_px_veli2_100m_w20g40_s11
+truth 100 w20g40 60 seed=12 feed_delay_s=0.15 feed_noise_m=0.1 feed_hz=12 'ap={"VISO_POS_M_NSE":0.5,"PSC_VELXY_I":2.0}' label=c_px_veli2_100m_w20g40_s12
+truth 100 w20g40 60 seed=11 feed_delay_s=0.15 feed_noise_m=0.1 feed_hz=12 'ap={"VISO_POS_M_NSE":0.5,"PSC_VELXY_D":1.0}' label=c_px_veld1_100m_w20g40_s11
+truth 100 w20g40 60 seed=12 feed_delay_s=0.15 feed_noise_m=0.1 feed_hz=12 'ap={"VISO_POS_M_NSE":0.5,"PSC_VELXY_D":1.0}' label=c_px_veld1_100m_w20g40_s12
+truth 100 w20g40 60 seed=11 feed_delay_s=0.15 feed_noise_m=0.1 feed_hz=12 'ap={"VISO_POS_M_NSE":0.5,"PSC_VELXY_D":0.25}' label=c_px_veld025_100m_w20g40_s11
+truth 100 w20g40 60 seed=12 feed_delay_s=0.15 feed_noise_m=0.1 feed_hz=12 'ap={"VISO_POS_M_NSE":0.5,"PSC_VELXY_D":0.25}' label=c_px_veld025_100m_w20g40_s12
+truth 100 w20g40 60 seed=11 feed_delay_s=0.15 feed_noise_m=0.1 feed_hz=12 'ap={"VISO_POS_M_NSE":0.5,"PSC_JERK_XY":10.0}' label=c_px_jerk10_100m_w20g40_s11
+truth 100 w20g40 60 seed=12 feed_delay_s=0.15 feed_noise_m=0.1 feed_hz=12 'ap={"VISO_POS_M_NSE":0.5,"PSC_JERK_XY":10.0}' label=c_px_jerk10_100m_w20g40_s12
+truth 100 w20g40 60 seed=11 feed_delay_s=0.15 feed_noise_m=0.1 feed_hz=12 'ap={"VISO_POS_M_NSE":0.5,"LOIT_ACC_MAX":1000.0}' label=c_px_acc1000_100m_w20g40_s11
+truth 100 w20g40 60 seed=12 feed_delay_s=0.15 feed_noise_m=0.1 feed_hz=12 'ap={"VISO_POS_M_NSE":0.5,"LOIT_ACC_MAX":1000.0}' label=c_px_acc1000_100m_w20g40_s12
+truth 100 w20g40 60 seed=11 feed_delay_s=0.15 feed_noise_m=0.1 feed_hz=12 'ap={"VISO_POS_M_NSE":0.5,"EK3_DRAG_BCOEF_X":14.0,"EK3_DRAG_BCOEF_Y":14.0}' label=c_px_drag14_100m_w20g40_s11
+truth 100 w20g40 60 seed=12 feed_delay_s=0.15 feed_noise_m=0.1 feed_hz=12 'ap={"VISO_POS_M_NSE":0.5,"EK3_DRAG_BCOEF_X":14.0,"EK3_DRAG_BCOEF_Y":14.0}' label=c_px_drag14_100m_w20g40_s12
+truth 100 w20g40 60 seed=11 feed_delay_s=0.15 feed_noise_m=0.1 feed_hz=12 'ap={"VISO_POS_M_NSE":0.5,"PSC_VELXY_I":2.0,"PSC_POSXY_P":1.5}' label=c_px_i2p15_100m_w20g40_s11
+truth 100 w20g40 60 seed=12 feed_delay_s=0.15 feed_noise_m=0.1 feed_hz=12 'ap={"VISO_POS_M_NSE":0.5,"PSC_VELXY_I":2.0,"PSC_POSXY_P":1.5}' label=c_px_i2p15_100m_w20g40_s12
+truth 100 w20g40 60 seed=11 feed_delay_s=0.15 feed_noise_m=0.1 feed_hz=12 'ap={"VISO_POS_M_NSE":0.5,"PSC_VELXY_I":2.0,"PSC_POSXY_P":1.5,"PSC_VELXY_P":3.0}' label=c_px_i2p15v3_100m_w20g40_s11
+truth 100 w20g40 60 seed=12 feed_delay_s=0.15 feed_noise_m=0.1 feed_hz=12 'ap={"VISO_POS_M_NSE":0.5,"PSC_VELXY_I":2.0,"PSC_POSXY_P":1.5,"PSC_VELXY_P":3.0}' label=c_px_i2p15v3_100m_w20g40_s12
+truth 100 w20g40 60 seed=11 feed_delay_s=0.15 feed_noise_m=0.1 feed_hz=12 'ap={"VISO_POS_M_NSE":0.5,"PSC_VELXY_I":3.0}' label=c_px_veli3_100m_w20g40_s11
+truth 100 w20g40 60 seed=12 feed_delay_s=0.15 feed_noise_m=0.1 feed_hz=12 'ap={"VISO_POS_M_NSE":0.5,"PSC_VELXY_I":3.0}' label=c_px_veli3_100m_w20g40_s12
+apb 100 w20g40 60 seed=11 'ap={"PSC_VELXY_I":2.0}' label=c_veli2_100m_w20g40_s11
+apb 100 w20g40 60 seed=11 'ap={"PSC_VELXY_I":2.0,"PSC_POSXY_P":1.5}' label=c_i2p15_100m_w20g40_s11
+apb 100 w20g40 60 seed=12 'ap={"PSC_VELXY_I":2.0,"PSC_POSXY_P":1.5}' label=c_i2p15_100m_w20g40_s12
+apb 100 w20g40 60 seed=13 'ap={"PSC_VELXY_I":2.0,"PSC_POSXY_P":1.5}' label=c_i2p15_100m_w20g40_s13
+apb 40 w20g40 60 seed=11 'ap={"PSC_VELXY_I":2.0,"PSC_POSXY_P":1.5}' label=c_i2p15_40m_w20g40_s11
+apb 40 w20g40 60 seed=12 'ap={"PSC_VELXY_I":2.0,"PSC_POSXY_P":1.5}' label=c_i2p15_40m_w20g40_s12
+apb 100 w20g40 60 ground=holdout_lawn seed=104 label=c_hoD_100m_holdout_lawn_s104
+apb 40 w20g40 60 seed=13 'ap={"PSC_VELXY_I":2.0,"PSC_POSXY_P":1.5}' label=c_i2p15_40m_w20g40_s13
+apb 100 w20g40 60 ground=holdout_quarry seed=105 label=c_hoD_100m_holdout_quarry_s105
+apb 100 w20g40 60 seed=11 pilot_guided=true 'settings={"wind_assist":true}' label=c_wa_100m_w20g40_s11
+apb 100 w20g40 60 ground=holdout_water seed=106 label=c_hoD_100m_holdout_water_s106
+apb 100 w20g40 60 seed=11 pilot_guided=true 'settings={"wind_assist":true}' label=c_wa_100m_w20g40_s11
+apb 30 w20g40 60 ground=holdout_lawn seed=107 label=c_hoD_30m_holdout_lawn_s107
+apb 100 w20g40 60 seed=11 pilot_guided=true 'settings={"wind_assist":true}' label=c_wa2_100m_w20g40_s11
+apb 30 w20g40 60 ground=holdout_quarry seed=108 label=c_hoD_30m_holdout_quarry_s108
+apb 100 w20g40 60 seed=12 pilot_guided=true 'settings={"wind_assist":true}' label=c_wa2_100m_w20g40_s12
+apb 100 w20g40 60 seed=13 pilot_guided=true 'settings={"wind_assist":true}' label=c_wa2_100m_w20g40_s13
+apb 30 w20g40 60 ground=holdout_water seed=109 label=c_hoD_30m_holdout_water_s109
+apb 100 w20g40 60 seed=12 pilot_guided=5 'settings={"wind_assist":true}' label=c_wa2_100m_w20g40_s12
+apb 100 w20g40 60 seed=13 pilot_guided=5 'settings={"wind_assist":true}' label=c_wa2_100m_w20g40_s13
+apb 100 w20g40 60 seed=11 pilot_guided=5 'settings={"wind_assist":true}' label=c_wa2_100m_w20g40_s11
+apb 30 w20g40 60 ground=holdout_lawn seed=107 'ap={"PSC_VELXY_I":2.0,"PSC_POSXY_P":1.5}' label=c_hoB_30m_holdout_lawn_s107
+apb 30 w20g40 60 ground=holdout_quarry seed=108 'ap={"PSC_VELXY_I":2.0,"PSC_POSXY_P":1.5}' label=c_hoB_30m_holdout_quarry_s108
+apb 30 w20g40 60 ground=holdout_water seed=109 'ap={"PSC_VELXY_I":2.0,"PSC_POSXY_P":1.5}' label=c_hoB_30m_holdout_water_s109
+apb 100 w20g40 60 ground=holdout_lawn seed=104 label=c_hoD_100m_holdout_lawn_s104
+apb 60 w20g40 60 seed=11 label=c_d140_60m_w20g40_s11
+apb 60 w20g40 60 seed=11 pilot_guided=5 'settings={"wind_assist":true}' label=c_wa3_60m_w20g40_s11
+apb 60 w20g40 60 seed=12 label=c_d140_60m_w20g40_s12
+apb 60 w20g40 60 seed=12 pilot_guided=5 'settings={"wind_assist":true}' label=c_wa3_60m_w20g40_s12
+apb 60 w20g40 60 seed=13 label=c_d140_60m_w20g40_s13
+apb 60 w20g40 60 seed=13 pilot_guided=5 'settings={"wind_assist":true}' label=c_wa3_60m_w20g40_s13
+apb 100 w20g40 60 seed=11 pilot_guided=5 'settings={"wind_assist":true}' label=c_wa3_100m_w20g40_s11
+apb 100 w20g40 60 seed=12 pilot_guided=5 'settings={"wind_assist":true}' label=c_wa3_100m_w20g40_s12
+apb 100 w20g40 60 seed=13 pilot_guided=5 'settings={"wind_assist":true}' label=c_wa3_100m_w20g40_s13

@@ -1,0 +1,30 @@
+[in_flick_people_5m_s2] PX4 never accepted Position mode
+[in_flick_people_5m_s2] 
+{
+ "case": "in_flick_people_5m_s2",
+ "events": [
+  [
+   0.0,
+   "PX4 never accepted Position mode"
+  ]
+ ],
+ "climb_s": 15.0,
+ "ekf_yaw_minus_true_deg": 12.06,
+ "onboard": [
+  [
+   5.04,
+   "connected",
+   "px4, clock ready True, ATTITUDE 100 Hz"
+  ],
+  [
+   80.83,
+   "done",
+   "stopped after 1 start(s); frame age when taken p50 23 ms, p95 48 ms; SCALED_IMU 0 Hz, 0 rows kept"
+  ]
+ ],
+ "params_fail": [],
+ "onboard_exit": 0,
+ "ev_delay_ms": 101.2,
+ "hold_py_md5": "05d076f903",
+ "px4_text": []
+}

@@ -1,0 +1,12 @@
+label                     rms    max  fix/s  %fix  proc  age  events | top refusals
+lt_field_s11             0.71   1.48   13.5    54    72  154  0s hold starts, mode 3, 0.7 s after the vision feed started | whole picture: weak peak 2
+lt_field_s12             0.79   1.54    9.8    39    99  171  0s hold starts, mode 3, 0.7 s after the vision feed started | whole picture: weak peak 4, image motion does not match the attitude 4, waiting for image motion that proves the picture is live 1
+lt_field_s13             0.70   1.53   15.4    61    62  124  0s hold starts, mode 3, 0.6 s after the vision feed started | 
+lt_prairie_s1            0.82   1.42   11.4    46    86  170  0s hold starts, mode 3, 0.7 s after the vision feed started | 
+lt_prairie_s2            0.76   1.55   22.6    90    36   93  0s hold starts, mode 3, 0.7 s after the vision feed started | whole picture: halves disagree 44, waiting for image motion that proves the picture is live 3, 18 consistent points 3
+lt_snow50_s1             2.03   3.70    8.7    35   110  196  0s hold starts, mode 3, 0.6 s after the vision feed started | 
+lt_night50_s1            0.56   1.16   11.5    46    83  193  0s hold starts, mode 3, 0.7 s after the vision feed started | whole picture: weak peak 1
+lt_night100_s1           0.90   1.75   11.3    45    80  192  0s hold starts, mode 3, 2.7 s after the vision feed started | whole picture: halves disagree 41
+lt_ottawa_s11            0.68   1.35   23.4    94    31   84  0s hold starts, mode 3, 0.7 s after the vision feed started | 
+lt_ottawa_s12            0.70   1.40   24.8    99    27   83  0s hold starts, mode 3, 0.7 s after the vision feed started | 
+lt_ottawa_s13            0.81   1.53   16.8    67    56  141  0s hold starts, mode 3, 0.8 s after the vision feed started | 

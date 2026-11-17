@@ -1,0 +1,85 @@
+[lo_field_60m_w_s15] hold starts, mode 3, 0.6 s after the vision feed started
+[lo_field_60m_w_s15] rms 0.613  p95 1.19  max 1.45  drift_m_per_min 0.794  roll_rms_deg 5.38  pitch_rms_deg 2.95  judge_rms 13.4  judge_jitter_rms 7.11  fix_rate_hz 11.4  frac_ok 0.862  frac_lost 0.00124  proc_ms_mean 69.9
+{
+ "case": "lo_field_60m_w_s15",
+ "events": [
+  [
+   0.0,
+   "hold starts, mode 3, 0.6 s after the vision feed started"
+  ]
+ ],
+ "climb_s": 28.9,
+ "ekf_yaw_minus_true_deg": 11.94,
+ "onboard": [
+  [
+   4.06,
+   "connected",
+   "px4, clock ready True, ATTITUDE 100 Hz"
+  ],
+  [
+   14.16,
+   "run",
+   "FAIL no usable video frame in 10 s. Check the camera and video_device."
+  ],
+  [
+   116.55,
+   "done",
+   "stopped after 2 start(s); frame age when taken p50 21 ms, p95 50 ms; SCALED_IMU 0 Hz, 0 rows kept"
+  ]
+ ],
+ "params_fail": [],
+ "onboard_exit": 0,
+ "clock_err_ms_mean": 0.8275909609835015,
+ "clock_err_ms_absmax": 0.9556584188459283,
+ "handover_ms_p50": 12.456550000024436,
+ "handover_ms_p95": 16.346734600062973,
+ "frames": 1500,
+ "processed": 807,
+ "fixes": 687,
+ "fix_rate_hz": 11.45,
+ "pct_frames_fix": 45.8,
+ "frac_init": 0.0037174721189591076,
+ "frac_ok": 0.862453531598513,
+ "frac_degraded": 0.1325898389095415,
+ "frac_lost": 0.0012391573729863693,
+ "proc_ms_mean": 69.92602230483271,
+ "age_ms_p50": 163.6,
+ "age_ms_p95": 207.27999999999997,
+ "hold_why": {
+  "whole picture: halves disagree": 108,
+  "waiting for image motion that proves the picture is live": 2,
+  "init": 1,
+  "good fix 1 of 10": 1,
+  "good fix 2 of 10": 1,
+  "good fix 3 of 10": 1,
+  "good fix 4 of 10": 1,
+  "good fix 5 of 10": 1
+ },
+ "reanchors": 1,
+ "rms": 0.6127001535742251,
+ "p95": 1.190513235210442,
+ "max": 1.451878445059775,
+ "end": 0.6704262966820022,
+ "drift_m_per_min": 0.7936602306755053,
+ "roll_rms_deg": 5.375602310404796,
+ "pitch_rms_deg": 2.9543906187311304,
+ "tilt_mean_deg": 10.609790154607541,
+ "judge_rms": 13.379087944568614,
+ "judge_p95": 23.850305740660673,
+ "judge_max": 25.72393269399349,
+ "judge_jitter_rms": 7.112532621042443,
+ "height_mean": 59.57318881668215,
+ "seconds": 60.0,
+ "px4_hgt_err_m": [
+  -0.09,
+  0.11
+ ],
+ "px4_yaw_err_deg": [
+  -2.03,
+  2.45,
+  -1.53
+ ],
+ "ev_delay_ms": 101.2,
+ "hold_py_md5": "ad3ebe25dc",
+ "px4_text": []
+}

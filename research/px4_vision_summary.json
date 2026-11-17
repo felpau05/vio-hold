@@ -1,0 +1,174 @@
+{
+ "summary": "For horizontal-only vision on v1.14-1.16 set EKF2_EV_CTRL=1, EKF2_GPS_CTRL=0, EKF2_HGT_REF=0 (baro), EKF2_EV_DELAY=measured; v1.14/1.15 default EV_CTRL is 15, so it must be set explicitly (v1.13: EKF2_AID_MASK=8, EKF2_HGT_MODE=0). VISION_POSITION_ESTIMATE (always NED, 129 B v2) is enough for position-only; ODOMETRY (245 B) only if we send velocity, and it must not use estimator_type NAIVE or PX4 ignores covariance. PX4 drops the whole position if any of x,y,z is NaN and the whole variance if any of cov[0],[6],[11] is NaN, so send finite z and z-variance. PX4 uses our timestamp only after TIMESYNC converges (500 samples, ~50 s at 10 Hz, RTT must stay under 10 ms); before that it stamps arrival time. If vision stops, EV fusion is dropped after ~0.4 s, position is declared invalid after roughly 4.4 s with defaults (derived, EKF2_NOAID_TOUT=5 s), and Position mode falls back to Altitude mode (COM_POSCTL_NAVL=0); restart does a hard position reset. Vision velocity works through ODOMETRY (EV_CTRL bit 2); OPTICAL_FLOW_RAD is stamped at arrival, capped at SENS_FLOW_MAXHGT 100 m, and its default noise (0.15 rad/s) makes it useless at 100 m. Mag yaw error has no official figure (forum anecdote 2-5 deg); sending NED built from the FC's own heading keeps EV and EKF yaw consistent (inference). ArduPilot: EK3_SRC1_POSXY=6, VELXY/VELZ must be set to 0 (defaults are GPS), POSZ=1, YAW=1, VISO_TYPE=1, GPS1_TYPE=0, origin via SET_GPS_GLOBAL_ORIGIN; ODOMETRY accepted only in LOCAL_FRD/BODY_FRD. On 230400 baud PX4's send budget is baud/20 = 11.5 kB/s; ATTITUDE 100 Hz + ALTITUDE 10 Hz + TIMESYNC 10 Hz is about 4.8 kB/s, and the vision uplink at 30 Hz is about 3.9 kB/s.",
+ "facts": [
+  {
+   "claim": "EKF2_EV_CTRL bits: 0 horizontal position, 1 vertical position, 2 3D velocity, 3 yaw. Horizontal-only = 1",
+   "value": "EKF2_EV_CTRL=1",
+   "source_url": "https://github.com/PX4/PX4-Autopilot/blob/release/1.16/src/modules/ekf2/params_external_vision.yaml",
+   "confidence": "high"
+  },
+  {
+   "claim": "EKF2_EV_CTRL default is 15 in v1.14 and v1.15 but 0 in v1.16/main",
+   "value": "15 / 15 / 0",
+   "source_url": "https://github.com/PX4/PX4-Autopilot/blob/release/1.14/src/modules/ekf2/ekf2_params.c",
+   "confidence": "high"
+  },
+  {
+   "claim": "Baro as height reference (0 baro, 1 GPS, 2 range, 3 vision); default is 1 GPS; GNSS off",
+   "value": "EKF2_HGT_REF=0, EKF2_GPS_CTRL=0",
+   "source_url": "https://github.com/PX4/PX4-Autopilot/blob/release/1.15/src/modules/ekf2/module.yaml",
+   "confidence": "high"
+  },
+  {
+   "claim": "v1.13 and older use EKF2_AID_MASK bit 3 for vision position (bit 0 GPS) and EKF2_HGT_MODE; deprecated in v1.14",
+   "value": "EKF2_AID_MASK=8, EKF2_HGT_MODE=0",
+   "source_url": "https://github.com/PX4/PX4-Autopilot/blob/release/1.13/src/modules/ekf2/ekf2_params.c",
+   "confidence": "high"
+  },
+  {
+   "claim": "Vision noise params: EKF2_EVP_NOISE default 0.1 m (min 0.01), EKF2_EVP_GATE default 5 SD, EKF2_EV_NOISE_MD 0 = message variance with parameter as lower bound, EKF2_EV_DELAY default 0 (max 300 ms)",
+   "value": "0.1 m / 5 SD / mode 0 / 0 ms",
+   "source_url": "https://github.com/PX4/PX4-Autopilot/blob/release/1.16/src/modules/ekf2/params_external_vision.yaml",
+   "confidence": "high"
+  },
+  {
+   "claim": "Docs: vision messages should be streamed at 30 Hz (with covariances) to 50 Hz; EV_MAX_INTERVAL in code is 200 ms",
+   "value": "30-50 Hz; 200 ms",
+   "source_url": "https://github.com/PX4/PX4-Autopilot/blob/main/docs/en/ros/external_position_estimation.md",
+   "confidence": "high"
+  },
+  {
+   "claim": "PX4 drops whole position if any of x,y,z is NaN and the whole variance vector if any of cov[0],[6],[11] is NaN; ODOMETRY with estimator_type NAIVE ignores covariance",
+   "value": "send finite z and z variance; use estimator_type 2 or 3",
+   "source_url": "https://github.com/PX4/PX4-Autopilot/blob/release/1.16/src/modules/mavlink/mavlink_receiver.cpp",
+   "confidence": "high"
+  },
+  {
+   "claim": "VISION_POSITION_ESTIMATE is always treated as NED; ODOMETRY frame_id LOCAL_NED=NED, LOCAL_FRD=FRD; only ODOMETRY carries velocity",
+   "value": "VPE frame 129 B, ODOMETRY frame 245 B (MAVLink v2)",
+   "source_url": "https://github.com/mavlink/mavlink/blob/master/message_definitions/v1.0/common.xml",
+   "confidence": "high"
+  },
+  {
+   "claim": "A changed reset_counter makes EKF2 hard-reset its horizontal position to the new measurement when no GNSS is fused",
+   "value": "reset_counter change = position jump",
+   "source_url": "https://github.com/PX4/PX4-Autopilot/blob/release/1.16/src/modules/ekf2/EKF/aid_sources/external_vision/ev_pos_control.cpp",
+   "confidence": "high"
+  },
+  {
+   "claim": "PX4 timesync: converges after 500 samples, drops samples with RTT over 10 ms; before convergence sync_stamp returns arrival time",
+   "value": "500 samples; 10 ms RTT; PX4 sends TIMESYNC at 10 Hz in onboard mode",
+   "source_url": "https://github.com/PX4/PX4-Autopilot/blob/release/1.16/src/lib/timesync/Timesync.cpp",
+   "confidence": "high"
+  },
+  {
+   "claim": "EKF uses sample time = timestamp - EKF2_EV_DELAY - half EKF step",
+   "value": "stamp capture time -> delay about 0; stamp 'now' -> delay = latency (60-100 ms)",
+   "source_url": "https://github.com/PX4/PX4-Autopilot/blob/release/1.16/src/modules/ekf2/EKF/estimator_interface.cpp",
+   "confidence": "high"
+  },
+  {
+   "claim": "If vision data stops, EV fusion is stopped after 2*EV_MAX_INTERVAL",
+   "value": "about 0.4 s",
+   "source_url": "https://github.com/PX4/PX4-Autopilot/blob/release/1.16/src/modules/ekf2/EKF/aid_sources/external_vision/ev_control.cpp",
+   "confidence": "high"
+  },
+  {
+   "claim": "Local position declared invalid after EKF2_NOAID_TOUT of dead reckoning (default 5 s, min 0.5, max 10 s); my timeline of about 4.4 s after the last sample is derived from code, not tested",
+   "value": "about 4.4 s (derived)",
+   "source_url": "https://github.com/PX4/PX4-Autopilot/blob/release/1.16/src/modules/ekf2/EKF/ekf_helper.cpp",
+   "confidence": "low"
+  },
+  {
+   "claim": "Position-mode loss falls back to Altitude mode (COM_POSCTL_NAVL=0) or Land (=1); COM_POS_FS_DELAY (default 1 s) exists in v1.13-1.15 but not in v1.16; COM_POS_FS_EPH default 5 m",
+   "value": "COM_POSCTL_NAVL=0 default",
+   "source_url": "https://github.com/PX4/PX4-Autopilot/blob/release/1.16/src/modules/commander/commander_params.c",
+   "confidence": "high"
+  },
+  {
+   "claim": "In v1.16 code Position mode needs only local_position_relaxed; Hold/Mission/RTL need local and global position; docs say use SET_GPS_GLOBAL_ORIGIN to get a global origin without GNSS",
+   "value": "Hold needs global origin",
+   "source_url": "https://github.com/PX4/PX4-Autopilot/blob/release/1.16/src/modules/commander/ModeUtil/mode_requirements.cpp",
+   "confidence": "medium"
+  },
+  {
+   "claim": "Vision velocity: ODOMETRY vx,vy,vz with child_frame_id and EKF2_EV_CTRL bit 2; EKF2_EVV_NOISE default 0.1 m/s, EKF2_EVV_GATE 3 SD",
+   "value": "EV_CTRL +4",
+   "source_url": "https://github.com/PX4/PX4-Autopilot/blob/release/1.16/src/modules/ekf2/params_external_vision.yaml",
+   "confidence": "high"
+  },
+  {
+   "claim": "OPTICAL_FLOW_RAD is stamped with PX4 arrival time (message time ignored); flow fusion limited by SENS_FLOW_MAXHGT default and max 100 m; EKF2_OF_N_MIN 0.15 rad/s (about 15 m/s of velocity noise at 100 m, derived); EKF2_OF_DELAY 20 ms",
+   "value": "100 m limit",
+   "source_url": "https://github.com/PX4/PX4-Autopilot/blob/release/1.16/src/modules/mavlink/mavlink_receiver.cpp",
+   "confidence": "medium"
+  },
+  {
+   "claim": "With LOCAL_FRAME_NED vision position is fused only when EKF yaw is aligned (magnetometer); LOCAL_FRD without yaw bit is rotated using a filtered EV-vs-EKF quaternion error; with yaw bit heading is relative to the EV frame",
+   "value": "send NED, yaw bit off",
+   "source_url": "https://github.com/PX4/PX4-Autopilot/blob/release/1.16/src/modules/ekf2/EKF/aid_sources/external_vision/ev_pos_control.cpp",
+   "confidence": "high"
+  },
+  {
+   "claim": "No official typical mag yaw error found; forum anecdote of about 5 deg vs dual-antenna GNSS and 2 deg after fix",
+   "value": "2-5 deg (anecdotal)",
+   "source_url": "https://discuss.px4.io/t/high-mag-accuracy-possible/48146",
+   "confidence": "low"
+  },
+  {
+   "claim": "Position control gains: MPC_XY_P 0.95, MPC_XY_VEL_P_ACC 1.8, MPC_XY_VEL_I_ACC 0.4, MPC_XY_VEL_D_ACC 0.2, MPC_VELD_LP 5 Hz, MPC_VEL_LP 0 Hz, MPC_TILTMAX_AIR 45 deg; no PX4 doc advice on noisy external position found beyond EV noise params and EV_DELAY tuning",
+   "value": "defaults listed",
+   "source_url": "https://github.com/PX4/PX4-Autopilot/blob/main/src/modules/mc_pos_control/multicopter_position_control_gain_params.yaml",
+   "confidence": "high"
+  },
+  {
+   "claim": "ArduPilot: EK3_SRC1_POSXY=6 ExternalNav, POSZ=1 baro, YAW=1 compass; VELXY and VELZ default to GPS (3) so set 0; VISO_TYPE 1=MAVLink; VISO_DELAY_MS default 10; GPS off with GPS1_TYPE=0",
+   "value": "see report section 8",
+   "source_url": "https://github.com/ArduPilot/ardupilot/blob/master/libraries/AP_NavEKF/AP_NavEKF_Source.cpp",
+   "confidence": "high"
+  },
+  {
+   "claim": "ArduPilot accepts ODOMETRY only with frame_id LOCAL_FRD and child_frame_id BODY_FRD; position error = sqrt(cov[0]+cov[6]+cov[11]), clamped to VISO_POS_M_NSE..100 m; SET_GPS_GLOBAL_ORIGIN sets EKF origin",
+   "value": "VISION_POSITION_ESTIMATE is simpler",
+   "source_url": "https://github.com/ArduPilot/ardupilot/blob/master/libraries/GCS_MAVLink/GCS_Common.cpp",
+   "confidence": "high"
+  },
+  {
+   "claim": "PX4 onboard-mode default stream rates: ATTITUDE 100 Hz, ATTITUDE_QUATERNION 50, HIGHRES_IMU 50, LOCAL_POSITION_NED 30, ALTITUDE 10, TIMESYNC 10, SCALED_PRESSURE 1; default send budget is baud/20",
+   "value": "11,520 B/s at 230400 baud",
+   "source_url": "https://github.com/PX4/PX4-Autopilot/blob/release/1.16/src/modules/mavlink/mavlink_main.cpp",
+   "confidence": "high"
+  },
+  {
+   "claim": "MAV_CMD_SET_MESSAGE_INTERVAL (511): param1 message id, param2 interval in us (-1 disable, 0 default)",
+   "value": "ATTITUDE 100 Hz = id 30, 10000 us",
+   "source_url": "https://github.com/mavlink/mavlink/blob/master/message_definitions/v1.0/common.xml",
+   "confidence": "high"
+  }
+ ],
+ "unknowns": [
+  "Orqa M2-AI firmware (PX4 or other), version, serial port, baud rate, MAVLink mode, and whether EKF2 external vision is enabled",
+  "Official typical magnetometer yaw error for PX4 (only forum anecdotes)",
+  "Real time from vision stop to invalid position on the Orqa build (my ~4.4 s is derived from code, not run in SITL)",
+  "Whether Position mode on v1.14/v1.15 needs a global position (docs prose says yes, v1.16 requirement list says local relaxed only)",
+  "Position error growth during 0.5 s, 2 s, 10 s of dead reckoning",
+  "Whether PX4 flow fusion works at 100 m with no range finder",
+  "Whether TIMESYNC round-trip stays under 10 ms on the Orqa UART with the default stream set",
+  "ArduPilot: time until position loss after stream stops, SRn stream-group membership of each message, whether EK3_POS_I_GATE gates ExternalNav position",
+  "Measured effect of a 50 ms timestamp error (only derived)",
+  "Behavior of LOCAL_FRD frame handling on the Orqa build (not tested)"
+ ],
+ "recommendations": [
+  "Send VISION_POSITION_ESTIMATE at 30 Hz: usec = capture time on the companion clock in us, x,y = north,east metres from the anchor, finite z, finite covariance[0], [6], [11] (variance in m^2), reset_counter only on a real frame jump",
+  "Answer the FC's TIMESYNC requests (tc1 = our clock in ns) and confirm convergence (about 50 s at 10 Hz) before flight; until then PX4 ignores our timestamp",
+  "PX4 set for v1.14-1.16: EKF2_EV_CTRL=1, EKF2_GPS_CTRL=0, EKF2_HGT_REF=0, EKF2_BARO_CTRL=1, EKF2_RNG_CTRL=0, EKF2_EV_NOISE_MD=0, EKF2_EVP_NOISE 0.1-0.3, EKF2_EV_DELAY measured (about 0 if capture-time stamp, 60-100 ms if stamping now), EKF2_EV_POS_X/Y/Z = camera offset, then reboot; v1.13: EKF2_AID_MASK=8, EKF2_HGT_MODE=0",
+  "Tune EKF2_EV_DELAY from logs: SDLOG_PROFILE bit 7, compare vision vs onboard position, minimise innovations",
+  "Keep position in the FC's own heading frame, send NED, leave the EV yaw bit off; test a deliberate yaw offset in SITL",
+  "Do not send very large variances to mark bad tracking; skip the sample instead (a gap over 0.4 s stops fusion and a restart hard-resets position to the anchor)",
+  "Ask organizers which mode holds the drone (Position, Hold, Offboard); Hold needs a global origin, so send SET_GPS_GLOBAL_ORIGIN once; know that vision loss ends in Altitude mode after about 4-5 s with defaults",
+  "Limit the 230400 link: ATTITUDE 100 Hz, ALTITUDE 10 Hz, TIMESYNC 10 Hz only (about 4.8 kB/s of the 11.5 kB/s PX4 budget), disable other streams with MAV_CMD_SET_MESSAGE_INTERVAL interval -1 or a minimal MAV_n_MODE; keep TIMESYNC RTT under 10 ms",
+  "Run closed-loop PX4 SITL tests: vision stop for 0.5/2/10 s, 50 ms timestamp shift, yaw offset, NaN covariance cases, reset_counter jump; this removes the shared-geometry blind spot",
+  "For an optical-flow fallback send velocity through ODOMETRY (EV_CTRL +4, estimator_type 2, finite velocity and velocity_covariance), not OPTICAL_FLOW_RAD"
+ ],
+ "report_path": "/home/paul/Videos/vio-hold-attempt/research/px4_vision.md"
+}

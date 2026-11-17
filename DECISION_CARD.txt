@@ -1,0 +1,62 @@
+DECISION CARD: what you see, the most likely cause, what to change
+Read the log first: ~/.venvs/vio/bin/python tools/plot_log.py logs/run_*.csv (one PNG in about 1 s).
+After each change: run tools/deploy.sh, then python3 apb_main.py check on the board.
+PX4 names are on the left of "/", ArduCopter 4.6 names are on the right.
+Safety first: if the drone moves away, select Altitude mode (AltHold) at once.
+
+1  SEE    The drone swings or flies away right after Position mode (Loiter) starts.
+   CAUSE  The picture is turned or mirrored (FINDINGS G1, H3). Or att_source is not "gyro" (fly-away).
+   DO     Select Altitude mode. Land. Run python3 apb_main.py calib (EVENT_DAY step 4). Do the bench test (step 6).
+          Run python3 tools/use_profile.py show. att_source must not appear in the list of changed values.
+2  SEE    The drone flies circles around the hold point ("toilet bowl").
+   CAUSE  The picture is turned 90 deg (G1). The PX4 VIO docs name the camera direction (papers_control.md S13).
+   DO     Select Altitude mode. Land. Run calib (EVENT_DAY step 4). Do the bench test (step 6).
+3  SEE    Positions stop over plain ground: grass, snow, a plain floor.
+   CAUSE  Too few points (Hold MIN_PTS 20), or the capture check calls the flat picture "no signal" (no_signal_mad).
+   DO     Read the reasons panel in plot_log. Put 3 or more tarps on the ground (capture.py MARKS_MIN 3).
+          At night, put out lamps. Do not lower hold_cfg min_pts. No test shows that it is safe (E1).
+4  SEE    Positions stop in a still hover ("waiting for image motion that proves the picture is live").
+   CAUSE  The liveness check needs picture motion (hold_cfg move_px 1.5 px, live_s 1.0 s).
+   DO     Wait 3 s (the sim accepted a still start after 2.7 s). If it stays, give a small roll input.
+5  SEE    The hold is good low but poor high.
+   CAUSE  Every tilt, timing and lens error grows with the height (H1, G2, E5). Calm air: the autopilot's tilt error.
+   DO     Record 60 s high with --raw. Run ~/.venvs/vio/bin/python tools/replay_tune.py logs/raw_*.npz. Fly lower for goal B.
+6  SEE    The picture is mirrored or turned (nose down does not move the picture toward its top edge).
+   CAUSE  top and mirror in settings.json are wrong for this camera mount.
+   DO     Run python3 apb_main.py calib. Do not edit top or mirror by hand. Do the bench test (step 6).
+7  SEE    The fix age is 150 ms or more (check line, or the ms panel in plot_log).
+   CAUSE  Video delay plus processing time. The governor "powersave" slows the CPU (board_check.sh).
+   DO     PX4: put EKF2_DELAY_MAX = fix age + 100 in params_px4 (EVENT_DAY step 2). Run check --set-params. Reboot.
+          ArduPilot: set VISO_DELAY_MS in params_ardupilot to the fix age (0 to 250).
+8  SEE    The autopilot refuses Position mode (Loiter).
+   CAUSE  No fixes yet, or a parameter or the origin is missing (H2, EVENT_DAY step 7).
+   DO     Run python3 apb_main.py check. Every param line must show PASS. Fix FAIL with check --set-params.
+          ArduPilot: set origin_lat_lon_alt in settings.json (the field's lat, lon, alt). PX4: wait 60 s after run.
+          Climb above min_height_m first (indoor profile: 2 m, outdoor: 15 m). The program sends nothing lower.
+9  SEE    Steady drift in one direction.
+   CAUSE  Fixes stopped and the wind carries the drone (see 3 and 4). Or a yaw turn after the start (E5, H8).
+   DO     Read fixes per second in plot_log. Do not yaw during the hold. Run calib again to measure tilt_deg.
+          Only the camera view sits off the target in wind? That is the lean into the wind, not drift.
+          Wind and a slow return: raise MPC_XY_VEL_I_ACC (PX4, 0.4). PSC_VELXY_I is at its 4.6 maximum (1.0).
+          Test a gain change in SITL first.
+10 SEE    The hold wobbles back and forth.
+   CAUSE  The delay that the autopilot uses differs from the fix age (px4_vision.md section 3), or the gain is high.
+   DO     Set EKF2_EV_DELAY / VISO_DELAY_MS to the fix age. Then lower MPC_XY_P (0.95) / PSC_POSXY_P (1.0).
+          Test a gain change in SITL first (papers_control.md S12).
+11 SEE    Fewer than 10 fixes per second (plot_log panel 3, line min_send_hz).
+   CAUSE  The CPU is too slow, or frames are refused (reasons panel).
+   DO     Set the governor to performance (board_check.sh prints the command). Try hold_cfg fb_every 3 (H6).
+12 SEE    Many frames refused with "image motion does not match the attitude".
+   CAUSE  Wrong video delay, readout, lens scale or camera direction.
+   DO     Run replay_tune on the last recording. In the sim it found 40 ms delay errors and a wrong readout sign.
+          It can miss a delay that is 20 ms too short. Run calib again if it changes video_delay_s by over 10 ms.
+13 SEE    "attitude late", "attitude stale" or ATTITUDE under 100 Hz in check.
+   CAUSE  Other streams fill the link (H5).
+   DO     PX4: add px4 to the apply line (MAV_0_RATE 23040). Run check --set-params. Stop ULog streaming.
+          ArduPilot: set the SRn_ rates of the APB port to 0 (EVENT_DAY step 7).
+14 SEE    Indoors: frames refused with "height ... m under 15 m".
+   CAUSE  The outdoor minimum height is active.
+   DO     python3 tools/use_profile.py apply indoor goal_b <px4 or ardupilot>. Then tools/deploy.sh.
+15 SEE    The trial is after dark, and the calibration was made in daylight.
+   CAUSE  The exposure is longer at night. It moves the video delay (H11, +8 ms in the sim).
+   DO     Run calib in the night light (EVENT_DAY step 4). Apply outdoor_night. Do the bench test (step 6).

@@ -1,0 +1,7 @@
+test_basics: rc=0 ALL PASS in 20 s
+test_fc_link: rc=0 ALL PASS in 20 s
+test_run: rc=0 ALL PASS in 28 s (files in /tmp/tmpozzpp3_m)
+test_bench: rc=0 ALL PASS in 17 s
+test_calib: rc=0 ALL PASS in 61 s
+sim_test.timing_test: rc=0 timing_test PASSED
+interface_check rc=0

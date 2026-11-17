@@ -1,0 +1,18 @@
+--- 100 m hover, yaw swing +-10 deg
+  nominal mount                                sent  100%  rms   0.32 m  p95   0.53 m  worst   0.71 m  false-fix  2.9%  gain [[+0.93 -0.07] [+0.09 +1.04]]
+  picture mirrored left-right                  sent   95%  rms  14.98 m  p95  27.21 m  worst  32.95 m  false-fix 91.1%  gain [[+0.51 +0.22] [+1.12 -3.94]]
+  tilt 3 deg (about body x)                    sent  100%  rms   0.71 m  p95   1.07 m  worst   1.28 m  false-fix 61.2%  gain [[+1.54 +0.37] [+0.10 +1.05]]
+  turned 5 deg about the optical axis          sent  100%  rms   1.26 m  p95   2.07 m  worst   2.52 m  false-fix 83.3%  gain [[+0.98 +0.01] [+0.00 +1.05]]
+  picture turned 90 deg                        sent  100%  rms  16.89 m  p95  27.90 m  worst  33.79 m  false-fix 100.0%  gain [[+0.69 +1.22] [-1.74 +0.21]]
+  picture turned 180 deg                       sent   63%  rms  27.48 m  p95  41.80 m  worst  60.76 m  false-fix 100.0%  gain [[+0.94 +0.21] [+18.39 +2.24]]
+--- 100 m hover, yaw swing +-45 deg
+  nominal mount                                sent  100%  rms   0.67 m  p95   0.95 m  worst   1.24 m  false-fix  1.6%  gain [[+0.71 -0.46] [+0.15 +1.02]]
+  tilt 3 deg (about body x)                    sent  100%  rms   2.72 m  p95   3.89 m  worst   4.18 m  false-fix 80.6%  gain [[+3.18 +1.52] [+0.35 +1.21]]
+  tilt 5 deg (about body x)                    sent  100%  rms   5.24 m  p95   7.72 m  worst   8.11 m  false-fix 89.8%  gain [[+5.19 +3.09] [+0.29 +1.11]]
+--- climb 100 -> 175 m in 15 s (5 m/s), yaw +-10 deg
+  nominal mount (error over last 1 s 0.44 m)   sent  100%  rms   0.52 m  p95   0.86 m  worst   1.36 m  false-fix  5.6%  gain [[+0.92 -0.12] [+0.17 +0.93]]
+  tilt 3 deg (about body x) (error over last 1 s 2.12 m) sent  100%  rms   1.38 m  p95   2.14 m  worst   2.90 m  false-fix 86.4%  gain [[+1.85 +0.40] [+0.06 +1.54]]
+
+real	1m39.483s
+user	4m48.942s
+sys	1m44.215s

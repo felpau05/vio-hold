@@ -1,0 +1,12 @@
+{
+ "_why": {
+  "min_height_m": "tested in the PX4 simulator at 2 to 15 m with this value. With the default 15 m the program sends nothing indoors.",
+  "hold_cfg.h_min": "Hold's own floor must not be above min_height_m. Tested at 1.0.",
+  "hold_cfg.row_norm": "removes mains-lamp flicker bands. Without it the program sent no fix under 120 Hz flicker; with it 8 cm RMS at 5 m (simulator)."
+ },
+ "min_height_m": 1.0,
+ "hold_cfg": {
+  "h_min": 1.0,
+  "row_norm": true
+ }
+}

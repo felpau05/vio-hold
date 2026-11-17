@@ -1,0 +1,9 @@
+{
+ "_why": {
+  "_note": "Goal B = as close to zero error as possible. It is first a height choice: lower is better (simulator, wind: about 0.25 to 0.45 m at 20 to 40 m; indoors 4 to 9 cm at 2 to 5 m).",
+  "_try_on_the_day": "ArduCopter PSC_POSXY_P 1.5 and PSC_VELXY_I 2.0: cut the drift on every validation run at 40 m (0.37 -> 0.23 m middle) but was NOT confirmed on hold-out ground at 30 m. Try it in one hover and keep it only if the replay shows a gain. Set it with the autopilot's own tool; it is not applied by this profile.",
+  "send_speed": "see goal_a."
+ },
+ "send_speed": false,
+ "cov_scale": 1.0
+}

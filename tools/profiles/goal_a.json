@@ -1,0 +1,9 @@
+{
+ "_why": {
+  "_note": "Goal A = as high as possible with a small error. Stock position-controller gains: on ArduCopter at 100 m in wind, PSC_VELXY_I 2 + PSC_POSXY_P 1.5 changed the drift by less than the spread between runs.",
+  "send_speed": "sending speed made the hold worse in every test (100 m: 2.4 to 3.2 m against 0.8 m).",
+  "cov_scale": "a smaller covariance gave more wobble and a worse worst case."
+ },
+ "send_speed": false,
+ "cov_scale": 1.0
+}

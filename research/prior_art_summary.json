@@ -1,0 +1,134 @@
+{
+ "summary": "The ArduPilot GSoC 2024 project is a map-matching system, not a keyframe hold. It matched live frames to a pre-stitched aerial map with SIFT-FLANN and added Lucas-Kanade flow, and the 2024 threads give no drift numbers. It continued in 2025 and 2026: SuperPoint/LightGlue matching plus VINS-Fusion VIO, MIT code (ngps_flight), and an arXiv paper reporting 2.94 m RMSE and 6.04 m worst case at 60-150 m AGL. Gyro-based rolling-shutter correction is an established method (Karpenko 2011, Ovren and Forssen 2015, CRISP and Gyroflow). Readout time can be measured with flashing-LED bands or fitted from gyro and video, but I found no accuracy figure for the correction. Sources only weakly support whole-image methods (phase correlation, Fourier-Mellin) over sparse corners on low texture, and there is no benchmark on grass, snow or asphalt. Analog video adds interlacing and about 25-55 ms of latency, so time-stamp at capture. I found no source for roll/pitch accuracy of PX4/ArduPilot in hover, none for height from keyframe scale at range, and no vibration amplitudes. Most paper sources were read as abstracts or search summaries only, because the PDFs failed to load. The report ranks five changes, led by gyro/readout calibration, a whole-image fallback and latency handling.",
+ "facts": [
+  {
+   "claim": "GSoC 2024 method: pre-flight reference map matched with SIFT-FLANN, plus modified LK flow; no numeric drift reported",
+   "value": "data at about 75 m; hardware tests planned 50 to above 100 m",
+   "source_url": "https://discuss.ardupilot.org/t/gsoc-2024-wrapping-up-high-altitude-non-gps-navigation/122905",
+   "confidence": "high"
+  },
+  {
+   "claim": "GSoC 2024 problems: LK degrades in fast rotation; feature matching weak under large perspective change; cloud cover",
+   "value": "qualitative only",
+   "source_url": "https://discuss.ardupilot.org/t/gsoc-2024-wrapping-up-high-altitude-non-gps-navigation/122905",
+   "confidence": "high"
+  },
+  {
+   "claim": "Follow-on uses SuperPoint transformer matching plus modified VINS; no loop closure because drift reaches tens of metres at height; map tests at 150 m",
+   "value": "VPS up to 1 Hz, VIO 10 Hz or more; Jetson Orin NX above 10 Hz",
+   "source_url": "https://discuss.ardupilot.org/t/transformer-optimization-based-high-altitude-gps-denied-fusion/134181",
+   "confidence": "high"
+  },
+  {
+   "claim": "NGPS paper accuracy (abstract)",
+   "value": "RMSE 2.94 m; worst ATE 6.04 m at 150 m AGL and 2 m/s; 60-150 m AGL; 3.5x better than mono VIO",
+   "source_url": "https://arxiv.org/abs/2607.18936",
+   "confidence": "high"
+  },
+  {
+   "claim": "Code and licence of the continuation",
+   "value": "ngps_flight MIT; ap_nongps has no licence field",
+   "source_url": "https://github.com/snktshrma/ngps_flight",
+   "confidence": "high"
+  },
+  {
+   "claim": "ArduPilot PR lets optical flow work above rangefinder range using terrain database; no drift numbers; test at 30 m",
+   "value": "PR #30718, EK3_OPTIONS=4",
+   "source_url": "https://discuss.ardupilot.org/t/high-altitude-optical-flow-testers-needed/137124",
+   "confidence": "high"
+  },
+  {
+   "claim": "Gyro-only rolling-shutter correction with calibration of focal length, shutter duration, gyro delay and drift from a roughly 10 s clip is published",
+   "value": "Karpenko et al., Stanford",
+   "source_url": "https://graphics.stanford.edu/papers/stabilization/",
+   "confidence": "medium"
+  },
+  {
+   "claim": "CRISP calibrates RS camera plus gyro (time offset, rotation, bias) but assumes known readout time",
+   "value": "GPL-3.0",
+   "source_url": "https://github.com/hovren/crisp",
+   "confidence": "high"
+  },
+  {
+   "claim": "Readout time measurement with flashing LED: band count or band size with known frequency or pulse width; hobby claim of about 1 ms precision",
+   "value": "about 1 ms (hobby claim, unvalidated)",
+   "source_url": "https://old-docs.gyroflow.xyz/tech/rollingshutter/",
+   "confidence": "medium"
+  },
+  {
+   "claim": "OpenVINS self-calibration treats RS readout time as observable only under fully excited 6-axis motion",
+   "value": "hover is weak excitation (inference)",
+   "source_url": "https://arxiv.org/abs/2201.09170",
+   "confidence": "medium"
+  },
+  {
+   "claim": "Fourier-Mellin odometry reported more robust than ORB/AKAZE on lawn/asphalt but fails on multi-depth scenes",
+   "value": "qualitative",
+   "source_url": "https://www.mdpi.com/2072-4292/13/5/1000",
+   "confidence": "medium"
+  },
+  {
+   "claim": "FPV 5-inch gyro noise bands from vendor blogs; motor frequency = RPM/60",
+   "value": "80-350 Hz; 15000 RPM is about 250 Hz",
+   "source_url": "https://www.unmannedtechshop.co.uk/blogs/knowledge-base/fpv-drone-jello-fix-vibration-checklist-every-build",
+   "confidence": "low"
+  },
+  {
+   "claim": "Analog FPV camera latency measurements and field periods",
+   "value": "25-45 ms camera; field 16.7 ms NTSC, 20 ms PAL",
+   "source_url": "https://oscarliang.com/fpv-camera-latency",
+   "confidence": "medium"
+  },
+  {
+   "claim": "Capture chain example budget",
+   "value": "about 53 ms (decoder 33 ms plus USB 20 ms)",
+   "source_url": "https://www.sensoray.com/downloads/whitepaper_latency.pdf",
+   "confidence": "medium"
+  },
+  {
+   "claim": "ArduPilot external nav: timestamp at capture; user setup used VISO_DELAY_MS 50 and EK3_SRC1_POSXY=6; one user needed velocity too",
+   "value": "forum anecdote",
+   "source_url": "https://discuss.ardupilot.org/t/vision-position-estimate-not-being-able-to-inspect-in-mission-planner/111582",
+   "confidence": "low"
+  },
+  {
+   "claim": "Licences of related OSS",
+   "value": "PX4 and Basalt BSD-3; ArduPilot, OpenVINS, VINS, ORB-SLAM3, SVO, Gyroflow GPL-3.0; rscalibration AGPL-3.0; kontiki MIT",
+   "source_url": "https://github.com/rpng/open_vins",
+   "confidence": "high"
+  },
+  {
+   "claim": "RaD-VIO: dense direct homography-photometric downward VIO with rangefinder; no numbers in abstract",
+   "value": "qualitative",
+   "source_url": "https://arxiv.org/abs/1810.08704",
+   "confidence": "medium"
+  },
+  {
+   "claim": "Monocular scale needs a metric reference (rangefinder, IMU excitation, baro); no source for scale-change height at 100+ m",
+   "value": "none found",
+   "source_url": "https://arxiv.org/abs/1810.08704",
+   "confidence": "medium"
+  }
+ ],
+ "unknowns": [
+  "Numeric accuracy of gyro-based rolling-shutter correction (pixels or ms)",
+  "Roll/pitch accuracy of PX4 or ArduPilot EKF in hover",
+  "Vibration amplitudes, and frequencies for 7-10 inch quads",
+  "Whether the Justice D camera scans at video line time, and its readout time",
+  "How analog auto exposure/gain and OSD overlays should be handled by a tracker (no source)",
+  "Quantified accuracy on grass, snow or asphalt for any method",
+  "Height-from-keyframe-scale performance at 100+ m",
+  "Quantified results of the 2024 GSoC project",
+  "Licence of ap_nongps",
+  "Firmware on the APB (PX4 or ArduPilot) and external-vision support",
+  "Full-text numbers of Karpenko, Ovren, eFMT, RaD-VIO papers (not fetched)"
+ ],
+ "recommendations": [
+  "Calibrate gyro-to-camera time offset and readout time (CRISP/Karpenko-style fit or flashing-LED test) and run the sim with 20-50 ms offset errors to see sensitivity",
+  "Add a whole-image fallback (phase correlation or ECC) for low-texture ground, keep corners where texture is good",
+  "Time-stamp frames at capture, measure analog chain latency with a light flash, and set the EKF delay parameter; send velocity as well as position if position alone is not fused",
+  "Handle interlace (use fields at their own times or one field) and mask the OSD region",
+  "Make the sim independent of the estimator geometry, add attitude bias/noise of 0.1-1 degree, and cross-check tilt against the ground-plane homography; treat height from scale only as a barometer cross-check"
+ ],
+ "report_path": "/home/paul/Videos/vio-hold-attempt/research/prior_art.md"
+}

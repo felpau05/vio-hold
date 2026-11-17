@@ -1,0 +1,4 @@
+{"ground": "ottawa2019fall", "step_ms_mean": 2.78, "dense_calls": 0, "dense_ms_mean": null, "dense_ms_p95": null}
+{"ground": "prairie", "step_ms_mean": 2.55, "dense_calls": 231, "dense_ms_mean": 1.15, "dense_ms_p95": 1.19}
+{"ground": "holdout_field", "step_ms_mean": 2.68, "dense_calls": 244, "dense_ms_mean": 1.16, "dense_ms_p95": 1.19}
+{"ground": "night_lights", "step_ms_mean": 2.88, "dense_calls": 252, "dense_ms_mean": 1.19, "dense_ms_p95": 1.26}

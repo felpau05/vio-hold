@@ -1,0 +1,68 @@
+[smoke_apb] hold starts, mode 3, 0.9 s after the vision feed started
+[smoke_apb] rms 0.474  p95 0.852  max 0.864  drift_m_per_min 4.23  roll_rms_deg 0.665  pitch_rms_deg 0.64  judge_rms 1.11  judge_jitter_rms 1.04  fix_rate_hz 12.8  frac_ok 0.962  frac_lost 0  proc_ms_mean 68.7
+{
+ "case": "smoke_apb",
+ "events": [
+  [
+   0.0,
+   "hold starts, mode 3, 0.9 s after the vision feed started"
+  ]
+ ],
+ "climb_s": 26.5,
+ "ekf_yaw_minus_true_deg": 13.1,
+ "onboard": [
+  [
+   98507.01,
+   "connected",
+   "px4, clock ready True, ATTITUDE 98 Hz"
+  ],
+  [
+   98580.83,
+   "done",
+   "stopped after 1 start(s)"
+  ]
+ ],
+ "params_fail": [],
+ "clock_err_ms_mean": 1.6663902159052668,
+ "clock_err_ms_absmax": 4.810693455510773,
+ "frames": 287,
+ "processed": 286,
+ "fixes": 256,
+ "fix_rate_hz": 12.8,
+ "pct_frames_fix": 89.19860627177701,
+ "frac_init": 0.0,
+ "frac_ok": 0.9615384615384616,
+ "frac_degraded": 0.038461538461538464,
+ "frac_lost": 0.0,
+ "proc_ms_mean": 68.7318181818182,
+ "age_ms_p50": 212.8,
+ "age_ms_p95": 253.675,
+ "hold_why": {
+  "waiting for image motion that proves the picture is live": 11,
+  "good fix 9 of 10": 3,
+  "good fix 1 of 10": 2,
+  "good fix 2 of 10": 2,
+  "good fix 3 of 10": 2,
+  "good fix 4 of 10": 2,
+  "good fix 5 of 10": 2,
+  "good fix 6 of 10": 2
+ },
+ "reanchors": 0,
+ "rms": 0.47382034285387165,
+ "p95": 0.8521669437099681,
+ "max": 0.8642626564292525,
+ "end": 0.7625425223139218,
+ "drift_m_per_min": 4.232729991412778,
+ "roll_rms_deg": 0.6645561965041175,
+ "pitch_rms_deg": 0.6401293355506322,
+ "tilt_mean_deg": 0.10896319216795777,
+ "judge_rms": 1.1113532794278926,
+ "judge_p95": 1.868374770943164,
+ "judge_max": 3.1654191463589783,
+ "judge_jitter_rms": 1.0432205693388357,
+ "height_mean": 49.50278547999125,
+ "seconds": 20.0,
+ "ev_delay_ms": 101.2,
+ "hold_py_md5": "67d963e35e",
+ "px4_text": []
+}

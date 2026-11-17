@@ -1,0 +1,15 @@
+A. interlace, 100 m hover, Ottawa photo, 12 s
+  field A, width halved (sim assumption)                  sent  100%  rms   0.54 m  p95   0.77 m  worst   1.13 m  false-fix 36.2%
+  woven 720x480 fed as one picture, readout 16 ms         sent  100%  rms   1.15 m  p95   1.80 m  worst   2.16 m  false-fix 85.8%
+  woven 720x480 fed as one picture, readout 33 ms         sent  100%  rms   0.32 m  p95   0.53 m  worst   0.75 m  false-fix  3.3%
+  driver blend-deinterlace, stamped mid-way               sent  100%  rms   0.39 m  p95   0.64 m  worst   0.86 m  false-fix 12.5%
+  field B used, stamped as field A (field order swapped)  sent  100%  rms   1.80 m  p95   2.83 m  worst   3.35 m  false-fix 94.2%
+B. OSD and capture borders, open loop: the drone drifts 0.25 m/s east
+  200 m clean picture        sent  100%  rms   0.97 m  p95   1.56 m  worst   2.01 m  false-fix 26.0%  east drift seen +0.145 m/s (true +0.170)
+  200 m OSD text + borders   sent  100%  rms   0.87 m  p95   1.40 m  worst   1.92 m  false-fix 16.0%  east drift seen +0.146 m/s (true +0.170)
+  300 m clean picture        sent  100%  rms   1.31 m  p95   2.23 m  worst   3.20 m  false-fix 20.2%  east drift seen +0.126 m/s (true +0.170)
+  300 m OSD text + borders   sent  100%  rms   1.18 m  p95   2.01 m  worst   2.81 m  false-fix 11.7%  east drift seen +0.144 m/s (true +0.170)
+
+real	1m5.223s
+user	3m15.107s
+sys	0m58.632s

@@ -1,0 +1,116 @@
+EVENT DAY CHECKLIST (28 minutes)
+
+Run each command on the APB, in the program folder.
+Each step has a time and a pass rule.
+If a pass rule fails, do not fly.
+Every check prints one line per item: PASS or FAIL, and what to do.
+
+
+STEP 1. FLIGHT CONTROLLER PARAMETERS (3 min)
+1. Remove the propellers.
+2. Power the drone.
+3. Type: python3 apb_main.py check --set-params
+4. Reboot the flight controller.
+Pass: In step 2, every "param" line shows PASS.
+If the firmware line shows FAIL, stop here. The program cannot fly this firmware.
+
+
+STEP 2. SYSTEM CHECK (3 min)
+1. Type: python3 apb_main.py check
+2. Read every line.
+3. Record the "fix age" value.
+4. Point the nose north with a phone compass.
+5. Read the heading in the ground station.
+Pass: Every line shows PASS, except "not calibrated" and "no mask".
+Pass: The heading is within 10 degrees of north.
+Pass: The fix age is less than 150 ms.
+If the fix age is 150 ms or more, add "EKF2_DELAY_MAX" to params_px4 in settings.json.
+Set it to the fix age plus 100. Then do step 1 again.
+(PX4 uses a fix at its correct time only when the fix is younger than EKF2_DELAY_MAX, 200 ms by default.
+The real fix age is up to 50 ms more than the check value.)
+If the TIMESYNC line fails, put the fix age into EKF2_EV_DELAY in settings.json. Then do step 1 again.
+If the "video standard" line fails, set video_standard in settings.json. Then do step 2 again.
+
+
+STEP 3. OSD MASK (2 min)
+1. Hold the drone with the camera down, over textured ground.
+2. Type: python3 apb_main.py mask
+3. Turn and tilt the drone by hand during the 10 s recording.
+Pass: The last line shows "PASS mask covers N%". N is less than 50.
+
+
+STEP 4. CALIBRATION (6 min)
+1. Go to a place where buildings or trees are more than 50 m away.
+2. Type: python3 apb_main.py calib
+3. Hold the drone on its side. The camera must point at the far scene.
+4. Turn the drone by hand during the 30 s recording.
+5. Turn it 15 to 20 degrees about all three axes.
+6. Make one turn every 2 seconds, approximately.
+Pass: The "picture top" line shows PASS.
+Pass: The "settings written" line shows PASS.
+7. Do items 2 to 6 again.
+Pass: The "from the previous calibration" line shows PASS. The two delays are within 3 ms.
+If the focal scale is not between 0.98 and 1.02, the program shows FAIL. Do the lens check in step 6, item 6.
+
+
+STEP 5. SYSTEM CHECK AGAIN (1 min)
+1. Type: python3 apb_main.py check
+Pass: The last line shows ALL PASS.
+
+
+STEP 6. GROUND TESTS, PROPELLERS OFF (6 min)
+1. Make sure that there are no propellers on the motors.
+2. Type: python3 apb_main.py bench --height 1.5
+3. Hold the lens 1.50 m above a textured floor. Use a tape measure.
+4. Hold the drone still until the lines start.
+5. Carry the drone 1.00 m toward the nose. Keep the lens at 1.50 m.
+Pass: "forward" shows +0.90 to +1.10 m. "right" shows -0.10 to +0.10 m.
+6. Lens check: the "forward" value must be +0.97 to +1.03 m.
+If it is not, multiply focal_scale in settings.json by the "forward" value. Then do step 6 again.
+7. Carry the drone 1.00 m toward the right side.
+Pass: "right" shows +0.90 to +1.10 m. "forward" changes by less than 0.10 m.
+8. Keep the lens above one mark on the floor.
+9. Tilt the nose down 15 degrees. Then tilt the right side down 15 degrees.
+Pass: "forward" and "right" change by less than 0.10 m.
+10. Put your hand on the lens for 2 seconds.
+Pass: The lines stop within 0.5 s. The lines start again after you remove your hand.
+11. Push Ctrl+C.
+If a value moves the wrong way, the calibration is wrong. Do not fly. Do step 4 again.
+
+
+STEP 7. FIRST LOW HOVER (7 min)
+1. Install the propellers.
+2. Make sure that one transmitter switch selects Altitude mode.
+3. Type: python3 apb_main.py run --raw
+Wait 60 seconds or more before you select Position mode.
+(PX4 uses the time stamps of the fixes only after 50 seconds of time synchronization.)
+ArduPilot (ArduCopter 4.6, the likely Orqa firmware):
+If the firmware line shows ardupilot: after this hover, type python3 apb_main.py delay logs/run_<newest>.csv
+and set VISO_DELAY_MS in params_ardupilot to the number it prints (NOT the median fix age: ArduPilot times
+each fix by the smallest age of every 100, see apb_main.delay_advice). The run log also shows it every 100
+fixes ("VISO_DELAY_MS advice"). Then do step 1 again.
+Pass: The "origin set" line shows PASS. Without the origin ArduPilot never accepts Loiter.
+Pass: ATTITUDE shows 100 Hz or more. If it is less, set the SRn_ rates of the APB port to 0 (n = that SERIAL port).
+Use Loiter mode where these steps say Position mode, and AltHold where they say Altitude mode.
+(In SITL the program sent no fix until fc_link took the height from GLOBAL_POSITION_INT: ArduPilot sends
+LOCAL_POSITION_NED only after it has a position. Fixed 2026-11-16, tests_apb/test_ap_sitl.py.)
+4. Start the flight in Altitude mode.
+5. Climb to 20 m. The program sends nothing below 15 m.
+6. Do not yaw the drone. Yaw moves the fix (H8).
+7. Hold the drone still for 5 seconds.
+7b. Timing wiggle (still in Altitude mode, at 20 m or higher, clear area): rock the roll and pitch sticks
+   about 30 % each way, about once every 1.5 s, for 8 s (about 9 deg of lean). Then let the drone settle 4 s.
+   After landing: python3 apb_main.py timing logs/raw_<newest>_00N.npz (the chunks that hold the wiggle).
+   Pass: "PASS video delay ... ms" and "settings written". It changes video_delay_s and readout_s.
+   (apsim: a start 40 ms wrong held 4.5-5.7 m RMS at 100 m; the wiggle found the delay within 4 ms and the
+   next flight held 0.64 m. integ/control/wiggle_calib.txt.)
+8. Select Position mode.
+9. Let the drone hold for 30 seconds. Do not touch the sticks.
+Pass: The drone stays above the same ground point. It does not move away.
+If the drone moves away, select Altitude mode immediately.
+10. Land.
+11. Copy the logs folder (run_*.csv and raw_*.npz) to the laptop.
+Pass: The run log shows sent = 1 on most rows after the switch to Position mode.
+
+After step 7: climb to the target height in Altitude mode. Do not yaw. Then select Position mode.
+To tune after a flight: python3 apb_main.py replay logs/raw_*.npz

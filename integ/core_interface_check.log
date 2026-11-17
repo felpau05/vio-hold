@@ -1,0 +1,4 @@
+attitude with gyro rates, var = trace: fixes 99/100, RMS 0.35 m, last yaw +0.0005 rad, last scale 1.010, hold.rate 0.44 rad/s
+2x2 reanchor variance: fixes 99/100, RMS 0.35 m, last yaw +0.0005 rad, last scale 1.010, hold.rate 0.27 rad/s
+negative readout runs (-16 ms; this sim reads top first, so the model is wrong on purpose; G6 accuracy: regression.txt): fixes 99/100, RMS 0.63 m, last yaw -0.0080 rad, last scale 1.002, hold.rate 0.27 rad/s
+Est fields, make_R_bc() == R_BC_NADIR, unknown setting refused: OK

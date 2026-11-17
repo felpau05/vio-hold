@@ -1,0 +1,15 @@
+120 s hover, 5 m wander, ottawa2019fall. Error by 20 s window (mean m); false-fix old -> honest.py
+ h(m)  FC attitude   seed  kf changes   0-20   20-40  40-60  60-80  80-100 100-120   RMS  inliers first/last 10 s  false-fix old -> new
+  100  sim_ground    1        0      0.47   0.36   0.39   0.42   0.41   0.35    0.45       232 /  179            16.9% ->  0.2%
+  100  sim_ground    2        0      0.54   0.51   0.60   0.50   0.58   0.54    0.58       232 /  180            39.2% ->  0.5%
+  100  bias wander   1        0      0.43   0.93   0.77   0.72   0.51   0.43    0.69       232 /  179            54.2% ->  0.0%
+  100  bias wander   2        0      0.79   0.95   1.20   1.14   0.92   0.85    1.02       231 /  179            89.7% ->  0.3%
+  200  sim_ground    1        0      1.11   1.03   1.01   1.10   1.04   0.99    1.13       210 /  183            38.4% ->  1.0%
+  200  sim_ground    2        0      1.07   0.96   1.04   0.97   1.04   0.96    1.09       215 /  192            35.0% ->  0.3%
+  200  bias wander   1        0      0.85   1.88   1.31   1.31   0.93   0.95    1.32       210 /  183            51.7% ->  0.0%
+  200  bias wander   2        0      1.58   1.80   2.22   2.28   1.88   1.83    2.02       215 /  192            91.3% ->  0.3%
+wrote e7_long_hover.png
+
+real	2m13.671s
+user	19m21.673s
+sys	0m40.923s

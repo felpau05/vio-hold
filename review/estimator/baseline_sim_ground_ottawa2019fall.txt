@@ -1,0 +1,11 @@
+ottawa2019fall   50 m  fixes sent  100%  lost    0%  rms   0.16 m  p95   0.27 m  worst   0.49 m  false-fix  2.5%
+ottawa2019fall  100 m  fixes sent  100%  lost    0%  rms   0.46 m  p95   0.71 m  worst   0.93 m  false-fix 19.7%
+ottawa2019fall  150 m  fixes sent  100%  lost    0%  rms   0.78 m  p95   1.30 m  worst   1.85 m  false-fix 29.7%
+ottawa2019fall  200 m  fixes sent  100%  lost    0%  rms   0.76 m  p95   1.24 m  worst   1.72 m  false-fix  8.2%
+ottawa2019fall  300 m  fixes sent  100%  lost    0%  rms   1.37 m  p95   2.14 m  worst   2.78 m  false-fix 19.0%
+ottawa2019fall  400 m  fixes sent  100%  lost    0%  rms   1.40 m  p95   2.42 m  worst   3.60 m  false-fix  7.0%
+wrote sim_ground.png and sim_ground_view.png
+
+real	1m28.097s
+user	7m42.483s
+sys	1m44.282s

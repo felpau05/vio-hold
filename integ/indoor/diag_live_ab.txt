@@ -1,0 +1,18 @@
+base : 843 84.7 frozen-sent 0 err 0.025 142
+base freeze=[10,3]: 810 81.4 frozen-sent 26 err 0.048 165
+base still=1 freeze=[5,3]: 985 99.0 frozen-sent 75 err 0.006 None
+var : 891 89.5 frozen-sent 0 err 0.024 94
+var freeze=[10,3]: 828 83.2 frozen-sent 26 err 0.048 147
+var still=1 freeze=[5,3]: 985 99.0 frozen-sent 75 err 0.006 None
+var2  899 90.4 frozen-sent 0 err 0.025 86
+  gaps >0.3 s: 3 max gap 1.84 total s 3.6
+var2 freeze=[10,3] 852 85.6 frozen-sent 25 err 0.046 123
+  gaps >0.3 s: 4 max gap 2.04 total s 5.4
+var3  851 85.5 frozen-sent 0 err 0.024 134
+  gaps >0.3 s: 3 max gap 3.12 total s 5.5
+var3 freeze=[10,3] 807 81.1 frozen-sent 25 err 0.047 168
+  gaps >0.3 s: 4 max gap 3.12 total s 6.8
+live_still_px 0.3 : sent 89.5 % frozen-sent 0 err 0.024 gaps>0.3 s total 3.9 max 1.84
+live_still_px 0.3 freeze=[10,3]: sent 83.2 % frozen-sent 26 err 0.048 gaps>0.3 s total 6.5 max 2.0
+live_still_px 0.6 : sent 93.1 % frozen-sent 0 err 0.024 gaps>0.3 s total 2.4 max 2.4
+live_still_px 0.6 freeze=[10,3]: sent 86.3 % frozen-sent 48 err 0.052 gaps>0.3 s total 5.2 max 2.4

@@ -1,0 +1,14 @@
+Per keyframe: tilt error changes by 0.15 deg (random direction); 50 frames, slide 0-2 m, lean 2 deg, rate 3 deg/s.
+h_m focal time_ms | plain fit pos err cm rms | joint fit tilt-change err deg: bias sd (per frame) | slow corrector (mean tilt of 50 frames) pos err cm rms | wins?
+   20 +0.00    0 |    6.0 | bias [ 0.029 -0.106] sd [0.13  0.128] |    0.7 | yes
+   20 +0.02    5 |    8.1 | bias [ 0.022 -0.117] sd [0.139 0.167] |    4.3 | yes
+   20 +0.05   10 |   14.1 | bias [ 0.012 -0.132] sd [0.217 0.264] |   10.2 | yes
+   20 -0.05   10 |   15.7 | bias [ 0.046 -0.078] sd [0.277 0.242] |   11.6 | yes
+   60 +0.00    0 |   18.0 | bias [ 0.029 -0.106] sd [0.13  0.128] |    2.0 | yes
+   60 +0.02    5 |   22.3 | bias [ 0.021 -0.112] sd [0.128 0.155] |    9.4 | yes
+   60 +0.05   10 |   36.1 | bias [ 0.01  -0.121] sd [0.167 0.215] |   22.0 | yes
+   60 -0.05   10 |   39.9 | bias [ 0.048 -0.09 ] sd [0.233 0.181] |   25.0 | yes
+  100 +0.00    0 |   30.1 | bias [ 0.029 -0.106] sd [0.13  0.128] |    3.3 | yes
+  100 +0.02    5 |   37.0 | bias [ 0.021 -0.111] sd [0.127 0.154] |   15.2 | yes
+  100 +0.05   10 |   59.1 | bias [ 0.01  -0.119] sd [0.162 0.211] |   35.4 | yes
+  100 -0.05   10 |   65.6 | bias [ 0.048 -0.092] sd [0.228 0.175] |   40.2 | yes

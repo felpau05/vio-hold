@@ -1,0 +1,30 @@
+[HO_a_15m_s107] PX4 never accepted Position mode
+[HO_a_15m_s107] 
+{
+ "case": "HO_a_15m_s107",
+ "events": [
+  [
+   0.0,
+   "PX4 never accepted Position mode"
+  ]
+ ],
+ "climb_s": 19.7,
+ "ekf_yaw_minus_true_deg": 12.72,
+ "onboard": [
+  [
+   5.02,
+   "connected",
+   "px4, clock ready True, ATTITUDE 100 Hz"
+  ],
+  [
+   80.91,
+   "done",
+   "stopped after 1 start(s); frame age when taken p50 22 ms, p95 24 ms; SCALED_IMU 0 Hz, 0 rows kept"
+  ]
+ ],
+ "params_fail": [],
+ "onboard_exit": 0,
+ "ev_delay_ms": 104.2,
+ "hold_py_md5": "ad3ebe25dc",
+ "px4_text": []
+}

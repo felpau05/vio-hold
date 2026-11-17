@@ -1,0 +1,187 @@
+{
+ "summary": "Use PX4 SIH, run from the ready image px4io/px4-sitl (51 MB download, 6 MB RAM). It gives true pose, real EKF2 and control, IMU/baro/mag noise, GNSS you can switch off, and wind you can change in flight with PARAM_SET (SIH_WIND_N/E, added in v1.18). SIH wind only enters the first-order drag term, so build gusts in your script. I tested the whole loop on this laptop: GNSS off, arm and climb in Altitude mode, truth-fed vision, Position mode hold, wind step. Gazebo Harmonic also runs headless in Docker with no GPU, but its truth through PX4 is only about 50 Hz and I found no working runtime wind topic (the windy world SDF does push the x500). jMAVSim is removed from main and Gazebo Classic is community-only on Ubuntu 22.04, so skip both. Ground truth comes from HIL_STATE_QUATERNION (MAV_CMD_SET_MESSAGE_INTERVAL): 185 to 200 msg per sim second at the default 250 Hz step, about 297 at IMU_INTEG_RATE=400. Use PX4's sim clock (time_usec) in your program; PX4 ignores your vision timestamp unless TIMESYNC converged. Use pymavlink, not MAVSDK-Python (PyPI \"mavsdk\" is now a different package). Start containers with a trailing \"-d\" or pxh spins at 100% CPU and floods the log.",
+ "facts": [
+  {
+   "claim": "PX4 SIH SITL container image size (compressed, amd64)",
+   "value": "px4io/px4-sitl: 51 MB download, 53 MB content, 180 MB on disk; Gazebo image px4io/px4-sitl-gazebo 667-688 MB download, 3.1 GB on disk",
+   "source_url": "https://hub.docker.com/v2/repositories/px4io/px4-sitl/tags",
+   "confidence": "high"
+  },
+  {
+   "claim": "SIH vehicle parameters and defaults",
+   "value": "SIH_MASS 1.0 kg; SIH_IXX/IYY/IZZ 0.025/0.025/0.03 kg m^2; SIH_L_ROLL/L_PITCH 0.2 m; SIH_T_MAX 5.0 N per prop; SIH_Q_MAX 0.1 Nm; SIH_KDV 1.0 N/(m/s); SIH_KDW 0.025; SIH_T_TAU 0.05 s",
+   "source_url": "https://github.com/PX4/PX4-Autopilot/blob/main/src/modules/simulation/simulator_sih/sih_params.yaml",
+   "confidence": "high"
+  },
+  {
+   "claim": "SIH wind parameters and version",
+   "value": "SIH_WIND_N, SIH_WIND_E (m/s); added in v1.18 (PR #26467); absent in v1.17.0",
+   "source_url": "https://github.com/PX4/PX4-Autopilot/pull/26467",
+   "confidence": "high"
+  },
+  {
+   "claim": "SIH wind sign and effect",
+   "value": "v_apparent = v + wind; SIH_WIND_N=5 pushes drone south; test step gave -1.88 m peak excursion in Position mode; drag only, no gusts, no vertical wind",
+   "source_url": "https://github.com/PX4/PX4-Autopilot/blob/main/src/modules/simulation/simulator_sih/sih.cpp",
+   "confidence": "high"
+  },
+  {
+   "claim": "Wind can change in flight in SIH",
+   "value": "Yes: PARAM_SET of SIH_WIND_N/E over MAVLink during flight took effect (tested)",
+   "source_url": "https://github.com/PX4/PX4-Autopilot/blob/main/docs/en/sim_sih/index.md",
+   "confidence": "high"
+  },
+  {
+   "claim": "SIH sensor noise",
+   "value": "IMU accel 0.1 m/s^2, gyro 0.01 rad/s per axis; baro 1 Pa RMS (about 0.08 m) and drift 0 by default; mag 0.02/0.02/0.03",
+   "source_url": "https://github.com/PX4/PX4-Autopilot/blob/main/src/modules/simulation/simulator_sih/sih.cpp",
+   "confidence": "high"
+  },
+  {
+   "claim": "Turn GNSS off completely",
+   "value": "SYS_HAS_GPS=0 (reboot), SIM_GPS_USED=0, EKF2_GPS_CTRL=0, EKF2_HGT_REF=0; SIH also SENS_EN_GPSSIM=0 (not tested)",
+   "source_url": "https://github.com/PX4/PX4-Autopilot/blob/main/ROMFS/px4fmu_common/init.d-posix/airframes/4021_gz_x500_flow",
+   "confidence": "high"
+  },
+  {
+   "claim": "Vision fusion parameters",
+   "value": "EKF2_EV_CTRL default 0 (bit0 horiz pos, bit1 vert pos, bit2 3D vel, bit3 yaw); EKF2_EVP_NOISE 0.1 m; EKF2_EV_DELAY 0 ms",
+   "source_url": "https://github.com/PX4/PX4-Autopilot/blob/main/src/modules/ekf2/params_external_vision.yaml",
+   "confidence": "high"
+  },
+  {
+   "claim": "Mode requirements without GNSS",
+   "value": "Stabilized: none; Altitude: local alt (baro); Position: local_position_relaxed (needs vision); Offboard: attitude only; Takeoff/Hold/Mission need position",
+   "source_url": "https://github.com/PX4/PX4-Autopilot/blob/main/src/modules/commander/ModeUtil/mode_requirements.cpp",
+   "confidence": "high"
+  },
+  {
+   "claim": "Arming test with GNSS off in SIH",
+   "value": "Altitude mode arm and climb worked with no GNSS and no vision, no GCS heartbeat needed; MANUAL_CONTROL z=900 for 10 s gave +10.4 m",
+   "source_url": "https://github.com/PX4/PX4-Autopilot/blob/main/ROMFS/px4fmu_common/init.d-posix/rcS",
+   "confidence": "high"
+  },
+  {
+   "claim": "Arming in Gazebo needs GCS heartbeat",
+   "value": "Without MAV_TYPE_GCS heartbeats: 'Preflight Fail: No connection to the GCS', arming denied",
+   "source_url": "https://github.com/PX4/PX4-Autopilot/blob/main/ROMFS/px4fmu_common/init.d-posix/px4-rc.gzsim",
+   "confidence": "high"
+  },
+  {
+   "claim": "MAVLink ground truth stream",
+   "value": "HIL_STATE_QUATERNION (id 115), time_usec = PX4 clock; lat/lon 1e-7 deg, alt mm; no local x,y; no GROUND_TRUTH message",
+   "source_url": "https://github.com/PX4/PX4-Autopilot/blob/main/src/modules/mavlink/streams/HIL_STATE_QUATERNION.hpp",
+   "confidence": "high"
+  },
+  {
+   "claim": "Command to raise stream rate",
+   "value": "command_long_send(sys, comp, 511, 0, 115, 4000, 0,0,0,0,0) (MAV_CMD_SET_MESSAGE_INTERVAL); or px4-mavlink stream -u 14580 -s HIL_STATE_QUATERNION -r 200",
+   "source_url": "https://github.com/PX4/PX4-Autopilot/blob/main/src/modules/mavlink/mavlink_receiver.cpp",
+   "confidence": "high"
+  },
+  {
+   "claim": "Measured SIH truth rate over MAVLink",
+   "value": "Default 250 Hz step: 184-201 msg per sim second (4 ms or 8 ms gaps); IMU_INTEG_RATE=400: about 297 per sim second",
+   "source_url": "https://github.com/PX4/PX4-Autopilot/blob/main/src/modules/mavlink/mavlink_main.h",
+   "confidence": "high"
+  },
+  {
+   "claim": "SIH sim step and speed factor",
+   "value": "Step = 1e6/min(IMU_GYRO_RATEMAX, IMU_INTEG_RATE) us, clamped 500-5000 us (250 Hz default); PX4_SIM_SPEED_FACTOR=5 achieved 2.4x in test",
+   "source_url": "https://github.com/PX4/PX4-Autopilot/blob/main/src/modules/simulation/simulator_sih/sih.cpp",
+   "confidence": "high"
+  },
+  {
+   "claim": "Vision message timestamp handling",
+   "value": "Timesync::sync_stamp returns PX4 arrival time unless TIMESYNC converged, then usec+offset",
+   "source_url": "https://github.com/PX4/PX4-Autopilot/blob/main/src/lib/timesync/Timesync.cpp",
+   "confidence": "high"
+  },
+  {
+   "claim": "Gazebo truth rate through PX4",
+   "value": "About 74-76 msg/s (20 ms steps) because SceneBroadcaster dynamic_pose_hertz default is 60",
+   "source_url": "https://github.com/gazebosim/gz-sim/blob/gz-sim8/src/systems/scene_broadcaster/SceneBroadcaster.cc",
+   "confidence": "high"
+  },
+  {
+   "claim": "Gazebo Harmonic headless in Docker, no GPU",
+   "value": "HEADLESS=1 runs 'gz sim -r -s'; worked: 30 s start, 153 MB RAM, ~0.6 core, RTF 1.00",
+   "source_url": "https://github.com/PX4/PX4-Autopilot/blob/main/ROMFS/px4fmu_common/init.d-posix/px4-rc.gzsim",
+   "confidence": "high"
+  },
+  {
+   "claim": "Gazebo windy world wind",
+   "value": "windy.sdf has <wind><linear_velocity>5 2 0</linear_velocity>; x500 drifted N 8.5 m, E 21.8 m in 14 s in Altitude mode vs 0.1 m in default world",
+   "source_url": "https://github.com/PX4/PX4-gazebo-models/blob/main/worlds/windy.sdf",
+   "confidence": "high"
+  },
+  {
+   "claim": "Gazebo runtime wind topic",
+   "value": "Publishing gz.msgs.Wind to /world/windy/wind had no visible effect in 20 s (matches forum report); untested cause",
+   "source_url": "https://discuss.px4.io/t/wind-effects-in-gazebo/48053",
+   "confidence": "medium"
+  },
+  {
+   "claim": "Gazebo runtime gust workaround",
+   "value": "ApplyLinkWrench in server.config: /world/<w>/wrench/persistent with gz.msgs.EntityWrench moved the drone (clear message did not work in my try)",
+   "source_url": "https://github.com/gazebosim/gz-sim/blob/gz-sim8/src/systems/apply_link_wrench/ApplyLinkWrench.hh",
+   "confidence": "medium"
+  },
+  {
+   "claim": "jMAVSim status",
+   "value": "Removed from PX4 main on 2026-09-26 (commit a23449cbe); wind only by keyboard in GUI",
+   "source_url": "https://github.com/PX4/PX4-Autopilot/commit/a23449cbe",
+   "confidence": "high"
+  },
+  {
+   "claim": "Gazebo Classic status",
+   "value": "Community supported; Ubuntu 22.04 only; wind via libgazebo_wind_plugin with gust start/duration",
+   "source_url": "https://github.com/PX4/PX4-Autopilot/blob/main/docs/en/sim_gazebo_classic/index.md",
+   "confidence": "high"
+  },
+  {
+   "claim": "Docker run gotcha",
+   "value": "Container needs trailing '-d' (px4 daemon mode) when run detached; otherwise pxh loops at 100% CPU and wrote 183 MB log in 45 s",
+   "source_url": "https://github.com/PX4/PX4-Autopilot/blob/main/platforms/posix/src/px4/common/main.cpp",
+   "confidence": "high"
+  },
+  {
+   "claim": "Host MAVLink ports (use --network host on Linux)",
+   "value": "PX4 sends to 14550 (GCS), 14540 (offboard); listens 18570, 14580; 19410/19450 SIH display; 8888 DDS",
+   "source_url": "https://github.com/PX4/PX4-Autopilot/blob/main/ROMFS/px4fmu_common/init.d-posix/px4-rc.mavlink",
+   "confidence": "high"
+  },
+  {
+   "claim": "MAVSDK-Python naming change",
+   "value": "gRPC wrapper is now 'mavsdk-grpc' (import mavsdk_grpc); PyPI 'mavsdk' 4.2.0 is a different native API; pymavlink 2.4.50 recommended",
+   "source_url": "https://github.com/mavlink/MAVSDK-Python/blob/main/README.md",
+   "confidence": "high"
+  }
+ ],
+ "unknowns": [
+  "Whether a full-rate (200 Hz or more) ulog profile for vehicle_*_groundtruth exists in SITL; default log limits groundtruth to 10-100 ms intervals",
+  "Why the gz.msgs.Wind topic /world/<w>/wind had no effect, and why x500 links respond to world wind with no enable_wind in the SDF",
+  "Correct syntax to clear a persistent gz wrench (my clear message failed); whether a second persistent wrench replaces the first",
+  "Whether SENS_EN_GPSSIM=0 alone stops simulated GPS in SIH (read from px4-rc.sihsim, not run)",
+  "Source build of main with make px4_sitl_sih inside px4io/px4-dev: time, extra packages, success (not run)",
+  "Whether the stream-rate command px4-mavlink stream -r 200 on the 14580 link works (no error, rate not measured)",
+  "Whether PX4 Position mode works armed without any horizontal aiding (only tested disarmed mode switch and armed with vision)",
+  "Orqa M2-AI mass, thrust, inertia and drag values to put in SIH_* (not found, not in scope)",
+  "MAVSDK v4 native binding: raw message access and mocap/odometry support (not checked)",
+  "Install and image sizes for Gazebo Classic and jMAVSim in a current container (not measured)",
+  "Whether the vehicle in SIH with 5x speed factor keeps a vision-message pipeline in step end to end (only speed and rate measured)"
+ ],
+ "recommendations": [
+  "Run the test on px4io/px4-sitl (SIH) with --network host and a trailing '-d'; set GNSS off with PX4_PARAM_SYS_HAS_GPS=0 PX4_PARAM_SIM_GPS_USED=0 PX4_PARAM_EKF2_GPS_CTRL=0 PX4_PARAM_EKF2_HGT_REF=0 PX4_PARAM_EKF2_EV_CTRL=1 (add bit 2 for velocity if you send it)",
+  "Set SIH_MASS, SIH_IXX/IYY/IZZ, SIH_T_MAX, SIH_L_ROLL/L_PITCH, SIH_KDV to the Orqa M2-AI values and MPC_THR_HOVER to mass*9.81/(4*SIH_T_MAX); keep CA_* consistent with SIH_*",
+  "Generate gusts in the Python script: write SIH_WIND_N/E with PARAM_SET at 5-20 Hz from a filtered random process plus steps; 5 m/s with KDV=1.0 and 1 kg is 5 N (about 27 deg tilt), so tune KDV",
+  "Ground truth: request HIL_STATE_QUATERNION with MAV_CMD_SET_MESSAGE_INTERVAL; set IMU_INTEG_RATE=400 for about 300 msg/s; keep time_usec and interpolate (slerp) the pose at each rolling-shutter row time; convert lat/lon with SIH_LOC_LAT0/LON0/H0 or read exact x,y with px4-listener",
+  "Pace the host loop by the sim clock (HIL_STATE_QUATERNION.time_usec), not wall time; send vision messages with the camera frame time in that clock and set EKF2_EV_DELAY for camera plus processing delay; do not rely on TIMESYNC",
+  "Run at 1x for the first closed-loop tests; if you use PX4_SIM_SPEED_FACTOR, read the achieved factor (simulator_sih status) because 5x requested gave 2.4x",
+  "Use pymavlink (pip install pymavlink) with MANUAL_CONTROL at 25 Hz, Altitude mode to climb (z=900 up, 500 hold), then Position mode once vision is fused; decode INT32 params with struct (EKF2_EV_CTRL returned bit-cast floats); send a 1 Hz GCS heartbeat if you ever use Gazebo",
+  "Add your own extra baro noise and height bias to the test; SIH baro noise is only 1 Pa (about 0.08 m) with no propwash",
+  "Keep the first test truth-fed only as a plumbing check (it passed); replace the vision feed with your hold.py output and compare against HIL truth for drift",
+  "Use Gazebo only if a physics effect you need is missing in SIH; if so use PX4_GZ_WORLD=windy and add a pose or odometry publisher plugin for more than 60 Hz truth"
+ ],
+ "report_path": "/home/paul/Videos/vio-hold-attempt/research/sitl.md"
+}

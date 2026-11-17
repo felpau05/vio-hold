@@ -1,0 +1,90 @@
+[in_conc_2m_s1b] hold starts, mode 3, 0.7 s after the vision feed started
+[in_conc_2m_s1b] PX4 left Position mode (mode 2)
+[in_conc_2m_s1b] rms 0.523  p95 0.777  max 0.903  drift_m_per_min 0.58  roll_rms_deg 0.269  pitch_rms_deg 0.218  judge_rms 0.515  judge_jitter_rms 0.169  fix_rate_hz 7.05  frac_ok 0.917  frac_lost 0.00615  proc_ms_mean 122
+{
+ "case": "in_conc_2m_s1b",
+ "events": [
+  [
+   0.0,
+   "hold starts, mode 3, 0.7 s after the vision feed started"
+  ],
+  [
+   2.0,
+   "PX4 left Position mode (mode 2)"
+  ]
+ ],
+ "climb_s": 7.5,
+ "ekf_yaw_minus_true_deg": 12.03,
+ "onboard": [
+  [
+   4.07,
+   "connected",
+   "px4, clock ready True, ATTITUDE 100 Hz"
+  ],
+  [
+   96.54,
+   "done",
+   "stopped after 1 start(s); frame age when taken p50 36 ms, p95 61 ms; SCALED_IMU 0 Hz, 0 rows kept"
+  ]
+ ],
+ "params_fail": [],
+ "onboard_exit": 0,
+ "clock_err_ms_mean": 0.9960073513302243,
+ "clock_err_ms_absmax": 1.141773278206415,
+ "handover_ms_p50": 24.19472199926531,
+ "handover_ms_p95": 31.01692250047563,
+ "frames": 1000,
+ "processed": 325,
+ "fixes": 282,
+ "fix_rate_hz": 7.04929507049295,
+ "pct_frames_fix": 28.2,
+ "frac_init": 0.009230769230769232,
+ "frac_ok": 0.916923076923077,
+ "frac_degraded": 0.06769230769230769,
+ "frac_lost": 0.006153846153846154,
+ "proc_ms_mean": 121.76615384615384,
+ "age_ms_p50": 211.9,
+ "age_ms_p95": 353.21999999999997,
+ "hold_why": {
+  "whole picture: halves disagree": 18,
+  "whole picture and points disagree": 4,
+  "init": 2,
+  "good fix 1 of 10": 2,
+  "good fix 2 of 10": 2,
+  "good fix 3 of 10": 2,
+  "good fix 4 of 10": 2,
+  "good fix 5 of 10": 2
+ },
+ "reanchors": 2,
+ "rms": 0.5227427750576331,
+ "p95": 0.7771573061068078,
+ "max": 0.9031294503450249,
+ "end": 0.9031294503450249,
+ "drift_m_per_min": 0.5796900999266521,
+ "roll_rms_deg": 0.2685847979941203,
+ "pitch_rms_deg": 0.21841032575471384,
+ "tilt_mean_deg": 0.04928931147793501,
+ "judge_rms": 0.5146978185211853,
+ "judge_p95": 0.7601671395794938,
+ "judge_max": 0.8968549299821891,
+ "judge_jitter_rms": 0.16896948915209825,
+ "height_mean": 1.8441703992210379,
+ "seconds": 40.004000000000005,
+ "px4_hgt_err_m": [
+  -0.09,
+  0.07
+ ],
+ "px4_yaw_err_deg": [
+  -1.1,
+  1.12,
+  0.77
+ ],
+ "ev_delay_ms": 104.2,
+ "hold_py_md5": "ad3ebe25dc",
+ "px4_text": [
+  [
+   1.18,
+   "Failsafe activated\t"
+  ]
+ ]
+}

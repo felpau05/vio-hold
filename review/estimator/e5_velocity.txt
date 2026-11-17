@@ -1,0 +1,20 @@
+A) velocity term: ottawa2019fall, 3 seeds x 10 s (true drone speed RMS shown)
+ h(m)  mode       RMS(m)  frame jitter per axis(m)  vel noise RMS(m/s)  true speed RMS(m/s)
+  100  Hold        0.38     0.235                     2.30               0.59
+  100  vel=0       0.38     0.234                      nan               0.59
+  100  vel=true    0.38     0.234                      nan               0.59
+  200  Hold        0.76     0.498                     4.86               0.59
+  200  vel=0       0.76     0.497                      nan               0.59
+  200  vel=true    0.76     0.497                      nan               0.59
+  400  Hold        1.81     1.015                    10.00               0.59
+  400  vel=0       1.81     1.020                      nan               0.59
+  400  vel=true    1.81     1.020                      nan               0.59
+
+B) 3 s blackout at t = 5 s while moving 1 m/s north (t = 4..9 s)
+ h(m)  after loss          vel at loss(m/s)  sent in dark  back after(s)  sent after  mean err after(m)  err at end(m)  why not sent after
+   20  own pos (sim_ground)   1.42              1            nan           0%          nan              nan       {'jump': 90}
+   20  re-anchor (sim_test)   1.42             14           0.18          97%         0.42             0.46       {'points tracked': 4}
+   50  own pos (sim_ground)   1.85              1            nan           0%          nan              nan       {'jump': 90}
+   50  re-anchor (sim_test)   1.85             14           0.18          97%         0.41             0.35       {'points tracked': 4}
+  100  own pos (sim_ground)   2.14              1            nan           0%          nan              nan       {'jump': 90}
+  100  re-anchor (sim_test)   2.14             14           0.18          97%         0.33             0.10       {'points tracked': 4}

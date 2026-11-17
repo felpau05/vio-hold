@@ -1,0 +1,31 @@
+[ours_gyro_100m_w20g40_light] PX4 never accepted Position mode
+[ours_gyro_100m_w20g40_light] 
+[ours_gyro_100m_w20g40_heavy] hold starts, mode 3, 10.1 s after the vision feed started
+[ours_gyro_100m_w20g40_heavy] rms 0.649  p95 1.05  max 1.31  drift_m_per_min 0.957  roll_rms_deg 5.06  pitch_rms_deg 3.95  judge_rms 21.3  judge_jitter_rms 11.7  fix_rate_hz 24.8  frac_ok 0.997  frac_lost 0  proc_ms_mean 13.2  late_ms_p95 7.6
+case                                 rms m       p95 m       max m drift m/min    roll deg   pitch deg     judge m    jitter m      fix Hz          ok  events
+none_100m_calm                        4.88        8.08        8.42        8.93      0.0721         0.1        4.86        2.63           -           -  
+none_100m_w20g40                       178         277         291         323       0.589       0.155         178        95.5           -           -  
+none_50m_calm                         4.61        8.33        8.87        8.41       0.122        0.15        4.69        2.46           -           -  
+none_50m_w20g40                        183         286         300         336       0.632       0.197         183        98.9           -           -  
+ours_100m_calm                          11        26.2          30         232        14.5           8        42.5        33.6        21.4       0.792  6.98s FLY-AWAY: 30.0 m from the hold point; vision stopped, Altitude mode
+ours_100m_w20g40                      12.3        27.6          30         287        14.6        4.95        35.3        32.4        24.6       0.813  6.29s FLY-AWAY: 30.0 m from the hold point; vision stopped, Altitude mode
+ours_122m_w20g40                      10.3        20.9          30        56.4          20        20.2        73.3        71.9        21.5       0.766  17.48s FLY-AWAY: 30.0 m from the hold point; vision stopped, Altitude mode
+ours_50m_calm                         11.5        26.1          30        73.8        9.91        13.5          19        18.5        23.6       0.868  18.57s FLY-AWAY: 30.0 m from the hold point; vision stopped, Altitude mode
+ours_50m_w20g40                       12.8        25.6          30        61.7        14.4        10.3        23.6        21.2          24         0.9  22.83s FLY-AWAY: 30.0 m from the hold point; vision stopped, Altitude mode
+ours_gyro_100m_calm                  0.741         1.3        1.36       0.837        0.77       0.738        2.19        2.13        23.8       0.954  
+ours_gyro_100m_w20g40                0.634        1.22        1.28        0.58        5.12        3.75        21.3        11.7        24.5       0.998  
+ours_gyro_100m_w20g40_heavy          0.649        1.05        1.31       0.957        5.06        3.95        21.3        11.7        24.8       0.997  
+ours_gyro_100m_w20g40_light              -           -           -           -           -           -           -           -           -           -  
+ours_gyro_122m_w20g40                0.824        1.66        1.88        1.09         5.1        4.13        26.4        14.7          25           1  
+ours_gyro_20m_w20g40                 0.455        0.76        1.14       0.396         5.1           4        4.49        2.61        24.9           1  
+ours_gyro_50m_calm                   0.843        1.37        1.55        1.72       0.766       0.461        1.38        1.07        20.3       0.817  
+ours_gyro_50m_w20g40                 0.641        1.13        1.48       0.588        5.21        3.83        11.1        6.22          25           1  
+truth_100m_calm                       0.21       0.245       0.269      0.0709       0.122       0.119        1.06       0.326          25           1  
+truth_100m_w20g40                    0.463       0.788       0.889       0.452        5.04        3.88        21.2        11.7          25           1  
+truth_122m_w20g40                    0.449       0.811        1.03       0.412        5.03        3.85        25.9        14.1          25           1  
+truth_50m_calm                      0.0399      0.0663      0.0812      0.0165       0.135       0.132       0.467       0.185        24.9           1  
+truth_50m_w20g40                      0.47       0.798        1.04       0.432        5.23        3.94        10.8        6.19          25           1  
+
+rms/p95/max: true horizontal distance from the hold point over the hold. drift: linear-fit speed.
+roll/pitch: RMS about the mean. judge: distance of the picture centre's ground point from the hold
+point (RMS); jitter: its RMS about its own mean. fix Hz: fixes sent per second; ok: share of 'ok' frames.

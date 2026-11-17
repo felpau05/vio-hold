@@ -1,0 +1,1 @@
+{"run": "apb_100m_w20g40.npz", "ground": "snow", "t": [56.2, 66.0], "still": false, "freeze": null, "frames": 245, "sent": 0, "sent_pct": 0.0, "first_sent_s": null, "sent_while_frozen": 0, "err_rms": null, "err_max": null, "outside_99": null, "n_median": null, "whys": {"init": 123, "0 points tracked": 122}}

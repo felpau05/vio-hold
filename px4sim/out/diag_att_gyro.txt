@@ -1,0 +1,44 @@
+Exception in thread Thread-3 (estimator_loop):
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/threading.py", line 1073, in _bootstrap_inner
+    self.run()
+  File "/usr/lib/python3.12/threading.py", line 1010, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/paul/Videos/vio-hold-attempt/px4sim/sitl.py", line 315, in estimator_loop
+    e = hold.process(img, t0, link.att, link.hgt)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/paul/Videos/vio-hold-attempt/hold.py", line 542, in process
+    r = self._track(kf, img, t0, att, hgt, tref)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/paul/Videos/vio-hold-attempt/hold.py", line 468, in _track
+    g, _, okr, hh = self._rays(p2[ok], t0, rows, att, hgt)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/paul/Videos/vio-hold-attempt/hold.py", line 306, in _rays
+    b = np.einsum("nij,nj->ni", attitude_R(att, t), f)
+                                ^^^^^^^^^^^^^^^^^^
+  File "/home/paul/Videos/vio-hold-attempt/hold.py", line 142, in attitude_R
+    np.interp(t, a[:, 0], unwrapped_yaw(att)))
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/paul/.venvs/vio/lib/python3.12/site-packages/numpy/lib/_function_base_impl.py", line 1687, in interp
+    return interp_func(x, xp, fp, left, right)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: fp and xp are not of the same length.
+[diag_ours_50m_calm_attgyro] PX4 never accepted Position mode
+[diag_ours_50m_calm_attgyro] 
+{
+ "case": "diag_ours_50m_calm_attgyro",
+ "events": [
+  [
+   0.0,
+   "PX4 never accepted Position mode"
+  ]
+ ],
+ "climb_s": 26.4,
+ "ekf_yaw_minus_true_deg": 11.92,
+ "ev_delay_ms": 101.2,
+ "hold_why": {
+  "waiting for image motion that proves the picture is live": 4
+ },
+ "hold_py_md5": "f2ede638b5",
+ "px4_text": []
+}

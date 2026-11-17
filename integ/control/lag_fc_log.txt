@@ -1,0 +1,7 @@
+{"label": "c_base_100m_w20g40_s11", "fc_lag_ms_p10": 133.8, "fc_lag_ms_p50": 140.8, "fc_lag_ms_p90": 143.8, "viso_delay_ms": 100.0, "timing_err_ms_rms": 39.681, "advice_ms": 144.5, "age_p50": 170.9}
+{"label": "c_base_100m_w20g40_s12", "fc_lag_ms_p10": 133.8, "fc_lag_ms_p50": 138.801, "fc_lag_ms_p90": 142.801, "viso_delay_ms": 100.0, "timing_err_ms_rms": 39.476, "advice_ms": 144.6, "age_p50": 166.8}
+{"label": "c_base_100m_w20g40_s13", "fc_lag_ms_p10": 133.801, "fc_lag_ms_p50": 138.8, "fc_lag_ms_p90": 141.801, "viso_delay_ms": 100.0, "timing_err_ms_rms": 38.89, "advice_ms": 144.4, "age_p50": 166.4}
+{"label": "c_d140_100m_w20g40_s11", "fc_lag_ms_p10": 132.8, "fc_lag_ms_p50": 137.8, "fc_lag_ms_p90": 140.801, "viso_delay_ms": 140.0, "timing_err_ms_rms": 5.005, "advice_ms": 143.6, "age_p50": 166.5}
+{"label": "c_d140_100m_w20g40_s12", "fc_lag_ms_p10": 132.801, "fc_lag_ms_p50": 137.801, "fc_lag_ms_p90": 144.8, "viso_delay_ms": 140.0, "timing_err_ms_rms": 4.211, "advice_ms": 144.1, "age_p50": 167.7}
+{"label": "c_d140_100m_w20g40_s13", "fc_lag_ms_p10": 139.8, "fc_lag_ms_p50": 140.8, "fc_lag_ms_p90": 142.801, "viso_delay_ms": 140.0, "timing_err_ms_rms": 3.206, "advice_ms": 147.9, "age_p50": 170.4}
+{"label": "c_d140_40m_w20g40_s11", "fc_lag_ms_p10": 133.801, "fc_lag_ms_p50": 136.8, "fc_lag_ms_p90": 138.8, "viso_delay_ms": 140.0, "timing_err_ms_rms": 4.129, "advice_ms": 143.0, "age_p50": 163.75}

@@ -1,0 +1,71 @@
+[lt_HO_lawn_s104] hold starts, mode 3, 0.7 s after the vision feed started
+[lt_HO_lawn_s104] rms 0.794  p95 1.66  max 1.76  drift_m_per_min 0.951  roll_rms_deg 5.24  pitch_rms_deg 2.79  judge_rms 22.4  judge_jitter_rms 11  fix_rate_hz 12.1  frac_ok 0.968  frac_lost 0  proc_ms_mean 78.1
+{
+ "case": "lt_HO_lawn_s104",
+ "events": [
+  [
+   0.0,
+   "hold starts, mode 3, 0.7 s after the vision feed started"
+  ]
+ ],
+ "climb_s": 37.5,
+ "ekf_yaw_minus_true_deg": 12.21,
+ "onboard": [
+  [
+   4.06,
+   "connected",
+   "px4, clock ready True, ATTITUDE 100 Hz"
+  ],
+  [
+   14.16,
+   "run",
+   "FAIL no usable video frame in 10 s. Check the camera and video_device."
+  ],
+  [
+   116.51,
+   "done",
+   "stopped after 2 start(s); frame age when taken p50 28 ms, p95 51 ms; SCALED_IMU 0 Hz, 0 rows kept"
+  ]
+ ],
+ "params_fail": [],
+ "onboard_exit": 0,
+ "clock_err_ms_mean": 0.7809457844506674,
+ "clock_err_ms_absmax": 0.884035708168085,
+ "handover_ms_p50": 13.10457550425781,
+ "handover_ms_p95": 17.551312658179082,
+ "frames": 1500,
+ "processed": 751,
+ "fixes": 727,
+ "fix_rate_hz": 12.116666666666667,
+ "pct_frames_fix": 48.46666666666667,
+ "frac_init": 0.0,
+ "frac_ok": 0.9680426098535286,
+ "frac_degraded": 0.03195739014647137,
+ "frac_lost": 0.0,
+ "proc_ms_mean": 78.05326231691079,
+ "age_ms_p50": 166.3,
+ "age_ms_p95": 196.61999999999998,
+ "hold_why": {
+  "whole picture: weak peak": 15,
+  "whole picture: halves disagree": 5,
+  "image motion does not match the attitude": 4
+ },
+ "reanchors": 0,
+ "rms": 0.7943662044582788,
+ "p95": 1.6567616628339612,
+ "max": 1.7552484014847447,
+ "end": 0.6068635927060921,
+ "drift_m_per_min": 0.9508608642680881,
+ "roll_rms_deg": 5.239079586726347,
+ "pitch_rms_deg": 2.7857892349536564,
+ "tilt_mean_deg": 11.141466971708077,
+ "judge_rms": 22.44661953109088,
+ "judge_p95": 35.398858290673864,
+ "judge_max": 43.54540442258162,
+ "judge_jitter_rms": 10.960023335902084,
+ "height_mean": 99.50568391812865,
+ "seconds": 60.0,
+ "ev_delay_ms": 101.2,
+ "hold_py_md5": "3335f7bc2f",
+ "px4_text": []
+}

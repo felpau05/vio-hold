@@ -1,0 +1,73 @@
+[in_tiles_2m_s2] hold starts, mode 3, 0.7 s after the vision feed started
+[in_tiles_2m_s2] rms 0.0417  p95 0.0727  max 0.078  drift_m_per_min 0.0306  roll_rms_deg 0.139  pitch_rms_deg 0.178  judge_rms 0.0477  judge_jitter_rms 0.0441  fix_rate_hz 18.1  frac_ok 0.943  frac_lost 0  proc_ms_mean 44.1
+{
+ "case": "in_tiles_2m_s2",
+ "events": [
+  [
+   0.0,
+   "hold starts, mode 3, 0.7 s after the vision feed started"
+  ]
+ ],
+ "climb_s": 7.7,
+ "ekf_yaw_minus_true_deg": 12.84,
+ "onboard": [
+  [
+   4.04,
+   "connected",
+   "px4, clock ready True, ATTITUDE 100 Hz"
+  ],
+  [
+   96.53,
+   "done",
+   "stopped after 1 start(s); frame age when taken p50 22 ms, p95 58 ms; SCALED_IMU 0 Hz, 0 rows kept"
+  ]
+ ],
+ "params_fail": [],
+ "onboard_exit": 0,
+ "clock_err_ms_mean": 0.7711908905895751,
+ "clock_err_ms_absmax": 0.9639858290313441,
+ "handover_ms_p50": 21.249033999083622,
+ "handover_ms_p95": 27.863757998920846,
+ "frames": 1000,
+ "processed": 769,
+ "fixes": 725,
+ "fix_rate_hz": 18.12318768123188,
+ "pct_frames_fix": 72.5,
+ "frac_init": 0.0,
+ "frac_ok": 0.9427828348504551,
+ "frac_degraded": 0.05721716514954486,
+ "frac_lost": 0.0,
+ "proc_ms_mean": 44.099609882964884,
+ "age_ms_p50": 108.2,
+ "age_ms_p95": 183.17999999999998,
+ "hold_why": {
+  "waiting for image motion that proves the picture is live": 44
+ },
+ "reanchors": 0,
+ "rms": 0.04166190061740679,
+ "p95": 0.0726929131988724,
+ "max": 0.07795025199010444,
+ "end": 0.06376382438313503,
+ "drift_m_per_min": 0.030573856222182835,
+ "roll_rms_deg": 0.13949336056985706,
+ "pitch_rms_deg": 0.17825957214957122,
+ "tilt_mean_deg": 0.011574244505740712,
+ "judge_rms": 0.04768675014138772,
+ "judge_p95": 0.09002367952639052,
+ "judge_max": 0.09886928315144876,
+ "judge_jitter_rms": 0.04405016949469588,
+ "height_mean": 1.8476407944176112,
+ "seconds": 40.00399999999999,
+ "px4_hgt_err_m": [
+  -0.07,
+  0.08
+ ],
+ "px4_yaw_err_deg": [
+  -1.16,
+  0.98,
+  -0.08
+ ],
+ "ev_delay_ms": 104.2,
+ "hold_py_md5": "f9cc4cda12",
+ "px4_text": []
+}

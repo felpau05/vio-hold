@@ -1,0 +1,10 @@
+20:03 ardupilot group apb start
+20:13 ardupilot group apb rc=0
+20:13 ardupilot group seeds start
+20:17 ardupilot group seeds rc=0
+20:17 ardupilot group holdout start
+20:22 ardupilot group holdout rc=0
+20:22 ardupilot table written
+20:22 px4 low-texture queue start
+20:44 px4 low-texture queue rc=0
+20:44 all runs done

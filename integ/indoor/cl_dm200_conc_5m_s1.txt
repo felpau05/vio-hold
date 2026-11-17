@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/home/paul/Videos/vio-hold-attempt/px4sim/sitl.py", line 835, in <module>
+    r = run_case(case)
+        ^^^^^^^^^^^^^^
+  File "/home/paul/Videos/vio-hold-attempt/px4sim/sitl.py", line 606, in run_case
+    params = dict(BASE, **vehicle(VEHICLES[c["vehicle"]]), **s_onb["params_px4"], **c["px4"])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: dict() got multiple values for keyword argument 'EKF2_DELAY_MAX'

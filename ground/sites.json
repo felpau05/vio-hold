@@ -1,0 +1,74 @@
+{
+ "prairie": {
+  "lat": 39.0925,
+  "lon": -96.575,
+  "ground_m": 2400.0,
+  "px": 4096,
+  "m_per_px": 0.5859375,
+  "source": "https://basemap.nationalmap.gov/arcgis/rest USGSImageryOnly"
+ },
+ "farmland": {
+  "lat": 41.95,
+  "lon": -93.55,
+  "ground_m": 2400.0,
+  "px": 4096,
+  "m_per_px": 0.5859375,
+  "source": "https://basemap.nationalmap.gov/arcgis/rest USGSImageryOnly"
+ },
+ "suburb": {
+  "lat": 38.9,
+  "lon": -94.68,
+  "ground_m": 2400.0,
+  "px": 4096,
+  "m_per_px": 0.5859375,
+  "source": "https://basemap.nationalmap.gov/arcgis/rest USGSImageryOnly"
+ },
+ "ottawa2022": {
+  "lat": 45.417,
+  "lon": -75.715,
+  "ground_m": 2400.0,
+  "px": 8192,
+  "m_per_px": 0.29296875,
+  "source": "https://maps.ottawa.ca/arcgis/rest Basemap_Imagery_2022"
+ },
+ "ottawa2019fall": {
+  "lat": 45.417,
+  "lon": -75.715,
+  "ground_m": 2400.0,
+  "px": 8192,
+  "m_per_px": 0.29296875,
+  "source": "https://maps.ottawa.ca/arcgis/rest Basemap_Imagery_2019_Fall"
+ },
+ "holdout_quarry": {
+  "lat": 41.796,
+  "lon": -87.836,
+  "ground_m": 2400.0,
+  "px": 4096,
+  "m_per_px": 0.5859375,
+  "source": "https://basemap.nationalmap.gov/arcgis/rest USGSImageryOnly"
+ },
+ "holdout_field": {
+  "lat": 37.7683,
+  "lon": -122.4927,
+  "ground_m": 2400.0,
+  "px": 4096,
+  "m_per_px": 0.5859375,
+  "source": "https://basemap.nationalmap.gov/arcgis/rest USGSImageryOnly"
+ },
+ "holdout_water": {
+  "lat": 42.3555,
+  "lon": -71.076,
+  "ground_m": 2400.0,
+  "px": 4096,
+  "m_per_px": 0.5859375,
+  "source": "https://basemap.nationalmap.gov/arcgis/rest USGSImageryOnly"
+ },
+ "holdout_lawn": {
+  "lat": 40.7717,
+  "lon": -73.975,
+  "ground_m": 2400.0,
+  "px": 4096,
+  "m_per_px": 0.5859375,
+  "source": "https://basemap.nationalmap.gov/arcgis/rest USGSImageryOnly"
+ }
+}

@@ -1,0 +1,75 @@
+[pr_nomask_50m_s11] hold starts, mode 3, 0.7 s after the vision feed started
+[pr_nomask_50m_s11] rms 0.548  p95 0.948  max 1.15  drift_m_per_min 0.395  roll_rms_deg 6.16  pitch_rms_deg 3.28  judge_rms 10.8  judge_jitter_rms 6.52  fix_rate_hz 16.7  frac_ok 0.987  frac_lost 0  proc_ms_mean 57.3
+{
+ "case": "pr_nomask_50m_s11",
+ "events": [
+  [
+   0.0,
+   "hold starts, mode 3, 0.7 s after the vision feed started"
+  ]
+ ],
+ "climb_s": 26.6,
+ "ekf_yaw_minus_true_deg": 7.58,
+ "onboard": [
+  [
+   4.04,
+   "connected",
+   "px4, clock ready True, ATTITUDE 100 Hz"
+  ],
+  [
+   116.53,
+   "done",
+   "stopped after 1 start(s); frame age when taken p50 39 ms, p95 62 ms; SCALED_IMU 0 Hz, 0 rows kept"
+  ]
+ ],
+ "params_fail": [],
+ "onboard_exit": 0,
+ "clock_err_ms_mean": 0.860491916634289,
+ "clock_err_ms_absmax": 0.9945508550828208,
+ "handover_ms_p50": 24.54087649948633,
+ "handover_ms_p95": 32.69188905032934,
+ "frames": 1500,
+ "processed": 1008,
+ "fixes": 1003,
+ "fix_rate_hz": 16.713324001866294,
+ "pct_frames_fix": 66.86666666666666,
+ "frac_init": 0.0,
+ "frac_ok": 0.9871031746031746,
+ "frac_degraded": 0.012896825396825396,
+ "frac_lost": 0.0,
+ "proc_ms_mean": 57.293055555555554,
+ "age_ms_p50": 150.6,
+ "age_ms_p95": 192.77,
+ "hold_why": {
+  "send rate limit": 3,
+  "picture broken up": 1,
+  "picture just after a broken-up one": 1
+ },
+ "reanchors": 0,
+ "rms": 0.547676121412907,
+ "p95": 0.9477609703497427,
+ "max": 1.1534020371308584,
+ "end": 0.6269729718618663,
+ "drift_m_per_min": 0.3946345196173588,
+ "roll_rms_deg": 6.159212724512942,
+ "pitch_rms_deg": 3.277843520539249,
+ "tilt_mean_deg": 9.774809453620094,
+ "judge_rms": 10.830591924030278,
+ "judge_p95": 18.06089205271199,
+ "judge_max": 19.210578914226154,
+ "judge_jitter_rms": 6.523752182471067,
+ "height_mean": 49.55013617797229,
+ "seconds": 60.01199999999999,
+ "px4_hgt_err_m": [
+  -0.12,
+  0.17
+ ],
+ "px4_yaw_err_deg": [
+  3.18,
+  8.53,
+  4.98
+ ],
+ "ev_delay_ms": 101.2,
+ "hold_py_md5": "ad3ebe25dc",
+ "px4_text": []
+}

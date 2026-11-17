@@ -1,0 +1,7 @@
+label                     rms    max  fix/s  %fix  proc  age  events | top refusals
+lt_HO_lawn_s104          0.79   1.76   12.1    48    78  166  0s hold starts, mode 3, 0.7 s after the vision feed started | whole picture: weak peak 15, whole picture: halves disagree 5, image motion does not match the attitude 4
+lt_HO_lawn_s105          1.35   2.68   10.9    43    83  172  0s hold starts, mode 3, 0.6 s after the vision feed started | whole picture: halves disagree 42, init 1, waiting for image motion that proves the picture is live 1
+lt_HO_lawn_s106          0.95   1.65   13.6    55    70  152  0s hold starts, mode 3, 0.7 s after the vision feed started | whole picture: weak peak 8, image motion does not match the attitude 2, 19 consistent points 1
+lt_HO_quarry_s101        0.87   1.51   16.1    64    60  146  0s hold starts, mode 3, 0.7 s after the vision feed started | waiting for image motion that proves the picture is live 1
+lt_HO_water_s103         0.78   1.54   16.2    65    60  146  0s hold starts, mode 3, 0.7 s after the vision feed started | send rate limit 1
+lt_final_field_s11       1.36   2.50   10.2    41    80  167  0s hold starts, mode 3, 0.7 s after the vision feed started | whole picture: halves disagree 97, init 3, good fix 1 of 10 2

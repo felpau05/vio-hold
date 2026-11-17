@@ -1,0 +1,2 @@
+first ORB after import hold: 3.2 ms
+first ORB, OpenCL on (default): 162.1 ms; OpenCL off: 3.2 ms (fresh process on this laptop, 360x288 picture, measured by the integrator with python -c)

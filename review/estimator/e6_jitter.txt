@@ -1,0 +1,20 @@
+1) jitter = std of the frame-to-frame change of the fix error, per axis
+ h(m)  jitter(m)  error std(m)  ratio jitter/(sqrt2*std)  [1.0 = white noise, 0 = slow drift]
+  100    0.241       0.206        0.83
+   closed loop at 100 m, R = Hold's var (0.19 m/axis): true wander 0.150 m, tilt 0.354 deg;  R = honest (0.33 m/axis): wander 0.156 m, tilt 0.280 deg
+  200    0.498       0.423        0.83
+   closed loop at 200 m, R = Hold's var (0.38 m/axis): true wander 0.300 m, tilt 0.573 deg;  R = honest (0.64 m/axis): wander 0.310 m, tilt 0.469 deg
+
+3) pre-filters on the 30 Hz fix (closed loop with the honest R)
+ h(m)  filter      jitter(m)  error std(m)  delay(ms)  true wander(m)  tilt(deg)
+  100  none         0.241      0.206           0       0.156        0.280
+  100  EMA a=0.5    0.098      0.153          33       0.155        0.276
+  100  EMA a=0.3    0.055      0.137          78       0.154        0.267
+  100  MA-3         0.081      0.153          33       0.155        0.279
+  100  MA-5         0.052      0.141          67       0.155        0.279
+  200  none         0.498      0.423           0       0.310        0.469
+  200  EMA a=0.5    0.201      0.313          33       0.309        0.463
+  200  EMA a=0.3    0.114      0.280          78       0.307        0.453
+  200  MA-3         0.167      0.314          33       0.309        0.467
+  200  MA-5         0.108      0.288          67       0.308        0.462
+wrote e6_jitter_psd.png

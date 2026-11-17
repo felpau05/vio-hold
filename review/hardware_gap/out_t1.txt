@@ -1,0 +1,21 @@
+sim hover attitude rate: roll/pitch RMS 24.8/25.8 deg/s, peak 60/60 deg/s
+--- 100 m (offset added to the true first-row time; sim baseline already has +2 ms)
+  stamp error   +0 ms: sent  100%  rms   0.34 m  p95   0.56 m  worst   0.81 m  false-fix  4.0%   (h*w_rms*dt = 0.00 m)
+  stamp error   +5 ms: sent  100%  rms   0.38 m  p95   0.66 m  worst   0.86 m  false-fix 11.5%   (h*w_rms*dt = 0.31 m)
+  stamp error  +10 ms: sent  100%  rms   0.74 m  p95   1.22 m  worst   1.53 m  false-fix 58.8%   (h*w_rms*dt = 0.62 m)
+  stamp error  +20 ms: sent  100%  rms   1.51 m  p95   2.46 m  worst   3.02 m  false-fix 89.0%   (h*w_rms*dt = 1.25 m)
+  stamp error  -20 ms: sent  100%  rms   2.88 m  p95   4.34 m  worst   5.18 m  false-fix 99.2%   (h*w_rms*dt = 1.25 m)
+  stamp error  +40 ms: sent  100%  rms   2.87 m  p95   4.55 m  worst   5.47 m  false-fix 96.2%   (h*w_rms*dt = 2.50 m)
+  random +-16.7 ms per frame (stamped at read()): sent   89%  rms   0.98 m  p95   1.80 m  worst   3.16 m  false-fix 62.4%
+--- 200 m (offset added to the true first-row time; sim baseline already has +2 ms)
+  stamp error   +0 ms: sent  100%  rms   0.82 m  p95   1.35 m  worst   1.92 m  false-fix 14.4%   (h*w_rms*dt = 0.00 m)
+  stamp error   +5 ms: sent  100%  rms   1.08 m  p95   1.82 m  worst   2.54 m  false-fix 34.6%   (h*w_rms*dt = 0.62 m)
+  stamp error  +10 ms: sent  100%  rms   1.80 m  p95   3.06 m  worst   4.39 m  false-fix 68.6%   (h*w_rms*dt = 1.25 m)
+  stamp error  +20 ms: sent  100%  rms   3.11 m  p95   5.11 m  worst   6.94 m  false-fix 89.0%   (h*w_rms*dt = 2.50 m)
+  stamp error  -20 ms: sent  100%  rms   6.24 m  p95   9.67 m  worst  11.57 m  false-fix 98.5%   (h*w_rms*dt = 2.50 m)
+  stamp error  +40 ms: sent  100%  rms   6.36 m  p95  10.60 m  worst  13.36 m  false-fix 97.8%   (h*w_rms*dt = 5.00 m)
+  random +-16.7 ms per frame (stamped at read()): sent   78%  rms   2.42 m  p95   4.40 m  worst   6.53 m  false-fix 79.2%
+
+real	2m22.113s
+user	4m42.431s
+sys	1m6.029s

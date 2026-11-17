@@ -1,0 +1,5 @@
+{
+ "_why": {
+  "_note": "params_ardupilot in settings.py is already the set that flew in ArduCopter 4.6 SITL (apsim/results.txt). This overlay owns no key, so apply keeps your hand-set VISO_DELAY_MS (set it to the fix age from check, EVENT_DAY step 7) and origin_lat_lon_alt (read it at the field)."
+ }
+}

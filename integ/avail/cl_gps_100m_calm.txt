@@ -1,0 +1,36 @@
+[gps_100m_calm] hold starts, mode 3, 0.4 s after the vision feed started
+[gps_100m_calm] rms 0.0615  p95 0.112  max 0.147  drift_m_per_min 0.0575  roll_rms_deg 0.156  pitch_rms_deg 0.159  judge_rms 0.959  judge_jitter_rms 0.416
+{
+ "case": "gps_100m_calm",
+ "events": [
+  [
+   0.0,
+   "hold starts, mode 3, 0.4 s after the vision feed started"
+  ]
+ ],
+ "climb_s": 37.4,
+ "ekf_yaw_minus_true_deg": 1.49,
+ "rms": 0.06146051628298032,
+ "p95": 0.11151335416327135,
+ "max": 0.14715458328337744,
+ "end": 0.02341570824072392,
+ "drift_m_per_min": 0.05745009532149063,
+ "roll_rms_deg": 0.15597911923088967,
+ "pitch_rms_deg": 0.1593067213208533,
+ "tilt_mean_deg": 0.006635678892939009,
+ "judge_rms": 0.9588788690532563,
+ "judge_p95": 1.386330691899836,
+ "judge_max": 1.5624440577439729,
+ "judge_jitter_rms": 0.41558409075912495,
+ "height_mean": 99.6176399421594,
+ "seconds": 60.00399999999999,
+ "ev_delay_ms": 101.2,
+ "hold_why": {},
+ "hold_py_md5": "d8b5e86060",
+ "px4_text": [
+  [
+   0.0,
+   "Preflight Fail: no heading reference"
+  ]
+ ]
+}

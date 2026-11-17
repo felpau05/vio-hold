@@ -1,0 +1,17 @@
+--- exposure, 100 m hover, 10 s
+  exposure  0.0 ms: stamp at readout: sent  100%  rms   0.33 m  p95   0.53 m  worst   0.69 m  false-fix  3.3%
+                     stamp at mid-exposure: sent  100%  rms   0.33 m  p95   0.53 m  worst   0.69 m  false-fix  3.3%
+  exposure  8.0 ms: stamp at readout: sent  100%  rms   0.35 m  p95   0.58 m  worst   0.83 m  false-fix  5.7%
+                     stamp at mid-exposure: sent  100%  rms   0.28 m  p95   0.46 m  worst   0.59 m  false-fix  0.7%
+  exposure 16.7 ms: stamp at readout: sent  100%  rms   0.88 m  p95   1.41 m  worst   1.79 m  false-fix 72.9%
+                     stamp at mid-exposure: sent  100%  rms   0.23 m  p95   0.39 m  worst   0.54 m  false-fix  0.0%
+--- automatic gain, 100 m hover, no blur
+  gain constant                                 sent  100%  rms   0.33 m  p95   0.53 m  worst   0.69 m  false-fix  3.3%  degraded   0% lost   0%
+  gain slow hunting x(1 +- 0.15) at 0.2 Hz      sent  100%  rms   0.34 m  p95   0.54 m  worst   0.67 m  false-fix  3.3%  degraded   0% lost   0%
+  gain slow hunting x(1 +- 0.30) at 0.2 Hz      sent  100%  rms   0.44 m  p95   0.69 m  worst   0.93 m  false-fix  0.7%  degraded   1% lost   0%
+  gain cloud: step to x0.6 at 5 s               sent   96%  rms   0.50 m  p95   0.79 m  worst   1.15 m  false-fix 30.2%  degraded   3% lost   0%
+  gain step to x0.6 at 5 s, back to x1 at 7 s   sent   92%  rms   0.43 m  p95   0.67 m  worst   0.96 m  false-fix 13.4%  degraded   6% lost   1%
+
+real	2m14.566s
+user	2m39.296s
+sys	0m13.972s

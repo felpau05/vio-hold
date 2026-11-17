@@ -1,0 +1,73 @@
+[HO_b_15m_s108] hold starts, mode 3, 0.7 s after the vision feed started
+[HO_b_15m_s108] rms 0.0869  p95 0.14  max 0.168  drift_m_per_min 0.136  roll_rms_deg 0.245  pitch_rms_deg 0.304  judge_rms 0.198  judge_jitter_rms 0.159  fix_rate_hz 12.9  frac_ok 0.971  frac_lost 0  proc_ms_mean 74.8
+{
+ "case": "HO_b_15m_s108",
+ "events": [
+  [
+   0.0,
+   "hold starts, mode 3, 0.7 s after the vision feed started"
+  ]
+ ],
+ "climb_s": 19.4,
+ "ekf_yaw_minus_true_deg": 12.65,
+ "onboard": [
+  [
+   5.1,
+   "connected",
+   "px4, clock ready True, ATTITUDE 100 Hz"
+  ],
+  [
+   96.51,
+   "done",
+   "stopped after 1 start(s); frame age when taken p50 39 ms, p95 59 ms; SCALED_IMU 0 Hz, 0 rows kept"
+  ]
+ ],
+ "params_fail": [],
+ "onboard_exit": 0,
+ "clock_err_ms_mean": 0.8704730332303118,
+ "clock_err_ms_absmax": 0.9550261995769915,
+ "handover_ms_p50": 22.597594000217214,
+ "handover_ms_p95": 26.849785998820153,
+ "frames": 1001,
+ "processed": 523,
+ "fixes": 516,
+ "fix_rate_hz": 12.898710128987101,
+ "pct_frames_fix": 51.548451548451546,
+ "frac_init": 0.0,
+ "frac_ok": 0.97131931166348,
+ "frac_degraded": 0.028680688336520075,
+ "frac_lost": 0.0,
+ "proc_ms_mean": 74.75525812619503,
+ "age_ms_p50": 173.85000000000002,
+ "age_ms_p95": 211.0,
+ "hold_why": {
+  "waiting for image motion that proves the picture is live": 7
+ },
+ "reanchors": 0,
+ "rms": 0.0869492763238171,
+ "p95": 0.14048430138437154,
+ "max": 0.16772906939233306,
+ "end": 0.03335847727647945,
+ "drift_m_per_min": 0.13569153596127936,
+ "roll_rms_deg": 0.2454984545951536,
+ "pitch_rms_deg": 0.30429124569218735,
+ "tilt_mean_deg": 0.010112320021494611,
+ "judge_rms": 0.19822942947749025,
+ "judge_p95": 0.3220917433579161,
+ "judge_max": 0.3883352141440612,
+ "judge_jitter_rms": 0.15872575493971575,
+ "height_mean": 14.617157982261645,
+ "seconds": 40.004,
+ "px4_hgt_err_m": [
+  -0.11,
+  0.07
+ ],
+ "px4_yaw_err_deg": [
+  0.03,
+  4.07,
+  4.07
+ ],
+ "ev_delay_ms": 104.2,
+ "hold_py_md5": "ad3ebe25dc",
+ "px4_text": []
+}

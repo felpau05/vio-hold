@@ -1,0 +1,11 @@
+snow + tarps + pad 50 m            marks  4  last frame: accepted                     PASS (want accepted)
+snow + tarps 50 m                  marks  3  last frame: accepted                     PASS (want accepted)
+night lights 50 m                  marks  6  last frame: accepted                     PASS (want accepted)
+night lights 100 m                 marks  6  last frame: accepted                     PASS (want accepted)
+plain snow 50 m                    marks  0  last frame: flat picture (no signal?)    PASS (want refused)
+flat grey 60 + noise 2             marks  0  last frame: flat picture (no signal?)    PASS (want refused)
+black + noise 10 (no lights)       marks  0  last frame: flat picture (no signal?)    PASS (want refused)
+NO SIGNAL screen, first frame      marks  4  last frame: flat picture (no signal?)    PASS (want refused)
+NO SIGNAL screen, repeated         marks  4  last frame: flat picture (no signal?)    PASS (want refused)
+snow + tarps, frozen (repeated)    marks  4  last frame: repeated frame               PASS (want refused)
+ALL PASS

@@ -1,0 +1,7 @@
+ attitude profile          FC noise(deg)  median rate(rad/s)  frames with rate < KF_RATE 0.3
+ sim hover (+-6 deg)        0.10           0.96                0.0%
+ sim hover (+-6 deg)        0.05           0.83                0.0%
+ sim hover (+-6 deg)        0.00           0.76                0.0%
+ calm hover (+-1 deg)       0.10           0.53                1.7%
+ calm hover (+-1 deg)       0.05           0.26               72.0%
+ calm hover (+-1 deg)       0.00           0.03              100.0%

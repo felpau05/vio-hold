@@ -1,0 +1,41 @@
+[diag_ours_gyro_50m_calm_v2] hold starts, mode 3, 4.9 s after the vision feed started
+[diag_ours_gyro_50m_calm_v2] rms 0.137  p95 0.227  max 0.237  drift_m_per_min 0.703  roll_rms_deg 0.596  pitch_rms_deg 0.361  judge_rms 0.814  judge_jitter_rms 0.682  fix_rate_hz 24.8  frac_ok 0.996  frac_lost 0  proc_ms_mean 5.33  late_ms_p95 7.6
+{
+ "case": "diag_ours_gyro_50m_calm_v2",
+ "events": [
+  [
+   0.0,
+   "hold starts, mode 3, 4.9 s after the vision feed started"
+  ]
+ ],
+ "climb_s": 26.3,
+ "ekf_yaw_minus_true_deg": 11.47,
+ "rms": 0.13708031474298782,
+ "p95": 0.22662480824226594,
+ "max": 0.23694702952445326,
+ "end": 0.14829948850358265,
+ "drift_m_per_min": 0.7032550177196906,
+ "roll_rms_deg": 0.5963859910660495,
+ "pitch_rms_deg": 0.36070994081954333,
+ "tilt_mean_deg": 0.04966703792579129,
+ "judge_rms": 0.813848245358589,
+ "judge_p95": 1.2096338012395051,
+ "judge_max": 1.718751065166719,
+ "judge_jitter_rms": 0.6822862100346049,
+ "height_mean": 49.59411820383007,
+ "seconds": 20.003999999999998,
+ "frames": 499,
+ "fix_rate_hz": 24.84503099380124,
+ "frac_init": 0.0,
+ "frac_ok": 0.9959919839679359,
+ "frac_degraded": 0.004008016032064128,
+ "frac_lost": 0.0,
+ "proc_ms_mean": 5.332572711322537,
+ "late_ms_p95": 7.5999999999964984,
+ "ev_delay_ms": 101.2,
+ "hold_why": {
+  "waiting for image motion that proves the picture is live": 77
+ },
+ "hold_py_md5": "f2ede638b5",
+ "px4_text": []
+}

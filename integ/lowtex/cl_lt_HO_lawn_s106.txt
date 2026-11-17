@@ -1,0 +1,71 @@
+[lt_HO_lawn_s106] hold starts, mode 3, 0.7 s after the vision feed started
+[lt_HO_lawn_s106] rms 0.953  p95 1.56  max 1.65  drift_m_per_min 0.163  roll_rms_deg 4.61  pitch_rms_deg 3.33  judge_rms 21.1  judge_jitter_rms 10.5  fix_rate_hz 13.6  frac_ok 0.536  frac_lost 0  proc_ms_mean 70.4
+{
+ "case": "lt_HO_lawn_s106",
+ "events": [
+  [
+   0.0,
+   "hold starts, mode 3, 0.7 s after the vision feed started"
+  ]
+ ],
+ "climb_s": 37.5,
+ "ekf_yaw_minus_true_deg": 9.49,
+ "onboard": [
+  [
+   4.05,
+   "connected",
+   "px4, clock ready True, ATTITUDE 100 Hz"
+  ],
+  [
+   14.16,
+   "run",
+   "FAIL no usable video frame in 10 s. Check the camera and video_device."
+  ],
+  [
+   116.52,
+   "done",
+   "stopped after 2 start(s); frame age when taken p50 29 ms, p95 51 ms; SCALED_IMU 0 Hz, 0 rows kept"
+  ]
+ ],
+ "params_fail": [],
+ "onboard_exit": 0,
+ "clock_err_ms_mean": 0.847290616519096,
+ "clock_err_ms_absmax": 0.9167160516057038,
+ "handover_ms_p50": 13.279989987495355,
+ "handover_ms_p95": 17.710427004203666,
+ "frames": 1500,
+ "processed": 830,
+ "fixes": 819,
+ "fix_rate_hz": 13.649090060662623,
+ "pct_frames_fix": 54.6,
+ "frac_init": 0.0,
+ "frac_ok": 0.536144578313253,
+ "frac_degraded": 0.463855421686747,
+ "frac_lost": 0.0,
+ "proc_ms_mean": 70.35915662650602,
+ "age_ms_p50": 152.1,
+ "age_ms_p95": 218.58999999999992,
+ "hold_why": {
+  "whole picture: weak peak": 8,
+  "image motion does not match the attitude": 2,
+  "19 consistent points": 1
+ },
+ "reanchors": 0,
+ "rms": 0.9531177616768012,
+ "p95": 1.56130842292125,
+ "max": 1.649190560455148,
+ "end": 1.079777039376466,
+ "drift_m_per_min": 0.16272748866222758,
+ "roll_rms_deg": 4.613611105811219,
+ "pitch_rms_deg": 3.3321347689850778,
+ "tilt_mean_deg": 10.216161889691382,
+ "judge_rms": 21.064186175165094,
+ "judge_p95": 33.735768702960925,
+ "judge_max": 39.07612423306546,
+ "judge_jitter_rms": 10.484867925106405,
+ "height_mean": 99.49969499549144,
+ "seconds": 60.004,
+ "ev_delay_ms": 101.2,
+ "hold_py_md5": "3335f7bc2f",
+ "px4_text": []
+}

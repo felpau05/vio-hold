@@ -1,0 +1,70 @@
+[smoke_apb] hold starts, mode 3, 0.8 s after the vision feed started
+[smoke_apb] rms 0.285  p95 0.625  max 0.698  drift_m_per_min 3.03  roll_rms_deg 0.502  pitch_rms_deg 0.417  judge_rms 0.79  judge_jitter_rms 0.649  fix_rate_hz 10.7  frac_ok 0.963  frac_lost 0  proc_ms_mean 69.2
+{
+ "case": "smoke_apb",
+ "events": [
+  [
+   0.0,
+   "hold starts, mode 3, 0.8 s after the vision feed started"
+  ]
+ ],
+ "climb_s": 26.5,
+ "ekf_yaw_minus_true_deg": 13.26,
+ "onboard": [
+  [
+   98711.04,
+   "connected",
+   "px4, clock ready True, ATTITUDE 99 Hz"
+  ],
+  [
+   98779.78,
+   "done",
+   "stopped after 1 start(s); frame age when taken p50 81 ms, p95 122 ms"
+  ]
+ ],
+ "params_fail": [],
+ "clock_err_ms_mean": -1.8490828578554404,
+ "clock_err_ms_absmax": 3.902554730302654,
+ "handover_ms_p50": 96.38763302064035,
+ "handover_ms_p95": 122.8689841038431,
+ "frames": 215,
+ "processed": 214,
+ "fixes": 161,
+ "fix_rate_hz": 10.733333333333333,
+ "pct_frames_fix": 74.88372093023256,
+ "frac_init": 0.0,
+ "frac_ok": 0.9626168224299065,
+ "frac_degraded": 0.037383177570093455,
+ "frac_lost": 0.0,
+ "proc_ms_mean": 69.21355140186915,
+ "age_ms_p50": 214.1,
+ "age_ms_p95": 252.7,
+ "hold_why": {
+  "waiting for image motion that proves the picture is live": 8,
+  "good fix 1 of 10": 5,
+  "good fix 2 of 10": 5,
+  "good fix 3 of 10": 5,
+  "good fix 4 of 10": 5,
+  "good fix 5 of 10": 5,
+  "good fix 6 of 10": 5,
+  "good fix 7 of 10": 5
+ },
+ "reanchors": 0,
+ "rms": 0.2854070881765855,
+ "p95": 0.6253093253518174,
+ "max": 0.6978624802369616,
+ "end": 0.6978624802369616,
+ "drift_m_per_min": 3.031449780486342,
+ "roll_rms_deg": 0.5023421507974276,
+ "pitch_rms_deg": 0.41733381324649615,
+ "tilt_mean_deg": 0.18740129220078333,
+ "judge_rms": 0.7899648695399901,
+ "judge_p95": 1.5295572563564779,
+ "judge_max": 2.0386489879834553,
+ "judge_jitter_rms": 0.649493341509224,
+ "height_mean": 49.52604495335031,
+ "seconds": 15.0,
+ "ev_delay_ms": 101.2,
+ "hold_py_md5": "67d963e35e",
+ "px4_text": []
+}

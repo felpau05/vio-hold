@@ -1,0 +1,1284 @@
+{
+ "truth_50m_calm": {
+  "case": "truth_50m_calm",
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 3, 2.4 s after the vision feed started"
+   ]
+  ],
+  "climb_s": 26.3,
+  "ekf_yaw_minus_true_deg": 12.14,
+  "rms": 0.039880691056625256,
+  "p95": 0.06628395024320338,
+  "max": 0.08115875686280895,
+  "end": 0.0259217763373804,
+  "drift_m_per_min": 0.01650798378262172,
+  "roll_rms_deg": 0.13476380949989225,
+  "pitch_rms_deg": 0.1317234063459814,
+  "tilt_mean_deg": 0.0048270926570053675,
+  "judge_rms": 0.46734587475880557,
+  "judge_p95": 0.6669043358475024,
+  "judge_max": 0.757892104479846,
+  "judge_jitter_rms": 0.18475065679833186,
+  "height_mean": 49.540576471441,
+  "seconds": 60.00399999999999,
+  "frames": 1492,
+  "fix_rate_hz": 24.865008999400043,
+  "frac_init": 0.0,
+  "frac_ok": 1.0,
+  "frac_degraded": 0.0,
+  "frac_lost": 0.0,
+  "proc_ms_mean": 0.6546311411150979,
+  "late_ms_p95": 7.5999999999964984,
+  "ev_delay_ms": 101.2,
+  "hold_why": {},
+  "hold_py_md5": "f2ede638b5",
+  "px4_text": []
+ },
+ "ours_50m_calm": {
+  "case": "ours_50m_calm",
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 3, 3.1 s after the vision feed started"
+   ],
+   [
+    18.57,
+    "FLY-AWAY: 30.0 m from the hold point; vision stopped, Altitude mode"
+   ]
+  ],
+  "climb_s": 26.2,
+  "ekf_yaw_minus_true_deg": 11.82,
+  "rms": 11.518195334430786,
+  "p95": 26.14503399995687,
+  "max": 30.010618691343062,
+  "end": 30.010618691343062,
+  "drift_m_per_min": 73.8350408390353,
+  "roll_rms_deg": 9.911383215139951,
+  "pitch_rms_deg": 13.53857269208428,
+  "tilt_mean_deg": 4.283555895966378,
+  "judge_rms": 18.980586949558877,
+  "judge_p95": 31.44257203767768,
+  "judge_max": 37.11762549264013,
+  "judge_jitter_rms": 18.493023138025023,
+  "height_mean": 49.1535879133952,
+  "seconds": 18.567999999999998,
+  "frames": 463,
+  "fix_rate_hz": 23.642826367944853,
+  "frac_init": 0.004319654427645789,
+  "frac_ok": 0.8682505399568035,
+  "frac_degraded": 0.12311015118790497,
+  "frac_lost": 0.004319654427645789,
+  "proc_ms_mean": 7.80587638019897,
+  "late_ms_p95": 7.5999999999964984,
+  "ev_delay_ms": 101.2,
+  "hold_why": {
+   "waiting for image motion that proves the picture is live": 37,
+   "fit out of range": 22
+  },
+  "hold_py_md5": "f2ede638b5",
+  "px4_text": []
+ },
+ "ours_gyro_50m_calm": {
+  "case": "ours_gyro_50m_calm",
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 3, 4.9 s after the vision feed started"
+   ]
+  ],
+  "climb_s": 26.4,
+  "ekf_yaw_minus_true_deg": 13.13,
+  "rms": 0.8434730374518781,
+  "p95": 1.3678147687248976,
+  "max": 1.5473496581932393,
+  "end": 0.8470754906124451,
+  "drift_m_per_min": 1.7188560578213992,
+  "roll_rms_deg": 0.7659717194039776,
+  "pitch_rms_deg": 0.4611110920125139,
+  "tilt_mean_deg": 0.030409579831985382,
+  "judge_rms": 1.3821218827044752,
+  "judge_p95": 2.328442183530426,
+  "judge_max": 5.254263935849841,
+  "judge_jitter_rms": 1.0664398837906783,
+  "height_mean": 49.57474806171797,
+  "seconds": 60.004,
+  "frames": 1494,
+  "fix_rate_hz": 20.331977868142125,
+  "frac_init": 0.0,
+  "frac_ok": 0.8165997322623829,
+  "frac_degraded": 0.18340026773761714,
+  "frac_lost": 0.0,
+  "proc_ms_mean": 6.1060795541290895,
+  "late_ms_p95": 7.5999999999964984,
+  "ev_delay_ms": 101.2,
+  "hold_why": {
+   "waiting for image motion that proves the picture is live": 365
+  },
+  "hold_py_md5": "f2ede638b5",
+  "px4_text": []
+ },
+ "none_50m_calm": {
+  "case": "none_50m_calm",
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 2, 0.0 s after the vision feed started"
+   ]
+  ],
+  "climb_s": 26.0,
+  "ekf_yaw_minus_true_deg": 12.4,
+  "rms": 4.6075043043839665,
+  "p95": 8.329507647355676,
+  "max": 8.871881388540768,
+  "end": 8.871881388540768,
+  "drift_m_per_min": 8.40720138153647,
+  "roll_rms_deg": 0.12173145554139911,
+  "pitch_rms_deg": 0.14973280347977788,
+  "tilt_mean_deg": 0.31481786815898494,
+  "judge_rms": 4.687761976750358,
+  "judge_p95": 8.40185928173151,
+  "judge_max": 9.012638398895174,
+  "judge_jitter_rms": 2.4614382907373233,
+  "height_mean": 49.63602638620486,
+  "seconds": 60.007999999999996,
+  "ev_delay_ms": 101.2,
+  "hold_why": {},
+  "hold_py_md5": "f2ede638b5",
+  "px4_text": []
+ },
+ "truth_50m_w20g40": {
+  "case": "truth_50m_w20g40",
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 3, 2.5 s after the vision feed started"
+   ]
+  ],
+  "climb_s": 26.1,
+  "ekf_yaw_minus_true_deg": 12.36,
+  "rms": 0.4700492483093025,
+  "p95": 0.7981458702104328,
+  "max": 1.0444864873754516,
+  "end": 0.2266248082422659,
+  "drift_m_per_min": 0.4319642066602798,
+  "roll_rms_deg": 5.228446630208221,
+  "pitch_rms_deg": 3.942535906468843,
+  "tilt_mean_deg": 10.078385317809133,
+  "judge_rms": 10.833688506107102,
+  "judge_p95": 18.062971654916073,
+  "judge_max": 22.678873833252965,
+  "judge_jitter_rms": 6.192546927953751,
+  "height_mean": 49.592189675343676,
+  "seconds": 60.004,
+  "frames": 1499,
+  "fix_rate_hz": 24.981667888807415,
+  "frac_init": 0.0,
+  "frac_ok": 1.0,
+  "frac_degraded": 0.0,
+  "frac_lost": 0.0,
+  "proc_ms_mean": 0.6923218613863706,
+  "late_ms_p95": 3.5999999999987153,
+  "ev_delay_ms": 101.2,
+  "hold_why": {},
+  "hold_py_md5": "7e331cc6ac",
+  "px4_text": []
+ },
+ "ours_50m_w20g40": {
+  "case": "ours_50m_w20g40",
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 3, 5.3 s after the vision feed started"
+   ],
+   [
+    22.83,
+    "FLY-AWAY: 30.0 m from the hold point; vision stopped, Altitude mode"
+   ]
+  ],
+  "climb_s": 26.5,
+  "ekf_yaw_minus_true_deg": 12.46,
+  "rms": 12.779071583723434,
+  "p95": 25.565975634301086,
+  "max": 30.032977082817453,
+  "end": 30.032977082817453,
+  "drift_m_per_min": 61.66844517973994,
+  "roll_rms_deg": 14.448045936151699,
+  "pitch_rms_deg": 10.30050704840271,
+  "tilt_mean_deg": 9.565449224055884,
+  "judge_rms": 23.635143124398905,
+  "judge_p95": 52.50375177416916,
+  "judge_max": 57.62199905117162,
+  "judge_jitter_rms": 21.184710070310658,
+  "height_mean": 49.36756801858894,
+  "seconds": 22.832,
+  "frames": 569,
+  "fix_rate_hz": 23.95760336370007,
+  "frac_init": 0.0017574692442882249,
+  "frac_ok": 0.8998242530755711,
+  "frac_degraded": 0.09666080843585237,
+  "frac_lost": 0.0017574692442882249,
+  "proc_ms_mean": 6.449132767334697,
+  "late_ms_p95": 7.5999999999964984,
+  "ev_delay_ms": 101.2,
+  "hold_why": {
+   "waiting for image motion that proves the picture is live": 92,
+   "fit out of range": 11,
+   "picture broken up": 7,
+   "picture just after a broken-up one": 3
+  },
+  "hold_py_md5": "7e331cc6ac",
+  "px4_text": []
+ },
+ "ours_gyro_50m_w20g40": {
+  "case": "ours_gyro_50m_w20g40",
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 3, 4.7 s after the vision feed started"
+   ]
+  ],
+  "climb_s": 26.3,
+  "ekf_yaw_minus_true_deg": 12.21,
+  "rms": 0.641497723339871,
+  "p95": 1.1283533340214362,
+  "max": 1.4781490203077075,
+  "end": 0.4360160704078953,
+  "drift_m_per_min": 0.588115760865818,
+  "roll_rms_deg": 5.214698672859657,
+  "pitch_rms_deg": 3.8318094361182116,
+  "tilt_mean_deg": 10.166229494619524,
+  "judge_rms": 11.108720510904075,
+  "judge_p95": 18.183682148494977,
+  "judge_max": 22.98166536057744,
+  "judge_jitter_rms": 6.218316773368733,
+  "height_mean": 49.57481074463489,
+  "seconds": 60.01199999999999,
+  "frames": 1499,
+  "fix_rate_hz": 24.978337665800176,
+  "frac_init": 0.0,
+  "frac_ok": 1.0,
+  "frac_degraded": 0.0,
+  "frac_lost": 0.0,
+  "proc_ms_mean": 4.121380013413261,
+  "late_ms_p95": 3.5999999999987153,
+  "ev_delay_ms": 101.2,
+  "hold_why": {
+   "waiting for image motion that proves the picture is live": 82
+  },
+  "hold_py_md5": "7e331cc6ac",
+  "px4_text": []
+ },
+ "none_50m_w20g40": {
+  "case": "none_50m_w20g40",
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 2, 0.0 s after the vision feed started"
+   ]
+  ],
+  "climb_s": 26.3,
+  "ekf_yaw_minus_true_deg": 12.12,
+  "rms": 183.13137957788217,
+  "p95": 286.1692280377598,
+  "max": 300.47996825511956,
+  "end": 300.47996825511956,
+  "drift_m_per_min": 336.0469422578578,
+  "roll_rms_deg": 0.6318698727740504,
+  "pitch_rms_deg": 0.19743463450337748,
+  "tilt_mean_deg": 0.5986936434241554,
+  "judge_rms": 182.81951301018415,
+  "judge_p95": 286.25349550438904,
+  "judge_max": 300.3560587778712,
+  "judge_jitter_rms": 98.85686009847963,
+  "height_mean": 49.586268281970575,
+  "seconds": 60.007999999999996,
+  "ev_delay_ms": 101.2,
+  "hold_why": {},
+  "hold_py_md5": "7e331cc6ac",
+  "px4_text": []
+ },
+ "truth_100m_calm": {
+  "case": "truth_100m_calm",
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 3, 2.3 s after the vision feed started"
+   ]
+  ],
+  "climb_s": 37.3,
+  "ekf_yaw_minus_true_deg": 12.36,
+  "rms": 0.2103106817823412,
+  "p95": 0.24520794202019608,
+  "max": 0.268571867383031,
+  "end": 0.17967149156217632,
+  "drift_m_per_min": 0.07091357249785141,
+  "roll_rms_deg": 0.12244154749331326,
+  "pitch_rms_deg": 0.11910386380649977,
+  "tilt_mean_deg": 0.006392671257731125,
+  "judge_rms": 1.0588792903247266,
+  "judge_p95": 1.3634669922649774,
+  "judge_max": 2.5054584340800523,
+  "judge_jitter_rms": 0.3258445896375992,
+  "height_mean": 99.55882779906345,
+  "seconds": 60.004,
+  "frames": 1498,
+  "fix_rate_hz": 24.96500233317779,
+  "frac_init": 0.0,
+  "frac_ok": 1.0,
+  "frac_degraded": 0.0,
+  "frac_lost": 0.0,
+  "proc_ms_mean": 0.943222635949263,
+  "late_ms_p95": 3.5999999999987153,
+  "ev_delay_ms": 101.2,
+  "hold_why": {},
+  "hold_py_md5": "7e331cc6ac",
+  "px4_text": []
+ },
+ "ours_100m_calm": {
+  "case": "ours_100m_calm",
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 3, 11.7 s after the vision feed started"
+   ],
+   [
+    6.98,
+    "FLY-AWAY: 30.0 m from the hold point; vision stopped, Altitude mode"
+   ]
+  ],
+  "climb_s": 37.4,
+  "ekf_yaw_minus_true_deg": 12.24,
+  "rms": 11.032800476242606,
+  "p95": 26.17735899339497,
+  "max": 30.02554921447414,
+  "end": 30.02554921447414,
+  "drift_m_per_min": 231.7852361027934,
+  "roll_rms_deg": 14.548048894645614,
+  "pitch_rms_deg": 8.003554345211965,
+  "tilt_mean_deg": 16.8345826781931,
+  "judge_rms": 42.52210567197635,
+  "judge_p95": 84.56404482021792,
+  "judge_max": 88.16099486025183,
+  "judge_jitter_rms": 33.62645742616643,
+  "height_mean": 98.83649541844841,
+  "seconds": 6.975999999999992,
+  "frames": 173,
+  "fix_rate_hz": 21.358944954128464,
+  "frac_init": 0.011560693641618497,
+  "frac_ok": 0.791907514450867,
+  "frac_degraded": 0.1791907514450867,
+  "frac_lost": 0.017341040462427744,
+  "proc_ms_mean": 2.9580305956103543,
+  "late_ms_p95": 7.5999999999964984,
+  "ev_delay_ms": 101.2,
+  "hold_why": {
+   "waiting for image motion that proves the picture is live": 260,
+   "picture broken up": 18,
+   "picture just after a broken-up one": 4
+  },
+  "hold_py_md5": "7e331cc6ac",
+  "px4_text": []
+ },
+ "ours_gyro_100m_calm": {
+  "case": "ours_gyro_100m_calm",
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 3, 7.5 s after the vision feed started"
+   ]
+  ],
+  "climb_s": 37.6,
+  "ekf_yaw_minus_true_deg": 12.23,
+  "rms": 0.7414222523923509,
+  "p95": 1.2965617438508972,
+  "max": 1.364540358277639,
+  "end": 1.271740149136468,
+  "drift_m_per_min": 0.8366041830531095,
+  "roll_rms_deg": 0.7697763448109292,
+  "pitch_rms_deg": 0.737560270066691,
+  "tilt_mean_deg": 0.07964988852372289,
+  "judge_rms": 2.1947894626689184,
+  "judge_p95": 3.8169071195891915,
+  "judge_max": 5.656251188011456,
+  "judge_jitter_rms": 2.1276057894682086,
+  "height_mean": 99.53543343875792,
+  "seconds": 60.0,
+  "frames": 1494,
+  "fix_rate_hz": 23.766666666666666,
+  "frac_init": 0.0,
+  "frac_ok": 0.9544846050870147,
+  "frac_degraded": 0.04551539491298527,
+  "frac_lost": 0.0,
+  "proc_ms_mean": 4.409515162003947,
+  "late_ms_p95": 7.599999999982288,
+  "ev_delay_ms": 101.2,
+  "hold_why": {
+   "waiting for image motion that proves the picture is live": 212
+  },
+  "hold_py_md5": "79c9d966db",
+  "px4_text": []
+ },
+ "none_100m_calm": {
+  "case": "none_100m_calm",
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 2, 0.0 s after the vision feed started"
+   ]
+  ],
+  "climb_s": 37.4,
+  "ekf_yaw_minus_true_deg": 12.17,
+  "rms": 4.884242959423771,
+  "p95": 8.075375401927403,
+  "max": 8.415277826117393,
+  "end": 8.415277826117393,
+  "drift_m_per_min": 8.931810189490456,
+  "roll_rms_deg": 0.07206393561669519,
+  "pitch_rms_deg": 0.10045057308238176,
+  "tilt_mean_deg": 0.2994294632068066,
+  "judge_rms": 4.862361614339396,
+  "judge_p95": 8.153852078921476,
+  "judge_max": 8.525994934310544,
+  "judge_jitter_rms": 2.6349170877935433,
+  "height_mean": 99.5777345688238,
+  "seconds": 60.008,
+  "ev_delay_ms": 101.2,
+  "hold_why": {},
+  "hold_py_md5": "79c9d966db",
+  "px4_text": []
+ },
+ "truth_100m_w20g40": {
+  "case": "truth_100m_w20g40",
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 3, 2.6 s after the vision feed started"
+   ]
+  ],
+  "climb_s": 37.3,
+  "ekf_yaw_minus_true_deg": 12.33,
+  "rms": 0.4629459176499632,
+  "p95": 0.7882625998278882,
+  "max": 0.8889733750778539,
+  "end": 0.23442095713371044,
+  "drift_m_per_min": 0.45207480798697114,
+  "roll_rms_deg": 5.044129612152562,
+  "pitch_rms_deg": 3.877974857613273,
+  "tilt_mean_deg": 10.043452122375285,
+  "judge_rms": 21.217230419257913,
+  "judge_p95": 35.241334358389956,
+  "judge_max": 41.86540203737835,
+  "judge_jitter_rms": 11.668734171493883,
+  "height_mean": 99.56692733266448,
+  "seconds": 60.004,
+  "frames": 1498,
+  "fix_rate_hz": 24.96500233317779,
+  "frac_init": 0.0,
+  "frac_ok": 1.0,
+  "frac_degraded": 0.0,
+  "frac_lost": 0.0,
+  "proc_ms_mean": 1.0225948872892072,
+  "late_ms_p95": 7.5999999999964984,
+  "ev_delay_ms": 101.2,
+  "hold_why": {},
+  "hold_py_md5": "825bee6dcf",
+  "px4_text": []
+ },
+ "ours_100m_w20g40": {
+  "case": "ours_100m_w20g40",
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 3, 7.6 s after the vision feed started"
+   ],
+   [
+    6.29,
+    "FLY-AWAY: 30.0 m from the hold point; vision stopped, Altitude mode"
+   ]
+  ],
+  "climb_s": 37.5,
+  "ekf_yaw_minus_true_deg": 12.63,
+  "rms": 12.338368277445937,
+  "p95": 27.611499845371686,
+  "max": 30.033200247208946,
+  "end": 30.033200247208946,
+  "drift_m_per_min": 287.28021066576946,
+  "roll_rms_deg": 14.600516329985812,
+  "pitch_rms_deg": 4.950074084743072,
+  "tilt_mean_deg": 11.540502779631675,
+  "judge_rms": 35.348188591263835,
+  "judge_p95": 62.72253211451968,
+  "judge_max": 64.96088237641005,
+  "judge_jitter_rms": 32.448852524136896,
+  "height_mean": 98.80052899126291,
+  "seconds": 6.292000000000002,
+  "frames": 155,
+  "fix_rate_hz": 24.634456452638265,
+  "frac_init": 0.0,
+  "frac_ok": 0.8129032258064516,
+  "frac_degraded": 0.1870967741935484,
+  "frac_lost": 0.0,
+  "proc_ms_mean": 9.44056062529149,
+  "late_ms_p95": 7.5999999999964984,
+  "ev_delay_ms": 101.2,
+  "hold_why": {
+   "waiting for image motion that proves the picture is live": 158
+  },
+  "hold_py_md5": "825bee6dcf",
+  "px4_text": []
+ },
+ "ours_gyro_100m_w20g40": {
+  "case": "ours_gyro_100m_w20g40",
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 3, 5.6 s after the vision feed started"
+   ]
+  ],
+  "climb_s": 37.2,
+  "ekf_yaw_minus_true_deg": 12.48,
+  "rms": 0.6335416366846147,
+  "p95": 1.2235053692069815,
+  "max": 1.2813886442057627,
+  "end": 0.4260584761771718,
+  "drift_m_per_min": 0.5802012472446622,
+  "roll_rms_deg": 5.123950472201108,
+  "pitch_rms_deg": 3.753690940797551,
+  "tilt_mean_deg": 10.072972089682315,
+  "judge_rms": 21.322552341868413,
+  "judge_p95": 34.219365415502935,
+  "judge_max": 41.783006530562936,
+  "judge_jitter_rms": 11.658809118240093,
+  "height_mean": 99.50326083745662,
+  "seconds": 60.004,
+  "frames": 1473,
+  "fix_rate_hz": 24.4983667755483,
+  "frac_init": 0.0,
+  "frac_ok": 0.9979633401221996,
+  "frac_degraded": 0.002036659877800407,
+  "frac_lost": 0.0,
+  "proc_ms_mean": 6.856549756346335,
+  "late_ms_p95": 7.5999999999964984,
+  "ev_delay_ms": 101.2,
+  "hold_why": {
+   "waiting for image motion that proves the picture is live": 113
+  },
+  "hold_py_md5": "927c6932fb",
+  "px4_text": []
+ },
+ "none_100m_w20g40": {
+  "case": "none_100m_w20g40",
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 2, 0.0 s after the vision feed started"
+   ]
+  ],
+  "climb_s": 37.5,
+  "ekf_yaw_minus_true_deg": 12.41,
+  "rms": 178.26788833377995,
+  "p95": 276.7154311520117,
+  "max": 291.0371880378361,
+  "end": 291.0371880378361,
+  "drift_m_per_min": 323.2411408331553,
+  "roll_rms_deg": 0.5886896198240161,
+  "pitch_rms_deg": 0.15535119555977167,
+  "tilt_mean_deg": 0.4583828153120833,
+  "judge_rms": 177.96431089362355,
+  "judge_p95": 276.56922641451825,
+  "judge_max": 290.69884305334136,
+  "judge_jitter_rms": 95.51751875437927,
+  "height_mean": 99.50201467520323,
+  "seconds": 60.0,
+  "ev_delay_ms": 101.2,
+  "hold_why": {},
+  "hold_py_md5": "927c6932fb",
+  "px4_text": []
+ },
+ "ours_gyro_20m_w20g40": {
+  "case": "ours_gyro_20m_w20g40",
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 3, 2.8 s after the vision feed started"
+   ]
+  ],
+  "climb_s": 20.2,
+  "ekf_yaw_minus_true_deg": 12.81,
+  "rms": 0.4546353161310225,
+  "p95": 0.7596227289579697,
+  "max": 1.1365470788030485,
+  "end": 0.14224347943809662,
+  "drift_m_per_min": 0.3962186417912538,
+  "roll_rms_deg": 5.099742851290611,
+  "pitch_rms_deg": 4.000169396750342,
+  "tilt_mean_deg": 10.232513580843277,
+  "judge_rms": 4.4889382873988675,
+  "judge_p95": 7.431134968853192,
+  "judge_max": 9.726611667569474,
+  "judge_jitter_rms": 2.6108474519667553,
+  "height_mean": 19.56743692419297,
+  "seconds": 60.0,
+  "frames": 1492,
+  "fix_rate_hz": 24.866666666666667,
+  "frac_init": 0.0,
+  "frac_ok": 1.0,
+  "frac_degraded": 0.0,
+  "frac_lost": 0.0,
+  "proc_ms_mean": 7.4531488590001445,
+  "late_ms_p95": 5.399999999991504,
+  "ev_delay_ms": 101.2,
+  "hold_why": {
+   "waiting for image motion that proves the picture is live": 20
+  },
+  "hold_py_md5": "927c6932fb",
+  "px4_text": []
+ },
+ "ours_gyro_122m_w20g40": {
+  "case": "ours_gyro_122m_w20g40",
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 3, 9.6 s after the vision feed started"
+   ]
+  ],
+  "climb_s": 42.4,
+  "ekf_yaw_minus_true_deg": 11.92,
+  "rms": 0.8236023727186152,
+  "p95": 1.6635189535255566,
+  "max": 1.884209096713457,
+  "end": 0.7169717110311041,
+  "drift_m_per_min": 1.093415703788112,
+  "roll_rms_deg": 5.103116570986944,
+  "pitch_rms_deg": 4.129159782768964,
+  "tilt_mean_deg": 10.188653654001051,
+  "judge_rms": 26.36692003002231,
+  "judge_p95": 44.31914945034415,
+  "judge_max": 52.26691847373653,
+  "judge_jitter_rms": 14.739271081099727,
+  "height_mean": 121.48881257600686,
+  "seconds": 60.0,
+  "frames": 1498,
+  "fix_rate_hz": 24.966666666666665,
+  "frac_init": 0.0,
+  "frac_ok": 1.0,
+  "frac_degraded": 0.0,
+  "frac_lost": 0.0,
+  "proc_ms_mean": 3.444766433381392,
+  "late_ms_p95": 7.5999999999964984,
+  "ev_delay_ms": 101.2,
+  "hold_why": {
+   "waiting for image motion that proves the picture is live": 195
+  },
+  "hold_py_md5": "927c6932fb",
+  "px4_text": []
+ },
+ "ours_122m_w20g40": {
+  "case": "ours_122m_w20g40",
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 3, 8.7 s after the vision feed started"
+   ],
+   [
+    17.48,
+    "FLY-AWAY: 30.0 m from the hold point; vision stopped, Altitude mode"
+   ]
+  ],
+  "climb_s": 42.4,
+  "ekf_yaw_minus_true_deg": 12.32,
+  "rms": 10.315816229498814,
+  "p95": 20.863902786292954,
+  "max": 30.035262720061677,
+  "end": 30.035262720061677,
+  "drift_m_per_min": 56.35885735918389,
+  "roll_rms_deg": 20.04656690441238,
+  "pitch_rms_deg": 20.178060140655155,
+  "tilt_mean_deg": 4.291301534490835,
+  "judge_rms": 73.33115684000505,
+  "judge_p95": 134.25826449992002,
+  "judge_max": 137.3953893124067,
+  "judge_jitter_rms": 71.93585238269002,
+  "height_mean": 120.67206437875753,
+  "seconds": 17.476000000000006,
+  "frames": 435,
+  "fix_rate_hz": 21.457999542229334,
+  "frac_init": 0.011494252873563218,
+  "frac_ok": 0.7655172413793103,
+  "frac_degraded": 0.19310344827586207,
+  "frac_lost": 0.029885057471264367,
+  "proc_ms_mean": 3.0698124502301107,
+  "late_ms_p95": 7.599999999982288,
+  "ev_delay_ms": 101.2,
+  "hold_why": {
+   "waiting for image motion that proves the picture is live": 183,
+   "picture broken up": 37,
+   "fit out of range": 9,
+   "picture just after a broken-up one": 6,
+   "11 points tracked": 2,
+   "12 points tracked": 1
+  },
+  "hold_py_md5": "6a414d9ef2",
+  "px4_text": []
+ },
+ "truth_122m_w20g40": {
+  "case": "truth_122m_w20g40",
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 3, 2.4 s after the vision feed started"
+   ]
+  ],
+  "climb_s": 42.3,
+  "ekf_yaw_minus_true_deg": 11.99,
+  "rms": 0.4485349674542081,
+  "p95": 0.8107849761218173,
+  "max": 1.0301564078285737,
+  "end": 0.29064118493766455,
+  "drift_m_per_min": 0.4124135604729897,
+  "roll_rms_deg": 5.034873203408673,
+  "pitch_rms_deg": 3.845453116647188,
+  "tilt_mean_deg": 10.067158763606342,
+  "judge_rms": 25.94826777076607,
+  "judge_p95": 42.80139609995155,
+  "judge_max": 50.58998746256636,
+  "judge_jitter_rms": 14.097840673370872,
+  "height_mean": 121.50779536623978,
+  "seconds": 60.004000000000005,
+  "frames": 1499,
+  "fix_rate_hz": 24.98166788880741,
+  "frac_init": 0.0,
+  "frac_ok": 1.0,
+  "frac_degraded": 0.0,
+  "frac_lost": 0.0,
+  "proc_ms_mean": 0.8726083657460746,
+  "late_ms_p95": 7.5999999999964984,
+  "ev_delay_ms": 101.2,
+  "hold_why": {},
+  "hold_py_md5": "6a414d9ef2",
+  "px4_text": []
+ },
+ "ours_gyro_100m_w20g40_light": {
+  "case": "ours_gyro_100m_w20g40_light",
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 3, 11.7 s after the vision feed started"
+   ]
+  ],
+  "climb_s": 37.4,
+  "ekf_yaw_minus_true_deg": 12.8,
+  "rms": 0.8880540283685656,
+  "p95": 1.6052851164315902,
+  "max": 1.818581471106722,
+  "end": 0.596995360404998,
+  "drift_m_per_min": 0.8728956508262664,
+  "roll_rms_deg": 4.9992629104976976,
+  "pitch_rms_deg": 4.088688969392712,
+  "tilt_mean_deg": 10.065713551812683,
+  "judge_rms": 21.460972461278505,
+  "judge_p95": 35.939327716147424,
+  "judge_max": 38.89964360675442,
+  "judge_jitter_rms": 11.724201112413011,
+  "height_mean": 99.52462808908047,
+  "seconds": 60.004,
+  "frames": 1498,
+  "fix_rate_hz": 24.96500233317779,
+  "frac_init": 0.0,
+  "frac_ok": 1.0,
+  "frac_degraded": 0.0,
+  "frac_lost": 0.0,
+  "proc_ms_mean": 6.379630813729957,
+  "late_ms_p95": 7.599999999982288,
+  "ev_delay_ms": 101.2,
+  "hold_why": {
+   "waiting for image motion that proves the picture is live": 261
+  },
+  "hold_py_md5": "a987701e23",
+  "px4_text": []
+ },
+ "ours_gyro_100m_w20g40_heavy": {
+  "case": "ours_gyro_100m_w20g40_heavy",
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 3, 10.1 s after the vision feed started"
+   ]
+  ],
+  "climb_s": 37.5,
+  "ekf_yaw_minus_true_deg": 11.91,
+  "rms": 0.6486204640269121,
+  "p95": 1.0477862016355246,
+  "max": 1.3098312233449714,
+  "end": 0.3759933421393123,
+  "drift_m_per_min": 0.9572813010961276,
+  "roll_rms_deg": 5.062602435358424,
+  "pitch_rms_deg": 3.9512628722652643,
+  "tilt_mean_deg": 10.086850366768084,
+  "judge_rms": 21.3475918741446,
+  "judge_p95": 35.801469059735915,
+  "judge_max": 44.53763175681682,
+  "judge_jitter_rms": 11.695500451568119,
+  "height_mean": 99.52615872207264,
+  "seconds": 60.00000000000001,
+  "frames": 1494,
+  "fix_rate_hz": 24.816666666666663,
+  "frac_init": 0.0,
+  "frac_ok": 0.9966532797858099,
+  "frac_degraded": 0.0033467202141900937,
+  "frac_lost": 0.0,
+  "proc_ms_mean": 13.24765147742249,
+  "late_ms_p95": 7.5999999999964984,
+  "ev_delay_ms": 101.2,
+  "hold_why": {
+   "waiting for image motion that proves the picture is live": 216
+  },
+  "hold_py_md5": "0de11cb493",
+  "px4_text": []
+ },
+ "truth_100m_w30g55": {
+  "case": "truth_100m_w30g55",
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 3, 2.4 s after the vision feed started"
+   ]
+  ],
+  "climb_s": 37.2,
+  "ekf_yaw_minus_true_deg": 11.91,
+  "rms": 0.6375184062332875,
+  "p95": 1.0551668299088448,
+  "max": 1.1828947233486504,
+  "end": 0.25198536029129814,
+  "drift_m_per_min": 0.6914466909408222,
+  "roll_rms_deg": 6.415584084915108,
+  "pitch_rms_deg": 5.686373731968837,
+  "tilt_mean_deg": 14.928092305137856,
+  "judge_rms": 31.363653255004095,
+  "judge_p95": 49.70220315201783,
+  "judge_max": 57.77444065095246,
+  "judge_jitter_rms": 16.111947690918836,
+  "height_mean": 99.52571065868264,
+  "seconds": 60.0,
+  "frames": 1498,
+  "fix_rate_hz": 24.966666666666665,
+  "frac_init": 0.0,
+  "frac_ok": 1.0,
+  "frac_degraded": 0.0,
+  "frac_lost": 0.0,
+  "proc_ms_mean": 0.5758326955746427,
+  "late_ms_p95": 7.5999999999964984,
+  "ev_delay_ms": 101.2,
+  "hold_why": {},
+  "hold_py_md5": "0de11cb493",
+  "px4_text": []
+ },
+ "ours_gyro_100m_w30g55": {
+  "case": "ours_gyro_100m_w30g55",
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 3, 8.3 s after the vision feed started"
+   ]
+  ],
+  "climb_s": 37.4,
+  "ekf_yaw_minus_true_deg": 11.86,
+  "rms": 0.8763493163394565,
+  "p95": 1.6624135690366635,
+  "max": 1.9914087115804229,
+  "end": 0.3271375853415408,
+  "drift_m_per_min": 1.0970260659818796,
+  "roll_rms_deg": 6.513149442436562,
+  "pitch_rms_deg": 5.636837047720304,
+  "tilt_mean_deg": 15.017830149142636,
+  "judge_rms": 31.81421465541394,
+  "judge_p95": 50.427187714706626,
+  "judge_max": 57.846063941024084,
+  "judge_jitter_rms": 16.25971715044369,
+  "height_mean": 99.53525550694026,
+  "seconds": 60.008,
+  "frames": 1491,
+  "fix_rate_hz": 24.84668710838555,
+  "frac_init": 0.0,
+  "frac_ok": 1.0,
+  "frac_degraded": 0.0,
+  "frac_lost": 0.0,
+  "proc_ms_mean": 6.2830640377043006,
+  "late_ms_p95": 7.5999999999964984,
+  "ev_delay_ms": 101.2,
+  "hold_why": {
+   "waiting for image motion that proves the picture is live": 171
+  },
+  "hold_py_md5": "0de11cb493",
+  "px4_text": []
+ },
+ "none_100m_w30g55": {
+  "case": "none_100m_w30g55",
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 2, 0.0 s after the vision feed started"
+   ]
+  ],
+  "climb_s": 37.3,
+  "ekf_yaw_minus_true_deg": 12.03,
+  "rms": 262.0643886099115,
+  "p95": 416.414252107569,
+  "max": 438.6515025812096,
+  "end": 438.6515025812096,
+  "drift_m_per_min": 486.771608565431,
+  "roll_rms_deg": 0.6735486918687906,
+  "pitch_rms_deg": 0.24737471090999177,
+  "tilt_mean_deg": 0.7110712750102077,
+  "judge_rms": 261.45407192080864,
+  "judge_p95": 416.17722503277747,
+  "judge_max": 437.98980884741786,
+  "judge_jitter_rms": 143.03780659389363,
+  "height_mean": 99.46947534046319,
+  "seconds": 60.004000000000005,
+  "ev_delay_ms": 101.2,
+  "hold_why": {},
+  "hold_py_md5": "0de11cb493",
+  "px4_text": []
+ },
+ "ours_gyro_100m_w20g40_osd_mask": {
+  "case": "ours_gyro_100m_w20g40_osd_mask",
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 3, 9.6 s after the vision feed started"
+   ]
+  ],
+  "climb_s": 37.4,
+  "ekf_yaw_minus_true_deg": 12.15,
+  "rms": 0.6335063105068893,
+  "p95": 1.0044218436727823,
+  "max": 1.3330517441041188,
+  "end": 0.07884043771692566,
+  "drift_m_per_min": 0.6975511725589629,
+  "roll_rms_deg": 4.94772932960073,
+  "pitch_rms_deg": 4.034837641477545,
+  "tilt_mean_deg": 10.046079527028846,
+  "judge_rms": 21.122255157339698,
+  "judge_p95": 34.67325484952215,
+  "judge_max": 39.963493910797105,
+  "judge_jitter_rms": 11.596728933243721,
+  "height_mean": 99.51922322164755,
+  "seconds": 60.0,
+  "frames": 1498,
+  "fix_rate_hz": 24.966666666666665,
+  "frac_init": 0.0,
+  "frac_ok": 0.9532710280373832,
+  "frac_degraded": 0.04672897196261682,
+  "frac_lost": 0.0,
+  "proc_ms_mean": 5.485809713203627,
+  "late_ms_p95": 3.5999999999987153,
+  "ev_delay_ms": 101.2,
+  "hold_why": {
+   "waiting for image motion that proves the picture is live": 197
+  },
+  "hold_py_md5": "0de11cb493",
+  "px4_text": []
+ },
+ "ours_gyro_100m_w20g40_breakup10": {
+  "case": "ours_gyro_100m_w20g40_breakup10",
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 3, 11.7 s after the vision feed started"
+   ]
+  ],
+  "climb_s": 37.4,
+  "ekf_yaw_minus_true_deg": 12.23,
+  "rms": 0.8840067784305109,
+  "p95": 1.6267521443924393,
+  "max": 1.7968929603464847,
+  "end": 1.1284105896061631,
+  "drift_m_per_min": 1.8801350341338907,
+  "roll_rms_deg": 4.9573025894228495,
+  "pitch_rms_deg": 4.034034937912278,
+  "tilt_mean_deg": 9.96206566492673,
+  "judge_rms": 21.09074996545563,
+  "judge_p95": 34.68315036124001,
+  "judge_max": 40.67855020125596,
+  "judge_jitter_rms": 11.50976285849674,
+  "height_mean": 99.51841244741041,
+  "seconds": 60.00799999999999,
+  "frames": 1499,
+  "fix_rate_hz": 21.530462604986006,
+  "frac_init": 0.022014676450967312,
+  "frac_ok": 0.8532354903268846,
+  "frac_degraded": 0.12008005336891261,
+  "frac_lost": 0.004669779853235491,
+  "proc_ms_mean": 6.105521554869007,
+  "late_ms_p95": 3.5999999999987153,
+  "ev_delay_ms": 101.2,
+  "hold_why": {
+   "waiting for image motion that proves the picture is live": 270,
+   "picture broken up": 82,
+   "picture just after a broken-up one": 57,
+   "18 points tracked": 5,
+   "19 points tracked": 5,
+   "7 points tracked": 5,
+   "8 points tracked": 3,
+   "6 points tracked": 3
+  },
+  "hold_py_md5": "a987701e23",
+  "px4_text": []
+ },
+ "ours_gyro_50m_w20g40_snow_tarps_pad": {
+  "case": "ours_gyro_50m_w20g40_snow_tarps_pad",
+  "events": [
+   [
+    0.0,
+    "PX4 never accepted Position mode"
+   ]
+  ],
+  "climb_s": 26.1,
+  "ekf_yaw_minus_true_deg": 12.36,
+  "ev_delay_ms": 101.2,
+  "hold_why": {
+   "11 points tracked": 74,
+   "10 points tracked": 70,
+   "12 points tracked": 64,
+   "9 points tracked": 43,
+   "13 points tracked": 41,
+   "14 points tracked": 10,
+   "8 points tracked": 9,
+   "15 points tracked": 2
+  },
+  "hold_py_md5": "a987701e23",
+  "px4_text": [
+   [
+    0.0,
+    "BARO #0 failed:  TIMEOUT!\t"
+   ],
+   [
+    0.0,
+    "MAG #0 failed:  TIMEOUT!\t"
+   ],
+   [
+    0.0,
+    "Preflight Fail: no valid barometer data"
+   ]
+  ]
+ },
+ "ours_gyro_50m_calm_snow_plain": {
+  "case": "ours_gyro_50m_calm_snow_plain",
+  "events": [
+   [
+    0.0,
+    "PX4 never accepted Position mode"
+   ]
+  ],
+  "climb_s": 26.3,
+  "ekf_yaw_minus_true_deg": 12.14,
+  "ev_delay_ms": 101.2,
+  "hold_why": {
+   "0 points tracked": 313
+  },
+  "hold_py_md5": "a987701e23",
+  "px4_text": []
+ },
+ "ours_gyro_100m_w20g40_ntsc": {
+  "case": "ours_gyro_100m_w20g40_ntsc",
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 3, 4.6 s after the vision feed started"
+   ]
+  ],
+  "climb_s": 37.5,
+  "ekf_yaw_minus_true_deg": 12.46,
+  "rms": 0.7230270669876355,
+  "p95": 1.1849205854115932,
+  "max": 1.3908995698195947,
+  "end": 0.45689555273519294,
+  "drift_m_per_min": 0.5076242994299235,
+  "roll_rms_deg": 5.022132340906163,
+  "pitch_rms_deg": 3.8720580564152423,
+  "tilt_mean_deg": 10.136985171743838,
+  "judge_rms": 21.175506268767677,
+  "judge_p95": 34.970101132470916,
+  "judge_max": 40.692279265934694,
+  "judge_jitter_rms": 11.700547923424455,
+  "height_mean": 99.55175056474532,
+  "seconds": 60.01199999999999,
+  "frames": 1498,
+  "fix_rate_hz": 24.96167433180031,
+  "frac_init": 0.0,
+  "frac_ok": 1.0,
+  "frac_degraded": 0.0,
+  "frac_lost": 0.0,
+  "proc_ms_mean": 4.265843415834122,
+  "late_ms_p95": 6.800000000012574,
+  "ev_delay_ms": 99.6,
+  "hold_why": {
+   "waiting for image motion that proves the picture is live": 74
+  },
+  "hold_py_md5": "a987701e23",
+  "px4_text": []
+ },
+ "ours_gyro_100m_w20g40_stamp_err20ms": {
+  "case": "ours_gyro_100m_w20g40_stamp_err20ms",
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 3, 19.7 s after the vision feed started"
+   ]
+  ],
+  "climb_s": 37.3,
+  "ekf_yaw_minus_true_deg": 12.15,
+  "rms": 0.8155850190398313,
+  "p95": 1.5110486484831929,
+  "max": 1.6054460075895793,
+  "end": 0.7769887147341611,
+  "drift_m_per_min": 1.4262035537627222,
+  "roll_rms_deg": 5.073665041403892,
+  "pitch_rms_deg": 3.889524945506825,
+  "tilt_mean_deg": 9.971177490864768,
+  "judge_rms": 21.164930583045727,
+  "judge_p95": 35.17899662992713,
+  "judge_max": 42.65446652630196,
+  "judge_jitter_rms": 11.754744061578519,
+  "height_mean": 99.48880318535602,
+  "seconds": 60.004000000000005,
+  "frames": 1498,
+  "fix_rate_hz": 24.965002333177786,
+  "frac_init": 0.0,
+  "frac_ok": 1.0,
+  "frac_degraded": 0.0,
+  "frac_lost": 0.0,
+  "proc_ms_mean": 6.544334011819404,
+  "late_ms_p95": 3.6000000000058208,
+  "ev_delay_ms": 101.2,
+  "hold_why": {
+   "waiting for image motion that proves the picture is live": 462
+  },
+  "hold_py_md5": "a987701e23",
+  "px4_text": []
+ },
+ "ours_gyro_100m_w20g40_proc150ms": {
+  "case": "ours_gyro_100m_w20g40_proc150ms",
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 3, 9.7 s after the vision feed started"
+   ]
+  ],
+  "climb_s": 37.4,
+  "ekf_yaw_minus_true_deg": 12.32,
+  "rms": 0.6913830867324903,
+  "p95": 1.258657033204593,
+  "max": 1.6143454376134203,
+  "end": 0.41932974854370125,
+  "drift_m_per_min": 0.7357618709338907,
+  "roll_rms_deg": 5.038203681739387,
+  "pitch_rms_deg": 3.885201538935361,
+  "tilt_mean_deg": 10.060498800716303,
+  "judge_rms": 21.23025133831927,
+  "judge_p95": 36.11263966645569,
+  "judge_max": 41.184331502521964,
+  "judge_jitter_rms": 11.533321476016278,
+  "height_mean": 99.52407073261436,
+  "seconds": 60.004,
+  "frames": 501,
+  "fix_rate_hz": 8.316112259182722,
+  "frac_init": 0.0,
+  "frac_ok": 0.9960079840319361,
+  "frac_degraded": 0.003992015968063872,
+  "frac_lost": 0.0,
+  "proc_ms_mean": 5.845378380977063,
+  "late_ms_p95": 3.6000000000058208,
+  "ev_delay_ms": 201.2,
+  "hold_why": {
+   "waiting for image motion that proves the picture is live": 208,
+   "picture broken up": 1,
+   "picture just after a broken-up one": 1
+  },
+  "hold_py_md5": "a987701e23",
+  "px4_text": []
+ },
+ "ours_50m_w20g40_evp1.0": {
+  "case": "ours_50m_w20g40_evp1.0",
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 3, 5.8 s after the vision feed started"
+   ]
+  ],
+  "climb_s": 26.2,
+  "ekf_yaw_minus_true_deg": 12.31,
+  "rms": 0.6604495951065487,
+  "p95": 1.1379105652599761,
+  "max": 1.3491496117381778,
+  "end": 0.7830854362277246,
+  "drift_m_per_min": 0.5773909742981516,
+  "roll_rms_deg": 5.114397673239929,
+  "pitch_rms_deg": 3.735936392457023,
+  "tilt_mean_deg": 9.881793798981205,
+  "judge_rms": 10.554990014384215,
+  "judge_p95": 18.077462813695735,
+  "judge_max": 20.516027239461362,
+  "judge_jitter_rms": 6.03005518205381,
+  "height_mean": 49.560155971349225,
+  "seconds": 60.0,
+  "frames": 1499,
+  "fix_rate_hz": 24.983333333333334,
+  "frac_init": 0.0,
+  "frac_ok": 1.0,
+  "frac_degraded": 0.0,
+  "frac_lost": 0.0,
+  "proc_ms_mean": 6.3976658100417305,
+  "late_ms_p95": 3.5999999999987153,
+  "ev_delay_ms": 101.2,
+  "hold_why": {
+   "waiting for image motion that proves the picture is live": 119
+  },
+  "hold_py_md5": "a987701e23",
+  "px4_text": []
+ },
+ "ours_100m_w20g40_evp1.0": {
+  "case": "ours_100m_w20g40_evp1.0",
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 3, 11.6 s after the vision feed started"
+   ]
+  ],
+  "climb_s": 37.5,
+  "ekf_yaw_minus_true_deg": 12.34,
+  "rms": 11.498868796002997,
+  "p95": 20.70186099167787,
+  "max": 22.251719165137093,
+  "end": 16.60343576029313,
+  "drift_m_per_min": 12.052318659698475,
+  "roll_rms_deg": 10.2605507805202,
+  "pitch_rms_deg": 14.694770202786902,
+  "tilt_mean_deg": 9.735103494248818,
+  "judge_rms": 41.31401776637557,
+  "judge_p95": 80.26247006937366,
+  "judge_max": 111.7256776262896,
+  "judge_jitter_rms": 39.648241084874215,
+  "height_mean": 99.00847520752224,
+  "seconds": 60.008,
+  "frames": 1498,
+  "fix_rate_hz": 23.13024930009332,
+  "frac_init": 0.0020026702269692926,
+  "frac_ok": 0.8184245660881175,
+  "frac_degraded": 0.16221628838451269,
+  "frac_lost": 0.017356475300400534,
+  "proc_ms_mean": 5.5074158304300065,
+  "late_ms_p95": 3.5999999999987153,
+  "ev_delay_ms": 101.2,
+  "hold_why": {
+   "waiting for image motion that proves the picture is live": 248,
+   "picture broken up": 91,
+   "picture just after a broken-up one": 16
+  },
+  "hold_py_md5": "a987701e23",
+  "px4_text": []
+ }
+}

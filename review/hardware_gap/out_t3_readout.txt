@@ -1,0 +1,20 @@
+--- 100 m, true readout 16 ms (top to bottom)
+  model 16 ms  first-row stamp: rms 0.29 p95 0.49 m sent 100% | mid-frame stamp: rms 0.29 p95 0.49 m sent 100%
+  model  0 ms  first-row stamp: rms 1.70 p95 2.52 m sent 100% | mid-frame stamp: rms 0.34 p95 0.59 m sent 100%
+  model  8 ms  first-row stamp: rms 0.79 p95 1.23 m sent 100% | mid-frame stamp: rms 0.31 p95 0.54 m sent 100%
+  model 24 ms  first-row stamp: rms 0.44 p95 0.73 m sent 100% | mid-frame stamp: rms 0.27 p95 0.47 m sent 100%
+  model 33 ms  first-row stamp: rms 0.77 p95 1.26 m sent 100% | mid-frame stamp: rms 0.28 p95 0.49 m sent 100%
+--- 200 m, true readout 16 ms (top to bottom)
+  model 16 ms  first-row stamp: rms 0.68 p95 1.14 m sent 100% | mid-frame stamp: rms 0.68 p95 1.14 m sent 100%
+  model  0 ms  first-row stamp: rms 2.64 p95 4.34 m sent 100% | mid-frame stamp: rms 0.78 p95 1.32 m sent 100%
+  model  8 ms  first-row stamp: rms 1.37 p95 2.33 m sent 100% | mid-frame stamp: rms 0.73 p95 1.22 m sent 100%
+  model 24 ms  first-row stamp: rms 0.96 p95 1.66 m sent 100% | mid-frame stamp: rms 0.64 p95 1.05 m sent 100%
+  model 33 ms  first-row stamp: rms 1.61 p95 2.69 m sent 100% | mid-frame stamp: rms 0.59 p95 0.98 m sent 100%
+--- 100 m, camera reads bottom row first (sensor flip setting), true readout 16 ms
+  model +16 ms, stamp = first row read          sent  100%  rms   0.50 m  p95   0.79 m  worst   1.19 m  false-fix 26.5%
+  model -16 ms, stamp = top row time            sent  100%  rms   0.28 m  p95   0.48 m  worst   0.61 m  false-fix  0.9%
+  model 0 ms (global shutter), mid-frame stamp  sent  100%  rms   0.46 m  p95   0.74 m  worst   0.99 m  false-fix 24.9%
+
+real	1m20.093s
+user	6m4.099s
+sys	1m51.266s

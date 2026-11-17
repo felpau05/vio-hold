@@ -1,0 +1,36 @@
+[gps_122m_w20g40] hold starts, mode 3, 0.8 s after the vision feed started
+[gps_122m_w20g40] rms 0.472  p95 0.851  max 1.03  drift_m_per_min 0.357  roll_rms_deg 5.07  pitch_rms_deg 3.9  judge_rms 26  judge_jitter_rms 14.2
+{
+ "case": "gps_122m_w20g40",
+ "events": [
+  [
+   0.0,
+   "hold starts, mode 3, 0.8 s after the vision feed started"
+  ]
+ ],
+ "climb_s": 42.3,
+ "ekf_yaw_minus_true_deg": -1.04,
+ "rms": 0.4716910682048426,
+ "p95": 0.8510092368803761,
+ "max": 1.027401233544788,
+ "end": 0.4885020133599665,
+ "drift_m_per_min": 0.3571095955166743,
+ "roll_rms_deg": 5.068729173565396,
+ "pitch_rms_deg": 3.9014455222508606,
+ "tilt_mean_deg": 10.008727612152269,
+ "judge_rms": 25.976529801348253,
+ "judge_p95": 43.86421230154501,
+ "judge_max": 50.674451212682605,
+ "judge_jitter_rms": 14.233310333921153,
+ "height_mean": 121.56730906489987,
+ "seconds": 60.008,
+ "ev_delay_ms": 101.2,
+ "hold_why": {},
+ "hold_py_md5": "d8b5e86060",
+ "px4_text": [
+  [
+   0.0,
+   "Preflight Fail: no heading reference"
+  ]
+ ]
+}

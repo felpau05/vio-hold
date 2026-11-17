@@ -1,0 +1,107 @@
+[b_apb_100m_w20g40_holdout_field_s102] hold starts, mode 3, 0.7 s after the vision feed started
+[b_apb_100m_w20g40_holdout_field_s102] PX4 left Position mode (mode 2)
+[b_apb_100m_w20g40_holdout_field_s102] FLY-AWAY: 30.0 m from the hold point; vision stopped, Altitude mode
+[b_apb_100m_w20g40_holdout_field_s102] rms 11.3  p95 21.7  max 30  drift_m_per_min 24.8  roll_rms_deg 6.84  pitch_rms_deg 2.81  judge_rms 29.8  judge_jitter_rms 15.2  fix_rate_hz 3.02  frac_ok 0  frac_lost 0.0933  proc_ms_mean 48.3
+{
+ "case": "b_apb_100m_w20g40_holdout_field_s102",
+ "events": [
+  [
+   0.0,
+   "hold starts, mode 3, 0.7 s after the vision feed started"
+  ],
+  [
+   17.0,
+   "PX4 left Position mode (mode 2)"
+  ],
+  [
+   59.29,
+   "FLY-AWAY: 30.0 m from the hold point; vision stopped, Altitude mode"
+  ]
+ ],
+ "climb_s": 37.5,
+ "ekf_yaw_minus_true_deg": 12.17,
+ "onboard": [
+  [
+   4.01,
+   "connected",
+   "px4, clock ready True, ATTITUDE 100 Hz"
+  ],
+  [
+   14.11,
+   "run",
+   "FAIL no usable video frame in 10 s. Check the camera and video_device."
+  ],
+  [
+   115.8,
+   "done",
+   "stopped after 2 start(s); frame age when taken p50 28 ms, p95 49 ms; SCALED_IMU 0 Hz, 0 rows kept"
+  ]
+ ],
+ "params_fail": [],
+ "onboard_exit": 0,
+ "clock_err_ms_mean": 0.8079427620732696,
+ "clock_err_ms_absmax": 0.9001407646849202,
+ "handover_ms_p50": 12.5926804903429,
+ "handover_ms_p95": 14.64861311178538,
+ "frames": 1482,
+ "processed": 1157,
+ "fixes": 179,
+ "fix_rate_hz": 3.0191607070570776,
+ "pct_frames_fix": 12.078272604588394,
+ "frac_init": 0.14606741573033707,
+ "frac_ok": 0.0,
+ "frac_degraded": 0.7605877268798618,
+ "frac_lost": 0.09334485738980121,
+ "proc_ms_mean": 48.29455488331893,
+ "age_ms_p50": 143.3,
+ "age_ms_p95": 167.53,
+ "hold_why": {
+  "init": 108,
+  "18 points tracked": 77,
+  "19 points tracked": 74,
+  "waiting for image motion that proves the picture is live": 62,
+  "19 points match": 60,
+  "19 consistent points": 60,
+  "17 points tracked": 60,
+  "18 consistent points": 52
+ },
+ "reanchors": 108,
+ "rms": 11.34765901574517,
+ "p95": 21.74821100679398,
+ "max": 30.00216697361237,
+ "end": 30.00216697361237,
+ "drift_m_per_min": 24.7979822002004,
+ "roll_rms_deg": 6.83564940359234,
+ "pitch_rms_deg": 2.8133928773245103,
+ "tilt_mean_deg": 9.756240782586662,
+ "judge_rms": 29.753173319176756,
+ "judge_p95": 49.5692576993668,
+ "judge_max": 68.68057103080467,
+ "judge_jitter_rms": 15.171281232325494,
+ "height_mean": 99.59287723326399,
+ "seconds": 59.288,
+ "ev_delay_ms": 101.2,
+ "hold_py_md5": "2cb1e9b8c6",
+ "px4_text": [
+  [
+   16.99,
+   "Failsafe activated\t"
+  ],
+  [
+   23.66,
+   "Failsafe activated\t"
+  ],
+  [
+   35.34,
+   "Failsafe activated\t"
+  ],
+  [
+   47.56,
+   "Failsafe activated\t"
+  ],
+  [
+   55.24,
+   "Failsafe activated\t"
+  ]
+ ]
+}

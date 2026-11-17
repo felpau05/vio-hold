@@ -1,0 +1,12 @@
+  10 m  rolling-shutter model: rms 0.11 m, p95 0.18 m, used 100%, false-fix 0.0%  global-shutter model: rms 0.12 m, p95 0.18 m, used 100%, false-fix 0.0%
+  25 m  rolling-shutter model: rms 0.11 m, p95 0.18 m, used 100%, false-fix 0.0%  global-shutter model: rms 0.13 m, p95 0.21 m, used 100%, false-fix 0.0%
+  50 m  rolling-shutter model: rms 0.21 m, p95 0.37 m, used 100%, false-fix 0.0%  global-shutter model: rms 0.21 m, p95 0.36 m, used 100%, false-fix 0.0%
+ 100 m  rolling-shutter model: rms 0.38 m, p95 0.64 m, used 100%, false-fix 0.0%  global-shutter model: rms 0.34 m, p95 0.57 m, used 100%, false-fix 0.0%
+ 150 m  rolling-shutter model: rms 0.62 m, p95 0.96 m, used 100%, false-fix 0.0%  global-shutter model: rms 0.67 m, p95 1.06 m, used 100%, false-fix 0.0%
+ 200 m  rolling-shutter model: rms 0.60 m, p95 1.01 m, used 100%, false-fix 0.0%  global-shutter model: rms 0.67 m, p95 1.16 m, used 100%, false-fix 0.0%
+ 300 m  rolling-shutter model: rms 0.91 m, p95 1.57 m, used 100%, false-fix 0.0%  global-shutter model: rms 1.02 m, p95 1.71 m, used 100%, false-fix 0.0%
+blackout to static std  5: lost after 0.38 s, 0 fixes and 0 keyframes from the static, fixes again 0.18 s after the picture returned (no re-anchor)
+blackout to static std 30: lost after 0.38 s, 0 fixes and 0 keyframes from the static, fixes again 0.18 s after the picture returned (no re-anchor)
+blackout to static std 60: lost after 0.38 s, 0 fixes and 0 keyframes from the static, fixes again 0.18 s after the picture returned (no re-anchor)
+timing sweep found latency 58 ms (expected 57), readout 18 ms (true 16)
+checks done; wrote sim_results.png

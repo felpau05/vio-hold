@@ -1,0 +1,164 @@
+{
+ "summary": "The organizer's site gives the Grand Final as 2026-11-21 (not 22), at the Canadian War Museum, 5:30-8:00 PM EST. Sunset on 22 Nov is about 4:26 PM, so that slot is after dark. The site does not say when the flight happens, so ask the organizers. The only challenge text is \"Live position hold without GNSS using Visual-Inertial Odometry\"; no altitude, hardware or limits are published. Climate normals (ECCC, CYOW, 1981-2010) give a November mean wind of 13.8 km/h from the west at 10 m. Estimated mean wind at 100-120 m is about 19-25 km/h (rule-based estimate). Daily high is about +5 C and low about -2 C. Snow depth is 1 cm or more on about 5-6 days of 30; no day-specific snow probability was found. CYR537 (0.4 mile radius, surface to 3000 ft) covers Parliament Hill; the museum appears to lie outside it (inference). The legal ceiling is 122 m AGL, and an event flight probably has a lower cap set by the organizers (inference). The team's compute-board and UART notes were not confirmed by any source.",
+ "facts": [
+  {
+   "claim": "Grand Final date, venue, time",
+   "value": "2026-11-21, Canadian War Museum, 5:30-8:00 PM EST (pitches and awards; flight timing not stated)",
+   "source_url": "https://redteamhack.ca/",
+   "confidence": "high"
+  },
+  {
+   "claim": "Challenge text on organizer page",
+   "value": "Contested Battlefield Aerial Operations: 'Live position hold without GNSS using Visual-Inertial Odometry'; no other spec",
+   "source_url": "https://redteamhack.ca/",
+   "confidence": "high"
+  },
+  {
+   "claim": "Organizers and sponsors",
+   "value": "Remote Robotic Systems and Orqa; sponsors Calian, ThinkOn; marketing sponsor The Icebreaker",
+   "source_url": "https://redteamhack.ca/",
+   "confidence": "high"
+  },
+  {
+   "claim": "Terms: max teams and judging criteria",
+   "value": "Max 11 teams; criteria Entrepreneurial Drive, Algorithm, Technical Implementation, Feasibility & Scalability, Storytelling & Vision; terms do not mention drones",
+   "source_url": "https://redteamhack.ca/terms",
+   "confidence": "high"
+  },
+  {
+   "claim": "Grand Final qualifiers (event winners)",
+   "value": "Drop Table (BCIT), Project Pluto (U Calgary), The Alpha Nova, ENGITS (Carleton)",
+   "source_url": "https://redteamhack.ca/winners",
+   "confidence": "high"
+  },
+  {
+   "claim": "Mean hourly wind at CYOW in November (1981-2010)",
+   "value": "13.78 km/h (3.83 m/s) at 10 m",
+   "source_url": "https://api.weather.gc.ca/collections/climate-normals/items?CLIMATE_IDENTIFIER=6106000&MONTH=11&f=json&limit=100",
+   "confidence": "high"
+  },
+  {
+   "claim": "Most frequent wind direction in November",
+   "value": "270 degrees true (west)",
+   "source_url": "https://api.weather.gc.ca/collections/climate-normals/items?CLIMATE_IDENTIFIER=6106000&MONTH=11&f=json&limit=100",
+   "confidence": "high"
+  },
+  {
+   "claim": "Days per November with hourly wind above 30 / 40 / 50 km/h",
+   "value": "6.83 / 1.93 / 0.23 days",
+   "source_url": "https://api.weather.gc.ca/collections/climate-normals/items?CLIMATE_IDENTIFIER=6106000&MONTH=11&f=json&limit=100",
+   "confidence": "high"
+  },
+  {
+   "claim": "Days with wind >= 28 kt / >= 34 kt",
+   "value": "1.12 / 0.23 days (gust vs sustained not stated)",
+   "source_url": "https://api.weather.gc.ca/collections/climate-normals/items?CLIMATE_IDENTIFIER=6106000&MONTH=11&f=json&limit=100",
+   "confidence": "high"
+  },
+  {
+   "claim": "Estimated mean wind at 50 / 100 / 120 m from u10=13.78 km/h (log law z0 0.03-0.5 m; power law alpha 0.14-0.3)",
+   "value": "50 m 17-22 km/h; 100 m 19-27 km/h; 120 m 20-29 km/h (estimate; neutral flat terrain)",
+   "source_url": "https://api.weather.gc.ca/collections/climate-normals/items?CLIMATE_IDENTIFIER=6106000&MONTH=11&f=json&limit=100",
+   "confidence": "low"
+  },
+  {
+   "claim": "November temperatures at CYOW (1981-2010)",
+   "value": "mean max 5.36 C, mean min -2.42 C; 20.6 days with min <= 0 C",
+   "source_url": "https://api.weather.gc.ca/collections/climate-normals/items?CLIMATE_IDENTIFIER=6106000&MONTH=11&f=json&limit=100",
+   "confidence": "high"
+  },
+  {
+   "claim": "Fog, freezing rain, humidity in November at CYOW",
+   "value": "2.9 fog days, 2.07 freezing rain/drizzle days, 06:00 RH 83.5 percent",
+   "source_url": "https://api.weather.gc.ca/collections/climate-normals/items?CLIMATE_IDENTIFIER=6106000&MONTH=11&f=json&limit=100",
+   "confidence": "high"
+  },
+  {
+   "claim": "Snow depth in November at CYOW (1981-2010)",
+   "value": "days >=1 cm 6; >=5 cm 3.3; >=10 cm 1.6; month-end mean 3.83 cm; median daily 0.72 cm",
+   "source_url": "https://api.weather.gc.ca/collections/climate-normals/items?CLIMATE_IDENTIFIER=6106000&MONTH=11&f=json&limit=100",
+   "confidence": "high"
+  },
+  {
+   "claim": "Snow depth in November at Ottawa CDA (1981-2010)",
+   "value": "days >=1 cm 4.92; >=10 cm 1.35; month-end mean 3 cm",
+   "source_url": "https://api.weather.gc.ca/collections/climate-normals/items?CLIMATE_IDENTIFIER=6105976&MONTH=11&f=json&limit=100",
+   "confidence": "high"
+  },
+  {
+   "claim": "Cloud and sun in November at CYOW",
+   "value": "473.5 hours with 8-10 tenths cloud; bright sun 92.4 h (32 percent of daylight)",
+   "source_url": "https://api.weather.gc.ca/collections/climate-normals/items?CLIMATE_IDENTIFIER=6106000&MONTH=11&f=json&limit=100",
+   "confidence": "high"
+  },
+  {
+   "claim": "Ottawa sun on 22 Nov 2026",
+   "value": "sunrise 7:11, sunset 4:26 PM, day 9 h 15 min, solar noon 11:48 with sun altitude 24.4 deg",
+   "source_url": "https://www.timeanddate.com/sun/canada/ottawa?month=11&year=2026",
+   "confidence": "high"
+  },
+  {
+   "claim": "CYR537 definition",
+   "value": "Class F, radius 0.4 mile at N45 25 29.05 W075 41 56.74, surface to 3000 ft, RCMP controlling, continuous",
+   "source_url": "https://www.navcanada.ca/en/flight-planning/service-notices/2021-06-17-ottawa.aspx",
+   "confidence": "high"
+  },
+  {
+   "claim": "Transport Canada: 122 m limit; SFOC for microdrones at advertised events since 2025-04-01; fees from 2025-11-04",
+   "value": "122 m AGL; SFOC fee $20 / $75 / $900 / $2,000 by risk level",
+   "source_url": "https://tc.canada.ca/en/aviation/drone-safety/2025-summary-changes-canada-drone-regulations",
+   "confidence": "high"
+  },
+  {
+   "claim": "Museum site and green roof",
+   "value": "site 7.5 ha, green roof 20,500 m2 self-seeding, peak 24 m, river on west and north",
+   "source_url": "https://en.wikipedia.org/wiki/Canadian_War_Museum",
+   "confidence": "medium"
+  },
+  {
+   "claim": "White Christmas probability Ottawa (2 cm on 25 Dec)",
+   "value": "79 percent (1955-2024), 72 percent (2000-2024)",
+   "source_url": "https://www.canada.ca/en/environment-climate-change/services/weather-general-tools-resources/historical-christmas-snowfall-data.html",
+   "confidence": "high"
+  },
+  {
+   "claim": "Orqa MRM2-10AI has Auto Pilot Board with vision-based GNSS-denied guidance and onboard AI compute; processor and FC not named",
+   "value": "no i.MX8M Plus / STM32H743 confirmation",
+   "source_url": "https://soldiersystems.net/2026/06/11/orqa-unveils-the-mrm2-10ai-at-eurosatory-a-tactical-drone-designed-to-dominate-in-the-age-of-electronic-warfare/",
+   "confidence": "medium"
+  },
+  {
+   "claim": "Cold effect on LiPo packs",
+   "value": "capacity loss and voltage sag; sources cite 30-50 percent loss at very low temperature; pre-warm packs",
+   "source_url": "https://hobbyking.com/blog/LiPoBatteryLowTemperaturePerformanceAnalysis",
+   "confidence": "low"
+  },
+  {
+   "claim": "Museum likely outside CYR537 circle by about 1.3 km",
+   "value": "inference from approximate coordinates, not from a source",
+   "source_url": "https://www.navcanada.ca/en/flight-planning/service-notices/2021-06-17-ottawa.aspx",
+   "confidence": "low"
+  }
+ ],
+ "unknowns": [
+  "When and where the flight happens on 21 Nov (the listed 5:30-8:00 PM slot is after sunset), and whether it is indoors, outdoors or at night",
+  "Altitude cap and the drift/stability limits (limits arrive 72 h before the event)",
+  "Gust statistics and wind direction spread for Ottawa in late November",
+  "Day-specific snow-on-ground probability for 21-22 Nov and median date of first lasting snow cover",
+  "Exact airspace class and limits at the museum; the NRC/NAV CANADA drone tool returned HTTP 403",
+  "Barometer model of the Orqa flight controller and its temperature drift; lens fog and frost data",
+  "Current ground state at LeBreton Flats (construction, snow clearing, event tents); no imagery was retrieved",
+  "1991-2020 wind and snow normals (the API held only 1981-2010 for these)",
+  "Eventbrite page and any event spec, camera, or compute details; the team's i.MX8M Plus + STM32H743 + 230400 baud notes are unconfirmed"
+ ],
+ "recommendations": [
+  "Email the organizers now: confirm the date is 21 Nov, the flight time slot, lighting (night or day), indoor or outdoor, altitude cap, and camera and compute specs.",
+  "If any flight is after sunset, add dark and low-light runs to the sim (noise, motion blur, low contrast, no texture) and test whether the Justice D camera sees anything.",
+  "Add sim cases for river-filled views, uniform lawn, and a thin snow cover; log tracked-point count against position error.",
+  "Test with wind: use hourly mean 14 km/h at 10 m and about 20-25 km/h at 100 m, with gust cases of 50-60 km/h; closed-loop with drone dynamics if possible.",
+  "Add long moving shadow cases (sun 24 deg at noon, setting about 4:26 PM) to the textured and aerial-photo sims.",
+  "Procedure: pre-warm batteries, keep the camera lens dry, let the baro and board warm up before arming, and take a baro and temperature log on the ground before flight.",
+  "Check the NAV CANADA/NRC drone tool and the Canada Flight Supplement in a browser; the organizers hold the permissions but the altitude cap should be asked for."
+ ],
+ "report_path": "/home/paul/Videos/vio-hold-attempt/research/site_weather.md"
+}

@@ -1,0 +1,3 @@
+b_apb_100m_w20g40_holdout_quarry_s101 rc=0 05:20:58
+b_apb_100m_w20g40_holdout_field_s102 rc=0 05:22:57
+b_apb_100m_w20g40_holdout_water_s103 rc=0 05:24:57

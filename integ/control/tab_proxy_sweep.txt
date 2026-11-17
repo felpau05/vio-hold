@@ -1,0 +1,39 @@
+  c_px_base_100m_w20g40_s11                    rms 0.45 max 0.94 roll 8.55 pitch 2.75 fixHz 10.8 age nan 
+  c_px_base_100m_w20g40_s12                    rms 0.58 max 1.13 roll 5.81 pitch 2.42 fixHz 10.8 age nan 
+c_px_base_: n 2  RMS middle 0.52 worst 0.58 | max middle 1.03 worst 1.13 | tilt wobble middle 7.64 deg
+  c_px_posp15_100m_w20g40_s11                  rms 0.37 max 0.69 roll 8.57 pitch 2.75 fixHz 10.8 age nan 
+  c_px_posp15_100m_w20g40_s12                  rms 0.58 max 1.10 roll 5.85 pitch 2.42 fixHz 10.8 age nan 
+c_px_posp15_: n 2  RMS middle 0.47 worst 0.58 | max middle 0.90 worst 1.10 | tilt wobble middle 7.67 deg
+  c_px_posp07_100m_w20g40_s11                  rms 0.55 max 1.06 roll 8.58 pitch 2.76 fixHz 10.7 age nan 
+  c_px_posp07_100m_w20g40_s12                  rms 0.55 max 1.05 roll 5.75 pitch 2.36 fixHz 10.7 age nan 
+c_px_posp07_: n 2  RMS middle 0.55 worst 0.55 | max middle 1.06 worst 1.06 | tilt wobble middle 7.62 deg
+  c_px_velp3_100m_w20g40_s11                   rms 0.38 max 0.74 roll 8.54 pitch 2.70 fixHz 10.8 age nan 
+  c_px_velp3_100m_w20g40_s12                   rms 0.56 max 1.09 roll 5.69 pitch 2.35 fixHz 10.8 age nan 
+c_px_velp3_: n 2  RMS middle 0.47 worst 0.56 | max middle 0.91 worst 1.09 | tilt wobble middle 7.55 deg
+  c_px_veli2_100m_w20g40_s11                   rms 0.36 max 0.74 roll 8.67 pitch 2.77 fixHz 10.8 age nan 
+  c_px_veli2_100m_w20g40_s12                   rms 0.47 max 0.96 roll 5.90 pitch 2.41 fixHz 10.7 age nan 
+c_px_veli2_: n 2  RMS middle 0.42 worst 0.47 | max middle 0.85 worst 0.96 | tilt wobble middle 7.73 deg
+  c_px_veld1_100m_w20g40_s11                   rms 0.47 max 0.94 roll 8.51 pitch 2.74 fixHz 10.7 age nan 
+  c_px_veld1_100m_w20g40_s12                   rms 0.50 max 0.97 roll 5.74 pitch 2.34 fixHz 10.8 age nan 
+c_px_veld1_: n 2  RMS middle 0.48 worst 0.50 | max middle 0.96 worst 0.97 | tilt wobble middle 7.57 deg
+  c_px_veld025_100m_w20g40_s11                 rms 0.46 max 0.93 roll 8.70 pitch 2.79 fixHz 10.8 age nan 
+  c_px_veld025_100m_w20g40_s12                 rms 0.50 max 0.97 roll 5.82 pitch 2.42 fixHz 10.8 age nan 
+c_px_veld025_: n 2  RMS middle 0.48 worst 0.50 | max middle 0.95 worst 0.97 | tilt wobble middle 7.72 deg
+  c_px_jerk10_100m_w20g40_s11                  rms 0.46 max 0.88 roll 8.54 pitch 2.76 fixHz 10.8 age nan 
+  c_px_jerk10_100m_w20g40_s12                  rms 0.51 max 0.99 roll 5.82 pitch 2.39 fixHz 10.8 age nan 
+c_px_jerk10_: n 2  RMS middle 0.48 worst 0.51 | max middle 0.93 worst 0.99 | tilt wobble middle 7.63 deg
+  c_px_acc1000_100m_w20g40_s11                 rms 0.46 max 0.93 roll 8.61 pitch 2.76 fixHz 10.8 age nan 
+  c_px_acc1000_100m_w20g40_s12                 rms 0.58 max 1.09 roll 5.88 pitch 2.42 fixHz 10.9 age nan 
+c_px_acc1000_: n 2  RMS middle 0.52 worst 0.58 | max middle 1.01 worst 1.09 | tilt wobble middle 7.70 deg
+  c_px_drag14_100m_w20g40_s11                  rms 0.45 max 0.92 roll 8.56 pitch 2.83 fixHz 10.8 age nan 
+  c_px_drag14_100m_w20g40_s12                  rms 0.57 max 1.12 roll 5.78 pitch 2.41 fixHz 10.8 age nan 
+c_px_drag14_: n 2  RMS middle 0.51 worst 0.57 | max middle 1.02 worst 1.12 | tilt wobble middle 7.64 deg
+  c_px_i2p15_100m_w20g40_s11                   rms 0.33 max 0.66 roll 8.64 pitch 2.79 fixHz 10.8 age nan 
+  c_px_i2p15_100m_w20g40_s12                   rms 0.43 max 0.87 roll 5.91 pitch 2.45 fixHz 10.9 age nan 
+c_px_i2p15_: n 2  RMS middle 0.38 worst 0.43 | max middle 0.76 worst 0.87 | tilt wobble middle 7.74 deg
+  c_px_i2p15v3_100m_w20g40_s11                 rms 0.29 max 0.53 roll 8.58 pitch 2.74 fixHz 10.7 age nan 
+  c_px_i2p15v3_100m_w20g40_s12                 rms 0.49 max 0.92 roll 5.79 pitch 2.38 fixHz 10.7 age nan 
+c_px_i2p15v3_: n 2  RMS middle 0.39 worst 0.49 | max middle 0.72 worst 0.92 | tilt wobble middle 7.63 deg
+  c_px_veli3_100m_w20g40_s11                   rms 0.30 max 0.65 roll 8.57 pitch 2.70 fixHz 10.6 age nan 
+  c_px_veli3_100m_w20g40_s12                   rms 0.47 max 0.95 roll 5.96 pitch 2.41 fixHz 10.7 age nan 
+c_px_veli3_: n 2  RMS middle 0.39 worst 0.47 | max middle 0.80 worst 0.95 | tilt wobble middle 7.71 deg

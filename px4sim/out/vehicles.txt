@@ -1,0 +1,5 @@
+vehicle  SIH_MASS       SIH_IXX        SIH_IZZ        SIH_L_ROLL     SIH_T_MAX      SIH_Q_MAX      SIH_KDV        MPC_THR_HOVER  MC_ROLLRATE_K  MC_YAWRATE_K   CA_ROTOR0_PX   CA_ROTOR0_KM 
+light    1.8            0.01478        0.02956        0.159          18.57          0.3157         0.6427         0.2377         0.2002         0.3121         0.159          0.017        
+medium   2.3            0.01645        0.03289        0.159          18.57          0.3157         0.8212         0.3038         0.2228         0.3473         0.159          0.017        
+heavy    3.5            0.02045        0.04089        0.159          18.57          0.3157         1.25           0.4623         0.277          0.4318         0.159          0.017        
+All values are assumptions (see sitl.py comments): T_MAX from 'payload 3.5 kg' at 70 % thrust, 450 mm diagonal, KDV from 20 deg tilt at 10 m/s.

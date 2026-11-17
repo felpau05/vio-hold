@@ -1,0 +1,9 @@
+CPU: Intel(R) Core(TM) 7 240H; OpenCV threads 1
+Hold.process 360x240: mean 29.08 ms, p95 38.69 ms, max 109.48 ms (budget 33.3 ms per frame at 30 Hz, 16.7 ms per field at 60 Hz)
+Series.array() rebuild with 4000 rows (every new attitude sample): 1.80 ms
+  360x240: goodFeaturesToTrack(300) 1.66 ms, one LK pass on 300 points 6.20 ms (process() runs 3 LK passes per frame)
+  720x480: goodFeaturesToTrack(300) 8.42 ms, one LK pass on 300 points 5.54 ms (process() runs 3 LK passes per frame)
+
+real	0m18.133s
+user	0m16.658s
+sys	0m0.581s

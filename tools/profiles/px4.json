@@ -1,0 +1,7 @@
+{
+ "_why": {
+  "params_px4.MAV_0_RATE": "FINDINGS H5 and the check line in apb_main.py: 23040 B/s keeps ATTITUDE at 100 Hz on the 230400 baud link. Orqa's public PX4 defaults set 1200 B/s (research/github_autopilot.md), far too low.",
+  "_note": "Set EKF2_EV_DELAY or EKF2_DELAY_MAX by hand from check (EVENT_DAY step 2); this overlay does not own them, so apply keeps them."
+ },
+ "params_px4": {"MAV_0_RATE": 23040}
+}

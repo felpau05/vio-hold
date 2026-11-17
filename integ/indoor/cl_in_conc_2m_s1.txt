@@ -1,0 +1,114 @@
+[in_conc_2m_s1] hold starts, mode 3, 0.5 s after the vision feed started
+[in_conc_2m_s1] height below min(3 m, 0.4 x the hold height): crashed or landed
+[in_conc_2m_s1] fix_rate_hz 0  frac_ok 0  frac_lost 0
+{
+ "case": "in_conc_2m_s1",
+ "events": [
+  [
+   0.0,
+   "hold starts, mode 3, 0.5 s after the vision feed started"
+  ],
+  [
+   0.0,
+   "height below min(3 m, 0.4 x the hold height): crashed or landed"
+  ]
+ ],
+ "climb_s": 124.0,
+ "ekf_yaw_minus_true_deg": 9.7,
+ "onboard": [
+  [
+   4.09,
+   "connected",
+   "px4, clock ready True, ATTITUDE 100 Hz"
+  ],
+  [
+   14.2,
+   "run",
+   "FAIL no usable video frame in 10 s. Check the camera and video_device."
+  ],
+  [
+   24.4,
+   "run",
+   "FAIL no usable video frame in 10 s. Check the camera and video_device."
+  ],
+  [
+   34.61,
+   "run",
+   "FAIL no usable video frame in 10 s. Check the camera and video_device."
+  ],
+  [
+   44.84,
+   "run",
+   "FAIL no usable video frame in 10 s. Check the camera and video_device."
+  ],
+  [
+   55.04,
+   "run",
+   "FAIL no usable video frame in 10 s. Check the camera and video_device."
+  ],
+  [
+   65.24,
+   "run",
+   "FAIL no usable video frame in 10 s. Check the camera and video_device."
+  ],
+  [
+   75.44,
+   "run",
+   "FAIL no usable video frame in 10 s. Check the camera and video_device."
+  ],
+  [
+   85.65,
+   "run",
+   "FAIL no usable video frame in 10 s. Check the camera and video_device."
+  ],
+  [
+   95.89,
+   "run",
+   "FAIL no usable video frame in 10 s. Check the camera and video_device."
+  ],
+  [
+   106.09,
+   "run",
+   "FAIL no usable video frame in 10 s. Check the camera and video_device."
+  ],
+  [
+   116.32,
+   "run",
+   "FAIL no usable video frame in 10 s. Check the camera and video_device."
+  ],
+  [
+   126.52,
+   "run",
+   "FAIL no usable video frame in 10 s. Check the camera and video_device."
+  ],
+  [
+   136.77,
+   "run",
+   "FAIL no usable video frame in 10 s. Check the camera and video_device."
+  ],
+  [
+   136.97,
+   "done",
+   "stopped after 13 start(s); frame age when taken p50 18 ms, p95 29 ms; SCALED_IMU 0 Hz, 0 rows kept"
+  ]
+ ],
+ "params_fail": [],
+ "onboard_exit": 0,
+ "frames": 0,
+ "processed": 0,
+ "fixes": 0,
+ "fix_rate_hz": 0.0,
+ "pct_frames_fix": 0.0,
+ "frac_init": 0.0,
+ "frac_ok": 0.0,
+ "frac_degraded": 0.0,
+ "frac_lost": 0.0,
+ "proc_ms_mean": null,
+ "age_ms_p50": null,
+ "age_ms_p95": null,
+ "hold_why": {},
+ "reanchors": 0,
+ "ev_delay_ms": 104.2,
+ "hold_py_md5": "05d076f903",
+ "px4_text": []
+}

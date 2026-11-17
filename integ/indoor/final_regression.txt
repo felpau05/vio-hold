@@ -1,0 +1,22 @@
+E1   PASS  static std 5/30, caller re-anchors: fixes sent 0.5-5 s into static 30/53 -> 0/0 of 112, keyframes on static 19/3 -> 0/0; ground at 10 % contrast: sent 20% RMS 4.74 m false-fix 67.3% -> sent 100% RMS 0.44 m false-fix 0.0% (FINDINGS: 29/75 fixes, 9/4 keyframes)
+E2   PASS  frozen frame + 0.5 m/s drift: confident-wrong fixes 239 -> 0, fixes sent 0.5-10 s after the freeze 237 -> 0; static OSD on 40 % contrast ground, no mask: RMS 9.74 -> 0.71 m, false-fix 75.3% -> 0.6%, confident-wrong 72 -> 0 (FINDINGS: 288 confident-wrong; OSD RMS 8.07 m)
+E3   PASS  textured object on ~27 % of the picture moving 3 m/s, 3 seeds: RMS after 5 s 22.75 -> 0.79 m (per seed 1.00/0.62/0.94), confident-wrong 491 -> 3, false-fix 92.3% -> 0.4% (FINDINGS: 29.57 m, 296)
+E4   PASS  outside the 99 % bound, 6 seeds x 4 heights: 13.3% -> 0.0% (100 m 6.2%->0.0% 200 m 11.2%->0.0% 300 m 16.5%->0.0% 400 m 19.5%->0.0%); +-60 deg yaw at 100 m 11.2% -> 0.0%; outside the 50 % bound 9.7% (ideal 50 %; 18.3% with sig_bias=0, false-fix 0.0%) (FINDINGS: 12.9-23.7 %)
+E5   INFO  not in CORE scope (boresight calibration): 1 deg mount error, 90 deg turn at 100 m: RMS 2.83 -> 3.11 m, false-fix 100% -> 0% (v2 assumes BETA_UNC 0.6 deg)
+E6   PASS  100 m with +-60 / +-90 deg yaw swings, seeds 1 and 3: keyframes made [7, 11, 11, 11] -> [8, 7, 11, 13], RMS 1.45 -> 1.41 m, end error [0.72, 0.5, 1.41, 1.97] -> [0.44, 0.31, 1.93, 1.26] m, false-fix 10.5% -> 2.2%; prairie 50 m (noise-dominated photo): v1 106 keyframes, RMS 1.98 m, end 3.65 m -> v2 sends 100% ('no ground') (FINDINGS: 3/11/15 changes, RMS 0.82/1.24/2.10 m at +-30/60/90 deg)
+E7   PASS  3 s static while flying 1 m/s, no reanchor(), 20/50/100 m: fixes back after never/never/never -> 0.13/0.13/0.13 s, RMS after 0.14/0.13/0.26 m (FINDINGS: never)
+E8   PASS  sim_ground reports pooled seeds (sim_ground.py --seeds); 400 m RMS per seed [1.24, 1.34, 1.47, 1.67, 1.72, 1.57] m; seed 5 false-fix 28.3% -> 0.0% (FINDINGS: 50.8 %)
+E9   PASS  ms per frame, 1 thread, 360 x 240: mean 27.8 -> 7.1, p95 33.0 -> 8.1 (same machine and run; FINDINGS: 17.7 mean)
+H6   PASS  same numbers as E9 (FINDINGS: 29.08 ms mean); A53 estimate x10: 71 ms
+E10  PASS  'degraded' fixes carry 4x the covariance; outside the 99 % bound among degraded fixes (frozen, big object, hovers): 0.0% of 38 (FINDINGS: 97 %)
+E11  PASS  velocity filter removed (Hold.vel stays 0); RMS at 100 m, 6 seeds 0.36 -> 0.34 m (FINDINGS: no effect on RMS)
+E12  INFO  not in CORE scope (EKF R / pre-filter): frame jitter per axis at 100 m 0.155 -> 0.159 m (FINDINGS: 0.241 m)
+G3   PASS  300 m, water on one side, FC yaw error 0 -> 1 deg: error at the end 2.59 -> 0.03 m (FINDINGS: 2.59 m; similarity fit in t5b 0.04 m)
+G4   PASS  t0 is the mid-exposure time of row 0 (Hold.process and _rays docstrings); the exposure offset is calibrated outside Hold
+G6   PASS  sensor read bottom to top, readout -16 ms, 300 m: RMS 0.04 -> 0.04 m, fixes 99% -> 99% (FINDINGS: 0.04 m)
+G8   PASS  load_lens(field=0/1) moves cy by +0.25/-0.25 row against an area resize (G8: +-0.25)
+G9   PASS  'Round 2 Metashape Frame': a 40.0 deg ray reads 48.1 -> 40.0 deg; a fisheye profile with p1/p2 raises ValueError (FINDINGS: 48.1 deg)
+H4   PASS  fixes sent 0.5-5 s into bad video (frozen / frozen + noise / NO SIGNAL): 112/112/112 -> 0/0/0 of 112; fixes back 0.13/0.09/0.13 s after the video returns
+H9   PASS  true height 3 m, baro 0.0 / -0.5 / 3.0 m: crash / 119 sent / 119 sent -> 0 sent / 0 sent / 0 sent (H_MIN 5 m; FINDINGS: ZeroDivisionError, 'ok' 93 % at -0.5 m)
+H13  PASS  Est.cov is a 2x2 per-axis covariance (var = trace) with a timing term (TIME_ERR 3 ms x rate x h); 100 m, 3 seeds, outside the 99 % bound with a +5 ms stamp error 34.6% -> 0.0%, with +20 ms 88.6% -> 3.4% (RMS 1.64 -> 1.56 m) (FINDINGS: +20 ms 89 %)
+rc=0

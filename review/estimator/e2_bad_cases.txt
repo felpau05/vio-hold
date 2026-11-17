@@ -1,0 +1,26 @@
+A) ottawa2019fall 400 m, 20 s, sim_ground settings
+ seed  RMS(m) false-fix lost kf-switches | constant offset(m)  h x FC roll/pitch noise at anchor frame(m)  (roll, pitch noise deg)
+  1     1.48    8.2%    0%     0       |    0.65               0.48                                  (-0.007, -0.068)
+  2     2.05   31.4%    0%     0       |    1.61               1.13                                  (-0.131, -0.096)
+  3     1.55   13.0%    0%     0       |    0.83               0.48                                  (-0.008, -0.068)
+  4     1.95   26.0%    0%     0       |    1.45               0.93                                  (-0.080, -0.106)
+  5     2.59   50.8%    0%     0       |    2.19               1.44                                  (-0.147, -0.144)
+  6     1.58   13.0%    0%     0       |    0.87               0.55                                  (-0.020, -0.076)
+  correlation of offset with anchor-frame attitude error: 0.99
+
+B) low height / low detail. n0 = points in a new keyframe (median), n = inliers per fix (median),
+   LK ok = points with all 3 LK status bits (median), +FB = also pass the 0.5 px back check,
+   spread = scatter of per-point fixes (m), floor = inlier floor 0.003 h + 0.05 (m), deg = share 'degraded'
+ site                         h  seed  RMS(m) err first 1 s -> last 1 s  kf-switches  n0  LK ok  +FB  inliers  spread floor  deg
+ prairie                       50  1     1.29    0.28 ->  1.31           191    267    65    65    45     0.67  0.20  32%
+ prairie                       50  3     1.92    0.25 ->  2.99           199    267    64    64    43     0.66  0.20  33%
+ prairie                       50  5     1.08    0.36 ->  1.76           196    267    64    64    44     0.68  0.20  33%
+ prairie                      100  1     0.40    0.31 ->  0.35             0    264   117   117    80     0.97  0.35   0%
+ prairie                      100  3     0.39    0.39 ->  0.27             0    259   110   110    75     1.00  0.35   0%
+ prairie                      100  5     0.58    0.64 ->  0.45             0    259   116   116    85     0.95  0.35   0%
+ ottawa2019fall                50  1     0.20    0.13 ->  0.17             0    287   253   253   231     0.85  0.20   0%
+ ottawa2019fall                50  3     0.17    0.16 ->  0.14             0    282   246   246   227     0.84  0.20   0%
+ ottawa2019fall                50  5     0.22    0.23 ->  0.15             0    286   254   254   235     0.80  0.20   0%
+ prairie (synthetic detail)    50  1     0.22    0.15 ->  0.16             0    240   205   205   186     0.83  0.20   0%
+ prairie (synthetic detail)    50  3     0.20    0.19 ->  0.14             0    236   199   199   183     0.80  0.20   0%
+ prairie (synthetic detail)    50  5     0.29    0.31 ->  0.20             0    242   201   201   182     0.76  0.20   0%
