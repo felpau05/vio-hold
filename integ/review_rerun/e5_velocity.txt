@@ -1,0 +1,20 @@
+A) velocity term: ottawa2019fall, 3 seeds x 10 s (true drone speed RMS shown)
+ h(m)  mode       RMS(m)  frame jitter per axis(m)  vel noise RMS(m/s)  true speed RMS(m/s)
+  100  Hold        0.32     0.241                     0.59               0.59
+  100  vel=0       0.32     0.241                      nan               0.59
+  100  vel=true    0.32     0.241                      nan               0.59
+  200  Hold        0.70     0.473                     0.59               0.59
+  200  vel=0       0.70     0.473                      nan               0.59
+  200  vel=true    0.70     0.473                      nan               0.59
+  400  Hold        1.53     0.931                     0.59               0.59
+  400  vel=0       1.53     0.931                      nan               0.59
+  400  vel=true    1.53     0.931                      nan               0.59
+
+B) 3 s blackout at t = 5 s while moving 1 m/s north (t = 4..9 s)
+ h(m)  after loss          vel at loss(m/s)  sent in dark  back after(s)  sent after  mean err after(m)  err at end(m)  why not sent after
+   20  own pos (sim_ground)   0.00              0           0.11          98%         0.20             0.13       {'picture broken up (impulse z 0, band brightness z 192)': 1, 'picture just after a broken-up one': 1, 'waiting for image motion that proves the picture is live': 1}
+   20  re-anchor (sim_test)   0.00              0           0.11          98%         0.55             0.63       {'picture broken up (impulse z 0, band brightness z 192)': 1, 'picture just after a broken-up one': 1}
+   50  own pos (sim_ground)   0.00              0           0.18          97%         0.17             0.08       {'picture broken up (impulse z 0, band brightness z 190)': 1, 'picture just after a broken-up one': 2, 'waiting for image motion that proves the picture is live': 1, 'picture broken up (impulse z 0, band brightness z 192)': 1}
+   50  re-anchor (sim_test)   0.00              0           0.21          97%         0.55             0.59       {'picture broken up (impulse z 0, band brightness z 190)': 1, 'picture just after a broken-up one': 2, 'picture broken up (impulse z 0, band brightness z 192)': 1}
+  100  own pos (sim_ground)   0.00              0           0.11          98%         0.39             0.45       {'picture broken up (impulse z 0, band brightness z 172)': 1, 'picture just after a broken-up one': 1, 'waiting for image motion that proves the picture is live': 1}
+  100  re-anchor (sim_test)   0.00              0           0.11          98%         0.64             0.33       {'picture broken up (impulse z 0, band brightness z 172)': 1, 'picture just after a broken-up one': 1}

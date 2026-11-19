@@ -32,9 +32,14 @@ FFMPEG = imageio_ffmpeg.get_ffmpeg_exe()
 COLORS = {"ok": (80, 200, 80), "degraded": (0, 200, 255), "init": (255, 200, 0), "lost": (60, 60, 230)}
 SITES = json.load(open(os.path.join(GROUND, "sites.json")))
 VIB_DEG, VIB_HZ = 0.2, (140.0, 97.0)   # motor vibration on roll and pitch (assumed); FC never sees it
-FPS = 25.0                             # PAL (real/numbers_clip-1.json: 24.96 fps)
-NOISE = 3.7                            # analog video noise, grey levels (real clip-1: 3.68 when still)
-NOISE_CORR_X = 0.58                    # lag-1 correlation of that noise along x (real clip-1: 0.583)
+if S.CAMERA == "justice_d":
+    FPS = S.FPS                        # frames per second that reach Hold
+    NOISE = 2.0                        # assumed digital sensor noise after 2x2 binning, grey levels: NOT measured
+    NOISE_CORR_X = 0.0                 # assumed: no analog-chain correlation
+else:
+    FPS = 25.0                         # PAL (real/numbers_clip-1.json: 24.96 fps)
+    NOISE = 3.7                        # analog video noise, grey levels (real clip-1: 3.68 when still)
+    NOISE_CORR_X = 0.58                # lag-1 correlation of that noise along x (real clip-1: 0.583)
 HEIGHTS = (50, 100, 150, 200, 300, 400)
 CHI2_99 = 9.21                         # 99 % bound of a 2-D Gaussian
 
@@ -61,7 +66,7 @@ def render(t0, pos_fn, att_fn, h_fn, pyr, mpp):
     b = np.einsum("rij,rwj->rwi", S.euler_R(*att_fn(tr).T), S.RAYS_B)
     h = h_fn(tr)
     P = pos_fn(tr)[:, None, :] + (h[:, None] / b[..., 2])[..., None] * b[..., :2]
-    gsd = h.mean() / S.K[0, 0]
+    gsd = h.mean() / S.K_TRUE[0, 0]
     lvl = min(len(pyr) - 1, max(0, int(math.floor(math.log2(gsd / mpp)))))
     tex, m = pyr[lvl], 1.0 / (mpp * 2 ** lvl)
     img = cv2.remap(tex, (P[..., 1] * m + tex.shape[1] / 2).astype(np.float32),
@@ -191,7 +196,7 @@ def main():
     jobs = [(n, h, seed, 20.0, a.video and seed == 1) for n in names for h in heights for seed in range(1, a.seeds + 1)]
     with mp.get_context("spawn").Pool(max(1, min(len(jobs), (os.cpu_count() or 2) - 2))) as pool:
         res = pool.map(_job, jobs)
-    print(f"{a.seeds} seeds x 20 s per row, PAL {FPS:g} fps, video noise {NOISE} grey (x-correlation {NOISE_CORR_X}); "
+    print(f"camera {S.CAMERA}, focal error {S.FOCAL_ERR:g}; {a.seeds} seeds x 20 s per row, {FPS:g} fps, video noise {NOISE} grey (x-correlation {NOISE_CORR_X}); "
           "false-fix / out-50 = share of sent fixes outside the 99 % / 50 % bound of cov (ideal 1 % / 50 %)")
     table, views = {}, {}
     for name in names:

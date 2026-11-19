@@ -34,6 +34,23 @@ approved altitudes) is not out yet; every Stage 2 item below is an assumption un
   Results in `apsim/`, `px4sim/` and `integ/` are for the old analog camera and say nothing about the Justice D.
 - `tests_apb/test_justice_d.py`: new test, part of `run_all.sh`.
 
+## Simulated Justice D results (open loop, 2026-11-18; `integ/justice_d_openloop.txt`)
+
+`sim_ground.py` now has a Justice D camera (`VIO_SIM_CAMERA=justice_d`: 640x360, noise 2.0 grey, readout 14 ms, all assumed).
+Estimator only: no drone physics, no wind, no closed loop (Docker is not installed on this machine, so the PX4 and
+ArduPilot loops were not run). Seeds 1-6, 20 s hovers:
+
+| Site | 50 m | 100 m | 200 m | 300 m | 400 m |
+|---|---|---|---|---|---|
+| suburb (tuning) RMS m | 0.24 | 0.32 | 0.67 | 1.05 | 1.47 |
+| farmland (validation) RMS m | 0.32 | 0.35 | 0.63 | 1.90 | 2.09 |
+| prairie (plain grass, tuning) RMS m | 0.19 | 0.40 | 1.34 | 2.13 | 1.72 |
+
+- Fixes sent: 87-100 % (prairie 150 m lowest, 87.5 %). No run was lost; false-fix stayed at 0 %, except prairie 300 m (0.1 %).
+- Variance is overconfident at long range on plain ground: out-50 is 55 % at prairie 300 m and 42 % at farmland 300 m (ideal 50 %: these two are the extremes).
+- **A 7 % focal-length error is the biggest threat found:** at 100 m RMS goes from 0.32-0.40 m to 0.93-1.13 m, at 200 m to 1.8-3.4 m, and false-fix rises to 8-16 %. The nominal lens is only good to about 7 %, so `calib` plus the bench lens check (EVENT_DAY step 6: forward value within 1.00 +-0.03) must be done on the real camera.
+- Hold-out sites were not run, so these numbers say nothing about the hold-out. Nothing was tuned on them.
+
 ## Still open (needs Stage 2 or hardware)
 
 1. Does OpenCV on the APB Yocto image open the CSI sensor, or is a GStreamer/libcamera pipeline needed? Frame time stamps?

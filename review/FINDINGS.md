@@ -1,6 +1,12 @@
 # Review findings (2026-11-15, three reviewers)
 
-> **STATUS 2026-11-18 (read from the code, the proof scripts were NOT re-run).** hold.py now cites these IDs in its
+> **STATUS 2026-11-18, re-run (analog simulator; outputs in integ/review_rerun/):** E1 fixed (e8_texture: no fixes over
+> static of std 3-30, fading ground stops with 0 confident-wrong fixes at 100 m). E2 fixed (e4_outliers: frozen frame
+> sends nothing, static OSD 0.34 m). E3 much better (30 % object: RMS 1.10 m, 3.7 % false-fix, was 29.6 m). E7 fixed
+> (e5_velocity: back in 0.11-0.18 s after a 3 s blackout, no re-anchor help). E5 still open: a 90 deg yaw turn leaves
+> 2.2-2.6 m of error at 100 m (e4_outliers). e3_keyframes.py (E6) and e2_bad_cases.py crash: they patch Hold
+> internals that changed (TypeError in a patched calcOpticalFlowPyrLK / shape mismatch), so E6 is NOT re-verified.
+> Earlier note, read from the code: hold.py now cites these IDs in its
 > fixes: E1 (NCC_MIN, NCC_FRAME), E2 (STILL_PX, GRID, repeated-frame check), E3 (per-axis 2.5-sigma gate, GRID),
 > E4 (honest variance model, per axis), E6 (KF_GAP, KF_LOW), E7 (t and vel cleared when lost). E5 is only partly
 > covered (BETA_UNC adds variance; no boresight yaw calibration exists). Every other ID is unchecked. The findings
