@@ -4,8 +4,11 @@
 > static of std 3-30, fading ground stops with 0 confident-wrong fixes at 100 m). E2 fixed (e4_outliers: frozen frame
 > sends nothing, static OSD 0.34 m). E3 much better (30 % object: RMS 1.10 m, 3.7 % false-fix, was 29.6 m). E7 fixed
 > (e5_velocity: back in 0.11-0.18 s after a 3 s blackout, no re-anchor help). E5 still open: a 90 deg yaw turn leaves
-> 2.2-2.6 m of error at 100 m (e4_outliers). e3_keyframes.py (E6) and e2_bad_cases.py crash: they patch Hold
-> internals that changed (TypeError in a patched calcOpticalFlowPyrLK / shape mismatch), so E6 is NOT re-verified.
+> 2.2-2.6 m of error at 100 m (e4_outliers). E6 re-verified 2026-11-18 (e3_keyframes.py and e2_bad_cases.py rewritten for
+> the new Hold; the old KfRuleHold comparison and forced-change test are gone): prairie 50 m keyframe changes 191-199 -> 34,
+> RMS 1.3-1.9 -> 0.18-0.28 m; ottawa 100 m with +-30/60/90 deg yaw RMS 0.82/1.24/2.10 -> 0.54/0.94/1.32 m (changes 8/13/18, more
+> than before but each cheaper). NOT fully fixed: prairie 100 m seeds 3 and 5 still 1.7-1.9 m RMS, 77-85 % degraded, 34-57 changes
+> (seed 1: 0.46 m, 1 change). The 'spread' column in e2_bad_cases B is approximate (ATT_NOISE no longer exists).
 > Earlier note, read from the code: hold.py now cites these IDs in its
 > fixes: E1 (NCC_MIN, NCC_FRAME), E2 (STILL_PX, GRID, repeated-frame check), E3 (per-axis 2.5-sigma gate, GRID),
 > E4 (honest variance model, per axis), E6 (KF_GAP, KF_LOW), E7 (t and vel cleared when lost). E5 is only partly

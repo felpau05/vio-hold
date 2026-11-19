@@ -22,23 +22,34 @@ import common as C  # noqa: E402
 
 
 class LKCount:
-    """Proxy for hold.cv2. Hold.process calls LK three times per frame: prev->cur, kf->cur, and
-    back cur->kf started at the keyframe points. From those it rebuilds Hold's 'good' mask."""
+    """Proxy for hold.cv2. Hold._track1 calls LK forward (keyframe -> current) and, every FB_EVERY frames or
+    on a deep track, back (current -> keyframe) from the forward result. Counts (points, forward ok,
+    forward ok that also pass the 0.5 px back check). Frames without a back call count fb = forward."""
 
     def __init__(self, real):
-        self._real, self.last, self.good = real, [], []
+        self._real, self.pend, self.good = real, None, []
 
     def __getattr__(self, k):
         return getattr(self._real, k)
 
+    def _flush(self):
+        if self.pend is not None:
+            n, st = self.pend[:2]
+            self.good.append((n, int(st.sum()), int(st.sum())))
+            self.pend = None
+
     def calcOpticalFlowPyrLK(self, *a, **kw):
         p, s, e = self._real.calcOpticalFlowPyrLK(*a, **kw)
-        self.last = (self.last + [(a, p, s)])[-3:]
-        if len(self.last) == 3 and "flags" in kw and self.last[1][0][0] is a[1]:   # this is the back call
-            (_, _, s1), (_, _, s2), (_, pb, s3) = self.last
-            fb = np.linalg.norm((pb - a[3]).reshape(-1, 2), axis=1) < 0.5
-            st = (s1 & s2 & s3).ravel().astype(bool)
-            self.good.append((len(st), int(st.sum()), int((st & fb).sum())))
+        if self.pend is not None and a[0] is self.pend[2] and a[1] is self.pend[3]:      # the back call
+            n, st, _, _, p0 = self.pend
+            fb = np.linalg.norm((p.reshape(-1, 2) - p0.reshape(-1, 2)), axis=1) < 0.5
+            st = st & (s.ravel() == 1)
+            self.good.append((n, int((self.pend[1]).sum()), int((st & fb).sum())))
+            self.pend = None
+        else:
+            self._flush()
+            st = s.ravel() == 1
+            self.pend = (len(st), st, a[1], a[0], a[2])      # back call is (b, a): a[1], a[0]
         return p, s, e
 
 
@@ -57,6 +68,7 @@ def run_counted(site, h0, seed, T, pyr_override=None):
         rec, _ = C.scenario(site, h0, T=T, seed=seed, hook=hook)
     finally:
         C.Hm.cv2 = proxy._real
+    proxy._flush()
     return rec, [n for _, n in kf_n0], proxy.good
 
 
@@ -98,7 +110,7 @@ def job_B(site, h0, seed, T, synth=False):
     g = np.array(good, float)
     # spread of the per-point fixes, from Hold's own variance terms (frames with no keyframe change)
     hm = h0
-    loc = rec.var - rec.kf_var - (C.Hold.ATT_NOISE * hm) ** 2
+    loc = rec.var - rec.kf_var - (C.Hold.SIG_TH * hm) ** 2   # ATT_NOISE no longer exists; SIG_TH is its successor, so "spread" is approximate
     keep = s & (rec.kf_new == 0) & (loc > 0)
     spread = float(np.median(np.sqrt(loc[keep] * rec.n[keep]))) if keep.any() else np.nan
     return dict(site=site + (" (synthetic detail)" if synth else ""), h=h0, seed=seed,

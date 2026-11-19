@@ -1,0 +1,99 @@
+# CONTEXT.md: where the project stands (updated 2026-11-19)
+
+Written at the end of a working session so a new person (or a new Claude session) can pick up without the chat.
+Branch: `spec-justice-d` (2 commits on top of `main`, not pushed). Source of truth for the rules:
+the Stage 1 participant rules (rev 1.3). Read `SPEC.md` next.
+
+## The project
+
+VIO position hold for a drone with no GPS, for the Contested Battlefield Aerial Operations challenge (Grand Final)
+on the Orqa **M2-AI**. A downward camera + FC tilt gives a position, sent to ArduPilot or PX4 over MAVLink
+(`VISION_POSITION_ESTIMATE`); the autopilot holds it. Runs on the **APB** (i.MX8M Plus, 4x A53, Yocto).
+Core code: `hold.py` (estimator), `apb_main.py` (onboard program), `fc_link.py`, `capture.py`, `calib.py`, `settings.py`.
+Full map: `README.md`.
+
+## What the Stage 1 spec says (PDF rev 1.3) and what changed because of it
+
+- Nadir camera is the **Justice D**: digital MIPI CSI, 1280x720 at 60 fps, 114x86 deg FOV, rolling shutter. The
+  Justice A is analog and forward-facing and is not used. The repo had assumed the analog Justice A.
+- No markers/tarps/fiducials in the solution or scored runs (dev area only). No hardware or mount changes.
+- No GNSS aiding during the scored hold. Pilot flies, holds still, flips a switch to engage our hold.
+- Highest altitude with a qualifying stable hold wins the flight part. Judged areas A-G. Stage 2 (firmware list,
+  access, rates, approved altitudes, scoring, rangefinder?) is **not out yet**.
+- Code/doc changes made (commits `14f25f3`, `5a30721`): Justice D capture path and settings (`video_kind`,
+  `video_size`, `video_fps`, `video_pipeline`, `video_scale`), nominal lens profile, no "marks" exemption for the
+  digital camera, `check` mode tests the Justice D, `tests_apb/test_justice_d.py`, simulators/`test_bench` pinned to
+  the analog camera, docs (`SPEC.md`, `HARDWARE_BRINGUP.md`, `EVIDENCE.md`, `ORGANIZER_QUESTIONS.md`, updated
+  checklists and research notes), simulator Justice D camera (`VIO_SIM_CAMERA=justice_d`, `VIO_SIM_FOCAL_ERR`).
+
+## Environment set up in this session
+
+- Python venv `~/.venvs/vio` (created after `python3-venv`/`pip` were installed by the user). `pypdf` was also
+  installed there to read the PDF; it is not in `requirements.txt`.
+- Aerial photos downloaded into `ground/` (gitignored). Ottawa photos: simulator use only, do not publish.
+- `apsim/ardupilot` cloned (Orqa `mil-mavl`, gitignored) and **built** (2026-11-18): `apsim/ardupilot/build/sitl/bin/arducopter`
+  (Copter 4.6.0, 8 min build in `ardupilot/ardupilot-dev-base:latest`; build command is in `apsim/run_sitl.sh`).
+- Docker: the user is now in the `docker` group. It is **Docker Desktop** (4.99), whose `--network host` joins the Docker VM,
+  not WSL's `127.0.0.1`, so the SITL got no heartbeat. Fixed on 2026-11-19 with Docker Desktop -> Settings -> Resources ->
+  Network -> "Enable host networking" **plus** `C:\Users\aydan\.wslconfig` = `[wsl2]` / `networkingMode=mirrored` (created
+  this session, outside the repo), then `wsl --shutdown`. Check: a UDP packet from the `ap_sim` container to
+  `127.0.0.1` reaches a listener in WSL. Keep Docker Desktop's WSL integration ON for this distro. Rejected alternative:
+  a native Docker engine inside WSL (not needed).
+- Pitfall: `apsim/run_sitl.sh` reuses a running `ap_sim` container. If you start `ap_sim` by hand without
+  `-v apsim:/apsim` the next run fails with "no heartbeat". Fix: `docker rm -f ap_sim` and let the script create it.
+
+## Test and result status
+
+- `sh tests_apb/run_all.sh`: all 9 onboard-program tests + `test_justice_d` pass (fake FC; `test_ap_sitl` does not
+  need the real ArduPilot build).
+- **ArduPilot closed loop confirmed (2026-11-19, analog camera):** `python apsim/sitl_ap.py apb 100 w20g40 60`: RMS 0.617 m,
+  p95 0.92 m, max 0.99 m, 1.43 m/min drift, fixes in 48 % of frames (about 12 Hz), median age 177 ms. Identical to the earlier
+  `apsim/results.txt` row, so older ArduPilot results stand. Other rows there: seed 2 1.35 m RMS; `att_source=fc` flies away
+  (14.9 m RMS: keep `gyro`); `holdout_field` 3.3 m RMS (reported once, not re-run or tuned on).
+- Review findings re-run (analog sim, outputs in `integ/review_rerun/`): E1, E2, E7 fixed; E3 much better;
+  **E5 open** (a 90 deg yaw leaves 2.2-2.6 m at 100 m: do not yaw during the hold); E6 re-verified (scripts rewritten): prairie 50 m
+  191 -> 34 keyframe changes, RMS 1.3-1.9 -> 0.2 m; **still weak on prairie 100 m seeds 3/5 (1.7-1.9 m, 80 % degraded)**.
+- Open-loop Justice D simulation (`integ/justice_d_openloop.txt`; assumed noise/readout/fps, estimator only):
+  RMS about 0.3 m at 100 m, 0.6-1.3 m at 200 m, 1-2 m at 300-400 m; 87-100 % fixes. **A 7 % focal-length error
+  triples the error** (100 m: 0.35 -> ~1.0 m) and makes the variance overconfident: real lens calibration is the
+  top risk.
+- Older closed-loop results (`apsim/summary.txt`, `px4sim/results.txt`, `integ/summary.txt`, analog camera): holds
+  within 1 m RMS / 2 m max up to 100 m in wind 20 gusting 40 and 30 gusting 55; 122 m is marginal, 200 m fails.
+  Plain ground (prairie, open field) was the flyaway case in older runs; a newer prairie run held at 1.77 m RMS
+  with only 34 % of fixes. `att_source` must stay `gyro` (the FC attitude flew away every time).
+
+## What is still unknown or assumed (do not treat as facts)
+
+- `readout_s 0.014`, `video_delay_s 0.050`, `video_scale 0.5`, `/dev/video2`, the Justice D lens (nominal, from the
+  horizontal FOV; V and D FOVs imply +-7 %), sensor noise in the sim. None measured.
+- Whether Python/numpy/OpenCV exist on the APB image, whether OpenCV can open the CSI sensor (maybe GStreamer),
+  frame time stamps, CPU at 60 fps on the A53s, rangefinder, which firmware the event provides.
+- IMU: the spec says ICM42605; `research/hardware.md` section 6 says ICM-42688 (community source). Spec wins.
+- The PX4 and ArduPilot closed-loop simulators still render the old analog camera. `sim_ground.py` has a
+  Justice D open-loop mode whose results depend on assumed camera parameters. Real-camera measurements are pending.
+
+## Rules to keep following
+
+- `DATA_SPLITS.md`: tune on TUNING, check on VALIDATION, report on HOLD-OUT once. Hold-out sites
+  (`holdout_quarry`, `holdout_water`, `holdout_lawn`) were **not** run this session. Log every tuned value there.
+- Branch per change and pull request into `main` (README). Simulator output goes to `runs/` and `logs/` (gitignored).
+- Never use markers or tarps in anything that counts as the solution.
+
+## Next steps (in order)
+
+1. (Done: Docker/networking fixed, ArduCopter SITL built, ArduPilot case 100 m `w20g40` confirmed.) Run one **PX4** case
+   (100 m, `w20g40`; `px4sim/sitl.py`) to confirm that loop, then work the plain-ground cases (prairie 100 m seeds 3/5,
+   1.7-1.9 m RMS, about 80 % degraded) on TUNING/VALIDATION sites only.
+2. Make the simulators render the Justice D (digital noise, 640x360, rolling shutter) so closed-loop results mean something.
+3. Consider a focal-length-uncertainty term in the variance. (E6 re-verification is done: `review/estimator/e3_keyframes.py`
+   and `e2_bad_cases.py` were rewritten for the current `hold.py`; `review/FINDINGS.md` updated.)
+4. Send `ORGANIZER_QUESTIONS.md`; fill `HARDWARE_BRINGUP.md` and `EVIDENCE.md` as hardware and Stage 2 arrive.
+5. Push `spec-justice-d` and open a pull request into `main` (not done).
+
+## Open items for the team
+
+- Fill in who wrote `hold.py` and the rest of the who-wrote-what table in `EVIDENCE.md`.
+- Set `origin_lat_lon_alt` in `settings.json` at the field (ArduPilot only); run `mask` and `calib` on the real camera.
+- `EVIDENCE.md` shows a trailing-newline change that is not from this work; it is not committed.
+- Uncommitted work from 2026-11-18/19: `CONTEXT.md`, `review/FINDINGS.md`, `review/estimator/e2_bad_cases.py`, `e3_keyframes.py`,
+  `apsim/results.{json,txt}` (merged the new ArduPilot run). Commit on a branch, per README.
