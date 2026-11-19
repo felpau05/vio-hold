@@ -6,7 +6,7 @@ t_grab - video_delay_s is the mid-exposure time of row 0; calib.py measures vide
 this same code (H1). Frame.why is None for a usable picture, else the reason not to use it:
 a repeated frame, a flat "no signal" picture, or the driver's no-signal flag (H4).
 
-Sources: V4L2Source (analog grabber through OpenCV), FileSource (our .npz recordings or a video
+Sources: V4L2Source (the Justice D over MIPI CSI, or an analog grabber, through OpenCV), FileSource (our .npz recordings or a video
 file), CallableSource (the simulator).
 """
 import fcntl
@@ -88,9 +88,18 @@ def split_field(g, field, layout="interlaced"):
 
 MARK_GREY = 25.0     # grey; a strong mark differs this much (and 6 robust sigma) from the picture's median at 1/4 size.
                      # assumed: a tarp on snow differs by about 145 grey, a point light at night by 50 or more
-MARKS_MIN = 3        # this many separate strong marks make a flat picture usable (tarps on snow, lights at night)
+MARKS_MIN = 3        # analog only: this many separate strong marks make a flat picture usable (lights at night).
+                     # Markers on the ground are not part of the scored solution (spec Q10), so csi has no such exemption.
 NOISE_MIN = 1.0      # grey; ... but only with sensor noise (row to row): a generated NO SIGNAL screen has none.
                      # assumed: live analog video carries about 3.7 grey (measured on the real video)
+
+
+def scale_img(img, scale):
+    """The picture as Hold gets it: grey, scaled by video_scale (INTER_AREA). The lens profile follows the shape."""
+    if scale == 1.0:
+        return img
+    return cv2.resize(img, (max(1, round(img.shape[1] * scale)), max(1, round(img.shape[0] * scale))),
+                      interpolation=cv2.INTER_AREA)
 
 
 def sensor_noise(img):
@@ -108,11 +117,13 @@ def strong_marks(img):
 
 class _Judge:
     """Repeated and flat pictures (H4). A refused picture is not kept as the comparison frame. A flat picture
-    with MARKS_MIN strong marks (tarps on snow, lights at night) and sensor noise is not refused: Hold's own
-    gates (frozen, static, match quality) then judge it."""
+    with MARKS_MIN strong marks (lights at night) and sensor noise is not refused when the camera is analog:
+    Hold's own gates (frozen, static, match quality) then judge it. A digital (csi) flat picture is always refused:
+    the Justice D has no "no signal" screen, so flat means a covered lens or a featureless view."""
 
     def __init__(self, s):
         self.s, self.prev = s, None
+        self.analog = s["video_kind"] == "analog"
 
     def __call__(self, img, no_signal=False):
         if no_signal:
@@ -120,7 +131,7 @@ class _Judge:
         small = cv2.resize(img, (max(1, img.shape[1] // 8), max(1, img.shape[0] // 8)), interpolation=cv2.INTER_AREA)
         small = small.astype(np.float32)
         if np.median(np.abs(small - np.median(small))) < self.s["no_signal_mad"] and \
-                (strong_marks(img) < MARKS_MIN or sensor_noise(img) < NOISE_MIN):
+                (not self.analog or strong_marks(img) < MARKS_MIN or sensor_noise(img) < NOISE_MIN):
             return "flat picture (no signal?)"
         prev, self.prev = self.prev, img
         if prev is not None and prev.shape == img.shape and cv2.absdiff(img, prev).mean() < self.s["repeat_mad"]:
@@ -128,19 +139,39 @@ class _Judge:
         return None
 
 
+def open_capture(s):
+    """cv2.VideoCapture for the configured camera. csi: a GStreamer pipeline when video_pipeline is set, else
+    video_device through V4L2 with the asked size and rate. analog: the device as the grabber sets it up."""
+    if s["video_kind"] == "csi" and s["video_pipeline"]:
+        return cv2.VideoCapture(s["video_pipeline"], cv2.CAP_GSTREAMER)
+    cap = cv2.VideoCapture(s["video_device"], cv2.CAP_V4L2)
+    if cap.isOpened() and s["video_kind"] == "csi":
+        cap.set(cv2.CAP_PROP_FRAME_WIDTH, s["video_size"][0])
+        cap.set(cv2.CAP_PROP_FRAME_HEIGHT, s["video_size"][1])
+        cap.set(cv2.CAP_PROP_FPS, s["video_fps"])
+        cap.set(cv2.CAP_PROP_CONVERT_RGB, 1)
+    return cap
+
+
 class V4L2Source:
-    """Analog grabber. A thread reads every buffer so the driver queue never holds old frames;
+    """The camera through OpenCV: Justice D (csi) or an analog grabber. A thread reads every buffer so the driver queue never holds old frames;
     newest() returns only the latest one (H6). Stamp: the driver's buffer time (CLOCK_MONOTONIC)
     when it is plausible, else the read time (then self.stamp says "read")."""
 
     def __init__(self, s):
         self.s, self.dev = s, s["video_device"]
-        sensed = v4l2_info(self.dev, query=True).get("standard")
-        self.cap = cv2.VideoCapture(self.dev, cv2.CAP_V4L2)
+        self.analog = s["video_kind"] == "analog"
+        sensed = v4l2_info(self.dev, query=True).get("standard") if self.analog else None
+        self.cap = open_capture(s)
         if not self.cap.isOpened():
-            raise RuntimeError(f"cannot open video device {self.dev}. Check the grabber and video_device in settings.json.")
+            raise RuntimeError(f"cannot open video {self.dev or s['video_pipeline']}. Check the camera, video_kind, "
+                               "video_device and video_pipeline in settings.json.")
         self.cap.set(cv2.CAP_PROP_BUFFERSIZE, 2)
         self.info = v4l2_info(self.dev)              # the format OpenCV set up
+        if not self.analog:                          # what the stream really delivers, for check and calib
+            self.info.update(width=int(self.cap.get(cv2.CAP_PROP_FRAME_WIDTH)) or self.info.get("width"),
+                             height=int(self.cap.get(cv2.CAP_PROP_FRAME_HEIGHT)) or self.info.get("height"),
+                             fps=self.cap.get(cv2.CAP_PROP_FPS), field="none")
         if sensed:
             self.info["standard"] = sensed           # the incoming signal wins over the configured one
         self.judge, self.stamp, self.seq, self.got = _Judge(s), "driver", 0, 0
@@ -172,8 +203,9 @@ class V4L2Source:
             bgr, t, seq = self._latest
         self.got = seq
         g = cv2.cvtColor(bgr, cv2.COLOR_BGR2GRAY) if bgr.ndim == 3 else bgr
-        img = split_field(g, self.s["field"], self.info.get("field", "interlaced"))
-        no_sig = seq % 5 == 0 and v4l2_info(self.dev).get("no_signal", False)
+        img = scale_img(split_field(g, self.s["field"], self.info.get("field", "interlaced")) if self.analog else g,
+                        self.s["video_scale"])
+        no_sig = self.analog and seq % 5 == 0 and v4l2_info(self.dev).get("no_signal", False)
         return Frame(img, t - self.s["video_delay_s"], t, seq, self.judge(img, no_sig))
 
     def close(self):
@@ -204,7 +236,8 @@ class FileSource:
             ok, bgr = self.cap.read()
             if not ok:
                 return None
-            img = split_field(cv2.cvtColor(bgr, cv2.COLOR_BGR2GRAY), self.s["field"])
+            g = cv2.cvtColor(bgr, cv2.COLOR_BGR2GRAY)
+            img = split_field(g, self.s["field"]) if self.s["video_kind"] == "analog" else scale_img(g, self.s["video_scale"])
             t = self.i / self.fps
         self.i += 1
         return Frame(img, t - self.s["video_delay_s"], t, self.i, self.judge(img))
@@ -245,4 +278,6 @@ def standard(info, fps):
 
 def capture_mode(s, info, shape):
     """The capture facts a calibration depends on; run refuses to start when they changed."""
+    if s["video_kind"] == "csi":
+        return f"csi {shape[1]}x{shape[0]} (scale {s['video_scale']})"
     return f"{info.get('standard') or '?'} field={s['field']} {shape[1]}x{shape[0]}"

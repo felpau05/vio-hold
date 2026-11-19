@@ -1,4 +1,11 @@
 # Review findings (2026-11-15, three reviewers)
+
+> **STATUS 2026-11-18 (read from the code, the proof scripts were NOT re-run).** hold.py now cites these IDs in its
+> fixes: E1 (NCC_MIN, NCC_FRAME), E2 (STILL_PX, GRID, repeated-frame check), E3 (per-axis 2.5-sigma gate, GRID),
+> E4 (honest variance model, per axis), E6 (KF_GAP, KF_LOW), E7 (t and vel cleared when lost). E5 is only partly
+> covered (BETA_UNC adds variance; no boresight yaw calibration exists). Every other ID is unchecked. The findings
+> were written for the analog Justice A; see SPEC.md for the Justice D change. Re-run the proof scripts before
+> citing a finding as fixed or open.
 Each finding has a proof script in its lens folder. IDs are stable: use them in commits, tests and reports.
 
 # Lens: estimator

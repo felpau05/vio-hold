@@ -60,15 +60,29 @@ DEFAULTS = {
     "params_ardupilot": {"VISO_TYPE": 1, "EK3_SRC1_POSXY": 6, "EK3_SRC1_VELXY": 0, "EK3_SRC1_POSZ": 1,
                          "EK3_SRC1_VELZ": 0, "EK3_SRC1_YAW": 1, "GPS1_TYPE": 0, "VISO_DELAY_MS": 140},
 
-    # Video.
-    "video_device": "/dev/video0",     # research/hardware.md: /dev/video0 = analog capture on the APB
-    "video_standard": "auto",          # "auto", "PAL" or "NTSC"; check mode compares it with the driver
-    # "top" or "bottom": one field per picture, width halved (H10; each field has one time stamp).
-    # "frame": the woven frame; readout_s must then span both fields.
-    "field": "top",
-    # Measured on real/ clip-1: repeated DVR frames differ by 0.01-0.24 grey, fresh frames by 4.16 or more.
+    # Video. SPEC (Stage 1, Q3, rev 1.3): the nadir camera is the Justice D, a DIGITAL
+    # MIPI CSI rolling-shutter camera, 1280 x 720 at 60 fps, 16:9, FOV 114 x 86 deg (121.5 deg diagonal). The
+    # Justice A is analog and forward-facing; the solution uses the Justice D. "analog" stays for old recordings.
+    "video_kind": "csi",               # "csi" (Justice D) or "analog" (grabber: PAL/NTSC, interlaced fields, no-signal)
+    # assumed: research/hardware.md quotes a Prismo comment, /dev/video2 = MIPI downward on the APB. Stage 2 gives
+    # the event acquisition details; check mode prints what the device really delivers.
+    "video_device": "/dev/video2",
+    "video_size": [1280, 720],         # csi: width, height asked from the driver (spec: 1280 x 720)
+    "video_fps": 60.0,                 # csi: frame rate asked from the driver (spec: 60 fps)
+    # csi: a GStreamer pipeline string ending in "appsink" for sensors that need one (libcamera, v4l2src, ISI on
+    # the i.MX8M Plus). Empty: OpenCV opens video_device through V4L2.
+    "video_pipeline": "",
+    # Picture handed to Hold = frame x video_scale (INTER_AREA). assumed: 0.5 (640 x 360) so Hold's cost matches
+    # what apb_main.py timing measured on 360 x 288 fields; raise it only if 'check' shows spare CPU.
+    "video_scale": 0.5,
+    "video_standard": "auto",          # analog only: "auto", "PAL" or "NTSC"; check mode compares it with the driver
+    # analog: "top" or "bottom": one field per picture, width halved (H10; each field has one time stamp).
+    # "frame": the whole frame (always for csi); readout_s must then span the whole sensor readout.
+    "field": "frame",
+    # Measured on real/ clip-1 (analog DVR): repeated frames differ by 0.01-0.24 grey, fresh frames by
+    # 4.16 or more. Re-measure on the Justice D (digital, lower noise).
     "repeat_mad": 1.0,
-    # Measured on real/ clip-1: ground at 27 m has a MAD of 6.5 grey or more at 1/8 size; a flat
+    # Measured on real/ clip-1 (analog): ground at 27 m has a MAD of 6.5 grey or more at 1/8 size; a flat
     # "no signal" screen has about 0.
     "no_signal_mad": 2.0,
 
@@ -78,11 +92,14 @@ DEFAULTS = {
     "tilt_deg": [0.0, 0.0],            # mount roll, pitch against straight down
     "twist_deg": 0.0,
     "lens_file": "justice_lens_profiles.json",
-    # assumed: the sim's lens (Justice A through a USB grabber, H7). calib.py measures focal_scale against it.
-    "lens_name": "Round 1 independent k2",
+    # Nominal Justice D from the spec FOV (justice_lens_profiles.json). The spec's 114 x 86 x 121.5 deg are not one
+    # pinhole or equidistant lens (focal length differs by about 7 % between them), so calib.py must measure
+    # focal_scale, and a real lens calibration should replace this profile.
+    "lens_name": "Justice D nominal (spec FOV, uncalibrated)",
     "focal_scale": 1.0,
-    "readout_s": 0.016,                # assumed: about one field; negative = sensor reads bottom to top (G6)
-    "video_delay_s": 0.060,            # assumed: the sim's value; t0 = frame stamp - video_delay_s (H1)
+    "readout_s": 0.014,                # assumed: under one 60 fps frame (16.7 ms), NOT measured on the Justice D; measure it
+                                       # (review/hardware_gap/bench_calib.py, tools/replay_tune.py). Negative = bottom to top (G6)
+    "video_delay_s": 0.050,            # assumed (about 3 frames at 60 fps), NOT measured; calib measures it. t0 = frame stamp - video_delay_s (H1)
 
     # Hold.
     "min_height_m": 15.0,              # H9: no anchor and no fix below this height (example value in H9)
@@ -121,7 +138,7 @@ DEFAULTS = {
     "calib_info": {},
 }
 
-CHOICES = {"video_standard": ("auto", "PAL", "NTSC"), "field": ("top", "bottom", "frame"),
+CHOICES = {"video_standard": ("auto", "PAL", "NTSC"), "field": ("top", "bottom", "frame"), "video_kind": ("csi", "analog"),
            "top": ("front", "right", "rear", "left"), "att_source": ("gyro", "fc", "imu")}
 
 

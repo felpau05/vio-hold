@@ -3,6 +3,8 @@ Read the log first: ~/.venvs/vio/bin/python tools/plot_log.py logs/run_*.csv (on
 After each change: run tools/deploy.sh, then python3 apb_main.py check on the board.
 PX4 names are on the left of "/", ArduCopter 4.6 names are on the right.
 Safety first: if the drone moves away, select Altitude mode (AltHold) at once.
+Camera: the Justice D is digital MIPI CSI (SPEC.md). Rows about "no signal", PAL/NTSC, snow or OSD text came
+from the analog Justice A and may not apply; row 14 (indoors) is for the bench only, flights are outdoors.
 
 1  SEE    The drone swings or flies away right after Position mode (Loiter) starts.
    CAUSE  The picture is turned or mirrored (FINDINGS G1, H3). Or att_source is not "gyro" (fly-away).
@@ -13,8 +15,9 @@ Safety first: if the drone moves away, select Altitude mode (AltHold) at once.
    DO     Select Altitude mode. Land. Run calib (EVENT_DAY step 4). Do the bench test (step 6).
 3  SEE    Positions stop over plain ground: grass, snow, a plain floor.
    CAUSE  Too few points (Hold MIN_PTS 20), or the capture check calls the flat picture "no signal" (no_signal_mad).
-   DO     Read the reasons panel in plot_log. Put 3 or more tarps on the ground (capture.py MARKS_MIN 3).
-          At night, put out lamps. Do not lower hold_cfg min_pts. No test shows that it is safe (E1).
+   DO     Read the reasons panel in plot_log. Do NOT put tarps, lamps or markers out for a scored run: the spec bans
+          markers in the solution and in scoring (SPEC.md rule R5). Fly where the ground has texture, or lower
+          the hold height. Do not lower hold_cfg min_pts. No test shows that it is safe (E1).
 4  SEE    Positions stop in a still hover ("waiting for image motion that proves the picture is live").
    CAUSE  The liveness check needs picture motion (hold_cfg move_px 1.5 px, live_s 1.0 s).
    DO     Wait 3 s (the sim accepted a still start after 2.7 s). If it stays, give a small roll input.

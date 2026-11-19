@@ -33,9 +33,9 @@
   "GPS1_TYPE": 0,
   "VISO_DELAY_MS": 140
  },
- "video_device": "/dev/video0",
+ "video_device": "/dev/video2",
  "video_standard": "auto",
- "field": "top",
+ "field": "frame",
  "repeat_mad": 1.0,
  "no_signal_mad": 2.0,
  "top": "front",
@@ -46,10 +46,10 @@
  ],
  "twist_deg": 0.0,
  "lens_file": "justice_lens_profiles.json",
- "lens_name": "Round 1 independent k2",
+ "lens_name": "Justice D nominal (spec FOV, uncalibrated)",
  "focal_scale": 1.0,
- "readout_s": 0.016,
- "video_delay_s": 0.06,
+ "readout_s": 0.014,
+ "video_delay_s": 0.05,
  "min_height_m": 15.0,
  "hold_cfg": {},
  "send_hz": 50,
@@ -65,5 +65,13 @@
  "calib_max_resid_deg": 1.0,
  "calibrated": false,
  "calib_capture": "",
- "calib_info": {}
+ "calib_info": {},
+ "video_kind": "csi",
+ "video_size": [
+  1280,
+  720
+ ],
+ "video_fps": 60.0,
+ "video_pipeline": "",
+ "video_scale": 0.5
 }

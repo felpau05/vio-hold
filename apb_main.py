@@ -35,7 +35,7 @@ from hold import Hold, Series, build_static_mask, euler_R, load_lens, make_R_bc 
 # ---------------------------------------------------------------- the pipeline (run and replay)
 def lens(s, shape, focal=True):
     h, w = shape
-    K, D = load_lens(S.here(s["lens_file"]), s["lens_name"], w, h, field={"top": 0, "bottom": 1}.get(s["field"]))
+    K, D = load_lens(S.here(s["lens_file"]), s["lens_name"], w, h, field=None if s["video_kind"] == "csi" else {"top": 0, "bottom": 1}.get(s["field"]))
     if focal:
         K[0, 0] *= s["focal_scale"]
         K[1, 1] *= s["focal_scale"]
@@ -611,7 +611,7 @@ def mode_check(s, args, say=print):
         if fc.hgt.rows:
             say(f"INFO height now {fc.hgt.rows[-1][1]:.1f} m (run needs {s['min_height_m']:.0f} m)")
         fc.close()
-    shape = (288, 360)
+    shape = (360, 640) if s["video_kind"] == "csi" else (288, 360)
     try:
         import capture
         src = open_video(s)
@@ -624,11 +624,17 @@ def mode_check(s, args, say=print):
         fps = n / 2.0
         info = src.info
         src.close()
-        std = capture.standard(info, fps)
-        want = s["video_standard"]
         line(first is not None, f"video: {n} frames in 2 s, {good} usable, driver {info.get('width')}x"
              f"{info.get('height')} field order {info.get('field')}, stamps from {src.stamp}")
-        line(std is not None and want in ("auto", std), f"video standard {std} (setting {want})")
+        if s["video_kind"] == "csi":
+            want_fps = s["video_fps"]
+            line(n / 2.0 >= 0.8 * want_fps, f"Justice D delivers {fps:.0f} frames/s (spec {want_fps:.0f})")
+            line((info.get("width"), info.get("height")) == tuple(s["video_size"]),
+                 f"Justice D picture {info.get('width')}x{info.get('height')} (spec {s['video_size'][0]}x{s['video_size'][1]})")
+        else:
+            std = capture.standard(info, fps)
+            want = s["video_standard"]
+            line(std is not None and want in ("auto", std), f"video standard {std} (setting {want})")
         if src.stamp == "read":
             line(False, "the driver gives no usable frame time; read time jitters by a frame (H1).")
         if first is not None:

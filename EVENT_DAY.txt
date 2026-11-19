@@ -22,6 +22,10 @@ STEP 2. SYSTEM CHECK (3 min)
 4. Point the nose north with a phone compass.
 5. Read the heading in the ground station.
 Pass: Every line shows PASS, except "not calibrated" and "no mask".
+Pass: The video lines show the Justice D: 1280x720, about 60 frames/s, stamps from "driver".
+If the video line shows FAIL "cannot open": the CSI sensor needs another device or a GStreamer pipeline.
+Find the device (ls /dev/video*, v4l2-ctl --list-devices) or write video_pipeline in settings.json
+(HARDWARE_BRINGUP.md step 3). Do not go on without a picture.
 Pass: The heading is within 10 degrees of north.
 Pass: The fix age is less than 150 ms.
 If the fix age is 150 ms or more, add "EKF2_DELAY_MAX" to params_px4 in settings.json.
@@ -29,10 +33,12 @@ Set it to the fix age plus 100. Then do step 1 again.
 (PX4 uses a fix at its correct time only when the fix is younger than EKF2_DELAY_MAX, 200 ms by default.
 The real fix age is up to 50 ms more than the check value.)
 If the TIMESYNC line fails, put the fix age into EKF2_EV_DELAY in settings.json. Then do step 1 again.
-If the "video standard" line fails, set video_standard in settings.json. Then do step 2 again.
+(Analog Justice A only: if the "video standard" line fails, set video_standard in settings.json.)
 
 
-STEP 3. OSD MASK (2 min)
+STEP 3. MASK (2 min)
+The Justice D is digital: no OSD text is burned into the picture. The mask now covers only what is always in
+view (propellers, landing gear, airframe). On a clean picture it masks almost nothing: that is a pass.
 1. Hold the drone with the camera down, over textured ground.
 2. Type: python3 apb_main.py mask
 3. Turn and tilt the drone by hand during the 10 s recording.
@@ -51,6 +57,10 @@ Pass: The "settings written" line shows PASS.
 7. Do items 2 to 6 again.
 Pass: The "from the previous calibration" line shows PASS. The two delays are within 3 ms.
 If the focal scale is not between 0.98 and 1.02, the program shows FAIL. Do the lens check in step 6, item 6.
+The Justice D lens profile is only a nominal one built from the spec FOV (SPEC.md): readout_s and video_delay_s
+in settings.json are guesses until this step has measured them. Write the measured values into HARDWARE_BRINGUP.md.
+The calibration mounts nothing new: no tripods, boards or markers on the drone (spec Q8-Q10). Tripods and
+markers are allowed in the development area only, never in a scored run.
 
 
 STEP 5. SYSTEM CHECK AGAIN (1 min)

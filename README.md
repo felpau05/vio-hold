@@ -4,14 +4,19 @@ Hold a drone in place with no GPS. A downward camera watches the ground. Our pro
 picture motion, plus the tilt from the flight controller (FC), into a position. It sends that
 position to the autopilot (ArduPilot or PX4) over MAVLink, and the autopilot holds it.
 
-Target: the Contested Battlefield Aerial Operations challenge. The drone is most likely an Orqa MRM2-10AI.
-The program runs on its APB (Auto Pilot Board, an i.MX8M Plus computer next to the FC) and reads
-the Justice analog camera.
+Target: the Contested Battlefield Aerial Operations challenge (Grand Final), on the Orqa M2-AI. The program runs
+on its APB (Auto Pilot Board, an i.MX8M Plus computer next to the FC) and reads the downward **Justice D**
+(digital MIPI CSI, 1280x720 at 60 fps, 114 x 86 deg). The rules come from Stage 1 (rev 1.3);
+`SPEC.md` lists them and what is still open. The old analog Justice A path stays behind `video_kind="analog"`.
 
 ## Folders
 
 | Path | What it is |
 |---|---|
+| `SPEC.md` | The challenge rules (from the PDF), how the repo follows them, what is still open |
+| `HARDWARE_BRINGUP.md` | First session on the APB and the Justice D: what to measure and write down |
+| `EVIDENCE.md` | Evidence log, who-wrote-what and presentation outline for the judges |
+| `ORGANIZER_QUESTIONS.md` | Open questions to send to the organizers |
 | `hold.py` | The estimator: picture + tilt + height in, position out |
 | `apb_main.py` | The onboard program: camera, FC link, Hold, sends positions. Modes: `run`, `check`, `mask`, `calib`, `bench`, `replay`, `delay`, `timing` |
 | `fc_link.py`, `capture.py`, `calib.py`, `settings.py` | FC link (MAVLink), camera input, camera calibration, settings |
@@ -37,7 +42,8 @@ python3 -m venv ~/.venvs/vio
 ~/.venvs/vio/bin/python fetch_ground.py ground     # aerial photos for the simulators (once)
 ```
 
-Closed-loop simulators need Docker.
+Closed-loop simulators need Docker. All simulators (`sim_*.py`, `px4sim/`, `apsim/`) still render the old
+analog camera, not the Justice D; their results do not describe the Justice D (see `SPEC.md`).
 
 - PX4: `px4sim/sitl.py` pulls the `px4io/px4-sitl` image by itself.
 - ArduPilot: clone and build Orqa's branch once, inside `apsim/`:

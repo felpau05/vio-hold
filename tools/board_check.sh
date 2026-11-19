@@ -52,7 +52,7 @@ if v=$("$PY" -c 'import cv2; print(cv2.__version__)' 2>/dev/null); then
      || "$PY" -c 'import cv2; print(cv2.getBuildInformation())' 2>/dev/null | grep -qi "v4l/v4l2: *YES"; then
     pass "cv2 $v with V4L2 video capture"
   else
-    fail "cv2 $v has no V4L2 capture (a Yocto OpenCV without v4l?). The analog camera cannot open."
+    fail "cv2 $v has no V4L2 capture (a Yocto OpenCV without v4l?). The Justice D (MIPI CSI) cannot open through OpenCV; use a GStreamer pipeline (video_pipeline in settings.json)."
     echo "     fix: $FIX --force-reinstall   (then check again; the wheel has V4L2)"
   fi
 else fail "cv2 (OpenCV) does not import."; echo "     fix: $FIX"; fi
@@ -73,7 +73,7 @@ if out=$("$PY" -c 'import apb_main, settings; settings.load()' 2>&1); then pass 
 else fail "apb_main.py or settings.json: $(echo "$out" | tail -1)"; fi
 
 VID=$("$PY" -c 'import json; print(json.load(open("settings.json"))["video_device"])' 2>/dev/null)
-[ -e "${VID:-/dev/video0}" ] && info "video device ${VID:-/dev/video0} is there" || info "video device ${VID:-/dev/video0} is missing: check the grabber, or video_device in settings.json"
+[ -e "${VID:-/dev/video2}" ] && info "video device ${VID:-/dev/video2} is there" || info "video device ${VID:-/dev/video2} is missing: check the Justice D (MIPI CSI) driver, or video_device in settings.json"
 pgrep -f mavlink-route >/dev/null 2>&1 && info "mavlink-router runs" || info "mavlink-router does not run (needed when fc_device is udpin:...)"
 info "free disk here: $(df -h . | awk 'NR==2 {print $4}')"
 

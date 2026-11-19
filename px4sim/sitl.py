@@ -550,7 +550,8 @@ def sim_settings(c, label):
     s.update(fc_device=f"udpin:127.0.0.1:{PORT}", top=g("cam_top"), mirror=bool(g("cam_mirror")),
              tilt_deg=[float(x) for x in g("cam_tilt")], twist_deg=float(g("cam_twist")), lens_name=c["model_lens"],
              readout_s=ro, video_delay_s=lag - t0_off + c["est_delay_err_s"], hold_cfg=c["hold_cfg"],
-             mask_file=mask_path, log_dir=RUNS, calibrated=True)
+             mask_file=mask_path, log_dir=RUNS, calibrated=True,
+             video_kind="analog", field="top")          # the simulator still renders one analog field (not the Justice D)
     s["calib_capture"] = capture.capture_mode(s, {}, (H, W))
     s.update(c["settings"])
     path = os.path.join(RUNS, label + "_settings.json")

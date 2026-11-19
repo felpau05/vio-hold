@@ -59,7 +59,7 @@ def main():
     s = S.load("/nonexistent")
     s.update(top=c["cam_top"], mirror=bool(c["cam_mirror"]), tilt_deg=[float(x) for x in c["cam_tilt"]],
              twist_deg=float(c["cam_twist"]), lens_name=c["model_lens"], readout_s=ro, video_delay_s=delay,
-             calibrated=True)
+             calibrated=True, video_kind="analog", field="top")     # the simulator renders one analog field
     S.save(s, os.path.join(a.out, "settings.json"))
     import apb_main
     K, D = apb_main.lens(s, (cam.H, cam.W), focal=False)

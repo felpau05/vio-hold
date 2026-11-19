@@ -21,12 +21,21 @@ Method: web search/fetch plus `gh` reads. Nothing found for "M2-AI" by that name
 - Camera into Linux side: Prismo code comment: /dev/video0 = analog capture, /dev/video2 = MIPI downward-facing (apb/scripts/wingman_vio.py). Chip for analog capture not named.
 - Serial map APB: USART3 RC, UART4 TEL1 (IMX), USART6 TEL2, UART7 GPS, UART8 ESC telemetry.
 
-## 4. Justice D camera
+## 0. UPDATE 2026-11-18: the Stage 1 spec (rev 1.3) overrides the guesses below
+- Platform name is **M2-AI** (spec); "MRM2-10AI" is the press name. The earlier "inference, low confidence" match is confirmed in practice.
+- APB (OEM manual): NXP i.MX8M Plus, 4x Cortex-A53, STM32H743 FC, 4 GB LPDDR4, 4 GB eMMC, 2D/3D graphics, NPU 2.25 TOPS, Orqa Yocto BSP, SSH documented. Preinstalled packages (Python, OpenCV, ROS 2) are NOT promised; Stage 2 gives the deployment environment.
+- **Justice D = nadir camera**: digital **MIPI CSI**, 1280x720 at 60 fps, 16:9, FOV 114 deg H x 86 deg V x 121.5 deg D, used as a **rolling shutter**. **Justice A = forward-facing, analog**. The hold uses the Justice D only; extra cameras and sensors are forbidden.
+- Sensors named by the spec: ICM42605 IMU and DPS310 barometer on the APB (the aircraft manual also lists GPS, magnetometer, baro). Rates, timestamp conventions, camera/IMU timing and any rangefinder: Stage 2. (Section 6's ICM-42688 is the DroneWuKong port's guess; the spec wins.)
+- Firmware: ArduPilot, PX4, Betaflight, INAV "where available"; list in Stage 2. Betaflight is an optional bonus.
+- Not yet known: sensor model and exposure, readout time, how Linux exposes the CSI sensor (the Prismo note in section 3 says /dev/video2), frame time stamps.
+
+## 4. Justice D camera (OLD: written before the spec; the "Justice (Analog)" pages below describe the Justice A)
 - Official pages only say: "ORQA Justice (Analog)", 1200 TVL, 4:3/16:9 switchable (https://orqafpv.com/products/mrm2-10, https://orqafpv.com/products/mrm1-5). Sensor model, FOV, lens, shutter, field rate, PAL/NTSC: NOT FOUND. Rolling-shutter readout time: NOT FOUND, so no datasheet lookup was possible.
 - Justice A data (earlier lens calibration): analog standard "unconfirmed"; capture chain Justice A -> analog VTX -> UVC receiver -> OBS (1280x720, cropped to 960x720 for 4:3), and Orqa goggles capture 1280x960. Default OSD model uses 132 deg (Caddx Ratel 2) and was a poor fit (15.5 px RMS).
 
 ## 5. Justice A vs D
-Not documented anywhere I could reach. No source mentions "Justice D". Open question stays open.
+Answered by the Stage 1 spec (section 0 above): A = forward analog, D = nadir digital MIPI CSI. Section 7's lens
+calibration is for the Justice A and does not apply to the Justice D.
 
 ## 6. DroneWuKong repos
 Orqa_H7_PX4_Ports:

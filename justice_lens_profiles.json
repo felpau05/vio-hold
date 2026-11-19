@@ -160,6 +160,24 @@
       "p1": -3.421483287926732e-05,
       "p2": -0.0003302303943470146,
       "radial_turnover_deg_through_80": 60.83
+    },
+    {
+      "fx": 643.3,
+      "fy": 643.3,
+      "cx": 639.5,
+      "cy": 359.5,
+      "b2": 0.0,
+      "k1": 0.0,
+      "k2": 0.0,
+      "k3": 0.0,
+      "k4": 0.0,
+      "p1": 0.0,
+      "p2": 0.0,
+      "name": "Justice D nominal (spec FOV, uncalibrated)",
+      "projection": "equidistant_fisheye",
+      "image_size": [1280, 720],
+      "radial_turnover_deg_through_80": null,
+      "note": "Stage 1 spec Q3: 1280x720, 114 x 86 x 121.5 deg. f = 640 px / 57 deg (horizontal FOV). Vertical and diagonal FOV imply f of 480 and 693 px, so the lens is not equidistant: calibrate."
     }
   ],
   "source_xml_sha256": "59b3baab7f577b60e400858974ecc7fac19cfcdfb23bc62b56402da671b2cf44"

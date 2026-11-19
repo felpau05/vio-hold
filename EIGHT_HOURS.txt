@@ -19,14 +19,14 @@ STOP RULE: board_check.sh shows ALL PASS. The firmware line shows px4 or ardupil
 If the firmware is not px4 or ardupilot: stop. The program cannot fly it (EVENT_DAY step 1).
 If pip fails: use the last part of step 3 in tools/wheels/README.txt (unpack the wheels).
 
-HOUR 2 (1:00 to 2:00). Profile, parameters, mask.
+HOUR 2 (1:00 to 2:00). Profile, parameters, mask. (If the Justice D does not open, stop and do HARDWARE_BRINGUP.md step 3 first.)
 1. On the laptop: python3 tools/use_profile.py apply <indoor | outdoor_day | outdoor_night> <goal_a | goal_b> <px4 | ardupilot>
 2. ArduPilot only: write the field's lat, lon, alt into origin_lat_lon_alt in settings.json.
 3. Copy: NO_RESTART=1 tools/deploy.sh
 4. Do EVENT_DAY step 1 again. The px4 profile adds MAV_0_RATE.
 5. Do EVENT_DAY step 2. Write down the fix age.
 6. Set EKF2_DELAY_MAX or VISO_DELAY_MS from the fix age (DECISION_CARD row 7). Copy again.
-7. Do EVENT_DAY step 3 (mask).
+7. Do EVENT_DAY step 3 (mask; on the digital Justice D it masks almost nothing).
 STOP RULE: every param line shows PASS. The fix age is under 150 ms. The heading is within 10 deg. The mask passes.
 If not: use DECISION_CARD rows 7, 8 and 13. Do not go on with a FAIL line.
 
