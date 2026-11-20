@@ -31,4 +31,4 @@ Scored runs use the event evaluation setup; team development aids do not count (
 2. **Rolling shutter:** each image row uses the attitude at its own exposure time (`hold.py`); readout time and delay are calibrated (`calib.py`). Bonus route: measured improvement (needs a with/without comparison on real Justice D data).
 3. **APB compute:** Hold cost per frame, fixes per second, CPU headroom (HARDWARE_BRINGUP.md row 8).
 4. **Degraded VIO:** the gates (frozen, static, no ground, moving object, attitude mismatch), what is sent when a gate fails (nothing), how it re-anchors, what the pilot does.
-5. **Limits and failures:** the hold-out field flyaway, analog-only simulation, unverified Justice D numbers. Say them plainly.
+5. **Limits and failures:** the analog hold-out field flyaway, analog closed-loop results, and Justice D open-loop results based on assumed camera parameters.

@@ -72,6 +72,21 @@ Full map: `README.md`.
 - The PX4 and ArduPilot closed-loop simulators still render the old analog camera. `sim_ground.py` has a
   Justice D open-loop mode whose results depend on assumed camera parameters. Real-camera measurements are pending.
 
+## Software to-do, in progress (2026-11-19, later session)
+
+Goal from the user: all software done; hardware items may wait.
+- DONE: `camera="justice_d"` preset for the closed-loop simulators (`px4sim/sitl.py` `JUSTICE_D`/`apply_camera`, `px4sim/camera.py`
+  `VIDEO["JUSTICE_D"]`; works for `apsim/sitl_ap.py` too: `python apsim/sitl_ap.py apb 100 w20g40 60 camera=justice_d label=...`).
+  Written but NOT yet run end to end: Docker Desktop was not running (needs the user to start it).
+- DONE: `integ/calib_loop.py` runs for the Justice D with `VIO_SIM_CAMERA=justice_d` (output `integ/calib_loop_justice_d.txt`):
+  calib finds a focal scale of 0.93 as 0.934, mount tilt within 0.2 deg, readout and delay within tolerance. So the
+  top risk (focal error) is handled by `apb_main.py calib` in simulation; the real lens is still to be measured.
+- `sh tests_apb/run_all.sh`: all pass except `test_ap_sitl`, which needs Docker.
+- Prairie 100 m weakness was an analog-camera result; with the simulated Justice D prairie 100 m is 0.40 m RMS (open loop).
+- E5 (yaw): `hold.py` already adds a mount-error x yaw-change variance term; nothing can remove an FC level bias, so the pilot does not yaw.
+- TODO (needs Docker): closed-loop Justice D runs on ArduPilot (and PX4 if its container is still available), including wind,
+  focal error and `test_ap_sitl`; then hold-out runs once.
+
 ## Rules to keep following
 
 - `DATA_SPLITS.md`: tune on TUNING, check on VALIDATION, report on HOLD-OUT once. Hold-out sites

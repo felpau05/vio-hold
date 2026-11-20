@@ -309,7 +309,8 @@ def osd_mask(w, h, scale=0.85):
 
 
 # ------------------------------------------------------------------ camera
-VIDEO = {"PAL": (360, 288, 25.0), "NTSC": (360, 240, 30.0)}   # one field, width halved (as Hold is fed)
+VIDEO = {"PAL": (360, 288, 25.0), "NTSC": (360, 240, 30.0),
+         "JUSTICE_D": (640, 360, 30.0)}   # Justice D after video_scale 0.5; 30 of its 60 fps reach Hold (assumed)   # one field, width halved (as Hold is fed)
 
 
 class Camera:

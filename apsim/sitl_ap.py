@@ -272,6 +272,7 @@ def ground(c):
 def run_case(case, quiet=False):
     c = dict(P.DEFAULTS, **AP_DEFAULTS)
     c.update(case)
+    P.apply_camera(c, case)
     v = c["variant"]
     label = c["label"] or f"ap_{v}_{c['height']:.0f}m_{c['wind']}_s{c['seed']}"
     say = (lambda *a: None) if quiet else (lambda *a: print(f"[{label}]", *a, flush=True))

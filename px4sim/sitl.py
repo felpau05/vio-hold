@@ -75,6 +75,7 @@ WINDS = {"calm": (0.0, 0.0), "w20g40": (20.0, 40.0), "w30g55": (30.0, 55.0)}   #
 DEFAULTS = dict(
     variant="ours", vehicle="medium", height=100.0, wind="calm", hold_s=60.0, seed=1,
     wind_from_deg=270.0,       # most frequent November direction at Ottawa (research/site_weather.md)
+    camera="analog",           # "justice_d": the Stage 1 camera (JUSTICE_D above), 640x360 at 30 fps, 114 deg HFOV
     ground="ottawa2019fall",   # or "snow", "snow_tarps", "snow_tarps_pad", "night_lights" (with exposure_s=0.02 noise=10)
     video="PAL",               # PAL 25 fps 360x288 (measured on the real video) or NTSC 30 fps 360x240
     readout_s=0.0184,          # assumed: active lines of one PAL field (288 of 312.5 lines x 20 ms); < 0 = bottom first
@@ -125,6 +126,21 @@ DEFAULTS = dict(
     mag_yaw_deg=0.0,           # compass: a heading error that steps in at the hold start (field near steel changes)
     mag_yaw_dps=0.0,           # compass: plus a heading drift during the hold (deg/s)
 )
+
+
+# Stage 1 spec camera (SPEC.md). camera="justice_d" in a case sets these unless the case names the key itself.
+# ASSUMED, not measured: readout 14 ms, delay 50 ms, white noise 2.0 grey, exposure 4 ms, nominal lens (114 deg HFOV).
+JUSTICE_D = dict(video="JUSTICE_D", readout_s=0.014, video_delay_s=0.05, noise=2.0, noise_corr_px=0.01,
+                 true_lens="Justice D nominal (spec FOV, uncalibrated)", model_lens="Justice D nominal (spec FOV, uncalibrated)")
+
+
+def apply_camera(c, case):
+    """c with the camera preset applied; keys the case itself names stay as the case gave them."""
+    if c.get("camera") == "justice_d":
+        for k, v in JUSTICE_D.items():
+            if k not in case:
+                c[k] = v
+    return c
 
 
 def ev_delay(c):
@@ -551,7 +567,7 @@ def sim_settings(c, label):
              tilt_deg=[float(x) for x in g("cam_tilt")], twist_deg=float(g("cam_twist")), lens_name=c["model_lens"],
              readout_s=ro, video_delay_s=lag - t0_off + c["est_delay_err_s"], hold_cfg=c["hold_cfg"],
              mask_file=mask_path, log_dir=RUNS, calibrated=True,
-             video_kind="analog", field="top")          # the simulator still renders one analog field (not the Justice D)
+             **(dict(video_kind="csi", video_scale=0.5) if c["camera"] == "justice_d" else dict(video_kind="analog", field="top")))
     s["calib_capture"] = capture.capture_mode(s, {}, (H, W))
     s.update(c["settings"])
     path = os.path.join(RUNS, label + "_settings.json")
@@ -597,7 +613,7 @@ def onboard_log(paths, t0, t1):
 def run_case(case, quiet=False):
     """Start PX4, climb in Altitude mode, start the vision feed, switch to Position mode, hold, score."""
     import hold as hold_mod
-    c = dict(DEFAULTS, **case)
+    c = apply_camera(dict(DEFAULTS, **case), case)
     label = c["label"] or f"{c['variant']}_{c['height']:.0f}m_{c['wind']}_{c['vehicle']}"
     say = (lambda *a: None) if quiet else (lambda *a: print(f"[{label}]", *a, flush=True))
     os.makedirs(RUNS, exist_ok=True)
