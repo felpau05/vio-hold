@@ -4,7 +4,25 @@ A camera looks down. The program measures how far the drone is from a reference 
 
 **Nothing has run on the real board, camera or aircraft.** Every number is from a simulator with the real flight controller firmware, or from unit tests.
 
-## 1. First things to do at the hackathon
+## 1. What we have
+
+| Piece | Where | State |
+|---|---|---|
+| Estimator: picture + attitude + height gives a position in metres | `hold.py` | Simulated at 5 to 100 m |
+| Onboard program: `run`, `check`, `mask`, `calib`, `bench`, `timing` | `apb_main.py` | Runs on a laptop and on emulated ARM. Not on the board yet |
+| Camera input, calibration, flight controller link | `capture.py`, `calib.py`, `fc_link.py` | Unit tests and simulator |
+| Low-height setting for holds at 5 to 10 m | profile `low_height` | New on 2026-11-21. Simulator only |
+| GPS levels: off, take-off only, fallback | profiles `gnss_setup`, `gnss_fallback` | Simulator only |
+| Save and restore of the aircraft's parameters | `tools/fc_params.py` | Passed against a simulated flight controller |
+| Page for the pilot, and the takeover demonstration | `PILOT_SAFETY.txt`, `EVENT_DAY.txt` step 6C | Simulator and source reading |
+| Checklists for the day | `EIGHT_HOURS.txt`, `EVENT_DAY.txt`, `DECISION_CARD.txt` | Rehearsed in the simulator |
+| Our own Python for the board | `tools/bundle/` | Built 2026-11-21. Tested on emulated ARM on 2026-11-20 |
+| The talk: 5 minutes, 38 prepared questions, slides | `PRESENTATION.md`, https://claude.ai/artifact/Pecdjb7iqTNMe6V1H2Abt7 | Fill the `[TODAY]` slots |
+| Simulators with the real firmware, and the tests | `apsim/`, `px4sim/`, `tests_apb/` | 17 of 18 test groups with no FAIL |
+| Betaflight route | `msp_link.py`, `betasim/` | Betaflight simulator only, up to 10 m. Off |
+| Prototypes: forward camera, keyframe map, pose graph | `fwd_cam.py`, option `kf_map`, `integ/kfgraph/` | Not tested. Do not use today |
+
+## 2. First things to do at the hackathon
 
 1. Read Stage 2 together. Write the answers into `ORGANIZER_QUESTIONS.md`.
 2. Ask the crew:
@@ -21,7 +39,7 @@ A camera looks down. The program measures how far the drone is from a reference 
 The plan for the day is `EIGHT_HOURS.txt`. Each step with its pass rule is `EVENT_DAY.txt`. Fixes by symptom are `DECISION_CARD.txt`.
 Fly this branch (`stage1-justice-d`). Do not merge `origin/spec-justice-d` today: the program then does not start.
 
-## 2. How it works
+## 3. How it works
 
 ```
   Justice D camera (looks down, rolling shutter)
@@ -45,7 +63,7 @@ Fly this branch (`stage1-justice-d`). Do not merge `origin/spec-justice-d` today
 - The flight controller does the fusion and keeps its failsafes. The program never arms, never changes the mode and never sends a flight target.
 - A frozen, covered or inconsistent picture gives no fix. No position is safer than a wrong one.
 
-## 3. How to use it
+## 4. How to use it
 
 | Where | To do this | Type |
 |---|---|---|
@@ -68,7 +86,7 @@ Fly this branch (`stage1-justice-d`). Do not merge `origin/spec-justice-d` today
 
 After each flight, look at the plot: 10 or more fixes each second, fix age under 150 ms, the reasons for unsent frames, and the notes ("engaged", "released", no "WARNING").
 
-## 4. Test results (ArduCopter simulator, wind 20 gusting 40 km/h, the 30 s from the switch)
+## 5. Test results (ArduCopter simulator, wind 20 gusting 40 km/h, the 30 s from the switch)
 
 | Height | Old settings: typical / largest | With `low_height` |
 |---|---|---|
@@ -88,7 +106,7 @@ After each flight, look at the plot: 10 or more fixes each second, fix age under
 
 More numbers, each with its file: `EVIDENCE.md`.
 
-## 5. The repository
+## 6. The repository
 
 | Path | What it is |
 |---|---|
@@ -104,5 +122,3 @@ More numbers, each with its file: `EVIDENCE.md`.
 | `tests_apb/`, `tests/` | Tests: `sh tests_apb/run_all.sh` |
 | `integ/` | Records of each experiment. Newest: `integration_2026-11-21/`, `kfmap/` (low height), `gnss_ladder/`, `pilot_safety/` |
 | `research/`, `review/` | Notes on hardware and papers. Review findings |
-
-Not for today (prototypes, not tested): `fwd_cam.py`, the option `kf_map`, `integ/kfgraph/`, the Betaflight route.
