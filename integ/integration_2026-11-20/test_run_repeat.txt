@@ -1,0 +1,7 @@
+test_run.py alone, alternating the new apb_main.py and the old one (the copy in the snapshot). One run each line.
+run 1 new (load 1 min 10.96): ALL PASS in 28 s; first note 'FC mode main mode 0; re-anchored to FC position 0.62 0.80'
+run 1 old (load 1 min 7.51): ALL PASS in 28 s; first note 'FC mode main mode 0; re-anchored to FC position 0.63 0.85'
+run 2 new (load 1 min 5.40): ALL PASS in 28 s; first note 'FC mode main mode 0; re-anchored to FC position 0.63 0.85'
+run 2 old (load 1 min 4.24): ALL PASS in 28 s; first note 'FC mode main mode 0; re-anchored to FC position 0.63 0.85'
+run 3 new (load 1 min 3.10): ALL PASS in 28 s; first note 'FC mode main mode 0; re-anchored to FC position 0.63 0.85'
+run 3 old (load 1 min 3.85): ALL PASS in 28 s; first note 'FC mode main mode 0; re-anchored to FC position 0.63 0.85'

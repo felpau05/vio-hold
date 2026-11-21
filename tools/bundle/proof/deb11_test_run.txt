@@ -1,0 +1,14 @@
+$ qpy tests_apb/test_run.py (cwd: the bundle's vio folder plus the test files; root file system py310; qemu CPU cortex-a53)
+connected: px4, ATTITUDE 99 Hz, clock fitted True
+  FAIL normal: 22 fixes in 8 s (2.8/s), position error vs truth rms 0.20 m, max 0.35 m; fix age 304 ms
+  PASS normal: error under 1 m RMS at 50 m (hold anchored to the FC position)
+  PASS fix fields: z -50.92, angles NaN, covariance[0] 0.0436 [6] 0.0438 [11] 0.0
+  PASS frozen picture: last fix 0.03 s after the freeze; 0 fixes later than 0.5 s
+  FAIL after the freeze: 6 fixes in 4 s; first 2.60 s after the picture moved again
+  PASS attitude stopped: last fix 0.05 s after; 0 fixes later than 0.2 s
+  FAIL after attitude returned: 7 fixes in 4 s
+  FAIL restart: 0 fixes; first fix nan m from the truth (no jump)
+  PASS log 137 rows; reasons {'repeated frame': 60, '': 38, 'good fix': 27, 'attitude 0': 4, 'attitude stale': 2, 'init': 1, 'attitude 25': 1, 'attitude 2': 1}; first note 'FC mode main mode 0; re-anchored to FC position 0.72 0.08'
+  FAIL replay of the first raw chunk (3 chunks): {'frames': 95, 'sent': 23, 'init': 1, 'ok': 34} in 3 s
+5 FAIL in 32 s (files in /tmp/tmp9syvn3rz)
+exit code 5

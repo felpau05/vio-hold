@@ -127,6 +127,39 @@ DEFAULTS = dict(
 )
 
 
+# Camera defaults of a digital video mode (camera.DIGITAL); a case value still wins. video="JUSTICE_D": the Orqa
+# Justice D, 1280x720 progressive at 60 fps, given to Hold as 640x360. The analog defaults above are unchanged.
+VIDEO_DEFAULTS = {"JUSTICE_D": dict(
+    readout_s=0.014,           # true rolling-shutter readout (top row first). assumed: about one 60 fps frame minus blanking
+    noise=1.0,                 # assumed: picture noise std per 1280x720 pixel (grey), white; no measurement of this camera
+    noise_corr_px=0.0,         # white sensor noise (the analog x-correlation does not apply)
+    video_delay_s=0.024,       # assumed: end of readout -> frame stamp; with readout 14 ms and exposure 4 ms the stamp is
+                               # 40 ms after the row-0 mid-exposure, the starting value of tools/profiles/justice_d.json
+    true_lens="sim Justice D near crop",   # camera.TRUE_LENSES (simulator only)
+    model_lens=None,           # None: camera.calib_lens(true_lens), the lens a hand-turn calibration can give
+)}
+JUSTICE_D_OVERLAY = os.path.join(PROJ, "tools", "profiles", "justice_d.json")
+
+
+def video_defaults(case):
+    """The camera defaults of case's video mode, to merge between DEFAULTS and the case."""
+    return VIDEO_DEFAULTS.get(case.get("video", DEFAULTS["video"]), {})
+
+
+def model_lens(c, label):
+    """(lens file, profile name) the estimator gets. A dict or None (digital: camera.calib_lens of the true lens)
+    is written to runs/<label>_lens.json; the estimator never sees camera.TRUE_LENSES."""
+    m = c["model_lens"]
+    if m is None:
+        m = C.calib_lens(c["true_lens"])
+    if not isinstance(m, dict):
+        return C.LENS_JSON, m
+    path = os.path.join(RUNS, label + "_lens.json")
+    os.makedirs(RUNS, exist_ok=True)
+    json.dump({"models": [m]}, open(path, "w"), indent=1)
+    return path, m["name"]
+
+
 def ev_delay(c):
     """Time from the fix's own time stamp to its arrival at PX4. We do not answer TIMESYNC, so PX4
     stamps the arrival and subtracts EKF2_EV_DELAY; the sender holds each fix until exactly then."""
@@ -535,7 +568,7 @@ def sim_settings(c, label):
     import capture
     import settings as S
     s = S.load("/nonexistent")                                  # the defaults of settings.py
-    W, H, _ = C.VIDEO[c["video"]]
+    W, H, _ = C.picture_size(c["video"])
     g = lambda k: c[k] if c["est_" + k[4:]] is None else c["est_" + k[4:]]   # noqa: E731
     ro = c["readout_s"]
     # frame stamp (end of the last row + chain delay) minus mid-exposure of row 0, as Frames renders it
@@ -547,10 +580,23 @@ def sim_settings(c, label):
         mask = np.minimum(mask, hold.corner_mask((H, W), c["mask_corners"], c["mask_border"]))
     mask_path = os.path.join(RUNS, label + "_mask.png")
     cv2.imwrite(mask_path, mask)
+    hold_cfg = dict(c["hold_cfg"])
+    if c["video"] in C.DIGITAL:
+        # What tools/use_profile.py apply justice_d writes, except the starting values that calib replaces (lens,
+        # readout, delay) and the device. hold_cfg: the overlay's, then the case's.
+        ov = {k: v for k, v in json.load(open(JUSTICE_D_OVERLAY)).items()
+              if not k.startswith("_") and k not in ("lens_name", "readout_s", "video_delay_s", "video_device")}
+        sw, sh, fps, k = C.DIGITAL[c["video"]]
+        hold_cfg = dict(ov.pop("hold_cfg", {}), **hold_cfg)
+        s.update(ov)
+        s.update(camera="digital", video_size=[sw, sh], video_fps=fps, video_reduce=k, video_standard="none")
+    lens_file, lens_name = model_lens(c, label)
     s.update(fc_device=f"udpin:127.0.0.1:{PORT}", top=g("cam_top"), mirror=bool(g("cam_mirror")),
-             tilt_deg=[float(x) for x in g("cam_tilt")], twist_deg=float(g("cam_twist")), lens_name=c["model_lens"],
-             readout_s=ro, video_delay_s=lag - t0_off + c["est_delay_err_s"], hold_cfg=c["hold_cfg"],
+             tilt_deg=[float(x) for x in g("cam_tilt")], twist_deg=float(g("cam_twist")), lens_name=lens_name,
+             readout_s=ro, video_delay_s=lag - t0_off + c["est_delay_err_s"], hold_cfg=hold_cfg,
              mask_file=mask_path, log_dir=RUNS, calibrated=True)
+    if lens_file != C.LENS_JSON:
+        s["lens_file"] = lens_file
     s["calib_capture"] = capture.capture_mode(s, {}, (H, W))
     s.update(c["settings"])
     path = os.path.join(RUNS, label + "_settings.json")
@@ -596,7 +642,7 @@ def onboard_log(paths, t0, t1):
 def run_case(case, quiet=False):
     """Start PX4, climb in Altitude mode, start the vision feed, switch to Position mode, hold, score."""
     import hold as hold_mod
-    c = dict(DEFAULTS, **case)
+    c = {**DEFAULTS, **video_defaults(case), **case}
     label = c["label"] or f"{c['variant']}_{c['height']:.0f}m_{c['wind']}_{c['vehicle']}"
     say = (lambda *a: None) if quiet else (lambda *a: print(f"[{label}]", *a, flush=True))
     os.makedirs(RUNS, exist_ok=True)
@@ -684,7 +730,7 @@ def run_case(case, quiet=False):
         if c["variant"] not in ("none", "apb", "gps"):
             frames = C.Frames(cam, link, c, render=(c["variant"] == "ours" or bool(c["video_out"])))
             if c["variant"] == "ours":
-                K, D = hold_mod.load_lens(C.LENS_JSON, c["model_lens"], cam.W, cam.H)
+                K, D = hold_mod.load_lens(*model_lens(c, label), cam.W, cam.H)
                 g = lambda k: c[k] if c["est_" + k[4:]] is None else c["est_" + k[4:]]
                 R_bc = hold_mod.make_R_bc(top=g("cam_top"), mirror=g("cam_mirror"), tilt_deg=g("cam_tilt"),
                                           twist_deg=g("cam_twist"))

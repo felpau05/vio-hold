@@ -105,7 +105,7 @@ Take: large IR-contrast markers work to ~100 m altitude with a ZOOM lens; our wi
 ## S9. Kim and Shin: "Night-Time UAV Precision Landing with a Multi-Spectral Helipad: IR Visual Alignment and Range Sensor-Based Descent Control" (2026 conference abstract; 2 pages)
 URL: https://d2j16w31g89z0j.cloudfront.net/site/2026w/abs/0338-TMAYZ.pdf  Read: full 2-page PDF.
 Reports: night trials, marker detected from d = 20.4 m to 0.5 m at about 30 FPS, confidence 0.84-0.93; landing offset 12 +- 5 cm (max 28 cm), 10/10 success vs GPS-only 163 +- 50 cm, 1/10. Align uses image-space error with an adaptive dead-zone that shrinks near the ground.
-Not given: LED type, count, size, camera. Small sample (10 trials). Take: ~20 m detection with an IR-visible helipad is the only night range figure with a camera that I found; it is a landing, not a hover hold.
+Not given: LED type, count, size, camera. Small sample (10 trials). Take: ~20 m detection with an IR-visible helipad is the only night range figure with a camera that was found; it is a landing, not a hover hold.
 
 ## S10. Lin, Jin, Chen: "Real-Time Monocular Vision System for UAV Autonomous Landing in Outdoor Low-Illumination Environments", Sensors 2021, 21, 6226
 URL: https://doi.org/10.3390/s21186226   Read: full PDF text.
@@ -143,7 +143,7 @@ Read: relevant sections.
   No accuracy numbers are given in the page.
 - VIO page: "I get toilet-bowling when VIO is enabled" -> check the camera orientation/frame of velocities in ODOMETRY. "It is more reliable to just use vision velocity" when GPS and vision position disagree (GPS case only).
 - Official statement on speed vs position fusion benefit: none found.
-Take: for PX4 set EKF2_EV_CTRL = 5 (bits 0 and 2: position and velocity) only if our speed is genuinely independent/accurate; otherwise 1. Tune EKF2_EV_DELAY by minimum EV innovation. (The value 5 is my arithmetic from the bit list, bit0+bit2.)
+Take: for PX4 set EKF2_EV_CTRL = 5 (bits 0 and 2: position and velocity) only if our speed is genuinely independent/accurate; otherwise 1. Tune EKF2_EV_DELAY by minimum EV innovation. (The value 5 is the arithmetic from the bit list, bit0+bit2.)
 
 ## S14. Shankar, Elbaum, Detweiler: "Freyja: A Full Multirotor System for Agile and Precise Outdoor Flights" (ICRA 2021; PDF from NSF PAR)
 URL: https://par.nsf.gov/servlets/purl/10297051   Read: full PDF text (pdftotext).
@@ -184,7 +184,7 @@ Authors state small markers (illuminated AprilTag, IR T-marker) have insufficien
 - "Delay and Dropout Tolerant State Estimation for MAVs" (ISER 2010, Springer chapter 10.1007/978-3-642-28572-1_39): snippet states a quadrotor held near a setpoint with a simple PID despite delays up to 230 ms and 16% dropout. Snippet only.
 - Ordaz et al., J Intell Robot Syst 2013, doi 10.1007/s10846-012-9714-5 (Taylor-series delay predictor for quadrotor position control): snippet only.
 
-## SUMMARY (my judgement, evidence above)
+## SUMMARY (the judgement, evidence above)
 Parameter-only levers, in order:
 1. Delay and noise honesty. ArduCopter: VISO_DELAY_MS = measured capture-to-EKF age (0-250), VISO_POS_M_NSE (floor of position noise; default 0.2 m) and VISO_VEL_M_NSE (default 0.1 m/s) set to what the feed really delivers.
    PX4: EKF2_EV_DELAY (0-300 ms; tune for lowest EV innovations), EKF2_DELAY_MAX >= it, EKF2_EV_NOISE_MD 0 so our covariance is used. Evidence: S2, S3, S13, S16.

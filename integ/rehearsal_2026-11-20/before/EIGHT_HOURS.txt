@@ -1,0 +1,110 @@
+EIGHT HOURS ON SITE: one block per hour, each with a stop rule
+EVENT_DAY.txt has the checklist steps. DECISION_CARD.txt has the fixes. This plan uses both.
+Laptop commands run in the program folder. Board commands run in the board's program folder.
+
+Rules for every hour.
+- The event pilot flies the aircraft. Team members do not fly. Where a step says "fly", give the request to the pilot.
+- Make one change at a time. Fly, record, look at the log, then change.
+- Keep a copy of every settings file that flew well: cp settings.json good_HHMM.json.
+- Half of each hour is spare time. Use it for the fallback, not for new ideas.
+- Before the day: rehearse hours 5 and 6 on the laptop with tools/sim_rec.py and tools/replay_tune.py.
+
+HOUR 1 (0:00 to 1:00). Board, Python, link.
+1. Connect the laptop to the USB-C port of the i.MX. The port is a network device. The board address is 192.168.75.1.
+   Type: ssh root@192.168.75.1
+2. Write one line into tools/deploy.env: BOARD=192.168.75.1.
+3. Copy the program: NO_RESTART=1 tools/deploy.sh
+4. On the board: sh tools/board_check.sh
+5. For each FAIL line, run the fix line under it. The wheels are on the USB stick (tools/wheels/README.txt).
+6. Read the new board_check.sh lines: /dev/video2 and /dev/video3, the pixel formats, /dev/ttymxc2, the IIO devices,
+   the board temperature, the clock, /sdcard, and the OpenCV build (V4L2 and GStreamer).
+7. Check the clock. The board clock is wrong after the first start until the board gets network time.
+   If the clock line shows a year before 2026, connect the network. Or type: date -s 'YYYY-MM-DD hh:mm'
+8. Select the flight controller route on the board. Type these two commands:
+   gpioset -t0 -c gpiochip3 13=1
+   gpioset -t0 -c gpiochip3 0=0
+   (The APB manual gives these commands for UART3, /dev/ttymxc2. It gives no baud rate and no protocol.)
+9. Check the temperature: cat /sys/class/thermal/thermal_zone0/temp. The value is in millidegrees C. The board stops at 95 C.
+10. Do EVENT_DAY step 1 and step 2.
+STOP RULE: board_check.sh shows ALL PASS. The firmware line shows px4 or ardupilot.
+If the firmware is not px4 or ardupilot: stop. The program cannot fly it (EVENT_DAY step 1).
+If pip fails: use the last part of step 3 in tools/wheels/README.txt (unpack the wheels).
+
+HOUR 2 (1:00 to 2:00). Profile, parameters, mask.
+1. On the laptop: python3 tools/use_profile.py apply <indoor | outdoor_day | outdoor_night> <goal_a | goal_b> <px4 | ardupilot> justice_d
+   Name every profile in the same command. justice_d is the Justice D overlay (EVENT_DAY step 0).
+   Then open settings.json. Set log_dir to /sdcard/logs.
+2. ArduPilot only: write the field's lat, lon, alt into origin_lat_lon_alt in settings.json.
+3. Copy: NO_RESTART=1 tools/deploy.sh
+4. Do EVENT_DAY step 1 again. The px4 profile adds MAV_0_RATE.
+5. Do EVENT_DAY step 2. Write down the fix age.
+6. Set EKF2_DELAY_MAX or VISO_DELAY_MS from the fix age (DECISION_CARD row 7). Copy again.
+7. Do EVENT_DAY step 3 (mask).
+STOP RULE: every param line shows PASS. The fix age is under 150 ms. The heading is within 10 deg. The mask passes.
+If not: use DECISION_CARD rows 7, 8 and 13. Do not go on with a FAIL line.
+
+HOUR 3 (2:00 to 3:00). Calibration and ground tests, propellers off.
+1. Do EVENT_DAY steps 4, 5 and 6.
+   The calibration also finds the lens and writes lens_measured into settings.json (Justice D).
+2. On the laptop: tools/deploy.sh pull. This gets the calibration, the mask and the new logs from the board's log_dir and logs/.
+2b. Lens, Justice D, optional: solve the recording on the laptop.
+   Type: python3 apb_main.py calib --rec logs/rec_<stamp>.npz
+   On the ground, type: FORCE=1 NO_RESTART=1 tools/deploy.sh
+   (Without FORCE=1 the push stops, because the calibration differs. FORCE=1 also skips the stop for a flying aircraft.)
+2c. Lens with a checkerboard, development area only: after step 2, type:
+   ~/.venvs/vio/bin/python tools/lens_calib.py <folder | video | rec.npz> --settings settings.json
+   On the ground, type: FORCE=1 NO_RESTART=1 tools/deploy.sh
+   On the board, type: python3 apb_main.py calib. It fits one focal scale against the target lens.
+   Then type on the laptop: tools/deploy.sh pull
+3. Keep a copy: cp settings.json good_calib.json
+STOP RULE: the two calibrations agree within 3 ms. The focal scale is 0.98 to 1.02 (analog camera, or a target lens). Justice D with no target lens: the "measured lens written to lens_measured" line shows PASS. Every bench value is in its range.
+If not: do EVENT_DAY step 4 once more. If it fails again, do not fly. Check the camera mount (DECISION_CARD row 6).
+
+HOUR 4 (3:00 to 4:00). First low hover.
+1. Start the program: tools/deploy.sh (it runs "apb_main.py run --raw" and shows the log).
+2. Do EVENT_DAY step 7 (30 s hold at 20 m, or at the indoor height).
+3. Land. On the laptop: tools/deploy.sh pull
+4. Run: ~/.venvs/vio/bin/python tools/plot_log.py logs/<newest run_*.csv>. Look at the PNG.
+STOP RULE: the drone stayed above the point. Fixes per second stayed at 10 or more. The fix age stayed under 150 ms.
+If not: find the row in DECISION_CARD for what you saw. Make that one change. Fly this hour's hover once more.
+
+HOUR 5 (4:00 to 5:00). Tune at the target height.
+1. Fly a 60 s hold at the target height. Give small stick inputs, or fly in wind. A still hover tunes nothing.
+2. Land. On the laptop: tools/deploy.sh pull
+3. Run: ~/.venvs/vio/bin/python tools/replay_tune.py "logs/raw_<stamp>_*.npz" (under 2 minutes).
+   Use its patch only from a recording at 100 m or higher. Below 100 m, merge no part of the patch. The delay and
+   readout then come from the wiggle flown at 40 m or higher (EVENT_DAY step 7b; it has no test below 40 m), or
+   from the ground calibration (EVENT_DAY step 4). Keep the focal scale from calib.
+   (Rehearsal 2026-11-19, one sim recording at each height, delay set 30 ms too long. 100 m: patch = delay 6 ms
+   from the truth. 30 m: patch = delay 89 ms off, readout 0 (rolling-shutter correction off), focal 8 % off.
+   10 m: patch = focal 1.038 (true 1.0) and two Hold settings; the wrong delay stayed. The tool scores by fix
+   jitter, and at low height a wrong value gave less jitter. integ/rehearsal_2026-11-19/README.txt)
+4. If it changed a value (100 m or higher only): python3 tools/use_profile.py merge logs/tune/tune_patch.json
+5. If video_delay_s changed by more than 10 ms: do EVENT_DAY step 4 again (DECISION_CARD row 12).
+6. Copy: tools/deploy.sh. Fly the same 60 s hold again. Compare the two plot_log PNGs.
+STOP RULE: the second flight is not worse (fixes per second, fix age, drift). Do two tune loops at most.
+If it is worse: cp good_calib.json settings.json. Copy it with tools/deploy.sh.
+
+HOUR 6 (5:00 to 6:00). Choose the height.
+1. Goal A: hold 30 s at each height step (outdoors 30 m, 60 m, then 100 m if the rules allow it).
+2. Goal B: hold 30 s at the lowest height that the rules allow.
+3. Indoors: use steps between 2 m and 15 m.
+4. Pull and plot each flight.
+STOP RULE: choose the highest step (goal A) or the lowest step (goal B) where the drone stayed above the point.
+Fixes per second must stay at 10 or more for the full hold. Write the height down.
+If no step works: use DECISION_CARD rows 3 and 5.
+
+HOUR 7 (6:00 to 7:00). Timed dress rehearsal.
+1. Fly the trial sequence exactly: power, program, 60 s wait (PX4), Altitude mode, climb, Position mode, hold, land.
+2. Time each step. Use only the commands of the trial.
+3. Restart the program once on the ground with tools/deploy.sh. The log must show "running: yes".
+STOP RULE: the full sequence runs with no laptop work during the flight and fits the trial time.
+If not: write down the slow step. Fix only that step.
+
+HOUR 8 (7:00 to 8:00). Freeze.
+1. Make no change to the code.
+2. If the trial is after dark: do EVENT_DAY step 4 in the night light and step 6 (DECISION_CARD row 15).
+3. On the laptop: tools/deploy.sh pull. Copy settings.json and the logs folder to a USB stick.
+4. Charge the batteries. Check the cables and the propellers.
+STOP RULE: python3 tools/use_profile.py diff settings.json good_<last>.json shows only the calibration of step 2.
+If a problem remains: copy the last good settings file to settings.json. Fly that.

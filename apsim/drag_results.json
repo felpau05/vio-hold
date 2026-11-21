@@ -1,0 +1,3365 @@
+{
+ "dr_gap_off_s102": {
+  "case": "dr_gap_off_s102",
+  "rms": 2.065439915365016,
+  "p95": 2.9589749086724204,
+  "max": 3.168853399944622,
+  "end": 2.1002632483432944,
+  "pct_frames_fix": 41.0,
+  "fix_rate_hz": 10.249319620099264,
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 5, 0.0 s after the Loiter request started"
+   ]
+  ],
+  "hold_s_flown": 60.0,
+  "ap_params": {
+   "ARMING_CHECK": 0,
+   "PILOT_SPEED_UP": 500,
+   "SIM_WIND_T": 1,
+   "SIM_WIND_SPD": 0,
+   "SIM_WIND_TURB": 0,
+   "SIM_WIND_DIR": 270.0,
+   "SERIAL1_BAUD": 115,
+   "VISO_TYPE": 1,
+   "EK3_SRC1_POSXY": 6,
+   "EK3_SRC1_VELXY": 0,
+   "EK3_SRC1_POSZ": 1,
+   "EK3_SRC1_VELZ": 0,
+   "EK3_SRC1_YAW": 1,
+   "GPS1_TYPE": 0,
+   "VISO_DELAY_MS": 140
+  },
+  "climb_s": 32.3,
+  "age_ms_p50": 163.8,
+  "drift_m_per_min": 2.366500864671294,
+  "drag": "off",
+  "seed": 102,
+  "ap": {},
+  "wall_s": 106,
+  "loadavg": [
+   6.81005859375,
+   4.5390625,
+   2.248046875
+  ],
+  "texts_all": [
+   [
+    -44.43,
+    "Barometer 1 calibration complete"
+   ],
+   [
+    -44.43,
+    "Barometer 2 calibration complete"
+   ],
+   [
+    -41.98,
+    "ArduPilot Ready"
+   ],
+   [
+    -41.98,
+    "AHRS: DCM active"
+   ],
+   [
+    -41.68,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    -41.32,
+    "No ap_message for mavlink id (331)"
+   ],
+   [
+    -41.26,
+    "No ap_message for mavlink id (290)"
+   ],
+   [
+    -41.25,
+    "No ap_message for mavlink id (291)"
+   ],
+   [
+    -41.21,
+    "No ap_message for mavlink id (231)"
+   ],
+   [
+    -41.2,
+    "No ap_message for mavlink id (141)"
+   ],
+   [
+    -39.98,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    -39.98,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    -39.98,
+    "AHRS: EKF3 active"
+   ],
+   [
+    -38.6,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    -38.6,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    -38.5,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -38.5,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -33.68,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -33.25,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    -33.25,
+    "Arming motors"
+   ],
+   [
+    -32.28,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -28.21,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -28.21,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -27.8,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -27.8,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -24.17,
+    "EKF3 IMU1 is using external nav data"
+   ],
+   [
+    -24.17,
+    "EKF3 IMU1 initial pos NED = -0.2,-0.1,-21.1 (m)"
+   ],
+   [
+    -24.16,
+    "EKF3 IMU0 is using external nav data"
+   ],
+   [
+    -24.16,
+    "EKF3 IMU0 initial pos NED = -0.2,-0.1,-21.1 (m)"
+   ]
+  ],
+  "key_texts": [
+   [
+    -38.5,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -38.5,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -33.7,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -32.3,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -28.2,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -28.2,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -27.8,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -27.8,
+    "EKF3 IMU1 origin set"
+   ]
+  ],
+  "fix_gap_max_s": 2.2,
+  "fix_gap_at_s": 22.65,
+  "fix_gaps_over_2s": [
+   [
+    22.6,
+    2.2
+   ]
+  ]
+ },
+ "dr_gap_on_s102": {
+  "case": "dr_gap_on_s102",
+  "rms": 2.101321710873878,
+  "p95": 3.729729015904742,
+  "max": 3.864621076362295,
+  "end": 3.70079385975977,
+  "pct_frames_fix": 39.333333333333336,
+  "fix_rate_hz": 9.831848961907308,
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 5, 0.0 s after the Loiter request started"
+   ]
+  ],
+  "hold_s_flown": 60.0,
+  "ap_params": {
+   "ARMING_CHECK": 0,
+   "PILOT_SPEED_UP": 500,
+   "SIM_WIND_T": 1,
+   "SIM_WIND_SPD": 0,
+   "SIM_WIND_TURB": 0,
+   "SIM_WIND_DIR": 270.0,
+   "SERIAL1_BAUD": 115,
+   "VISO_TYPE": 1,
+   "EK3_SRC1_POSXY": 6,
+   "EK3_SRC1_VELXY": 0,
+   "EK3_SRC1_POSZ": 1,
+   "EK3_SRC1_VELZ": 0,
+   "EK3_SRC1_YAW": 1,
+   "GPS1_TYPE": 0,
+   "VISO_DELAY_MS": 140,
+   "EK3_DRAG_BCOEF_X": 17.2,
+   "EK3_DRAG_BCOEF_Y": 17.2,
+   "EK3_DRAG_MCOEF": 0.25,
+   "FS_DR_ENABLE": 0
+  },
+  "climb_s": 32.2,
+  "age_ms_p50": 167.35000000000002,
+  "drift_m_per_min": 3.661066690458165,
+  "drag": "on",
+  "seed": 102,
+  "ap": {
+   "EK3_DRAG_BCOEF_X": 17.2,
+   "EK3_DRAG_BCOEF_Y": 17.2,
+   "EK3_DRAG_MCOEF": 0.25,
+   "FS_DR_ENABLE": 0
+  },
+  "wall_s": 106,
+  "loadavg": [
+   3.794921875,
+   4.318359375,
+   2.4248046875
+  ],
+  "texts_all": [
+   [
+    -44.32,
+    "Barometer 1 calibration complete"
+   ],
+   [
+    -44.32,
+    "Barometer 2 calibration complete"
+   ],
+   [
+    -41.87,
+    "ArduPilot Ready"
+   ],
+   [
+    -41.87,
+    "AHRS: DCM active"
+   ],
+   [
+    -41.57,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    -41.22,
+    "No ap_message for mavlink id (331)"
+   ],
+   [
+    -41.16,
+    "No ap_message for mavlink id (290)"
+   ],
+   [
+    -41.15,
+    "No ap_message for mavlink id (291)"
+   ],
+   [
+    -41.11,
+    "No ap_message for mavlink id (231)"
+   ],
+   [
+    -41.1,
+    "No ap_message for mavlink id (141)"
+   ],
+   [
+    -39.87,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    -39.87,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    -39.87,
+    "AHRS: EKF3 active"
+   ],
+   [
+    -38.49,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    -38.49,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    -38.39,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -38.39,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -33.59,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -33.15,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    -33.15,
+    "Arming motors"
+   ],
+   [
+    -32.15,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -28.1,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -28.1,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -27.77,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -27.77,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -23.73,
+    "EKF3 IMU1 is using external nav data"
+   ],
+   [
+    -23.73,
+    "EKF3 IMU1 initial pos NED = 0.1,0.0,-22.6 (m)"
+   ],
+   [
+    -23.73,
+    "EKF3 IMU0 is using external nav data"
+   ],
+   [
+    -23.73,
+    "EKF3 IMU0 initial pos NED = 0.1,0.0,-22.6 (m)"
+   ]
+  ],
+  "key_texts": [
+   [
+    -38.4,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -38.4,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -33.6,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -32.2,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -28.1,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -28.1,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -27.8,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -27.8,
+    "EKF3 IMU1 origin set"
+   ]
+  ],
+  "fix_gap_max_s": 1.76,
+  "fix_gap_at_s": 30.92,
+  "fix_gaps_over_2s": []
+ },
+ "dr_gap_off_s110": {
+  "case": "dr_gap_off_s110",
+  "rms": 1.730765559751896,
+  "p95": 2.3004371958418868,
+  "max": 2.3955344993934276,
+  "end": 1.971931783923507,
+  "pct_frames_fix": 44.733333333333334,
+  "fix_rate_hz": 11.182588884722572,
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 5, 0.0 s after the Loiter request started"
+   ]
+  ],
+  "hold_s_flown": 60.0,
+  "ap_params": {
+   "ARMING_CHECK": 0,
+   "PILOT_SPEED_UP": 500,
+   "SIM_WIND_T": 1,
+   "SIM_WIND_SPD": 0,
+   "SIM_WIND_TURB": 0,
+   "SIM_WIND_DIR": 270.0,
+   "SERIAL1_BAUD": 115,
+   "VISO_TYPE": 1,
+   "EK3_SRC1_POSXY": 6,
+   "EK3_SRC1_VELXY": 0,
+   "EK3_SRC1_POSZ": 1,
+   "EK3_SRC1_VELZ": 0,
+   "EK3_SRC1_YAW": 1,
+   "GPS1_TYPE": 0,
+   "VISO_DELAY_MS": 140
+  },
+  "climb_s": 32.2,
+  "age_ms_p50": 165.2,
+  "drift_m_per_min": 1.7397459769521302,
+  "drag": "off",
+  "seed": 110,
+  "ap": {},
+  "wall_s": 106,
+  "loadavg": [
+   13.01708984375,
+   6.6943359375,
+   3.43310546875
+  ],
+  "texts_all": [
+   [
+    -44.36,
+    "Barometer 1 calibration complete"
+   ],
+   [
+    -44.36,
+    "Barometer 2 calibration complete"
+   ],
+   [
+    -41.91,
+    "ArduPilot Ready"
+   ],
+   [
+    -41.91,
+    "AHRS: DCM active"
+   ],
+   [
+    -41.62,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    -41.27,
+    "No ap_message for mavlink id (331)"
+   ],
+   [
+    -41.2,
+    "No ap_message for mavlink id (290)"
+   ],
+   [
+    -41.19,
+    "No ap_message for mavlink id (291)"
+   ],
+   [
+    -41.15,
+    "No ap_message for mavlink id (231)"
+   ],
+   [
+    -41.14,
+    "No ap_message for mavlink id (141)"
+   ],
+   [
+    -39.91,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    -39.91,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    -39.91,
+    "AHRS: EKF3 active"
+   ],
+   [
+    -38.53,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    -38.53,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    -38.43,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -38.43,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -33.63,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -33.18,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    -33.18,
+    "Arming motors"
+   ],
+   [
+    -32.21,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -28.14,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -28.14,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -27.73,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -27.73,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -24.25,
+    "EKF3 IMU0 is using external nav data"
+   ],
+   [
+    -24.25,
+    "EKF3 IMU0 initial pos NED = 0.1,0.2,-20.4 (m)"
+   ],
+   [
+    -24.25,
+    "EKF3 IMU1 is using external nav data"
+   ],
+   [
+    -24.25,
+    "EKF3 IMU1 initial pos NED = 0.1,0.2,-20.4 (m)"
+   ]
+  ],
+  "key_texts": [
+   [
+    -38.4,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -38.4,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -33.6,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -32.2,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -28.1,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -28.1,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -27.7,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -27.7,
+    "EKF3 IMU1 origin set"
+   ]
+  ],
+  "fix_gap_max_s": 1.4,
+  "fix_gap_at_s": 57.04,
+  "fix_gaps_over_2s": []
+ },
+ "dr_gap_on_s110": {
+  "case": "dr_gap_on_s110",
+  "rms": 1.5941428965502018,
+  "p95": 2.3852091202641907,
+  "max": 2.7023342400559964,
+  "end": 2.3633003865645508,
+  "pct_frames_fix": 37.70819453697535,
+  "fix_rate_hz": 9.432705616801965,
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 5, 0.0 s after the Loiter request started"
+   ]
+  ],
+  "hold_s_flown": 60.0,
+  "ap_params": {
+   "ARMING_CHECK": 0,
+   "PILOT_SPEED_UP": 500,
+   "SIM_WIND_T": 1,
+   "SIM_WIND_SPD": 0,
+   "SIM_WIND_TURB": 0,
+   "SIM_WIND_DIR": 270.0,
+   "SERIAL1_BAUD": 115,
+   "VISO_TYPE": 1,
+   "EK3_SRC1_POSXY": 6,
+   "EK3_SRC1_VELXY": 0,
+   "EK3_SRC1_POSZ": 1,
+   "EK3_SRC1_VELZ": 0,
+   "EK3_SRC1_YAW": 1,
+   "GPS1_TYPE": 0,
+   "VISO_DELAY_MS": 140,
+   "EK3_DRAG_BCOEF_X": 17.2,
+   "EK3_DRAG_BCOEF_Y": 17.2,
+   "EK3_DRAG_MCOEF": 0.25,
+   "FS_DR_ENABLE": 0
+  },
+  "climb_s": 32.3,
+  "age_ms_p50": 170.25,
+  "drift_m_per_min": 3.944557893726149,
+  "drag": "on",
+  "seed": 110,
+  "ap": {
+   "EK3_DRAG_BCOEF_X": 17.2,
+   "EK3_DRAG_BCOEF_Y": 17.2,
+   "EK3_DRAG_MCOEF": 0.25,
+   "FS_DR_ENABLE": 0
+  },
+  "wall_s": 106,
+  "loadavg": [
+   7.03515625,
+   6.669921875,
+   3.79150390625
+  ],
+  "texts_all": [
+   [
+    -44.34,
+    "Barometer 1 calibration complete"
+   ],
+   [
+    -44.34,
+    "Barometer 2 calibration complete"
+   ],
+   [
+    -41.89,
+    "ArduPilot Ready"
+   ],
+   [
+    -41.89,
+    "AHRS: DCM active"
+   ],
+   [
+    -41.6,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    -41.24,
+    "No ap_message for mavlink id (331)"
+   ],
+   [
+    -41.18,
+    "No ap_message for mavlink id (290)"
+   ],
+   [
+    -41.17,
+    "No ap_message for mavlink id (291)"
+   ],
+   [
+    -41.13,
+    "No ap_message for mavlink id (231)"
+   ],
+   [
+    -41.12,
+    "No ap_message for mavlink id (141)"
+   ],
+   [
+    -39.89,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    -39.89,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    -39.89,
+    "AHRS: EKF3 active"
+   ],
+   [
+    -38.51,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    -38.51,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    -38.41,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -38.41,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -33.65,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -33.19,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    -33.19,
+    "Arming motors"
+   ],
+   [
+    -32.19,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -28.12,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -28.12,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -27.83,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -27.83,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -23.7,
+    "EKF3 IMU1 is using external nav data"
+   ],
+   [
+    -23.7,
+    "EKF3 IMU1 initial pos NED = -0.2,-0.1,-23.0 (m)"
+   ],
+   [
+    -23.7,
+    "EKF3 IMU0 is using external nav data"
+   ],
+   [
+    -23.7,
+    "EKF3 IMU0 initial pos NED = -0.2,-0.1,-23.0 (m)"
+   ]
+  ],
+  "key_texts": [
+   [
+    -38.4,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -38.4,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -33.7,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -32.2,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -28.1,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -28.1,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -27.8,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -27.8,
+    "EKF3 IMU1 origin set"
+   ]
+  ],
+  "fix_gap_max_s": 2.16,
+  "fix_gap_at_s": 44.26,
+  "fix_gaps_over_2s": [
+   [
+    44.3,
+    2.2
+   ]
+  ]
+ },
+ "dr_n60_off_s11": {
+  "case": "dr_n60_off_s11",
+  "rms": 0.5265851102659572,
+  "p95": 0.7860900496183767,
+  "max": 0.865981277825699,
+  "end": 0.7849503445992262,
+  "pct_frames_fix": 48.666666666666664,
+  "fix_rate_hz": 12.165660851595636,
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 5, 0.0 s after the Loiter request started"
+   ]
+  ],
+  "hold_s_flown": 60.0,
+  "ap_params": {
+   "ARMING_CHECK": 0,
+   "PILOT_SPEED_UP": 500,
+   "SIM_WIND_T": 1,
+   "SIM_WIND_SPD": 0,
+   "SIM_WIND_TURB": 0,
+   "SIM_WIND_DIR": 270.0,
+   "SERIAL1_BAUD": 115,
+   "VISO_TYPE": 1,
+   "EK3_SRC1_POSXY": 6,
+   "EK3_SRC1_VELXY": 0,
+   "EK3_SRC1_POSZ": 1,
+   "EK3_SRC1_VELZ": 0,
+   "EK3_SRC1_YAW": 1,
+   "GPS1_TYPE": 0,
+   "VISO_DELAY_MS": 140
+  },
+  "climb_s": 24.1,
+  "age_ms_p50": 166.85000000000002,
+  "drift_m_per_min": 0.723489463486615,
+  "drag": "off",
+  "seed": 11,
+  "ap": {},
+  "wall_s": 98,
+  "loadavg": [
+   3.80126953125,
+   5.5244140625,
+   3.70263671875
+  ],
+  "texts_all": [
+   [
+    -36.21,
+    "Barometer 1 calibration complete"
+   ],
+   [
+    -36.21,
+    "Barometer 2 calibration complete"
+   ],
+   [
+    -33.76,
+    "ArduPilot Ready"
+   ],
+   [
+    -33.76,
+    "AHRS: DCM active"
+   ],
+   [
+    -33.47,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    -33.1,
+    "No ap_message for mavlink id (331)"
+   ],
+   [
+    -33.04,
+    "No ap_message for mavlink id (290)"
+   ],
+   [
+    -33.03,
+    "No ap_message for mavlink id (291)"
+   ],
+   [
+    -32.99,
+    "No ap_message for mavlink id (231)"
+   ],
+   [
+    -32.98,
+    "No ap_message for mavlink id (141)"
+   ],
+   [
+    -31.76,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    -31.76,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    -31.76,
+    "AHRS: EKF3 active"
+   ],
+   [
+    -30.38,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    -30.38,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    -30.28,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -30.28,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -25.46,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -25.0,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    -25.0,
+    "Arming motors"
+   ],
+   [
+    -24.02,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -21.3,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -21.3,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -19.99,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -19.99,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -16.37,
+    "EKF3 IMU1 is using external nav data"
+   ],
+   [
+    -16.37,
+    "EKF3 IMU1 initial pos NED = -0.0,-0.0,-18.9 (m)"
+   ],
+   [
+    -16.37,
+    "EKF3 IMU0 is using external nav data"
+   ],
+   [
+    -16.37,
+    "EKF3 IMU0 initial pos NED = -0.0,-0.0,-18.9 (m)"
+   ]
+  ],
+  "key_texts": [
+   [
+    -30.3,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -30.3,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -25.5,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -24.0,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -21.3,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -21.3,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -20.0,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -20.0,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ]
+  ],
+  "fix_gap_max_s": 0.12,
+  "fix_gap_at_s": 59.71,
+  "fix_gaps_over_2s": []
+ },
+ "dr_n60_on_s11": {
+  "case": "dr_n60_on_s11",
+  "rms": 0.5184424030136524,
+  "p95": 0.865412521879978,
+  "max": 1.0034250261605413,
+  "end": 0.72933024803246,
+  "pct_frames_fix": 49.0,
+  "fix_rate_hz": 12.249179745111212,
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 5, 0.0 s after the Loiter request started"
+   ]
+  ],
+  "hold_s_flown": 60.0,
+  "ap_params": {
+   "ARMING_CHECK": 0,
+   "PILOT_SPEED_UP": 500,
+   "SIM_WIND_T": 1,
+   "SIM_WIND_SPD": 0,
+   "SIM_WIND_TURB": 0,
+   "SIM_WIND_DIR": 270.0,
+   "SERIAL1_BAUD": 115,
+   "VISO_TYPE": 1,
+   "EK3_SRC1_POSXY": 6,
+   "EK3_SRC1_VELXY": 0,
+   "EK3_SRC1_POSZ": 1,
+   "EK3_SRC1_VELZ": 0,
+   "EK3_SRC1_YAW": 1,
+   "GPS1_TYPE": 0,
+   "VISO_DELAY_MS": 140,
+   "EK3_DRAG_BCOEF_X": 17.2,
+   "EK3_DRAG_BCOEF_Y": 17.2,
+   "EK3_DRAG_MCOEF": 0.25,
+   "FS_DR_ENABLE": 0
+  },
+  "climb_s": 24.0,
+  "age_ms_p50": 164.7,
+  "drift_m_per_min": 0.5515768185494351,
+  "drag": "on",
+  "seed": 11,
+  "ap": {
+   "EK3_DRAG_BCOEF_X": 17.2,
+   "EK3_DRAG_BCOEF_Y": 17.2,
+   "EK3_DRAG_MCOEF": 0.25,
+   "FS_DR_ENABLE": 0
+  },
+  "wall_s": 98,
+  "loadavg": [
+   12.80615234375,
+   8.10302734375,
+   4.80615234375
+  ],
+  "texts_all": [
+   [
+    -36.12,
+    "Barometer 1 calibration complete"
+   ],
+   [
+    -36.12,
+    "Barometer 2 calibration complete"
+   ],
+   [
+    -33.67,
+    "ArduPilot Ready"
+   ],
+   [
+    -33.67,
+    "AHRS: DCM active"
+   ],
+   [
+    -33.38,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    -33.01,
+    "No ap_message for mavlink id (331)"
+   ],
+   [
+    -32.96,
+    "No ap_message for mavlink id (290)"
+   ],
+   [
+    -32.94,
+    "No ap_message for mavlink id (291)"
+   ],
+   [
+    -32.9,
+    "No ap_message for mavlink id (231)"
+   ],
+   [
+    -32.89,
+    "No ap_message for mavlink id (141)"
+   ],
+   [
+    -31.67,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    -31.67,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    -31.67,
+    "AHRS: EKF3 active"
+   ],
+   [
+    -30.29,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    -30.29,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    -30.19,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -30.19,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -25.37,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -24.93,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    -24.93,
+    "Arming motors"
+   ],
+   [
+    -23.95,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -21.2,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -21.2,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -19.9,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -19.9,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -16.28,
+    "EKF3 IMU1 is using external nav data"
+   ],
+   [
+    -16.28,
+    "EKF3 IMU1 initial pos NED = -0.0,0.0,-19.0 (m)"
+   ],
+   [
+    -16.27,
+    "EKF3 IMU0 is using external nav data"
+   ],
+   [
+    -16.27,
+    "EKF3 IMU0 initial pos NED = -0.0,0.0,-19.0 (m)"
+   ]
+  ],
+  "key_texts": [
+   [
+    -30.2,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -30.2,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -25.4,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -24.0,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -21.2,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -21.2,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -19.9,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -19.9,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ]
+  ],
+  "fix_gap_max_s": 0.12,
+  "fix_gap_at_s": 58.8,
+  "fix_gaps_over_2s": []
+ },
+ "dr_n60_off_s12": {
+  "case": "dr_n60_off_s12",
+  "rms": 0.4200138614046857,
+  "p95": 0.6782018605643465,
+  "max": 0.7393275423752552,
+  "end": 0.43373044867196964,
+  "pct_frames_fix": 48.46666666666667,
+  "fix_rate_hz": 12.116664245958706,
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 5, 0.0 s after the Loiter request started"
+   ]
+  ],
+  "hold_s_flown": 60.0,
+  "ap_params": {
+   "ARMING_CHECK": 0,
+   "PILOT_SPEED_UP": 500,
+   "SIM_WIND_T": 1,
+   "SIM_WIND_SPD": 0,
+   "SIM_WIND_TURB": 0,
+   "SIM_WIND_DIR": 270.0,
+   "SERIAL1_BAUD": 115,
+   "VISO_TYPE": 1,
+   "EK3_SRC1_POSXY": 6,
+   "EK3_SRC1_VELXY": 0,
+   "EK3_SRC1_POSZ": 1,
+   "EK3_SRC1_VELZ": 0,
+   "EK3_SRC1_YAW": 1,
+   "GPS1_TYPE": 0,
+   "VISO_DELAY_MS": 140
+  },
+  "climb_s": 24.2,
+  "age_ms_p50": 167.0,
+  "drift_m_per_min": 0.6879899805472892,
+  "drag": "off",
+  "seed": 12,
+  "ap": {},
+  "wall_s": 98,
+  "loadavg": [
+   6.83544921875,
+   7.56982421875,
+   4.94970703125
+  ],
+  "texts_all": [
+   [
+    -36.34,
+    "Barometer 1 calibration complete"
+   ],
+   [
+    -36.34,
+    "Barometer 2 calibration complete"
+   ],
+   [
+    -33.89,
+    "ArduPilot Ready"
+   ],
+   [
+    -33.89,
+    "AHRS: DCM active"
+   ],
+   [
+    -33.59,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    -33.27,
+    "No ap_message for mavlink id (331)"
+   ],
+   [
+    -33.21,
+    "No ap_message for mavlink id (290)"
+   ],
+   [
+    -33.2,
+    "No ap_message for mavlink id (291)"
+   ],
+   [
+    -33.16,
+    "No ap_message for mavlink id (231)"
+   ],
+   [
+    -33.15,
+    "No ap_message for mavlink id (141)"
+   ],
+   [
+    -31.89,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    -31.89,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    -31.89,
+    "AHRS: EKF3 active"
+   ],
+   [
+    -30.51,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    -30.51,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    -30.41,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -30.41,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -25.61,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -25.14,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    -25.14,
+    "Arming motors"
+   ],
+   [
+    -24.17,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -21.43,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -21.43,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -20.12,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -20.12,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -16.52,
+    "EKF3 IMU1 is using external nav data"
+   ],
+   [
+    -16.52,
+    "EKF3 IMU1 initial pos NED = -0.0,-0.0,-19.0 (m)"
+   ],
+   [
+    -16.52,
+    "EKF3 IMU0 is using external nav data"
+   ],
+   [
+    -16.52,
+    "EKF3 IMU0 initial pos NED = -0.0,-0.0,-19.0 (m)"
+   ]
+  ],
+  "key_texts": [
+   [
+    -30.4,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -30.4,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -25.6,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -24.2,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -21.4,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -21.4,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -20.1,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -20.1,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ]
+  ],
+  "fix_gap_max_s": 0.16,
+  "fix_gap_at_s": 59.34,
+  "fix_gaps_over_2s": []
+ },
+ "dr_n60_on_s12": {
+  "case": "dr_n60_on_s12",
+  "rms": 0.46512136566548934,
+  "p95": 0.7379383943210767,
+  "max": 0.8575842404551963,
+  "end": 0.49494740528262665,
+  "pct_frames_fix": 49.13333333333333,
+  "fix_rate_hz": 12.282510119791612,
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 5, 0.0 s after the Loiter request started"
+   ]
+  ],
+  "hold_s_flown": 60.0,
+  "ap_params": {
+   "ARMING_CHECK": 0,
+   "PILOT_SPEED_UP": 500,
+   "SIM_WIND_T": 1,
+   "SIM_WIND_SPD": 0,
+   "SIM_WIND_TURB": 0,
+   "SIM_WIND_DIR": 270.0,
+   "SERIAL1_BAUD": 115,
+   "VISO_TYPE": 1,
+   "EK3_SRC1_POSXY": 6,
+   "EK3_SRC1_VELXY": 0,
+   "EK3_SRC1_POSZ": 1,
+   "EK3_SRC1_VELZ": 0,
+   "EK3_SRC1_YAW": 1,
+   "GPS1_TYPE": 0,
+   "VISO_DELAY_MS": 140,
+   "EK3_DRAG_BCOEF_X": 17.2,
+   "EK3_DRAG_BCOEF_Y": 17.2,
+   "EK3_DRAG_MCOEF": 0.25,
+   "FS_DR_ENABLE": 0
+  },
+  "climb_s": 24.0,
+  "age_ms_p50": 164.4,
+  "drift_m_per_min": 0.8179474810888308,
+  "drag": "on",
+  "seed": 12,
+  "ap": {
+   "EK3_DRAG_BCOEF_X": 17.2,
+   "EK3_DRAG_BCOEF_Y": 17.2,
+   "EK3_DRAG_MCOEF": 0.25,
+   "FS_DR_ENABLE": 0
+  },
+  "wall_s": 98,
+  "loadavg": [
+   5.90869140625,
+   6.8017578125,
+   4.92529296875
+  ],
+  "texts_all": [
+   [
+    -36.13,
+    "Barometer 1 calibration complete"
+   ],
+   [
+    -36.13,
+    "Barometer 2 calibration complete"
+   ],
+   [
+    -33.68,
+    "ArduPilot Ready"
+   ],
+   [
+    -33.68,
+    "AHRS: DCM active"
+   ],
+   [
+    -33.38,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    -33.03,
+    "No ap_message for mavlink id (331)"
+   ],
+   [
+    -32.97,
+    "No ap_message for mavlink id (290)"
+   ],
+   [
+    -32.96,
+    "No ap_message for mavlink id (291)"
+   ],
+   [
+    -32.92,
+    "No ap_message for mavlink id (231)"
+   ],
+   [
+    -32.91,
+    "No ap_message for mavlink id (141)"
+   ],
+   [
+    -31.68,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    -31.68,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    -31.68,
+    "AHRS: EKF3 active"
+   ],
+   [
+    -30.3,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    -30.3,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    -30.2,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -30.2,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -25.42,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -24.97,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    -24.97,
+    "Arming motors"
+   ],
+   [
+    -23.96,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -21.26,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -21.26,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -19.91,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -19.91,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -16.35,
+    "EKF3 IMU1 is using external nav data"
+   ],
+   [
+    -16.35,
+    "EKF3 IMU1 initial pos NED = -0.0,0.0,-18.9 (m)"
+   ],
+   [
+    -16.34,
+    "EKF3 IMU0 is using external nav data"
+   ],
+   [
+    -16.34,
+    "EKF3 IMU0 initial pos NED = -0.0,0.0,-18.9 (m)"
+   ]
+  ],
+  "key_texts": [
+   [
+    -30.2,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -30.2,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -25.4,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -24.0,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -21.3,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -21.3,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -19.9,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -19.9,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ]
+  ],
+  "fix_gap_max_s": 0.12,
+  "fix_gap_at_s": 58.07,
+  "fix_gaps_over_2s": []
+ },
+ "dr_gap_half_s102": {
+  "case": "dr_gap_half_s102",
+  "rms": 3.7480706466138503,
+  "p95": 5.474273420018638,
+  "max": 5.680110698992887,
+  "end": 5.669744929634861,
+  "pct_frames_fix": 45.86666666666667,
+  "fix_rate_hz": 11.464948494708489,
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 5, 0.0 s after the Loiter request started"
+   ]
+  ],
+  "hold_s_flown": 60.0,
+  "ap_params": {
+   "ARMING_CHECK": 0,
+   "PILOT_SPEED_UP": 500,
+   "SIM_WIND_T": 1,
+   "SIM_WIND_SPD": 0,
+   "SIM_WIND_TURB": 0,
+   "SIM_WIND_DIR": 270.0,
+   "SERIAL1_BAUD": 115,
+   "VISO_TYPE": 1,
+   "EK3_SRC1_POSXY": 6,
+   "EK3_SRC1_VELXY": 0,
+   "EK3_SRC1_POSZ": 1,
+   "EK3_SRC1_VELZ": 0,
+   "EK3_SRC1_YAW": 1,
+   "GPS1_TYPE": 0,
+   "VISO_DELAY_MS": 140,
+   "EK3_DRAG_BCOEF_X": 34.4,
+   "EK3_DRAG_BCOEF_Y": 34.4,
+   "EK3_DRAG_MCOEF": 0.125,
+   "FS_DR_ENABLE": 0
+  },
+  "climb_s": 32.2,
+  "age_ms_p50": 163.7,
+  "drift_m_per_min": 4.978622535761379,
+  "drag": "half",
+  "seed": 102,
+  "ap": {
+   "EK3_DRAG_BCOEF_X": 34.4,
+   "EK3_DRAG_BCOEF_Y": 34.4,
+   "EK3_DRAG_MCOEF": 0.125,
+   "FS_DR_ENABLE": 0
+  },
+  "wall_s": 106,
+  "loadavg": [
+   7.4443359375,
+   7.6396484375,
+   5.47265625
+  ],
+  "texts_all": [
+   [
+    -44.35,
+    "Barometer 1 calibration complete"
+   ],
+   [
+    -44.35,
+    "Barometer 2 calibration complete"
+   ],
+   [
+    -41.9,
+    "ArduPilot Ready"
+   ],
+   [
+    -41.9,
+    "AHRS: DCM active"
+   ],
+   [
+    -41.6,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    -41.27,
+    "No ap_message for mavlink id (331)"
+   ],
+   [
+    -41.2,
+    "No ap_message for mavlink id (290)"
+   ],
+   [
+    -41.19,
+    "No ap_message for mavlink id (291)"
+   ],
+   [
+    -41.15,
+    "No ap_message for mavlink id (231)"
+   ],
+   [
+    -41.14,
+    "No ap_message for mavlink id (141)"
+   ],
+   [
+    -39.9,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    -39.9,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    -39.89,
+    "AHRS: EKF3 active"
+   ],
+   [
+    -38.51,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    -38.51,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    -38.41,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -38.41,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -33.62,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -33.14,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    -33.14,
+    "Arming motors"
+   ],
+   [
+    -32.18,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -28.13,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -28.12,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -27.71,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -27.71,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -24.35,
+    "EKF3 IMU0 is using external nav data"
+   ],
+   [
+    -24.35,
+    "EKF3 IMU0 initial pos NED = -0.1,0.3,-19.7 (m)"
+   ],
+   [
+    -24.35,
+    "EKF3 IMU1 is using external nav data"
+   ],
+   [
+    -24.35,
+    "EKF3 IMU1 initial pos NED = -0.1,0.3,-19.7 (m)"
+   ]
+  ],
+  "key_texts": [
+   [
+    -38.4,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -38.4,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -33.6,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -32.2,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -28.1,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -28.1,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -27.7,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -27.7,
+    "EKF3 IMU1 origin set"
+   ]
+  ],
+  "fix_gap_max_s": 1.4,
+  "fix_gap_at_s": 11.77,
+  "fix_gaps_over_2s": []
+ },
+ "dr_gap_dbl_s102": {
+  "case": "dr_gap_dbl_s102",
+  "rms": 0.7003772965469263,
+  "p95": 1.2044221645947157,
+  "max": 1.2968584940807273,
+  "end": 0.6060736122318531,
+  "pct_frames_fix": 46.733333333333334,
+  "fix_rate_hz": 11.68241264764916,
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 5, 0.0 s after the Loiter request started"
+   ]
+  ],
+  "hold_s_flown": 60.0,
+  "ap_params": {
+   "ARMING_CHECK": 0,
+   "PILOT_SPEED_UP": 500,
+   "SIM_WIND_T": 1,
+   "SIM_WIND_SPD": 0,
+   "SIM_WIND_TURB": 0,
+   "SIM_WIND_DIR": 270.0,
+   "SERIAL1_BAUD": 115,
+   "VISO_TYPE": 1,
+   "EK3_SRC1_POSXY": 6,
+   "EK3_SRC1_VELXY": 0,
+   "EK3_SRC1_POSZ": 1,
+   "EK3_SRC1_VELZ": 0,
+   "EK3_SRC1_YAW": 1,
+   "GPS1_TYPE": 0,
+   "VISO_DELAY_MS": 140,
+   "EK3_DRAG_BCOEF_X": 8.6,
+   "EK3_DRAG_BCOEF_Y": 8.6,
+   "EK3_DRAG_MCOEF": 0.5,
+   "FS_DR_ENABLE": 0
+  },
+  "climb_s": 32.2,
+  "age_ms_p50": 164.5,
+  "drift_m_per_min": 0.7421262265214442,
+  "drag": "dbl",
+  "seed": 102,
+  "ap": {
+   "EK3_DRAG_BCOEF_X": 8.6,
+   "EK3_DRAG_BCOEF_Y": 8.6,
+   "EK3_DRAG_MCOEF": 0.5,
+   "FS_DR_ENABLE": 0
+  },
+  "wall_s": 106,
+  "loadavg": [
+   5.5703125,
+   6.56298828125,
+   5.29541015625
+  ],
+  "texts_all": [
+   [
+    -44.37,
+    "Barometer 1 calibration complete"
+   ],
+   [
+    -44.37,
+    "Barometer 2 calibration complete"
+   ],
+   [
+    -41.92,
+    "ArduPilot Ready"
+   ],
+   [
+    -41.92,
+    "AHRS: DCM active"
+   ],
+   [
+    -41.62,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    -41.29,
+    "No ap_message for mavlink id (331)"
+   ],
+   [
+    -41.23,
+    "No ap_message for mavlink id (290)"
+   ],
+   [
+    -41.22,
+    "No ap_message for mavlink id (291)"
+   ],
+   [
+    -41.19,
+    "No ap_message for mavlink id (231)"
+   ],
+   [
+    -41.17,
+    "No ap_message for mavlink id (141)"
+   ],
+   [
+    -39.92,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    -39.92,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    -39.91,
+    "AHRS: EKF3 active"
+   ],
+   [
+    -38.53,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    -38.53,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    -38.43,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -38.43,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -33.62,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -33.16,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    -33.16,
+    "Arming motors"
+   ],
+   [
+    -32.22,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -28.15,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -28.14,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -27.73,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -27.73,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -23.58,
+    "EKF3 IMU1 is using external nav data"
+   ],
+   [
+    -23.58,
+    "EKF3 IMU1 initial pos NED = -0.1,-0.2,-23.5 (m)"
+   ],
+   [
+    -23.57,
+    "EKF3 IMU0 is using external nav data"
+   ],
+   [
+    -23.57,
+    "EKF3 IMU0 initial pos NED = -0.1,-0.2,-23.5 (m)"
+   ]
+  ],
+  "key_texts": [
+   [
+    -38.4,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -38.4,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -33.6,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -32.2,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -28.1,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -28.1,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -27.7,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -27.7,
+    "EKF3 IMU1 origin set"
+   ]
+  ],
+  "fix_gap_max_s": 1.32,
+  "fix_gap_at_s": 24.35,
+  "fix_gaps_over_2s": []
+ },
+ "dr_n30_off_s11": {
+  "case": "dr_n30_off_s11",
+  "rms": 0.32614182564780336,
+  "p95": 0.5969379927735806,
+  "max": 0.7452251293410952,
+  "end": 0.3849303362290972,
+  "pct_frames_fix": 48.86666666666667,
+  "fix_rate_hz": 12.215647984235602,
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 5, 0.0 s after the Loiter request started"
+   ]
+  ],
+  "hold_s_flown": 60.0,
+  "ap_params": {
+   "ARMING_CHECK": 0,
+   "PILOT_SPEED_UP": 500,
+   "SIM_WIND_T": 1,
+   "SIM_WIND_SPD": 0,
+   "SIM_WIND_TURB": 0,
+   "SIM_WIND_DIR": 270.0,
+   "SERIAL1_BAUD": 115,
+   "VISO_TYPE": 1,
+   "EK3_SRC1_POSXY": 6,
+   "EK3_SRC1_VELXY": 0,
+   "EK3_SRC1_POSZ": 1,
+   "EK3_SRC1_VELZ": 0,
+   "EK3_SRC1_YAW": 1,
+   "GPS1_TYPE": 0,
+   "VISO_DELAY_MS": 140
+  },
+  "climb_s": 17.9,
+  "age_ms_p50": 167.0,
+  "drift_m_per_min": 0.12225327710608469,
+  "drag": "off",
+  "seed": 11,
+  "ap": {},
+  "wall_s": 91,
+  "loadavg": [
+   7.00439453125,
+   6.99560546875,
+   5.5859375
+  ],
+  "texts_all": [
+   [
+    -30.0,
+    "Barometer 1 calibration complete"
+   ],
+   [
+    -30.0,
+    "Barometer 2 calibration complete"
+   ],
+   [
+    -27.55,
+    "ArduPilot Ready"
+   ],
+   [
+    -27.55,
+    "AHRS: DCM active"
+   ],
+   [
+    -27.25,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    -26.91,
+    "No ap_message for mavlink id (331)"
+   ],
+   [
+    -26.85,
+    "No ap_message for mavlink id (290)"
+   ],
+   [
+    -26.84,
+    "No ap_message for mavlink id (291)"
+   ],
+   [
+    -26.8,
+    "No ap_message for mavlink id (231)"
+   ],
+   [
+    -26.79,
+    "No ap_message for mavlink id (141)"
+   ],
+   [
+    -25.55,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    -25.55,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    -25.55,
+    "AHRS: EKF3 active"
+   ],
+   [
+    -24.17,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    -24.17,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    -24.07,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -24.07,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -19.27,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -18.81,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    -18.81,
+    "Arming motors"
+   ],
+   [
+    -17.81,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -15.13,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -15.13,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -13.78,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -13.78,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -10.18,
+    "EKF3 IMU1 is using external nav data"
+   ],
+   [
+    -10.18,
+    "EKF3 IMU1 initial pos NED = -0.0,-0.0,-19.0 (m)"
+   ],
+   [
+    -10.18,
+    "EKF3 IMU0 is using external nav data"
+   ],
+   [
+    -10.18,
+    "EKF3 IMU0 initial pos NED = -0.0,-0.0,-19.0 (m)"
+   ]
+  ],
+  "key_texts": [
+   [
+    -24.1,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -24.1,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -19.3,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -17.8,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -15.1,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -15.1,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -13.8,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -13.8,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ]
+  ],
+  "fix_gap_max_s": 0.12,
+  "fix_gap_at_s": 58.4,
+  "fix_gaps_over_2s": []
+ },
+ "dr_n30_on_s11": {
+  "case": "dr_n30_on_s11",
+  "rms": 0.37188019482512885,
+  "p95": 0.6269729718618665,
+  "max": 0.7794014271863074,
+  "end": 0.5995855568667847,
+  "pct_frames_fix": 47.86666666666667,
+  "fix_rate_hz": 11.966466795956524,
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 5, 0.0 s after the Loiter request started"
+   ]
+  ],
+  "hold_s_flown": 60.0,
+  "ap_params": {
+   "ARMING_CHECK": 0,
+   "PILOT_SPEED_UP": 500,
+   "SIM_WIND_T": 1,
+   "SIM_WIND_SPD": 0,
+   "SIM_WIND_TURB": 0,
+   "SIM_WIND_DIR": 270.0,
+   "SERIAL1_BAUD": 115,
+   "VISO_TYPE": 1,
+   "EK3_SRC1_POSXY": 6,
+   "EK3_SRC1_VELXY": 0,
+   "EK3_SRC1_POSZ": 1,
+   "EK3_SRC1_VELZ": 0,
+   "EK3_SRC1_YAW": 1,
+   "GPS1_TYPE": 0,
+   "VISO_DELAY_MS": 140,
+   "EK3_DRAG_BCOEF_X": 17.2,
+   "EK3_DRAG_BCOEF_Y": 17.2,
+   "EK3_DRAG_MCOEF": 0.25,
+   "FS_DR_ENABLE": 0
+  },
+  "climb_s": 18.4,
+  "age_ms_p50": 172.9,
+  "drift_m_per_min": 0.27119791672050625,
+  "drag": "on",
+  "seed": 11,
+  "ap": {
+   "EK3_DRAG_BCOEF_X": 17.2,
+   "EK3_DRAG_BCOEF_Y": 17.2,
+   "EK3_DRAG_MCOEF": 0.25,
+   "FS_DR_ENABLE": 0
+  },
+  "wall_s": 92,
+  "loadavg": [
+   3.6025390625,
+   5.857421875,
+   5.30859375
+  ],
+  "texts_all": [
+   [
+    -30.51,
+    "Barometer 1 calibration complete"
+   ],
+   [
+    -30.51,
+    "Barometer 2 calibration complete"
+   ],
+   [
+    -28.05,
+    "ArduPilot Ready"
+   ],
+   [
+    -28.05,
+    "AHRS: DCM active"
+   ],
+   [
+    -27.76,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    -27.39,
+    "No ap_message for mavlink id (331)"
+   ],
+   [
+    -27.34,
+    "No ap_message for mavlink id (290)"
+   ],
+   [
+    -27.32,
+    "No ap_message for mavlink id (291)"
+   ],
+   [
+    -27.28,
+    "No ap_message for mavlink id (231)"
+   ],
+   [
+    -27.28,
+    "No ap_message for mavlink id (141)"
+   ],
+   [
+    -26.06,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    -26.06,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    -26.05,
+    "AHRS: EKF3 active"
+   ],
+   [
+    -24.67,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    -24.67,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    -24.57,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -24.57,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -19.8,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -19.33,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    -19.33,
+    "Arming motors"
+   ],
+   [
+    -18.33,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -15.62,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -15.62,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -14.28,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -14.28,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -10.7,
+    "EKF3 IMU1 is using external nav data"
+   ],
+   [
+    -10.7,
+    "EKF3 IMU1 initial pos NED = -0.0,0.0,-18.9 (m)"
+   ],
+   [
+    -10.69,
+    "EKF3 IMU0 is using external nav data"
+   ],
+   [
+    -10.69,
+    "EKF3 IMU0 initial pos NED = -0.0,0.0,-18.9 (m)"
+   ]
+  ],
+  "key_texts": [
+   [
+    -24.6,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -24.6,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -19.8,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -18.3,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -15.6,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -15.6,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -14.3,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -14.3,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ]
+  ],
+  "fix_gap_max_s": 0.12,
+  "fix_gap_at_s": 58.78,
+  "fix_gaps_over_2s": []
+ },
+ "dr_out60_off_s11": {
+  "case": "dr_out60_off_s11",
+  "rms": 0.5509654862806909,
+  "p95": 0.8836772813937291,
+  "max": 1.070112635691184,
+  "end": 0.7651658955866735,
+  "pct_frames_fix": 45.266666666666666,
+  "fix_rate_hz": 11.31507795617364,
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 5, 0.0 s after the Loiter request started"
+   ]
+  ],
+  "hold_s_flown": 60.0,
+  "ap_params": {
+   "ARMING_CHECK": 0,
+   "PILOT_SPEED_UP": 500,
+   "SIM_WIND_T": 1,
+   "SIM_WIND_SPD": 0,
+   "SIM_WIND_TURB": 0,
+   "SIM_WIND_DIR": 270.0,
+   "SERIAL1_BAUD": 115,
+   "VISO_TYPE": 1,
+   "EK3_SRC1_POSXY": 6,
+   "EK3_SRC1_VELXY": 0,
+   "EK3_SRC1_POSZ": 1,
+   "EK3_SRC1_VELZ": 0,
+   "EK3_SRC1_YAW": 1,
+   "GPS1_TYPE": 0,
+   "VISO_DELAY_MS": 140
+  },
+  "climb_s": 24.1,
+  "age_ms_p50": 168.2,
+  "drift_m_per_min": 1.1769550822315287,
+  "drag": "off",
+  "seed": 11,
+  "ap": {},
+  "wall_s": 98,
+  "loadavg": [
+   11.29736328125,
+   7.71142578125,
+   6.01171875
+  ],
+  "texts_all": [
+   [
+    -36.21,
+    "Barometer 1 calibration complete"
+   ],
+   [
+    -36.21,
+    "Barometer 2 calibration complete"
+   ],
+   [
+    -33.76,
+    "ArduPilot Ready"
+   ],
+   [
+    -33.76,
+    "AHRS: DCM active"
+   ],
+   [
+    -33.46,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    -33.11,
+    "No ap_message for mavlink id (331)"
+   ],
+   [
+    -33.04,
+    "No ap_message for mavlink id (290)"
+   ],
+   [
+    -33.03,
+    "No ap_message for mavlink id (291)"
+   ],
+   [
+    -32.99,
+    "No ap_message for mavlink id (231)"
+   ],
+   [
+    -32.98,
+    "No ap_message for mavlink id (141)"
+   ],
+   [
+    -31.76,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    -31.76,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    -31.75,
+    "AHRS: EKF3 active"
+   ],
+   [
+    -30.37,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    -30.37,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    -30.27,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -30.27,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -25.5,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -25.05,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    -25.05,
+    "Arming motors"
+   ],
+   [
+    -24.08,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -21.32,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -21.32,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -19.99,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -19.98,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -16.42,
+    "EKF3 IMU0 is using external nav data"
+   ],
+   [
+    -16.42,
+    "EKF3 IMU0 initial pos NED = -0.0,0.0,-19.0 (m)"
+   ],
+   [
+    -16.42,
+    "EKF3 IMU1 is using external nav data"
+   ],
+   [
+    -16.42,
+    "EKF3 IMU1 initial pos NED = -0.0,0.0,-19.0 (m)"
+   ]
+  ],
+  "key_texts": [
+   [
+    -30.3,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -30.3,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -25.5,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -24.1,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -21.3,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -21.3,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -20.0,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -20.0,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ]
+  ],
+  "fix_gap_max_s": 4.12,
+  "fix_gap_at_s": 19.95,
+  "fix_gaps_over_2s": [
+   [
+    20.0,
+    4.1
+   ]
+  ]
+ },
+ "dr_out60_on_s11": {
+  "case": "dr_out60_on_s11",
+  "rms": 0.5902389652744994,
+  "p95": 0.9811697157955214,
+  "max": 1.1438312671411945,
+  "end": 0.8042423978465225,
+  "pct_frames_fix": 45.13333333333333,
+  "fix_rate_hz": 11.282574931808774,
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 5, 0.0 s after the Loiter request started"
+   ]
+  ],
+  "hold_s_flown": 60.0,
+  "ap_params": {
+   "ARMING_CHECK": 0,
+   "PILOT_SPEED_UP": 500,
+   "SIM_WIND_T": 1,
+   "SIM_WIND_SPD": 0,
+   "SIM_WIND_TURB": 0,
+   "SIM_WIND_DIR": 270.0,
+   "SERIAL1_BAUD": 115,
+   "VISO_TYPE": 1,
+   "EK3_SRC1_POSXY": 6,
+   "EK3_SRC1_VELXY": 0,
+   "EK3_SRC1_POSZ": 1,
+   "EK3_SRC1_VELZ": 0,
+   "EK3_SRC1_YAW": 1,
+   "GPS1_TYPE": 0,
+   "VISO_DELAY_MS": 140,
+   "EK3_DRAG_BCOEF_X": 17.2,
+   "EK3_DRAG_BCOEF_Y": 17.2,
+   "EK3_DRAG_MCOEF": 0.25,
+   "FS_DR_ENABLE": 0
+  },
+  "climb_s": 24.0,
+  "age_ms_p50": 169.3,
+  "drift_m_per_min": 0.8889929165097193,
+  "drag": "on",
+  "seed": 11,
+  "ap": {
+   "EK3_DRAG_BCOEF_X": 17.2,
+   "EK3_DRAG_BCOEF_Y": 17.2,
+   "EK3_DRAG_MCOEF": 0.25,
+   "FS_DR_ENABLE": 0
+  },
+  "wall_s": 98,
+  "loadavg": [
+   6.73681640625,
+   7.1484375,
+   5.97900390625
+  ],
+  "texts_all": [
+   [
+    -36.11,
+    "Barometer 1 calibration complete"
+   ],
+   [
+    -36.11,
+    "Barometer 2 calibration complete"
+   ],
+   [
+    -33.66,
+    "ArduPilot Ready"
+   ],
+   [
+    -33.66,
+    "AHRS: DCM active"
+   ],
+   [
+    -33.36,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    -33.01,
+    "No ap_message for mavlink id (331)"
+   ],
+   [
+    -32.94,
+    "No ap_message for mavlink id (290)"
+   ],
+   [
+    -32.94,
+    "No ap_message for mavlink id (291)"
+   ],
+   [
+    -32.9,
+    "No ap_message for mavlink id (231)"
+   ],
+   [
+    -32.88,
+    "No ap_message for mavlink id (141)"
+   ],
+   [
+    -31.66,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    -31.66,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    -31.65,
+    "AHRS: EKF3 active"
+   ],
+   [
+    -30.27,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    -30.27,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    -30.17,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -30.17,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -25.4,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -24.95,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    -24.95,
+    "Arming motors"
+   ],
+   [
+    -23.98,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -21.26,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -21.26,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -19.89,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -19.88,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -16.34,
+    "EKF3 IMU0 is using external nav data"
+   ],
+   [
+    -16.34,
+    "EKF3 IMU0 initial pos NED = 0.0,-0.0,-18.8 (m)"
+   ],
+   [
+    -16.33,
+    "EKF3 IMU1 is using external nav data"
+   ],
+   [
+    -16.33,
+    "EKF3 IMU1 initial pos NED = 0.0,-0.0,-18.8 (m)"
+   ]
+  ],
+  "key_texts": [
+   [
+    -30.2,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -30.2,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -25.4,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -24.0,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -21.3,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -21.3,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -19.9,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -19.9,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ]
+  ],
+  "fix_gap_max_s": 4.04,
+  "fix_gap_at_s": 19.97,
+  "fix_gaps_over_2s": [
+   [
+    20.0,
+    4.0
+   ]
+  ]
+ },
+ "dr_gapX_off_s102": {
+  "case": "dr_gapX_off_s102",
+  "rms": 6.300714818889469,
+  "p95": 17.357959048311248,
+  "max": 30.027349781019044,
+  "end": 30.027349781019044,
+  "pct_frames_fix": 22.119815668202765,
+  "fix_rate_hz": 5.5325057947503975,
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 5, 0.0 s after the Loiter request started"
+   ],
+   [
+    28.14,
+    "ArduCopter left Loiter (mode 9): EKF3 IMU0 initial pos NED = -0.3,-0.3,-23.2 (m); EKF variance; EKF Failsafe: changed to LAND Mode"
+   ],
+   [
+    34.7,
+    "FLY-AWAY: 30.0 m from the hold point; ALT_HOLD, vision stopped"
+   ]
+  ],
+  "hold_s_flown": 34.7,
+  "ap_params": {
+   "ARMING_CHECK": 0,
+   "PILOT_SPEED_UP": 500,
+   "SIM_WIND_T": 1,
+   "SIM_WIND_SPD": 0,
+   "SIM_WIND_TURB": 0,
+   "SIM_WIND_DIR": 270.0,
+   "SERIAL1_BAUD": 115,
+   "VISO_TYPE": 1,
+   "EK3_SRC1_POSXY": 6,
+   "EK3_SRC1_VELXY": 0,
+   "EK3_SRC1_POSZ": 1,
+   "EK3_SRC1_VELZ": 0,
+   "EK3_SRC1_YAW": 1,
+   "GPS1_TYPE": 0,
+   "VISO_DELAY_MS": 140
+  },
+  "climb_s": 32.3,
+  "age_ms_p50": 166.55,
+  "drift_m_per_min": 17.87657717491873,
+  "drag": "off",
+  "seed": 102,
+  "ap": {},
+  "wall_s": 81,
+  "loadavg": [
+   5.3798828125,
+   6.31396484375,
+   5.7822265625
+  ],
+  "texts_all": [
+   [
+    -44.41,
+    "Barometer 1 calibration complete"
+   ],
+   [
+    -44.41,
+    "Barometer 2 calibration complete"
+   ],
+   [
+    -41.96,
+    "ArduPilot Ready"
+   ],
+   [
+    -41.96,
+    "AHRS: DCM active"
+   ],
+   [
+    -41.66,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    -41.31,
+    "No ap_message for mavlink id (331)"
+   ],
+   [
+    -41.25,
+    "No ap_message for mavlink id (290)"
+   ],
+   [
+    -41.24,
+    "No ap_message for mavlink id (291)"
+   ],
+   [
+    -41.19,
+    "No ap_message for mavlink id (231)"
+   ],
+   [
+    -41.19,
+    "No ap_message for mavlink id (141)"
+   ],
+   [
+    -39.96,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    -39.96,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    -39.95,
+    "AHRS: EKF3 active"
+   ],
+   [
+    -38.57,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    -38.57,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    -38.47,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -38.47,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -33.68,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -33.22,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    -33.22,
+    "Arming motors"
+   ],
+   [
+    -32.26,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -28.19,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -28.18,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -27.76,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -27.76,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -23.7,
+    "EKF3 IMU1 is using external nav data"
+   ],
+   [
+    -23.7,
+    "EKF3 IMU1 initial pos NED = -0.3,-0.3,-23.2 (m)"
+   ],
+   [
+    -23.7,
+    "EKF3 IMU0 is using external nav data"
+   ],
+   [
+    -23.7,
+    "EKF3 IMU0 initial pos NED = -0.3,-0.3,-23.2 (m)"
+   ],
+   [
+    28.14,
+    "EKF variance"
+   ],
+   [
+    28.14,
+    "EKF Failsafe: changed to LAND Mode"
+   ],
+   [
+    35.17,
+    "EKF3 IMU0 stopped aiding"
+   ],
+   [
+    35.17,
+    "EKF3 IMU1 stopped aiding"
+   ]
+  ],
+  "key_texts": [
+   [
+    -38.5,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -38.5,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -33.7,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -32.3,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -28.2,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -28.2,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -27.8,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -27.8,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    28.1,
+    "EKF variance"
+   ],
+   [
+    28.1,
+    "EKF Failsafe: changed to LAND Mode"
+   ],
+   [
+    35.2,
+    "EKF3 IMU0 stopped aiding"
+   ],
+   [
+    35.2,
+    "EKF3 IMU1 stopped aiding"
+   ]
+  ],
+  "fix_gap_max_s": 14.71,
+  "fix_gap_at_s": 19.99,
+  "fix_gaps_over_2s": [
+   [
+    20.0,
+    14.7
+   ]
+  ]
+ },
+ "dr_gapX_on_s102": {
+  "case": "dr_gapX_on_s102",
+  "rms": 7.570288678136401,
+  "p95": 19.20989082604342,
+  "max": 30.03048066803881,
+  "end": 30.03048066803881,
+  "pct_frames_fix": 16.359918200409,
+  "fix_rate_hz": 4.089557085996785,
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 5, 0.0 s after the Loiter request started"
+   ],
+   [
+    39.12,
+    "FLY-AWAY: 30.0 m from the hold point; ALT_HOLD, vision stopped"
+   ]
+  ],
+  "hold_s_flown": 39.1,
+  "ap_params": {
+   "ARMING_CHECK": 0,
+   "PILOT_SPEED_UP": 500,
+   "SIM_WIND_T": 1,
+   "SIM_WIND_SPD": 0,
+   "SIM_WIND_TURB": 0,
+   "SIM_WIND_DIR": 270.0,
+   "SERIAL1_BAUD": 115,
+   "VISO_TYPE": 1,
+   "EK3_SRC1_POSXY": 6,
+   "EK3_SRC1_VELXY": 0,
+   "EK3_SRC1_POSZ": 1,
+   "EK3_SRC1_VELZ": 0,
+   "EK3_SRC1_YAW": 1,
+   "GPS1_TYPE": 0,
+   "VISO_DELAY_MS": 140,
+   "EK3_DRAG_BCOEF_X": 17.2,
+   "EK3_DRAG_BCOEF_Y": 17.2,
+   "EK3_DRAG_MCOEF": 0.25,
+   "FS_DR_ENABLE": 0
+  },
+  "climb_s": 32.2,
+  "age_ms_p50": 166.9,
+  "drift_m_per_min": 24.721070608779463,
+  "drag": "on",
+  "seed": 102,
+  "ap": {
+   "EK3_DRAG_BCOEF_X": 17.2,
+   "EK3_DRAG_BCOEF_Y": 17.2,
+   "EK3_DRAG_MCOEF": 0.25,
+   "FS_DR_ENABLE": 0
+  },
+  "wall_s": 85,
+  "loadavg": [
+   6.8525390625,
+   6.7099609375,
+   5.9775390625
+  ],
+  "texts_all": [
+   [
+    -44.33,
+    "Barometer 1 calibration complete"
+   ],
+   [
+    -44.33,
+    "Barometer 2 calibration complete"
+   ],
+   [
+    -41.88,
+    "ArduPilot Ready"
+   ],
+   [
+    -41.88,
+    "AHRS: DCM active"
+   ],
+   [
+    -41.58,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    -41.22,
+    "No ap_message for mavlink id (331)"
+   ],
+   [
+    -41.16,
+    "No ap_message for mavlink id (290)"
+   ],
+   [
+    -41.15,
+    "No ap_message for mavlink id (291)"
+   ],
+   [
+    -41.11,
+    "No ap_message for mavlink id (231)"
+   ],
+   [
+    -41.1,
+    "No ap_message for mavlink id (141)"
+   ],
+   [
+    -39.88,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    -39.88,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    -39.87,
+    "AHRS: EKF3 active"
+   ],
+   [
+    -38.49,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    -38.49,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    -38.39,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -38.39,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -33.62,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -33.16,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    -33.16,
+    "Arming motors"
+   ],
+   [
+    -32.18,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -28.11,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -28.1,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -27.69,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -27.69,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -23.79,
+    "EKF3 IMU1 is using external nav data"
+   ],
+   [
+    -23.79,
+    "EKF3 IMU1 initial pos NED = 0.1,-0.0,-22.5 (m)"
+   ],
+   [
+    -23.78,
+    "EKF3 IMU0 is using external nav data"
+   ],
+   [
+    -23.78,
+    "EKF3 IMU0 initial pos NED = 0.1,-0.0,-22.5 (m)"
+   ],
+   [
+    30.27,
+    "Dead Reckoning started"
+   ]
+  ],
+  "key_texts": [
+   [
+    -38.4,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -38.4,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -33.6,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -32.2,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -28.1,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -28.1,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -27.7,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -27.7,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    30.3,
+    "Dead Reckoning started"
+   ]
+  ],
+  "fix_gap_max_s": 19.11,
+  "fix_gap_at_s": 19.99,
+  "fix_gaps_over_2s": [
+   [
+    20.0,
+    19.1
+   ]
+  ]
+ }
+}

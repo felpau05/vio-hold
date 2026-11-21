@@ -1,0 +1,18 @@
+--flight lowap_apb_10m_w20g40_s1 --ground ottawa2019fall --seed 1 --reanchor last --att gyro
+--flight lowap_apb_10m_w20g40_s2 --ground ottawa2019fall --seed 2 --reanchor last --att gyro
+--flight lowap_apb_10m_w20g40_s2 --ground ottawa2019fall --seed 2 --reanchor last --att fc
+--flight lowap_apb_10m_w20g40_s1 --ground ottawa2019fall --seed 1 --reanchor last --att gyro --diag true_height
+--flight lowap_apb_10m_w20g40_s2 --ground ottawa2019fall --seed 2 --reanchor last --att gyro --diag true_height
+--flight lowap_apb_10m_w20g40_s1 --ground ottawa2019fall --seed 1 --reanchor last --att fc --diag true_att
+--flight lowap_apb_10m_w20g40_s2 --ground ottawa2019fall --seed 2 --reanchor last --att fc --diag true_att
+--flight lowap_apb_10m_w20g40_s1 --ground ottawa2019fall --seed 1 --reanchor last --att gyro --diag vib0
+--flight lowap_apb_10m_w20g40_s2 --ground ottawa2019fall --seed 2 --reanchor last --att gyro --diag vib0
+--flight lowap_apb_10m_w20g40_s1 --ground ottawa2019fall --seed 1 --reanchor last --att gyro --diag exact_lens
+--flight lowap_apb_10m_w20g40_s2 --ground ottawa2019fall --seed 2 --reanchor last --att gyro --diag exact_lens
+--flight lowap_apb_10m_w20g40_s1 --ground ottawa2019fall --seed 1 --reanchor last --att gyro --diag gs
+--flight lowap_apb_10m_w20g40_s2 --ground ottawa2019fall --seed 2 --reanchor last --att gyro --diag gs
+--flight lowap_apb_10m_w20g40_s1 --ground ottawa2019fall --seed 1 --reanchor last --att gyro --diag kf_true
+--flight lowap_apb_10m_w20g40_s2 --ground ottawa2019fall --seed 2 --reanchor last --att gyro --diag kf_true
+--flight lowap_apb_10m_w20g40_s1 --ground ottawa2019fall --seed 1 --reanchor truth --att gyro --diag kf_true
+--flight lowap_apb_10m_w20g40_s1 --ground ottawa2019fall --seed 1 --reanchor last --att fc --diag true_att,true_height,vib0,exact_lens,gs
+--flight lowap_apb_10m_w20g40_s2 --ground ottawa2019fall --seed 2 --reanchor last --att fc --diag true_att,true_height,vib0,exact_lens,gs

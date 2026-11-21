@@ -1,0 +1,50 @@
+load 4.58: wait 20 s
+true lens 'Justice D full sensor (assumed)', start lens 'Justice D full sensor (assumed)', record_hz 30, seed 5, load 3.50 4.71 3.70
+recording: 361 frames in 12 s; frames late after their stamp p95 0.5 ms
+  calib: PASS picture top = left (residual 0.06 deg; next best rear 7.48 deg, 125x)
+  calib: INFO video delay 58 ms, readout +11 ms, lens at 640x360: fx 242.1 fy 241.9 k1 -0.0015, tilt roll +1.14 pitch -1.79 twist +1.46 deg
+  calib: INFO quality: residual 0.060 deg, tracked points reach 81 deg from the optical axis (picture corner 87 deg), turn rate about picture x 33, y 22, z 26 deg/s
+  calib: PASS measured lens written to lens_measured in /tmp/tmpta0ze0tu/settings.json. focal_scale is 1.0. lens_name 'Justice D full sensor (assumed)' stays as the start for calib. To use the profile lens again, set lens_measured to null.
+  calib: PASS settings written; calibrated = true
+RESULT true 'Justice D full sensor (assumed)' start 'Justice D full sensor (assumed)' rhz 30: exit 0, fx 242.1 (true 482.5, -49.81 %), fy 241.9 (true 482.5, -49.87 %), k1 -0.0015 (true +0.0000), residual 0.06 deg, delay 58.0 ms (true 58), readout +11.0 ms (true +10), top left (true left)
+load 4.11: wait 20 s
+true lens 'Justice D full sensor (assumed)', start lens 'Justice D anamorphic (assumed)', record_hz 30, seed 5, load 3.09 4.46 3.67
+recording: 361 frames in 12 s; frames late after their stamp p95 0.6 ms
+  calib: PASS picture top = left (residual 0.06 deg; next best rear 8.17 deg, 141x)
+  calib: INFO video delay 58 ms, readout +11 ms, lens at 640x360: fx 241.7 fy 242.0 k1 -0.0012, tilt roll +1.05 pitch -1.78 twist +1.46 deg
+  calib: INFO quality: residual 0.058 deg, tracked points reach 81 deg from the optical axis (picture corner 87 deg), turn rate about picture x 33, y 22, z 26 deg/s
+  calib: PASS measured lens written to lens_measured in /tmp/tmp50moq27d/settings.json. focal_scale is 1.0. lens_name 'Justice D anamorphic (assumed)' stays as the start for calib. To use the profile lens again, set lens_measured to null.
+  calib: PASS settings written; calibrated = true
+RESULT true 'Justice D full sensor (assumed)' start 'Justice D anamorphic (assumed)' rhz 30: exit 0, fx 483.3 (true 482.5, +0.18 %), fy 484.0 (true 482.5, +0.30 %), k1 -0.0012 (true +0.0000), residual 0.058 deg, delay 58.0 ms (true 58), readout +11.0 ms (true +10), top left (true left)
+true lens 'Justice D anamorphic (assumed)', start lens 'Justice D full sensor (assumed)', record_hz 30, seed 5, load 2.51 4.22 3.61
+recording: 361 frames in 12 s; frames late after their stamp p95 1.4 ms
+  calib: PASS picture top = left (residual 0.06 deg; next best front mirrored 8.51 deg, 153x)
+  calib: INFO video delay 58 ms, readout +11 ms, lens at 640x360: fx 322.4 fy 242.0 k1 -0.0008, tilt roll +1.13 pitch -1.86 twist +1.51 deg
+  calib: INFO quality: residual 0.056 deg, tracked points reach 65 deg from the optical axis (picture corner 71 deg), turn rate about picture x 33, y 22, z 26 deg/s
+  calib: PASS measured lens written to lens_measured in /tmp/tmpexr_2t4a/settings.json. focal_scale is 1.0. lens_name 'Justice D full sensor (assumed)' stays as the start for calib. To use the profile lens again, set lens_measured to null.
+  calib: PASS settings written; calibrated = true
+RESULT true 'Justice D anamorphic (assumed)' start 'Justice D full sensor (assumed)' rhz 30: exit 0, fx 644.8 (true 643.3, +0.23 %), fy 484.0 (true 482.5, +0.31 %), k1 -0.0008 (true +0.0000), residual 0.056 deg, delay 58.0 ms (true 58), readout +11.0 ms (true +10), top left (true left)
+true lens 'Justice D anamorphic (assumed)', start lens 'Justice D anamorphic (assumed)', record_hz 30, seed 5, load 2.47 4.07 3.57
+recording: 361 frames in 12 s; frames late after their stamp p95 0.9 ms
+  calib: PASS picture top = left (residual 0.05 deg; next best front mirrored 8.21 deg, 153x)
+  calib: INFO video delay 58 ms, readout +11 ms, lens at 640x360: fx 322.4 fy 242.1 k1 -0.0009, tilt roll +1.23 pitch -1.82 twist +1.52 deg
+  calib: INFO quality: residual 0.054 deg, tracked points reach 65 deg from the optical axis (picture corner 71 deg), turn rate about picture x 33, y 22, z 26 deg/s
+  calib: PASS measured lens written to lens_measured in /tmp/tmp5di0d28i/settings.json. focal_scale is 1.0. lens_name 'Justice D anamorphic (assumed)' stays as the start for calib. To use the profile lens again, set lens_measured to null.
+  calib: PASS settings written; calibrated = true
+RESULT true 'Justice D anamorphic (assumed)' start 'Justice D anamorphic (assumed)' rhz 30: exit 0, fx 644.8 (true 643.3, +0.23 %), fy 484.2 (true 482.5, +0.35 %), k1 -0.0009 (true +0.0000), residual 0.054 deg, delay 58.0 ms (true 58), readout +11.0 ms (true +10), top left (true left)
+true lens 'Justice D full sensor (assumed)', start lens 'Justice D full sensor (assumed)', record_hz 10, seed 5, load 2.56 3.95 3.55
+recording: 121 frames in 12 s; frames late after their stamp p95 0.5 ms
+  calib: PASS picture top = left (residual 0.07 deg; next best front 9.08 deg, 133x)
+  calib: INFO video delay 58 ms, readout +11 ms, lens at 640x360: fx 241.8 fy 241.8 k1 -0.0006, tilt roll +1.04 pitch -1.79 twist +1.51 deg
+  calib: INFO quality: residual 0.068 deg, tracked points reach 80 deg from the optical axis (picture corner 87 deg), turn rate about picture x 33, y 22, z 26 deg/s
+  calib: PASS measured lens written to lens_measured in /tmp/tmpg11q87ne/settings.json. focal_scale is 1.0. lens_name 'Justice D full sensor (assumed)' stays as the start for calib. To use the profile lens again, set lens_measured to null.
+  calib: PASS settings written; calibrated = true
+RESULT true 'Justice D full sensor (assumed)' start 'Justice D full sensor (assumed)' rhz 10: exit 0, fx 483.6 (true 482.5, +0.23 %), fy 483.7 (true 482.5, +0.24 %), k1 -0.0006 (true +0.0000), residual 0.068 deg, delay 58.0 ms (true 58), readout +11.0 ms (true +10), top left (true left)
+true lens 'Justice D anamorphic (assumed)', start lens 'Justice D anamorphic (assumed)', record_hz 10, seed 5, load 3.15 3.99 3.57
+recording: 122 frames in 12 s; frames late after their stamp p95 16.2 ms
+  calib: PASS picture top = left (residual 0.06 deg; next best front 10.55 deg, 165x)
+  calib: INFO video delay 58 ms, readout +11 ms, lens at 640x360: fx 322.5 fy 242.0 k1 -0.0006, tilt roll +1.17 pitch -1.89 twist +1.52 deg
+  calib: INFO quality: residual 0.064 deg, tracked points reach 65 deg from the optical axis (picture corner 71 deg), turn rate about picture x 33, y 22, z 26 deg/s
+  calib: PASS measured lens written to lens_measured in /tmp/tmpxrcpndty/settings.json. focal_scale is 1.0. lens_name 'Justice D anamorphic (assumed)' stays as the start for calib. To use the profile lens again, set lens_measured to null.
+  calib: PASS settings written; calibrated = true
+RESULT true 'Justice D anamorphic (assumed)' start 'Justice D anamorphic (assumed)' rhz 10: exit 0, fx 645.1 (true 643.3, +0.27 %), fy 484.0 (true 482.5, +0.31 %), k1 -0.0006 (true +0.0000), residual 0.064 deg, delay 58.0 ms (true 58), readout +11.0 ms (true +10), top left (true left)

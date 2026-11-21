@@ -1,0 +1,34 @@
+settings.json md5 before: be7b5bea6b6ccdefb43c0501425da7eb
+
+A. combinations on a fresh copy of settings.json
+  FAIL outdoor_day goal_a px4 justice_d   exit 1: FAIL <project>/tools/profiles/betaflight.json: unknown key 'msp_lock_gain'. Fix the spelling or remove it.
+  FAIL indoor goal_a px4 justice_d   exit 1: FAIL <project>/tools/profiles/betaflight.json: unknown key 'msp_lock_gain'. Fix the spelling or remove it.
+  FAIL indoor goal_a ardupilot justice_d   exit 1: FAIL <project>/tools/profiles/betaflight.json: unknown key 'msp_lock_gain'. Fix the spelling or remove it.
+  FAIL indoor goal_b px4 justice_d   exit 1: FAIL <project>/tools/profiles/betaflight.json: unknown key 'msp_lock_gain'. Fix the spelling or remove it.
+  FAIL indoor goal_b ardupilot justice_d   exit 1: FAIL <project>/tools/profiles/betaflight.json: unknown key 'msp_lock_gain'. Fix the spelling or remove it.
+  FAIL outdoor_day goal_a px4 justice_d   exit 1: FAIL <project>/tools/profiles/betaflight.json: unknown key 'msp_lock_gain'. Fix the spelling or remove it.
+  FAIL outdoor_day goal_a ardupilot justice_d   exit 1: FAIL <project>/tools/profiles/betaflight.json: unknown key 'msp_lock_gain'. Fix the spelling or remove it.
+  FAIL outdoor_day goal_b px4 justice_d   exit 1: FAIL <project>/tools/profiles/betaflight.json: unknown key 'msp_lock_gain'. Fix the spelling or remove it.
+  FAIL outdoor_day goal_b ardupilot justice_d   exit 1: FAIL <project>/tools/profiles/betaflight.json: unknown key 'msp_lock_gain'. Fix the spelling or remove it.
+  FAIL outdoor_night goal_a px4 justice_d   exit 1: FAIL <project>/tools/profiles/betaflight.json: unknown key 'msp_lock_gain'. Fix the spelling or remove it.
+  FAIL outdoor_night goal_a ardupilot justice_d   exit 1: FAIL <project>/tools/profiles/betaflight.json: unknown key 'msp_lock_gain'. Fix the spelling or remove it.
+  FAIL outdoor_night goal_b px4 justice_d   exit 1: FAIL <project>/tools/profiles/betaflight.json: unknown key 'msp_lock_gain'. Fix the spelling or remove it.
+  FAIL outdoor_night goal_b ardupilot justice_d   exit 1: FAIL <project>/tools/profiles/betaflight.json: unknown key 'msp_lock_gain'. Fix the spelling or remove it.
+  FAIL outdoor_day goal_b ardupilot justice_d recovery_demo   exit 1: FAIL <project>/tools/profiles/betaflight.json: unknown key 'msp_lock_gain'. Fix the spelling or remove it.
+  FAIL outdoor_day goal_b ardupilot justice_d fresh_kf   exit 1: FAIL <project>/tools/profiles/betaflight.json: unknown key 'msp_lock_gain'. Fix the spelling or remove it.
+  FAIL outdoor_day goal_b ardupilot justice_d kf_bright   exit 1: FAIL <project>/tools/profiles/betaflight.json: unknown key 'msp_lock_gain'. Fix the spelling or remove it.
+  FAIL outdoor_day goal_b ardupilot justice_d gap_jump   exit 1: FAIL <project>/tools/profiles/betaflight.json: unknown key 'msp_lock_gain'. Fix the spelling or remove it.
+  FAIL outdoor_day goal_b ardupilot justice_d drag_fusion   exit 1: FAIL <project>/tools/profiles/betaflight.json: unknown key 'msp_lock_gain'. Fix the spelling or remove it.
+  FAIL outdoor_day goal_b ardupilot justice_d kf_bright gap_jump recovery_demo   exit 1: FAIL <project>/tools/profiles/betaflight.json: unknown key 'msp_lock_gain'. Fix the spelling or remove it.
+  FAIL outdoor_day goal_b ardupilot justice_d no_sd   exit 1: FAIL <project>/tools/profiles/betaflight.json: unknown key 'msp_lock_gain'. Fix the spelling or remove it.
+  FAIL outdoor_day goal_b px4 justice_d no_sd recovery_demo   exit 1: FAIL <project>/tools/profiles/betaflight.json: unknown key 'msp_lock_gain'. Fix the spelling or remove it.
+  21 combinations, 21 FAIL
+
+B. DECISION_CARD apply lines on a calibrated Justice D copy (before: outdoor_day goal_b ardupilot justice_d, calibrated)
+Traceback (most recent call last):
+  File "<project>/integ/rehearsal_2026-11-20/profile_combos.py", line 138, in <module>
+    main()
+  File "<project>/integ/rehearsal_2026-11-20/profile_combos.py", line 90, in main
+    assert apply(base, p)[0] == 0
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

@@ -1,0 +1,212 @@
+--- a/EVENT_DAY.txt
++++ b/EVENT_DAY.txt
+@@ -33,6 +33,34 @@
+   python3 is enough for tools/use_profile.py and tools/deploy.sh.
+ 
+ 
++STEP 0A. BOARD SETUP, ONCE FOR EACH BOARD (10 min; details: tools/bundle/README.txt)
++1. On the laptop, put the board address in tools/deploy.env: BOARD=192.168.75.1 (USB-C cable) or BOARD=192.168.1.75
++   (USB-Ethernet adapter).
++2. On the laptop, type: NO_RESTART=1 tools/deploy.sh
++   Each push (tools/deploy.sh) and each start (tools/deploy.sh start) sets the board clock from the laptop. It
++   prints the two times: "clock: laptop ..., board ...".
++3. On the board, type: sh tools/board_check.sh
++   It prints one line "use case A" or "use case B".
++   Board temperature: WARN at 70 C or more and below 0 C. FAIL at 85 C (the board stops at 95 C). Cool the board.
++4. Case A (the board's python3 is 3.10, 3.11 or 3.12, with pip). Take the wheel folder for that Python: cp310, cp311
++   or cp312. On the laptop, type: scp -r tools/wheels/cp312 root@<BOARD>:/tmp/
++   On the board, type: python3 -m pip install --no-index --find-links /tmp/cp312 numpy opencv-python-headless pymavlink pyserial
++   If pip says "externally-managed-environment", add --break-system-packages. No pip: tools/wheels/README.txt, STEP 3.
++5. Case B (no Python on the board that we can use). On the laptop, type: tools/deploy.sh bundle
++   It copies our own Python and the program to the board and runs check. It ends with two lines: PY=... and
++   BOARD_DIR=... Put those two lines into tools/deploy.env. After that, push, start, stop, status and pull use them.
++   If check says "libstdc++.so.6" (or libgcc_s.so.1, libz.so.1) "cannot open shared object file":
++   tools/bundle/README.txt, CASE B, item 3.
++6. Type board_check again (case B: with the bundle's Python, tools/bundle/README.txt, CASE B, item 4).
++Pass: Every package line shows PASS.
++If the flight controller line shows no heartbeat: on the board, type: sh tools/board_check.sh --route
++Then do step 1 (check) again.
++7. Optional, start at power-on (systemd only): on the laptop, type: tools/deploy.sh boot-on
++   To reverse it, type: tools/deploy.sh boot-off
++   Without boot-on, start the program only with tools/deploy.sh (or tools/deploy.sh start): it runs on when the
++   cable comes out. With boot-on, stop it before check, mask, calib or bench: tools/deploy.sh stop.
++
++
+ STEP 0. JUSTICE D SETUP, ON THE LAPTOP (3 min)
+ 1. On the laptop, type: python3 tools/use_profile.py apply <profile names> justice_d
+    (Later in the day, first type: tools/deploy.sh pull. It gets the values that the board wrote.)
+@@ -46,8 +74,12 @@
+ After an apply that changes the camera or the capture settings, do step 3 (mask) and step 4 (calibration) again.
+ The program refuses a calibration that another capture made.
+ Disk: justice_d records 30 pictures each second (6.9 MB/s). The "free disk" line of check then needs 5.3 GB: only an
+-SD card has that. no_sd records 10 pictures each second (2.3 MB/s). The line then needs 0.44 GB.
++SD card has that. no_sd records 10 pictures each second (2.3 MB/s). The line then needs 0.5 GB (min_free_gb).
+ The raw recorder stops under min_free_gb free space (no_sd: 0.5 GB). The hold continues without a recording.
++The line never needs less than min_free_gb, so a PASS means that the recorder starts. The line also gives the minutes
++of raw recording before the recorder stops. Under 10 min, check adds a WARN line: the program records from step 7
++item 1, also on the ground, so a wiggle flight can have no recording. Delete old logs first (no_sd: 1.9 GB free
++gives 10 min).
+ 
+ 
+ STEP 1. FLIGHT CONTROLLER PARAMETERS (4 min)
+@@ -77,7 +109,8 @@
+ 4. Point the nose north with a phone compass.
+ 5. Read the heading in the ground station.
+ 6. Turn the nose 90 degrees to the right by hand. Read the heading again.
+-Pass: Every line shows PASS, except "not calibrated" and "no mask" (ArduPilot: also "LOCAL_POSITION_NED", see step 5).
++Pass: Every line shows PASS, except "not calibrated" and "no mask". (The height line: ArduPilot GLOBAL_POSITION_INT, see
++step 5; PX4 LOCAL_POSITION_NED.)
+ ArduPilot: Pass: The "origin set" line shows PASS. Without the origin ArduPilot never accepts Loiter.
+ Pass: ATTITUDE shows 100 Hz or more. If it is less, set the SRn_ rates of the APB port to 0 (n = that SERIAL port).
+ Pass: The heading is within 10 degrees of north.
+@@ -99,7 +132,7 @@
+ Pass: The "lens profile" line shows PASS. The lens and the picture have the same shape.
+ Pass: The "frame stamps from" line shows PASS. The p95 of the interval spread is 12 ms or less.
+ If the lens_measured line shows FAIL, set lens_measured to null, or measure the lens again.
+-Pass: The "free disk" line shows PASS at the log_dir disk.
++Pass: The "free disk" line shows PASS at the log_dir disk, with no WARN line after it.
+ If the "video rate" line fails, set video_fps to the camera's rate. Then do step 2 again.
+ If the "frame stamps from" line fails, use driver stamps (video_device, no video_command). Stop other programs on the board.
+ If the "frame stamps from" line says "too few to measure", make the camera give frames. Then do step 2 again.
+@@ -179,10 +212,10 @@
+ STEP 5. SYSTEM CHECK AGAIN (1 min)
+ 1. Type: python3 apb_main.py check
+ Pass: The last line shows ALL PASS.
+-ArduPilot: the line "LOCAL_POSITION_NED 0 Hz" shows FAIL on the ground, so the last line shows "1 FAIL". This is
+-expected: ArduPilot sends that message only after it has a position, and only our fixes in flight give one. The
+-program reads the height from GLOBAL_POSITION_INT. Accept this one FAIL when the "INFO height now" line is there.
+-(Rehearsal 2026-11-20, ArduCopter SITL. A patch for the check line: integ/rehearsal_2026-11-20/patches.)
++ArduPilot: the height line is "GLOBAL_POSITION_INT <n> Hz". The program reads the height from that message.
++ArduPilot sends LOCAL_POSITION_NED only after it has a position, and only our fixes in flight give one.
++(ArduCopter SITL, GPS off: "PASS GLOBAL_POSITION_INT 10 Hz", integ/integration_2026-11-20. Before this correction the
++line was "FAIL LOCAL_POSITION_NED 0 Hz" on every ground check.)
+ 
+ 
+ STEP 6. GROUND TESTS, PROPELLERS OFF (6 min)
+@@ -221,13 +254,19 @@
+ Ask the pilot to change the switch map. (ArduCopter SITL, on the ground: RTL gave "mode 11".)
+ LOITER, POSHOLD and POSCTL use our position, not GNSS, when the step 1 param lines pass (GPS1_TYPE 0; PX4:
+ EKF2_GPS_CTRL 0). If one of those lines shows FAIL, do not fly.
+-5. On the laptop, type: tools/deploy.sh stop
++5. Ask the pilot to put the switch in Altitude mode (ALT_HOLD; PX4: ALTCTL) and to leave it there.
++   Pass: tail -n 1 (item 4) shows ALT_HOLD (PX4: ALTCTL).
++   The program must start (step 7 item 1) with the switch in Altitude mode. A start in Position mode writes an
++   "engaged" note on the ground.
++6. On the laptop, type: tools/deploy.sh stop
+ 
+ 
+ STEP 7. FIRST LOW HOVER (15 min)
+ The event pilot flies. A team member does not fly. Give the pilot each request below.
+ ArduPilot (ArduCopter 4.6): use Loiter mode where these steps say Position mode, and AltHold where they say Altitude mode.
+-Start: propellers off, battery connected, USB-C cable connected.
++Start: propellers off, battery connected, USB-C cable connected, the switch in Altitude mode (step 6B, item 5).
++From item 1 to item 9 the pilot does not move the switch to Position mode: no switch test. timing (item 15) needs
++15 s in the air in Altitude mode before the switch.
+ 1. On the laptop, type: tools/deploy.sh
+    It copies the program, stops a running copy, and starts "apb_main.py run --raw" on the board in the background.
+ Pass: The last line shows "running: yes".
+@@ -242,11 +281,14 @@
+ 6. Ask the pilot to climb to 20 m. The outdoor profiles send nothing below 3 m (indoor: 1 m).
+ 7. Ask the pilot not to yaw the aircraft. Yaw moves the fix (H8).
+ 8. Ask the pilot to hold the aircraft still for 5 seconds.
+-8b. Timing wiggle (still in Altitude mode, at 40 m or higher, clear area): ask the pilot to rock the roll and pitch sticks
+-   about 30 % each way, about once every 1.5 s, for 8 s (about 9 deg of lean). Then let the drone settle 4 s.
+-   Then go on with item 9 at once: item 15 finds the wiggle by the time of the switch.
+-   (Do the wiggle at 40 m or higher, also when the hold is lower: the delay does not depend on the height. If the
+-   pilot cannot fly 40 m, skip it and keep the delay and readout of the ground calibration, step 4.)
++8a. For the timing wiggle: ask the pilot to climb to 40 m or higher in Altitude mode (clear area). Then hold the
++   aircraft still for 5 seconds. (If the pilot cannot fly 40 m, skip items 8a and 8b and keep the delay and readout
++   of the ground calibration, step 4. The hold of items 9 and 10 is then at 20 m.)
++8b. Timing wiggle (still in Altitude mode): ask the pilot to rock the roll and pitch sticks about 30 % each way, about
++   once every 1.5 s, for 8 s (about 9 deg of lean). Then let the drone settle 4 s. Then item 9 at once, at this height.
++   The switch must come no more than 8 s after the last stick move of the wiggle. timing uses the 15 s that end 1 s
++   before the switch: they must hold the whole wiggle. If the switch comes later: ask the pilot for the wiggle again
++   (8 s), settle 4 s, then item 9.
+ 9. Ask the pilot to select Position mode. The pilot moves the switch that starts our hold.
+ 10. Let the aircraft hold for 30 seconds. The pilot does not touch the sticks.
+ Pass: The drone stays above the same ground point. It does not move away.
+@@ -264,16 +306,23 @@
+ 15. Timing (after the wiggle of item 8b), on the board:
+    a. Type: ls <log_dir>/run_*.csv <log_dir>/raw_*_000.npz
+       The newest run log and raw files share a start time in the name: run_<stamp>.csv, raw_<stamp>_000.npz.
+-   b. Type this line. It prints the raw files that end in the 14 s before the switch (the wiggle):
+-      python3 -c "import numpy as n,glob,csv,sys; s=[float(r['t']) for r in csv.DictReader(open(sys.argv[1])) if r['note'].startswith('engaged')][0]; print(*[f for f in sorted(glob.glob(sys.argv[2])) if -14 <= n.load(f)['t_grab'][-1]-s <= 0])" <log_dir>/run_<stamp>.csv "<log_dir>/raw_<stamp>_*.npz"
+-   c. Type: python3 apb_main.py timing <the file names that b printed>
++   b. Type: python3 apb_main.py timing <log_dir>/run_<stamp>.csv <log_dir>/raw_<stamp>_*.npz
++      timing uses the raw frames from 16 s to 1 s before the first "engaged" note that has 15 s in the air (over
++      min_height_m) in Altitude mode before it. The INFO line names each switch that it did not use, and why.
++      Those 15 s must hold a wiggle: their 8 s with the most turning must turn 4 times faster than the rest.
+    Pass: "PASS video delay ... ms" and "settings written". It changes video_delay_s and readout_s on the board.
+-   If b prints no file name or an error (no switch in the log), or c shows FAIL: keep the delay and readout of the
+-   ground calibration (step 4).
+-   Do not give timing other raw files: it can pass on a hold in gusts with a wrong delay (DECISION_CARD row 42).
+-   (SITL, Justice D, delay set 30 ms too long, one flight each: at 10 m, 60 m and 100 m this found 40 ms (true 40 ms)
+-   and a readout within 1 ms; at 30 m it showed FAIL and changed nothing. apsim, analog, start 40 ms wrong: within 4 ms
+-   at 40 m and 100 m, integ/control/wiggle_calib.txt.)
++   Run timing once for each flight: a second run on the same flight shows FAIL, because video_delay_s changed.
++   If timing prints FAIL: keep the delay and readout of the ground calibration (step 4), or fly the wiggle again
++   (a new flight, items 1 to 15). The FAIL line gives the reason: no switch with 15 s in the air in Altitude mode
++   before it, no wiggle in the 15 s, raw frames that are not in the run log (another run), raw files that miss part
++   of the 15 s (a dropped chunk, or the recorder stopped), or the fit.
++   After a program restart in flight, the newest run log starts late: give the run log before it and its raw files.
++   (SITL, Justice D, delay set 30 ms too long, one flight each, the run log and all raw files: 10 m 40 ms, 60 m 38 ms,
++   100 m 36 ms (true 40 ms), readout +15, +23, +11 ms (true +14); at 30 m it showed FAIL and changed nothing
++   (integ/integration_2026-11-20/timing_with_run_log.txt). 126 edited copies of those flights (a late switch, a
++   switch test, a late start, raw files of another flight, a missing chunk): 13 PASS, each 36 to 40 ms and +11 to
++   +23 ms; 113 FAIL (integ/integration_2026-11-20/timing_cases_v2.txt). apsim, analog, start 40 ms wrong: within
++   4 ms at 40 m and 100 m, integ/control/wiggle_calib.txt.)
+ 16. ArduPilot: on the board, type: python3 apb_main.py delay <log_dir>/run_<stamp>.csv
+    It prints "PASS VISO_DELAY_MS <n>". Use that number, NOT the median fix age: ArduPilot times each fix by the
+    smallest age of every 100 (apb_main.delay_advice). The run log also shows it every 100 fixes ("VISO_DELAY_MS advice").
+--- a/DECISION_CARD.txt
++++ b/DECISION_CARD.txt
+@@ -106,11 +106,13 @@
+ 22 SEE    run refuses to start: "capture is '<x>' but the calibration was made with '<y>'. Run calib again."
+    CAUSE  The camera or the capture settings changed after the calibration.
+    DO     Run python3 apb_main.py calib (EVENT_DAY step 4). Start run again.
+-23 SEE    check: "free disk <n> GB at <path>" shows FAIL.
++23 SEE    check: "free disk <n> GB at <path>" shows FAIL, or "WARN free disk: <n> min of raw recording ..." follows it.
+    CAUSE  justice_d records 30 pictures each second (6.9 MB/s). check then needs 5.3 GB. The 4 GB eMMC is too small.
++          WARN: the recorder stops in under 10 min, and the program records from its start, also on the ground.
+    DO     With an SD card: set log_dir to /sdcard/logs in settings.json. Or delete old logs.
+           No SD card: on the laptop, apply your profile names with no_sd last (... justice_d no_sd). check then needs
+-          0.44 GB. Pull and delete the raw files after each flight (EIGHT_HOURS, storage rule).
++          0.5 GB; 10 min of recording needs 1.9 GB. Pull and delete the raw files after each flight (EIGHT_HOURS,
++          storage rule).
+ 24 SEE    board_check.sh: "board temperature <n> C: the board stops at 95 C" shows FAIL.
+    CAUSE  The board is hot. It stops at 95 C.
+    DO     Cool the board before the flight. Run sh tools/board_check.sh again.
+@@ -167,8 +169,8 @@
+           height. Real ground has more texture, but grass that moves in the propeller wash can also cause it.
+    DO     Fly the hold at 10 m or higher when the level allows it. Check fixes per second in plot_log.
+ 
+-Rows 39 to 42: firmware, flight controller link, switch positions, timing. Added 2026-11-20 (simulator rehearsal and
+-the manuals audit, review/manuals_audit_2026-11-20.md).
++Rows 39 to 43: firmware, flight controller link, switch positions, timing, program start. Added 2026-11-20 (simulator
++rehearsal and the manuals audit, review/manuals_audit_2026-11-20.md).
+ 39 SEE    check: "flight controller: the flight controller runs Betaflight ..." or "... iNav ...", or "MAVLink ... not supported yet".
+    CAUSE  The FC runs a firmware that this program cannot fly. It flies PX4 and ArduPilot only.
+    DO     Stop. Betaflight or INAV: see research/betaflight_route.md.
+@@ -180,8 +182,17 @@
+ 41 SEE    A switch position gives RTL (PX4: AUTO), or a mode name that is not in EVENT_DAY step 6B.
+    CAUSE  The pilot's switch map is the stock one (aircraft manual: Acro, Position Hold, Return to Home).
+    DO     Do not use that position in a flight. Ask the pilot to map the positions as EVENT_DAY step 6B states.
+-42 SEE    timing: "PASS video delay ..." from chunks that you chose by hand.
+-   CAUSE  timing also passes on chunks of a hold in gusts, with wrong values (SITL, 60 m: 12 ms against a true 40 ms,
+-          readout -29 against +14 ms).
+-   DO     Give timing only the chunks that the line in EVENT_DAY step 7, item 15b prints. If it prints none, keep the
+-          values of the ground calibration (step 4).
++42 SEE    timing: "FAIL give one run log ...", "FAIL no 'engaged' note ...", "FAIL no switch to position hold after
++          15 s in the air ...", "FAIL no wiggle in the 15 s before the switch ...", "FAIL <n> of <m> raw frames have
++          no row in ...", "FAIL the raw files miss ..." or "FAIL the raw files are not from the run ...".
++   CAUSE  timing needs the run log and the raw files of the same run. It uses only the frames of the 15 s before the
++          first switch with 15 s in the air in Altitude mode before it, and only when they hold the wiggle: on the
++          chunks of a hold in gusts it passed with wrong values (SITL, 60 m: 12 ms against a true 40 ms, readout -29
++          against +14 ms). A second timing run on the same flight fails: video_delay_s changed.
++   DO     The same line gives the same result. Keep the values of the ground calibration (step 4), or fly the wiggle
++          again (EVENT_DAY step 7, items 1 to 15). After a program restart in flight: give the run log before the
++          newest one and its raw files.
++43 SEE    The program stopped when the cable came out (tools/deploy.sh status: "running: no").
++   CAUSE  It was started in an ssh session ("python3 apb_main.py run"). The session ended with the cable.
++   DO     Start it only with tools/deploy.sh start (or tools/deploy.sh), or use tools/deploy.sh boot-on
++          (EVENT_DAY step 0A, item 7).

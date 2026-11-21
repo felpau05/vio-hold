@@ -1,0 +1,15 @@
+Closed loop before and after the proposed patch: the gap (as integ/justice_d/fix_error.py: the longest time between
+two sent fixes in [-10, +3] s of the hold start), the reasons inside it, the EKF error at the switch (as
+ekf_at_switch.py) and the hold error (true distance from the hold point over the 60 s hold, RMS and max).
+Before: the existing runs in apsim/runs. After: the runs of integ/gap/run_closed.sh in integ/gap/results/closed.
+
+before jd_apb_100m_w20g40_s11               gap 4.50 s (-6.59 to -2.09); EKF error at switch 0.51 m; hold RMS 0.437 max 0.803 m; load (0.86, 3.65); reasons in gap {'waiting for image motion that proves the picture is live': 54}; unsent in hold +3..+60 s {}
+after  gapfix_jd_apb_100m_w20g40_s11        gap 0.12 s (-1.75 to -1.64); EKF error at switch 0.01 m; hold RMS 0.588 max 1.106 m; load (3.68, 3.59); reasons in gap {}; unsent in hold +3..+60 s {}
+before jd_apb_100m_w20g40_s12               gap 1.72 s (-4.45 to -2.73); EKF error at switch 0.43 m; hold RMS 0.654 max 1.234 m; load (2.29, 5.33); reasons in gap {'waiting for image motion that proves the picture is live': 20}; unsent in hold +3..+60 s {}
+after  gapfix_jd_apb_100m_w20g40_s12        gap 0.12 s (-4.11 to -4.00); EKF error at switch 0.10 m; hold RMS 0.485 max 0.883 m; load (3.59, 6.11); reasons in gap {}; unsent in hold +3..+60 s {}
+before jd_apb_100m_w20g40_s13               gap 0.33 s (-5.39 to -5.06); EKF error at switch 0.28 m; hold RMS 0.715 max 1.434 m; load (3.39, 4.89); reasons in gap {'waiting for image motion that proves the picture is live': 3}; unsent in hold +3..+60 s {}
+after  gapfix_jd_apb_100m_w20g40_s13        gap 0.13 s (-1.38 to -1.24); EKF error at switch 0.06 m; hold RMS 0.568 max 1.027 m; load (3.7, 8.62); reasons in gap {}; unsent in hold +3..+60 s {}
+before jdcal2_apb_100m_w20g40_s11           gap 3.87 s (-3.84 to +0.03); EKF error at switch 1.39 m; hold RMS 1.615 max 2.135 m; load (2.66, 6.3); reasons in gap {'waiting for image motion that proves the picture is live': 46}; unsent in hold +3..+60 s {}
+after  gapfix_jdcal_apb_100m_w20g40_s11     gap 0.10 s (-8.15 to -8.05); EKF error at switch 0.51 m; hold RMS 0.564 max 0.852 m; load (3.37, 2.29); reasons in gap {}; unsent in hold +3..+60 s {}
+before jdcal3_apb_100m_w20g40_s11           gap 3.68 s (-6.28 to -2.60); EKF error at switch 0.32 m; hold RMS 0.783 max 1.305 m; load (0.99, 4.93); reasons in gap {'waiting for image motion that proves the picture is live': 44}; unsent in hold +3..+60 s {}
+before jdcal_apb_100m_w20g40_s11            gap 2.50 s (-6.59 to -4.09); EKF error at switch 0.45 m; hold RMS 0.661 max 1.109 m; load (3.87, 3.24); reasons in gap {'waiting for image motion that proves the picture is live': 29}; unsent in hold +3..+60 s {}

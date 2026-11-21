@@ -1,0 +1,217 @@
+REVIEW OF THE 2026-11-20 INTEGRATION CHANGE TO apb_main.py (D1 timing, D2 check, D3 one FAIL line, D4 free disk)
+
+Words: FC = flight controller. RMS = root mean square. SITL = software in the loop (a simulator).
+"delay/readout" = the two values that timing writes (video_delay_s, readout_s). True values in every rehearsal
+flight: 40 ms / +14 ms. The flights wrote with 70 ms / +14 ms (the 30 ms error).
+Grades: BLOCKER = can cause a wrong value or a lost flight on the event day. SHOULD FIX. NOTE.
+No project file was changed. Nothing was committed. No simulator was started.
+
+FILES IN THIS FOLDER
+REVIEW.txt                         this file
+B1_timing_switch_choice.patch      correction for BLOCKER B1 (apply first: patch -p1 in the project folder)
+B2_timing_wiggle_check.patch       correction for BLOCKER B2 (apply after B1)
+evidence/                          outputs (named in each finding)
+scripts/                           the scripts that made them. Set PROJECT (the program folder) and WORK (an empty
+                                   work folder) in the environment. Python: ~/.venvs/vio/bin/python.
+Case data: copies of the rehearsal run logs (apsim/runs/reh_jd_wig_<h>m_s31_onboard.csv, renamed run_<stamp>.csv),
+links to the raw chunks (integ/rehearsal_2026-11-20/runs/reh_jd_wig_<h>m_s31_raw/), and a fresh copy of each
+flight's settings for each run. Only the case's log was edited, or chunks were left out or cut. One flight per
+height (seed 31): these are examples, not rates.
+
+HOW TO READ THE CASE TABLE
+evidence/timing_cases_current_code.txt   one line per case: exit code, values written, the PASS/FAIL line
+evidence/timing_cases_console.txt        the full output of each case on the current code
+evidence/timing_cases_compare.txt        the same 126 cases on: the current code, after B1, after B1+B2
+evidence/timing_cases_groups.txt         PASS counts per case family
+Command for one case (example):
+  ~/.venvs/vio/bin/python apb_main.py timing <case>/run_20261120_033410.csv <case>/raw_20261120_033410_*.npz \
+      --settings <fresh copy of apsim/runs/reh_jd_wig_60m_s31_settings.json>
+All cases: scripts/cases.py WORK OUT (builds and runs), scripts/rerun.py APB_DIR CASES OUT (runs again).
+The 4 flights as flown give the patch author's numbers again: 10 m 40/+15, 30 m FAIL, 60 m 38/+23, 100 m 36/+11.
+
+
+1. BLOCKERS
+
+B1 BLOCKER. timing takes the FIRST "engaged" note. An earlier note refuses a good wiggle, with a wrong reason.
+   Engage (apb_main.py 251-268) writes "engaged" when it first sees a hold mode. That is also the first row of a
+   run when the FC is already in Loiter at the start. The rehearsal read LOITER and POSHOLD on the ground, disarmed
+   (rehearsal README step 6B). EVENT_DAY step 6B moves the switch to each position and does not say where to leave
+   it. Step 7 item 1 then starts the program. A pilot's switch check at the flight line does the same.
+   Cases (the flight's real switch stays in the log; a first note is added):
+   - d_ground (note 1 s after the start), 4 of 4 FAIL: "no raw frame in the 15 s before the switch ... The switch
+     came before the recording, or the raw files are from another run." Both reasons are wrong.
+   - d_test3 (3 s after the start), 4 of 4 FAIL: "Rock the roll and pitch sticks harder" (17 to 18 deg/s).
+   - d_test17 (17 s after the start, in the climb), 3 of 4 FAIL. 10 m PASS only because its window held 6 s of the
+     wiggle.
+   The crew then keeps the ground values (DECISION_CARD row 42). The wiggle flight is lost.
+   Correction: B1_timing_switch_choice.patch. timing uses the first "engaged" note whose 15 s before it have log
+   rows with no gap over 1 s, no hold mode in the mode column, and no height under min_height_m. The INFO line
+   names each note it did not use, and why. Result: d cases 9 of 12 PASS with the flight's own values (30 m fails
+   as its flown window does). It also refuses all 20 late-start cases (finding S1). Documents: EVENT_DAY step 6B
+   item 5 must say "end with the switch in Altitude mode", and step 7 must say "no switch test after item 1".
+   Evidence: evidence/timing_cases_current_code.txt, evidence/timing_cases_compare.txt (rows d_*).
+
+B2 BLOCKER. Nothing checks that the window holds the wiggle. Turning that is not the wiggle passes with wrong values.
+   timing gates are: RMS turn rate 20 deg/s or more, 1000 matches, residual 1.0 deg or less, orientation ratio.
+   The 8 s wiggle windows turned only 23 to 24 deg/s. At 60 m and 100 m, 15 s windows of the hold in gusts turned
+   24 to 40 deg/s (evidence/window_stats.txt). So the rate gate cannot tell them apart.
+   Case a (the switch comes N s after the wiggle ends; the flight's engaged note moved; the doc says 4 s):
+   no recording has 20 s of Altitude mode after the wiggle. Stand-in: the frames after the real switch (the FC
+   holds position in gusts, as a pilot must do by hand in Altitude mode in wind). a2_* = the same, with the mode
+   column set to ALT_HOLD before the moved note (what a pilot holding position in Altitude mode leaves).
+   Current code, PASS with wrong values and no FAIL:
+     a2_still25_60m  66 ms / +39 ms   (26 ms too long; the 30 ms error drifted a 100 m hold 10 m)
+     a2_still20_100m 50 ms / +30 ms   a2_still30_60m 50 ms / +30 ms   a2_still10_100m 46 ms / +16 ms
+   (a_still* give the same values.) Case a as written, 20 s: 1 of 4 PASS (100 m, 50/+30), 3 FAIL.
+   With no pilot input in Altitude mode, the 60 m and 100 m flights turn 0.3 to 6 deg/s: then the rate gate gives
+   FAIL (window_stats.txt). Which one the event gives depends on the pilot in the wind: inference, not measured.
+   The rehearsal (D1) already saw hold chunks pass with 12 ms / -29 ms.
+   Correction: B2_timing_wiggle_check.patch. The 8 s with the most turning must turn at least 3 times the RMS rate
+   of the rest of the window, else FAIL and nothing written. The value 3 is a placeholder. It was set on these
+   same 4 flights (flown wiggle windows 4.4 to 8.7; windows with no wiggle 1.0 to 1.5; windows that passed with a
+   wrong value 1.0 to 1.8; evidence/contrast.txt). There is no hold-out data. In real gusts the "still" parts
+   turn more, so a good wiggle can FAIL. That FAIL is safe: keep the ground values. After B1+B2: a2 cases 1 of 32 PASS (a2_still10_30m 42/+24, inside the flown spread);
+   the 3 flown PASS cases still PASS with the same values. Documents: EVENT_DAY item 8b must give a limit:
+   "switch within 6 s after the settle; if later, wiggle again before the switch".
+   Evidence: evidence/timing_cases_compare.txt (rows a_*, a2_*), evidence/window_stats.txt, evidence/contrast.txt.
+   The patches were tested on copies only (evidence/builder_test_on_patched.txt: the new test ALL PASSED on both).
+
+
+2. SHOULD FIX
+
+S1 SHOULD FIX. A program restart late in the wiggle gives a short window that passes with wrong values.
+   A camera stall (NO_FRAME_S) or a crash restarts run_live with a new log and new raw stamp. Item 15a takes the
+   newest log. Case c (log and raw files start N s before the switch):
+     5 s: 4 of 4 FAIL (safe).  7 to 13 s: 15 of 16 PASS, among them 30 ms / -3 ms (c_start9_100m),
+     28 ms / +15 ms (c_start11_30m), 32 ms / +4 ms (c_start13_100m), 42 ms / +32 ms (c_start9_60m).
+   The code has no rule on how much of the window the frames cover. B1's patch refuses all 20 (log gap rule).
+   Documents: DECISION_CARD row 42 should say "also try the run log before the newest one".
+   Evidence: evidence/timing_cases_current_code.txt (rows c_*).
+
+S2 SHOULD FIX. Raw files of another run are accepted when the stamps differ by 2 s or less.
+   Case e: the log of one flight and the raw files of another, named 1 s later. The frame clocks overlap, as after
+   a reboot. 11 of 12 FAIL. e_log60m_raw30m PASS 38 ms / +21 ms with the other flight's frames. The value is near
+   the truth only because every flight has the same true delay. The 2 s rule (line 1046) never compares the
+   frames with the log. Correct pairs differ by 0 or 1 s (task 2c). Smallest correction: for the window frames,
+   t_grab minus the nearest log t must be one constant (spread 1 ms or less). On the right pair it is
+   70.00 +- 0.03 ms on all 4 flights (evidence/clock_check.txt). Also use "> 1" in line 1046.
+
+S3 SHOULD FIX. D4: a check PASS at the new limit records about 20 s, not the wiggle.
+   no_sd on the Justice D picture: check needs 0.50 GB (was 0.44). The real Raw class, started at 0.50 GB free,
+   wrote 1 chunk and stopped at 20 s of 300 s (evidence/d4_recorder.txt, scripts/d4_recorder.py). Step 7 starts
+   the program minutes before the wiggle (item 1). Then item 15 gives "FAIL no raw frame". The change is not worse
+   than the old code (the old limit was lower). The check limit should add the recording of a whole step 7 run:
+   at 2.3 MB/s, 10 minutes is 1.4 GB more. EVENT_DAY step 0 says a PASS means "the recorder starts"; it does not
+   say it records the flight.
+
+S4 SHOULD FIX. D3 hides where a ValueError came from.
+   json.JSONDecodeError is a ValueError. With a cut lens file, calib now prints only
+   "FAIL Unterminated string starting at: line 18 column 4 (char 298)". No file is named. settings.json loaded
+   fine a moment before, so the crew looks in the wrong file. The old code showed "calib.profile(lens_path ...)"
+   in the traceback. Also "mask --rec <a .csv>" now gives only "FAIL This file contains pickled (object) data ...".
+   Command: calib --rec integ/rehearsal_2026-11-20/runs/calib4_full_full_30hz_s5_rec.npz with lens_file set to the
+   first 300 bytes of the lens file. Evidence: evidence/d3_hidden_error.txt, evidence/d3_old_traceback_head.txt.
+   Smallest correction: for ValueError, also print the last two frames of the traceback.
+
+S5 SHOULD FIX. The new test grades its own homework (task 1). Table in section 4. The PASS path of timing, the
+   2 s stamp rule, the clock offset, the D2 stream request, the D3 catch width and the D4 boundary are not tested.
+
+S6 SHOULD FIX. EVENT_DAY step 7 (task 5). See section 5.
+
+
+3. NOTES
+
+N1 NOTE. timing compares the log's t (t0 = t_grab - video_delay_s) with raw t_grab (line 1062). The window is
+   video_delay_s (40 to 140 ms) early. Small against the 1 s margin. Evidence: evidence/clock_check.txt.
+N2 NOTE. A missing chunk is not reported. Case f (each chunk in the window left out in turn): 6 of 10 PASS, values
+   38 to 40 ms / +13 to +23 ms, inside the flown spread; 4 FAIL. f_drop001_30m PASS where the full 30 m data FAILs.
+N3 NOTE. Wiggle margin: the flown 8 s wiggles gave 23 to 24 deg/s against the 20 deg/s floor. A 3 s wiggle gave
+   13 to 16 deg/s: FAIL, 4 of 4 (case b). A gentler real wiggle may FAIL (safe, but the flight is lost).
+N4 NOTE. With "tools/deploy.sh boot-on" the board clock is not set at power-on (research/hardware.md line 76:
+   wrong until network time). Then stamps of two boots can be equal: the later run overwrites raw_<stamp>_NNN.npz
+   of the earlier one, and the 2 s rule cannot see it. Inference, not tested.
+N5 NOTE. D2: no input found that is worse than the old code. The old line failed on every ArduPilot ground check
+   with GPS off. The new line measures the arrival rate of GLOBAL_POSITION_INT. It cannot see a stale or wrong
+   height in that message. Not rerun on SITL (no simulator); the patch author's one SITL run is the only independent
+   evidence (integ/integration_2026-11-20/defect_check_lpos_ardupilot.txt).
+N6 NOTE. EVENT_DAY step 7 item 6 says climb to 20 m; item 8b says wiggle at 40 m or higher. No item says climb.
+N7 NOTE. The patch author's flight evidence is one flight per height, all with the same true delay, a scripted 8.0 s
+   sine wiggle and a switch exactly 4 s later. The apsim run logs have no stamp in the name, so the stamp check
+   (line 1046) did not run on that data.
+
+
+4. TASK 1: OWN-HOMEWORK CHECK OF tests_apb/test_ground_tools.py
+13 places were checked. 9 share an assumption with the code. Mutations were made on copies (one change each, the test
+run again). Evidence: evidence/mutations.txt, evidence/test_on_copy.txt.
+
+Place | Shared assumption | Evidence | Fix
+A, all 7 checks | calib.Rec is a spy that turns 0 deg/s, so every case ends in FAIL. The PASS path never runs. | m1 (delay and readout written swapped) and m2 (rate gate removed): ALL PASSED | One case with a real recording through calib, which checks the written values.
+A1 "switch at 125.0 s" | The fixture writes log t equal to raw t_grab. Real logs: t = t_grab - video_delay_s. | m4 (window moved by video_delay_s): ALL PASSED | Fixture with t = t_grab - delay; assert on it.
+A1 | The truth is the code's own rule (16 s to 1 s), and the fixture has no wiggle. It checks the cut, not that the cut holds the wiggle. | Cases a2_*: the same rule PASSes 66/+39 | Test with attitude: a wiggle window passes, a window with no wiggle fails.
+A1 | The expected frames use the same float expression as the code. The text says 109.0 s; both drop 109.0 the same way (got 109.1). | evidence/test_on_copy.txt | Compare with frame indices written by hand.
+A3 "two engaged notes" | The first switch is the flight's switch. | m5 caught, but it pins the wrong rule; cases d_* | Test a ground switch before the real one.
+A7 "run before a reboot" | Stamps 30 min apart. A real collision is seconds apart. | m3 (tolerance 600 s): ALL PASSED | Stamps 3 s apart; frames from another run with a 1 s stamp.
+B D2 | The stand-in FC sends what the code expects. | m8 (fc_link never asks ArduPilot for GLOBAL_POSITION_INT): ALL PASSED | Keep the SITL check; test setup_streams' request list.
+C D3 | The errors are the patch author's own RuntimeError and the mask ValueError. | m6 (catch every Exception): ALL PASSED | Test that a KeyError and a TypeError still show a traceback.
+D D4 | 0.3 and 0.6 GB, far from the boundary (0.44 to 0.5 GB), analog picture. | m7 (floor 0.9 x min_free_gb): ALL PASSED | Test 0.47 GB with the Justice D no_sd values.
+Independent: A2 (row with no frame), A4 (no log), A5 (no note), A6 (frames of another run of this boot): input
+checks that do not depend on the window rule. m9 (window 5 s earlier) is caught by A1, A2 and A3.
+Not checked: the test's run time and its line in run_all.sh.
+Self-graded: the patch author wrote the code, the tests and the flight table. The test and the 4 flights were run
+again here (evidence/test_on_copy.txt; base_* rows of the case table).
+
+
+5. TASK 5: EVENT_DAY STEP 7 AGAINST THE CODE
+Does the document give the wiggle length and the switch time? Yes: item 8b says rock "for 8 s", "settle 4 s",
+"go on with item 9 at once". It gives no upper limit for the time to the switch, and no rule to wiggle again.
+The pilot hears each request from a team member, so a delay is likely.
+Steps that a crew can follow correctly and still get a FAIL or a wrong value:
+1. Step 6B items 3 to 5, then step 7 item 1: the switch can stay in Position mode. The first row says "engaged".
+   timing: FAIL "no raw frame ... another run" (B1, d_ground).
+2. Step 7 items 1 to 5: a switch check by the pilot after item 1 gives the same (B1, d_test3, d_test17).
+3. Items 8b to 9: a switch 10 to 30 s after the settle can PASS with a wrong value (B2, a2_*).
+4. Item 15a "the newest run log": after a restart in flight, the newest log has a short window. PASS with
+   wrong values, or FAIL (S1, c_*).
+5. Steps 0 and 2 with no_sd: check PASS at 0.50 GB. The recorder stops after about 20 s. Item 15: FAIL (S3).
+6. Item 6 (20 m) against item 8b (40 m or higher): no climb step (N6).
+7. DECISION_CARD row 42 says type the same line again. timing gives the same result each time (the rerun of all
+   126 cases gave the same exit code each time).
+
+
+6. TASK 2: THE RUN LOG AND THE RAW RECORDING (apb_main.py line numbers of the current file)
+a. Same clock, not the same zero. Log.row writes t = fr.t0 (line 331). Raw.add keeps fr.t_grab (line 383) and
+   flush saves it (line 408). capture.py lines 4-5: t_grab is time.monotonic, t0 = t_grab - video_delay_s.
+   So t_grab = log t + video_delay_s of the flight. Measured: 70.00 +- 0.03 ms on all 4 flights
+   (evidence/clock_check.txt). The FC attitude in the chunks uses the same clock (fc_link to_local).
+b. run_live reads the newest frame (line 587), then Engage.step reads the FC mode (line 588). fc.mode comes from
+   the last HEARTBEAT (fc_link line 154). The "engaged" note goes on the row of that frame (line 637), or on a row
+   with no t when no frame came in 0.5 s (line 593; timing then uses the last frame's t, line 1053). So the note
+   is on the first frame read after the program saw the new mode. That frame was grabbed just before the mode was
+   read. HEARTBEAT comes about once a second (not measured here), so the note is 0 to about 1 s after the switch.
+   In the 4 flights the mode column changes on the same row. At the start of a run in a hold mode, the first row
+   gets "engaged" with no switch (lines 256-259).
+c. Same moment, to the second. The log name uses stamp() at line 575; Raw takes its stamp in __init__ (line 374),
+   called at line 576. stamp() is wall time to 1 s (line 347). They differ by 1 s only when a second boundary falls
+   between the two calls. Every chunk of one run uses the same base name (lines 374, 406), so a long run with many
+   chunks keeps one stamp. A correct pair never differs by more than 1 s. A restart (mode_run, lines 1136-1155) makes
+   a new pair with a new stamp, so one flight can have two pairs. The 2 s rule is wider than needed (S2).
+
+
+7. TASK 6: "THE FLIGHT LOOP DID NOT CHANGE": CONFIRMED
+apb_main.py against .snapshots/pre_agents_20261120_0320.tgz, each top-level statement compared by syntax tree.
+Same: mode_run, run_live, Pipe, Engage, Raw, Log, catch_up, GyroAtt, ImuAtt, att_filter, live_gate,
+start_problems, make_hold, lens, load_mask, Speed, WindAssist, OutageTest, RateGate, stamp, delay_advice, fc_mode,
+_join, open_video, open_fc, NO_FRAME_S and the mode tables. Changed: the module docstring, mode_check, mode_timing,
+main. New: "import re". In main, "run" goes to mode_run(s, args) before the new try, the same call as before.
+hold.py, capture.py, fc_link.py, settings.py and calib.py are byte-identical to the snapshot. The patch author's
+apb_main.diff matches a diff made here. Evidence: evidence/flight_loop_ast.txt, evidence/apb_main_against_snapshot.diff.
+
+
+8. NOT RUN
+- Case a exactly as written (20 s still in Altitude mode): no recording has it. Stand-ins used (B2).
+- Case b with a 4 s settle after a 3 s wiggle: the recordings keep wiggling after 3 s. Used: switch 1 s after the
+  first 3 s of the wiggle.
+- Case d with real ground frames: the simulated drone leaves the ground in under 1 s. Used: notes 1, 3, 17 s after
+  the start.
+- The hold drift for the wrong values above: needs a simulator (not allowed).
+- D2 on SITL, PX4 logs, the board itself: no simulator, no PX4 recording, no board.

@@ -1,0 +1,35 @@
+$ qpy tests_apb/test_robust.py (cwd: the bundle's vio folder plus the test files; root file system py310; qemu CPU cortex-a53)
+D1: the flight controller connection fails 3 times; the camera is a video_command child
+  PASS 4 camera sources opened by mode_run; 0 reader threads and 0 camera commands still alive after the failed connections
+D2: the camera stops in flight (newest() gives None for ever)
+  PASS run_live stops 2.2 s after the last frame with: RuntimeError('no camera frame for 2 s: the camera stopped. The program opens it again. If this repeats, check the camera cable and video_device or video_command in settings.json.')
+  PASS mode_run closes the camera and opens it again: 2 opens, first closed True; ['FAIL no camera frame for 2 s: the camera stopped. The program opens it again. If this repeats, check the camera cable and video_device or video_command in settings.json.']
+D3: close() while the reader thread is blocked in read()
+  PASS DigitalSource, read() blocks 2 s: capture released True, with the reader inside read() False; close() took 2.0 s
+  PASS V4L2Source (analog), read() blocks 2 s: capture released True, with the reader inside read() False; close() took 2.0 s
+  PASS a reader that does not stop: capture not released (True), one line printed ['the camera reader did not stop in 0.5 s, so the program did not release the camera. If no camera frames arrive, restart the program.']; real wait 12.0 s
+D4: check mode measures the stamp quality of each source
+  PASS digital, read stamps, +-2 ms: ['PASS frame stamps from read: intervals differ from their median by 3.0 ms (p95, limit 12 ms for a hold at 40 m)']
+  PASS digital, read stamps, +-10 ms: ['FAIL frame stamps from read: intervals differ from their median by 15.0 ms (p95, limit 12 ms for a hold at 40 m). A stamp error moves the fix. A lost frame also counts. Use driver stamps (video_device, no video_command), stop other programs on the board, and run check again.']
+  PASS digital, driver stamps: ['PASS frame stamps from driver: intervals differ from their median by 0.3 ms (p95, limit 12 ms for a hold at 40 m)']
+  PASS analog, driver stamps: ['PASS frame stamps from driver: intervals differ from their median by 0.3 ms (p95, limit 12 ms for a hold at 40 m)']
+D5: a full disk
+  FAIL (a) run log on a full disk: 27 fixes sent in 1 s, error None; printed ['log write failed: [Errno 28] No space left on device. The hold continues without a log. Free disk space at /dev before the next flight.']
+  PASS (a) Log counts each failed write (6, error None) and prints one line ['log write failed: [Errno 28] No space left on device. The hold continues without a log. Free disk space at /dev before the next flight.']
+  PASS (b) 1.5 GB free, min_free_gb 2: 0 raw chunks written; printed ['the raw recorder stopped: the disk at /tmp/tmp_uaxl8_5/raw1.5 has 1.5 GB free, less than min_free_gb 2. The hold continues. Delete old logs before the next flight.']
+  PASS (b) 50.0 GB free: 4 raw chunks written; printed []
+  PASS (c) slow disk: 2 chunks saved, 1 save threads at once, 2 chunks dropped and counted; printed ['the raw recorder dropped a chunk: it still writes the last chunk to /tmp/tmp_uaxl8_5/slow. Set record_hz lower, or set log_dir to a faster disk.']
+D6: a buffer that does not fit the driver size and pixel format
+  PASS YUYV as one channel (720, 2560): the camera buffer has shape (720, 2560), but pixel format YUYV at 1280x720 needs shape (720, 1280, 2). Set pixel_format to the format that the camera gives (YUYV, UYVY, NV12 or GREY), or use video_command.
+  PASS NV12 set, GREY buffer (720, 1280): the camera buffer has shape (720, 1280), but pixel format NV12 at 1280x720 needs shape (1080, 1280). Set pixel_format to the format that the camera gives (YUYV, UYVY, NV12 or GREY), or use video_command.
+  PASS YUYV of half the height (360, 1280, 2): the camera buffer has shape (360, 1280, 2), but pixel format YUYV at 1280x720 needs shape (720, 1280, 2). Set video_size to the size that the camera gives.
+D7: covered lens, uniform 0-60 grey: picture check and Hold with a moving attitude, as run_live
+  PASS no fix sent in 128 cases of 600 frames (252 s): none sent
+  PASS the picture check refuses each covered-lens picture: all refused
+  PASS night scene with ground texture (median 26 grey, MAD 3.0 at 1/8 size), lights and OSD text: accepted (None)
+D8: hold_timing stamps its test frames at the camera's frame interval
+  PASS digital 60 fps: frames 16.7 ms apart (want 16.7), attitude and height cover each frame True
+  PASS digital 10 fps: frames 100.0 ms apart (want 100.0), attitude and height cover each frame True
+  PASS analog: frames 40.0 ms apart (want 40.0), attitude and height cover each frame True
+1 FAIL in 278 s
+exit code 1

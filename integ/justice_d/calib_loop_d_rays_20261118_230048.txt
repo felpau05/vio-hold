@@ -1,0 +1,23 @@
+{
+ "settings": "integ/justice_d/calib_loop_d_settings_20261118_230048.json",
+ "rays_within_55deg_of_nadir": {
+  "calibrated": {
+   "median_deg": 0.211,
+   "p95_deg": 0.34,
+   "max_deg": 0.426,
+   "centre_deg": 0.158
+  },
+  "start_settings": {
+   "median_deg": 50.941,
+   "p95_deg": 75.712,
+   "max_deg": 80.595,
+   "centre_deg": 3.341
+  },
+  "start_lens_true_mount": {
+   "median_deg": 10.29,
+   "p95_deg": 15.628,
+   "max_deg": 17.427,
+   "centre_deg": 1.228
+  }
+ }
+}

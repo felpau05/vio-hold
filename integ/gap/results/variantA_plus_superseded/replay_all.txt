@@ -1,0 +1,24 @@
+an_apb_100m_w20g40_s11_before: replay gap 1.60 s from -6.57 to -4.97 s; reasons {'waiting for image motion that proves the picture is live': 18}; live verdicts {'none': 18}
+an_apb_100m_w20g40_s11_after: replay gap 0.12 s from -7.25 to -7.13 s; reasons {}; live verdicts {}
+an_apb_50m_w20g40_s11_before: replay gap 1.40 s from -1.14 to +0.27 s; reasons {'waiting for image motion that proves the picture is live': 16}; live verdicts {'none': 16}
+an_apb_50m_w20g40_s11_after: replay gap 0.12 s from -7.74 to -7.62 s; reasons {}; live verdicts {}
+jd_apb_100m_w20g40_s11_before: replay gap 2.53 s from -3.98 to -1.44 s; reasons {'waiting for image motion that proves the picture is live': 30}; live verdicts {'none': 30}
+jd_apb_100m_w20g40_s11_after: replay gap 0.10 s from -9.48 to -9.38 s; reasons {}; live verdicts {}
+jd_apb_100m_w20g40_s12_before: replay gap 3.45 s from -5.93 to -2.48 s; reasons {'waiting for image motion that proves the picture is live': 41}; live verdicts {'none': 41}
+jd_apb_100m_w20g40_s12_after: replay gap 0.12 s from -0.87 to -0.75 s; reasons {}; live verdicts {}
+jd_apb_20m_calm_s11_before: replay gap 2.12 s from -2.02 to +0.10 s; reasons {'waiting for image motion that proves the picture is live': 25}; live verdicts {'none': 25}
+jd_apb_20m_calm_s11_after: replay gap 0.10 s from -4.00 to -3.90 s; reasons {}; live verdicts {}
+jd_apb_50m_w20g40_s11_before: replay gap 0.57 s from -6.52 to -5.95 s; reasons {'waiting for image motion that proves the picture is live': 6}; live verdicts {'none': 6}
+jd_apb_50m_w20g40_s11_after: replay gap 0.10 s from -7.92 to -7.82 s; reasons {}; live verdicts {}
+jdcal2_apb_100m_w20g40_s11_before: replay gap 1.07 s from -0.96 to +0.11 s; reasons {'waiting for image motion that proves the picture is live': 12}; live verdicts {'none': 12}
+jdcal2_apb_100m_w20g40_s11_after: replay gap 0.40 s from +0.28 to +0.68 s; reasons {'picture broken up': 3, 'picture just after a broken-up one': 1}; live verdicts {'': 4}
+jdcal3_apb_100m_w20g40_s11_before: replay gap 2.95 s from -5.80 to -2.85 s; reasons {'waiting for image motion that proves the picture is live': 35}; live verdicts {'none': 35}
+jdcal3_apb_100m_w20g40_s11_after: replay gap 0.10 s from -2.28 to -2.18 s; reasons {}; live verdicts {}
+jdcal_apb_100m_w20g40_s11_before: replay gap 2.67 s from -6.59 to -3.92 s; reasons {'waiting for image motion that proves the picture is live': 31}; live verdicts {'none': 31}
+jdcal_apb_100m_w20g40_s11_after: replay gap 0.10 s from -9.66 to -9.56 s; reasons {}; live verdicts {}
+c_d140_100m_w20g40_s11_before: replay gap 1.16 s from -6.50 to -5.34 s; reasons {'waiting for image motion that proves the picture is live': 13}; live verdicts {'none': 13}
+c_d140_100m_w20g40_s11_after: replay gap 0.12 s from -5.79 to -5.67 s; reasons {}; live verdicts {}
+c_d140_100m_w20g40_s12_before: replay gap 5.60 s from -7.25 to -1.66 s; reasons {'waiting for image motion that proves the picture is live': 68}; live verdicts {'none': 68}
+c_d140_100m_w20g40_s12_after: replay gap 0.12 s from -6.05 to -5.93 s; reasons {}; live verdicts {}
+c_d140_100m_w20g40_s13_before: replay gap 3.92 s from -6.29 to -2.37 s; reasons {'waiting for image motion that proves the picture is live': 46}; live verdicts {'none': 46}
+c_d140_100m_w20g40_s13_after: replay gap 0.12 s from -9.05 to -8.93 s; reasons {}; live verdicts {}

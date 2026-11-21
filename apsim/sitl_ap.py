@@ -271,6 +271,7 @@ def ground(c):
 
 def run_case(case, quiet=False):
     c = dict(P.DEFAULTS, **AP_DEFAULTS)
+    c.update(P.video_defaults(case))     # video="JUSTICE_D": the digital camera's defaults (px4sim/sitl.py)
     c.update(case)
     v = c["variant"]
     label = c["label"] or f"ap_{v}_{c['height']:.0f}m_{c['wind']}_s{c['seed']}"
@@ -330,6 +331,10 @@ def run_case(case, quiet=False):
         if v == "gps":                                          # a pilot arms after the GPS lock (EKF origin)
             while not any("origin set" in x[1] for x in link.texts) and link.now() < 90:
                 link.wait_for(0.5)
+        if apb and s_onb.get("gnss_mode", "none") != "none":    # GNSS levels (apsim/gnss_matrix.py): the pilot arms
+            while not any("is using GPS" in x[1] for x in link.texts) and link.now() < 150:   # once the EKF uses GPS
+                link.wait_for(0.5)
+            res["gps_in_use_s"] = round(link.now(), 1)
         link.throttle = -500                                    # stick down to arm (PWM 1000)
         link.set_mode(COPTER_MODES["ALT_HOLD"])
         link.wait_for(0.5)
@@ -347,7 +352,7 @@ def run_case(case, quiet=False):
             link.throttle = 500 + math.copysign(float(np.clip(abs(err) * 60, 120, 480)), err)
             time.sleep(0.01)
         link.throttle = 500
-        link.wait_for(4.0)
+        link.wait_for(c.get("hover_s", 4.0))     # case key hover_s: steady hover before the switch (default 4 s; integ/kfmap)
         res["climb_s"] = round(link.now() - t_climb, 1)
         if c["wiggle_s"] > 0:                                   # the timing wiggle, then 4 s to settle
             t_w = link.now()

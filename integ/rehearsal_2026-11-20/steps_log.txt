@@ -1,0 +1,314 @@
+### EVENT_DAY step 0 (laptop copy <scratch>/laptop, board = BOARD=local <scratch>/board) start 03:47:46, load 3.41 3.98 3.58
+applied outdoor_day + goal_a + ardupilot + justice_d -> <scratch>/laptop/settings.json
+  camera: before "analog" -> after "digital"
+  hold_cfg.h_min: before "(none)" -> after 2.0
+  hold_cfg.repeat_diff: before "(none)" -> after 0.01
+  lens_name: before "Round 1 independent k2" -> after "Justice D full sensor (assumed)"
+  min_height_m: before 15.0 -> after 3.0
+  record_hz: before 0 -> after 30
+  video_delay_s: before 0.06 -> after 0.04
+  video_device: before "/dev/video0" -> after "/dev/video2"
+  video_standard: before "auto" -> after "none"
+apply: .029153400 s
+      readout_s = 0.016   (assumed: 16 ms, about one 60 fps frame time minus blanking. A starting value: calib measures it. Written only when the camera changes or the file is not calibrated.)
+      video_delay_s = 0.04   (assumed: 40 ms, CSI with no grabber and no analog encoder. A starting value: calib measures it. Written only when the camera changes or the file is not calibrated.)
+      hold_cfg.repeat_diff = 0.01   (assumed: Hold's own repeat limit is 1.0 grey for analog noise. Fresh digital frames of a still hover can differ by less, so only a nearly identical picture counts as a repeat (the digital capture refuses bit-identical buffers).)
+      record_hz = 30   (assumed: 30 pictures each second are enough for calib and mask (the sim calibrates at 30 Hz; the analog path gives 25 or 30 fields each second). A 30 s calib at 640x360 then holds 900 pictures, 207 MB, and a copy of the same size: 415 MB (830 MB at 60 Hz). Hold still gets each frame.)
+  kf_bright      -
+  no_sd          -
+  outdoor_day    ACTIVE
+      min_height_m = 3.0   (3 m (was 15, the H9 example value, which sends nothing below 15 m). PX4 SITL, Justice D, w20g40, 60 s holds, min_height_m 3 and h_min 2 (px4sim/low_outage_results.txt): 5 m RMS 0.54 and 0.51 m, 10 m 0.75 and 0.65 m (2 seeds each), perfect position 0.46-0.47 m (1 seed); calm 5 m 0.11 m, 10 m 0.12 m (1 seed). Limits: the sim height is within 0.15 m, a real baro is not (assumed about 1 m, Hold.HGT_ERR); the sim ground photo is 9-19 times coarser than the camera at 5-10 m; the 5 m seed 1 run started on the code before 2026-11-19 03:10. ArduCopter SITL (apsim/low_ap_results.txt, same settings, 2 seeds): held 60 s in 6 of 6 wind runs, no FC warning, but 5 m RMS 0.85 and 0.44 m with up to 16 re-anchors per minute ('whole picture: halves disagree') and gaps up to 6.3 s without a fix; 10 m RMS 0.98 and 0.93 m, gaps 3 s or less; perfect position 0.34-0.35 m (1 seed). Prefer 10 m to 5 m when the level allows it.)
+      hold_cfg.h_min = 2.0   (2 m: Hold's own floor (default 5 m) blocked a 5 m hold (mean flown height 4.6 m). Tested with min_height_m 3.)
+  outdoor_night  ACTIVE
+      min_height_m = 3.0   (As outdoor_day. Not tested at night below 50 m: the night sim runs (6 lamps on dark ground, 50 m and 100 m) used the default settings.)
+      hold_cfg.h_min = 2.0   (As outdoor_day.)
+  px4            -
+  recovery_demo  -
+values that differ from settings.py's defaults:
+  camera: default "analog" -> now "digital"
+  hold_cfg.h_min: default "(none)" -> now 2.0
+  hold_cfg.repeat_diff: default "(none)" -> now 0.01
+  lens_name: default "Round 1 independent k2" -> now "Justice D full sensor (assumed)"
+  log_dir: default "logs" -> now "<scratch>/sdcard/logs"
+  min_height_m: default 15.0 -> now 3.0
+  record_hz: default 0 -> now 30
+  video_delay_s: default 0.06 -> now 0.04
+  video_device: default "/dev/video0" -> now "/dev/video2"
+  video_standard: default "auto" -> now "none"
+--- deploy
+board root@local:<scratch>/board, copy with rsync
++ set the board clock from this laptop
+clock: laptop 2026-11-20 03:47:46 EST, board 2026-11-20 03:47:46 EST
++ mkdir -p <scratch>/board/logs
++ rsync -a --relative apb_main.py hold.py fc_link.py capture.py calib.py settings.py settings.json justice_lens_profiles.json EVENT_DAY.txt DECISION_CARD.txt tools/board_check.sh <scratch>/board/
+copied; not restarted (NO_RESTART)
+### step 0 end 03:47:46
+### EIGHT_HOURS hour 1 item 4: board_check.sh on the board folder (laptop x86, PY=venv) 03:48:20
+FAIL CPU architecture x86_64: the wheels are for aarch64 only.
+INFO CPU: 16 cores, part ?, max 5000000 kHz, governor powersave, board ?
+INFO governor powersave makes Hold slower. For the flight: echo performance > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+INFO C library: glibc 2.39 (case A with Python 3.11 or 3.12, and case B, need glibc 2.27 or newer; Python 3.10 needs 2.17)
+INFO Python programs on this board: python3 python3.12 
+INFO libstdc++, libgcc_s and libz are here (OpenCV and numpy need them)
+INFO free disk on /: 31G (ext4)
+INFO no /data
+INFO no /sdcard
+INFO no /usb
+FAIL neither case A (the CPU is x86_64) nor case B (the CPU is x86_64)
+PASS Python 3.12 (wheel folder cp312)
+INFO pip is here
+PASS numpy 2.5.5
+PASS cv2 5.0.0 with V4L2 video capture
+INFO cv2 5.0.0 has no GStreamer: keep video_pipeline empty (V4L2)
+PASS pymavlink 2.4.50 (MAVLink 2)
+INFO fc_device udpin:127.0.0.1:14540: pyserial not needed
+PASS apb_main.py imports and settings.json loads
+INFO video device /dev/video2 is missing: check the grabber, or video_device in settings.json
+INFO mavlink-router does not run (needed when fc_device is udpin:...)
+INFO free disk here: 31G
+INFO /dev/video2 is missing
+INFO /dev/video3 is missing
+INFO no v4l2-ctl: the pixel formats are not shown. Read them in the video line of 'apb_main.py check'.
+INFO /dev/ttymxc2 is missing
+INFO no gpioset on this board: the route commands (gpioset -t0 -c gpiochip3 13=1; gpioset -t0 -c gpiochip3 0=0) cannot run.
+FAIL flight controller: no MAVLink heartbeat on udpin:127.0.0.1:14540 in 5 s and no MSP answer on /dev/ttymxc2. Check the cable, the baud rate and that mavlink-router runs.
+     next: connect UART3 to the FC, then check again: sh tools/board_check.sh --route   (runs: gpioset -t0 -c gpiochip3 13=1; gpioset -t0 -c gpiochip3 0=0)
+INFO no IIO devices: Linux cannot read the ICM42605 IMU or the DPS310 barometer. The program uses the flight controller's IMU.
+INFO board temperature 53 C (range 0 to 70 C, the board stops at 95 C)
+INFO clock 2026-11-20 03:48
+INFO no SD card at /sdcard: logs and raw recordings go to the 4 GB eMMC (/data keeps its files after an update).
+3 FAIL
+exit 3 in 7 s
+### start ArduCopter SITL (first power-on, factory parameters) 03:48:27
+ArduCopter SITL instance 7 started (parameters wiped)
+### EVENT_DAY step 1 item 3: check --set-params (SITL = the FC) 03:48:37 load 2.30 3.61 3.48
+[ WARN:0@8.582] global cap.cpp:212 open VIDEOIO(V4L2): backend is generally available but can't be used to capture by name
+FAIL not calibrated. Run 'apb_main.py calib'.
+PASS firmware: ardupilot (system 1)
+PASS ATTITUDE 100 Hz (asked 100, need 40)
+FAIL LOCAL_POSITION_NED 0 Hz (asked 10). The FC sends no height: check the baro and the EKF.
+PASS FC clock offset fitted
+PASS param VISO_TYPE: wrote 1, reads 1.0. Reboot the flight controller.
+PASS param EK3_SRC1_POSXY: wrote 6, reads 6.0. Reboot the flight controller.
+PASS param EK3_SRC1_VELXY: wrote 0, reads 0.0. Reboot the flight controller.
+PASS param EK3_SRC1_POSZ = 1.0
+PASS param EK3_SRC1_VELZ: wrote 0, reads 0.0. Reboot the flight controller.
+PASS param EK3_SRC1_YAW = 1.0
+PASS param GPS1_TYPE: wrote 0, reads 0.0. Reboot the flight controller.
+PASS param VISO_DELAY_MS: wrote 140, reads 140.0. Reboot the flight controller.
+FAIL origin_lat_lon_alt is empty. Put the field's lat, lon, alt in settings.json.
+INFO height now 0.0 m (run needs 3 m)
+FAIL video: cannot open the camera at /dev/video2. Check the camera cable and video_device in settings.json.
+PASS lens profile 'Justice D full sensor (assumed)' is 1280x720, the picture 640x360
+PASS Hold.process median 2 ms, p95 6 ms -> about 50 fixes/s (need 10)
+INFO fix age about 47 ms (video delay + process). Use it for EKF2_EV_DELAY when time sync fails. ArduPilot: after the first hover set VISO_DELAY_MS from 'apb_main.py delay <run log>'.
+FAIL no mask. Run 'apb_main.py mask'.
+PASS free disk 32.4 GB at <scratch>/sdcard (need 5.3 GB: raw recording takes 6.9 MB/s at 640x360, 30 Hz)
+5 FAIL
+exit 5 in 9 s
+### EVENT_DAY step 1 item 4: reboot the FC (SITL stop, start without wipe) 03:49:01
+ArduCopter SITL instance 7 started 
+### step 2 prep on the laptop: video_command stand-in (no camera here; step 2 fallback order), origin (hour 2 item 2) 03:49:03
+board root@local:<scratch>/board, copy with rsync
+FAIL the board's calibration differs from this laptop's (origin_lat_lon_alt). Run 'tools/deploy.sh pull', apply your changes again, then push. FORCE=1 overwrites the board's values.
+### hour 2 item 3 again with FORCE=1 03:49:12
+copied; not restarted (NO_RESTART)
+### EVENT_DAY step 2: check (after the FC reboot) 03:49:12 load 1.77 3.34 3.39
+FAIL not calibrated. Run 'apb_main.py calib'.
+PASS firmware: ardupilot (system 1)
+PASS ATTITUDE 100 Hz (asked 100, need 40)
+FAIL LOCAL_POSITION_NED 0 Hz (asked 10). The FC sends no height: check the baro and the EKF.
+PASS FC clock offset fitted
+PASS param VISO_TYPE = 1.0
+PASS param EK3_SRC1_POSXY = 6.0
+PASS param EK3_SRC1_VELXY = 0.0
+PASS param EK3_SRC1_POSZ = 1.0
+PASS param EK3_SRC1_VELZ = 0.0
+PASS param EK3_SRC1_YAW = 1.0
+PASS param GPS1_TYPE = 0.0
+PASS param VISO_DELAY_MS = 140.0
+PASS origin set
+INFO height now 0.0 m (run needs 3 m)
+PASS video: 106 frames in 2 s, 106 usable, driver 1280x720, pixel format GREY, buffer 720x1280, stamps from read
+PASS video rate 60.0 fps (setting video_fps 60)
+PASS frame stamps from read: intervals differ from their median by 0.5 ms (p95, limit 12 ms for a hold at 40 m)
+INFO picture for Hold: 640x360 (frame / 2)
+PASS lens profile 'Justice D full sensor (assumed)' is 1280x720, the picture 640x360
+PASS Hold.process median 2 ms, p95 7 ms -> about 50 fixes/s (need 10)
+INFO fix age about 47 ms (video delay + process). Use it for EKF2_EV_DELAY when time sync fails. ArduPilot: after the first hover set VISO_DELAY_MS from 'apb_main.py delay <run log>'.
+FAIL no mask. Run 'apb_main.py mask'.
+PASS free disk 32.4 GB at <scratch>/sdcard (need 5.3 GB: raw recording takes 6.9 MB/s at 640x360, 30 Hz)
+3 FAIL
+exit 3 in 8 s
+### EVENT_DAY step 3: mask 03:50:14 load 1.71 3.02 3.28
+Turn and tilt the drone by hand while it records, so the ground moves and the OSD stays.
+  recording: 5 s left
+  recording: 0 s left
+INFO recording saved: <scratch>/sdcard/logs/rec_20261120_035027.npz
+PASS mask covers 0% of the picture; saved mask.png
+exit 0 in 13 s
+drwxr-xr-x 2 user group     4096 Nov 20 03:50 .
+drwxr-xr-x 3 user group     4096 Nov 20 03:50 ..
+-rw-r--r-- 1 user group 69413882 Nov 20 03:50 rec_20261120_035027.npz
+### EVENT_DAY step 4: live calib CANNOT REHEARSE (needs a hand turn that the FC feels). calib --rec with two synthetic hand-turn recordings (calib4.py, true lens full sensor, seed 5) 03:50:34 load 1.70 2.94 3.24
+Point the camera at a scene more than 50 m away (drone on its side). Turn the drone by hand, +-15 to 20 deg about all three axes, about once every 2 s.
+PASS picture top = left (residual 0.06 deg; next best rear 7.43 deg, 125x)
+INFO video delay 58 ms, readout +11 ms, lens at 640x360: fx 241.8 fy 241.9 k1 -0.0012, tilt roll +1.08 pitch -1.78 twist +1.49 deg
+INFO quality: residual 0.059 deg, tracked points reach 81 deg from the optical axis (picture corner 87 deg), turn rate about picture x 33, y 22, z 26 deg/s
+PASS measured lens written to lens_measured in <scratch>/board/settings.json. focal_scale is 1.0. lens_name 'Justice D full sensor (assumed)' stays as the start for calib. To use the profile lens again, set lens_measured to null.
+PASS settings written; calibrated = true
+exit 0 in 7 s
+Point the camera at a scene more than 50 m away (drone on its side). Turn the drone by hand, +-15 to 20 deg about all three axes, about once every 2 s.
+PASS picture top = left (residual 0.07 deg; next best front 9.08 deg, 133x)
+INFO video delay 58 ms, readout +11 ms, lens at 640x360: fx 241.8 fy 241.8 k1 -0.0006, tilt roll +1.04 pitch -1.79 twist +1.51 deg
+INFO quality: residual 0.068 deg, tracked points reach 80 deg from the optical axis (picture corner 87 deg), turn rate about picture x 33, y 22, z 26 deg/s
+PASS measured lens written to lens_measured in <scratch>/board/settings.json. focal_scale is 1.0. lens_name 'Justice D full sensor (assumed)' stays as the start for calib. To use the profile lens again, set lens_measured to null.
+PASS delay 0 ms from the previous calibration (need 3 ms or less)
+PASS settings written; calibrated = true
+exit 0 in 5 s
+ "field": "top",
+ "top": "left",
+ "readout_s": 0.010999999999999972,
+ "video_delay_s": 0.057999999999999996,
+ "calib_capture": "digital ?x?@60 reduce=2 640x360",
+   "top": "front",
+### step 4 'Solve on the laptop' item 1: tools/deploy.sh pull 03:50:56
+board root@local:<scratch>/board, copy with rsync
++ copy <scratch>/board/settings.json and its mask here (old settings.json kept as settings.json.bak)
+copied mask mask.png
++ rsync new logs: <scratch>/board/logs/ -> logs/
++ rsync new logs: <scratch>/sdcard/logs/ -> logs/
+newest logs here:
+rec_20261120_035100.npz
+rec_20261120_035027.npz
+exit 0 in 0 s
+### item 2 as written: python3 apb_main.py calib --rec logs/rec_<stamp>.npz 03:50:56
+    import cv2
+ModuleNotFoundError: No module named 'cv2'
+exit 0
+### item 2 with the venv python 03:50:56
+PASS measured lens written to lens_measured in <scratch>/laptop/settings.json. focal_scale is 1.0. lens_name 'Justice D full sensor (assumed)' stays as the start for calib. To use the profile lens again, set lens_measured to null.
+PASS delay 0 ms from the previous calibration (need 3 ms or less)
+PASS settings written; calibrated = true
+in 7 s
+### item 4: FORCE=1 NO_RESTART=1 tools/deploy.sh 03:51:03
+FAIL the board's calibration differs from this laptop's (tilt_deg twist_deg calib_info lens_measured). Run 'tools/deploy.sh pull', apply your changes again, then push. FORCE=1 overwrites the board's values.
+copied; not restarted (NO_RESTART)
+### EVENT_DAY step 5: check 03:51:09 load 3.50 3.21 3.32
+FAIL LOCAL_POSITION_NED 0 Hz (asked 10). The FC sends no height: check the baro and the EKF.
+PASS lens_measured (hand turn) is 640x360, the picture 640x360: run uses it, not the lens_name profile
+INFO fix age about 66 ms (video delay + process). Use it for EKF2_EV_DELAY when time sync fails. ArduPilot: after the first hover set VISO_DELAY_MS from 'apb_main.py delay <run log>'.
+1 FAIL
+in 8 s
+### EVENT_DAY step 6: bench (as written; 15 s, then SIGINT as Ctrl+C) 03:51:28 load 3.00 3.11 3.29
+    run_live(s, src, fc, seconds=seconds or args.seconds or 300, fixed_height=args.height, on_fix=show)
+  File "<scratch>/board/apb_main.py", line 570, in run_live
+    raise RuntimeError("will not start: " + " ".join(problems))
+RuntimeError: will not start: capture is 'digital 1280x720@60 command reduce=2 640x360' but the calibration was made with 'digital ?x?@60 reduce=2 640x360'. Run calib again.
+in 2 s
+### rehearsal deviation: calib_capture of the synthetic recording set to the live capture mode (laptop, FORCE push)
+copied; not restarted (NO_RESTART)
+forward -0.13 m   right +0.12 m   (ok, 50 points)
+forward -0.07 m   right +0.13 m   (ok, 57 points)
+forward -0.03 m   right +0.14 m   (ok, 59 points)
+forward +0.00 m   right +0.14 m   (ok, 58 points)
+forward +0.03 m   right +0.16 m   (degraded, 37 points)
+forward +0.08 m   right +0.17 m   (ok, 62 points)
+in 16 s
+### step 6B / step 7 item 1: tools/deploy.sh (push + start detached) 03:51:54 load 2.62 3.01 3.25
++ start: cd <scratch>/board && setsid nohup ~/.venvs/vio/bin/python -u apb_main.py run --raw > logs/console.txt
+waiting 10 s for the program to start ...
+--- logs/console.txt (last 15 lines)
+running; log in <scratch>/sdcard/logs
+--- <scratch>/sdcard/logs/run_20261120_035158.csv (last 5 rows)
+59923.5957,,,,,,0,height 0.0 m under 3 m,0.2,,0.0460,,STABILIZE
+59923.6124,,,,,,0,height 0.0 m under 3 m,0.2,,0.0460,,STABILIZE
+59923.6291,,,,,,0,height 0.0 m under 3 m,0.2,,0.0460,,STABILIZE
+59923.6458,,,,,,0,height 0.0 m under 3 m,0.2,,0.0460,,STABILIZE
+59923.6626,,,,,,0,height 0.0 m under 3 m,0.1,,0.0465,,STABILIZE
+--- running:
+yes
+in 10 s
+### step 6B: switch positions (gcs.py asks the FC for each mode, as a switch position does); then the doc's tail line 03:52:10
+asked ACRO: FC reports ACRO; FC texts: none
+  run log last row: 59933.9123,,,,,,0,height 0.0 m under 3 m,0.2,,0.0020,,ACRO
+asked ALT_HOLD: FC reports ALT_HOLD; FC texts: none
+  run log last row: 59937.9124,,,,,,0,height -0.0 m under 3 m,0.2,,-0.0040,,ALT_HOLD
+asked LOITER: FC reports LOITER; FC texts: none
+  run log last row: 59941.7290,,,,,,0,height -0.0 m under 3 m,0.2,,-0.0040,,LOITER
+asked POSHOLD: FC reports POSHOLD; FC texts: none
+  run log last row: 59945.7290,,,,,,0,height -0.0 m under 3 m,0.2,,-0.0030,,POSHOLD
+asked RTL: FC reports DRIFT; FC texts: none
+  run log last row: 59949.4125,,,,,,0,height -0.0 m under 3 m,0.3,,-0.0020,,mode 11
+asked STABILIZE: FC reports STABILIZE; FC texts: none
+  run log last row: 59952.9123,,,,,,0,height -0.0 m under 3 m,0.2,,-0.0010,,STABILIZE
+mapping RTL 6 DRIFT 11
+asked RTL: FC reports DRIFT; FC texts: none
+  run log last row: 59966.9126,,,,,,0,height -0.0 m under 3 m,0.2,,-0.0010,,mode 11
+3002
+FC mode STABILIZE
+FC mode ACRO
+FC mode ALT_HOLD
+FC mode LOITER
+FC mode POSHOLD
+FC mode 
+FC mode STABILIZE
+FC mode 
+### conflict test: check while 'run --raw' (started by deploy.sh) runs 03:52:58
+PASS firmware: ardupilot (system 1)
+PASS ATTITUDE 100 Hz (asked 100, need 40)
+FAIL LOCAL_POSITION_NED 0 Hz (asked 10). The FC sends no height: check the baro and the EKF.
+PASS video: 112 frames in 2 s, 112 usable, driver 1280x720, pixel format GREY, buffer 720x1280, stamps from read
+PASS video rate 60.0 fps (setting video_fps 60)
+INFO fix age about 66 ms (video delay + process). Use it for EKF2_EV_DELAY when time sync fails. ArduPilot: after the first hover set VISO_DELAY_MS from 'apb_main.py delay <run log>'.
+1 FAIL
+check took 7 s
+run log rows during check: 3626 -> 3823
+59984.7291,,,,,,0,height -0.0 m under 3 m,0.3,,-0.0010,,mode 11
+59984.7460,,,,,,0,height -0.0 m under 3 m,0.4,,-0.0010,,mode 11
+running; log in <scratch>/sdcard/logs
+### stop: tools/deploy.sh stop (laptop) 03:53:21
+board root@local:<scratch>/board, copy with rsync
++ stop the running program (SIGINT, then SIGTERM after 5 s)
+running: no
+in 1 s
+-rw-r--r-- 1 user group 23298066 Nov 20 03:53 raw_20261120_035158_008.npz
+-rw-r--r-- 1 user group 69413882 Nov 20 03:50 rec_20261120_035027.npz
+-rw-r--r-- 1 user group 83252550 Nov 20 03:50 rec_20261120_035100.npz
+-rw-r--r-- 1 user group    57026 Nov 20 03:51 run_20261120_035134.csv
+-rw-r--r-- 1 user group   311609 Nov 20 03:53 run_20261120_035158.csv
+running; log in <scratch>/sdcard/logs
+### A.2 hang-up test (pseudo-terminal in place of ssh; no ssh server on this laptop) 03:53:30
+Terminated
+no program left running
+### A.2 hang-up test, second try (the first try hung in the test script itself: a reader thread kept the terminal open) 03:57:10
+[in the foreground, as EVENT_DAY step 7 item 3 said before 2026-11-20] start command: ~/.venvs/vio/bin/python apb_main.py run --raw
+  before the hang-up: program pids [1116010]; run log <scratch>/sdcard/logs/run_20261120_035713.csv
+  6 s after the hang-up: program pids []; run log rows 1061 -> 1061 in 3 s
+  RESULT: STOPPED
+  terminal (last 3 lines): ~/.venvs/vio/bin/python apb_main.py run --raw | bash-5.2$ ~/.venvs/vio/bin/python apb_main.py run --raw | running; log in <scratch>/sdcard/logs
+[nohup, in the background] start command: nohup ~/.venvs/vio/bin/python apb_main.py run --raw &
+  before the hang-up: program pids [1117010]; run log <scratch>/sdcard/logs/run_20261120_035747.csv
+  6 s after the hang-up: program pids [1117010]; run log rows 1363 -> 1543 in 3 s
+  RESULT: CONTINUES
+  terminal (last 3 lines): bash-5.2$ nohup ~/.venvs/vio/bin/python apb_main.py run --raw & | [1] 1117010 | bash-5.2$ nohup: ignoring input and appending output to 'nohup.out'
+[setsid nohup, output to logs/console.txt] start command: setsid nohup ~/.venvs/vio/bin/python apb_main.py run --raw > logs/console.txt 2>&1 < /dev/null &
+  before the hang-up: program pids [1117655]; run log <scratch>/sdcard/logs/run_20261120_035820.csv
+  6 s after the hang-up: program pids [1117655]; run log rows 1368 -> 1548 in 3 s
+  RESULT: CONTINUES
+  terminal (last 3 lines): bash-5.2$ setsid nohup ~/.venvs/vio/bin/python apb_main.py run --raw > logs/console.txt 2>&1 < /dev/null & | [1] 1117654 | bash-5.2$
+### step 7 item 14 / hour 4: pull, then plot_log 03:59:01
+run_20261120_035820.csv
+raw_20261120_035820_001.npz
+raw_20261120_035820_000.npz
+pull in 3 s
+--- DECISION_CARD header as written before: plot_log.py logs/run_*.csv
+plot_log.py: error: unrecognized arguments: logs/run_20261120_035158.csv logs/run_20261120_035334.csv logs/run_20261120_035713.csv logs/run_20261120_035747.csv logs/run_20261120_035820.csv
+--- one log
+saved logs/run_20261120_035820.png
+in 1 s
+### hour 8 stop rule: use_profile diff settings.json good_calib.json 03:59:06
+settings.json -> good_calib.json
+  no difference
+2.3G	logs
+### SITL stopped 03:59:10

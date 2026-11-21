@@ -1,0 +1,52 @@
+Table of the hand-hover runs (integ/gap/hand_hover.py, results/hh/*.json): before (MOVE_PX 1.5) and after the
+proposed patch (MOVE_PX 0.5, run from the patched copy). Per case: the gap before the switch for a hover of 5, 10 and
+20 s (worst of the seeds), the share of hover frames sent (lowest), and for the freeze runs the frozen fixes sent
+later than 0.5 s after the freeze started, the last one, and the largest error of a frozen fix.
+
+camera level     h m  vib freeze MOVE_PX seeds  gap before switch T=5/10/20 s (worst) sent % (low)  frozen: sent >0.5 s / last s / max err m
+JD     breeze    100  0.2 no         1.5 11,12,13         0.17   0.17   0.75                94.6     
+JD     breeze    100  0.2 no         0.5 11,12,13         0.08   0.08   0.08               100.0     
+JD     breeze     50  0.2 no         1.5 11,12,13         0.08   0.58   0.75                93.8     
+JD     breeze     50  0.2 no         0.5 11,12,13         0.08   0.08   0.08               100.0     
+JD     breeze     20  0.2 no         1.5 11,12,13         0.08   0.08   0.08               100.0     
+JD     breeze     20  0.2 no         0.5 11,12,13         0.08   0.08   0.08               100.0     
+JD     calm      100  0.0 no         1.5 11,12,13         3.08   3.92  10.00                32.1     
+JD     calm      100  0.0 no         0.5 11,12,13         0.08   0.33   1.08                90.0     
+JD     calm      100  0.2 no         1.5 11,12,13         0.75   2.08   7.42                54.6     
+JD     calm      100  0.2 no         0.5 11,12,13         0.08   0.08   0.08               100.0     
+JD     calm       50  0.2 no         1.5 11,12,13         0.50   2.25   2.08                70.0     
+JD     calm       50  0.2 no         0.5 11,12,13         0.08   0.08   0.08               100.0     
+JD     calm       20  0.0 no         1.5 11,12,13         0.33   4.25   2.75                55.4     
+JD     calm       20  0.0 no         0.5 11,12,13         0.08   0.25   0.83                96.2     
+JD     calm       20  0.2 no         1.5 11,12,13         0.33   4.25   2.00                52.9     
+JD     calm       20  0.2 no         0.5 11,12,13         0.08   0.08   0.08               100.0     
+JD     still     100  0.0 no         1.5 11,12,13         2.33   3.58  10.00                40.0     
+JD     still     100  0.0 no         0.5 11,12,13         0.33   5.16   4.50                52.9     
+JD     still     100  0.2 no         1.5 11,12,13         0.66   5.66  10.00                40.0     
+JD     still     100  0.2 no         0.5 11,12,13         0.08   0.08   0.08               100.0     
+JD     still      50  0.2 no         1.5 11,12,13         0.58   4.00  10.00                30.0     
+JD     still      50  0.2 no         0.5 11,12,13         0.08   0.08   0.08               100.0     
+JD     still      20  0.0 no         1.5 11,12,13         2.00   6.41   4.67                50.0     
+JD     still      20  0.0 no         0.5 11,12,13         0.66   1.00   1.67                87.5     
+JD     still      20  0.2 no         1.5 11,12,13         1.08   1.08   1.17                87.1     
+JD     still      20  0.2 no         0.5 11,12,13         0.08   0.08   0.08               100.0     
+JD     breeze    100  0.2 yes        1.5 11,12,13         0.17   1.50   4.00                68.8     17 / 1.25 / 0.871  (of 198 frozen frames after 0.5 s)
+JD     breeze    100  0.2 yes        0.5 11,12,13         0.08   0.91   4.00                75.8     25 / 1.17 / 1.297  (of 198 frozen frames after 0.5 s)
+JD     breeze     20  0.2 yes        1.5 11,12,13         0.08   1.58   4.17                71.7     22 / 1.42 / 0.282  (of 198 frozen frames after 0.5 s)
+JD     breeze     20  0.2 yes        0.5 11,12,13         0.08   1.00   4.17                74.6     25 / 1.25 / 0.333  (of 198 frozen frames after 0.5 s)
+JD     calm      100  0.2 yes        1.5 11,12,13         0.75   2.08   7.42                48.3     22 / 2.5 / 0.4  (of 198 frozen frames after 0.5 s)
+JD     calm      100  0.2 yes        0.5 11,12,13         0.08   0.66   4.00                77.1     34 / 1.42 / 0.467  (of 198 frozen frames after 0.5 s)
+JD     calm       20  0.2 yes        1.5 11,12,13         0.33   4.25   4.00                45.0     10 / 1.25 / 0.072  (of 198 frozen frames after 0.5 s)
+JD     calm       20  0.2 yes        0.5 11,12,13         0.08   1.00   4.00                75.4     28 / 1.34 / 0.095  (of 198 frozen frames after 0.5 s)
+JD     still     100  0.2 yes        1.5 11,12,13         0.66   5.66  10.00                40.0     52 / 5.59 / 0.254  (of 198 frozen frames after 0.5 s)
+JD     still     100  0.2 yes        0.5 11,12,13         0.08   0.08   3.33                83.8     125 / 5.84 / 0.395  (of 198 frozen frames after 0.5 s)
+JD     still      20  0.2 yes        1.5 11,12,13         1.08   1.08   4.00                65.4     111 / 5.92 / 0.102  (of 198 frozen frames after 0.5 s)
+JD     still      20  0.2 yes        0.5 11,12,13         0.08   0.08   3.75                81.7     132 / 5.84 / 0.114  (of 198 frozen frames after 0.5 s)
+PAL    calm      100  0.2 no         1.5 11,12,13         0.56   4.20   9.96                29.6     
+PAL    calm      100  0.2 no         0.5 11,12,13         0.08   0.08   0.08               100.0     
+PAL    still     100  0.2 no         1.5 11,12,13         0.08   0.60   0.84                92.8     
+PAL    still     100  0.2 no         0.5 11,12,13         0.08   0.08   0.08               100.0     
+PAL    calm      100  0.2 yes        1.5 11,12,13         0.56   4.20  10.00                29.2     31 / 3.96 / 0.451  (of 207 frozen frames after 0.5 s)
+PAL    calm      100  0.2 yes        0.5 11,12,13         0.08   0.52   4.04                77.6     60 / 3.96 / 0.451  (of 207 frozen frames after 0.5 s)
+PAL    still     100  0.2 yes        1.5 11,12,13         0.08   0.60   1.92                84.4     171 / 5.96 / 0.523  (of 207 frozen frames after 0.5 s)
+PAL    still     100  0.2 yes        0.5 11,12,13         0.08   0.08   0.08               100.0     207 / 5.96 / 0.536  (of 207 frozen frames after 0.5 s)

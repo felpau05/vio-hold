@@ -1,0 +1,13 @@
+# SAFETY at low height: ol_low.py bad pictures, 10 s bad window in 30 s, ottawa2022 5 m, seeds 11-13
+--split validation --ground ottawa2022 --height 5 --seed 11 --seconds 30 --bad frozen_bottom --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+--split validation --ground ottawa2022 --height 5 --seed 12 --seconds 30 --bad frozen_bottom --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+--split validation --ground ottawa2022 --height 5 --seed 13 --seconds 30 --bad frozen_bottom --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+--split validation --ground ottawa2022 --height 5 --seed 11 --seconds 30 --bad frozen_top --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+--split validation --ground ottawa2022 --height 5 --seed 12 --seconds 30 --bad frozen_top --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+--split validation --ground ottawa2022 --height 5 --seed 13 --seconds 30 --bad frozen_top --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+--split validation --ground ottawa2022 --height 5 --seed 11 --seconds 30 --bad overlay_half --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+--split validation --ground ottawa2022 --height 5 --seed 12 --seconds 30 --bad overlay_half --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+--split validation --ground ottawa2022 --height 5 --seed 13 --seconds 30 --bad overlay_half --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+--split validation --ground ottawa2022 --height 5 --seed 11 --seconds 30 --bad overlay_flat --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+--split validation --ground ottawa2022 --height 5 --seed 12 --seconds 30 --bad overlay_flat --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+--split validation --ground ottawa2022 --height 5 --seed 13 --seconds 30 --bad overlay_flat --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'

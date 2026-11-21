@@ -1,35 +1,188 @@
-EVENT DAY CHECKLIST (28 minutes)
+EVENT DAY CHECKLIST (about 40 minutes)
 
-Run each command on the APB, in the program folder.
+Run each command on the APB (Auto Pilot Board), in the program folder, unless the line says "on the laptop".
 Each step has a time and a pass rule.
 If a pass rule fails, do not fly.
 Every check prints one line per item: PASS or FAIL, and what to do.
+The aircraft is the Orqa M2-AI. The downward camera is the Justice D (digital, MIPI CSI). Do the Justice D steps.
+A step marked "ANALOG ONLY" applies to an analog camera only (settings camera = analog). Skip it for the Justice D.
+The event pilot flies the aircraft. Team members do not fly. Give your test requests to the pilot.
+The scored hold uses no GNSS (Global Navigation Satellite System). Do not put marks, tarps or lamps on the ground for
+a scored flight.
+Stage 2 will give the engagement procedure. Update step 7 when you get it.
+No step here has run on the real board. A simulator rehearsal ran on 2026-11-20 (integ/rehearsal_2026-11-20/README.txt).
+
+RULES FOR EVERY STEP
+- Propellers off whenever a USB cable is connected to the drone (aircraft manual).
+- Indoors: never connect the battery while the propellers are on (aircraft manual).
+- Power the board from the drone battery, not from the laptop. A laptop USB-C port cannot power the flight
+  controller (FC) (APB manual).
+- Attach all antennas before you connect the battery.
+- The video transmitter (VTx) at maximum power must not stay on for more than 60 s with no airflow (aircraft manual).
+  Set it to off or to the lowest power for the ground steps. If you cannot, disconnect the battery between steps.
+- Do not turn the camera screw (camera angle). The calibration measures the tilt.
+- Do not run orqa_dt_switcher. The Justice D on CSI 1 needs no switch.
+- No flight with gusts of 46 km/h or more (aircraft datasheet: take-off with gusts under 46.3 km/h).
+- Edit settings.json on the laptop only. Then copy it to the board: NO_RESTART=1 tools/deploy.sh.
+  mask, calib and timing write settings.json on the board. Before the next edit, type on the laptop: tools/deploy.sh pull
+  (A copy replaces every value on the board. deploy.sh stops only when a calibration value differs.)
+- Before check, mask, calib or bench, stop the program if it runs. On the laptop: tools/deploy.sh stop
+  (Rehearsal: a check while the program ran took the FC link from it: its run log showed "attitude 0 Hz".
+  On the board the camera is also taken. tools/deploy.sh status shows if it runs.)
+- On the laptop, use ~/.venvs/vio/bin/python for apb_main.py, plot_log.py, replay_tune.py and lens_calib.py.
+  python3 is enough for tools/use_profile.py and tools/deploy.sh.
 
 
-STEP 1. FLIGHT CONTROLLER PARAMETERS (3 min)
-1. Remove the propellers.
-2. Power the drone.
+STEP 0A. BOARD SETUP, ONCE FOR EACH BOARD (10 min; details: tools/bundle/README.txt)
+1. On the laptop, put the board address in tools/deploy.env: BOARD=192.168.75.1 (USB-C cable) or BOARD=192.168.1.75
+   (USB-Ethernet adapter).
+2. On the laptop, type: NO_RESTART=1 tools/deploy.sh
+   Each push (tools/deploy.sh) and each start (tools/deploy.sh start) sets the board clock from the laptop. It
+   prints the two times: "clock: laptop ..., board ...".
+3. On the board, type: sh tools/board_check.sh
+   It prints one line "use case A" or "use case B".
+   Board temperature: WARN at 70 C or more and below 0 C. FAIL at 85 C (the board stops at 95 C). Cool the board.
+4. Case A (the board's python3 is 3.10, 3.11 or 3.12, with pip).
+   First, on the board, type: python3 -c "import cv2, numpy; print(cv2.__version__, numpy.__version__)"
+   If it prints two versions, the board has its own OpenCV. Do not pip install into this Python: our numpy 2 wheel
+   can break an older OpenCV there. Type board_check again (item 6). If a package line still shows FAIL, use case B.
+   If it prints an error, go on: take the wheel folder for that Python: cp310, cp311
+   or cp312. On the laptop, type: scp -r tools/wheels/cp312 root@<BOARD>:/tmp/
+   On the board, type: python3 -m pip install --no-index --find-links /tmp/cp312 numpy opencv-python-headless pymavlink pyserial
+   If pip says "externally-managed-environment", add --break-system-packages. No pip: tools/wheels/README.txt, STEP 3.
+5. Case B (no Python on the board that we can use). On the laptop, type: tools/deploy.sh bundle
+   It copies our own Python and the program to the board and runs check. It ends with two lines: PY=... and
+   BOARD_DIR=... Put those two lines into tools/deploy.env. After that, push, start, stop, status and pull use them.
+   If check says "libstdc++.so.6" (or libgcc_s.so.1, libz.so.1) "cannot open shared object file":
+   tools/bundle/README.txt, CASE B, item 3.
+   Then type on the laptop: NO_RESTART=1 tools/deploy.sh. It copies the program into the bundle's folder.
+   In case B, each board command of this checklist changes in two ways: type the PY value of tools/deploy.env in
+   place of python3, and type the command in the BOARD_DIR folder. tools/deploy.sh does both by itself.
+6. Type board_check again (case B: with the bundle's Python, tools/bundle/README.txt, CASE B, item 4).
+Pass: Every package line shows PASS.
+If the flight controller line shows no heartbeat: on the board, type: sh tools/board_check.sh --route
+Then do step 1 (check) again.
+7. Optional, start at power-on (systemd only): on the laptop, type: tools/deploy.sh boot-on
+   To reverse it, type: tools/deploy.sh boot-off
+   Without boot-on, start the program only with tools/deploy.sh (or tools/deploy.sh start): it runs on when the
+   cable comes out. With boot-on, stop it before check, mask, calib or bench: tools/deploy.sh stop.
+
+
+STEP 0. JUSTICE D SETUP, ON THE LAPTOP (3 min)
+1. On the laptop, type: python3 tools/use_profile.py apply <profile names> justice_d
+   (Later in the day, first type: tools/deploy.sh pull. It gets the values that the board wrote.)
+   Name every profile that you use, for example: outdoor_day goal_a ardupilot justice_d
+   Holds at 5 to 10 m only: add low_height after justice_d, for example:
+   outdoor_day goal_a ardupilot justice_d low_height   (DECISION_CARD row 47: in the simulator the hold error at
+   10 m fell by about half, and at 5 m by 20 to 44 %. At 60 m it was worse: for a hold above 30 m, apply the
+   profiles again without it.)
+   No SD (Secure Digital) card in the aircraft: add no_sd last, for example: outdoor_day goal_a ardupilot justice_d no_sd
+2. With an SD card: open settings.json. Set log_dir to /sdcard/logs.
+   No SD card: keep log_dir at "logs" (the 4 GB eMMC, the board's own flash memory).
+3. Type: python3 tools/use_profile.py show
+4. Copy the settings to the board: NO_RESTART=1 tools/deploy.sh
+Pass: camera shows "digital" in the list of changed values.
+After an apply that changes the camera or the capture settings, do step 3 (mask) and step 4 (calibration) again.
+The program refuses a calibration that another capture made.
+Disk: justice_d records 30 pictures each second (6.9 MB/s). The "free disk" line of check then needs 5.3 GB: only an
+SD card has that. no_sd records 10 pictures each second (2.3 MB/s). The line then needs 0.5 GB (min_free_gb).
+The raw recorder stops under min_free_gb free space (no_sd: 0.5 GB). The hold continues without a recording.
+The line never needs less than min_free_gb, so a PASS means that the recorder starts. The line also gives the minutes
+of raw recording before the recorder stops. Under 10 min, check adds a WARN line: the program records from step 7
+item 1, also on the ground, so a wiggle flight can have no recording. Delete old logs first (no_sd: 1.9 GB free
+gives 10 min).
+
+
+STEP 1. FLIGHT CONTROLLER PARAMETERS (4 min)
+1. Remove the propellers. Attach all antennas.
+2. Connect the drone battery. Connect the laptop USB-C cable.
+2a. Ask the event crew: "May our program write flight controller parameters?" Item 3 writes them. One of them
+   (GPS1_TYPE 0) turns the GPS off for the autopilot. Do not do item 3 before the crew agrees.
+   (Stage 1, page 8: "Bench work, configuration changes and flight activity will follow the event procedures and
+   designated crew's instructions." No document that we have names the arming checks or the failsafe values.)
+2b. Save the aircraft's own values. Type: python3 tools/fc_params.py save
+   Pass: the last line shows "PASS saved" (the first time of the day) or "PASS ... saved already" (each later time).
+   The file is <log_dir>/fc_params_before.json. The tool never overwrites it: the first save holds the aircraft's
+   own values. Do not rename it. Do not delete it. It also holds the parameters of each GNSS level (DECISION_CARD
+   row 45), so a level that you add later in the day can be put back too.
+   On the laptop, type: tools/deploy.sh pull. Keep the file: step 8 puts these values back.
+   A line "<name>: no answer" means that this firmware does not have that parameter. (The event firmware can be
+   newer than the ArduCopter 4.6 of our simulator.) Write the name down. Item 3 then shows FAIL for it.
+   Do not fly until the crew gives the name that this firmware uses.
 3. Type: python3 apb_main.py check --set-params
 4. Reboot the flight controller.
-Pass: In step 2, every "param" line shows PASS.
-If the firmware line shows FAIL, stop here. The program cannot fly this firmware.
+4a. Arming. With our settings (VISO_TYPE 1) and the default arming checks, the flight controller does not arm. It
+   shows "PreArm: VisOdom: not healthy" (or "Arm: VisOdom: not healthy"): it wants a position from us in the last
+   0.3 s, and the program sends none on the ground. ArduCopter 4.6 simulator: no arming in ALT_HOLD and in
+   STABILIZE, 4 of 4 tries (apsim/safety_results.txt, runs arm_none_s2 and arm_gnss_s1).
+   Ask the crew to turn off only the vision arming check:
+     ArduCopter 4.6:            ARMING_CHECK 1835006   (each check except bit 18. Simulator: armed, climbed, held.)
+     ArduCopter 4.7 and later:  ARMING_SKIPCHK 262144  (read in the ArduPilot source on GitHub. Not tested.)
+   Never ask for ARMING_CHECK 0 or ARMING_SKIPCHK -1: that turns off every arming check.
+   Tell the crew what stays on: each other arming check (barometer, compass, inertial sensors, parameters, radio,
+   battery, board voltage and the rest). Only the vision check goes off, because it asks for a position that the
+   program cannot give while the aircraft is on the ground. In the air the flight controller still needs our
+   position before it accepts Position mode.
+   The crew owns this parameter. We do not write it. (integ/pilot_safety/README.txt, section 8)
+Pass: The "firmware:" line shows px4 or ardupilot.
+Pass: Every "param" line shows PASS. Step 2 reads them again after the reboot.
+If the "flight controller" line shows FAIL and names Betaflight or INAV, stop here. The program cannot fly that
+firmware. Betaflight or INAV: see research/betaflight_route.md.
+If the "flight controller" line says "no MAVLink heartbeat":
+  a. Type: sh tools/board_check.sh --route
+     It runs the two route commands of the APB manual (gpioset -t0 -c gpiochip3 13=1; gpioset -t0 -c gpiochip3 0=0)
+     and tests the FC link.
+  b. Do step 1 again.
+  c. If it fails again: on the laptop, set fc_device to /dev/ttymxc2 in settings.json. Copy it. Do step 1 again.
+5. Compass and level: if the ground station asks for a compass calibration or an accelerometer (level) calibration,
+   ask the pilot to do it now. The propellers stay off. Compass: turn the drone 360 degrees about each axis.
+   Level: put the drone on a flat surface.
 
 
 STEP 2. SYSTEM CHECK (3 min)
 1. Type: python3 apb_main.py check
 2. Read every line.
-3. Record the "fix age" value.
+3. Record the fix age of the "INFO fix age" line.
 4. Point the nose north with a phone compass.
 5. Read the heading in the ground station.
-Pass: Every line shows PASS, except "not calibrated" and "no mask".
+6. Turn the nose 90 degrees to the right by hand. Read the heading again.
+Pass: Every line shows PASS, except "not calibrated" and "no mask". (The height line: ArduPilot GLOBAL_POSITION_INT, see
+step 5; PX4 LOCAL_POSITION_NED.)
+ArduPilot: Pass: The "origin set" line shows PASS. Without the origin ArduPilot never accepts Loiter.
+Pass: ATTITUDE shows 90 Hz or more. (We ask for 100 Hz. A real link can give a few less. The program itself
+needs min_att_hz, 40 Hz.) If it is less than 90, set the SRn_ rates of the APB port to 0 (n = that SERIAL port).
+If the run log later shows many "attitude stale" rows: DECISION_CARD row 44.
 Pass: The heading is within 10 degrees of north.
+Pass: The heading changed by 80 to 100 degrees in item 6.
+(With no GPS, some firmware sets 0 degrees at the direction of the drone at power-up (aircraft manual). If only the
+north rule fails, write it down and tell the pilot. The program uses the FC heading as it is.)
 Pass: The fix age is less than 150 ms.
-If the fix age is 150 ms or more, add "EKF2_DELAY_MAX" to params_px4 in settings.json.
-Set it to the fix age plus 100. Then do step 1 again.
-(PX4 uses a fix at its correct time only when the fix is younger than EKF2_DELAY_MAX, 200 ms by default.
+If the fix age is 150 ms or more (PX4): params_px4 already sets EKF2_DELAY_MAX to 300 ms (the PX4 default is 200 ms).
+If the fix age plus 100 is more than 300, set EKF2_DELAY_MAX to the fix age plus 100 (on the laptop). Copy it.
+Then do step 1 again.
+(PX4 uses a fix at its correct time only when the fix is younger than EKF2_DELAY_MAX.
 The real fix age is up to 50 ms more than the check value.)
-If the TIMESYNC line fails, put the fix age into EKF2_EV_DELAY in settings.json. Then do step 1 again.
-If the "video standard" line fails, set video_standard in settings.json. Then do step 2 again.
+If the TIMESYNC line fails, put the fix age into EKF2_EV_DELAY in params_px4 (on the laptop). Copy it. Do step 1 again.
+ArduPilot: keep VISO_DELAY_MS 140 until the first hover. Step 7 sets it.
+ANALOG ONLY: If the "video standard" line fails, set video_standard in settings.json. Then do step 2 again.
+Justice D: check shows no "video standard" line. It shows these lines instead.
+Pass: The "video:" line shows PASS. It gives the frames, the driver size and the pixel format.
+Pass: The "video rate" line shows PASS. The rate is within 10 % of video_fps (60).
+Pass: The "lens profile" line shows PASS. The lens and the picture have the same shape.
+Pass: The "frame stamps from" line shows PASS. The p95 of the interval spread is 12 ms or less.
+If the lens_measured line shows FAIL, set lens_measured to null, or measure the lens again.
+Pass: The "free disk" line shows PASS at the log_dir disk, with no WARN line after it.
+If the "video rate" line fails, set video_fps to the camera's rate. Then do step 2 again.
+If the "frame stamps from" line fails, use driver stamps (video_device, no video_command). Stop other programs on the board.
+If the "frame stamps from" line says "too few to measure", make the camera give frames. Then do step 2 again.
+If the "lens profile" line fails, apply the justice_d profile (step 0).
+If the "video:" line shows "cannot open the camera", check the camera cable and video_device in settings.json.
+Then do step 2 again. If it fails again, set video_pipeline in settings.json (OpenCV with GStreamer).
+If it fails again, set video_command in settings.json. Do step 2 again.
+video_command example: gst-launch-1.0 -q v4l2src device=/dev/video2 ! video/x-raw,width=1280,height=720,format=YUY2 ! fdsink fd=1
+For that example, set pixel_format to YUYV. board_check.sh lists the driver's pixel formats.
+If a line that starts with "video_command" shows FAIL, read the error above it. Check video_command and pixel_format.
+If the "free disk" line fails, check log_dir (step 0, item 2). No SD card: apply no_sd (step 0, item 1).
 
 
 STEP 3. OSD MASK (2 min)
@@ -40,6 +193,8 @@ Pass: The last line shows "PASS mask covers N%". N is less than 50.
 
 
 STEP 4. CALIBRATION (6 min)
+Justice D: this step also finds the lens. It writes the measured lens to settings.json under lens_measured.
+lens_name stays the start profile. If lens_measured is from a checkerboard ("target"), this step fits only one focal scale.
 1. Go to a place where buildings or trees are more than 50 m away.
 2. Type: python3 apb_main.py calib
 3. Hold the drone on its side. The camera must point at the far scene.
@@ -50,12 +205,56 @@ Pass: The "picture top" line shows PASS.
 Pass: The "settings written" line shows PASS.
 7. Do items 2 to 6 again.
 Pass: The "from the previous calibration" line shows PASS. The two delays are within 3 ms.
-If the focal scale is not between 0.98 and 1.02, the program shows FAIL. Do the lens check in step 6, item 6.
+8. Write down the residual of the "INFO quality" line of each calibration.
+Analog camera: If the focal scale is not between 0.98 and 1.02, the program shows FAIL. Do the lens check in step 6, item 6.
+Lens measured with a target: the same FAIL line appears. Read its text. Measure the lens again, or set lens_measured to null.
+Justice D with no target lens: the program shows these lines instead of the focal scale.
+Pass: The "measured lens written to lens_measured" line shows PASS. focal_scale is 1.0.
+With a target lens, the line "lens_measured (target) kept" shows PASS. Its focal_scale is measured against the target lens.
+To use the profile lens again, set lens_measured to null in settings.json. Then run calib.
+Read the "INFO quality" line. It gives how far the tracked points reach from the optical axis.
+If the program shows "FAIL k1 not found", turn the drone more and do step 4 again.
+If the program shows "FAIL calibration", read the reason. A reason may say the lens fit ended at the edge of its search range.
+If it says that, record again. If it fails again, measure the lens with a checkerboard (laptop procedure below). Turn the drone more about all three axes. Do step 4 again.
+The calibration saves a recording: rec_<stamp>.npz in log_dir.
+Justice D start lens: lens_name "Justice D full sensor (assumed)" (152 degrees wide) is the start. The datasheet gives
+114 degrees: that is the profile "Justice D anamorphic (assumed)". In a laptop test (synthetic pictures, one run each)
+calib found the true lens within 0.4 % from either start, with no fit at the edge of its range. If the fit ends at
+the edge of its search range, set lens_name to "Justice D anamorphic (assumed)" on the laptop, copy it, and do
+step 4 again. Keep the result with the lower residual (item 8).
+
+Solve on the laptop (Justice D, optional):
+1. Type: tools/deploy.sh pull
+   This copies settings.json, the mask and the new logs from the board's log_dir and from logs/. It keeps the old settings.json as settings.json.bak.
+2. Type: ~/.venvs/vio/bin/python apb_main.py calib --rec logs/rec_<stamp>.npz
+   Use the newest rec_ file of step 4. Step 3 (mask) also saves a rec_ file.
+   (python3 on this laptop has no OpenCV or numpy: it stops with "No module named 'cv2'".)
+3. Read the same lines as on the board.
+4. On the ground, type: FORCE=1 NO_RESTART=1 tools/deploy.sh
+   The push stops without FORCE=1, because the calibration differs between the laptop and the board.
+   FORCE=1 also skips the stop for a flying aircraft. Do not push in flight.
+
+Measure the lens with a checkerboard (Justice D, development area only, on the laptop):
+A checkerboard is a development aid. Do not fly a checkerboard lens in a scored hold. Keep a settings file with a
+hand-turn lens ("by": "hand turn") for the scored flights: cp settings.json scored_handturn.json
+1. Type: tools/deploy.sh pull
+2. Type: ~/.venvs/vio/bin/python tools/lens_calib.py <folder | video | rec.npz> --settings settings.json
+   The tool writes lens_measured ("target") into settings.json and sets focal_scale to 1.0.
+3. On the ground, type: FORCE=1 NO_RESTART=1 tools/deploy.sh
+   The push stops without FORCE=1, because lens_measured differs between the laptop and the board.
+4. On the board, type: python3 apb_main.py calib
+   It fits one focal scale against the target lens. It does not fit the lens again.
+Pass: The "lens_measured (target) kept" line shows PASS.
+Before the next push, type: tools/deploy.sh pull
 
 
 STEP 5. SYSTEM CHECK AGAIN (1 min)
 1. Type: python3 apb_main.py check
 Pass: The last line shows ALL PASS.
+ArduPilot: the height line is "GLOBAL_POSITION_INT <n> Hz". The program reads the height from that message.
+ArduPilot sends LOCAL_POSITION_NED only after it has a position, and only our fixes in flight give one.
+(ArduCopter SITL, GPS off: "PASS GLOBAL_POSITION_INT 10 Hz", integ/integration_2026-11-20. Before this correction the
+line was "FAIL LOCAL_POSITION_NED 0 Hz" on every ground check.)
 
 
 STEP 6. GROUND TESTS, PROPELLERS OFF (6 min)
@@ -66,7 +265,8 @@ STEP 6. GROUND TESTS, PROPELLERS OFF (6 min)
 5. Carry the drone 1.00 m toward the nose. Keep the lens at 1.50 m.
 Pass: "forward" shows +0.90 to +1.10 m. "right" shows -0.10 to +0.10 m.
 6. Lens check: the "forward" value must be +0.97 to +1.03 m.
-If it is not, multiply focal_scale in settings.json by the "forward" value. Then do step 6 again.
+If it is not, multiply focal_scale in settings.json by the "forward" value (on the laptop, after tools/deploy.sh pull;
+then FORCE=1 NO_RESTART=1 tools/deploy.sh). Then do step 6 again.
 7. Carry the drone 1.00 m toward the right side.
 Pass: "right" shows +0.90 to +1.10 m. "forward" changes by less than 0.10 m.
 8. Keep the lens above one mark on the floor.
@@ -78,39 +278,196 @@ Pass: The lines stop within 0.5 s. The lines start again after you remove your h
 If a value moves the wrong way, the calibration is wrong. Do not fly. Do step 4 again.
 
 
-STEP 7. FIRST LOW HOVER (7 min)
-1. Install the propellers.
-2. Make sure that one transmitter switch selects Altitude mode.
-3. Type: python3 apb_main.py run --raw
-Wait 60 seconds or more before you select Position mode.
-(PX4 uses the time stamps of the fixes only after 50 seconds of time synchronization.)
-ArduPilot (ArduCopter 4.6, the likely Orqa firmware):
-If the firmware line shows ardupilot: after this hover, type python3 apb_main.py delay logs/run_<newest>.csv
-and set VISO_DELAY_MS in params_ardupilot to the number it prints (NOT the median fix age: ArduPilot times
-each fix by the smallest age of every 100, see apb_main.delay_advice). The run log also shows it every 100
-fixes ("VISO_DELAY_MS advice"). Then do step 1 again.
-Pass: The "origin set" line shows PASS. Without the origin ArduPilot never accepts Loiter.
-Pass: ATTITUDE shows 100 Hz or more. If it is less, set the SRn_ rates of the APB port to 0 (n = that SERIAL port).
-Use Loiter mode where these steps say Position mode, and AltHold where they say Altitude mode.
-(In SITL the program sent no fix until fc_link took the height from GLOBAL_POSITION_INT: ArduPilot sends
-LOCAL_POSITION_NED only after it has a position. Fixed 2026-11-16, tests_apb/test_ap_sitl.py.)
-4. Start the flight in Altitude mode.
-5. Climb to 20 m. The program sends nothing below 15 m.
-6. Do not yaw the drone. Yaw moves the fix (H8).
-7. Hold the drone still for 5 seconds.
-7b. Timing wiggle (still in Altitude mode, at 20 m or higher, clear area): rock the roll and pitch sticks
-   about 30 % each way, about once every 1.5 s, for 8 s (about 9 deg of lean). Then let the drone settle 4 s.
-   After landing: python3 apb_main.py timing logs/raw_<newest>_00N.npz (the chunks that hold the wiggle).
-   Pass: "PASS video delay ... ms" and "settings written". It changes video_delay_s and readout_s.
-   (apsim: a start 40 ms wrong held 4.5-5.7 m RMS at 100 m; the wiggle found the delay within 4 ms and the
-   next flight held 0.64 m. integ/control/wiggle_calib.txt.)
-8. Select Position mode.
-9. Let the drone hold for 30 seconds. Do not touch the sticks.
-Pass: The drone stays above the same ground point. It does not move away.
-If the drone moves away, select Altitude mode immediately.
-10. Land.
-11. Copy the logs folder (run_*.csv and raw_*.npz) to the laptop.
-Pass: The run log shows sent = 1 on most rows after the switch to Position mode.
+STEP 6B. MODE SWITCH, PROPELLERS OFF (4 min, before the first flight)
+The aircraft manual gives the stock switch positions: Acro, Position Hold (with GPS) and Return to Home. The hold
+needs one position for Altitude mode and one for Position mode.
+1. Propellers off. Battery and cable connected.
+2. On the laptop, type: tools/deploy.sh pull. Then type: tools/deploy.sh start
+   (mask and calib wrote settings.json on the board. A copy before a pull stops: "the board's calibration differs".)
+   Pass: the line after "--- running:" shows yes.
+3. Ask the pilot to move the switch to each position, one at a time.
+4. After each move, on the board, type: tail -n 1 $(ls -t <log_dir>/run_*.csv | head -1)
+   The last word of the line is the flight mode that the program reads.
+Pass: One position gives ALT_HOLD (PX4: ALTCTL). One position gives LOITER or POSHOLD (PX4: POSCTL).
+Pass: No position gives RTL (PX4: AUTO).
+If a position gives RTL, or a name that is not in this list, do not use that position in a flight:
+ACRO, STABILIZE, ALT_HOLD, LOITER, POSHOLD (PX4: MANUAL, STABILIZED, ACRO, ALTCTL, POSCTL).
+Ask the pilot to change the switch map. (The program shows a mode that it does not know as "mode <number>". On
+ArduCopter, RTL is mode 6 and shows as RTL. The rehearsal asked for mode 11, which is DRIFT, so it did not test RTL.)
+LOITER, POSHOLD and POSCTL use our position, not GNSS, when the step 1 param lines pass (GPS1_TYPE 0; PX4:
+EKF2_GPS_CTRL 0). If one of those lines shows FAIL, do not fly.
+5. Ask the pilot to put the switch in Altitude mode (ALT_HOLD; PX4: ALTCTL) and to leave it there.
+   Pass: tail -n 1 (item 4) shows ALT_HOLD (PX4: ALTCTL).
+   The program must start (step 7 item 1) with the switch in Altitude mode. A start in Position mode writes an
+   "engaged" note on the ground.
+6. On the laptop, type: tools/deploy.sh stop
 
-After step 7: climb to the target height in Altitude mode. Do not yaw. Then select Position mode.
-To tune after a flight: python3 apb_main.py replay logs/raw_*.npz
+
+STEP 6C. TAKEOVER DEMONSTRATION FOR THE PILOT, PROPELLERS OFF (10 min, before the first flight)
+The pilot must see that the pilot can take over, before the pilot flies our hold. The pilot decides if the aircraft flies.
+1. Give the pilot the page PILOT_SAFETY.txt (print it, or show it on the laptop). Give the pilot time to read it.
+2. Ask the crew to set these values before the bench steps. The crew sets them. We do not.
+     FS_EKF_ACTION 2 (AltHold when our position stops; 1 = Land if the pilot prefers)
+     FS_THR_ENABLE 3 (Land on a radio loss; the default 1 = RTL flies on our position)
+     BATT_FS_LOW_ACT 0 or 1, BATT_FS_CRT_ACT 1 (Land; never RTL)
+     FS_DR_ENABLE 1, and no Return to Home position on the mode switch
+     The arming check of step 1 item 4a. (The full list and the reasons: integ/pilot_safety/README.txt, section 5.)
+3. Do the bench steps B0 to B7 of integ/pilot_safety/README.txt, section 6, with the pilot. B1 is step 6B: if the
+   pilot watched step 6B, do not do it again. The steps show: the failsafe parameters, the mode of each switch
+   position, no arming in Position mode with no position, the program frozen, the camera covered, the program
+   killed, and the switch that changes the mode at once.
+   Bench step B2 with the vision arming check on shows "VisOdom: not healthy". It shows the refusal for a missing
+   position ("Need Position Estimate") only after the crew turned off the vision arming check (step 1, item 4a).
+4. Tell the pilot the things that the bench cannot show: the two first-flight items at the end of section 4 of the
+   page, and section 5 (what is not tested).
+Pass: Each bench step passed, or the pilot accepts the difference. The pilot says that the aircraft can fly.
+If the pilot does not agree, do not fly. Write down what the pilot wants to see first.
+(No bench step has run on the real aircraft. The pass rules come from the ArduPilot source.)
+
+
+STEP 7. FIRST LOW HOVER (15 min)
+The event pilot flies. A team member does not fly. Give the pilot each request below.
+ArduPilot (ArduCopter 4.6): use Loiter mode where these steps say Position mode, and AltHold where they say Altitude mode.
+Start: propellers off, battery connected, USB-C cable connected, the switch in Altitude mode (step 6B, item 5).
+From item 1 to item 9 the pilot does not move the switch to Position mode, except in item 5a. timing (item 15) needs
+15 s in the air in Altitude mode before the switch.
+1. On the laptop, type: tools/deploy.sh
+   It copies the program, stops a running copy, and starts "apb_main.py run --raw" on the board in the background.
+Pass: The line after "--- running:" shows yes.
+2. Unplug the USB-C cable. The program keeps running.
+   (deploy.sh starts it with setsid and nohup. Do not start the hold with "python3 apb_main.py run" in an ssh
+   session: it stops when the session ends (rehearsal hang-up test). Only if tools/deploy.sh cannot run, type this
+   on the board in its place, one time: setsid nohup python3 -u apb_main.py run --raw > logs/console.txt 2>&1 < /dev/null &
+   Never do both: two copies of the program fight for the camera and the flight controller link.)
+3. At the flight line, install the propellers. Keep the battery connected: with no power the program stops.
+4. PX4: tell the pilot to wait 60 seconds or more after item 1 before the pilot selects Position mode.
+   (PX4 uses the time stamps of the fixes only after 50 seconds of time synchronization.)
+5. Ask the pilot to start the flight in Altitude mode.
+5a. First flight only, and only with no gnss_ profile, at about 2 m: ask the pilot to select Position mode once,
+   then to move the switch back. The program sends nothing below 3 m, so the flight controller has no position.
+   (With gnss_setup or gnss_fallback, Position mode starts on GNSS at 2 m. Skip this item.)
+   Pass: the flight controller stays in Altitude mode (ArduPilot shows "Mode change to LOITER failed").
+   If Position mode starts at 2 m: ask the pilot to select Altitude mode and to land. The flight controller has a
+   position that is not ours. Check the GPS line of step 1.
+   (This is the proof that the hold cannot start before our program is ready, judging area D.)
+6. Ask the pilot to climb to 20 m. The outdoor profiles send nothing below 3 m (indoor: 1 m).
+7. Ask the pilot not to yaw the aircraft. Yaw moves the fix (H8).
+8. Ask the pilot to hold the aircraft still before the switch. Count the seconds aloud.
+   Without the profile low_height: 15 seconds. With low_height: 5 seconds.
+   If the crew's ground station shows the text "EKF3 IMU0 is using external nav data", count from that text.
+   Why 15 s: the flight controller needs our position for some seconds before it holds well on it. ArduCopter
+   simulator, 10 m, wind 20 gusting 40 km/h, 2 seeds: with a 4 s hover the hold was 0.79 and 0.71 m RMS, with a
+   15 s hover 0.51 and 0.41 m (integ/kfmap/closed/ab_table.txt). At 30 m and higher the climb already gives that time.
+   Why 5 s with low_height: there the 15 s gave no more gain (0.42 and 0.35 m with both), and in 2 of 4 runs the
+   flight controller's yaw moved by about 4 degrees in the hold (DECISION_CARD row 47).
+   (On the flight with the timing wiggle, items 8a and 8b, the settle time stays 4 s: that flight measures the
+   timing, not the hold.)
+8a. For the timing wiggle: ask the pilot to climb to 40 m or higher in Altitude mode (clear area). Then hold the
+   aircraft still for 5 seconds. (If the pilot cannot fly 40 m, skip items 8a and 8b and keep the delay and readout
+   of the ground calibration, step 4. The hold of items 9 and 10 is then at 20 m.)
+8b. Timing wiggle (still in Altitude mode): ask the pilot to rock the roll and pitch sticks about 30 % each way, about
+   once every 1.5 s, for 8 s (about 9 deg of lean). Then let the drone settle 4 s. Then item 9 at once, at this height.
+   The switch must come no more than 8 s after the last stick move of the wiggle. timing uses the 15 s that end 1 s
+   before the switch: they must hold the whole wiggle. If the switch comes later: ask the pilot for the wiggle again
+   (8 s), settle 4 s, then item 9.
+9. Ask the pilot to select Position mode. The pilot moves the switch that starts our hold.
+10. Let the aircraft hold for 30 seconds. First flight: 10 seconds, then item 10a. The pilot does not touch the sticks.
+Pass: The drone stays above the same ground point. It does not move away.
+If the drone moves away, tell the pilot to select Altitude mode immediately. The flight controller does not detect a
+slow, wrong position: only the pilot can stop it (PILOT_SAFETY.txt).
+10a. Ask the pilot to select Altitude mode. Write down the time. Altitude mode does not hold the position: tell the
+   pilot before the flight to fly against the wind at once. (Simulator, wind 20 gusting 40 km/h, sticks centred:
+   the mode changed in 0.01 s, the height stayed within 0.05 m, and the aircraft drifted 36 m in 10 s.)
+   Then the pilot can select the pilot's own manual mode (Acro or Stabilize). The simulator did not fly Acro.
+Pass: The mode changes at once and the aircraft answers the sticks. The run log shows a "released" note.
+(This is the proof of the pilot's exit, judging area D. On the first flight, do it after 10 seconds, not 30.)
+11. Ask the pilot to land and to disarm.
+(Scored hold: the pilot flies to the test position and holds the aircraft still. Then the pilot moves the switch.
+The scored hold must work with no GNSS. GNSS is permitted before the scored hold.)
+12. Remove the propellers. Then connect the USB-C cable.
+13. On the laptop, stop the program: tools/deploy.sh stop. Pass: "running: no".
+   (It records raw pictures the whole time it runs, also on the ground.)
+14. On the laptop, type: tools/deploy.sh pull. It copies run_*.csv and raw_*.npz from log_dir to logs/.
+Pass: The run log shows sent = 1 on most rows after the switch to Position mode.
+Pass: The note column shows "engaged: FC mode LOITER" (PX4: POSCTL) at the switch.
+The mode column shows the flight mode on each row. Keep this log as handover evidence (judging area D).
+15. Timing (after the wiggle of item 8b), on the board:
+   a. Type: ls <log_dir>/run_*.csv <log_dir>/raw_*_000.npz
+      The newest run log and raw files share a start time in the name: run_<stamp>.csv, raw_<stamp>_000.npz.
+   b. Type: python3 apb_main.py timing <log_dir>/run_<stamp>.csv <log_dir>/raw_<stamp>_*.npz
+      timing uses the raw frames from 16 s to 1 s before the first "engaged" note that has 15 s in the air (over
+      min_height_m) in Altitude mode before it. The INFO line names each switch that it did not use, and why.
+      Those 15 s must hold a wiggle: their 8 s with the most turning must turn 4 times faster than the rest.
+   Pass: "PASS video delay ... ms" and "settings written". It changes video_delay_s and readout_s on the board.
+   Run timing once for each flight: a second run on the same flight shows FAIL, because video_delay_s changed.
+   If timing prints FAIL: keep the delay and readout of the ground calibration (step 4), or fly the wiggle again
+   (a new flight, items 1 to 15). The FAIL line gives the reason: no switch with 15 s in the air in Altitude mode
+   before it, no wiggle in the 15 s, raw frames that are not in the run log (another run), raw files that miss part
+   of the 15 s (a dropped chunk, or the recorder stopped), or the fit.
+   After a program restart in flight, the newest run log starts late: give the run log before it and its raw files.
+   (SITL, Justice D, delay set 30 ms too long, one flight each, the run log and all raw files: 10 m 40 ms, 60 m 38 ms,
+   100 m 36 ms (true 40 ms), readout +15, +23, +11 ms (true +14); at 30 m it showed FAIL and changed nothing
+   (integ/integration_2026-11-20/timing_with_run_log.txt). 126 edited copies of those flights (a late switch, a
+   switch test, a late start, raw files of another flight, a missing chunk): 13 PASS, each 36 to 40 ms and +11 to
+   +23 ms; 113 FAIL (integ/integration_2026-11-20/timing_cases_v2.txt). apsim, analog, start 40 ms wrong: within
+   4 ms at 40 m and 100 m, integ/control/wiggle_calib.txt.)
+16. ArduPilot: on the board, type: python3 apb_main.py delay <log_dir>/run_<stamp>.csv
+   It prints "PASS VISO_DELAY_MS <n>". Use that number, NOT the median fix age: ArduPilot times each fix by the
+   smallest age of every 100 (apb_main.delay_advice). The run log also shows it every 100 fixes ("VISO_DELAY_MS advice").
+17. On the laptop: tools/deploy.sh pull (it gets the values that timing wrote). ArduPilot: set VISO_DELAY_MS in
+   params_ardupilot to the number of item 16. Copy it: NO_RESTART=1 tools/deploy.sh. Then do step 1 again.
+18. No SD card: on the board, delete the raw files that the laptop now has: rm <log_dir>/raw_*.npz
+ArduPilot: (In SITL the program sent no fix until fc_link took the height from GLOBAL_POSITION_INT: ArduPilot sends
+LOCAL_POSITION_NED only after it has a position. Fixed 2026-11-16, tests_apb/test_ap_sitl.py.)
+
+After step 7: the pilot climbs to the target height in Altitude mode. The pilot does not yaw. Then the pilot selects Position mode.
+Stage 2 will give the engagement procedure. When you get it, update step 7 and this line.
+To tune after a flight: EIGHT_HOURS hour 5 (tools/replay_tune.py, on the laptop).
+
+
+STEP 8. GIVE THE AIRCRAFT BACK (3 min, after our last test, or when the crew asks)
+The aircraft is the organizers'. Step 1 changed its flight controller parameters.
+1. Propellers off. Battery and cable connected. On the laptop, type: tools/deploy.sh stop
+2. On the board, type: python3 tools/fc_params.py restore
+Pass: The last line shows "ALL RESTORED".
+3. Reboot the flight controller.
+4. Tell the crew: "The parameters have their values of this morning again." Show them fc_params_before.json.
+If a line shows FAIL: tell the crew which parameter differs. They set it in the ground station.
+If the file is missing: give the crew the "param" lines of the first check of the day (they show the old values).
+(Tested on an ArduCopter simulator flight controller: it saved 14 values, step 1 item 3 changed 6 of them, a second
+save kept the first file, and the tool wrote all of them back: integ/integration_2026-11-21/fc_params_sitl.txt. It has
+not run on a real flight controller.)
+
+
+OPTIONAL. RECOVERY DEMONSTRATION (bonus route "demonstrated recovery", Stage 1 package)
+Do this only when the judges ask for the recovery demonstration. Never do it in a scored hold.
+1. On the laptop, type: tools/deploy.sh pull
+2. Type: python3 tools/use_profile.py apply <your profile names> recovery_demo
+3. Fly step 7 from item 1. Its deploy.sh starts the program with these settings.
+   Ten seconds after the switch, the program drops the video for 3 s. It does this once for each switch.
+4. To start a drop at another time, type on the board: touch <log_dir>/outage_now
+   The program deletes the file and drops the video for 3 s.
+Pass: The note column shows "recovery test: video dropped for 3 s", then "recovery test: video back".
+Pass: The rows after "video back" show sent = 1 again (SITL: the first fix 1.1 s after "video back").
+The program re-anchors to the FC position at "video back". The drift during the drop stays in the hold point
+(SITL, 60 m: 0.3 to 0.6 m).
+5. Switch the demonstration off: apply your profile names again, without recovery_demo. Copy again with tools/deploy.sh.
+
+OPTIONAL. NEW HOLD OPTIONS (all are off by default)
+Each option is a profile. Add its name to the apply command to switch it on.
+Apply the command again without the name to switch it off.
+- fresh_kf: at the switch, Hold takes a new keyframe of the hold point and makes it the home keyframe.
+  The note at the switch then ends with "fresh keyframe requested". Closed loop (SITL, 2 seeds): no difference
+  beyond the run-to-run spread (apsim/engage_results.txt). Keep it off.
+- kf_bright: Hold takes no unforced new keyframe while the picture brightness changes (auto exposure,
+  day/night switch). Try it if the hold gets worse when the light changes.
+- gap_jump: after a short video gap (over 0.5 s), Hold does not refuse the first frame as "broken up", so it
+  does not re-anchor. SITL: no re-anchor in 3 of 3 runs, first fix 0.3 s sooner. Not tested on the real camera.
+- drag_fusion (ArduPilot only): do not use it. In SITL it did not hold position through a 20 s video outage
+  (1 seed), and the largest drift of normal holds was higher with it (apsim/drag_results.txt).
+  It also needs FS_DR_ENABLE set by the event crew: the default 2 starts RTL when the EKF dead-reckons.
+- low_height: for holds at 5 to 10 m. No gain from 10 to 30 m. Never above 30 m (DECISION_CARD row 47). It sets three values together. Never set
+  hold_cfg dense_turn by hand: the program refuses it without att_source gyro_fcyaw.
+- att_gap: only when the run log shows many "attitude stale" rows (DECISION_CARD row 44).
+- gnss_setup, gnss_fallback: the GNSS level (DECISION_CARD row 45).
+- no_sd: for a board with no SD card (step 0). Name it last, after justice_d.

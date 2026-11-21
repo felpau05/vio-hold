@@ -1,0 +1,22 @@
+reh_jd_wig_10m_s31: hold RMS 0.61 m, max 1.18 m; wiggle 25.3-33.3 s; 9 raw chunks; flight settings video_delay_s 0.07
+
+[apb_main.py delay <run log>]
+  load 4.13 4.91 3.72
+  exit 0, 0 s
+  | PASS VISO_DELAY_MS 146 (from 609 fixes; fix age at send p50 158 ms, p95 178 ms). PX4: EKF2_EV_DELAY = the p50 when time sync fails, and EKF2_DELAY_MAX at least the p95.
+
+[apb_main.py timing, wiggle chunk(s) 000 001]
+  load 4.13 4.91 3.72
+  exit 0, 1 s
+  | PASS video delay 40 ms (was 70), readout +13 ms (was +14), residual 0.60 deg, 21 deg/s
+  | PASS settings written. Start run again, then set VISO_DELAY_MS from 'apb_main.py delay' after the hover.
+
+[apb_main.py timing, wiggle chunk(s) + the next one]
+  load 5.40 5.16 3.80
+  exit 1, 1 s
+  | FAIL the recording turned 17 deg/s RMS with 11892 matches; need 20 deg/s and 1000. Rock the roll and pitch sticks harder for 8 s.
+
+[apb_main.py timing, all chunks]
+  load 5.40 5.16 3.80
+  exit 1, 1 s
+  | FAIL the recording turned 11 deg/s RMS with 35827 matches; need 20 deg/s and 1000. Rock the roll and pitch sticks harder for 8 s.

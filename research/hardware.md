@@ -12,10 +12,10 @@ Method: web search/fetch plus `gh` reads. Nothing found for "M2-AI" by that name
 ## 2. Flight controller and firmware
 - Orqa H7 QuadCore, STM32H743VIH6, 480 MHz. Orqa says PX4, ArduPilot, Betaflight, iNav are supported (MRM2-10 page). Which one the event drone runs is NOT FOUND.
 - The DroneWuKong PX4 port targets PX4 v1.15.4 (https://github.com/DroneWuKong/Orqa_H7_PX4_Ports, build-config.json). Orqa's own fork has branches develop_APB-initial and develop_h743-3030-pro (https://github.com/orqafpv/PX4-Autopilot). Repo says hardware-unvalidated.
-- A comment in the repo cites a field config `orqa_mrm2_10f_arducopter.param` (SERIAL4_BAUD=230) from a private repo (Ai-Project), so ArduCopter was used on an MRM2-10F in the field. Second-hand; low confidence.
+- A comment in the repo cites a field config `orqa_mrm2_10f_arducopter.param` (SERIAL4_BAUD=230) from a private repository, so ArduCopter was used on an MRM2-10F in the field. Second-hand; low confidence.
 
 ## 3. APB
-- Name: Orqa "DTK APB". Orqa support page calls it a single board with a main controller and an onboard computer; H7-series STM32 FC; i.MX8M Plus companion (search summary of https://orqafpv.freshdesk.com/support/solutions/articles/48001274269-dtk-apb; page itself returned 404 to my fetch). The press release calls the new board "Auto Pilot Board" (so APB = Auto Pilot Board, medium confidence; no source spells it out for the DTK board).
+- Name: Orqa "DTK APB". Orqa support page calls it a single board with a main controller and an onboard computer; H7-series STM32 FC; i.MX8M Plus companion (search summary of https://orqafpv.freshdesk.com/support/solutions/articles/48001274269-dtk-apb; page itself returned 404 to the fetch). The press release calls the new board "Auto Pilot Board" (so APB = Auto Pilot Board, medium confidence; no source spells it out for the DTK board).
 - Port repo README (https://github.com/DroneWuKong/Orqa_H7_PX4_Ports): i.MX8M Plus = 4x Cortex-A53 + M7, 2.25 TOPS NPU, H.265 encode, dual MIPI-CSI. OS: Orqa "Scarthgap v1.0.5" Yocto SDK (Linux); microSD is Linux-owned at /sdcard (reference/orqa-apb/README.md).
 - Link: FC UART4 (PC10/PC11, "IMX", TEL1, /dev/ttyS1) to i.MX UART3 /dev/ttymxc2, 230400 baud. mavlink-router v4 bridges to udp 127.0.0.1:14540 (rc.board_defaults). Repo says 230400 is "field-confirmed" and 921600 caused link loss after reflashes. FC side: MAV_0_CONFIG=101, MAV_0_MODE=2 (Onboard), MAV_0_RATE=0 (auto = baud/20 = 11520 B/s). MAVLink version: mavlink-router; Prismo scripts parse MAVLink v2 frames. TEL2 (USART6) 57600 for SiK/gimbal.
 - Camera into Linux side: Prismo code comment: /dev/video0 = analog capture, /dev/video2 = MIPI downward-facing (apb/scripts/wingman_vio.py). Chip for analog capture not named.
@@ -26,7 +26,7 @@ Method: web search/fetch plus `gh` reads. Nothing found for "M2-AI" by that name
 - Justice A data (earlier lens calibration): analog standard "unconfirmed"; capture chain Justice A -> analog VTX -> UVC receiver -> OBS (1280x720, cropped to 960x720 for 4:3), and Orqa goggles capture 1280x960. Default OSD model uses 132 deg (Caddx Ratel 2) and was a poor fit (15.5 px RMS).
 
 ## 5. Justice A vs D
-Not documented anywhere I could reach. No source mentions "Justice D". Open question stays open.
+Not documented anywhere reachable. No source mentions "Justice D". Open question stays open.
 
 ## 6. DroneWuKong repos
 Orqa_H7_PX4_Ports:
@@ -56,3 +56,51 @@ Prismo-Calibration (https://github.com/DroneWuKong/Prismo-Calibration; proprieta
 - https://github.com/DroneWuKong/Orqa_H7_PX4_Ports (README.md, SESSION_CONTEXT.md, boards/orqa/apb/init/rc.board_defaults, reference/orqa-apb/README.md, companion/apb/README.md)
 - https://github.com/DroneWuKong/Prismo-Calibration (apb/scripts/wingman_vio.py, wingman_vio_native.py, apb/docs/*)
 - https://github.com/orqafpv/PX4-Autopilot (branch list only)
+
+## Stage 1 package and OEM manuals (2026-11-18)
+Sources: the organizer's Stage 1 package (2026-11-17), the APB manual v1.7.2, the Justice D datasheet v1.0, the Justice A datasheet, the aircraft manual v1.0.
+
+Stage 1 package (organizer, 2026-11-17)
+- The aircraft is the Orqa M2-AI (MRM2-10AI). The solution runs on its APB. It uses the downward camera, the Justice D.
+- The Justice D is digital: MIPI CSI, 1280 x 720, 60 fps, rolling shutter. The forward camera is the analog Justice A.
+- The event pilots fly (takeoff, landing, safety). Team members do not fly. The pilot flies to the test position and holds the aircraft still. Then the pilot moves a switch that starts the team's hold. Teams give test requests to the pilots.
+- The scored hold has no GNSS aiding. GNSS is permitted before the scored hold. A start with no GNSS is an optional bonus.
+- No physical change to the aircraft. No added cameras or sensors. Development aids (fiducial markers, tripods, test stands) are permitted only in the engineering and development area. They are not permitted in the scored evaluation and not in the solution.
+- The highest altitude with a qualifying stable hold wins the flight part.
+- Stage 2 will give the firmware list, the board access, the sensor data details, the altitude levels, the engagement procedure and the points.
+
+APB manual v1.7.2
+- NXP i.MX8M Plus, four Cortex-A53 cores. STM32H743 flight controller. 4 GB RAM, 4 GB eMMC. Micro-SD up to 512 GB at /sdcard (pages 3, 11).
+- CSI 1 is /dev/video2, set for Orqa cameras, fixed 1280x720@60. CSI 2 is /dev/video3, digital or analog through an ADV7282 chip (PAL 720x576, 50 fps). The device tree selects it: tool orqa_dt_switcher, then a restart (pages 12, 15).
+- The link to the flight controller is UART3, /dev/ttymxc2, behind a switch. `gpioset -t0 -c gpiochip3 13=1` and `gpioset -t0 -c gpiochip3 0=0` select the flight controller route (page 14). The manual gives no baud rate and no protocol.
+- Access: the USB-C port of the i.MX is a network device. The board address is 192.168.75.1. `ssh root@192.168.75.1` (page 10). The board clock is wrong after the first start until the board gets network time (page 10).
+- Temperature: `cat /sys/class/thermal/thermal_zone0/temp` in millidegrees C. The fan holds about 62 C. The board stops at 95 C (page 11).
+- An ICM42605 IMU and a DPS310 barometer connect to the Linux processor (page 5).
+- The manual shows `gst-launch-1.0` on the board (page 16). It does not state if Python or OpenCV is on the board.
+
+Justice D datasheet v1.0
+- Sensor "Sony 1/2.8 inch CMOS", lens F2.0, 1280x720, 60 fps, MIPI CSI. Field of view 114 / 86 / 121.5 degrees (horizontal / vertical / diagonal). OSD: "Voltage, Name, Timer".
+- It does not state the shutter type, the readout time or the latency.
+- The Justice A datasheet gives the same sensor, lens and angles for a 4:3 picture. The three angles do not fit one lens model on a 16:9 picture, so the datasheet cannot give the lens. Calibrate the lens on the real camera.
+
+Aircraft manual v1.0
+- Transmitter switch TL1 (channel 9) selects the flight mode: up = Acro, middle = Position Hold, down = Return to Home (page 18).
+- The stock aircraft has the Justice D at the front on a mount with 0 to 30 degrees of tilt, and no downward camera. The event aircraft is different.
+- The manual refers to "Betaflight Configurator". It does not state the firmware.
+- 10-inch propellers, "substantial vibrations" (page 22). Takeoff is rated for wind gusts under 46.3 km/h (datasheet page 2).
+
+What the new facts confirm in the earlier sections
+- Section 1: the M2-AI is the MRM2-10AI (the open question is closed by the organizer).
+- Section 3: the i.MX8M Plus with four Cortex-A53 cores, /sdcard, and the link to /dev/ttymxc2 (UART3).
+- Section 3: /dev/video2 is the MIPI camera input (CSI 1).
+- Section 3 and section 6: the DPS310 barometer and an ICM42605 IMU (APB variant).
+- Section 4: "ORQA Justice" has a 1/2.8 inch sensor. The lens needs a calibration on the real camera.
+
+What the new facts contradict or change
+- Section 4: the Justice D is digital (MIPI CSI), not analog. Its title, "ORQA Justice (Analog)", holds for the Justice A.
+- Section 4: the field of view, the lens and the sensor are now known (114 / 86 / 121.5 degrees). The shutter type, readout time and latency stay NOT FOUND.
+- Section 3: /dev/video0 as the analog capture is not confirmed. The manual names /dev/video2 (CSI 1) and /dev/video3 (CSI 2, analog or digital, ADV7282).
+- Section 3: the 230400 baud of the link comes from a repo, not from the manual. The manual gives no baud rate. The two sources do not disagree, but the manual does not confirm the value.
+- Section 5: the open question is closed. The Justice D is the digital downward camera and the Justice A is the analog forward camera.
+- Section 2: the firmware stays NOT FOUND. The aircraft manual names "Betaflight Configurator". Stage 2 gives the firmware list.
+- Sections 1 and 3: the stock aircraft has no downward camera. The event aircraft is different (aircraft manual).

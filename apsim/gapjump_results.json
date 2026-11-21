@@ -1,0 +1,2976 @@
+{
+ "rec_60m_s1": {
+  "case": "rec_60m_s1",
+  "rms": 0.7367034138344101,
+  "p95": 1.1293684816811291,
+  "max": 1.299421085432312,
+  "end": 0.42177373455420303,
+  "pct_frames_fix": 18.97607122982749,
+  "fix_rate_hz": 11.366482238293457,
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 5, 0.0 s after the Loiter request started"
+   ]
+  ],
+  "hold_s_flown": 60.0,
+  "climb_s": 24.8,
+  "age_ms_p50": 129.0,
+  "drift_m_per_min": 1.3676059117589017,
+  "proc_ms_mean": 80.95835734870316,
+  "handover_ms_p50": 6.430171499232529,
+  "handover_ms_p95": 12.527054566817238,
+  "reanchors": 1,
+  "hold_why": {
+   "recovery test: video dropped": 180,
+   "picture broken up": 1,
+   "picture just after a broken-up one": 1,
+   "init": 1,
+   "good fix 1 of 10": 1,
+   "good fix 2 of 10": 1,
+   "good fix 3 of 10": 1,
+   "good fix 4 of 10": 1
+  },
+  "onboard_exit": 0,
+  "frac_ok": 0.9956772334293948,
+  "onboard": [
+   [
+    7.03,
+    "connected",
+    "ardupilot, clock ready True, ATTITUDE 100 Hz"
+   ],
+   [
+    97.37,
+    "done",
+    "stopped after 1 start(s); frame age when taken p50 10 ms, p95 23 ms; SCALED_IMU 0 Hz, 0 rows kept"
+   ]
+  ],
+  "height": 60.0,
+  "seed": 1,
+  "settings": {
+   "outage_test_s": 3.0,
+   "outage_after_s": 20.0
+  },
+  "video": "JUSTICE_D",
+  "wall_s": 98,
+  "load_start": [
+   4.0634765625,
+   6.14111328125,
+   6.216796875
+  ],
+  "load_end": [
+   8.9873046875,
+   7.07861328125,
+   6.5322265625
+  ],
+  "jobs_start": {
+   "other_sitl": 0,
+   "px4_sim": false
+  },
+  "jobs_end": {
+   "other_sitl": 0,
+   "px4_sim": false
+  },
+  "option": "outage 3 s at 20 s",
+  "texts_all": [
+   [
+    -36.96,
+    "Barometer 1 calibration complete"
+   ],
+   [
+    -36.96,
+    "Barometer 2 calibration complete"
+   ],
+   [
+    -34.51,
+    "ArduPilot Ready"
+   ],
+   [
+    -34.51,
+    "AHRS: DCM active"
+   ],
+   [
+    -34.21,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    -32.86,
+    "No ap_message for mavlink id (331)"
+   ],
+   [
+    -32.8,
+    "No ap_message for mavlink id (290)"
+   ],
+   [
+    -32.79,
+    "No ap_message for mavlink id (291)"
+   ],
+   [
+    -32.74,
+    "No ap_message for mavlink id (231)"
+   ],
+   [
+    -32.74,
+    "No ap_message for mavlink id (141)"
+   ],
+   [
+    -32.51,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    -32.51,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    -32.51,
+    "AHRS: EKF3 active"
+   ],
+   [
+    -31.13,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    -31.13,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    -31.03,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -31.03,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -25.69,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -25.24,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    -25.24,
+    "Arming motors"
+   ],
+   [
+    -24.77,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -21.56,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -21.56,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -20.23,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -20.23,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -16.62,
+    "EKF3 IMU1 is using external nav data"
+   ],
+   [
+    -16.62,
+    "EKF3 IMU1 initial pos NED = 0.0,0.0,-19.0 (m)"
+   ],
+   [
+    -16.62,
+    "EKF3 IMU0 is using external nav data"
+   ],
+   [
+    -16.62,
+    "EKF3 IMU0 initial pos NED = 0.0,0.0,-19.0 (m)"
+   ]
+  ],
+  "rms_10s": 0.7155804087143427,
+  "max_10s": 0.8522707532714372,
+  "rms_10_60": 0.7408872030797015,
+  "max_10_60": 1.299421085432312,
+  "notes": [
+   [
+    -21.41,
+    "FC mode ALT_HOLD"
+   ],
+   [
+    -17.59,
+    "re-anchored to last position (no FC position) 0.00 0.00"
+   ],
+   [
+    -0.01,
+    "engaged: FC mode LOITER"
+   ],
+   [
+    20.04,
+    "recovery test: video dropped for 3 s"
+   ],
+   [
+    23.04,
+    "recovery test: video back; re-anchored to FC position -0.15 1.36"
+   ],
+   [
+    23.12,
+    "re-anchored to FC position -0.14 1.38"
+   ]
+  ],
+  "notes_all_n": 14,
+  "onboard_modes": [
+   [
+    -21.41,
+    "ALT_HOLD"
+   ],
+   [
+    -0.01,
+    "LOITER"
+   ]
+  ],
+  "fc_modes": [
+   [
+    -36.96,
+    "0"
+   ],
+   [
+    -25.73,
+    "ALT_HOLD"
+   ],
+   [
+    0.01,
+    "LOITER"
+   ]
+  ],
+  "fix_gap_max_s": 4.08,
+  "fix_gap_at_s": 20.08,
+  "fix_gaps_over_1s": [
+   [
+    20.1,
+    4.1
+   ]
+  ],
+  "engaged_note_at": -0.01,
+  "kf_events": [
+   [
+    -11.66,
+    "kf",
+    "42.55",
+    "15.18"
+   ],
+   [
+    13.81,
+    "kf",
+    "59.68",
+    "15.18"
+   ],
+   [
+    23.04,
+    "kf",
+    "",
+    "15.18"
+   ],
+   [
+    23.21,
+    "kf",
+    "59.66",
+    ""
+   ],
+   [
+    23.29,
+    "home",
+    "59.66",
+    "59.66"
+   ]
+  ],
+  "fresh_kf_served_at": null,
+  "kf_changes_in_hold": 3,
+  "home_changes_in_hold": 1,
+  "home_h_at_switch": "15.18",
+  "outage_start": 20.04,
+  "outage_end": 23.04,
+  "dist_at_outage_start": 0.639973985396576,
+  "dist_at_outage_end": 0.486349977087276,
+  "max_during": 0.6498476298064136,
+  "move_during": 0.7755184780507052,
+  "rms_during": 0.5584341395237044,
+  "max_10s_after": 1.09805236408731,
+  "rms_10s_after": 0.7560121995219748,
+  "dist_10s_after": 0.4267304391844918,
+  "max_before": 1.299421085432312,
+  "rms_before": 0.787724642597462,
+  "max_rest": 1.1491016410128614,
+  "first_fix_after": 24.165,
+  "back_to_fix_s": 1.125,
+  "last_fix_before": 19.998,
+  "why_after_back": {
+   "picture broken up": 1,
+   "picture just after a broken-up one": 1,
+   "init": 1,
+   "good fix 1 of 10": 1,
+   "good fix 2 of 10": 1,
+   "good fix 3 of 10": 1,
+   "good fix 4 of 10": 1,
+   "good fix 5 of 10": 1,
+   "good fix 6 of 10": 1,
+   "good fix 7 of 10": 1,
+   "good fix 8 of 10": 1,
+   "good fix 9 of 10": 1,
+   "": 2
+  },
+  "fc_texts_hold": [],
+  "ferr_rms_10s": 0.44611676429637726,
+  "ferr_max_10s": 0.6932930922062039,
+  "ferr_rms_60s": 0.5036518447976572,
+  "ferr_max_60s": 0.7986319476476753,
+  "ferr_step": 0.4484485700525539,
+  "ferr_mean_before_drop": [
+   0.44,
+   -0.166
+  ],
+  "ferr_mean_after_back": [
+   0.388,
+   0.16
+  ],
+  "anchor_shift_m": 0.3302651389598833,
+  "hold_cfg": {
+   "repeat_diff": 0.01
+  },
+  "rows_after_back": [
+   [
+    23.04,
+    "lost",
+    "picture broken up (impulse z 2, band brightness z 13)",
+    "0",
+    "recovery test: video back; re-anchored to FC position -0.15 1.36"
+   ],
+   [
+    23.12,
+    "lost",
+    "picture just after a broken-up one",
+    "0",
+    "re-anchored to FC position -0.14 1.38"
+   ],
+   [
+    23.21,
+    "init",
+    "init",
+    "0",
+    ""
+   ],
+   [
+    23.29,
+    "ok",
+    "good fix 1 of 10",
+    "0",
+    ""
+   ],
+   [
+    23.37,
+    "ok",
+    "good fix 2 of 10",
+    "0",
+    ""
+   ],
+   [
+    23.46,
+    "ok",
+    "good fix 3 of 10",
+    "0",
+    ""
+   ],
+   [
+    23.54,
+    "ok",
+    "good fix 4 of 10",
+    "0",
+    ""
+   ],
+   [
+    23.62,
+    "ok",
+    "good fix 5 of 10",
+    "0",
+    ""
+   ],
+   [
+    23.71,
+    "ok",
+    "good fix 6 of 10",
+    "0",
+    ""
+   ],
+   [
+    23.79,
+    "ok",
+    "good fix 7 of 10",
+    "0",
+    ""
+   ]
+  ]
+ },
+ "rec_60m_s2": {
+  "case": "rec_60m_s2",
+  "rms": 0.7790675942204061,
+  "p95": 1.4180328114317242,
+  "max": 1.6998935926109624,
+  "end": 1.255139934781106,
+  "pct_frames_fix": 18.977493748263406,
+  "fix_rate_hz": 11.383135385161612,
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 5, 0.0 s after the Loiter request started"
+   ]
+  ],
+  "hold_s_flown": 60.0,
+  "climb_s": 24.9,
+  "age_ms_p50": 128.8,
+  "drift_m_per_min": 0.9133195589602648,
+  "proc_ms_mean": 80.93482014388489,
+  "handover_ms_p50": 6.460316330048954,
+  "handover_ms_p95": 12.831834299868206,
+  "reanchors": 1,
+  "hold_why": {
+   "recovery test: video dropped": 180,
+   "picture broken up": 1,
+   "picture just after a broken-up one": 1,
+   "init": 1,
+   "good fix 1 of 10": 1,
+   "good fix 2 of 10": 1,
+   "good fix 3 of 10": 1,
+   "good fix 4 of 10": 1
+  },
+  "onboard_exit": 0,
+  "frac_ok": 0.99568345323741,
+  "onboard": [
+   [
+    7.11,
+    "connected",
+    "ardupilot, clock ready True, ATTITUDE 100 Hz"
+   ],
+   [
+    97.45,
+    "done",
+    "stopped after 1 start(s); frame age when taken p50 10 ms, p95 23 ms; SCALED_IMU 0 Hz, 0 rows kept"
+   ]
+  ],
+  "height": 60.0,
+  "seed": 2,
+  "settings": {
+   "outage_test_s": 3.0,
+   "outage_after_s": 20.0
+  },
+  "video": "JUSTICE_D",
+  "wall_s": 99,
+  "load_start": [
+   6.49755859375,
+   6.634765625,
+   6.3974609375
+  ],
+  "load_end": [
+   6.0205078125,
+   6.27197265625,
+   6.27783203125
+  ],
+  "jobs_start": {
+   "other_sitl": 0,
+   "px4_sim": false
+  },
+  "jobs_end": {
+   "other_sitl": 0,
+   "px4_sim": false
+  },
+  "option": "outage 3 s at 20 s",
+  "texts_all": [
+   [
+    -37.04,
+    "Barometer 1 calibration complete"
+   ],
+   [
+    -37.04,
+    "Barometer 2 calibration complete"
+   ],
+   [
+    -34.59,
+    "ArduPilot Ready"
+   ],
+   [
+    -34.59,
+    "AHRS: DCM active"
+   ],
+   [
+    -34.29,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    -32.97,
+    "No ap_message for mavlink id (331)"
+   ],
+   [
+    -32.9,
+    "No ap_message for mavlink id (290)"
+   ],
+   [
+    -32.89,
+    "No ap_message for mavlink id (291)"
+   ],
+   [
+    -32.85,
+    "No ap_message for mavlink id (231)"
+   ],
+   [
+    -32.85,
+    "No ap_message for mavlink id (141)"
+   ],
+   [
+    -32.59,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    -32.59,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    -32.58,
+    "AHRS: EKF3 active"
+   ],
+   [
+    -31.21,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    -31.21,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    -31.1,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -31.1,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -25.77,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -25.33,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    -25.33,
+    "Arming motors"
+   ],
+   [
+    -24.87,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -21.66,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -21.66,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -20.31,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -20.31,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -16.74,
+    "EKF3 IMU0 is using external nav data"
+   ],
+   [
+    -16.74,
+    "EKF3 IMU0 initial pos NED = 0.1,0.1,-18.9 (m)"
+   ],
+   [
+    -16.74,
+    "EKF3 IMU1 is using external nav data"
+   ],
+   [
+    -16.74,
+    "EKF3 IMU1 initial pos NED = 0.1,0.1,-18.9 (m)"
+   ]
+  ],
+  "rms_10s": 0.32496930992253775,
+  "max_10s": 0.5821381086081272,
+  "rms_10_60": 0.8409925075093231,
+  "max_10_60": 1.6998935926109624,
+  "notes": [
+   [
+    -21.51,
+    "FC mode ALT_HOLD"
+   ],
+   [
+    -17.71,
+    "re-anchored to last position (no FC position) 0.00 0.00"
+   ],
+   [
+    -0.04,
+    "engaged: FC mode LOITER"
+   ],
+   [
+    20.03,
+    "recovery test: video dropped for 3 s"
+   ],
+   [
+    23.03,
+    "recovery test: video back; re-anchored to FC position 0.35 -0.86"
+   ],
+   [
+    23.13,
+    "re-anchored to FC position 0.35 -0.88"
+   ]
+  ],
+  "notes_all_n": 14,
+  "onboard_modes": [
+   [
+    -21.51,
+    "ALT_HOLD"
+   ],
+   [
+    -0.04,
+    "LOITER"
+   ]
+  ],
+  "fc_modes": [
+   [
+    -37.04,
+    "0"
+   ],
+   [
+    -25.82,
+    "ALT_HOLD"
+   ],
+   [
+    0.01,
+    "LOITER"
+   ]
+  ],
+  "fix_gap_max_s": 4.08,
+  "fix_gap_at_s": 20.07,
+  "fix_gaps_over_1s": [
+   [
+    20.1,
+    4.1
+   ]
+  ],
+  "engaged_note_at": -0.04,
+  "kf_events": [
+   [
+    -14.57,
+    "kf",
+    "29.29",
+    "15.10"
+   ],
+   [
+    -10.22,
+    "kf",
+    "49.77",
+    "15.10"
+   ],
+   [
+    23.03,
+    "kf",
+    "",
+    "15.10"
+   ],
+   [
+    23.21,
+    "kf",
+    "59.72",
+    ""
+   ],
+   [
+    23.29,
+    "home",
+    "59.72",
+    "59.72"
+   ]
+  ],
+  "fresh_kf_served_at": null,
+  "kf_changes_in_hold": 2,
+  "home_changes_in_hold": 1,
+  "home_h_at_switch": "15.10",
+  "outage_start": 20.03,
+  "outage_end": 23.03,
+  "dist_at_outage_start": 0.44614732269821067,
+  "dist_at_outage_end": 0.2734094757789464,
+  "max_during": 0.44711624373538056,
+  "move_during": 0.17314930439543966,
+  "rms_during": 0.34744118525546447,
+  "max_10s_after": 1.3819294957993669,
+  "rms_10s_after": 1.045641243386921,
+  "dist_10s_after": 0.4537045348068567,
+  "max_before": 0.830341191233816,
+  "rms_before": 0.41781101021766937,
+  "max_rest": 1.6998935926109624,
+  "first_fix_after": 24.154,
+  "back_to_fix_s": 1.124,
+  "last_fix_before": 19.992,
+  "why_after_back": {
+   "picture just after a broken-up one": 1,
+   "init": 1,
+   "good fix 1 of 10": 1,
+   "good fix 2 of 10": 1,
+   "good fix 3 of 10": 1,
+   "good fix 4 of 10": 1,
+   "good fix 5 of 10": 1,
+   "good fix 6 of 10": 1,
+   "good fix 7 of 10": 1,
+   "good fix 8 of 10": 1,
+   "good fix 9 of 10": 1,
+   "": 2
+  },
+  "fc_texts_hold": [],
+  "ferr_rms_10s": 0.12588227510473537,
+  "ferr_max_10s": 0.2917426508929486,
+  "ferr_rms_60s": 0.5200597498952582,
+  "ferr_max_60s": 0.8870957582081465,
+  "ferr_step": 0.8569345569399681,
+  "ferr_mean_before_drop": [
+   -0.003,
+   0.085
+  ],
+  "ferr_mean_after_back": [
+   -0.147,
+   0.656
+  ],
+  "anchor_shift_m": 0.5891968420527114,
+  "hold_cfg": {
+   "repeat_diff": 0.01
+  },
+  "rows_after_back": [
+   [
+    23.03,
+    "lost",
+    "picture broken up (impulse z 1, band brightness z 8)",
+    "0",
+    "recovery test: video back; re-anchored to FC position 0.35 -0.86"
+   ],
+   [
+    23.13,
+    "lost",
+    "picture just after a broken-up one",
+    "0",
+    "re-anchored to FC position 0.35 -0.88"
+   ],
+   [
+    23.21,
+    "init",
+    "init",
+    "0",
+    ""
+   ],
+   [
+    23.29,
+    "ok",
+    "good fix 1 of 10",
+    "0",
+    ""
+   ],
+   [
+    23.38,
+    "ok",
+    "good fix 2 of 10",
+    "0",
+    ""
+   ],
+   [
+    23.44,
+    "ok",
+    "good fix 3 of 10",
+    "0",
+    ""
+   ],
+   [
+    23.53,
+    "ok",
+    "good fix 4 of 10",
+    "0",
+    ""
+   ],
+   [
+    23.63,
+    "ok",
+    "good fix 5 of 10",
+    "0",
+    ""
+   ],
+   [
+    23.69,
+    "ok",
+    "good fix 6 of 10",
+    "0",
+    ""
+   ],
+   [
+    23.78,
+    "ok",
+    "good fix 7 of 10",
+    "0",
+    ""
+   ]
+  ]
+ },
+ "eng_60m_off_s1": {
+  "case": "eng_60m_off_s1",
+  "rms": 0.48312730531145337,
+  "p95": 0.8256373159480025,
+  "max": 1.130606395825161,
+  "end": 0.18415176532346839,
+  "pct_frames_fix": 20.283412058905252,
+  "fix_rate_hz": 12.166464070302302,
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 5, 0.0 s after the Loiter request started"
+   ]
+  ],
+  "hold_s_flown": 60.0,
+  "climb_s": 24.9,
+  "age_ms_p50": 129.0,
+  "drift_m_per_min": 0.5471088944464715,
+  "proc_ms_mean": 80.93520547945205,
+  "handover_ms_p50": 6.475741669419222,
+  "handover_ms_p95": 13.163718435316689,
+  "reanchors": 0,
+  "hold_why": {},
+  "onboard_exit": 0,
+  "frac_ok": 0.9986301369863013,
+  "onboard": [
+   [
+    7.04,
+    "connected",
+    "ardupilot, clock ready True, ATTITUDE 100 Hz"
+   ],
+   [
+    97.37,
+    "done",
+    "stopped after 1 start(s); frame age when taken p50 11 ms, p95 24 ms; SCALED_IMU 0 Hz, 0 rows kept"
+   ]
+  ],
+  "height": 60.0,
+  "seed": 1,
+  "settings": {
+   "fresh_kf_at_engage": false
+  },
+  "video": "JUSTICE_D",
+  "wall_s": 98,
+  "load_start": [
+   7.38916015625,
+   6.521484375,
+   6.01123046875
+  ],
+  "load_end": [
+   5.5341796875,
+   6.26220703125,
+   5.97509765625
+  ],
+  "jobs_start": {
+   "other_sitl": 0,
+   "px4_sim": false
+  },
+  "jobs_end": {
+   "other_sitl": 0,
+   "px4_sim": false
+  },
+  "option": "fresh_kf false",
+  "texts_all": [
+   [
+    -36.96,
+    "Barometer 1 calibration complete"
+   ],
+   [
+    -36.96,
+    "Barometer 2 calibration complete"
+   ],
+   [
+    -34.51,
+    "ArduPilot Ready"
+   ],
+   [
+    -34.51,
+    "AHRS: DCM active"
+   ],
+   [
+    -34.21,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    -32.85,
+    "No ap_message for mavlink id (331)"
+   ],
+   [
+    -32.79,
+    "No ap_message for mavlink id (290)"
+   ],
+   [
+    -32.78,
+    "No ap_message for mavlink id (291)"
+   ],
+   [
+    -32.74,
+    "No ap_message for mavlink id (231)"
+   ],
+   [
+    -32.73,
+    "No ap_message for mavlink id (141)"
+   ],
+   [
+    -32.51,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    -32.51,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    -32.51,
+    "AHRS: EKF3 active"
+   ],
+   [
+    -31.12,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    -31.12,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    -31.02,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -31.02,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -25.69,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -25.24,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    -25.24,
+    "Arming motors"
+   ],
+   [
+    -24.89,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -21.56,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -21.56,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -20.23,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -20.22,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -16.62,
+    "EKF3 IMU1 is using external nav data"
+   ],
+   [
+    -16.62,
+    "EKF3 IMU1 initial pos NED = 0.0,0.0,-19.0 (m)"
+   ],
+   [
+    -16.62,
+    "EKF3 IMU0 is using external nav data"
+   ],
+   [
+    -16.62,
+    "EKF3 IMU0 initial pos NED = 0.0,0.0,-19.0 (m)"
+   ]
+  ],
+  "rms_10s": 0.46976541992203896,
+  "max_10s": 0.8086113378740105,
+  "rms_10_60": 0.48576382509900734,
+  "max_10_60": 1.130606395825161,
+  "notes": [
+   [
+    -21.41,
+    "FC mode ALT_HOLD"
+   ],
+   [
+    -17.59,
+    "re-anchored to last position (no FC position) 0.00 0.00"
+   ],
+   [
+    -0.03,
+    "engaged: FC mode LOITER"
+   ]
+  ],
+  "notes_all_n": 12,
+  "onboard_modes": [
+   [
+    -21.41,
+    "ALT_HOLD"
+   ],
+   [
+    -0.03,
+    "LOITER"
+   ]
+  ],
+  "fc_modes": [
+   [
+    -36.96,
+    "0"
+   ],
+   [
+    -25.74,
+    "ALT_HOLD"
+   ],
+   [
+    0.02,
+    "LOITER"
+   ]
+  ],
+  "fix_gap_max_s": 0.12,
+  "fix_gap_at_s": 19.73,
+  "fix_gaps_over_1s": [],
+  "engaged_note_at": -0.03,
+  "kf_events": [
+   [
+    -12.36,
+    "kf",
+    "39.20",
+    "15.18"
+   ],
+   [
+    7.14,
+    "kf",
+    "59.69",
+    "15.18"
+   ],
+   [
+    19.27,
+    "kf",
+    "39.20",
+    "15.18"
+   ],
+   [
+    21.61,
+    "kf",
+    "59.69",
+    "15.18"
+   ],
+   [
+    22.82,
+    "kf",
+    "59.71",
+    "15.18"
+   ],
+   [
+    32.61,
+    "kf",
+    "59.69",
+    "15.18"
+   ],
+   [
+    34.41,
+    "kf",
+    "59.71",
+    "15.18"
+   ]
+  ],
+  "fresh_kf_served_at": null,
+  "kf_changes_in_hold": 6,
+  "home_changes_in_hold": 0,
+  "home_h_at_switch": "15.18",
+  "fc_texts_hold": [],
+  "ferr_rms_10s": 0.15483733611984543,
+  "ferr_max_10s": 0.36992027421365703,
+  "ferr_rms_60s": 0.2471767729191358,
+  "ferr_max_60s": 0.5543348961241839,
+  "ferr_step": 0.39749591707528475
+ },
+ "eng_60m_off_s2": {
+  "case": "eng_60m_off_s2",
+  "rms": 0.5848163171967927,
+  "p95": 1.0390669980672966,
+  "max": 1.1578822664200044,
+  "end": 0.9094877437695543,
+  "pct_frames_fix": 20.344635908838242,
+  "fix_rate_hz": 12.199787255433792,
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 5, 0.0 s after the Loiter request started"
+   ]
+  ],
+  "hold_s_flown": 60.0,
+  "climb_s": 25.0,
+  "age_ms_p50": 129.1,
+  "drift_m_per_min": 0.3987956491569602,
+  "proc_ms_mean": 80.9431693989071,
+  "handover_ms_p50": 6.4310786674468545,
+  "handover_ms_p95": 13.137550934152376,
+  "reanchors": 0,
+  "hold_why": {},
+  "onboard_exit": 0,
+  "frac_ok": 1.0,
+  "onboard": [
+   [
+    7.03,
+    "connected",
+    "ardupilot, clock ready True, ATTITUDE 99 Hz"
+   ],
+   [
+    97.41,
+    "done",
+    "stopped after 1 start(s); frame age when taken p50 11 ms, p95 23 ms; SCALED_IMU 0 Hz, 0 rows kept"
+   ]
+  ],
+  "height": 60.0,
+  "seed": 2,
+  "settings": {
+   "fresh_kf_at_engage": false
+  },
+  "video": "JUSTICE_D",
+  "wall_s": 98,
+  "load_start": [
+   5.4091796875,
+   7.02099609375,
+   6.47802734375
+  ],
+  "load_end": [
+   4.0634765625,
+   6.14111328125,
+   6.216796875
+  ],
+  "jobs_start": {
+   "other_sitl": 0,
+   "px4_sim": false
+  },
+  "jobs_end": {
+   "other_sitl": 0,
+   "px4_sim": false
+  },
+  "option": "fresh_kf false",
+  "texts_all": [
+   [
+    -37.0,
+    "Barometer 1 calibration complete"
+   ],
+   [
+    -37.0,
+    "Barometer 2 calibration complete"
+   ],
+   [
+    -34.55,
+    "ArduPilot Ready"
+   ],
+   [
+    -34.55,
+    "AHRS: DCM active"
+   ],
+   [
+    -34.25,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    -32.9,
+    "No ap_message for mavlink id (331)"
+   ],
+   [
+    -32.84,
+    "No ap_message for mavlink id (290)"
+   ],
+   [
+    -32.83,
+    "No ap_message for mavlink id (291)"
+   ],
+   [
+    -32.8,
+    "No ap_message for mavlink id (231)"
+   ],
+   [
+    -32.79,
+    "No ap_message for mavlink id (141)"
+   ],
+   [
+    -32.55,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    -32.55,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    -32.54,
+    "AHRS: EKF3 active"
+   ],
+   [
+    -31.17,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    -31.17,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    -31.06,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -31.06,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -25.73,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -25.27,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    -25.27,
+    "Arming motors"
+   ],
+   [
+    -24.89,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -21.59,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -21.59,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -20.27,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -20.26,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -16.69,
+    "EKF3 IMU0 is using external nav data"
+   ],
+   [
+    -16.69,
+    "EKF3 IMU0 initial pos NED = 0.1,0.1,-18.9 (m)"
+   ],
+   [
+    -16.68,
+    "EKF3 IMU1 is using external nav data"
+   ],
+   [
+    -16.68,
+    "EKF3 IMU1 initial pos NED = 0.1,0.1,-18.9 (m)"
+   ]
+  ],
+  "rms_10s": 0.7301293441817429,
+  "max_10s": 1.1578822664200044,
+  "rms_10_60": 0.5512078305717294,
+  "max_10_60": 1.0876882143364284,
+  "notes": [
+   [
+    -21.45,
+    "FC mode ALT_HOLD"
+   ],
+   [
+    -17.65,
+    "re-anchored to last position (no FC position) 0.00 0.00"
+   ],
+   [
+    -15.12,
+    "re-anchored to FC position 0.05 0.08"
+   ],
+   [
+    -0.02,
+    "engaged: FC mode LOITER"
+   ]
+  ],
+  "notes_all_n": 13,
+  "onboard_modes": [
+   [
+    -21.45,
+    "ALT_HOLD"
+   ],
+   [
+    -0.02,
+    "LOITER"
+   ]
+  ],
+  "fc_modes": [
+   [
+    -37.0,
+    "0"
+   ],
+   [
+    -25.76,
+    "ALT_HOLD"
+   ],
+   [
+    0.0,
+    "LOITER"
+   ]
+  ],
+  "fix_gap_max_s": 0.11,
+  "fix_gap_at_s": 13.15,
+  "fix_gaps_over_1s": [],
+  "engaged_note_at": -0.02,
+  "kf_events": [
+   [
+    -14.97,
+    "home",
+    "26.84",
+    "26.84"
+   ],
+   [
+    -10.58,
+    "kf",
+    "47.76",
+    "26.84"
+   ],
+   [
+    36.18,
+    "kf",
+    "59.71",
+    "26.84"
+   ],
+   [
+    55.02,
+    "kf",
+    "47.76",
+    "26.84"
+   ]
+  ],
+  "fresh_kf_served_at": null,
+  "kf_changes_in_hold": 2,
+  "home_changes_in_hold": 0,
+  "home_h_at_switch": "26.84",
+  "fc_texts_hold": [],
+  "ferr_rms_10s": 0.25476840677044765,
+  "ferr_max_10s": 0.5266088338547251,
+  "ferr_rms_60s": 0.28032670769447626,
+  "ferr_max_60s": 0.7113204772176438,
+  "ferr_step": 0.2198279247893957
+ },
+ "rec_60m_gj_s1": {
+  "case": "rec_60m_gj_s1",
+  "rms": 0.6062448216587633,
+  "p95": 0.957584699913253,
+  "max": 1.0159750059316845,
+  "end": 0.4560746679103267,
+  "pct_frames_fix": 19.131161236424393,
+  "fix_rate_hz": 11.449820904191204,
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 5, 0.0 s after the Loiter request started"
+   ]
+  ],
+  "hold_s_flown": 60.0,
+  "climb_s": 24.8,
+  "age_ms_p50": 128.7,
+  "drift_m_per_min": 1.0518909625767245,
+  "proc_ms_mean": 80.93850574712644,
+  "handover_ms_p50": 6.276898002397502,
+  "handover_ms_p95": 14.278275331889745,
+  "reanchors": 0,
+  "hold_why": {
+   "recovery test: video dropped": 181,
+   "good fix 1 of 10": 1,
+   "good fix 2 of 10": 1,
+   "good fix 3 of 10": 1,
+   "good fix 4 of 10": 1,
+   "good fix 5 of 10": 1,
+   "good fix 6 of 10": 1,
+   "good fix 7 of 10": 1
+  },
+  "onboard_exit": 0,
+  "frac_ok": 1.0,
+  "onboard": [
+   [
+    7.1,
+    "connected",
+    "ardupilot, clock ready True, ATTITUDE 100 Hz"
+   ],
+   [
+    97.25,
+    "done",
+    "stopped after 1 start(s); frame age when taken p50 12 ms, p95 30 ms; SCALED_IMU 0 Hz, 0 rows kept"
+   ]
+  ],
+  "height": 60.0,
+  "seed": 1,
+  "settings": {
+   "outage_test_s": 3.0,
+   "outage_after_s": 20.0
+  },
+  "video": "JUSTICE_D",
+  "wall_s": 98,
+  "load_start": [
+   1.17919921875,
+   3.5859375,
+   5.49560546875
+  ],
+  "load_end": [
+   2.7021484375,
+   3.60693359375,
+   5.31982421875
+  ],
+  "jobs_start": {
+   "other_sitl": 0,
+   "px4_sim": false
+  },
+  "jobs_end": {
+   "other_sitl": 0,
+   "px4_sim": false
+  },
+  "option": "outage + gap_jump 0.5",
+  "texts_all": [
+   [
+    -36.85,
+    "Barometer 1 calibration complete"
+   ],
+   [
+    -36.85,
+    "Barometer 2 calibration complete"
+   ],
+   [
+    -34.4,
+    "ArduPilot Ready"
+   ],
+   [
+    -34.4,
+    "AHRS: DCM active"
+   ],
+   [
+    -34.1,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    -32.77,
+    "No ap_message for mavlink id (331)"
+   ],
+   [
+    -32.72,
+    "No ap_message for mavlink id (290)"
+   ],
+   [
+    -32.71,
+    "No ap_message for mavlink id (291)"
+   ],
+   [
+    -32.66,
+    "No ap_message for mavlink id (231)"
+   ],
+   [
+    -32.65,
+    "No ap_message for mavlink id (141)"
+   ],
+   [
+    -32.39,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    -32.39,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    -32.39,
+    "AHRS: EKF3 active"
+   ],
+   [
+    -31.01,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    -31.01,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    -30.91,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -30.91,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -25.53,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -25.1,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    -25.1,
+    "Arming motors"
+   ],
+   [
+    -24.74,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -21.42,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -21.42,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -20.11,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -20.01,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -16.5,
+    "EKF3 IMU1 is using external nav data"
+   ],
+   [
+    -16.5,
+    "EKF3 IMU1 initial pos NED = -0.0,0.1,-18.8 (m)"
+   ],
+   [
+    -16.5,
+    "EKF3 IMU0 is using external nav data"
+   ],
+   [
+    -16.5,
+    "EKF3 IMU0 initial pos NED = -0.0,0.1,-18.8 (m)"
+   ]
+  ],
+  "rms_10s": 0.45837310389632663,
+  "max_10s": 0.823237752908491,
+  "rms_10_60": 0.6317190476091866,
+  "max_10_60": 1.0159750059316845,
+  "notes": [
+   [
+    -21.28,
+    "FC mode ALT_HOLD"
+   ],
+   [
+    -17.48,
+    "re-anchored to last position (no FC position) 0.00 0.00"
+   ],
+   [
+    0.02,
+    "engaged: FC mode LOITER"
+   ],
+   [
+    20.09,
+    "recovery test: video dropped for 3 s"
+   ],
+   [
+    23.11,
+    "recovery test: video back"
+   ]
+  ],
+  "notes_all_n": 13,
+  "onboard_modes": [
+   [
+    -21.28,
+    "ALT_HOLD"
+   ],
+   [
+    0.02,
+    "LOITER"
+   ]
+  ],
+  "fc_modes": [
+   [
+    -36.85,
+    "0"
+   ],
+   [
+    -25.58,
+    "ALT_HOLD"
+   ],
+   [
+    0.02,
+    "LOITER"
+   ]
+  ],
+  "fix_gap_max_s": 3.83,
+  "fix_gap_at_s": 20.14,
+  "fix_gaps_over_1s": [
+   [
+    20.1,
+    3.8
+   ]
+  ],
+  "engaged_note_at": 0.02,
+  "kf_events": [
+   [
+    -12.48,
+    "kf",
+    "37.79",
+    "15.02"
+   ],
+   [
+    6.67,
+    "kf",
+    "59.71",
+    "15.02"
+   ],
+   [
+    31.76,
+    "kf",
+    "37.79",
+    "15.02"
+   ],
+   [
+    32.91,
+    "kf",
+    "59.71",
+    "15.02"
+   ]
+  ],
+  "fresh_kf_served_at": null,
+  "kf_changes_in_hold": 3,
+  "home_changes_in_hold": 0,
+  "home_h_at_switch": "15.02",
+  "outage_start": 20.09,
+  "outage_end": 23.11,
+  "dist_at_outage_start": 0.3685548919502065,
+  "dist_at_outage_end": 0.7638340834726787,
+  "max_during": 0.7638340834726787,
+  "move_during": 0.747497873518676,
+  "rms_during": 0.4525908650719571,
+  "max_10s_after": 1.0159750059316845,
+  "rms_10s_after": 0.814571543474574,
+  "dist_10s_after": 0.9165338711856531,
+  "max_before": 0.823237752908491,
+  "rms_before": 0.43229393338973937,
+  "max_rest": 0.9722325501964494,
+  "first_fix_after": 23.967,
+  "back_to_fix_s": 0.857,
+  "last_fix_before": 20.057,
+  "why_after_back": {
+   "good fix 2 of 10": 1,
+   "good fix 3 of 10": 1,
+   "good fix 4 of 10": 1,
+   "good fix 5 of 10": 1,
+   "good fix 6 of 10": 1,
+   "good fix 7 of 10": 1,
+   "good fix 8 of 10": 1,
+   "good fix 9 of 10": 1,
+   "": 2
+  },
+  "fc_texts_hold": [],
+  "ferr_mean_before_drop": [
+   -0.263,
+   0.131
+  ],
+  "ferr_mean_after_back": [
+   -0.399,
+   0.145
+  ],
+  "anchor_shift_m": 0.13640582146263447,
+  "ferr_rms_10s": 0.16213460932318388,
+  "ferr_max_10s": 0.41973067746792264,
+  "ferr_rms_60s": 0.5469452491924854,
+  "ferr_max_60s": 0.9006020592065396,
+  "ferr_step": 0.15178124978403099,
+  "hold_cfg": {
+   "repeat_diff": 0.01,
+   "gap_jump_s": 0.5
+  },
+  "rows_after_back": [
+   [
+    23.11,
+    "ok",
+    "good fix 1 of 10",
+    "0",
+    "recovery test: video back"
+   ],
+   [
+    23.19,
+    "ok",
+    "good fix 2 of 10",
+    "0",
+    ""
+   ],
+   [
+    23.27,
+    "ok",
+    "good fix 3 of 10",
+    "0",
+    ""
+   ],
+   [
+    23.36,
+    "ok",
+    "good fix 4 of 10",
+    "0",
+    ""
+   ],
+   [
+    23.44,
+    "ok",
+    "good fix 5 of 10",
+    "0",
+    ""
+   ],
+   [
+    23.52,
+    "ok",
+    "good fix 6 of 10",
+    "0",
+    ""
+   ],
+   [
+    23.59,
+    "ok",
+    "good fix 7 of 10",
+    "0",
+    ""
+   ],
+   [
+    23.67,
+    "ok",
+    "good fix 8 of 10",
+    "0",
+    ""
+   ],
+   [
+    23.76,
+    "ok",
+    "good fix 9 of 10",
+    "0",
+    ""
+   ],
+   [
+    23.84,
+    "ok",
+    "",
+    "1",
+    ""
+   ]
+  ]
+ },
+ "rec_60m_gj_s2": {
+  "case": "rec_60m_gj_s2",
+  "rms": 0.5845868234861368,
+  "p95": 1.0236557775174002,
+  "max": 1.2441856828306774,
+  "end": 1.0605627935619162,
+  "pct_frames_fix": 19.194444444444443,
+  "fix_rate_hz": 11.51551859134301,
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 5, 0.0 s after the Loiter request started"
+   ]
+  ],
+  "hold_s_flown": 60.0,
+  "climb_s": 25.0,
+  "age_ms_p50": 128.1,
+  "drift_m_per_min": 0.656343468975618,
+  "proc_ms_mean": 80.66199999999999,
+  "handover_ms_p50": 5.443662332254462,
+  "handover_ms_p95": 9.33628701568523,
+  "reanchors": 0,
+  "hold_why": {
+   "recovery test: video dropped": 181,
+   "good fix 1 of 10": 1,
+   "good fix 2 of 10": 1,
+   "good fix 3 of 10": 1,
+   "good fix 4 of 10": 1,
+   "good fix 5 of 10": 1,
+   "good fix 6 of 10": 1,
+   "good fix 7 of 10": 1
+  },
+  "onboard_exit": 0,
+  "frac_ok": 1.0,
+  "onboard": [
+   [
+    7.02,
+    "connected",
+    "ardupilot, clock ready True, ATTITUDE 100 Hz"
+   ],
+   [
+    97.44,
+    "done",
+    "stopped after 1 start(s); frame age when taken p50 10 ms, p95 22 ms; SCALED_IMU 0 Hz, 0 rows kept"
+   ]
+  ],
+  "height": 60.0,
+  "seed": 2,
+  "settings": {
+   "outage_test_s": 3.0,
+   "outage_after_s": 20.0
+  },
+  "video": "JUSTICE_D",
+  "wall_s": 98,
+  "load_start": [
+   2.7021484375,
+   3.60693359375,
+   5.31982421875
+  ],
+  "load_end": [
+   3.169921875,
+   3.7724609375,
+   5.2197265625
+  ],
+  "jobs_start": {
+   "other_sitl": 0,
+   "px4_sim": false
+  },
+  "jobs_end": {
+   "other_sitl": 0,
+   "px4_sim": false
+  },
+  "option": "outage + gap_jump 0.5",
+  "texts_all": [
+   [
+    -37.03,
+    "Barometer 1 calibration complete"
+   ],
+   [
+    -37.03,
+    "Barometer 2 calibration complete"
+   ],
+   [
+    -34.57,
+    "ArduPilot Ready"
+   ],
+   [
+    -34.57,
+    "AHRS: DCM active"
+   ],
+   [
+    -34.28,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    -32.93,
+    "No ap_message for mavlink id (331)"
+   ],
+   [
+    -32.87,
+    "No ap_message for mavlink id (290)"
+   ],
+   [
+    -32.86,
+    "No ap_message for mavlink id (291)"
+   ],
+   [
+    -32.82,
+    "No ap_message for mavlink id (231)"
+   ],
+   [
+    -32.81,
+    "No ap_message for mavlink id (141)"
+   ],
+   [
+    -32.57,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    -32.57,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    -32.57,
+    "AHRS: EKF3 active"
+   ],
+   [
+    -31.19,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    -31.19,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    -31.09,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -31.09,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -25.75,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -25.29,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    -25.29,
+    "Arming motors"
+   ],
+   [
+    -24.91,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -21.63,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -21.63,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -20.3,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -20.29,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -16.72,
+    "EKF3 IMU1 is using external nav data"
+   ],
+   [
+    -16.72,
+    "EKF3 IMU1 initial pos NED = 0.1,0.1,-18.8 (m)"
+   ],
+   [
+    -16.72,
+    "EKF3 IMU0 is using external nav data"
+   ],
+   [
+    -16.72,
+    "EKF3 IMU0 initial pos NED = 0.1,0.1,-18.8 (m)"
+   ]
+  ],
+  "rms_10s": 0.5518286919009558,
+  "max_10s": 0.9408431465761353,
+  "rms_10_60": 0.5907754043134561,
+  "max_10_60": 1.2441856828306774,
+  "notes": [
+   [
+    -21.47,
+    "FC mode ALT_HOLD"
+   ],
+   [
+    -17.67,
+    "re-anchored to last position (no FC position) 0.00 0.00"
+   ],
+   [
+    -15.54,
+    "re-anchored to FC position 0.04 0.02"
+   ],
+   [
+    0.03,
+    "engaged: FC mode LOITER"
+   ],
+   [
+    20.04,
+    "recovery test: video dropped for 3 s"
+   ],
+   [
+    23.06,
+    "recovery test: video back"
+   ]
+  ],
+  "notes_all_n": 14,
+  "onboard_modes": [
+   [
+    -21.47,
+    "ALT_HOLD"
+   ],
+   [
+    0.03,
+    "LOITER"
+   ]
+  ],
+  "fc_modes": [
+   [
+    -37.03,
+    "0"
+   ],
+   [
+    -25.77,
+    "ALT_HOLD"
+   ],
+   [
+    0.0,
+    "LOITER"
+   ]
+  ],
+  "fix_gap_max_s": 3.82,
+  "fix_gap_at_s": 20.09,
+  "fix_gaps_over_1s": [
+   [
+    20.1,
+    3.8
+   ]
+  ],
+  "engaged_note_at": 0.03,
+  "kf_events": [
+   [
+    -10.62,
+    "kf",
+    "47.73",
+    "25.14"
+   ],
+   [
+    7.34,
+    "kf",
+    "59.67",
+    "25.14"
+   ],
+   [
+    51.53,
+    "kf",
+    "47.73",
+    "25.14"
+   ],
+   [
+    52.74,
+    "kf",
+    "59.67",
+    "25.14"
+   ],
+   [
+    54.78,
+    "kf",
+    "59.69",
+    "25.14"
+   ]
+  ],
+  "fresh_kf_served_at": null,
+  "kf_changes_in_hold": 4,
+  "home_changes_in_hold": 0,
+  "home_h_at_switch": "25.14",
+  "outage_start": 20.04,
+  "outage_end": 23.06,
+  "dist_at_outage_start": 0.3070482489003672,
+  "dist_at_outage_end": 0.4730426180379293,
+  "max_during": 0.4730426180379293,
+  "move_during": 0.2572857904672229,
+  "rms_during": 0.31343492947696994,
+  "max_10s_after": 1.0308310787082944,
+  "rms_10s_after": 0.6755722857122689,
+  "dist_10s_after": 0.16049016789497553,
+  "max_before": 0.9408431465761353,
+  "rms_before": 0.46811427026707425,
+  "max_rest": 1.2441856828306774,
+  "first_fix_after": 23.916,
+  "back_to_fix_s": 0.856,
+  "last_fix_before": 20.011,
+  "why_after_back": {
+   "good fix 2 of 10": 1,
+   "good fix 3 of 10": 1,
+   "good fix 4 of 10": 1,
+   "good fix 5 of 10": 1,
+   "good fix 6 of 10": 1,
+   "good fix 7 of 10": 1,
+   "good fix 8 of 10": 1,
+   "good fix 9 of 10": 1,
+   "": 2
+  },
+  "fc_texts_hold": [],
+  "ferr_mean_before_drop": [
+   -0.058,
+   0.196
+  ],
+  "ferr_mean_after_back": [
+   -0.131,
+   0.479
+  ],
+  "anchor_shift_m": 0.2924522492249541,
+  "ferr_rms_10s": 0.11496038982542289,
+  "ferr_max_10s": 0.28029972435050066,
+  "ferr_rms_60s": 0.4455314687966748,
+  "ferr_max_60s": 0.9732023872695,
+  "ferr_step": 0.10917854772620611,
+  "hold_cfg": {
+   "repeat_diff": 0.01,
+   "gap_jump_s": 0.5
+  },
+  "rows_after_back": [
+   [
+    23.06,
+    "ok",
+    "good fix 1 of 10",
+    "0",
+    "recovery test: video back"
+   ],
+   [
+    23.14,
+    "ok",
+    "good fix 2 of 10",
+    "0",
+    ""
+   ],
+   [
+    23.23,
+    "ok",
+    "good fix 3 of 10",
+    "0",
+    ""
+   ],
+   [
+    23.29,
+    "ok",
+    "good fix 4 of 10",
+    "0",
+    ""
+   ],
+   [
+    23.38,
+    "ok",
+    "good fix 5 of 10",
+    "0",
+    ""
+   ],
+   [
+    23.46,
+    "ok",
+    "good fix 6 of 10",
+    "0",
+    ""
+   ],
+   [
+    23.54,
+    "ok",
+    "good fix 7 of 10",
+    "0",
+    ""
+   ],
+   [
+    23.63,
+    "ok",
+    "good fix 8 of 10",
+    "0",
+    ""
+   ],
+   [
+    23.71,
+    "ok",
+    "good fix 9 of 10",
+    "0",
+    ""
+   ],
+   [
+    23.79,
+    "ok",
+    "",
+    "1",
+    ""
+   ]
+  ]
+ },
+ "rec_60m_s3": {
+  "case": "rec_60m_s3",
+  "rms": 0.525248998559358,
+  "p95": 0.9766678317035659,
+  "max": 1.046846964557856,
+  "end": 0.16428669549508879,
+  "pct_frames_fix": 19.38574246266554,
+  "fix_rate_hz": 11.465711820722152,
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 5, 0.0 s after the Loiter request started"
+   ]
+  ],
+  "hold_s_flown": 60.0,
+  "climb_s": 25.1,
+  "age_ms_p50": 128.75,
+  "drift_m_per_min": 0.533124707862573,
+  "proc_ms_mean": 80.69628040057225,
+  "handover_ms_p50": 5.523361000086879,
+  "handover_ms_p95": 10.353812067478428,
+  "reanchors": 0,
+  "hold_why": {
+   "recovery test: video dropped": 181,
+   "good fix 1 of 10": 1,
+   "good fix 2 of 10": 1,
+   "good fix 3 of 10": 1,
+   "good fix 4 of 10": 1,
+   "good fix 5 of 10": 1,
+   "good fix 6 of 10": 1,
+   "good fix 7 of 10": 1
+  },
+  "onboard_exit": 0,
+  "frac_ok": 0.9971387696709585,
+  "onboard": [
+   [
+    7.05,
+    "connected",
+    "ardupilot, clock ready True, ATTITUDE 100 Hz"
+   ],
+   [
+    97.57,
+    "done",
+    "stopped after 1 start(s); frame age when taken p50 10 ms, p95 24 ms; SCALED_IMU 0 Hz, 0 rows kept"
+   ]
+  ],
+  "height": 60.0,
+  "seed": 3,
+  "settings": {
+   "outage_test_s": 3.0,
+   "outage_after_s": 20.0
+  },
+  "video": "JUSTICE_D",
+  "wall_s": 99,
+  "load_start": [
+   2.8359375,
+   3.6806640625,
+   5.173828125
+  ],
+  "load_end": [
+   6.92724609375,
+   4.96142578125,
+   5.48681640625
+  ],
+  "jobs_start": {
+   "other_sitl": 0,
+   "px4_sim": false
+  },
+  "jobs_end": {
+   "other_sitl": 0,
+   "px4_sim": false
+  },
+  "option": "outage 3 s at 20 s",
+  "texts_all": [
+   [
+    -37.16,
+    "Barometer 1 calibration complete"
+   ],
+   [
+    -37.16,
+    "Barometer 2 calibration complete"
+   ],
+   [
+    -34.71,
+    "ArduPilot Ready"
+   ],
+   [
+    -34.71,
+    "AHRS: DCM active"
+   ],
+   [
+    -34.41,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    -33.05,
+    "No ap_message for mavlink id (331)"
+   ],
+   [
+    -32.99,
+    "No ap_message for mavlink id (290)"
+   ],
+   [
+    -32.98,
+    "No ap_message for mavlink id (291)"
+   ],
+   [
+    -32.93,
+    "No ap_message for mavlink id (231)"
+   ],
+   [
+    -32.92,
+    "No ap_message for mavlink id (141)"
+   ],
+   [
+    -32.71,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    -32.71,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    -32.7,
+    "AHRS: EKF3 active"
+   ],
+   [
+    -31.32,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    -31.32,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    -31.22,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -31.22,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -25.87,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -25.4,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    -25.4,
+    "Arming motors"
+   ],
+   [
+    -25.07,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -21.74,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -21.74,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -20.33,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -20.32,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -16.84,
+    "EKF3 IMU0 is using external nav data"
+   ],
+   [
+    -16.84,
+    "EKF3 IMU0 initial pos NED = 0.0,0.0,-18.9 (m)"
+   ],
+   [
+    -16.82,
+    "EKF3 IMU1 is using external nav data"
+   ],
+   [
+    -16.82,
+    "EKF3 IMU1 initial pos NED = 0.0,0.0,-18.9 (m)"
+   ]
+  ],
+  "rms_10s": 0.658748666797665,
+  "max_10s": 1.043752947972656,
+  "rms_10_60": 0.4943619057275675,
+  "max_10_60": 1.046846964557856,
+  "notes": [
+   [
+    -21.59,
+    "FC mode ALT_HOLD"
+   ],
+   [
+    -17.79,
+    "re-anchored to last position (no FC position) 0.00 0.00"
+   ],
+   [
+    -15.93,
+    "re-anchored to FC position 0.07 0.06"
+   ],
+   [
+    0.04,
+    "engaged: FC mode LOITER"
+   ],
+   [
+    20.11,
+    "recovery test: video dropped for 3 s"
+   ],
+   [
+    23.14,
+    "recovery test: video back"
+   ]
+  ],
+  "notes_all_n": 14,
+  "onboard_modes": [
+   [
+    -21.59,
+    "ALT_HOLD"
+   ],
+   [
+    0.04,
+    "LOITER"
+   ]
+  ],
+  "fc_modes": [
+   [
+    -37.16,
+    "0"
+   ],
+   [
+    -25.9,
+    "ALT_HOLD"
+   ],
+   [
+    0.02,
+    "LOITER"
+   ]
+  ],
+  "fix_gap_max_s": 3.85,
+  "fix_gap_at_s": 20.16,
+  "fix_gaps_over_1s": [
+   [
+    20.2,
+    3.8
+   ]
+  ],
+  "engaged_note_at": 0.04,
+  "kf_events": [
+   [
+    -12.43,
+    "kf",
+    "39.73",
+    "24.00"
+   ],
+   [
+    -1.11,
+    "kf",
+    "59.68",
+    "24.00"
+   ],
+   [
+    28.96,
+    "kf",
+    "39.73",
+    "24.00"
+   ],
+   [
+    31.49,
+    "kf",
+    "59.69",
+    "24.00"
+   ]
+  ],
+  "fresh_kf_served_at": null,
+  "kf_changes_in_hold": 2,
+  "home_changes_in_hold": 0,
+  "home_h_at_switch": "24.00",
+  "outage_start": 20.11,
+  "outage_end": 23.14,
+  "dist_at_outage_start": 0.42390226354672816,
+  "dist_at_outage_end": 0.30916041641320846,
+  "max_during": 0.42390226354672816,
+  "move_during": 0.23778380132543592,
+  "rms_during": 0.2281777397184689,
+  "max_10s_after": 1.031790193151028,
+  "rms_10s_after": 0.5316826333269528,
+  "dist_10s_after": 1.0312508010091674,
+  "max_before": 1.043752947972656,
+  "rms_before": 0.5617107625485829,
+  "max_rest": 1.046846964557856,
+  "first_fix_after": 24.008,
+  "back_to_fix_s": 0.868,
+  "last_fix_before": 20.081,
+  "why_after_back": {
+   "good fix 1 of 10": 1,
+   "good fix 2 of 10": 1,
+   "good fix 3 of 10": 1,
+   "good fix 4 of 10": 1,
+   "good fix 5 of 10": 1,
+   "good fix 6 of 10": 1,
+   "good fix 7 of 10": 1,
+   "good fix 8 of 10": 1,
+   "good fix 9 of 10": 1,
+   "": 2
+  },
+  "fc_texts_hold": [],
+  "ferr_mean_before_drop": [
+   0.058,
+   -0.13
+  ],
+  "ferr_mean_after_back": [
+   -0.078,
+   -0.037
+  ],
+  "anchor_shift_m": 0.16457138020923914,
+  "ferr_rms_10s": 0.3013495561986297,
+  "ferr_max_10s": 0.5214484223010695,
+  "ferr_rms_60s": 0.2688023539531535,
+  "ferr_max_60s": 0.7004634377228257,
+  "ferr_step": 0.6244541392641239,
+  "hold_cfg": {
+   "repeat_diff": 0.01
+  },
+  "rows_after_back": [
+   [
+    23.14,
+    "ok",
+    "good fix 1 of 10",
+    "0",
+    "recovery test: video back"
+   ],
+   [
+    23.22,
+    "ok",
+    "good fix 2 of 10",
+    "0",
+    ""
+   ],
+   [
+    23.31,
+    "ok",
+    "good fix 3 of 10",
+    "0",
+    ""
+   ],
+   [
+    23.39,
+    "ok",
+    "good fix 4 of 10",
+    "0",
+    ""
+   ],
+   [
+    23.47,
+    "ok",
+    "good fix 5 of 10",
+    "0",
+    ""
+   ],
+   [
+    23.56,
+    "ok",
+    "good fix 6 of 10",
+    "0",
+    ""
+   ],
+   [
+    23.62,
+    "ok",
+    "good fix 7 of 10",
+    "0",
+    ""
+   ],
+   [
+    23.69,
+    "ok",
+    "good fix 8 of 10",
+    "0",
+    ""
+   ],
+   [
+    23.77,
+    "ok",
+    "good fix 9 of 10",
+    "0",
+    ""
+   ],
+   [
+    23.86,
+    "ok",
+    "",
+    "1",
+    ""
+   ]
+  ]
+ },
+ "rec_60m_gj_s3": {
+  "case": "rec_60m_gj_s3",
+  "rms": 0.49506839634431105,
+  "p95": 0.9245826166721431,
+  "max": 1.250618647728879,
+  "end": 0.5491880098863268,
+  "pct_frames_fix": 19.22861934041364,
+  "fix_rate_hz": 11.46665958887123,
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 5, 0.0 s after the Loiter request started"
+   ]
+  ],
+  "hold_s_flown": 60.0,
+  "climb_s": 25.2,
+  "age_ms_p50": 128.85000000000002,
+  "drift_m_per_min": 0.6695883644281546,
+  "proc_ms_mean": 80.74418938307029,
+  "handover_ms_p50": 5.72428066698194,
+  "handover_ms_p95": 17.337280699757613,
+  "reanchors": 0,
+  "hold_why": {
+   "recovery test: video dropped": 181,
+   "good fix 1 of 10": 1,
+   "good fix 2 of 10": 1,
+   "good fix 3 of 10": 1,
+   "good fix 4 of 10": 1,
+   "good fix 5 of 10": 1,
+   "good fix 6 of 10": 1,
+   "good fix 7 of 10": 1
+  },
+  "onboard_exit": 0,
+  "frac_ok": 1.0,
+  "onboard": [
+   [
+    7.02,
+    "connected",
+    "ardupilot, clock ready True, ATTITUDE 100 Hz"
+   ],
+   [
+    97.66,
+    "done",
+    "stopped after 1 start(s); frame age when taken p50 9 ms, p95 23 ms; SCALED_IMU 0 Hz, 0 rows kept"
+   ]
+  ],
+  "height": 60.0,
+  "seed": 3,
+  "settings": {
+   "outage_test_s": 3.0,
+   "outage_after_s": 20.0
+  },
+  "video": "JUSTICE_D",
+  "wall_s": 99,
+  "load_start": [
+   6.92724609375,
+   4.96142578125,
+   5.48681640625
+  ],
+  "load_end": [
+   5.22265625,
+   5.078125,
+   5.4814453125
+  ],
+  "jobs_start": {
+   "other_sitl": 0,
+   "px4_sim": false
+  },
+  "jobs_end": {
+   "other_sitl": 0,
+   "px4_sim": false
+  },
+  "option": "outage + gap_jump 0.5",
+  "texts_all": [
+   [
+    -37.25,
+    "Barometer 1 calibration complete"
+   ],
+   [
+    -37.25,
+    "Barometer 2 calibration complete"
+   ],
+   [
+    -34.8,
+    "ArduPilot Ready"
+   ],
+   [
+    -34.8,
+    "AHRS: DCM active"
+   ],
+   [
+    -34.5,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    -33.16,
+    "No ap_message for mavlink id (331)"
+   ],
+   [
+    -33.1,
+    "No ap_message for mavlink id (290)"
+   ],
+   [
+    -33.08,
+    "No ap_message for mavlink id (291)"
+   ],
+   [
+    -33.05,
+    "No ap_message for mavlink id (231)"
+   ],
+   [
+    -33.04,
+    "No ap_message for mavlink id (141)"
+   ],
+   [
+    -32.8,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    -32.8,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    -32.8,
+    "AHRS: EKF3 active"
+   ],
+   [
+    -31.41,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    -31.41,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    -31.31,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -31.31,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -25.76,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -25.32,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    -25.32,
+    "Arming motors"
+   ],
+   [
+    -25.16,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -21.65,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -21.65,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -20.33,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -20.31,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -16.74,
+    "EKF3 IMU1 is using external nav data"
+   ],
+   [
+    -16.74,
+    "EKF3 IMU1 initial pos NED = 0.1,0.0,-18.9 (m)"
+   ],
+   [
+    -16.73,
+    "EKF3 IMU0 is using external nav data"
+   ],
+   [
+    -16.73,
+    "EKF3 IMU0 initial pos NED = 0.1,0.0,-18.9 (m)"
+   ]
+  ],
+  "rms_10s": 0.46129202131305136,
+  "max_10s": 0.7289465326002194,
+  "rms_10_60": 0.5015535402074611,
+  "max_10_60": 1.250618647728879,
+  "notes": [
+   [
+    -21.5,
+    "FC mode ALT_HOLD"
+   ],
+   [
+    -17.68,
+    "re-anchored to last position (no FC position) 0.00 0.00"
+   ],
+   [
+    -0.02,
+    "engaged: FC mode LOITER"
+   ],
+   [
+    20.03,
+    "recovery test: video dropped for 3 s"
+   ],
+   [
+    23.05,
+    "recovery test: video back"
+   ]
+  ],
+  "notes_all_n": 13,
+  "onboard_modes": [
+   [
+    -21.5,
+    "ALT_HOLD"
+   ],
+   [
+    -0.02,
+    "LOITER"
+   ]
+  ],
+  "fc_modes": [
+   [
+    -37.25,
+    "0"
+   ],
+   [
+    -25.8,
+    "ALT_HOLD"
+   ],
+   [
+    0.0,
+    "LOITER"
+   ]
+  ],
+  "fix_gap_max_s": 3.84,
+  "fix_gap_at_s": 20.08,
+  "fix_gaps_over_1s": [
+   [
+    20.1,
+    3.8
+   ]
+  ],
+  "engaged_note_at": -0.02,
+  "kf_events": [
+   [
+    -11.75,
+    "kf",
+    "42.51",
+    "15.14"
+   ]
+  ],
+  "fresh_kf_served_at": null,
+  "kf_changes_in_hold": 0,
+  "home_changes_in_hold": 0,
+  "home_h_at_switch": "15.14",
+  "outage_start": 20.03,
+  "outage_end": 23.05,
+  "dist_at_outage_start": 0.6947550149922097,
+  "dist_at_outage_end": 0.6075508168905412,
+  "max_during": 0.6947550149922097,
+  "move_during": 0.12178357540737667,
+  "rms_during": 0.5179979772444934,
+  "max_10s_after": 0.9245826166721431,
+  "rms_10s_after": 0.46417449380623416,
+  "dist_10s_after": 0.6369975443102035,
+  "max_before": 0.7522670123407421,
+  "rms_before": 0.44899726098269505,
+  "max_rest": 1.250618647728879,
+  "first_fix_after": 23.917,
+  "back_to_fix_s": 0.867,
+  "last_fix_before": 19.995,
+  "why_after_back": {
+   "good fix 1 of 10": 1,
+   "good fix 2 of 10": 1,
+   "good fix 3 of 10": 1,
+   "good fix 4 of 10": 1,
+   "good fix 5 of 10": 1,
+   "good fix 6 of 10": 1,
+   "good fix 7 of 10": 1,
+   "good fix 8 of 10": 1,
+   "good fix 9 of 10": 1,
+   "": 2
+  },
+  "fc_texts_hold": [],
+  "ferr_mean_before_drop": [
+   0.109,
+   -0.02
+  ],
+  "ferr_mean_after_back": [
+   -0.02,
+   0.079
+  ],
+  "anchor_shift_m": 0.16220864602990812,
+  "ferr_rms_10s": 0.2541662390667295,
+  "ferr_max_10s": 0.5037947744220241,
+  "ferr_rms_60s": 0.2215082707825617,
+  "ferr_max_60s": 0.6884366094851433,
+  "ferr_step": 0.6588210540473249,
+  "hold_cfg": {
+   "repeat_diff": 0.01,
+   "gap_jump_s": 0.5
+  },
+  "rows_after_back": [
+   [
+    23.05,
+    "ok",
+    "good fix 1 of 10",
+    "0",
+    "recovery test: video back"
+   ],
+   [
+    23.13,
+    "ok",
+    "good fix 2 of 10",
+    "0",
+    ""
+   ],
+   [
+    23.22,
+    "ok",
+    "good fix 3 of 10",
+    "0",
+    ""
+   ],
+   [
+    23.3,
+    "ok",
+    "good fix 4 of 10",
+    "0",
+    ""
+   ],
+   [
+    23.38,
+    "ok",
+    "good fix 5 of 10",
+    "0",
+    ""
+   ],
+   [
+    23.45,
+    "ok",
+    "good fix 6 of 10",
+    "0",
+    ""
+   ],
+   [
+    23.55,
+    "ok",
+    "good fix 7 of 10",
+    "0",
+    ""
+   ],
+   [
+    23.62,
+    "ok",
+    "good fix 8 of 10",
+    "0",
+    ""
+   ],
+   [
+    23.7,
+    "ok",
+    "good fix 9 of 10",
+    "0",
+    ""
+   ],
+   [
+    23.8,
+    "ok",
+    "",
+    "1",
+    ""
+   ]
+  ]
+ }
+}

@@ -1,0 +1,24 @@
+--- a/tests_apb/test_fc_link.py
++++ b/tests_apb/test_fc_link.py
+@@ -5,7 +5,7 @@
+    clock offset fitted with 80 ms offset and 20 ms jitter injected; attitude content in the companion
+    clock; parameter check and --set-params; TIMESYNC both ways; VISION_POSITION_ESTIMATE fields.
+ B. ArduPilot: detected; parameter names (GPS_TYPE alias); origin; fix angles finite.
+-C. Unsupported: generic MAVLink autopilot, MSP Betaflight on a serial port, nothing at all.
++C. Generic MAVLink autopilot (unsupported), MSP Betaflight on a serial port (msp_link.MspLink), nothing at all.
+ Run: ~/.venvs/vio/bin/python tests_apb/test_fc_link.py      (about 40 s)
+ """
+ import json
+@@ -199,8 +199,10 @@
+     t1 = time.monotonic()
+     fc, why = fc_link.connect(s, timeout=2)
+     stop.set()
+-    check(fc is None and "Betaflight" in why and "no external-vision input" in why,
+-          f"no heartbeat, MSP probe on a serial port: {why} ({time.monotonic() - t1:.1f} s)")
++    check(fc is not None and fc.firmware == "betaflight" and why is None,
++          f"no heartbeat, Betaflight answers MSP on a serial port: {type(fc).__name__} ({time.monotonic() - t1:.1f} s)")
++    if fc is not None:
++        fc.close()
+     os.close(master)
+     os.close(slave)
+ 

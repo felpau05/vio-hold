@@ -8,7 +8,7 @@ Variants: truth = vision fed from the truth (best the controller can do); none =
 mode, what happens without us); ours = Hold with PX4's ATTITUDE as sent; ours_gyro = Hold with the
 gyro-propagated attitude (sitl.Link._gyro_att); apb = the onboard program itself (apb_main.run_live,
 fc_link, capture, settings; px4sim/onboard.py) on a 10x slower CPU. Groups i1..i8 are the integrator's
-matrix (apb against truth); results_sim_builder.* keep the SIM builder's earlier table.
+matrix (apb against truth); results_sim_builder.* keep the earlier simulator table.
 """
 import json
 import os
@@ -146,7 +146,7 @@ def table(res):
     lines.append("tilt). % fix: fixes sent per rendered PAL frame; fix Hz: fixes sent per second; age: capture to send.")
     lines.append("apb = the onboard program (apb_main run) with a 10x slower CPU; truth = the true position as the fix.")
     lines.append("gps = PX4's own GNSS position hold (simulated GNSS on, no vision); none = no position source.")
-    lines.append("b_imu / b_gyro = apb with att_source imu / gyro (builder B, seeds 11-13: validation set).")
+    lines.append("b_imu / b_gyro = apb with att_source imu / gyro (run set B, seeds 11-13: validation set).")
     open(TABLE, "w").write("\n".join(lines) + "\n")
     return "\n".join(lines)
 

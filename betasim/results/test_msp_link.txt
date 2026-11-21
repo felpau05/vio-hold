@@ -1,0 +1,43 @@
+A. frames and checksums
+  PASS CRC-8 DVB-S2 check value of '123456789' is 0xBC
+  PASS v1 request MSP_FC_VARIANT: $M< 0 2, XOR 2
+  PASS v1 MSP_MULTIPLE_MSP: size, command, payload, XOR
+  PASS v2 flow frame: 18 bytes, flags 0, cmd 0x1F02, size 9, CRC
+  PASS flow payload <Bii
+  PASS rangefinder payload <Bi, mm
+  PASS rangefinder out of range: negative
+  PASS v2 rangefinder frame: 14 bytes
+B. parser
+  PASS split input, byte by byte: three frames, garbage dropped
+  PASS empty v2 acknowledge; '!' frame marked as error
+  PASS v1 frame with a damaged byte dropped, next frame kept
+  PASS v2 frame with a bad CRC dropped, next frame kept
+  PASS incomplete frame kept for the next read
+  PASS v2 header with an impossible size skipped
+C. link: acknowledges, poll decode, budget
+  PASS MULTIPLE_MSP: attitude roll 5.0, pitch +10.0 (nose up, sign changed), yaw 90 deg
+  PASS MULTIPLE_MSP: gyro 164 and -328 counts -> 10 and -20 deg/s at 16.4 counts per deg/s
+  PASS disarmed: barometer height zeroed (0 m); vz +0.25 m/s down from MSP_ALTITUDE
+  PASS armed: height = BARO debug value 3 minus its value at arming (1012 - 512 cm = 5.0 m)
+  PASS debug values of another debug_mode (value 1 not a pressure): no height
+  PASS acknowledges counted, not decoded: {7937: 1, 7938: 2}
+  PASS STATUS_EX: armed, POS HOLD active, sensors
+  PASS budget: 95 of 300 in 0.3 s, frees after 1 s
+D. flow arithmetic against our firmware model
+  PASS 200 random cases: speed back from the model, worst error 1.8e-15 m/s
+  PASS 1 m/s north, facing north, 5 m, 50 ms: motion (0, 2.0)
+  PASS 1 m/s east, facing north: motion x -2.0 (X axis points left)
+E. link sends: order, gates, gyro lag
+  PASS no fix: nothing sent
+  PASS each send: rangefinder then flow
+  PASS gyro term starts with the 7th message (the FC subtracts the sample of 6 messages earlier)
+F. position lock (mode v2) with our model: constant speed error 0.10 m/s, 60 s at 20 Hz, perfect FC hold
+  PASS v1 (gain 0): drift 6.00 m after 60 s (0.10 m/s x 60 s)
+  PASS v2 (gain 0.2/s): error 0.25 m at 60 s, worst 0.25 m (model bound bias/(2 gain) = 0.25 m)
+  PASS v2 with 0.3 m fix noise (seed 2): error 0.23 m at 60 s, worst 0.26 m
+  PASS a 50 m jump of the fix adds at most MAX_LOCK_MPS
+  PASS after a gap the lock integral restarts at the fix: speed passes unchanged
+G. GPS route builders (second route; not sent by MspLink)
+  PASS 0x1F03: 52 bytes; fix, sats, pdop, lon, lat, alt cm, vel cm/s in order
+  PASS MSP_SET_RAW_GPS: 14 bytes, lat then lon, alt m, speed cm/s
+ALL PASSED

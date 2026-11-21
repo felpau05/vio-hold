@@ -1,5 +1,5 @@
 {
- "summary": "Use PX4 SIH, run from the ready image px4io/px4-sitl (51 MB download, 6 MB RAM). It gives true pose, real EKF2 and control, IMU/baro/mag noise, GNSS you can switch off, and wind you can change in flight with PARAM_SET (SIH_WIND_N/E, added in v1.18). SIH wind only enters the first-order drag term, so build gusts in your script. I tested the whole loop on this laptop: GNSS off, arm and climb in Altitude mode, truth-fed vision, Position mode hold, wind step. Gazebo Harmonic also runs headless in Docker with no GPU, but its truth through PX4 is only about 50 Hz and I found no working runtime wind topic (the windy world SDF does push the x500). jMAVSim is removed from main and Gazebo Classic is community-only on Ubuntu 22.04, so skip both. Ground truth comes from HIL_STATE_QUATERNION (MAV_CMD_SET_MESSAGE_INTERVAL): 185 to 200 msg per sim second at the default 250 Hz step, about 297 at IMU_INTEG_RATE=400. Use PX4's sim clock (time_usec) in your program; PX4 ignores your vision timestamp unless TIMESYNC converged. Use pymavlink, not MAVSDK-Python (PyPI \"mavsdk\" is now a different package). Start containers with a trailing \"-d\" or pxh spins at 100% CPU and floods the log.",
+ "summary": "Use PX4 SIH, run from the ready image px4io/px4-sitl (51 MB download, 6 MB RAM). It gives true pose, real EKF2 and control, IMU/baro/mag noise, GNSS you can switch off, and wind you can change in flight with PARAM_SET (SIH_WIND_N/E, added in v1.18). SIH wind only enters the first-order drag term, so build gusts in your script. I tested the whole loop on this laptop: GNSS off, arm and climb in Altitude mode, truth-fed vision, Position mode hold, wind step. Gazebo Harmonic also runs headless in Docker with no GPU, but its truth through PX4 is only about 50 Hz and found no working runtime wind topic (the windy world SDF does push the x500). jMAVSim is removed from main and Gazebo Classic is community-only on Ubuntu 22.04, so skip both. Ground truth comes from HIL_STATE_QUATERNION (MAV_CMD_SET_MESSAGE_INTERVAL): 185 to 200 msg per sim second at the default 250 Hz step, about 297 at IMU_INTEG_RATE=400. Use PX4's sim clock (time_usec) in your program; PX4 ignores your vision timestamp unless TIMESYNC converged. Use pymavlink, not MAVSDK-Python (PyPI \"mavsdk\" is now a different package). Start containers with a trailing \"-d\" or pxh spins at 100% CPU and floods the log.",
  "facts": [
   {
    "claim": "PX4 SIH SITL container image size (compressed, amd64)",
@@ -123,7 +123,7 @@
   },
   {
    "claim": "Gazebo runtime gust workaround",
-   "value": "ApplyLinkWrench in server.config: /world/<w>/wrench/persistent with gz.msgs.EntityWrench moved the drone (clear message did not work in my try)",
+   "value": "ApplyLinkWrench in server.config: /world/<w>/wrench/persistent with gz.msgs.EntityWrench moved the drone (clear message did not work in the try)",
    "source_url": "https://github.com/gazebosim/gz-sim/blob/gz-sim8/src/systems/apply_link_wrench/ApplyLinkWrench.hh",
    "confidence": "medium"
   },
@@ -161,7 +161,7 @@
  "unknowns": [
   "Whether a full-rate (200 Hz or more) ulog profile for vehicle_*_groundtruth exists in SITL; default log limits groundtruth to 10-100 ms intervals",
   "Why the gz.msgs.Wind topic /world/<w>/wind had no effect, and why x500 links respond to world wind with no enable_wind in the SDF",
-  "Correct syntax to clear a persistent gz wrench (my clear message failed); whether a second persistent wrench replaces the first",
+  "Correct syntax to clear a persistent gz wrench (the clear message failed); whether a second persistent wrench replaces the first",
   "Whether SENS_EN_GPSSIM=0 alone stops simulated GPS in SIH (read from px4-rc.sihsim, not run)",
   "Source build of main with make px4_sitl_sih inside px4io/px4-dev: time, extra packages, success (not run)",
   "Whether the stream-rate command px4-mavlink stream -r 200 on the 14580 link works (no error, rate not measured)",

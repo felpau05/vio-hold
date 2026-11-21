@@ -1,0 +1,250 @@
+{
+  "pixel_convention": "OpenCV first pixel centre (0,0); Metashape exported offsets converted by -0.5",
+  "models": [
+    {
+      "fx": 416.6965782769623,
+      "fy": 416.6965782769623,
+      "cx": 479.5,
+      "cy": 359.5,
+      "b2": 0.0,
+      "k1": 0.0,
+      "k2": 0.0,
+      "k3": 0.0,
+      "k4": 0.0,
+      "p1": 0.0,
+      "p2": 0.0,
+      "name": "Generic 132 deg",
+      "projection": "equidistant_fisheye",
+      "image_size": [
+        960,
+        720
+      ],
+      "radial_turnover_deg_through_80": null
+    },
+    {
+      "fx": 481.0,
+      "fy": 481.0,
+      "cx": 479.5,
+      "cy": 359.5,
+      "b2": 0.0,
+      "k1": 0.0,
+      "k2": 0.0,
+      "k3": 0.0,
+      "k4": 0.0,
+      "p1": 0.0,
+      "p2": 0.0,
+      "name": "Nominal Justice",
+      "projection": "equidistant_fisheye",
+      "image_size": [
+        960,
+        720
+      ],
+      "radial_turnover_deg_through_80": null
+    },
+    {
+      "fx": 525.1984406930287,
+      "fy": 546.7936434357424,
+      "cx": 480.73454225530855,
+      "cy": 363.8516267192045,
+      "b2": 0.0,
+      "k1": -0.02477533580188975,
+      "k2": -0.0051902318832639655,
+      "k3": 0.0,
+      "k4": 0.0,
+      "p1": 0.0,
+      "p2": 0.0,
+      "name": "Round 1 independent k2",
+      "projection": "equidistant_fisheye",
+      "image_size": [
+        960,
+        720
+      ],
+      "radial_turnover_deg_through_80": null
+    },
+    {
+      "fx": 523.6810112786668,
+      "fy": 545.1609174633827,
+      "cx": 480.33847931831195,
+      "cy": 364.17192855052315,
+      "b2": 0.0,
+      "k1": -0.024974350222953287,
+      "k2": -0.0016944187104134748,
+      "k3": -0.001610757103021353,
+      "k4": 0.0,
+      "p1": -0.0003624836446366532,
+      "p2": -0.00038136955503295753,
+      "name": "Round 1 Metashape fisheye",
+      "projection": "equidistant_fisheye",
+      "image_size": [
+        960,
+        720
+      ],
+      "radial_turnover_deg_through_80": null
+    },
+    {
+      "name": "Round 2 independent k2",
+      "projection": "equidistant_fisheye",
+      "image_size": [
+        1280,
+        960
+      ],
+      "fx": 713.3023263077017,
+      "fy": 742.971389553287,
+      "cx": 651.1564035685934,
+      "cy": 486.6058141076769,
+      "b2": 0.0,
+      "p1": 0.0,
+      "p2": 0.0,
+      "k1": -0.03507693009650482,
+      "k2": -0.0022544551622473512,
+      "k3": 0.0,
+      "k4": 0.0,
+      "radial_turnover_deg_through_80": null
+    },
+    {
+      "name": "Round 2 independent k3",
+      "projection": "equidistant_fisheye",
+      "image_size": [
+        1280,
+        960
+      ],
+      "fx": 713.3639948463513,
+      "fy": 743.0378835277262,
+      "cx": 651.1524498037984,
+      "cy": 486.60541751324945,
+      "b2": 0.0,
+      "p1": 0.0,
+      "p2": 0.0,
+      "k1": -0.03572462776335552,
+      "k2": -0.0007843731204846136,
+      "k3": -0.0009816697756908747,
+      "k4": 0.0,
+      "radial_turnover_deg_through_80": null
+    },
+    {
+      "name": "Round 2 independent k4",
+      "projection": "equidistant_fisheye",
+      "image_size": [
+        1280,
+        960
+      ],
+      "fx": 713.306708679768,
+      "fy": 742.978035525895,
+      "cx": 651.1522961527974,
+      "cy": 486.6050870817314,
+      "b2": 0.0,
+      "p1": 0.0,
+      "p2": 0.0,
+      "k1": -0.034782836405418,
+      "k2": -0.004390488346189505,
+      "k3": 0.00432908732526165,
+      "k4": -0.002647241359125916,
+      "radial_turnover_deg_through_80": null
+    },
+    {
+      "name": "Round 2 Metashape Frame",
+      "projection": "frame",
+      "image_size": [
+        1280,
+        960
+      ],
+      "fx": 711.8877480558784,
+      "fy": 741.453103576613,
+      "cx": 647.343119764051,
+      "cy": 487.618988371753,
+      "b2": 0.0,
+      "k1": -0.30272297992921215,
+      "k2": 0.08884866726400541,
+      "k3": -0.011501735817430902,
+      "k4": 0.0,
+      "p1": -3.421483287926732e-05,
+      "p2": -0.0003302303943470146,
+      "radial_turnover_deg_through_80": 60.83
+    },
+    {
+      "name": "Justice D full sensor (assumed)",
+      "projection": "equidistant_fisheye",
+      "image_size": [
+        1280,
+        720
+      ],
+      "fx": 482.491,
+      "fy": 482.491,
+      "cx": 639.5,
+      "cy": 359.5,
+      "b2": 0.0,
+      "p1": 0.0,
+      "p2": 0.0,
+      "k1": 0.0,
+      "k2": 0.0,
+      "k3": 0.0,
+      "k4": 0.0,
+      "radial_turnover_deg_through_80": null,
+      "note": "assumed: datasheet 114 x 86 deg is the 4:3 analog picture, so f = 720 / rad(57) = 723.74 px/rad on a 1920x1080 sensor; whole sensor scaled by 2/3 (152 x 85.5 deg). Run apb_main.py calib to measure the lens."
+    },
+    {
+      "name": "Justice D crop (assumed)",
+      "projection": "equidistant_fisheye",
+      "image_size": [
+        1280,
+        720
+      ],
+      "fx": 643.321,
+      "fy": 643.321,
+      "cx": 639.5,
+      "cy": 359.5,
+      "b2": 0.0,
+      "p1": 0.0,
+      "p2": 0.0,
+      "k1": 0.0,
+      "k2": 0.0,
+      "k3": 0.0,
+      "k4": 0.0,
+      "radial_turnover_deg_through_80": null,
+      "note": "assumed: f = 723.74 px/rad on a 1920x1080 sensor (see full sensor); 1440x810 crop scaled by 8/9 (114 x 64.1 deg). Run apb_main.py calib to measure the lens."
+    },
+    {
+      "name": "Justice D anamorphic (assumed)",
+      "projection": "equidistant_fisheye",
+      "image_size": [
+        1280,
+        720
+      ],
+      "fx": 643.321,
+      "fy": 482.491,
+      "cx": 639.5,
+      "cy": 359.5,
+      "b2": 0.0,
+      "p1": 0.0,
+      "p2": 0.0,
+      "k1": 0.0,
+      "k2": 0.0,
+      "k3": 0.0,
+      "k4": 0.0,
+      "radial_turnover_deg_through_80": null,
+      "note": "assumed: f = 723.74 px/rad on a 1920x1080 sensor (see full sensor); 1440x1080 crop scaled by 8/9 across and 2/3 down (114 x 85.5 deg). Run apb_main.py calib to measure the lens."
+    },
+    {
+      "name": "Justice D calibrated 2026-11-18 23:01",
+      "projection": "equidistant_fisheye",
+      "image_size": [
+        1280,
+        720
+      ],
+      "fx": 637.0551857706124,
+      "fy": 646.5644460734201,
+      "cx": 639.5,
+      "cy": 359.5,
+      "b2": 0.0,
+      "p1": 0.0,
+      "p2": 0.0,
+      "k1": -0.02157327165021459,
+      "k2": 0.0,
+      "k3": 0.0,
+      "k4": 0.0,
+      "radial_turnover_deg_through_80": null,
+      "note": "calib.py hand turn from 'Justice D full sensor (assumed)' 640x360: residual 0.050 deg, points to 62 deg off axis, k1 fitted; centre and k2-k4 kept"
+    }
+  ],
+  "source_xml_sha256": "59b3baab7f577b60e400858974ecc7fac19cfcdfb23bc62b56402da671b2cf44"
+}

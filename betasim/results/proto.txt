@@ -1,0 +1,11 @@
+betasim/proto_test.py, 2026-11-20 03:44, binary <work>
+[1] identify: firmware betaflight, {'variant': 'BTFL', 'api': '1.48', 'version': '26.6.3', 'build': 'Nov 20 202603:35:54'}; boxids include POS HOLD (11): True
+[1] MSP_STATUS_EX sensor bits 0x0077: rangefinder (bit 4) True, optical flow (bit 6) True
+[1] sent 200 rangefinder + 200 flow messages in 10 s; acknowledges: rangefinder 200, flow 200; error replies {}
+[1] leg north: expect flow (x, y) = (-0, +200) mrad/s; FC debug 0,1 mean (+0.0, +198.4) sd (0.0, 10.1), n 23; after its low-pass (debug 6,7) last (+0, +200)
+[1] leg east : expect flow (x, y) = (-200, +0) mrad/s; FC debug 0,1 mean (-199.8, +0.0) sd (19.0, 0.0), n 23; after its low-pass (debug 6,7) last (-202, +0)
+[1] leg south: expect flow (x, y) = (-0, -200) mrad/s; FC debug 0,1 mean (+0.0, -201.9) sd (0.0, 13.3), n 23; after its low-pass (debug 6,7) last (+0, -200)
+[1] leg west : expect flow (x, y) = (+200, +0) mrad/s; FC debug 0,1 mean (+202.1, +0.0) sd (14.2, 0.0), n 23; after its low-pass (debug 6,7) last (+200, +0)
+[1] command rate: 300 MSP_ATTITUDE requests sent at once; 66 replies in 3 s; first to last 0.66 s = 99 replies/s
+[2] rangefinder 5000 mm sent 200 times in 10 s: FC debug 1 (raw cm) last 500, debug 2 (tilt-corrected cm) last 500; min/max of debug 2 over 95 reads: 500/500
+[3] flow stopped after 3 s north: debug 0,1 before [0, 198], 1 s later [0, 198]; unchanged: True. The FC keeps the last rate but stops using it after 100 ms (opticalflow.c isOpticalflowHealthy); this is not readable over MSP while disarmed.

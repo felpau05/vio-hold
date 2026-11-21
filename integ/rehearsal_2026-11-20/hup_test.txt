@@ -1,0 +1,15 @@
+[in the foreground, as EVENT_DAY step 7 item 3 said before 2026-11-20] start command: ~/.venvs/vio/bin/python apb_main.py run --raw
+  before the hang-up: program pids [1116010]; run log <scratch>/sdcard/logs/run_20261120_035713.csv
+  6 s after the hang-up: program pids []; run log rows 1061 -> 1061 in 3 s
+  RESULT: STOPPED
+  terminal (last 3 lines): ~/.venvs/vio/bin/python apb_main.py run --raw | bash-5.2$ ~/.venvs/vio/bin/python apb_main.py run --raw | running; log in <scratch>/sdcard/logs
+[nohup, in the background] start command: nohup ~/.venvs/vio/bin/python apb_main.py run --raw &
+  before the hang-up: program pids [1117010]; run log <scratch>/sdcard/logs/run_20261120_035747.csv
+  6 s after the hang-up: program pids [1117010]; run log rows 1363 -> 1543 in 3 s
+  RESULT: CONTINUES
+  terminal (last 3 lines): bash-5.2$ nohup ~/.venvs/vio/bin/python apb_main.py run --raw & | [1] 1117010 | bash-5.2$ nohup: ignoring input and appending output to 'nohup.out'
+[setsid nohup, output to logs/console.txt] start command: setsid nohup ~/.venvs/vio/bin/python apb_main.py run --raw > logs/console.txt 2>&1 < /dev/null &
+  before the hang-up: program pids [1117655]; run log <scratch>/sdcard/logs/run_20261120_035820.csv
+  6 s after the hang-up: program pids [1117655]; run log rows 1368 -> 1548 in 3 s
+  RESULT: CONTINUES
+  terminal (last 3 lines): bash-5.2$ setsid nohup ~/.venvs/vio/bin/python apb_main.py run --raw > logs/console.txt 2>&1 < /dev/null & | [1] 1117654 | bash-5.2$

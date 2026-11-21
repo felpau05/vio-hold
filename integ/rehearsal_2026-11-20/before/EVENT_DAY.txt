@@ -1,0 +1,220 @@
+EVENT DAY CHECKLIST (28 minutes)
+
+Run each command on the APB, in the program folder.
+Each step has a time and a pass rule.
+If a pass rule fails, do not fly.
+Every check prints one line per item: PASS or FAIL, and what to do.
+The aircraft is the Orqa M2-AI. The downward camera is the Justice D (digital, MIPI CSI). Do the Justice D steps.
+A step marked "ANALOG ONLY" applies to an analog camera only (settings camera = analog). Skip it for the Justice D.
+The event pilot flies the aircraft. Team members do not fly. Give your test requests to the pilot.
+The scored hold uses no GNSS. Do not put marks, tarps or lamps on the ground for a scored flight.
+Stage 2 will give the engagement procedure. Update step 7 when you get it.
+No step here has run on the real board.
+
+
+STEP 0. JUSTICE D SETUP (3 min, Justice D only)
+1. Type: python3 tools/use_profile.py apply <profile names> justice_d
+   Name every profile that you use, for example: outdoor_day goal_a px4 justice_d
+2. Open settings.json. Set log_dir to /sdcard/logs.
+   (A raw recording of the Justice D takes about 14 MB each second at 60 Hz. The 4 GB eMMC is too small.)
+3. Type: python3 tools/use_profile.py show
+Pass: camera shows "digital" in the list of changed values.
+Run steps 3 and 4 again after each apply. The program refuses a calibration that another camera made.
+
+
+STEP 1. FLIGHT CONTROLLER PARAMETERS (3 min)
+1. Remove the propellers.
+2. Power the drone.
+3. Type: python3 apb_main.py check --set-params
+4. Reboot the flight controller.
+Pass: In step 2, every "param" line shows PASS.
+If the firmware line shows FAIL, stop here. The program cannot fly this firmware.
+
+
+STEP 2. SYSTEM CHECK (3 min)
+1. Type: python3 apb_main.py check
+2. Read every line.
+3. Record the "fix age" value.
+4. Point the nose north with a phone compass.
+5. Read the heading in the ground station.
+Pass: Every line shows PASS, except "not calibrated" and "no mask".
+Pass: The heading is within 10 degrees of north.
+Pass: The fix age is less than 150 ms.
+If the fix age is 150 ms or more, add "EKF2_DELAY_MAX" to params_px4 in settings.json.
+Set it to the fix age plus 100. Then do step 1 again.
+(PX4 uses a fix at its correct time only when the fix is younger than EKF2_DELAY_MAX, 200 ms by default.
+The real fix age is up to 50 ms more than the check value.)
+If the TIMESYNC line fails, put the fix age into EKF2_EV_DELAY in settings.json. Then do step 1 again.
+ANALOG ONLY: If the "video standard" line fails, set video_standard in settings.json. Then do step 2 again.
+Justice D: check shows no "video standard" line. It shows these lines instead.
+Pass: The "video:" line shows PASS. It gives the frames, the driver size and the pixel format.
+Pass: The "video rate" line shows PASS. The rate is within 10 % of video_fps (60).
+Pass: The "lens profile" line shows PASS. The lens and the picture have the same shape.
+Pass: The "frame stamps from" line shows PASS. The p95 of the interval spread is 12 ms or less.
+If the lens_measured line shows FAIL, set lens_measured to null, or measure the lens again.
+Pass: The "free disk" line shows PASS at the log_dir disk.
+If the "video rate" line fails, set video_fps to the camera's rate. Then do step 2 again.
+If the "frame stamps from" line fails, use driver stamps (video_device, no video_command). Stop other programs on the board.
+If the "frame stamps from" line says "too few to measure", make the camera give frames. Then do step 2 again.
+If the "lens profile" line fails, apply the justice_d profile (step 0).
+If the "video:" line shows "cannot open the camera", check the camera cable and video_device in settings.json.
+Then do step 2 again. If it fails again, set video_pipeline in settings.json (OpenCV with GStreamer).
+If it fails again, set video_command in settings.json. Do step 2 again.
+video_command example: gst-launch-1.0 -q v4l2src device=/dev/video2 ! video/x-raw,width=1280,height=720,format=YUY2 ! fdsink fd=1
+For that example, set pixel_format to YUYV. board_check.sh lists the driver's pixel formats.
+If a line that starts with "video_command" shows FAIL, read the error above it. Check video_command and pixel_format.
+If the "free disk" line fails, check log_dir (step 0, item 2).
+
+
+STEP 3. OSD MASK (2 min)
+1. Hold the drone with the camera down, over textured ground.
+2. Type: python3 apb_main.py mask
+3. Turn and tilt the drone by hand during the 10 s recording.
+Pass: The last line shows "PASS mask covers N%". N is less than 50.
+
+
+STEP 4. CALIBRATION (6 min)
+Justice D: this step also finds the lens. It writes the measured lens to settings.json under lens_measured.
+lens_name stays the start profile. If lens_measured is from a checkerboard ("target"), this step fits only one focal scale.
+1. Go to a place where buildings or trees are more than 50 m away.
+2. Type: python3 apb_main.py calib
+3. Hold the drone on its side. The camera must point at the far scene.
+4. Turn the drone by hand during the 30 s recording.
+5. Turn it 15 to 20 degrees about all three axes.
+6. Make one turn every 2 seconds, approximately.
+Pass: The "picture top" line shows PASS.
+Pass: The "settings written" line shows PASS.
+7. Do items 2 to 6 again.
+Pass: The "from the previous calibration" line shows PASS. The two delays are within 3 ms.
+Analog camera: If the focal scale is not between 0.98 and 1.02, the program shows FAIL. Do the lens check in step 6, item 6.
+Lens measured with a target: the same FAIL line appears. Read its text. Measure the lens again, or set lens_measured to null.
+Justice D with no target lens: the program shows these lines instead of the focal scale.
+Pass: The "measured lens written to lens_measured" line shows PASS. focal_scale is 1.0.
+With a target lens, the line "lens_measured (target) kept" shows PASS. Its focal_scale is measured against the target lens.
+To use the profile lens again, set lens_measured to null in settings.json. Then run calib.
+Read the "INFO quality" line. It gives how far the tracked points reach from the optical axis.
+If the program shows "FAIL k1 not found", turn the drone more and do step 4 again.
+If the program shows "FAIL calibration", read the reason. A reason may say the lens fit ended at the edge of its search range.
+If it says that, record again. If it fails again, measure the lens with a checkerboard (laptop procedure below). Turn the drone more about all three axes. Do step 4 again.
+The calibration saves a recording: rec_<stamp>.npz in log_dir.
+
+Solve on the laptop (Justice D, optional):
+1. Type: tools/deploy.sh pull
+   This copies settings.json, the mask and the new logs from the board's log_dir and from logs/. It keeps the old settings.json as settings.json.bak.
+2. Type: python3 apb_main.py calib --rec logs/rec_<stamp>.npz
+3. Read the same lines as on the board.
+4. On the ground, type: FORCE=1 NO_RESTART=1 tools/deploy.sh
+   The push stops without FORCE=1, because the calibration differs between the laptop and the board.
+   FORCE=1 also skips the stop for a flying aircraft. Do not push in flight.
+
+Measure the lens with a checkerboard (Justice D, development area only, on the laptop):
+1. Type: tools/deploy.sh pull
+2. Type: ~/.venvs/vio/bin/python tools/lens_calib.py <folder | video | rec.npz> --settings settings.json
+   The tool writes lens_measured ("target") into settings.json and sets focal_scale to 1.0.
+3. On the ground, type: FORCE=1 NO_RESTART=1 tools/deploy.sh
+   The push stops without FORCE=1, because lens_measured differs between the laptop and the board.
+4. On the board, type: python3 apb_main.py calib
+   It fits one focal scale against the target lens. It does not fit the lens again.
+Pass: The "lens_measured (target) kept" line shows PASS.
+Before the next push, type: tools/deploy.sh pull
+
+
+STEP 5. SYSTEM CHECK AGAIN (1 min)
+1. Type: python3 apb_main.py check
+Pass: The last line shows ALL PASS.
+
+
+STEP 6. GROUND TESTS, PROPELLERS OFF (6 min)
+1. Make sure that there are no propellers on the motors.
+2. Type: python3 apb_main.py bench --height 1.5
+3. Hold the lens 1.50 m above a textured floor. Use a tape measure.
+4. Hold the drone still until the lines start.
+5. Carry the drone 1.00 m toward the nose. Keep the lens at 1.50 m.
+Pass: "forward" shows +0.90 to +1.10 m. "right" shows -0.10 to +0.10 m.
+6. Lens check: the "forward" value must be +0.97 to +1.03 m.
+If it is not, multiply focal_scale in settings.json by the "forward" value. Then do step 6 again.
+7. Carry the drone 1.00 m toward the right side.
+Pass: "right" shows +0.90 to +1.10 m. "forward" changes by less than 0.10 m.
+8. Keep the lens above one mark on the floor.
+9. Tilt the nose down 15 degrees. Then tilt the right side down 15 degrees.
+Pass: "forward" and "right" change by less than 0.10 m.
+10. Put your hand on the lens for 2 seconds.
+Pass: The lines stop within 0.5 s. The lines start again after you remove your hand.
+11. Push Ctrl+C.
+If a value moves the wrong way, the calibration is wrong. Do not fly. Do step 4 again.
+
+
+STEP 7. FIRST LOW HOVER (7 min)
+The event pilot flies. A team member does not fly. Give the pilot each request below.
+1. Install the propellers.
+2. Ask the pilot to make sure that one transmitter switch selects Altitude mode.
+3. Type: python3 apb_main.py run --raw
+Tell the pilot to wait 60 seconds or more before the pilot selects Position mode.
+(PX4 uses the time stamps of the fixes only after 50 seconds of time synchronization.)
+ArduPilot (ArduCopter 4.6, the likely Orqa firmware):
+If the firmware line shows ardupilot: after this hover, type python3 apb_main.py delay logs/run_<newest>.csv
+and set VISO_DELAY_MS in params_ardupilot to the number it prints (NOT the median fix age: ArduPilot times
+each fix by the smallest age of every 100, see apb_main.delay_advice). The run log also shows it every 100
+fixes ("VISO_DELAY_MS advice"). Then do step 1 again.
+Pass: The "origin set" line shows PASS. Without the origin ArduPilot never accepts Loiter.
+Pass: ATTITUDE shows 100 Hz or more. If it is less, set the SRn_ rates of the APB port to 0 (n = that SERIAL port).
+Use Loiter mode where these steps say Position mode, and AltHold where they say Altitude mode.
+(In SITL the program sent no fix until fc_link took the height from GLOBAL_POSITION_INT: ArduPilot sends
+LOCAL_POSITION_NED only after it has a position. Fixed 2026-11-16, tests_apb/test_ap_sitl.py.)
+4. Ask the pilot to start the flight in Altitude mode.
+5. Ask the pilot to climb to 20 m. The outdoor profiles send nothing below 3 m (indoor: 1 m).
+6. Ask the pilot not to yaw the aircraft. Yaw moves the fix (H8).
+7. Ask the pilot to hold the aircraft still for 5 seconds.
+7b. Timing wiggle (still in Altitude mode, at 40 m or higher, clear area): ask the pilot to rock the roll and pitch sticks
+   about 30 % each way, about once every 1.5 s, for 8 s (about 9 deg of lean). Then let the drone settle 4 s.
+   After landing: python3 apb_main.py timing logs/raw_<newest>_00N.npz (the chunks that hold the wiggle).
+   Pass: "PASS video delay ... ms" and "settings written". It changes video_delay_s and readout_s.
+   (apsim: a start 40 ms wrong held 4.5-5.7 m RMS at 100 m; the wiggle found the delay within 4 ms and the
+   next flight held 0.64 m. integ/control/wiggle_calib.txt: tested at 40 m and 100 m only, one run each. The method
+   uses rotation only, so the drone's sideways motion can bias it at low height. Do the wiggle at 40 m or higher,
+   also when the hold is lower: the delay does not depend on the height. If the pilot cannot fly 40 m, keep the
+   delay and readout of the ground calibration, step 4.)
+8. Ask the pilot to select Position mode. The pilot moves the switch that starts our hold.
+9. Let the aircraft hold for 30 seconds. The pilot does not touch the sticks.
+Pass: The drone stays above the same ground point. It does not move away.
+If the drone moves away, tell the pilot to select Altitude mode immediately.
+10. Ask the pilot to land.
+(Scored hold: the pilot flies to the test position and holds the aircraft still. Then the pilot moves the switch.
+The scored hold must work with no GNSS. GNSS is permitted before the scored hold.)
+11. Copy the logs folder (run_*.csv and raw_*.npz) to the laptop.
+Pass: The run log shows sent = 1 on most rows after the switch to Position mode.
+Pass: The note column shows "engaged: FC mode LOITER" (PX4: POSCTL) at the switch.
+The mode column shows the flight mode on each row. Keep this log as handover evidence (judging area D).
+
+After step 7: the pilot climbs to the target height in Altitude mode. The pilot does not yaw. Then the pilot selects Position mode.
+Stage 2 will give the engagement procedure. When you get it, update step 7 and this line.
+To tune after a flight: python3 apb_main.py replay logs/raw_*.npz
+
+
+OPTIONAL. RECOVERY DEMONSTRATION (bonus route "demonstrated recovery", Stage 1 package)
+Do this only when the judges ask for the recovery demonstration. Never do it in a scored hold.
+1. Type: python3 tools/use_profile.py apply <your profile names> recovery_demo
+2. Copy the settings to the board: NO_RESTART=1 tools/deploy.sh
+3. Fly steps 4 to 9.
+   Ten seconds after the switch, the program drops the video for 3 s. It does this once for each switch.
+4. To start a drop at another time, type on the board: touch <log_dir>/outage_now
+   The program deletes the file and drops the video for 3 s.
+Pass: The note column shows "recovery test: video dropped for 3 s", then "recovery test: video back".
+Pass: The rows after "video back" show sent = 1 again (SITL: the first fix 1.1 s after "video back").
+The program re-anchors to the FC position at "video back". The drift during the drop stays in the hold point
+(SITL, 60 m: 0.3 to 0.6 m).
+5. Switch the demonstration off: apply your profile names again, without recovery_demo. Copy again.
+
+OPTIONAL. NEW HOLD OPTIONS (all are off by default)
+Each option is a profile. Add its name to the apply command to switch it on.
+Apply the command again without the name to switch it off.
+- fresh_kf: at the switch, Hold takes a new keyframe of the hold point and makes it the home keyframe.
+  The note at the switch then ends with "fresh keyframe requested". Closed loop (SITL, 2 seeds): no difference
+  beyond the run-to-run spread (apsim/engage_results.txt). Keep it off.
+- kf_bright: Hold takes no unforced new keyframe while the picture brightness changes (auto exposure,
+  day/night switch). Try it if the hold gets worse when the light changes.
+- gap_jump: after a short video gap (over 0.5 s), Hold does not refuse the first frame as "broken up", so it
+  does not re-anchor. SITL: no re-anchor in 3 of 3 runs, first fix 0.3 s sooner. Not tested on the real camera.
+- drag_fusion (ArduPilot only): do not use it. In SITL it did not hold position through a 20 s video outage
+  (1 seed), and the largest drift of normal holds was higher with it (apsim/drag_results.txt).
+  It also needs FS_DR_ENABLE set by the event crew: the default 2 starts RTL when the EKF dead-reckons.

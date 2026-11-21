@@ -1,0 +1,39 @@
+--- a/hold.py
++++ b/hold.py
+@@ -290,6 +290,15 @@
+                               # pictures sent 26 / 75 (moving / perfectly still hover) before and after.
+     STILL_PX = 0.3            # px; a point that moves less while the attitude predicts motion is static (overlay)
+     LIVE_S = 1.0              # s; send only within this time after the last proof that the picture is live. assumed
++    LIVE_MOVE_PX = 0.5        # px; the tracked points moved this much (median point: shift, turn or scale) since the
++                              # reference frame or the last "moved" proof: the picture is live ("moved"). Unlike "move" it
++                              # keeps the reference frame, so the still proof and the frozen test work as before. A frozen
++                              # picture with fresh noise moves its points 0.02 px (digital) or 0.08 px (analog) at most
++                              # against itself (integ/gap); 0.5 px is one LK noise floor (FIT_FLOOR_PX). Why: a hover by
++                              # hand gave no proof for seconds (the still proof ends after 0.3 px of attitude motion,
++                              # MOVE_PX is 0.47 m of drift at 100 m, a turn or a scale has no median shift), so fixes
++                              # stopped just before the switch (integ/gap). Cost: a freeze can get one false proof on its
++                              # first frame (at most LIVE_S more frozen fixes).
+     FIT_FLOOR_PX = 0.5        # px; floor of the per-axis residual sigma in the fit. assumed: LK noise
+     OUT_STRIKES = 3           # a keyframe point that is a fit outlier in this many frames in a row is dropped
+     # Variance model (E4, review/estimator/honest.py), per axis.
+@@ -726,6 +735,11 @@
+                 live = "move"
+             elif mm < self.LIVE_STILL_PIC_PX and np.percentile(np.linalg.norm(dd[com], axis=1), 90) < self.LIVE_STILL_PX:
+                 live = "still"
++            sn = ref["seen"][idx] if "seen" in ref else rp              # point positions at the last "moved" proof
++            cs = com & np.isfinite(sn[:, 0])
++            if not live and cs.sum() >= self.MIN_PTS // 2 and \
++                    float(_med(np.linalg.norm(p2[cs] - sn[cs], axis=1))) > self.LIVE_MOVE_PX:
++                live = "moved"
+         if ok.sum() < self.MIN_PTS:
+             return f"{ok.sum()} points left"
+ 
+@@ -823,6 +837,8 @@
+                 return self._fail(tref, r)
+         if switched or r["live"] == "move" or r.get("mode"):   # the motion test of the next frames starts from this frame
+             kf["ref"] = dict(t=tref, px=r["p2"], pred=r["pred"])
++        elif r["live"] == "moved":                              # the next "moved" proof needs new motion
++            kf["ref"]["seen"] = r["p2"]
+         if r["live"]:
+             self.t_live, kf["pending"] = tref, False
+         self.t_good = tref

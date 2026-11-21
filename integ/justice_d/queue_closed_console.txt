@@ -1,0 +1,33 @@
+[jd_apb_100m_w20g40_s12] hold starts, mode 5, 0.0 s after the Loiter request started
+[jd_apb_100m_w20g40_s12] rms 0.654  p95 1.13  max 1.23  drift_m_per_min 0.589  roll_rms_deg 5.32  pitch_rms_deg 2.39  judge_rms 26.2  fix_rate_hz 12.2  pct_frames_fix 20.5  age_ms_p50 129  onboard_att_hz 108
+jd_apb_100m_w20g40_s12 rms 0.654 max 1.23 p95 1.13 fix_rate_hz 12.2 pct_frames_fix 20.5 age_ms_p50 129 handover_ms_p50 6.37 handover_ms_p95 12.6 proc_ms_mean 81 processed 731 frames 3.57e+03 [(np.float64(0.0), 'hold starts, mode 5, 0.0 s after the Loiter request started')]
+1-minute load 5.33 >= 4.0: waiting 30 s
+[jd_apb_100m_w20g40_s13] hold starts, mode 5, 0.0 s after the Loiter request started
+[jd_apb_100m_w20g40_s13] rms 0.715  p95 1.15  max 1.43  drift_m_per_min 0.456  roll_rms_deg 6.47  pitch_rms_deg 1.94  judge_rms 28.3  fix_rate_hz 12.2  pct_frames_fix 20.4  age_ms_p50 129  onboard_att_hz 108
+jd_apb_100m_w20g40_s13 rms 0.715 max 1.43 p95 1.15 fix_rate_hz 12.2 pct_frames_fix 20.4 age_ms_p50 129 handover_ms_p50 6.4 handover_ms_p95 12.5 proc_ms_mean 80.9 processed 732 frames 3.58e+03 [(np.float64(0.0), 'hold starts, mode 5, 0.0 s after the Loiter request started')]
+1-minute load 4.89 >= 4.0: waiting 30 s
+[jd_apb_50m_w20g40_s11] hold starts, mode 5, 0.0 s after the Loiter request started
+[jd_apb_50m_w20g40_s11] rms 0.622  p95 1.21  max 1.39  drift_m_per_min 0.291  roll_rms_deg 8.45  pitch_rms_deg 2.53  judge_rms 14  fix_rate_hz 12.2  pct_frames_fix 20.4  age_ms_p50 129  onboard_att_hz 109
+jd_apb_50m_w20g40_s11 rms 0.622 max 1.39 p95 1.21 fix_rate_hz 12.2 pct_frames_fix 20.4 age_ms_p50 129 handover_ms_p50 6.44 handover_ms_p95 12.8 proc_ms_mean 80.9 processed 732 frames 3.58e+03 [(np.float64(0.0), 'hold starts, mode 5, 0.0 s after the Loiter request started')]
+1-minute load 6.62 >= 4.0: waiting 30 s
+1-minute load 4.01 >= 4.0: waiting 30 s
+[jd_apb_20m_calm_s11] hold starts, mode 5, 0.0 s after the Loiter request started
+[jd_apb_20m_calm_s11] rms 0.159  p95 0.236  max 0.255  drift_m_per_min 0.283  roll_rms_deg 0.133  pitch_rms_deg 0.303  judge_rms 0.474  fix_rate_hz 12.2  pct_frames_fix 20.4  age_ms_p50 129  onboard_att_hz 110
+jd_apb_20m_calm_s11 rms 0.159 max 0.255 p95 0.236 fix_rate_hz 12.2 pct_frames_fix 20.4 age_ms_p50 129 handover_ms_p50 6.37 handover_ms_p95 12.1 proc_ms_mean 80.9 processed 732 frames 3.59e+03 [(np.float64(0.0), 'hold starts, mode 5, 0.0 s after the Loiter request started')]
+1-minute load 6.00 >= 4.0: waiting 30 s
+[jdcal_apb_100m_w20g40_s11] hold starts, mode 5, 0.0 s after the Loiter request started
+[jdcal_apb_100m_w20g40_s11] rms 0.661  p95 0.996  max 1.11  drift_m_per_min 0.729  roll_rms_deg 8.27  pitch_rms_deg 2.87  judge_rms 24.4  fix_rate_hz 12.1  pct_frames_fix 40.2  age_ms_p50 157  onboard_att_hz 108
+jdcal_apb_100m_w20g40_s11 rms 0.661 max 1.11 p95 0.996 fix_rate_hz 12.1 pct_frames_fix 40.2 age_ms_p50 157 handover_ms_p50 6.18 handover_ms_p95 9.75 proc_ms_mean 81.3 processed 724 frames 1.8e+03 [(np.float64(0.0), 'hold starts, mode 5, 0.0 s after the Loiter request started')]
+[an_apb_50m_w20g40_s11] hold starts, mode 5, 0.0 s after the Loiter request started
+[an_apb_50m_w20g40_s11] rms 0.34  p95 0.682  max 0.76  drift_m_per_min 0.313  roll_rms_deg 8.58  pitch_rms_deg 2.57  judge_rms 13.7  fix_rate_hz 12  pct_frames_fix 48.1  age_ms_p50 170  onboard_att_hz 110
+an_apb_50m_w20g40_s11 rms 0.34 max 0.76 p95 0.682 fix_rate_hz 12 pct_frames_fix 48.1 age_ms_p50 170 handover_ms_p50 16.5 handover_ms_p95 19.9 proc_ms_mean 81.4 processed 721 frames 1.5e+03 [(np.float64(0.0), 'hold starts, mode 5, 0.0 s after the Loiter request started')]
+[an_apb_20m_calm_s11] hold starts, mode 5, 0.0 s after the Loiter request started
+[an_apb_20m_calm_s11] rms 0.0993  p95 0.158  max 0.179  drift_m_per_min 0.199  roll_rms_deg 0.153  pitch_rms_deg 0.146  judge_rms 0.236  fix_rate_hz 11  pct_frames_fix 44  age_ms_p50 169  onboard_att_hz 111
+an_apb_20m_calm_s11 rms 0.0993 max 0.179 p95 0.158 fix_rate_hz 11 pct_frames_fix 44 age_ms_p50 169 handover_ms_p50 16.4 handover_ms_p95 20 proc_ms_mean 81.3 processed 722 frames 1.5e+03 [(np.float64(0.0), 'hold starts, mode 5, 0.0 s after the Loiter request started')]
+[an_apb_100m_w20g40_s11] hold starts, mode 5, 0.0 s after the Loiter request started
+[an_apb_100m_w20g40_s11] rms 0.827  p95 1.24  max 1.35  drift_m_per_min 0.475  roll_rms_deg 8.53  pitch_rms_deg 2.55  judge_rms 27  fix_rate_hz 12  pct_frames_fix 48.1  age_ms_p50 170  onboard_att_hz 109
+an_apb_100m_w20g40_s11 rms 0.827 max 1.35 p95 1.24 fix_rate_hz 12 pct_frames_fix 48.1 age_ms_p50 170 handover_ms_p50 16.5 handover_ms_p95 19.7 proc_ms_mean 81.4 processed 721 frames 1.5e+03 [(np.float64(0.0), 'hold starts, mode 5, 0.0 s after the Loiter request started')]
+[jdfull_apb_100m_w20g40_s11] hold starts, mode 5, 0.0 s after the Loiter request started
+[jdfull_apb_100m_w20g40_s11] rms 1.1  p95 1.86  max 2.15  drift_m_per_min 1.35  roll_rms_deg 8.26  pitch_rms_deg 2.97  judge_rms 25.8  fix_rate_hz 12.2  pct_frames_fix 20.3  age_ms_p50 129  onboard_att_hz 108
+jdfull_apb_100m_w20g40_s11 rms 1.1 max 2.15 p95 1.86 fix_rate_hz 12.2 pct_frames_fix 20.3 age_ms_p50 129 handover_ms_p50 6.55 handover_ms_p95 12.9 proc_ms_mean 81 processed 730 frames 3.6e+03 [(np.float64(0.0), 'hold starts, mode 5, 0.0 s after the Loiter request started')]
+QUEUE DONE

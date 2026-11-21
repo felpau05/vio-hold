@@ -1,0 +1,103 @@
+Run on 2026-11-21 at 01:24, no simulator active. ~/.venvs/vio/bin/python tests_apb/<name>.py
+
+===== tests_apb/test_gnss.py
+G1: the gnss_mode setting
+  PASS default 'none'; 'gps' refused: /tmp/tmpv_o2ekz2/bad.json: 'gnss_mode' must be one of none, setup, fallback, velocity; it is 'gps'.
+G2: gnss_mode none: the same MAVLink messages and commands as before the change, no source-set command
+  PASS before {'SET_GPS_GLOBAL_ORIGIN': 1, 'COMMAND_INT': 1, 'VISION_POSITION_ESTIMATE': 75}; none {'SET_GPS_GLOBAL_ORIGIN': 1, 'COMMAND_INT': 1, 'VISION_POSITION_ESTIMATE': 75}; same log columns True; same notes True (['FC mode ALT_HOLD', 'engaged: FC mode LOITER'])
+  PASS positive control, gnss_mode setup: the only new message is COMMAND_LONG 42007, 1 time(s)
+G3: gnss_mode setup: set 2 requested once fixes flow, before the pilot's switch, the FC reply logged
+  PASS request 1.03 s after the first fix, reply before the switch: True; commands [2.0]; notes ['FC mode ALT_HOLD', "EKF source set 2 (our position only) requested: fixes for 1.0 s, before the pilot's switch", 'FC reply to EKF source set 2 (our position only): ACCEPTED', 'engaged: FC mode LOITER']
+G4: the pilot's switch comes before the program is ready: a WARNING note, set 2 then follows in the hold
+  PASS notes ['FC mode ALT_HOLD', 'engaged: FC mode LOITER; WARNING: the hold started before the FC accepted EKF source set 2. GNSS aids this hold', 'EKF source set 2 (our position only) requested: fixes for 1.0 s, in a hold', 'FC reply to EKF source set 2 (our position only): ACCEPTED']
+G5: gnss_mode fallback: no fix for gnss_fallback_s in the hold -> set 1 (GNSS), kept until the release
+  PASS commands [2.0, 1.0, 2.0] (want 2, 1, 2); fallback before video back and set 2 only after the release: True; notes ['FC mode ALT_HOLD', "EKF source set 2 (our position only) requested: fixes for 0.5 s, before the pilot's switch", 'FC reply to EKF source set 2 (our position only): ACCEPTED', 'engaged: FC mode LOITER', 'recovery test: video dropped for 1.2 s', 'EKF source set 1 (GNSS) requested: GNSS FALLBACK: no fix for 0.5 s in the hold (gnss_fallback_s 0.5). GNSS aids the hold from this time', 'FC reply to EKF source set 1 (GNSS): ACCEPTED', 'recovery test: video back', "released: FC mode ALT_HOLD; EKF source set 2 (our position only) requested: fixes for 1.4 s, before the pilot's switch", 'FC reply to EKF source set 2 (our position only): ACCEPTED']
+G6: an FC that denies the command or does not answer: at most one request each second, each logged
+  PASS reply DENIED: 4 requests in 4 s; notes ['FC mode ALT_HOLD', "EKF source set 2 (our position only) requested: fixes for 0.3 s, before the pilot's switch", 'FC reply to EKF source set 2 (our position only): DENIED', "EKF source set 2 (our position only) requested: fixes for 1.3 s, before the pilot's switch"]
+  PASS reply no FC reply: 4 requests in 4 s; notes ['FC mode ALT_HOLD', "EKF source set 2 (our position only) requested: fixes for 0.3 s, before the pilot's switch", 'EKF source set 2 (our position only) requested: no FC reply in 1 s, try 2', 'EKF source set 2 (our position only) requested: no FC reply in 1 s, try 3']
+G7: settings that do not fit the level; PX4; the profiles equal apb_main.GNSS_AP
+  PASS none: []; setup without the profile: ['gnss_mode setup needs other params_ardupilot values: GPS1_TYPE 0 (need 1), EK3_SRC1_POSXY 6 (need 3), EK3_SRC1_VELXY 0 (need 3), EK3_SRC2_POSXY None (need 6), EK3_SRC2_VELXY None (need 0), EK3_SRC2_POSZ None (need 1), EK3_SRC2_VELZ None (need 0), EK3_SRC2_YAW None (need 1), EK3_SRC_OPTIONS None (need 0). Apply tools/profiles/gnss_setup.json.']; with it: []; PX4: ['gnss_mode velocity needs ArduPilot EKF source sets. The program does not support it on px4. Apply the profiles again without gnss_*.']
+  PASS each profile owns gnss_mode and the level's params_ardupilot keys only: {'setup': True, 'fallback': True, 'velocity': True}
+  PASS run refuses it: ["capture is 'digital ?x?@60 reduce=2 640x360' but the calibration was made with 'digital 640x360'. Run calib again.", "no mask. Run 'apb_main.py mask' (with no OSD in the picture it masks almost nothing).", 'gnss_mode fallback needs other params_ardupilot values: GPS1_TYPE 0 (need 1), EK3_SRC1_POSXY 6 (need 3), EK3_SRC1_VELXY 0 (need 3), EK3_SRC2_POSXY None (need 6), EK3_SRC2_VELXY None (need 0), EK3_SRC2_POSZ None (need 1), EK3_SRC2_VELZ None (need 0), EK3_SRC2_YAW None (need 1), EK3_SRC_OPTIONS None (need 0). Apply tools/profiles/gnss_fallback.json.']
+G8: tools/use_profile.py apply ... gnss_setup, then apply without it
+  PASS apply with the level fits it, apply without it gives the same file as before: {'setup': True, 'fallback': True, 'velocity': True}
+    applied outdoor_day + justice_d + gnss_velocity -> /tmp/tmpv_o2ekz2/settings.json
+      gnss_mode: before "none" -> after "velocity"
+      params_ardupilot.EK3_SRC1_POSXY: before 6 -> after 3
+      params_ardupilot.EK3_SRC1_VELXY: before 0 -> after 3
+      params_ardupilot.EK3_SRC2_POSXY: before "(none)" -> after 6
+      params_ardupilot.EK3_SRC2_POSZ: before "(none)" -> after 1
+      params_ardupilot.EK3_SRC2_VELXY: before "(none)" -> after 3
+      params_ardupilot.EK3_SRC2_VELZ: before "(none)" -> after 0
+      params_ardupilot.EK3_SRC2_YAW: before "(none)" -> after 1
+      params_ardupilot.EK3_SRC_OPTIONS: before "(none)" -> after 0
+      params_ardupilot.GPS1_TYPE: before 0 -> after 1
+G9: check mode: a PASS or FAIL line for each parameter of the level
+  PASS 12 lines for 12 parameters; FAIL lines ["FAIL param EK3_SRC2_POSXY = 0; need 6. Run 'apb_main.py check --set-params', then reboot the FC."]; level line ['PASS gnss_mode setup: settings match the level']
+ALL PASS in 32 s
+
+===== tests_apb/test_event.py
+E1: the flight controller connection fails in mask/calib recording and in bench mode
+  PASS _recording: the error goes on (no heartbeat from the flight controller (test)) and the camera is closed: True
+  PASS mode_bench: the error goes on (no heartbeat from the flight controller (test)) and the camera is closed: True
+E2: flight mode names and which modes hold a position
+  PASS 12 cases decode as expected: all
+E3: the pilot's switch: ALT_HOLD, then LOITER, then ALT_HOLD again
+  PASS fresh_kf_at_engage False: notes ['FC mode ALT_HOLD', 'engaged: FC mode LOITER', 'released: FC mode ALT_HOLD']; modes ['ALT_HOLD', 'LOITER']; keyframe requests 0
+  PASS fresh_kf_at_engage True: notes ['FC mode ALT_HOLD', 'engaged: FC mode LOITER; fresh keyframe requested', 'released: FC mode ALT_HOLD']; modes ['ALT_HOLD', 'LOITER']; keyframe requests 1
+E4: the recovery demonstration drops the video and the run goes on
+  PASS after the switch: 18 frames dropped, 0.21 s after it; notes ['recovery test: video dropped for 0.3 s', 'recovery test: video back']; 71 frames went to Hold
+  PASS trigger file: 17 frames dropped from the start, file deleted: True
+  PASS outage_test_s 0 (the default): 0 frames dropped, the file is left alone, 59 frames to Hold
+E5: Hold.request_keyframe in a still hover at 50 m
+  PASS new keyframe True, it is home True, old home kept True; 30 of 30 fixes after the request; largest move 0.003 m
+E6: KF_BRIGHT 2 grey: a keyframe asked in the middle of an 8 grey brightness rise (1 s) waits for the end
+  PASS kf_bright 0: the new keyframe came at frame 30 (ramp ends at frame 60); 120 of 120 fixes
+  PASS kf_bright 2: the new keyframe came at frame 77 (ramp ends at frame 60); 120 of 120 fixes
+E7: tools/log_summary.py on a run with a switch and a 0.3 s recovery test
+  PASS switch (sent before, after, gap s) [(57, 58, 0.06040000000029977)]; recovery: first fix [0.0] s after 'video back'; longest gap 0.34 s; 28 fixes/s; fix age p50 40 ms, p95 40 ms
+  PASS the command line prints a table and the spread over 2 logs, no warning: age p95 ms: median 40.30, range 40.30 to 40.30 over 2 logs
+  PASS a log with fix ages of hours gets a warning: ['WARN /tmp/tmpzqk0jq6g/e7_bad.csv: fix age p95 22000000 ms is outside 0 to 1000 ms. The frame stamps and the program clock (time.monotonic) differ. Do not use these ages as evidence.']
+E8: GAP_JUMP_S: the first picture after a 3 s gap, 10 grey brighter, in a still hover at 50 m
+  PASS gap_jump_s 0: first frame lost (picture broken up (impulse z 0, band brightness z 20)); lost in 30 frames True; same keyframe True; 27 fixes
+  PASS gap_jump_s 0.5: first frame ok (None); lost in 30 frames False; same keyframe True; 30 fixes
+ALL PASS in 26 s
+
+===== tests_apb/test_run.py
+connected: px4, ATTITUDE 100 Hz, clock fitted True
+  PASS normal: 229 fixes in 8 s (28.6/s), position error vs truth rms 0.09 m, max 0.15 m; fix age 70 ms
+  PASS normal: error under 1 m RMS at 50 m (hold anchored to the FC position)
+  PASS fix fields: z -50.83, angles NaN, covariance[0] 0.0360 [6] 0.0360 [11] 0.0
+  PASS frozen picture: last fix 0.02 s after the freeze; 0 fixes later than 0.5 s
+  PASS after the freeze: 110 fixes in 4 s; first 0.35 s after the picture moved again
+  PASS attitude stopped: last fix 0.05 s after; 0 fixes later than 0.2 s
+  PASS after attitude returned: 99 fixes in 4 s
+  PASS restart: 108 fixes; first fix 0.14 m from the truth (no jump)
+  PASS log 559 rows; reasons {'': 442, 'repeated frame': 60, 'good fix': 27, 'attitude 0': 8, 'attitude stale': 4, 'attitude 36': 2, 'attitude 1': 2, 'attitude 3': 2}; first note 'FC mode main mode 0; re-anchored to FC position 0.63 0.85'
+  PASS replay of the first raw chunk (3 chunks): {'frames': 301, 'sent': 230, 'init': 1, 'ok': 240} in 1 s
+ALL PASS in 28 s (files in /tmp/tmpha22lvp6)
+
+===== tests_apb/test_fc_link.py
+A. PX4 fake, clock offset 80 ms, arrival jitter 0-20 ms
+  PASS firmware detected: px4 
+  PASS streams: before ATTITUDE 16 Hz, HIGHRES_IMU 38, LOCAL_POSITION_NED 1; after ATTITUDE 100 Hz, HIGHRES_IMU 0, LOCAL_POSITION_NED 10 (ack 0)
+  PASS clock mapping error over the last 3 s: +1.02 .. +1.21 ms (limit 3 ms; the injected jitter averages 10 ms)
+  PASS attitude in the companion clock matches the truth: worst 0.029 deg (rotation up to 30 deg/s, so 1 ms = 0.03 deg)
+  PASS attitude rows carry rates (7 columns); height 2.00 m (true 2.00)
+  PASS FC local position for re-anchor: [0.494757   0.36408997]
+  PASS parameter check on PX4 v1.15 defaults: FAIL for ['EKF2_DELAY_MAX', 'EKF2_EV_CTRL', 'EKF2_GPS_CTRL', 'EKF2_HGT_REF', 'EKF2_RNG_CTRL']; e.g. 'FAIL param EKF2_EV_CTRL = 15; need 1. Run 'apb_main.py check --set-params', then reboot the FC.'
+  PASS --set-params: 9/9 pass; e.g. 'PASS param EKF2_EV_CTRL: wrote 1, reads 1. Reboot the flight controller.'
+  PASS parameters read back right after the write
+  PASS TIMESYNC: our requests answered (10, RTT p90 0.7 ms); PX4 requests answered by us (79)
+  PASS VISION_POSITION_ESTIMATE fields: {"kind": "vpe", "t_arr": 5227.326716398, "usec": 5227245832, "x": 1.5, "y": -2.0, "z": -2.0, "roll": NaN, "pitch": NaN, "yaw": NaN, "covariance": [0.30000001192092896, 0.05000000074505806, 0.0, 0.0, 0.0, 0.0, 0.20000000298023224, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], "reset_counter": 0, "sysid": 1, "compid": 197, "angles_nan": [true, true, true]}
+  PASS version-1 Est (no cov): covariance[0], [6] = var/2 = 0.25
+B. ArduPilot fake
+  PASS firmware detected: ardupilot 
+  PASS ArduPilot parameter check (GPS1_TYPE read as GPS_TYPE): FAIL for ['EK3_SRC1_POSXY', 'EK3_SRC1_VELXY', 'EK3_SRC1_VELZ', 'GPS_TYPE', 'VISO_DELAY_MS', 'VISO_TYPE']
+  PASS SET_GPS_GLOBAL_ORIGIN: [{'kind': 'origin', 't_arr': 5234.532390564, 'lat': 454000000, 'lon': -757000000, 'alt': 60000}]
+  PASS ArduPilot fix carries the FC attitude: (-0.0064543173648417, -0.13144803047180176, 0.5161881446838379)
+C. firmware without external vision
+  PASS generic MAVLink autopilot: the flight controller says MAVLink autopilot type 0 (iNav or Betaflight telemetry?). This firmware has no external-vision input; not supported yet.
+  PASS no heartbeat, MSP probe on a serial port: the flight controller runs Betaflight (MSP API 1.46). This firmware has no external-vision input; not supported yet. (2.2 s)
+  PASS nothing answers: no MAVLink heartbeat on udpin:127.0.0.1:14656 in 2 s and no MSP answer on /nonexistent. Check the cable, the baud rate and that mavlink-router runs.
+ALL PASS in 20 s

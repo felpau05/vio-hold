@@ -1,0 +1,52 @@
+{"ev": "wait", "load": 5.59, "arducopter": [], "sim_py": [], "px4_sim": false, "t": "03:41:15"}
+{"ev": "wait", "load": 5.62, "arducopter": [], "sim_py": [], "px4_sim": false, "t": "03:41:20"}
+{"ev": "wait", "load": 3.13, "arducopter": [], "sim_py": [], "px4_sim": false, "t": "03:42:16"}
+{"ev": "start", "copy": "ab", "label": "lowap_apb_10m_w20g40_s1_base", "attempt": 1, "load": [2.9619140625, 3.99169921875, 4.541015625], "waited_s": 65, "t": "03:42:21"}
+{"ev": "end", "copy": "ab", "label": "lowap_apb_10m_w20g40_s1_base", "attempt": 1, "rc": 0, "wall_s": 88, "bad": null, "rms": 0.9930790926125627, "load_start_runner": [2.9619140625, 3.99169921875, 4.541015625], "hold_md5": "d78329d32c349ef061282fea1192d320", "hold_cfg": {"repeat_diff": 0.01, "h_min": 2.0}, "t": "03:43:49"}
+{"ev": "final", "copy": "ab", "label": "lowap_apb_10m_w20g40_s1_base", "status": "ok", "t": "03:43:49"}
+{"ev": "wait", "load": 4.52, "arducopter": [], "sim_py": [], "px4_sim": false, "t": "03:43:49"}
+{"ev": "wait", "load": 4.16, "arducopter": [], "sim_py": [], "px4_sim": false, "t": "03:43:54"}
+{"ev": "wait", "load": 3.2, "arducopter": [], "sim_py": [], "px4_sim": false, "t": "03:44:49"}
+{"ev": "wait", "load": 3.02, "arducopter": [], "sim_py": [], "px4_sim": false, "t": "03:44:54"}
+{"ev": "start", "copy": "ab", "label": "lowap_apb_10m_w20g40_s1_py", "attempt": 1, "load": [2.857421875, 3.7734375, 4.38525390625], "waited_s": 71, "t": "03:44:59"}
+{"ev": "end", "copy": "ab", "label": "lowap_apb_10m_w20g40_s1_py", "attempt": 1, "rc": 0, "wall_s": 88, "bad": null, "rms": 0.3921124395639548, "load_start_runner": [2.857421875, 3.7734375, 4.38525390625], "hold_md5": "d78329d32c349ef061282fea1192d320", "hold_cfg": {"repeat_diff": 0.01, "h_min": 2.0, "dense_local": true, "dense_turn": true}, "t": "03:46:27"}
+{"ev": "final", "copy": "ab", "label": "lowap_apb_10m_w20g40_s1_py", "status": "ok", "t": "03:46:27"}
+{"ev": "wait", "load": 4.84, "arducopter": [], "sim_py": [], "px4_sim": false, "t": "03:46:27"}
+{"ev": "wait", "load": 4.45, "arducopter": [], "sim_py": [], "px4_sim": false, "t": "03:46:32"}
+{"ev": "start", "copy": "ab", "label": "lowap_apb_10m_w20g40_s1_h15", "attempt": 1, "load": [2.78271484375, 3.7763671875, 4.32958984375], "waited_s": 40, "t": "03:47:08"}
+{"ev": "end", "copy": "ab", "label": "lowap_apb_10m_w20g40_s1_h15", "attempt": 1, "rc": 0, "wall_s": 99, "bad": null, "rms": 0.6206565096520241, "load_start_runner": [2.78271484375, 3.7763671875, 4.32958984375], "hold_md5": "d78329d32c349ef061282fea1192d320", "hold_cfg": {"repeat_diff": 0.01, "h_min": 2.0}, "t": "03:48:46"}
+{"ev": "final", "copy": "ab", "label": "lowap_apb_10m_w20g40_s1_h15", "status": "ok", "t": "03:48:46"}
+{"ev": "wait", "load": 7.18, "arducopter": [], "sim_py": [], "px4_sim": false, "t": "03:48:46"}
+{"ev": "wait", "load": 6.6, "arducopter": [], "sim_py": [], "px4_sim": false, "t": "03:48:51"}
+{"ev": "wait", "load": 3.52, "arducopter": [], "sim_py": [], "px4_sim": false, "t": "03:49:47"}
+{"ev": "wait", "load": 3.24, "arducopter": [], "sim_py": [], "px4_sim": false, "t": "03:49:52"}
+{"ev": "start", "copy": "ab", "label": "lowap_apb_10m_w20g40_s1_b", "attempt": 1, "load": [2.97509765625, 3.8994140625, 4.2998046875], "waited_s": 76, "t": "03:50:02"}
+{"ev": "end", "copy": "ab", "label": "lowap_apb_10m_w20g40_s1_b", "attempt": 1, "rc": 0, "wall_s": 88, "bad": null, "rms": 0.83878637238971, "load_start_runner": [2.97509765625, 3.8994140625, 4.2998046875], "hold_md5": "d78329d32c349ef061282fea1192d320", "hold_cfg": {"repeat_diff": 0.01, "h_min": 2.0}, "t": "03:51:29"}
+{"ev": "final", "copy": "ab", "label": "lowap_apb_10m_w20g40_s1_b", "status": "ok", "t": "03:51:29"}
+{"ev": "wait", "load": 7.25, "arducopter": [], "sim_py": [], "px4_sim": false, "t": "03:51:30"}
+{"ev": "wait", "load": 6.67, "arducopter": [], "sim_py": [], "px4_sim": false, "t": "03:51:35"}
+{"ev": "wait", "load": 3.16, "arducopter": [], "sim_py": [], "px4_sim": false, "t": "03:52:30"}
+{"ev": "start", "copy": "ab", "label": "lowap_apb_10m_w20g40_s1_pyb", "attempt": 1, "load": [2.9853515625, 4.2734375, 4.427734375], "waited_s": 66, "t": "03:52:35"}
+{"ev": "end", "copy": "ab", "label": "lowap_apb_10m_w20g40_s1_pyb", "attempt": 1, "rc": 0, "wall_s": 88, "bad": null, "rms": 0.3951212776244854, "load_start_runner": [2.9853515625, 4.2734375, 4.427734375], "hold_md5": "d78329d32c349ef061282fea1192d320", "hold_cfg": {"repeat_diff": 0.01, "h_min": 2.0, "dense_local": true, "dense_turn": true}, "t": "03:54:03"}
+{"ev": "final", "copy": "ab", "label": "lowap_apb_10m_w20g40_s1_pyb", "status": "ok", "t": "03:54:03"}
+{"ev": "wait", "load": 4.59, "arducopter": [], "sim_py": [], "px4_sim": false, "t": "03:54:03"}
+{"ev": "wait", "load": 4.23, "arducopter": [], "sim_py": [], "px4_sim": false, "t": "03:54:08"}
+{"ev": "start", "copy": "ab", "label": "lowap_apb_10m_w20g40_s2_base", "attempt": 1, "load": [2.8505859375, 4.05908203125, 4.34619140625], "waited_s": 30, "t": "03:54:33"}
+{"ev": "end", "copy": "ab", "label": "lowap_apb_10m_w20g40_s2_base", "attempt": 1, "rc": 0, "wall_s": 88, "bad": null, "rms": 0.8559229538832173, "load_start_runner": [2.8505859375, 4.05908203125, 4.34619140625], "hold_md5": "d78329d32c349ef061282fea1192d320", "hold_cfg": {"repeat_diff": 0.01, "h_min": 2.0}, "t": "03:56:01"}
+{"ev": "final", "copy": "ab", "label": "lowap_apb_10m_w20g40_s2_base", "status": "ok", "t": "03:56:01"}
+{"ev": "start", "copy": "ab", "label": "lowap_apb_10m_w20g40_s2_py", "attempt": 1, "load": [2.92626953125, 3.7333984375, 4.19970703125], "waited_s": 0, "t": "03:56:01"}
+{"ev": "end", "copy": "ab", "label": "lowap_apb_10m_w20g40_s2_py", "attempt": 1, "rc": 0, "wall_s": 88, "bad": null, "rms": 0.4000563586850682, "load_start_runner": [2.92626953125, 3.7333984375, 4.19970703125], "hold_md5": "d78329d32c349ef061282fea1192d320", "hold_cfg": {"repeat_diff": 0.01, "h_min": 2.0, "dense_local": true, "dense_turn": true}, "t": "03:57:28"}
+{"ev": "final", "copy": "ab", "label": "lowap_apb_10m_w20g40_s2_py", "status": "ok", "t": "03:57:28"}
+{"ev": "wait", "load": 4.06, "arducopter": [], "sim_py": [], "px4_sim": false, "t": "03:57:28"}
+{"ev": "wait", "load": 3.73, "arducopter": [], "sim_py": [], "px4_sim": false, "t": "03:57:33"}
+{"ev": "start", "copy": "ab", "label": "lowap_apb_10m_w20g40_s2_h15", "attempt": 1, "load": [2.81201171875, 3.67578125, 4.140625], "waited_s": 20, "t": "03:57:49"}
+{"ev": "end", "copy": "ab", "label": "lowap_apb_10m_w20g40_s2_h15", "attempt": 1, "rc": 0, "wall_s": 99, "bad": null, "rms": 0.5004659777207049, "load_start_runner": [2.81201171875, 3.67578125, 4.140625], "hold_md5": "d78329d32c349ef061282fea1192d320", "hold_cfg": {"repeat_diff": 0.01, "h_min": 2.0}, "t": "03:59:28"}
+{"ev": "final", "copy": "ab", "label": "lowap_apb_10m_w20g40_s2_h15", "status": "ok", "t": "03:59:28"}
+{"ev": "wait", "load": 4.69, "arducopter": [], "sim_py": [], "px4_sim": false, "t": "03:59:28"}
+{"ev": "wait", "load": 4.32, "arducopter": [], "sim_py": [], "px4_sim": false, "t": "03:59:33"}
+{"ev": "start", "copy": "ab", "label": "lowap_apb_10m_w20g40_s2_b", "attempt": 1, "load": [2.8427734375, 3.8720703125, 4.1826171875], "waited_s": 30, "t": "03:59:58"}
+{"ev": "end", "copy": "ab", "label": "lowap_apb_10m_w20g40_s2_b", "attempt": 1, "rc": 0, "wall_s": 88, "bad": null, "rms": 0.5077416793993413, "load_start_runner": [2.8427734375, 3.8720703125, 4.1826171875], "hold_md5": "d78329d32c349ef061282fea1192d320", "hold_cfg": {"repeat_diff": 0.01, "h_min": 2.0}, "t": "04:01:26"}
+{"ev": "final", "copy": "ab", "label": "lowap_apb_10m_w20g40_s2_b", "status": "ok", "t": "04:01:26"}
+{"ev": "wait", "load": 6.56, "arducopter": [], "sim_py": [], "px4_sim": false, "t": "04:01:26"}
+{"ev": "wait", "load": 6.03, "arducopter": [], "sim_py": [], "px4_sim": false, "t": "04:01:31"}
+{"ev": "start", "copy": "ab", "label": "lowap_apb_10m_w20g40_s2_pyb", "attempt": 1, "load": [2.888671875, 3.76708984375, 4.10546875], "waited_s": 50, "t": "04:02:16"}

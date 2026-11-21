@@ -1,0 +1,76 @@
+== mutation m1_write_swapped: apb_main.py: sed 's/s\["video_delay_s"\], s\["readout_s"\] = lat, ro/s["video_delay_s"], s["readout_s"] = ro, lat/'
+   1088c1088
+   <     s["video_delay_s"], s["readout_s"] = lat, ro
+   ---
+   >     s["video_delay_s"], s["readout_s"] = ro, lat
+   C. D3 bench, mask, calib: one FAIL line
+   ALL PASSED
+
+== mutation m2_no_rate_gate: apb_main.py: sed 's/if r.rate_dps < s\["calib_min_rate_dps"\] or len(r.ia) < 1000:/if False:/'
+   1075c1075
+   <     if r.rate_dps < s["calib_min_rate_dps"] or len(r.ia) < 1000:
+   ---
+   >     if False:
+   C. D3 bench, mask, calib: one FAIL line
+   ALL PASSED
+
+== mutation m3_stamp_tol_600s: apb_main.py: sed 's/max(abs(x - st\[0\]) for x in st) > 2:/max(abs(x - st[0]) for x in st) > 600:/'
+   1046c1046
+   <     if len(st) == 1 + len(raws) and max(abs(x - st[0]) for x in st) > 2:
+   ---
+   >     if len(st) == 1 + len(raws) and max(abs(x - st[0]) for x in st) > 600:
+   C. D3 bench, mask, calib: one FAIL line
+   ALL PASSED
+
+== mutation m4_window_in_tgrab: apb_main.py: sed 's/keep = \[(x >= sw\[0\] - 16.0) \& (x <= sw\[0\] - 1.0) for x in tg\]/keep = [(x >= sw[0] + s["video_delay_s"] - 16.0) \& (x <= sw[0] + s["video_delay_s"] - 1.0) for x in tg]/'
+   1062c1062
+   <     keep = [(x >= sw[0] - 16.0) & (x <= sw[0] - 1.0) for x in tg]
+   ---
+   >     keep = [(x >= sw[0] + s["video_delay_s"] - 16.0) & (x <= sw[0] + s["video_delay_s"] - 1.0) for x in tg]
+   C. D3 bench, mask, calib: one FAIL line
+   ALL PASSED
+
+== mutation m5_last_switch: apb_main.py: sed 's/keep = \[(x >= sw\[0\] - 16.0) \& (x <= sw\[0\] - 1.0) for x in tg\]/keep = [(x >= sw[-1] - 16.0) \& (x <= sw[-1] - 1.0) for x in tg]/'
+   1062c1062
+   <     keep = [(x >= sw[0] - 16.0) & (x <= sw[0] - 1.0) for x in tg]
+   ---
+   >     keep = [(x >= sw[-1] - 16.0) & (x <= sw[-1] - 1.0) for x in tg]
+     FAIL two 'engaged' notes: the window of the first; the INFO line says so
+   C. D3 bench, mask, calib: one FAIL line
+   1 FAILED
+
+== mutation m6_catch_every_error: apb_main.py: sed 's/except (RuntimeError, ValueError) as e:     # no FC/except Exception as e:     # no FC/'
+   1200c1200
+   <     except (RuntimeError, ValueError) as e:     # no FC, no frames, "will not start", a bad mask: one FAIL line
+   ---
+   >     except Exception as e:     # no FC, no frames, "will not start", a bad mask: one FAIL line
+   C. D3 bench, mask, calib: one FAIL line
+   ALL PASSED
+
+== mutation m7_disk_floor_90pct: apb_main.py: sed 's/need = max(s\["min_free_gb"\] \* mbs \/ (360 \* 288 \* 25 \/ 1e6), s\["min_free_gb"\])/need = max(s["min_free_gb"] * mbs \/ (360 * 288 * 25 \/ 1e6), 0.9 * s["min_free_gb"])/'
+   915c915
+   <     need = max(s["min_free_gb"] * mbs / (360 * 288 * 25 / 1e6), s["min_free_gb"])
+   ---
+   >     need = max(s["min_free_gb"] * mbs / (360 * 288 * 25 / 1e6), 0.9 * s["min_free_gb"])
+   C. D3 bench, mask, calib: one FAIL line
+   ALL PASSED
+
+== mutation m8_ap_height_stream_not_asked: fc_link.py: sed 's/want\[M.MAVLINK_MSG_ID_GLOBAL_POSITION_INT\] = self.s\["hgt_hz"\]/pass/'
+   198c198
+   <             want[M.MAVLINK_MSG_ID_GLOBAL_POSITION_INT] = self.s["hgt_hz"]
+   ---
+   >             pass
+   C. D3 bench, mask, calib: one FAIL line
+   ALL PASSED
+
+== mutation m9_window_end_minus_6s: apb_main.py: sed 's/keep = \[(x >= sw\[0\] - 16.0) \& (x <= sw\[0\] - 1.0) for x in tg\]/keep = [(x >= sw[0] - 21.0) \& (x <= sw[0] - 6.0) for x in tg]/'
+   1062c1062
+   <     keep = [(x >= sw[0] - 16.0) & (x <= sw[0] - 1.0) for x in tg]
+   ---
+   >     keep = [(x >= sw[0] - 21.0) & (x <= sw[0] - 6.0) for x in tg]
+     FAIL switch at 125.0 s: calib gets the 150 frames from 109.0 to 124.0 s of 300 (got 150, 104.1 to 119.0 s; )
+     FAIL the 'engaged' note on a row with no frame (no t): the last frame's t (125.0 s) is the switch
+     FAIL two 'engaged' notes: the window of the first; the INFO line says so
+   C. D3 bench, mask, calib: one FAIL line
+   3 FAILED
+

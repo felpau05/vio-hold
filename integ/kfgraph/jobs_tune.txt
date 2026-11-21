@@ -1,0 +1,7 @@
+# TUNING: ottawa2019fall (tuning site), flights ap_apb_100m_w20g40_s1/s2 (tuning seeds), re-anchor at the last fix
+--split tuning --ground ottawa2019fall --height 10 --seed 1 --reanchor last --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+--split tuning --ground ottawa2019fall --height 10 --seed 2 --reanchor last --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+--split tuning --ground ottawa2019fall --height 5 --seed 1 --reanchor last --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+--split tuning --ground ottawa2019fall --height 5 --seed 2 --reanchor last --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+--split tuning --ground ottawa2019fall --height 20 --seed 1 --reanchor last --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+--split tuning --ground ottawa2019fall --height 20 --seed 2 --reanchor last --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'

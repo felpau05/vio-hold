@@ -26,12 +26,6 @@
    "confidence": "high"
   },
   {
-   "claim": "Grand Final qualifiers (event winners)",
-   "value": "Drop Table (BCIT), Project Pluto (U Calgary), The Alpha Nova, ENGITS (Carleton)",
-   "source_url": "https://redteamhack.ca/winners",
-   "confidence": "high"
-  },
-  {
    "claim": "Mean hourly wind at CYOW in November (1981-2010)",
    "value": "13.78 km/h (3.83 m/s) at 10 m",
    "source_url": "https://api.weather.gc.ca/collections/climate-normals/items?CLIMATE_IDENTIFIER=6106000&MONTH=11&f=json&limit=100",

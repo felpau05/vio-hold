@@ -1,0 +1,59 @@
+A. assumed Justice D profiles (angles from fx, fy with r = f theta)
+  PASS 'Justice D full sensor (assumed)': 1280x720, 152.0 x 85.5 deg (analysis 152.0 x 85.5)
+  PASS load_lens 640x360: fx 241.25 fy 241.25 cx 319.50 cy 179.50 = half of 482.49 482.49 639.5 359.5
+  PASS 'Justice D crop (assumed)': 1280x720, 114.0 x 64.1 deg (analysis 114.0 x 64.1)
+  PASS load_lens 640x360: fx 321.66 fy 321.66 cx 319.50 cy 179.50 = half of 643.32 643.32 639.5 359.5
+  PASS 'Justice D anamorphic (assumed)': 1280x720, 114.0 x 85.5 deg (analysis 114.0 x 85.5)
+  PASS load_lens 640x360: fx 321.66 fy 241.25 cx 319.50 cy 179.50 = half of 643.32 482.49 639.5 359.5
+B. same_aspect
+  PASS profile vs picture: [((1280, 720), '640x360', True), ((1280, 720), '1280x726', True), ((1280, 720), '640x480', False), ((960, 720), '360x288', False), ((960, 720), '640x480', True), ((1280, 720), '1280x740', False)]
+C. calibration with no target: true lens at 640x360 fx 300.0 fy 289.0 cx 324.0 cy 176.0 k (-0.03, -0.004, 0.0, 0.0). Delay 45 ms, readout +12 ms, picture top right.
+  rendered 600 frames in 12 s
+    | INFO video delay 44 ms, readout +9 ms, lens at 640x360: fx 300.9 fy 289.8 k1 -0.0371, tilt roll +2.04 pitch -0.35 twist +0.82 deg
+    | INFO quality: residual 0.093 deg, tracked points reach 66 deg from the optical axis (picture corner 75 deg), turn rate about picture x 33, y 22, z 26 deg/s
+  PASS from 'Justice D full sensor (assumed)': fx error +0.32 %, fy error +0.26 % (limit 1.0 %), k1 -0.0371. Delay 44 ms, readout +9 ms, top right. 7 s
+  PASS D4: 4203 residuals, 1 over all 25252 matches, 4202 over at most 5000 matches. calib took 7.2 s on this laptop
+    | INFO video delay 44 ms, readout +9 ms, lens at 640x360: fx 300.9 fy 289.8 k1 -0.0371, tilt roll +2.04 pitch -0.35 twist +0.82 deg
+    | INFO quality: residual 0.093 deg, tracked points reach 66 deg from the optical axis (picture corner 75 deg), turn rate about picture x 33, y 22, z 26 deg/s
+  PASS from 'Justice D crop (assumed)': fx error +0.32 %, fy error +0.26 % (limit 1.0 %), k1 -0.0371. Delay 44 ms, readout +9 ms, top right. 7 s
+    | INFO video delay 44 ms, readout +9 ms, lens at 640x360: fx 300.9 fy 289.8 k1 -0.0371, tilt roll +2.04 pitch -0.35 twist +0.82 deg
+    | INFO quality: residual 0.093 deg, tracked points reach 66 deg from the optical axis (picture corner 75 deg), turn rate about picture x 33, y 22, z 26 deg/s
+  PASS from 'Justice D anamorphic (assumed)': fx error +0.32 %, fy error +0.26 % (limit 1.0 %), k1 -0.0371. Delay 44 ms, readout +9 ms, top right. 7 s
+  PASS the three starts agree: fx spread 0.00 %, fy spread 0.00 %
+D. too little rotation: refused, no lens written
+  PASS rc 1, profiles 11 (before 11), lens_name 'Justice D crop (assumed)', lens_measured None. Last line: FAIL calibration: the drone turned too little (10 deg/s RMS, per axis 7, 4, 5); need 20 deg/s and two axes. Turn it more, about all three axes.
+E. tools/lens_calib.py on checkerboard views (true lens as in C)
+    | INFO 24 pictures 640x360. The whole 9x6 board is in 24 of them.
+    | INFO lens at 640x360: fx 300.30 fy 289.41 cx 323.93 cy 175.88 k1 -0.02691 k2 -0.02447 k3 +0.05085 k4 -0.03877
+    | INFO RMS error 0.082 px on 20 fit views, 0.076 px on 4 views that the fit did not use
+    | INFO corners reach 48.8 deg from the optical axis
+    | PASS profile 'Justice D board test' added to /tmp/tmpydkxufrm/lens.json
+  PASS fx error +0.099 %, fy error +0.142 %, cx 323.93 (true 324.0), cy 175.88 (true 176.0), k1 -0.0269 k2 -0.0245 (true -0.03 -0.004)
+F. checkerboard views near the centre only: refused, no profile written
+  PASS rc 1. Last line: FAIL the corners reach only 15 deg from the optical axis. The fit needs 40 deg. Put the board near the picture edges and corners too. Then run the tool again. The tool wrote no profile.
+H. lens_calib.py --settings writes lens_measured (by target). calib then fits one focal scale, not the lens
+    | INFO 24 pictures 640x360. The whole 9x6 board is in 24 of them.
+    | INFO lens at 640x360: fx 300.30 fy 289.41 cx 323.93 cy 175.88 k1 -0.02691 k2 -0.02447 k3 +0.05085 k4 -0.03877
+    | INFO RMS error 0.082 px on 20 fit views, 0.076 px on 4 views that the fit did not use
+    | INFO corners reach 48.8 deg from the optical axis
+    | PASS lens written to /tmp/tmpydkxufrm/settings_h.json as lens_measured (measured with a target). focal_scale is 1.0. Copy the settings to the board. Then run apb_main.py calib: it fits one focal scale against this lens.
+  PASS rc 0, lens_measured fx error +0.099 %, fy error +0.142 %, by target, lens file unchanged True
+  PASS target lens x 1.0: rc 0, lens_measured unchanged True, focal scale 0.9997 (want 1.0000), FAIL line []. 9 s
+  PASS target lens x 1.05: rc 0, lens_measured unchanged True, focal scale 0.9517 (want 0.9524), FAIL line ['FAIL focal scale is outside 0.98-1.02: the lens measured with a target does not fit this recording. Measure the lens with the target again (tools/lens_calib.py --settings). Or set lens_measured to null, then run calib to fit the lens by hand turn.']. 9 s
+G. true lens outside the search range (fx = 1.7 x w / 2, narrow): refused, no lens written
+    | FAIL calibration: the lens fit ended at the edge of its search range: fx / (w / 2) 1.693 (range 0.60 to 1.48), fy / fx 1.000 (0.65 to 1.45), k1 +0.0000 (-0.15 to +0.15). Record again. If it fails again, measure the lens with a checkerboard (tools/lens_calib.py --settings). Then run calib again.
+  PASS rc 1, edge FAIL line True, lens_measured None, calibrated False. Last line: FAIL calibration: the lens fit ended at the edge of its search range: fx / (w / 2) 1.693 (range 0.60 to 1.48), fy / fx 1.000 (0.65 to 1.45), k1 +0.0000 (-0.15 to +0.15). Record again. If it fails again, measure the lens with a checkerboard (tools/lens_calib.py --settings). Then run calib again.
+T6. cases that the code was not built on; calib from 'Justice D full sensor (assumed)'
+    | INFO video delay 42 ms, readout +9 ms, lens at 640x360: fx 229.9 fy 240.5 k1 -0.0296, tilt roll +2.84 pitch -0.63 twist +0.82 deg
+    | INFO quality: residual 0.118 deg, tracked points reach 83 deg from the optical axis (picture corner 81 deg), turn rate about picture x 33, y 22, z 26 deg/s
+  PASS hidden lens near 'Justice D full sensor (assumed)' (fx 230.5 fy 241.2 cx 320.7 cy 173.8 k1 -0.0426 k2 +0.0086): fx error -0.27 %, fy error -0.32 % (limit 1.0 %), k1 -0.0296. Delay 42 ms, readout +9 ms, top right. 7 s
+    | INFO video delay 44 ms, readout +9 ms, lens at 640x360: fx 312.2 fy 254.5 k1 -0.0383, tilt roll +2.32 pitch -1.60 twist +0.78 deg
+    | INFO quality: residual 0.099 deg, tracked points reach 65 deg from the optical axis (picture corner 77 deg), turn rate about picture x 33, y 22, z 26 deg/s
+  PASS hidden lens near 'Justice D anamorphic (assumed)' (fx 312.0 fy 254.2 cx 315.8 cy 175.7 k1 -0.0325 k2 -0.0054): fx error +0.06 %, fy error +0.13 % (limit 1.0 %), k1 -0.0383. Delay 44 ms, readout +9 ms, top right. 7 s
+    | INFO video delay 44 ms, readout +9 ms, lens at 640x360: fx 302.6 fy 290.5 k1 -0.0412, tilt roll +2.22 pitch -0.37 twist +0.73 deg
+    | INFO quality: residual 0.088 deg, tracked points reach 66 deg from the optical axis (picture corner 76 deg), turn rate about picture x 33, y 22, z 26 deg/s
+  PASS equisolid r = 2 f sin(theta / 2), f 302.4 x 290.2 px, edges at 62.9 and 36.9 deg as TRUE; against best-fit equidistant fx 302.37 fy 290.19: fx error +0.07 %, fy error +0.11 % (limit 2.0 %), k1 -0.0412. Delay 44 ms, readout +9 ms, top right. 7 s
+    | INFO video delay 42 ms, readout +9 ms, lens at 640x360: fx 302.6 fy 292.1 k1 -0.0374, tilt roll +2.10 pitch -0.12 twist +0.80 deg
+    | INFO quality: residual 0.097 deg, tracked points reach 65 deg from the optical axis (picture corner 75 deg), turn rate about picture x 33, y 22, z 26 deg/s
+  KNOWN LIMIT true lens of C, scene at 60 m, camera moves 0.19 m north, 0.24 m east, 0.03 m down peak to peak, in phase with the turn: fx error +0.86 %, fy error +1.08 % (limit 1.0 %), k1 -0.0374. Delay 42 ms, readout +9 ms, top right. 7 s
+0 FAIL, 1 KNOWN LIMIT (not a pass) in 170 s

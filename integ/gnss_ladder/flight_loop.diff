@@ -1,0 +1,197 @@
+--- a/apb_main.py
++++ b/apb_main.py
+@@ -305,6 +305,82 @@
+         return self.dropping, None
+ 
+ 
++# How much GNSS (settings gnss_mode). ArduPilot EKF source set 1 = GNSS, set 2 = our position. EK3_SRCn values
++# (apsim/ardupilot libraries/AP_NavEKF/AP_NavEKF_Source.h 17-46): POSXY/VELXY 0 none, 3 GPS, 6 ExternalNav; POSZ/VELZ
++# 1 baro; YAW 1 compass. Height (baro) and yaw (compass) are the same in both sets, so only the horizontal source
++# changes. EK3_SRC_OPTIONS 0: a velocity of the inactive set is not fused (FuseAllVelocities, AP_NavEKF_Source.cpp
++# 174-178). GPS1_TYPE 1 (auto) needs an FC restart (AP_GPS_Params.cpp 29). integ/gnss_ladder/README.txt.
++_GNSS_SET = {"GPS1_TYPE": 1, "EK3_SRC1_POSXY": 3, "EK3_SRC1_VELXY": 3, "EK3_SRC1_POSZ": 1, "EK3_SRC1_VELZ": 0,
++             "EK3_SRC1_YAW": 1, "EK3_SRC2_POSXY": 6, "EK3_SRC2_VELXY": 0, "EK3_SRC2_POSZ": 1, "EK3_SRC2_VELZ": 0,
++             "EK3_SRC2_YAW": 1, "EK3_SRC_OPTIONS": 0}
++GNSS_AP = {"setup": _GNSS_SET, "fallback": _GNSS_SET, "velocity": dict(_GNSS_SET, EK3_SRC2_VELXY=3)}
++
++
++def gnss_problems(s, firmware):
++    """Reasons the settings do not fit gnss_mode; empty for "none". Set 2 with POSXY 0 would leave the EKF with no
++    horizontal position, so run refuses a level whose parameters are not the profile's."""
++    m = s.get("gnss_mode", "none")
++    if m == "none":
++        return []
++    if firmware != "ardupilot":
++        return [f"gnss_mode {m} needs ArduPilot EKF source sets. The program does not support it on {firmware}. "
++                "Apply the profiles again without gnss_*."]
++    have = s["params_ardupilot"]
++    bad = [f"{k} {have.get(k)} (need {v})" for k, v in GNSS_AP[m].items() if have.get(k) != v]
++    return [f"gnss_mode {m} needs other params_ardupilot values: " + ", ".join(bad) +
++            f". Apply tools/profiles/gnss_{m}.json."] if bad else []
++
++
++class GnssLevel:
++    """The GNSS level for run_live (settings gnss_mode). step() sends MAV_CMD_SET_EKF_SOURCE_SET and gives a run-log
++    note for each request and each FC reply. Set 2 (our position only) once fixes have flowed for gnss_ready_s with no
++    gap over 0.5 s, normally before the pilot's switch. "fallback": a hold with no fix for gnss_fallback_s gets set 1
++    (GNSS) and keeps it until the pilot releases. A hold that starts before the FC confirmed set 2 gets a WARNING note.
++    The program cannot read the active set back from the FC (no MAVLink message has it), so a restarted run_live
++    starts with "not known". "none", or a firmware other than ArduPilot: step() does nothing and sends nothing."""
++    CMD = 42007            # MAV_CMD_SET_EKF_SOURCE_SET (fc_link.FC.set_source_set)
++    ACK = {0: "ACCEPTED", 1: "TEMPORARILY_REJECTED", 2: "DENIED", 3: "UNSUPPORTED", 4: "FAILED"}
++    NAME = {1: "set 1 (GNSS)", 2: "set 2 (our position only)"}
++
++    def __init__(self, s):
++        self.mode, self.ready_s, self.fb_s = s["gnss_mode"], s["gnss_ready_s"], s["gnss_fallback_s"]
++        self.on, self.want, self.t_ask, self.tries = None, None, -math.inf, 0
++        self.flow = self.fell_for = self.warned_for = None
++
++    def _ask(self, fc, n, why, now):
++        self.tries = self.tries + 1 if self.want == n else 1
++        self.want, self.t_ask = n, now
++        fc.set_source_set(n)
++        return f"EKF source {self.NAME[n]} requested: {why}"
++
++    def step(self, fc, now, last_send, t_engaged):
++        if self.mode == "none" or getattr(fc, "firmware", None) != "ardupilot":
++            return None
++        notes, gap, holding = [], now - last_send, t_engaged is not None
++        self.flow = None if gap > 0.5 else (now if self.flow is None else self.flow)
++        if self.want is not None:
++            r = fc.acks.get(self.CMD)
++            if r is not None:
++                notes.append(f"FC reply to EKF source {self.NAME[self.want]}: {self.ACK.get(r, r)}")
++                self.on = self.want if r == 0 else self.on
++                self.want = None
++            elif now - self.t_ask > 1.0:
++                notes.append(self._ask(fc, self.want, f"no FC reply in 1 s, try {self.tries + 1}", now))
++        if self.want is None and now - self.t_ask >= 1.0:          # at most one new request each second
++            if self.mode == "fallback" and holding and self.on != 1 and gap > self.fb_s:
++                self.fell_for = t_engaged
++                notes.append(self._ask(fc, 1, f"GNSS FALLBACK: no fix for {min(gap, 999):.1f} s in the hold "
++                                              f"(gnss_fallback_s {self.fb_s:g}). GNSS aids the hold from this time", now))
++            elif self.on != 2 and self.flow is not None and now - self.flow >= self.ready_s and \
++                    not (holding and self.fell_for == t_engaged):
++                notes.append(self._ask(fc, 2, f"fixes for {now - self.flow:.1f} s, " +
++                                       ("in a hold" if holding else "before the pilot's switch"), now))
++        if holding and self.on != 2 and t_engaged not in (self.warned_for, self.fell_for):
++            self.warned_for = t_engaged
++            notes.append("WARNING: the hold started before the FC accepted EKF source set 2. GNSS aids this hold")
++        return _join(*notes)
++
++
+ class Log:
+     """The run log. A write error (full disk) never stops the fixes: errors counts it, the first prints one line."""
+     COLS = ["t", "state", "n", "north", "east", "var", "sent", "why", "proc_ms", "age_ms", "height", "note", "mode"]
+@@ -442,7 +518,7 @@
+         out.append(f"firmware {fc.firmware} is not supported.")
+     if fc.firmware == "ardupilot" and s["origin_lat_lon_alt"] is None:
+         out.append("ArduPilot needs origin_lat_lon_alt in settings.json (lat, lon, alt of the field).")
+-    return out
++    return out + gnss_problems(s, fc.firmware)
+ 
+ 
+ def delay_advice(ages_ms, n=100):
+@@ -581,13 +657,14 @@
+     last_send, ages = -math.inf, []
+     spd = Speed(s["speed_window_s"]) if s["send_speed"] else None
+     wa = WindAssist(s) if s["wind_assist"] and fc.firmware == "ardupilot" else None
+-    eng, outage = Engage(s), OutageTest(s)
++    eng, outage, gnss = Engage(s), OutageTest(s), GnssLevel(s)
+     t_frame = time.monotonic()
+     try:
+         while time.monotonic() < t_end and not (stop is not None and stop.is_set()):
+             fr = src.newest(timeout=0.5)
+             mode, mnote = eng.step(fc, pipe, time.monotonic())
+             drop, onote = outage.step(time.monotonic(), eng.t_engaged)
++            onote = _join(onote, gnss.step(fc, time.monotonic(), last_send, eng.t_engaged))
+             if fr is None or drop:
+                 pipe.good = 0
+                 note = wa.step(fc, None, False, time.monotonic()) if wa is not None else None
+@@ -808,6 +885,9 @@
+                  "TIMESYNC: no reply. Set EKF2_EV_DELAY to the fix age below.")
+         for ok, text in fc_link.check_params(fc, s, write=args.set_params):
+             line(ok, text[5:])
++        if s["gnss_mode"] != "none":                  # the level's parameters are checked one by one above
++            bad = gnss_problems(s, fc.firmware)
++            line(not bad, bad[0] if bad else f"gnss_mode {s['gnss_mode']}: settings match the level")
+         if fc.firmware == "ardupilot":
+             line(s["origin_lat_lon_alt"] is not None, "origin set" if s["origin_lat_lon_alt"] else
+                  "origin_lat_lon_alt is empty. Put the field's lat, lon, alt in settings.json.")
+diff --git a/fc_link.py b/fc_link.py
+index 2df3cfb..0c847b0 100644
+--- a/fc_link.py
++++ b/fc_link.py
+@@ -285,6 +285,13 @@ class FC:
+         self._send(lambda mav: mav.command_long_send(self.sysid or 1, self.compid, M.MAV_CMD_DO_SET_MODE, 0,
+                                                      M.MAV_MODE_FLAG_CUSTOM_MODE_ENABLED, custom_mode, 0, 0, 0, 0, 0))
+ 
++    def set_source_set(self, n):
++        """MAV_CMD_SET_EKF_SOURCE_SET (42007), param1 = EKF source set 1-3 (ArduPilot; apb_main.GnssLevel). The reply
++        lands in self.acks[42007]: ArduPilot answers ACCEPTED for 1-3, DENIED otherwise (GCS_Common.cpp 4908-4918)."""
++        self.acks.pop(M.MAV_CMD_SET_EKF_SOURCE_SET, None)
++        self._send(lambda mav: mav.command_long_send(self.sysid or 1, self.compid, M.MAV_CMD_SET_EKF_SOURCE_SET, 0,
++                                                     n, 0, 0, 0, 0, 0, 0))
++
+     def send_target(self, n, e, d, yaw):
+         """SET_POSITION_TARGET_LOCAL_NED: position, speed 0 and a fixed heading (rad). ArduCopter GUIDED only
+         (ignored in other modes). The heading must be given: without it GUIDED turned the nose toward each new
+--- a/settings.py
++++ b/settings.py
+@@ -143,6 +143,15 @@
+     # engages position hold (0 = the file only). Profile: tools/profiles/recovery_demo.json.
+     "outage_test_s": 0.0,
+     "outage_after_s": 0.0,
++    # How much GNSS (ArduPilot only; apb_main.GnssLevel, integ/gnss_ladder/README.txt). "none": GNSS off from power-on
++    # (params_ardupilot as above). "setup": EKF source set 1 = GNSS while the pilot flies by hand; when our fixes have
++    # flowed for gnss_ready_s, the program selects source set 2 = our position only (MAV_CMD_SET_EKF_SOURCE_SET).
++    # "fallback": as setup, and in a hold with no fix for gnss_fallback_s the program selects set 1 (GNSS) again;
++    # that hold is then GNSS-aided. "velocity": as setup, set 2 also names GNSS velocity; ArduCopter 4.6 EKF3 does
++    # not fuse it while the position source is ours (AP_NavEKF3_PosVelFusion.cpp 559-562). Profiles: gnss_*.json.
++    "gnss_mode": "none",
++    "gnss_ready_s": 2.0,               # assumed: 2 s of fixes with no gap over 0.5 s before the change to set 2
++    "gnss_fallback_s": 3.0,            # assumed: as long as the longest normal fix gap at 10 m (3 s, apsim/low_ap_results)
+     "mask_file": "",                   # PNG, 0 = not ground (OSD, airframe). Made by "apb_main.py mask".
+     "log_dir": "logs",
+     "raw_record": False,               # also save raw frames and FC data for replay
+@@ -163,7 +172,8 @@
+ }
+ 
+ CHOICES = {"video_standard": ("auto", "PAL", "NTSC", "none"), "field": ("top", "bottom", "frame"),
+-           "top": ("front", "right", "rear", "left"), "att_source": ("gyro", "fc", "imu"), "camera": ("analog", "digital")}
++           "top": ("front", "right", "rear", "left"), "att_source": ("gyro", "fc", "imu"), "camera": ("analog", "digital"),
++           "gnss_mode": ("none", "setup", "fallback", "velocity")}
+ LENS_KEYS = ("fx", "fy", "cx", "cy", "k1", "k2", "k3", "k4")     # lens_measured's numbers
+ 
+ 
+--- a/apsim/sitl_ap.py
++++ b/apsim/sitl_ap.py
+@@ -331,6 +331,10 @@
+         if v == "gps":                                          # a pilot arms after the GPS lock (EKF origin)
+             while not any("origin set" in x[1] for x in link.texts) and link.now() < 90:
+                 link.wait_for(0.5)
++        if apb and s_onb.get("gnss_mode", "none") != "none":    # GNSS levels (apsim/gnss_matrix.py): the pilot arms
++            while not any("is using GPS" in x[1] for x in link.texts) and link.now() < 150:   # once the EKF uses GPS
++                link.wait_for(0.5)
++            res["gps_in_use_s"] = round(link.now(), 1)
+         link.throttle = -500                                    # stick down to arm (PWM 1000)
+         link.set_mode(COPTER_MODES["ALT_HOLD"])
+         link.wait_for(0.5)
+diff --git a/tests_apb/run_all.sh b/tests_apb/run_all.sh
+index d85b574..1e89243 100755
+--- a/tests_apb/run_all.sh
++++ b/tests_apb/run_all.sh
+@@ -2,9 +2,12 @@
+ # Runs every APB test; each writes tests_apb/out_<name>.txt. Prints the last line of each.
+ cd "$(dirname "$0")/.." || exit 1
+ PY=${PY:-$HOME/.venvs/vio/bin/python}
+-for t in test_basics test_fc_link test_run test_bench test_calib test_replay_chunks test_wind_assist test_ap_sitl; do
++for t in test_basics test_digital test_robust test_fc_link test_run test_bench test_calib test_lens_d test_lens_store test_live test_replay_chunks test_wind_assist test_ap_sitl test_event; do
+   timeout 295 "$PY" tests_apb/$t.py > tests_apb/out_$t.txt 2>&1
+   echo "$t: rc=$? $(tail -1 tests_apb/out_$t.txt)"
+ done
++timeout 295 "$PY" tests_apb/test_gnss.py > tests_apb/out_test_gnss.txt 2>&1; echo "test_gnss: rc=$? $(tail -1 tests_apb/out_test_gnss.txt)"
++timeout 295 "$PY" tests_apb/test_ground_tools.py > tests_apb/out_test_ground_tools.txt 2>&1
++echo "test_ground_tools: rc=$? $(tail -1 tests_apb/out_test_ground_tools.txt)"
+ timeout 295 "$PY" -c "import sim_test; sim_test.timing_test(); print('timing_test PASSED')" > tests_apb/out_timing_test.txt 2>&1
+ echo "sim_test.timing_test: rc=$? $(tail -1 tests_apb/out_timing_test.txt)"

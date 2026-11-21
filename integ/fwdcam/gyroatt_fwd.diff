@@ -1,0 +1,157 @@
+NOT APPLIED. Proposed change: GyroAtt leans toward the forward-camera tilt during a hold (setting att_fwd, off by default).
+Base: the working copies of apb_main.py and settings.py at 03:46 on 2026-11-21 (commit 8939114 plus another session's
+uncommitted edits). Check before use: git apply --check integ/fwdcam/gyroatt_fwd.diff
+Needs a forward-camera process that is NOT BUILT (FwdLink docstring). Tests needed before a flight: integ/fwdcam/README.txt.
+
+--- a/settings.py	2026-11-21 03:46:25.183783783 -0500
++++ b/settings.py	2026-11-21 03:46:53.151239762 -0500
+@@ -34,6 +34,13 @@
+     # closed loop is in integ/kfmap/README.txt (simulator A/B). Open-loop replays showed no gain (integ/diag10).
+     "att_source": "gyro",
+     "att_tau_s": 20.0,                 # assumed: far slower than the 2-3 s period of that loop at 50-122 m (SITL)
++    # EXPERIMENT, off by default, NOT FLOWN, synthetic tests only (integ/fwdcam/README.txt): during a hold, the tilt
++    # of "gyro" leans toward the forward camera's horizon (fwd_cam.FwdRef in its own process, which sends its states
++    # to fwd_port on 127.0.0.1) instead of toward the FC's tilt, with att_fwd_tau_s. Yaw still leans toward the FC.
++    # Before the switch, and when the forward state is older than 0.4 s or refused, it is plain "gyro".
++    "att_fwd": False,
++    "att_fwd_tau_s": 5.0,              # assumed, not tuned: the horizon tilt has no bias to average out, only noise
++    "fwd_port": 14660,                 # UDP on 127.0.0.1: the forward process sends states here, gets "ref" commands on +1
+     # "imu": as "gyro", but roll and pitch lean toward the accelerometer's gravity direction (SCALED_IMU at
+     # imu_hz), never toward the FC's tilt (apb_main.ImuAtt). Link budget at 50 Hz: 36 B x 50 = 1.8 kB/s.
+     "imu_hz": 50,
+--- a/apb_main.py	2026-11-21 03:46:25.183693339 -0500
++++ b/apb_main.py	2026-11-21 03:46:53.151513432 -0500
+@@ -133,7 +133,121 @@
+         return euler_R(roll, pitch, row[3])
+ 
+ 
++class FwdLink:
++    """UDP link to the forward-camera process (NOT BUILT: it would be tools/fwd_rec.py's capture loop plus
++    fwd_cam.FwdRef, in its own process, so a blocking analog read can never delay the nadir capture).
++    It sends JSON states {"t", "tilt_ok", "droll", "dpitch", "q_tilt"} (t: picture time, time.monotonic clock) to
++    127.0.0.1:port and takes {"cmd": "ref", "t", "att"} and {"cmd": "release"} on port + 1. latest() never blocks."""
++
++    def __init__(self, port):
++        import socket
++        self.sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
++        self.sock.bind(("127.0.0.1", port))
++        self.sock.setblocking(False)
++        self.dest, self.last, self.ref_t = ("127.0.0.1", port + 1), None, None
++
++    def _send(self, msg):
++        try:
++            self.sock.sendto(json.dumps(msg).encode(), self.dest)
++        except OSError:
++            pass                                    # the forward process is not running: GyroAtt goes on as before
++
++    def reference(self, t, att):
++        self.ref_t, self.last = t, None
++        self._send({"cmd": "ref", "t": t, "att": list(att)})
++
++    def release(self):
++        self.ref_t, self.last = None, None
++        self._send({"cmd": "release"})
++
++    def latest(self):
++        while True:
++            try:
++                m = json.loads(self.sock.recv(4096))
++            except (BlockingIOError, ValueError):
++                break
++            except OSError:
++                break
++            if self.ref_t is not None and m.get("t", -1) > self.ref_t:
++                self.last = m
++        return self.last
++
++
++class FwdAtt(GyroAtt):
++    """att_fwd (EXPERIMENT, off by default): as GyroAtt, but during a hold the tilt leans toward the forward camera's
++    horizon instead of toward the FC's tilt; the yaw still leans toward the FC's yaw. The camera gives the tilt
++    change since the switch; start() takes our own attitude at the switch as its zero, so the absolute tilt stays the
++    one GyroAtt had at the switch, and the FC's tilt bias while it fuses our fix has no path into our tilt after it.
++    A forward state is for its picture time: the error is taken against our attitude at that time (hist), then
++    applied now. Before the switch, and when the state is old (max_age_s), refused or of low quality, it leans toward
++    the FC like GyroAtt. NOT EVALUATED: only single synthetic pictures were checked (integ/fwdcam/README.txt)."""
++
++    def __init__(self, tau_s, link, fwd_tau_s=5.0, max_age_s=0.4, q_min=0.2):
++        super().__init__(tau_s)
++        self.link, self.fwd_tau, self.max_age, self.q_min = link, fwd_tau_s, max_age_s, q_min
++        self.hist, self.R0, self.used = [], None, 0
++
++    def start(self, t):
++        """At the pilot's switch: our attitude now is the reference of the forward camera."""
++        if self.R is not None:
++            self.R0 = self.R.copy()
++            self.link.reference(t, (math.atan2(self.R0[2, 1], self.R0[2, 2]), -math.asin(max(-1.0, min(1.0, self.R0[2, 0]))),
++                                    math.atan2(self.R0[1, 0], self.R0[0, 0])))
++
++    def stop(self):
++        self.R0 = None
++        self.link.release()
++
++    def _hist_at(self, t):
++        for th, Rh in reversed(self.hist):
++            if th <= t:
++                return Rh if t - th < 0.05 else None
++        return None
++
++    def _fwd_error(self, now):
++        """NED rotation vector (north, east parts only) from our tilt to the camera's tilt, or None."""
++        st = self.link.latest() if self.R0 is not None else None
++        if st is None or not st.get("tilt_ok") or st.get("q_tilt", 0) < self.q_min or now - st["t"] > self.max_age:
++            return None
++        Rh = self._hist_at(st["t"])
++        if Rh is None:
++            return None
++        r0, p0 = math.atan2(self.R0[2, 1], self.R0[2, 2]), -math.asin(max(-1.0, min(1.0, self.R0[2, 0])))
++        yh = math.atan2(Rh[1, 0], Rh[0, 0])
++        e = cv2.Rodrigues(euler_R(r0 + st["droll"], p0 + st["dpitch"], yh) @ Rh.T)[0].ravel()
++        return np.array([e[0], e[1], 0.0])
++
++    def __call__(self, row):
++        if len(row) < 7:
++            return row
++        t, w = row[0], np.asarray(row[4:7], float)
++        R_fc = euler_R(*row[1:4])
++        dt = math.inf if self.t is None else t - self.t
++        if dt > 0.5:
++            self.R = R_fc
++        elif dt > 0:
++            self.R = self.R @ cv2.Rodrigues((w + self.w) / 2 * dt)[0]
++            e_fc = cv2.Rodrigues(R_fc @ self.R.T)[0].ravel()                    # FC minus ours, NED
++            e_cam = self._fwd_error(t)
++            if e_cam is None:
++                e = e_fc * min(1.0, dt / self.tau)
++            else:                                                               # tilt from the camera, yaw from the FC
++                self.used += 1
++                e = e_cam * min(1.0, dt / self.fwd_tau) + np.array([0.0, 0.0, e_fc[2]]) * min(1.0, dt / self.tau)
++            self.R = cv2.Rodrigues(e)[0] @ self.R
++            u, _, vt = np.linalg.svd(self.R)
++            self.R = u @ vt
++        self.t, self.w = t, w
++        self.hist.append((t, self.R.copy()))
++        del self.hist[:-200]                                                    # about 2 s of rows
++        R = self.R
++        return (t, math.atan2(R[2, 1], R[2, 2]), -math.asin(max(-1.0, min(1.0, R[2, 0]))),
++                math.atan2(R[1, 0], R[0, 0]), *row[4:])
++
++
+ def att_filter(s, fc=None):
++    if s.get("att_fwd") and s["att_source"] == "gyro" and fc is not None:
++        return FwdAtt(s["att_tau_s"], FwdLink(s["fwd_port"]), s["att_fwd_tau_s"])
+     if s["att_source"] == "imu" and fc is not None:
+         return ImuAtt(s["att_tau_s"], fc.imu)
+     if s["att_source"] == "gyro_fcyaw":
+@@ -673,6 +787,11 @@
+         while time.monotonic() < t_end and not (stop is not None and stop.is_set()):
+             fr = src.newest(timeout=0.5)
+             mode, mnote = eng.step(fc, pipe, time.monotonic())
++            if isinstance(att_f, FwdAtt) and mnote:                     # att_fwd: the forward reference follows the switch
++                if mnote.startswith("engaged"):
++                    att_f.start(time.monotonic())
++                elif mnote.startswith("released"):
++                    att_f.stop()
+             drop, onote = outage.step(time.monotonic(), eng.t_engaged)
+             onote = _join(onote, gnss.step(fc, time.monotonic(), last_send, eng.t_engaged))
+             if fr is None or drop:

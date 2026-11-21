@@ -1,0 +1,71 @@
+What moves in the still hover before the hold start of each closed-loop run (the input of the liveness test).
+
+For [-8, 0] s of the hold start: the change of roll, pitch and yaw over 1 s windows (median and max, deg) for
+  true   - the simulator's true attitude (SIM_STATE quaternion)
+  fc     - ArduCopter's ATTITUDE
+  hold   - what Hold gets: ATTITUDE through apb_main.att_filter (GyroAtt, att_tau_s 20 s)
+plus the GyroAtt yaw minus the FC yaw (the filter's lean toward the FC: (FC - ours) / tau per second), the true
+horizontal speed and the true height change. Picture scale: f = 318.5 px (calibrated lens at 640x360), so 0.1 deg
+of tilt = 0.56 px at the centre, and a yaw turn of 0.1 deg moves a point 300 px off centre by 0.52 px.
+
+run                            axis   true 1s med/max   fc 1s med/max  hold 1s med/max
+an_apb_100m_w20g40_s11         roll       0.036/0.114     0.010/0.046      0.048/0.167
+an_apb_100m_w20g40_s11         pitch      0.019/0.070     0.007/0.020      0.024/0.075
+an_apb_100m_w20g40_s11         yaw        0.084/0.992     0.045/0.565      0.242/1.109
+an_apb_100m_w20g40_s11         GyroAtt yaw - FC yaw: -4.03 deg at -8 s, -1.64 deg at 0 s; true horizontal speed median 0.287 m/s (1 s mean max 0.315); true height change -8..0 s +3.05 m, last 4 s +0.26 m
+an_apb_20m_calm_s11            roll       0.040/0.185     0.020/0.059      0.033/0.190
+an_apb_20m_calm_s11            pitch      0.036/0.113     0.030/0.079      0.047/0.100
+an_apb_20m_calm_s11            yaw        0.109/0.652     0.046/0.279      0.447/0.830
+an_apb_20m_calm_s11            GyroAtt yaw - FC yaw: +3.58 deg at -8 s, -0.31 deg at 0 s; true horizontal speed median 0.000 m/s (1 s mean max 0.145); true height change -8..0 s +2.49 m, last 4 s +0.19 m
+an_apb_50m_w20g40_s11          roll       0.081/0.509     0.032/0.159      0.078/0.494
+an_apb_50m_w20g40_s11          pitch      0.108/0.261     0.014/0.068      0.068/0.258
+an_apb_50m_w20g40_s11          yaw        0.829/1.709     0.110/0.908      0.664/1.701
+an_apb_50m_w20g40_s11          GyroAtt yaw - FC yaw: +0.94 deg at -8 s, -4.22 deg at 0 s; true horizontal speed median 0.156 m/s (1 s mean max 0.263); true height change -8..0 s +2.79 m, last 4 s +0.27 m
+jd_apb_100m_w20g40_s11         roll       0.017/0.194     0.011/0.118      0.020/0.199
+jd_apb_100m_w20g40_s11         pitch      0.017/0.175     0.010/0.051      0.027/0.182
+jd_apb_100m_w20g40_s11         yaw        0.050/0.536     0.029/0.370      0.086/0.542
+jd_apb_100m_w20g40_s11         GyroAtt yaw - FC yaw: -1.56 deg at -8 s, -0.15 deg at 0 s; true horizontal speed median 0.156 m/s (1 s mean max 0.209); true height change -8..0 s +2.96 m, last 4 s +0.27 m
+jd_apb_100m_w20g40_s12         roll       0.045/0.375     0.022/0.129      0.063/0.381
+jd_apb_100m_w20g40_s12         pitch      0.022/0.061     0.011/0.035      0.024/0.064
+jd_apb_100m_w20g40_s12         yaw        0.108/0.491     0.050/0.410      0.163/0.531
+jd_apb_100m_w20g40_s12         GyroAtt yaw - FC yaw: +1.64 deg at -8 s, -0.00 deg at 0 s; true horizontal speed median 0.156 m/s (1 s mean max 0.277); true height change -8..0 s +3.13 m, last 4 s +0.28 m
+jd_apb_100m_w20g40_s13         roll       0.051/0.186     0.026/0.068      0.063/0.242
+jd_apb_100m_w20g40_s13         pitch      0.035/0.102     0.011/0.037      0.017/0.083
+jd_apb_100m_w20g40_s13         yaw        0.389/1.255     0.056/0.340      0.340/1.323
+jd_apb_100m_w20g40_s13         GyroAtt yaw - FC yaw: -0.66 deg at -8 s, +1.65 deg at 0 s; true horizontal speed median 0.449 m/s (1 s mean max 0.465); true height change -8..0 s +3.08 m, last 4 s +0.28 m
+jd_apb_20m_calm_s11            roll       0.080/0.538     0.040/0.408      0.062/0.531
+jd_apb_20m_calm_s11            pitch      0.086/0.280     0.042/0.241      0.076/0.286
+jd_apb_20m_calm_s11            yaw        0.236/1.052     0.083/1.200      0.386/1.536
+jd_apb_20m_calm_s11            GyroAtt yaw - FC yaw: +3.95 deg at -8 s, +0.68 deg at 0 s; true horizontal speed median 0.000 m/s (1 s mean max 0.114); true height change -8..0 s +3.11 m, last 4 s +0.20 m
+jd_apb_50m_w20g40_s11          roll       0.245/0.891     0.046/0.240      0.182/0.902
+jd_apb_50m_w20g40_s11          pitch      0.074/0.258     0.019/0.079      0.053/0.234
+jd_apb_50m_w20g40_s11          yaw        1.186/2.805     0.246/1.245      0.926/2.819
+jd_apb_50m_w20g40_s11          GyroAtt yaw - FC yaw: +1.43 deg at -8 s, -5.94 deg at 0 s; true horizontal speed median 0.234 m/s (1 s mean max 0.367); true height change -8..0 s +1.84 m, last 4 s +0.13 m
+jdcal2_apb_100m_w20g40_s11     roll       0.014/0.160     0.009/0.080      0.042/0.121
+jdcal2_apb_100m_w20g40_s11     pitch      0.016/0.130     0.013/0.058      0.018/0.117
+jdcal2_apb_100m_w20g40_s11     yaw        0.078/0.705     0.052/0.629      0.121/0.641
+jdcal2_apb_100m_w20g40_s11     GyroAtt yaw - FC yaw: -1.09 deg at -8 s, -1.74 deg at 0 s; true horizontal speed median 0.156 m/s (1 s mean max 0.458); true height change -8..0 s +2.98 m, last 4 s +0.27 m
+jdcal3_apb_100m_w20g40_s11     roll       0.018/0.183     0.009/0.058      0.010/0.185
+jdcal3_apb_100m_w20g40_s11     pitch      0.022/0.175     0.015/0.137      0.029/0.170
+jdcal3_apb_100m_w20g40_s11     yaw        0.072/0.734     0.041/0.424      0.034/0.768
+jdcal3_apb_100m_w20g40_s11     GyroAtt yaw - FC yaw: -1.73 deg at -8 s, -0.73 deg at 0 s; true horizontal speed median 0.001 m/s (1 s mean max 0.098); true height change -8..0 s +2.96 m, last 4 s +0.27 m
+jdcal_apb_100m_w20g40_s11      roll       0.025/0.090     0.012/0.041      0.023/0.075
+jdcal_apb_100m_w20g40_s11      pitch      0.052/0.265     0.016/0.114      0.083/0.270
+jdcal_apb_100m_w20g40_s11      yaw        0.163/0.464     0.020/0.250      0.053/0.258
+jdcal_apb_100m_w20g40_s11      GyroAtt yaw - FC yaw: -4.33 deg at -8 s, -4.17 deg at 0 s; true horizontal speed median 0.272 m/s (1 s mean max 0.351); true height change -8..0 s +2.97 m, last 4 s +0.26 m
+jdfull_apb_100m_w20g40_s11     roll       0.026/0.167     0.012/0.071      0.035/0.165
+jdfull_apb_100m_w20g40_s11     pitch      0.056/0.192     0.023/0.142      0.044/0.212
+jdfull_apb_100m_w20g40_s11     yaw        0.515/1.801     0.183/1.126      0.673/2.034
+jdfull_apb_100m_w20g40_s11     GyroAtt yaw - FC yaw: -8.23 deg at -8 s, -2.43 deg at 0 s; true horizontal speed median 0.236 m/s (1 s mean max 0.314); true height change -8..0 s +3.02 m, last 4 s +0.27 m
+c_d140_100m_w20g40_s11         roll       0.125/0.402     0.018/0.063      0.183/0.412
+c_d140_100m_w20g40_s11         pitch      0.041/0.124     0.007/0.032      0.028/0.130
+c_d140_100m_w20g40_s11         yaw        0.333/0.737     0.092/0.397      0.366/0.676
+c_d140_100m_w20g40_s11         GyroAtt yaw - FC yaw: -0.38 deg at -8 s, -3.20 deg at 0 s; true horizontal speed median 0.259 m/s (1 s mean max 0.367); true height change -8..0 s +3.00 m, last 4 s +0.27 m
+c_d140_100m_w20g40_s12         roll       0.029/0.422     0.014/0.177      0.038/0.432
+c_d140_100m_w20g40_s12         pitch      0.025/0.052     0.008/0.028      0.011/0.064
+c_d140_100m_w20g40_s12         yaw        0.097/1.989     0.015/1.366      0.020/1.932
+c_d140_100m_w20g40_s12         GyroAtt yaw - FC yaw: -0.02 deg at -8 s, -2.39 deg at 0 s; true horizontal speed median 0.259 m/s (1 s mean max 0.389); true height change -8..0 s +2.95 m, last 4 s +0.26 m
+c_d140_100m_w20g40_s13         roll       0.021/0.074     0.009/0.051      0.023/0.074
+c_d140_100m_w20g40_s13         pitch      0.020/0.083     0.014/0.072      0.021/0.087
+c_d140_100m_w20g40_s13         yaw        0.194/0.785     0.056/0.505      0.097/0.598
+c_d140_100m_w20g40_s13         GyroAtt yaw - FC yaw: -3.05 deg at -8 s, -3.88 deg at 0 s; true horizontal speed median 0.111 m/s (1 s mean max 0.129); true height change -8..0 s +3.06 m, last 4 s +0.26 m

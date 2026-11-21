@@ -1,0 +1,25 @@
+--- a/fc_link.py
++++ b/fc_link.py
+@@ -347,8 +347,8 @@
+ 
+ 
+ def connect(s, timeout=5.0):
+-    """(FC, None) for PX4 or ArduPilot, else (None, plain reason). On a serial device with no heartbeat at
+-    fc_baud, the other BAUDS are tried; fc.baud says which one answered."""
++    """(FC, None) for PX4 or ArduPilot, (msp_link.MspLink, None) for Betaflight, else (None, plain reason).
++    On a serial device with no heartbeat at fc_baud, the other BAUDS are tried; fc.baud says which one answered."""
+     serial = s["fc_device"].startswith("/dev/")
+     fw = None
+     for baud in [s["fc_baud"]] + ([b for b in BAUDS if b != s["fc_baud"]] if serial else []):
+@@ -363,7 +363,10 @@
+     if fw is not None:
+         return None, (f"the flight controller says MAVLink {fw} (iNav or Betaflight telemetry?). "
+                       "This firmware has no external-vision input; not supported yet.")
+-    msp = probe_msp(s["msp_device"], s["fc_baud"]) if os.path.exists(s["msp_device"]) else None
++    import msp_link
++    link, msp = msp_link.connect(s)          # Betaflight: optical flow + rangefinder messages over MSP
++    if link is not None:
++        return link, None
+     if msp:
+         name = {"BTFL": "Betaflight", "INAV": "iNav"}.get(msp.get("variant"), msp.get("variant", "an MSP firmware"))
+         return None, (f"the flight controller runs {name} (MSP API {msp.get('api', '?')}). "

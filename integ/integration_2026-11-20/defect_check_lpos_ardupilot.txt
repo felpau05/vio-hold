@@ -1,0 +1,10 @@
+# load (1 min) at start: 1.63
+ArduCopter SITL instance 7 started (parameters wiped)
+[ WARN:0@8.559] global cap.cpp:212 open VIDEOIO(V4L2): backend is generally available but can't be used to capture by name
+PASS firmware: ardupilot (system 1)
+PASS param GPS1_TYPE: wrote 0, reads 0.0. Reboot the flight controller.
+ArduCopter SITL instance 7 started 
+[ WARN:0@6.680] global cap.cpp:212 open VIDEOIO(V4L2): backend is generally available but can't be used to capture by name
+PASS GLOBAL_POSITION_INT 10 Hz (asked 10)
+INFO height now 0.0 m (run needs 15 m)
+# load (1 min) at end: 1.41

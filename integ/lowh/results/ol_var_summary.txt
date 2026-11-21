@@ -1,0 +1,313 @@
+Per run (55 s of the recorded hover, 12 Hz to Hold). fix/s and gap: sent fixes; err: sent-fix error vs truth.
+ground      lens    h seed version fix/s gap s rms m max m halves reanc wholepic/sent gap px p50/p90
+farmland    crop    5   11 before   9.16  1.58  0.06  0.18     42     8    481/504      1.83/3.60  
+farmland    crop    5   11 geo      9.38  1.83  0.05  0.11     52     7    494/516      1.89/3.67  
+farmland    crop    5   11 geo_local  9.80  1.50  0.06  0.17      5     7    519/539      1.08/2.52  
+farmland    crop    5   11 geo_local_mask55 11.82  0.84  0.06  0.12      0     0    604/650      1.58/2.91  
+farmland    crop    5   11 geo_mask55  9.98  1.42  0.04  0.12     34     6    514/549      1.92/3.45  
+farmland    crop    5   11 local   10.45  1.50  0.06  0.14      5     4    556/575      1.42/2.84  
+farmland    crop    5   11 local_mask55 11.40  1.50  0.06  0.13     11     1    622/627      2.28/3.48  
+farmland    crop    5   11 mask55   9.91  2.00  0.07  0.18     45     7    511/545      2.01/3.80  
+farmland    crop    5   12 before   9.64  1.50  0.07  0.28     46     7    497/530      2.09/3.61  
+farmland    crop    5   12 geo      8.78  1.75  0.04  0.11     78     8    457/483      2.07/4.22  
+farmland    crop    5   12 geo_local 10.56  1.50  0.06  0.15     25     4    554/581      1.83/3.50  
+farmland    crop    5   12 geo_local_mask55 10.82  1.33  0.05  0.14     20     3    552/595      1.61/3.29  
+farmland    crop    5   12 geo_mask55  9.62  1.50  0.04  0.10     43     7    501/529      1.77/3.49  
+farmland    crop    5   12 local   10.60  1.33  0.10  0.32     10     4    541/583      1.70/2.96  
+farmland    crop    5   12 local_mask55 10.65  1.42  0.11  0.25     24     3    551/586      1.21/3.63  
+farmland    crop    5   12 mask55  10.33  1.33  0.03  0.09     28     5    537/568      1.83/3.22  
+farmland    crop    5   13 before   9.15  1.50  0.07  0.28     68     7    471/503      2.15/4.08  
+farmland    crop    5   13 geo      7.55  4.33  0.06  0.10    105    12    388/415      2.47/4.82  
+farmland    crop    5   13 geo_local 10.89  1.42  0.10  0.31      0     2    562/599      1.61/2.66  
+farmland    crop    5   13 geo_local_mask55 11.25  1.42  0.06  0.11      5     2    577/619      1.07/2.02  
+farmland    crop    5   13 geo_mask55 10.25  2.92  0.06  0.20     48     5    529/564      2.46/3.82  
+farmland    crop    5   13 local   10.36  1.58  0.12  0.35      6     4    555/570      1.45/2.53  
+farmland    crop    5   13 local_mask55 11.75  0.84  0.10  0.17      2     0    631/646      0.85/2.04  
+farmland    crop    5   13 mask55   9.47  1.58  0.07  0.14     52     7    512/521      2.17/3.87  
+farmland    crop   10   11 before  11.24  1.33  0.09  0.17     22     1    588/618      2.05/3.49  
+farmland    crop   10   11 geo     10.47  1.42  0.12  0.25     37     3    551/576      2.08/3.67  
+farmland    crop   10   11 geo_local 11.02  1.50  0.14  0.29     31     1    604/606      2.50/3.65  
+farmland    crop   10   11 geo_local_mask55 10.60  1.67  0.07  0.19     43     2    580/583      2.80/3.79  
+farmland    crop   10   11 geo_mask55 11.27  1.50  0.10  0.20     18     1    617/620      1.71/3.17  
+farmland    crop   10   11 local   10.62  1.50  0.12  0.27     43     2    582/584      2.49/3.78  
+farmland    crop   10   11 local_mask55 10.65  1.67  0.07  0.14     40     2    578/586      2.73/3.81  
+farmland    crop   10   11 mask55  11.18  1.33  0.09  0.20     25     1    584/615      2.04/3.42  
+farmland    crop   10   12 before   8.62  1.75  0.10  0.28    105     6    454/474      2.31/4.59  
+farmland    crop   10   12 geo     10.02  1.42  0.18  0.35     57     4    525/551      2.21/3.97  
+farmland    crop   10   12 geo_local 10.96  1.33  0.17  0.33     27     2    570/603      1.95/3.37  
+farmland    crop   10   12 geo_local_mask55 11.31  1.42  0.36  0.55     17     1    609/622      1.20/3.08  
+farmland    crop   10   12 geo_mask55  9.80  1.42  0.11  0.38     50     6    513/539      1.75/3.79  
+farmland    crop   10   12 local   10.82  1.33  0.16  0.31     45     1    562/595      2.29/3.78  
+farmland    crop   10   12 local_mask55 10.62  1.42  0.18  0.39     45     2    550/584      2.10/3.75  
+farmland    crop   10   12 mask55   9.44  1.42  0.09  0.30     70     6    489/519      2.01/4.17  
+farmland    crop   10   13 before   9.16  1.50  0.13  0.26     85     6    475/504      2.71/4.18  
+farmland    crop   10   13 geo      8.93  1.50  0.10  0.29     55     8    483/491      2.26/3.89  
+farmland    crop   10   13 geo_local 10.29  1.50  0.17  0.54     17     4    558/566      1.07/2.55  
+farmland    crop   10   13 geo_local_mask55 10.73  1.33  0.23  0.89     16     3    585/590      1.13/2.93  
+farmland    crop   10   13 geo_mask55  9.96  1.83  0.17  0.42     44     5    538/548      2.14/3.65  
+farmland    crop   10   13 local   10.44  1.58  0.16  0.51     16     4    568/574      0.90/2.57  
+farmland    crop   10   13 local_mask55 10.64  1.58  0.16  0.52     18     3    580/585      0.92/2.72  
+farmland    crop   10   13 mask55   9.64  1.50  0.19  0.41     66     5    520/530      2.69/4.05  
+farmland    crop   20   11 before  11.49  1.33  0.21  0.40      8     1    600/632      1.41/2.64  
+farmland    crop   20   11 geo     11.49  1.33  0.22  0.41      8     1    600/632      1.43/2.67  
+farmland    crop   20   11 geo_local 11.51  1.33  0.35  0.67      7     1    588/633      1.82/2.63  
+farmland    crop   20   11 geo_local_mask55 11.47  1.33  0.29  0.57      8     1    586/631      1.77/2.61  
+farmland    crop   20   11 geo_mask55 11.18  1.33  0.17  0.29     25     1    581/615      1.56/3.40  
+farmland    crop   20   11 local   11.51  1.33  0.34  0.66      7     1    588/633      1.86/2.76  
+farmland    crop   20   11 local_mask55 11.44  1.33  0.29  0.57      8     1    584/629      1.75/2.66  
+farmland    crop   20   11 mask55  10.87  1.33  0.21  0.44     42     1    567/598      2.36/3.79  
+farmland    crop   20   12 before  10.04  1.58  0.14  0.31     53     4    537/552      1.67/3.84  
+farmland    crop   20   12 geo     10.13  1.33  0.18  0.34     53     4    526/557      1.71/3.85  
+farmland    crop   20   12 geo_local 10.69  1.50  0.37  0.61     50     1    585/588      2.16/3.90  
+farmland    crop   20   12 geo_local_mask55 11.33  0.84  0.31  0.60     27     0    600/623      1.54/3.58  
+farmland    crop   20   12 geo_mask55 10.64  1.42  0.44  0.69     34     3    572/585      1.76/3.53  
+farmland    crop   20   12 local   11.04  1.42  0.30  0.62     22     2    563/607      2.13/3.76  
+farmland    crop   20   12 local_mask55 11.31  1.33  0.33  0.63     18     1    597/622      1.51/3.06  
+farmland    crop   20   12 mask55  10.67  1.42  0.45  0.69     32     3    574/587      1.76/3.53  
+farmland    crop   20   13 before  11.22  1.42  0.30  0.66     22     1    607/617      2.03/3.33  
+farmland    crop   20   13 geo     11.04  1.42  0.67  0.91     32     1    602/607      2.24/3.68  
+farmland    crop   20   13 geo_local 10.71  1.58  0.37  0.68     28     3    577/589      1.75/3.28  
+farmland    crop   20   13 geo_local_mask55 11.20  1.42  0.47  1.56     13     2    602/616      1.37/2.87  
+farmland    crop   20   13 geo_mask55 10.40  1.42  0.36  0.61     47     3    562/572      2.38/3.81  
+farmland    crop   20   13 local   10.65  1.58  0.37  0.69     31     3    574/586      1.69/3.17  
+farmland    crop   20   13 local_mask55 11.20  1.42  0.49  1.56     13     2    572/616      1.78/2.97  
+farmland    crop   20   13 mask55  10.91  1.42  0.39  1.06     29     2    593/600      2.16/3.52  
+farmland    crop   40   11 before   8.44  2.09  0.18  0.42      0    11    434/464      0.90/2.02  
+farmland    crop   40   11 geo      8.98  2.09  0.18  0.42      0    10    462/494      1.02/2.16  
+farmland    crop   40   11 geo_local  8.98  2.09  0.18  0.42      0    10    462/494      0.72/1.55  
+farmland    crop   40   11 geo_local_mask55  9.78  2.09  0.28  0.53      0     7    528/538      0.75/1.28  
+farmland    crop   40   11 geo_mask55  9.78  2.09  0.28  0.53      0     7    528/538      1.10/1.86  
+farmland    crop   40   11 local    8.44  2.09  0.18  0.42      0    11    434/464      0.63/1.42  
+farmland    crop   40   11 local_mask55 10.05  2.09  0.24  0.53      0     8    519/553      0.92/1.91  
+farmland    crop   40   11 mask55  10.02  2.09  0.24  0.53      2     8    517/551      1.28/2.40  
+farmland    crop   40   12 before  10.44  1.42  0.38  0.70      2     3    566/574      0.98/2.22  
+farmland    crop   40   12 geo     10.18  1.42  0.38  0.70      2     3    552/560      1.02/2.56  
+farmland    crop   40   12 geo_local 10.18  1.42  0.38  0.70      0     3    552/560      0.70/1.87  
+farmland    crop   40   12 geo_local_mask55  9.64  1.33  0.28  0.57      1     4    501/530      0.96/2.38  
+farmland    crop   40   12 geo_mask55  9.67  1.33  0.17  0.47      5     6    501/532      1.16/2.65  
+farmland    crop   40   12 local   10.44  1.42  0.38  0.70      0     3    566/574      0.67/1.60  
+farmland    crop   40   12 local_mask55  9.58  1.33  0.34  0.57      1     3    501/527      1.03/3.00  
+farmland    crop   40   12 mask55   9.56  1.33  0.22  0.56      5     6    494/526      1.11/2.50  
+farmland    crop   40   13 before   9.33  1.67  0.31  0.69     13     5    482/513      1.27/2.46  
+farmland    crop   40   13 geo      9.36  1.34  0.22  0.50     12     6    482/515      1.10/2.78  
+farmland    crop   40   13 geo_local  9.53  1.83  0.27  0.51      5     6    488/524      0.93/2.25  
+farmland    crop   40   13 geo_local_mask55  9.13  2.58  0.39  0.63      1     6    479/502      1.07/2.39  
+farmland    crop   40   13 geo_mask55  9.91  1.50  0.42  0.64     15     5    507/545      2.63/3.60  
+farmland    crop   40   13 local   10.11  2.67  0.38  0.58     10     4    520/556      1.72/2.46  
+farmland    crop   40   13 local_mask55  9.07  1.42  0.31  0.57      7     5    477/499      1.09/2.28  
+farmland    crop   40   13 mask55   9.71  1.67  0.43  0.62     18     4    523/534      1.29/2.82  
+ottawa2022  crop    5   11 before   7.16  2.92  0.07  0.15    130    13    382/394      2.52/4.88  
+ottawa2022  crop    5   11 geo      8.75  1.67  0.09  0.22     95     7    479/481      2.11/4.47  
+ottawa2022  crop    5   11 geo_local 11.22  1.50  0.10  0.27     11     2    615/617      1.94/3.35  
+ottawa2022  crop    5   11 geo_local_mask55 11.24  1.33  0.09  0.24     12     2    600/618      1.91/3.22  
+ottawa2022  crop    5   11 geo_mask55  8.80  1.50  0.07  0.20    103     6    471/484      2.66/4.55  
+ottawa2022  crop    5   11 local   11.24  1.33  0.11  0.24     12     2    599/618      1.56/3.24  
+ottawa2022  crop    5   11 local_mask55 11.15  1.33  0.10  0.18     17     2    595/613      1.03/3.04  
+ottawa2022  crop    5   11 mask55   9.09  1.67  0.08  0.20     66     8    478/500      1.96/4.01  
+ottawa2022  crop    5   12 before   8.78  2.00  0.10  0.21     96     7    461/483      2.34/4.39  
+ottawa2022  crop    5   12 geo      8.05  1.92  0.09  0.21    126    10    424/443      2.80/4.56  
+ottawa2022  crop    5   12 geo_local 10.53  1.50  0.14  0.36     28     4    562/579      1.59/3.34  
+ottawa2022  crop    5   12 geo_local_mask55 10.58  1.42  0.09  0.23     27     4    546/582      1.60/3.30  
+ottawa2022  crop    5   12 geo_mask55  8.82  1.92  0.12  0.24    113     5    466/485      2.69/4.47  
+ottawa2022  crop    5   12 local   11.36  1.33  0.28  0.47     15     1    591/625      2.36/3.64  
+ottawa2022  crop    5   12 local_mask55 10.69  1.42  0.10  0.25     21     4    552/588      1.81/3.44  
+ottawa2022  crop    5   12 mask55   9.55  2.00  0.09  0.23     66     6    499/525      2.13/4.05  
+ottawa2022  crop    5   13 before   8.47  2.75  0.10  0.24    114     7    463/466      2.40/4.60  
+ottawa2022  crop    5   13 geo      8.76  4.58  0.07  0.17    103     8    478/482      2.30/4.53  
+ottawa2022  crop    5   13 geo_local 10.60  1.33  0.12  0.41     15     4    578/583      1.92/3.24  
+ottawa2022  crop    5   13 geo_local_mask55 10.55  1.33  0.12  0.39     16     4    575/580      1.88/3.26  
+ottawa2022  crop    5   13 geo_mask55  8.82  2.17  0.09  0.21     98     7    474/485      2.20/4.60  
+ottawa2022  crop    5   13 local   10.40  1.50  0.15  0.47     26     5    567/572      1.37/3.17  
+ottawa2022  crop    5   13 local_mask55 10.29  1.33  0.17  0.28     25     5    559/566      1.64/3.13  
+ottawa2022  crop    5   13 mask55   8.78  2.33  0.10  0.25     86     8    466/483      2.21/4.30  
+ottawa2022  crop   10   11 before  10.29  1.33  0.08  0.29     21     3    543/566      1.55/3.05  
+ottawa2022  crop   10   11 geo     10.55  1.33  0.10  0.30     26     2    550/580      1.78/3.37  
+ottawa2022  crop   10   11 geo_local 10.38  1.33  0.10  0.34      8     2    537/571      1.22/2.55  
+ottawa2022  crop   10   11 geo_local_mask55 10.58  1.50  0.20  0.34      2     4    569/582      1.85/2.99  
+ottawa2022  crop   10   11 geo_mask55 10.45  1.33  0.08  0.25     19     3    546/575      1.69/3.18  
+ottawa2022  crop   10   11 local    9.87  1.33  0.10  0.33     10     2    511/543      1.15/2.51  
+ottawa2022  crop   10   11 local_mask55 10.13  1.33  0.15  0.30      0     1    523/557      1.39/2.36  
+ottawa2022  crop   10   11 mask55   9.82  1.58  0.12  0.23     17     4    534/540      1.92/3.19  
+ottawa2022  crop   10   12 before   9.62  1.50  0.10  0.27     41     7    518/529      2.02/3.72  
+ottawa2022  crop   10   12 geo      9.44  1.33  0.15  0.52     61     6    499/519      2.06/3.99  
+ottawa2022  crop   10   12 geo_local  9.58  1.50  0.17  0.65      4     4    508/527      1.34/3.04  
+ottawa2022  crop   10   12 geo_local_mask55  9.89  1.33  0.17  0.62     12     3    529/544      1.63/2.94  
+ottawa2022  crop   10   12 geo_mask55  9.33  1.33  0.14  0.49     35     5    495/513      1.89/3.55  
+ottawa2022  crop   10   12 local    9.65  2.50  0.18  0.62     24     5    507/531      1.56/3.41  
+ottawa2022  crop   10   12 local_mask55  8.98  1.33  0.19  0.57     12     4    482/494      1.77/3.20  
+ottawa2022  crop   10   12 mask55   9.42  1.33  0.14  0.48     41     5    490/518      2.10/3.79  
+ottawa2022  crop   10   13 before   8.62  2.42  0.13  0.28     28     6    469/474      2.09/3.33  
+ottawa2022  crop   10   13 geo      8.13  2.42  0.12  0.28     26     6    433/447      1.90/3.12  
+ottawa2022  crop   10   13 geo_local  9.25  1.42  0.11  0.36     11     6    497/509      1.01/2.17  
+ottawa2022  crop   10   13 geo_local_mask55  9.73  1.58  0.11  0.38     12     5    530/535      1.04/2.36  
+ottawa2022  crop   10   13 geo_mask55  8.27  3.08  0.11  0.26     48     6    450/455      2.54/3.83  
+ottawa2022  crop   10   13 local    8.89  1.33  0.12  0.37     12     6    484/489      1.35/2.47  
+ottawa2022  crop   10   13 local_mask55  8.85  1.75  0.11  0.36     16     6    482/487      1.24/2.51  
+ottawa2022  crop   10   13 mask55   8.80  2.42  0.12  0.25     63     6    480/484      2.37/3.99  
+ottawa2022  crop   20   11 before  11.80  0.84  0.14  0.35      0     0      0/649       nan/nan   
+ottawa2022  crop   20   11 geo     11.80  0.84  0.14  0.35      0     0      0/649       nan/nan   
+ottawa2022  crop   20   11 geo_local 11.80  0.84  0.14  0.35      0     0      0/649       nan/nan   
+ottawa2022  crop   20   11 geo_local_mask55 11.80  0.84  0.14  0.35      0     0      0/649       nan/nan   
+ottawa2022  crop   20   11 geo_mask55 11.80  0.84  0.14  0.35      0     0      0/649       nan/nan   
+ottawa2022  crop   20   11 local   11.80  0.84  0.14  0.35      0     0      0/649       nan/nan   
+ottawa2022  crop   20   11 local_mask55 11.80  0.84  0.14  0.35      0     0      0/649       nan/nan   
+ottawa2022  crop   20   11 mask55  11.80  0.84  0.14  0.35      0     0      0/649       nan/nan   
+ottawa2022  crop   20   12 before  11.82  0.84  0.10  0.25      0     0      0/650       nan/nan   
+ottawa2022  crop   20   12 geo     11.82  0.84  0.10  0.25      0     0      0/650       nan/nan   
+ottawa2022  crop   20   12 geo_local 11.82  0.84  0.10  0.25      0     0      0/650       nan/nan   
+ottawa2022  crop   20   12 geo_local_mask55 11.82  0.84  0.10  0.25      0     0      0/650       nan/nan   
+ottawa2022  crop   20   12 geo_mask55 11.82  0.84  0.10  0.25      0     0      0/650       nan/nan   
+ottawa2022  crop   20   12 local   11.82  0.84  0.10  0.25      0     0      0/650       nan/nan   
+ottawa2022  crop   20   12 local_mask55 11.82  0.84  0.10  0.25      0     0      0/650       nan/nan   
+ottawa2022  crop   20   12 mask55  11.82  0.84  0.10  0.25      0     0      0/650       nan/nan   
+ottawa2022  crop   20   13 before  11.82  0.84  0.12  0.37      0     0      0/650       nan/nan   
+ottawa2022  crop   20   13 geo     11.82  0.84  0.12  0.37      0     0      0/650       nan/nan   
+ottawa2022  crop   20   13 geo_local 11.82  0.84  0.12  0.37      0     0      0/650       nan/nan   
+ottawa2022  crop   20   13 geo_local_mask55 11.82  0.84  0.12  0.37      0     0      0/650       nan/nan   
+ottawa2022  crop   20   13 geo_mask55 11.82  0.84  0.12  0.37      0     0      0/650       nan/nan   
+ottawa2022  crop   20   13 local   11.82  0.84  0.12  0.37      0     0      0/650       nan/nan   
+ottawa2022  crop   20   13 local_mask55 11.82  0.84  0.12  0.37      0     0      0/650       nan/nan   
+ottawa2022  crop   20   13 mask55  11.82  0.84  0.12  0.37      0     0      0/650       nan/nan   
+ottawa2022  crop   40   11 before  11.82  0.84  0.43  0.87      0     0      0/650       nan/nan   
+ottawa2022  crop   40   11 geo     11.82  0.84  0.43  0.87      0     0      0/650       nan/nan   
+ottawa2022  crop   40   11 geo_local 11.82  0.84  0.43  0.87      0     0      0/650       nan/nan   
+ottawa2022  crop   40   11 geo_local_mask55 11.82  0.84  0.43  0.87      0     0      0/650       nan/nan   
+ottawa2022  crop   40   11 geo_mask55 11.82  0.84  0.43  0.87      0     0      0/650       nan/nan   
+ottawa2022  crop   40   11 local   11.82  0.84  0.43  0.87      0     0      0/650       nan/nan   
+ottawa2022  crop   40   11 local_mask55 11.82  0.84  0.43  0.87      0     0      0/650       nan/nan   
+ottawa2022  crop   40   11 mask55  11.82  0.84  0.43  0.87      0     0      0/650       nan/nan   
+ottawa2022  crop   40   12 before  11.82  0.84  0.17  0.49      0     0      0/650       nan/nan   
+ottawa2022  crop   40   12 geo     11.82  0.84  0.17  0.49      0     0      0/650       nan/nan   
+ottawa2022  crop   40   12 geo_local 11.82  0.84  0.17  0.49      0     0      0/650       nan/nan   
+ottawa2022  crop   40   12 geo_local_mask55 11.82  0.84  0.17  0.49      0     0      0/650       nan/nan   
+ottawa2022  crop   40   12 geo_mask55 11.82  0.84  0.17  0.49      0     0      0/650       nan/nan   
+ottawa2022  crop   40   12 local   11.82  0.84  0.17  0.49      0     0      0/650       nan/nan   
+ottawa2022  crop   40   12 local_mask55 11.82  0.84  0.17  0.49      0     0      0/650       nan/nan   
+ottawa2022  crop   40   12 mask55  11.82  0.84  0.17  0.49      0     0      0/650       nan/nan   
+ottawa2022  crop   40   13 before  11.82  0.84  0.17  0.50      0     0      0/650       nan/nan   
+ottawa2022  crop   40   13 geo     11.82  0.84  0.17  0.50      0     0      0/650       nan/nan   
+ottawa2022  crop   40   13 geo_local 11.82  0.84  0.17  0.50      0     0      0/650       nan/nan   
+ottawa2022  crop   40   13 geo_local_mask55 11.82  0.84  0.17  0.50      0     0      0/650       nan/nan   
+ottawa2022  crop   40   13 geo_mask55 11.82  0.84  0.17  0.50      0     0      0/650       nan/nan   
+ottawa2022  crop   40   13 local   11.82  0.84  0.17  0.50      0     0      0/650       nan/nan   
+ottawa2022  crop   40   13 local_mask55 11.82  0.84  0.17  0.50      0     0      0/650       nan/nan   
+ottawa2022  crop   40   13 mask55  11.82  0.84  0.17  0.50      0     0      0/650       nan/nan   
+
+Median over seeds (worst seed in brackets):
+ground      lens    h version        fix/s        gap s        rms m     halves    reanc
+farmland    crop    5 before   9.16 [ 9.15]  1.50 [ 1.58]  0.07 [ 0.07]   46 [ 68]   7 [ 8]
+farmland    crop    5 geo      8.78 [ 7.55]  1.83 [ 4.33]  0.05 [ 0.06]   78 [105]   8 [12]
+farmland    crop    5 geo_local 10.56 [ 9.80]  1.50 [ 1.50]  0.06 [ 0.10]    5 [ 25]   4 [ 7]
+farmland    crop    5 geo_local_mask55 11.25 [10.82]  1.33 [ 1.42]  0.06 [ 0.06]    5 [ 20]   2 [ 3]
+farmland    crop    5 geo_mask55  9.98 [ 9.62]  1.50 [ 2.92]  0.04 [ 0.06]   43 [ 48]   6 [ 7]
+farmland    crop    5 local   10.45 [10.36]  1.50 [ 1.58]  0.10 [ 0.12]    6 [ 10]   4 [ 4]
+farmland    crop    5 local_mask55 11.40 [10.65]  1.42 [ 1.50]  0.10 [ 0.11]   11 [ 24]   1 [ 3]
+farmland    crop    5 mask55   9.91 [ 9.47]  1.58 [ 2.00]  0.07 [ 0.07]   45 [ 52]   7 [ 7]
+farmland    crop   10 before   9.16 [ 8.62]  1.50 [ 1.75]  0.10 [ 0.13]   85 [105]   6 [ 6]
+farmland    crop   10 geo     10.02 [ 8.93]  1.42 [ 1.50]  0.12 [ 0.18]   55 [ 57]   4 [ 8]
+farmland    crop   10 geo_local 10.96 [10.29]  1.50 [ 1.50]  0.17 [ 0.17]   27 [ 31]   2 [ 4]
+farmland    crop   10 geo_local_mask55 10.73 [10.60]  1.42 [ 1.67]  0.23 [ 0.36]   17 [ 43]   2 [ 3]
+farmland    crop   10 geo_mask55  9.96 [ 9.80]  1.50 [ 1.83]  0.11 [ 0.17]   44 [ 50]   5 [ 6]
+farmland    crop   10 local   10.62 [10.44]  1.50 [ 1.58]  0.16 [ 0.16]   43 [ 45]   2 [ 4]
+farmland    crop   10 local_mask55 10.64 [10.62]  1.58 [ 1.67]  0.16 [ 0.18]   40 [ 45]   2 [ 3]
+farmland    crop   10 mask55   9.64 [ 9.44]  1.42 [ 1.50]  0.09 [ 0.19]   66 [ 70]   5 [ 6]
+farmland    crop   20 before  11.22 [10.04]  1.42 [ 1.58]  0.21 [ 0.30]   22 [ 53]   1 [ 4]
+farmland    crop   20 geo     11.04 [10.13]  1.33 [ 1.42]  0.22 [ 0.67]   32 [ 53]   1 [ 4]
+farmland    crop   20 geo_local 10.71 [10.69]  1.50 [ 1.58]  0.37 [ 0.37]   28 [ 50]   1 [ 3]
+farmland    crop   20 geo_local_mask55 11.33 [11.20]  1.33 [ 1.42]  0.31 [ 0.47]   13 [ 27]   1 [ 2]
+farmland    crop   20 geo_mask55 10.64 [10.40]  1.42 [ 1.42]  0.36 [ 0.44]   34 [ 47]   3 [ 3]
+farmland    crop   20 local   11.04 [10.65]  1.42 [ 1.58]  0.34 [ 0.37]   22 [ 31]   2 [ 3]
+farmland    crop   20 local_mask55 11.31 [11.20]  1.33 [ 1.42]  0.33 [ 0.49]   13 [ 18]   1 [ 2]
+farmland    crop   20 mask55  10.87 [10.67]  1.42 [ 1.42]  0.39 [ 0.45]   32 [ 42]   2 [ 3]
+farmland    crop   40 before   9.33 [ 8.44]  1.67 [ 2.09]  0.31 [ 0.38]    2 [ 13]   5 [11]
+farmland    crop   40 geo      9.36 [ 8.98]  1.42 [ 2.09]  0.22 [ 0.38]    2 [ 12]   6 [10]
+farmland    crop   40 geo_local  9.53 [ 8.98]  1.83 [ 2.09]  0.27 [ 0.38]    0 [  5]   6 [10]
+farmland    crop   40 geo_local_mask55  9.64 [ 9.13]  2.09 [ 2.58]  0.28 [ 0.39]    1 [  1]   6 [ 7]
+farmland    crop   40 geo_mask55  9.78 [ 9.67]  1.50 [ 2.09]  0.28 [ 0.42]    5 [ 15]   6 [ 7]
+farmland    crop   40 local   10.11 [ 8.44]  2.09 [ 2.67]  0.38 [ 0.38]    0 [ 10]   4 [11]
+farmland    crop   40 local_mask55  9.58 [ 9.07]  1.42 [ 2.09]  0.31 [ 0.34]    1 [  7]   5 [ 8]
+farmland    crop   40 mask55   9.71 [ 9.56]  1.67 [ 2.09]  0.24 [ 0.43]    5 [ 18]   6 [ 8]
+ottawa2022  crop    5 before   8.47 [ 7.16]  2.75 [ 2.92]  0.10 [ 0.10]  114 [130]   7 [13]
+ottawa2022  crop    5 geo      8.75 [ 8.05]  1.92 [ 4.58]  0.09 [ 0.09]  103 [126]   8 [10]
+ottawa2022  crop    5 geo_local 10.60 [10.53]  1.50 [ 1.50]  0.12 [ 0.14]   15 [ 28]   4 [ 4]
+ottawa2022  crop    5 geo_local_mask55 10.58 [10.55]  1.33 [ 1.42]  0.09 [ 0.12]   16 [ 27]   4 [ 4]
+ottawa2022  crop    5 geo_mask55  8.82 [ 8.80]  1.92 [ 2.17]  0.09 [ 0.12]  103 [113]   6 [ 7]
+ottawa2022  crop    5 local   11.24 [10.40]  1.33 [ 1.50]  0.15 [ 0.28]   15 [ 26]   2 [ 5]
+ottawa2022  crop    5 local_mask55 10.69 [10.29]  1.33 [ 1.42]  0.10 [ 0.17]   21 [ 25]   4 [ 5]
+ottawa2022  crop    5 mask55   9.09 [ 8.78]  2.00 [ 2.33]  0.09 [ 0.10]   66 [ 86]   8 [ 8]
+ottawa2022  crop   10 before   9.62 [ 8.62]  1.50 [ 2.42]  0.10 [ 0.13]   28 [ 41]   6 [ 7]
+ottawa2022  crop   10 geo      9.44 [ 8.13]  1.33 [ 2.42]  0.12 [ 0.15]   26 [ 61]   6 [ 6]
+ottawa2022  crop   10 geo_local  9.58 [ 9.25]  1.42 [ 1.50]  0.11 [ 0.17]    8 [ 11]   4 [ 6]
+ottawa2022  crop   10 geo_local_mask55  9.89 [ 9.73]  1.50 [ 1.58]  0.17 [ 0.20]   12 [ 12]   4 [ 5]
+ottawa2022  crop   10 geo_mask55  9.33 [ 8.27]  1.33 [ 3.08]  0.11 [ 0.14]   35 [ 48]   5 [ 6]
+ottawa2022  crop   10 local    9.65 [ 8.89]  1.33 [ 2.50]  0.12 [ 0.18]   12 [ 24]   5 [ 6]
+ottawa2022  crop   10 local_mask55  8.98 [ 8.85]  1.33 [ 1.75]  0.15 [ 0.19]   12 [ 16]   4 [ 6]
+ottawa2022  crop   10 mask55   9.42 [ 8.80]  1.58 [ 2.42]  0.12 [ 0.14]   41 [ 63]   5 [ 6]
+ottawa2022  crop   20 before  11.82 [11.80]  0.84 [ 0.84]  0.12 [ 0.14]    0 [  0]   0 [ 0]
+ottawa2022  crop   20 geo     11.82 [11.80]  0.84 [ 0.84]  0.12 [ 0.14]    0 [  0]   0 [ 0]
+ottawa2022  crop   20 geo_local 11.82 [11.80]  0.84 [ 0.84]  0.12 [ 0.14]    0 [  0]   0 [ 0]
+ottawa2022  crop   20 geo_local_mask55 11.82 [11.80]  0.84 [ 0.84]  0.12 [ 0.14]    0 [  0]   0 [ 0]
+ottawa2022  crop   20 geo_mask55 11.82 [11.80]  0.84 [ 0.84]  0.12 [ 0.14]    0 [  0]   0 [ 0]
+ottawa2022  crop   20 local   11.82 [11.80]  0.84 [ 0.84]  0.12 [ 0.14]    0 [  0]   0 [ 0]
+ottawa2022  crop   20 local_mask55 11.82 [11.80]  0.84 [ 0.84]  0.12 [ 0.14]    0 [  0]   0 [ 0]
+ottawa2022  crop   20 mask55  11.82 [11.80]  0.84 [ 0.84]  0.12 [ 0.14]    0 [  0]   0 [ 0]
+ottawa2022  crop   40 before  11.82 [11.82]  0.84 [ 0.84]  0.17 [ 0.43]    0 [  0]   0 [ 0]
+ottawa2022  crop   40 geo     11.82 [11.82]  0.84 [ 0.84]  0.17 [ 0.43]    0 [  0]   0 [ 0]
+ottawa2022  crop   40 geo_local 11.82 [11.82]  0.84 [ 0.84]  0.17 [ 0.43]    0 [  0]   0 [ 0]
+ottawa2022  crop   40 geo_local_mask55 11.82 [11.82]  0.84 [ 0.84]  0.17 [ 0.43]    0 [  0]   0 [ 0]
+ottawa2022  crop   40 geo_mask55 11.82 [11.82]  0.84 [ 0.84]  0.17 [ 0.43]    0 [  0]   0 [ 0]
+ottawa2022  crop   40 local   11.82 [11.82]  0.84 [ 0.84]  0.17 [ 0.43]    0 [  0]   0 [ 0]
+ottawa2022  crop   40 local_mask55 11.82 [11.82]  0.84 [ 0.84]  0.17 [ 0.43]    0 [  0]   0 [ 0]
+ottawa2022  crop   40 mask55  11.82 [11.82]  0.84 [ 0.84]  0.17 [ 0.43]    0 [  0]   0 [ 0]
+
+Halves gap (px) against the true drift from the keyframe / height, whole-picture calls on the current keyframe,
+all seeds: median gap [share of calls over 4 px] (number of calls)
+ground      lens    h version          0.00-0.02          0.02-0.05          0.05-0.10          0.10-0.15          0.15-0.20          0.20-0.30         0.30-10.00
+farmland    crop    5 before    1.8 [  8%] ( 587)   2.2 [ 12%] ( 699)   1.9 [  5%] ( 511)   2.9 [  7%] (  14)                                                         
+farmland    crop    5 geo       1.8 [ 13%] ( 586)   2.2 [ 13%] ( 715)   2.1 [ 11%] ( 448)   2.6 [ 21%] (  67)   2.6 [  0%] (   7)                                      
+farmland    crop    5 geo_local   0.9 [  1%] ( 398)   1.4 [  1%] ( 648)   1.8 [  1%] ( 481)   1.8 [  5%] ( 264)   4.7 [100%] (   4)                                      
+farmland    crop    5 geo_local_mask55   0.9 [  0%] ( 195)   1.2 [  1%] ( 413)   1.5 [  2%] ( 447)   1.4 [  1%] ( 508)   1.9 [  3%] ( 126)   1.5 [  0%] ( 135)                   
+farmland    crop    5 geo_mask55   1.5 [  3%] ( 453)   1.9 [  5%] ( 588)   2.5 [ 14%] ( 440)   2.5 [  5%] ( 343)   2.6 [  0%] (  13)                                      
+farmland    crop    5 local     1.1 [  2%] ( 367)   1.6 [  0%] ( 759)   1.5 [  2%] ( 516)   1.8 [  3%] ( 157)   2.7 [  0%] (   2)                                      
+farmland    crop    5 local_mask55   0.5 [  0%] ( 391)   1.2 [  0%] ( 466)   1.9 [  2%] ( 614)   2.3 [  2%] ( 340)   3.7 [ 19%] (  90)                                      
+farmland    crop    5 mask55    1.7 [  5%] ( 461)   1.9 [  5%] ( 693)   2.2 [ 11%] ( 414)   2.5 [  8%] ( 256)   2.0 [  0%] (  29)                                      
+farmland    crop   10 before    2.3 [ 11%] ( 788)   2.5 [ 13%] ( 705)   2.2 [  8%] ( 381)   6.2 [100%] (   2)                                                         
+farmland    crop   10 geo       2.1 [  7%] ( 808)   2.4 [ 10%] ( 570)   2.1 [  7%] ( 473)   4.1 [ 60%] (  10)                                                         
+farmland    crop   10 geo_local   1.3 [  1%] ( 543)   2.4 [  6%] ( 547)   1.5 [  3%] ( 610)   2.2 [  8%] ( 195)                                                         
+farmland    crop   10 geo_local_mask55   1.4 [  0%] ( 651)   2.2 [  5%] ( 703)   1.4 [  7%] ( 564)   0.9 [  0%] (  11)                                                         
+farmland    crop   10 geo_mask55   1.5 [  3%] ( 760)   2.0 [  6%] ( 637)   2.3 [ 10%] ( 520)                                                                            
+farmland    crop   10 local     1.4 [  2%] ( 520)   2.4 [  8%] ( 554)   1.3 [  4%] ( 600)   2.6 [ 13%] ( 233)                                                         
+farmland    crop   10 local_mask55   1.5 [  5%] ( 705)   2.4 [  6%] ( 697)   1.0 [  5%] ( 491)   1.3 [  0%] (  12)                                                         
+farmland    crop   10 mask55    1.8 [  4%] ( 742)   2.4 [ 11%] ( 533)   2.7 [ 12%] ( 603)   5.0 [100%] (   3)                                                         
+farmland    crop   20 before    1.5 [  5%] (1146)   1.9 [  3%] ( 734)   2.3 [  0%] (  28)                                                                            
+farmland    crop   20 geo       1.6 [  4%] (1131)   2.1 [  6%] ( 763)                                                                                               
+farmland    crop   20 geo_local   1.8 [  5%] ( 768)   1.9 [  4%] (1069)   2.3 [  0%] (  69)                                                                            
+farmland    crop   20 geo_local_mask55   1.5 [  1%] ( 796)   1.7 [  5%] ( 856)   1.5 [  0%] ( 234)                                                                            
+farmland    crop   20 geo_mask55   1.6 [  4%] (1165)   2.4 [  9%] ( 711)   2.9 [ 14%] (  28)                                                                            
+farmland    crop   20 local     1.7 [  2%] ( 834)   1.9 [  4%] ( 970)   2.4 [  0%] (  58)                                                                            
+farmland    crop   20 local_mask55   1.6 [  1%] (1021)   1.8 [  3%] ( 798)   2.3 [  0%] (  30)                                                                            
+farmland    crop   20 mask55    1.8 [  3%] (1203)   2.5 [  8%] ( 659)   2.8 [ 16%] (  50)                                                                            
+farmland    crop   40 before    1.0 [  1%] (1676)   1.1 [  0%] ( 173)                                                                                               
+farmland    crop   40 geo       1.0 [  1%] (1830)   2.5 [  0%] (  18)                                                                                               
+farmland    crop   40 geo_local   0.8 [  0%] (1845)                                                                                                                  
+farmland    crop   40 geo_local_mask55   0.9 [  0%] (1787)   2.1 [  0%] (  77)                                                                                               
+farmland    crop   40 geo_mask55   1.2 [  1%] (1598)   3.0 [  2%] ( 245)                                                                                               
+farmland    crop   40 local     0.8 [  1%] (1622)   1.9 [  0%] ( 225)                                                                                               
+farmland    crop   40 local_mask55   0.9 [  0%] (1608)   1.6 [  0%] ( 236)                                                                                               
+farmland    crop   40 mask55    1.2 [  1%] (1812)   2.3 [  0%] (  33)                                                                                               
+ottawa2022  crop    5 before    2.1 [ 13%] ( 587)   2.3 [ 13%] ( 498)   2.7 [ 21%] ( 592)   3.0 [ 31%] ( 220)   5.0 [100%] (   3)                                      
+ottawa2022  crop    5 geo       1.9 [ 11%] ( 459)   2.5 [ 15%] ( 547)   2.6 [ 22%] ( 559)   2.7 [ 18%] ( 299)   3.3 [ 20%] (  56)                                      
+ottawa2022  crop    5 geo_local   1.1 [  6%] ( 314)   1.7 [  3%] ( 475)   1.8 [  2%] ( 523)   2.0 [  3%] ( 327)   2.3 [  0%] ( 271)   3.1 [  0%] (  14)                   
+ottawa2022  crop    5 geo_local_mask55   1.0 [  5%] ( 296)   1.7 [  3%] ( 468)   1.7 [  2%] ( 513)   2.1 [  5%] ( 334)   2.3 [  0%] ( 256)   3.2 [  0%] (  16)                   
+ottawa2022  crop    5 geo_mask55   2.0 [ 10%] ( 453)   2.7 [ 16%] ( 540)   2.9 [ 20%] ( 570)   2.4 [ 20%] ( 316)   3.4 [ 21%] (  28)                                      
+ottawa2022  crop    5 local     0.9 [  3%] ( 196)   1.3 [  3%] ( 538)   1.5 [  4%] ( 442)   1.7 [  3%] ( 307)   2.3 [  4%] ( 166)   2.7 [  0%] ( 257)                   
+ottawa2022  crop    5 local_mask55   0.9 [  3%] ( 349)   1.6 [  4%] ( 465)   1.6 [  4%] ( 499)   1.3 [  3%] ( 354)   2.1 [  2%] ( 205)   2.7 [  0%] (  17)                   
+ottawa2022  crop    5 mask55    1.6 [  4%] ( 578)   2.0 [  9%] ( 570)   2.7 [ 16%] ( 492)   3.0 [ 27%] ( 209)   3.7 [ 30%] (  27)                                      
+ottawa2022  crop   10 before    1.9 [  3%] ( 811)   2.2 [ 10%] ( 496)   1.7 [  3%] ( 605)   2.5 [  0%] (   3)                                                         
+ottawa2022  crop   10 geo       1.8 [  4%] ( 878)   2.0 [  9%] ( 559)   1.9 [  5%] ( 455)                                                                            
+ottawa2022  crop   10 geo_local   0.9 [  0%] ( 851)   1.6 [  2%] ( 676)   1.3 [  2%] ( 364)                                                                            
+ottawa2022  crop   10 geo_local_mask55   1.3 [  1%] ( 796)   1.7 [  2%] ( 797)   1.5 [  2%] ( 322)                                                                            
+ottawa2022  crop   10 geo_mask55   1.7 [  4%] ( 762)   2.2 [  8%] ( 487)   2.4 [  5%] ( 633)   2.9 [  0%] (  19)                                                         
+ottawa2022  crop   10 local     1.0 [  1%] ( 677)   1.7 [  4%] ( 778)   1.4 [  2%] ( 428)                                                                            
+ottawa2022  crop   10 local_mask55   1.1 [  1%] ( 778)   1.6 [  2%] ( 721)   1.5 [  1%] ( 404)                                                                            
+ottawa2022  crop   10 mask55    1.9 [  5%] ( 754)   2.2 [  5%] ( 942)   2.3 [ 18%] ( 211)                                                                            

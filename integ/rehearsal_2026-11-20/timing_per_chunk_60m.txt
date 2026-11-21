@@ -1,0 +1,26 @@
+== raw_20261120_033410_000.npz
+FAIL the recording turned 8 deg/s RMS with 4330 matches; need 20 deg/s and 1000. Rock the roll and pitch sticks harder for 8 s.
+== raw_20261120_033410_001.npz
+FAIL the recording turned 0 deg/s RMS with 6926 matches; need 20 deg/s and 1000. Rock the roll and pitch sticks harder for 8 s.
+== raw_20261120_033410_002.npz
+PASS video delay 38 ms (was 70), readout +21 ms (was +14), residual 0.52 deg, 29 deg/s
+== raw_20261120_033410_003.npz
+FAIL delay 20 ms, residual 1.88 deg (orientation front fits 1.89 deg). Settings not changed. Run calib on the ground.
+== raw_20261120_033410_004.npz
+FAIL delay 64 ms, residual 1.07 deg (orientation front fits 1.21 deg). Settings not changed. Run calib on the ground.
+== raw_20261120_033410_005.npz
+PASS video delay 40 ms (was 70), readout +12 ms (was +14), residual 0.74 deg, 24 deg/s
+== raw_20261120_033410_006.npz
+PASS video delay 12 ms (was 70), readout -29 ms (was +14), residual 0.84 deg, 29 deg/s
+== raw_20261120_033410_007.npz
+PASS video delay 40 ms (was 70), readout +15 ms (was +14), residual 0.64 deg, 36 deg/s
+== raw_20261120_033410_008.npz
+PASS video delay 52 ms (was 70), readout +39 ms (was +14), residual 0.90 deg, 23 deg/s
+== raw_20261120_033410_009.npz
+PASS video delay 46 ms (was 70), readout +42 ms (was +14), residual 0.74 deg, 33 deg/s
+== chunks 000 001 002
+FAIL the recording turned 17 deg/s RMS with 16656 matches; need 20 deg/s and 1000. Rock the roll and pitch sticks harder for 8 s.
+== chunks 001 002
+PASS video delay 40 ms (was 70), readout +14 ms (was +14), residual 0.71 deg, 21 deg/s
+== chunks 002 003
+PASS video delay 32 ms (was 70), readout +5 ms (was +14), residual 0.88 deg, 26 deg/s

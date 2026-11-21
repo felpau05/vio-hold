@@ -1,0 +1,27 @@
+betasim/apb_run_test.py, 2026-11-20 03:54, copy <work>
+== apb_main check (FC part; video and CPU lines need the APB)
+PASS calibrated
+PASS firmware: betaflight (system None)
+PASS ATTITUDE 35 Hz (asked 40, need 25)
+PASS ALTITUDE 35 Hz (asked 10)
+PASS FC clock offset fitted
+PASS MSP firmware {'variant': 'BTFL', 'api': '1.48', 'version': '26.6.3', 'build': 'Nov 20 202603:35:54'}
+PASS POS HOLD mode (box 11) in this build
+PASS barometer height 0.00 m
+PASS rangefinder detected
+PASS optical flow detected
+INFO height now 0.0 m (run needs 3 m)
+PASS video: 26 frames in 2 s, 0 usable, driver 640x480 field order none, stamps from driver
+FAIL video standard None (setting auto)
+PASS frame stamps from driver: intervals differ from their median by 4.0 ms (p95, limit 12 ms for a hold at 40 m)
+INFO picture for Hold: 640x480 (frame)
+PASS Hold.process median 2 ms, p95 5 ms -> about 20 fixes/s (need 10)
+INFO fix age about 67 ms (video delay + process). Use it for EKF2_EV_DELAY when time sync fails. ArduPilot: after the first hover set VISO_DELAY_MS from 'apb_main.py delay <run log>'.
+FAIL mask is 360x240 but the picture is 640x480. Run 'apb_main.py mask' again.
+PASS free disk 31.1 GB at <work> (need 3.1 GB: raw recording takes 4.0 MB/s at 640x480, 13 Hz)
+2 FAIL
+(check took 11 s)
+== run_live 12 s, bench height 50 m
+frames 342, fixes sent 136, send_fix calls 136, send_speed calls 34, flow messages 34, FC acknowledges {7937: 34, 7938: 34}, error replies {}
+not sent, by reason: {'init': 9, 'good fix 1 of 10': 3, 'good fix 2 of 10': 3, 'good fix 3 of 10': 3, 'image motion does not match the attitude (3.2 px)': 2, 'image motion does not match the attitude (7.3 px)': 1, 'image motion does not match the attitude (11.6 px)': 1, 'image motion does not match the attitude (15.4 px)': 1, 'image motion does not match the attitude (18.2 px)': 1, 'image motion does not match the attitude (19.6 px)': 1, 'image motion does not match the attitude (19.5 px)': 1, 'image motion does not match the attitude (18.7 px)': 1, 'image motion does not match the attitude (17.3 px)': 1, 'image motion does not match the attitude (16.1 px)': 1, 'image motion does not match the attitude (15.6 px)': 1, 'image motion does not match the attitude (15.9 px)': 1, 'image motion does not match the attitude (5.0 px)': 1, 'image motion does not match the attitude (4.6 px)': 1, 'image motion does not match the attitude (3.5 px)': 1, 'image motion does not match the attitude (3.6 px)': 1, 'image motion does not match the attitude (3.1 px)': 1, 'good fix 4 of 10': 2, 'good fix 5 of 10': 2, 'good fix 6 of 10': 2, 'good fix 7 of 10': 2, 'good fix 8 of 10': 2, 'image motion does not match the attitude (3.8 px)': 1, 'image motion does not match the attitude (8.0 px)': 1, 'image motion does not match the attitude (12.0 px)': 1, 'image motion does not match the attitude (15.0 px)': 1, 'image motion does not match the attitude (17.1 px)': 1, 'image motion does not match the attitude (18.4 px)': 1, 'image motion does not match the attitude (19.4 px)': 1, 'image motion does not match the attitude (21.0 px)': 1, 'image motion does not match the attitude (23.2 px)': 1, 'image motion does not match the attitude (25.7 px)': 1, 'image motion does not match the attitude (27.5 px)': 1, 'image motion does not match the attitude (28.8 px)': 1, 'good fix 9 of 10': 1, 'send rate limit': 147}
+modes logged: ['no POS_HOLD']; attitude 35 Hz, height 35 Hz

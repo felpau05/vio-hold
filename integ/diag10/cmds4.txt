@@ -1,0 +1,1 @@
+~/.venvs/vio/bin/python integ/diag10/probe_yaw.py --hold base=integ/diag10/hold_base.py --hold patch=integ/diag10/hold_patch.py --hold pn55=integ/diag10/hold_pn55.py --hold py=integ/diag10/hold_py.py --hold pyn55=integ/diag10/hold_pyn55.py

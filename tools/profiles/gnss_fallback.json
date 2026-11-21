@@ -1,0 +1,21 @@
+{
+ "_why": {
+  "_note": "As gnss_setup. In addition: in a hold with no fix for gnss_fallback_s (3 s), the program sends MAV_CMD_SET_EKF_SOURCE_SET 1 (GNSS) and keeps it until the pilot releases. Run log: 'GNSS FALLBACK: no fix for ... GNSS aids the hold from this time' and 'FC reply to EKF source set 1 (GNSS): ACCEPTED'. FC log: EV 85. From that moment the hold is NOT a no-GNSS hold. ArduCopter 4.6 SITL, 30 m seed 1, video dropped 6 s at 10 s after the switch (apsim/gnss_results.txt, gn_fallback_30m_s1): set 1 at 13.1 s, EKF step 0.10 m, largest distance from the switch position 1.52 m over 30 s (gnss_setup, same seed, no drop: 0.81 m). Limits: one run, ideal SITL GNSS; at 10 m a normal fix gap can reach 3 s, so a fallback can start with no video fault (not tested).",
+  "gnss_mode": "fallback: as setup, plus set 1 after gnss_fallback_s without a fix in a hold."
+ },
+ "gnss_mode": "fallback",
+ "params_ardupilot": {
+  "GPS1_TYPE": 1,
+  "EK3_SRC1_POSXY": 3,
+  "EK3_SRC1_VELXY": 3,
+  "EK3_SRC1_POSZ": 1,
+  "EK3_SRC1_VELZ": 0,
+  "EK3_SRC1_YAW": 1,
+  "EK3_SRC2_POSXY": 6,
+  "EK3_SRC2_VELXY": 0,
+  "EK3_SRC2_POSZ": 1,
+  "EK3_SRC2_VELZ": 0,
+  "EK3_SRC2_YAW": 1,
+  "EK3_SRC_OPTIONS": 0
+ }
+}
