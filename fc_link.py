@@ -285,6 +285,13 @@ class FC:
         self._send(lambda mav: mav.command_long_send(self.sysid or 1, self.compid, M.MAV_CMD_DO_SET_MODE, 0,
                                                      M.MAV_MODE_FLAG_CUSTOM_MODE_ENABLED, custom_mode, 0, 0, 0, 0, 0))
 
+    def set_source_set(self, n):
+        """MAV_CMD_SET_EKF_SOURCE_SET (42007), param1 = EKF source set 1-3 (ArduPilot; apb_main.GnssLevel). The reply
+        lands in self.acks[42007]: ArduPilot answers ACCEPTED for 1-3, DENIED otherwise (GCS_Common.cpp 4908-4918)."""
+        self.acks.pop(M.MAV_CMD_SET_EKF_SOURCE_SET, None)
+        self._send(lambda mav: mav.command_long_send(self.sysid or 1, self.compid, M.MAV_CMD_SET_EKF_SOURCE_SET, 0,
+                                                     n, 0, 0, 0, 0, 0, 0))
+
     def send_target(self, n, e, d, yaw):
         """SET_POSITION_TARGET_LOCAL_NED: position, speed 0 and a fixed heading (rad). ArduCopter GUIDED only
         (ignored in other modes). The heading must be given: without it GUIDED turned the nose toward each new

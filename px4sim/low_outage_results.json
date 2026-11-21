@@ -1,0 +1,1407 @@
+{
+ "lowout_apb_jd_5m_w20g40_s1": {
+  "case": "lowout_apb_jd_5m_w20g40_s1",
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 3, 0.9 s after the vision feed started"
+   ]
+  ],
+  "climb_s": 15.0,
+  "ekf_yaw_minus_true_deg": 11.96,
+  "onboard": [
+   [
+    4.05,
+    "connected",
+    "px4, clock ready True, ATTITUDE 100 Hz"
+   ],
+   [
+    14.15,
+    "run",
+    "FAIL no usable video frame in 10 s. Check the camera and video_device."
+   ],
+   [
+    116.53,
+    "done",
+    "stopped after 2 start(s); frame age when taken p50 13 ms, p95 21 ms; SCALED_IMU 0 Hz, 0 rows kept"
+   ]
+  ],
+  "params_fail": [],
+  "onboard_exit": 0,
+  "clock_err_ms_mean": 0.7337123181020586,
+  "clock_err_ms_absmax": 0.9644762696439102,
+  "handover_ms_p50": 4.151134999119677,
+  "handover_ms_p95": 9.318426999016083,
+  "frames": 3591,
+  "processed": 975,
+  "fixes": 657,
+  "fix_rate_hz": 10.949270048663422,
+  "pct_frames_fix": 18.295739348370926,
+  "frac_init": 0.01641025641025641,
+  "frac_ok": 0.5774358974358974,
+  "frac_degraded": 0.3958974358974359,
+  "frac_lost": 0.010256410256410256,
+  "proc_ms_mean": 60.87425641025641,
+  "age_ms_p50": 100.1,
+  "age_ms_p95": 164.71999999999917,
+  "hold_why": {
+   "whole picture: halves disagree": 206,
+   "init": 10,
+   "good fix 1 of 10": 10,
+   "good fix 2 of 10": 10,
+   "good fix 3 of 10": 10,
+   "good fix 4 of 10": 10,
+   "good fix 5 of 10": 10,
+   "good fix 6 of 10": 10
+  },
+  "reanchors": 10,
+  "rms": 0.540782930773737,
+  "p95": 0.8957055826317097,
+  "max": 1.0847497425276438,
+  "end": 0.07795025199010444,
+  "drift_m_per_min": 0.6194674131117729,
+  "roll_rms_deg": 5.196829680594783,
+  "pitch_rms_deg": 4.051504753825523,
+  "tilt_mean_deg": 10.054650181482774,
+  "judge_rms": 1.3034479326339161,
+  "judge_p95": 2.2820629728474544,
+  "judge_max": 3.136012828855896,
+  "judge_jitter_rms": 0.9800343263162699,
+  "height_mean": 4.598642238267155,
+  "seconds": 60.004,
+  "px4_hgt_err_m": [
+   -0.11,
+   0.11
+  ],
+  "px4_yaw_err_deg": [
+   -0.22,
+   2.95,
+   0.11
+  ],
+  "ev_delay_ms": 83.0,
+  "hold_py_md5": "c87106c6e2",
+  "px4_text": [],
+  "load_at_start": [
+   3.1,
+   4.14,
+   2.4
+  ],
+  "waited_s": 300,
+  "started": "2026-11-19 03:10:22",
+  "md5": {
+   "hold.py": "c87106c6e2",
+   "apb_main.py": "53a35bb9d1",
+   "px4sim/sitl.py": "66d3c7ecfd",
+   "px4sim/camera.py": "96d9acfa8c",
+   "px4sim/onboard.py": "21e3820632",
+   "capture.py": "5b76a4f3c7",
+   "fc_link.py": "38b88c2f69",
+   "settings.py": "ea500bda5e"
+  },
+  "load_at_end": [
+   12.45,
+   7.23,
+   3.72
+  ],
+  "wall_s": 120.2,
+  "case_args": {
+   "variant": "apb",
+   "height": 5.0,
+   "wind": "w20g40",
+   "hold_s": 60.0,
+   "seed": 1,
+   "video": "JUSTICE_D",
+   "label": "lowout_apb_jd_5m_w20g40_s1",
+   "settings": {
+    "min_height_m": 3.0
+   },
+   "hold_cfg": {
+    "h_min": 2.0
+   }
+  }
+ },
+ "lowout_apb_jd_5m_w20g40_s2": {
+  "case": "lowout_apb_jd_5m_w20g40_s2",
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 3, 0.8 s after the vision feed started"
+   ]
+  ],
+  "climb_s": 15.0,
+  "ekf_yaw_minus_true_deg": 12.59,
+  "onboard": [
+   [
+    4.04,
+    "connected",
+    "px4, clock ready True, ATTITUDE 100 Hz"
+   ],
+   [
+    14.13,
+    "run",
+    "FAIL no usable video frame in 10 s. Check the camera and video_device."
+   ],
+   [
+    116.51,
+    "done",
+    "stopped after 2 start(s); frame age when taken p50 12 ms, p95 21 ms; SCALED_IMU 0 Hz, 0 rows kept"
+   ]
+  ],
+  "params_fail": [],
+  "onboard_exit": 0,
+  "clock_err_ms_mean": 0.717899174608143,
+  "clock_err_ms_absmax": 0.8074937881161759,
+  "handover_ms_p50": 4.262863334588474,
+  "handover_ms_p95": 11.376073083738447,
+  "frames": 3586,
+  "processed": 950,
+  "fixes": 820,
+  "fix_rate_hz": 13.666666666666666,
+  "pct_frames_fix": 22.86670384829894,
+  "frac_init": 0.005263157894736842,
+  "frac_ok": 0.6736842105263158,
+  "frac_degraded": 0.3178947368421053,
+  "frac_lost": 0.003157894736842105,
+  "proc_ms_mean": 62.64463157894736,
+  "age_ms_p50": 98.05,
+  "age_ms_p95": 184.37499999999994,
+  "hold_why": {
+   "whole picture: halves disagree": 97,
+   "init": 3,
+   "good fix 1 of 10": 3,
+   "good fix 2 of 10": 3,
+   "good fix 3 of 10": 3,
+   "good fix 4 of 10": 3,
+   "good fix 5 of 10": 3,
+   "good fix 6 of 10": 3
+  },
+  "reanchors": 3,
+  "rms": 0.5076777357815015,
+  "p95": 0.9807735998566279,
+  "max": 1.139618741408824,
+  "end": 0.7452251293410952,
+  "drift_m_per_min": 0.614266597703481,
+  "roll_rms_deg": 4.263871363685309,
+  "pitch_rms_deg": 1.7531025899337342,
+  "tilt_mean_deg": 10.773683918461181,
+  "judge_rms": 1.1264199501886563,
+  "judge_p95": 2.277639249809428,
+  "judge_max": 2.568754360987697,
+  "judge_jitter_rms": 0.7674429336794367,
+  "height_mean": 4.6211281245322615,
+  "seconds": 60.0,
+  "px4_hgt_err_m": [
+   -0.13,
+   0.07
+  ],
+  "px4_yaw_err_deg": [
+   -0.16,
+   1.36,
+   1.1
+  ],
+  "ev_delay_ms": 83.0,
+  "hold_py_md5": "0fa6392307",
+  "px4_text": [],
+  "load_at_start": [
+   3.6,
+   5.42,
+   3.69
+  ],
+  "waited_s": 180,
+  "started": "2026-11-19 03:15:41",
+  "md5": {
+   "hold.py": "0fa6392307",
+   "apb_main.py": "fb4b99bdd6",
+   "px4sim/sitl.py": "66d3c7ecfd",
+   "px4sim/camera.py": "96d9acfa8c",
+   "px4sim/onboard.py": "21e3820632",
+   "capture.py": "5b76a4f3c7",
+   "fc_link.py": "38b88c2f69",
+   "settings.py": "e667a78298"
+  },
+  "load_at_end": [
+   10.74,
+   8.07,
+   4.9
+  ],
+  "wall_s": 120.3,
+  "case_args": {
+   "variant": "apb",
+   "height": 5.0,
+   "wind": "w20g40",
+   "hold_s": 60.0,
+   "seed": 2,
+   "video": "JUSTICE_D",
+   "label": "lowout_apb_jd_5m_w20g40_s2",
+   "settings": {
+    "min_height_m": 3.0
+   },
+   "hold_cfg": {
+    "h_min": 2.0
+   }
+  }
+ },
+ "lowout_apb_jd_10m_w20g40_s1": {
+  "case": "lowout_apb_jd_10m_w20g40_s1",
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 3, 0.9 s after the vision feed started"
+   ]
+  ],
+  "climb_s": 17.9,
+  "ekf_yaw_minus_true_deg": 12.22,
+  "onboard": [
+   [
+    4.09,
+    "connected",
+    "px4, clock ready True, ATTITUDE 100 Hz"
+   ],
+   [
+    14.2,
+    "run",
+    "FAIL no usable video frame in 10 s. Check the camera and video_device."
+   ],
+   [
+    116.49,
+    "done",
+    "stopped after 2 start(s); frame age when taken p50 14 ms, p95 23 ms; SCALED_IMU 0 Hz, 0 rows kept"
+   ]
+  ],
+  "params_fail": [],
+  "onboard_exit": 0,
+  "clock_err_ms_mean": 0.7621880148112848,
+  "clock_err_ms_absmax": 0.8510781066632944,
+  "handover_ms_p50": 4.587272000208031,
+  "handover_ms_p95": 23.98116813128581,
+  "frames": 3517,
+  "processed": 925,
+  "fixes": 700,
+  "fix_rate_hz": 11.666666666666666,
+  "pct_frames_fix": 19.9033266988911,
+  "frac_init": 0.0075675675675675675,
+  "frac_ok": 0.5762162162162162,
+  "frac_degraded": 0.40756756756756757,
+  "frac_lost": 0.008648648648648649,
+  "proc_ms_mean": 64.23827027027026,
+  "age_ms_p50": 105.25,
+  "age_ms_p95": 146.605,
+  "hold_why": {
+   "whole picture and points disagree": 109,
+   "whole picture: halves disagree": 22,
+   "init": 7,
+   "good fix 1 of 10": 7,
+   "good fix 2 of 10": 7,
+   "good fix 3 of 10": 7,
+   "good fix 4 of 10": 7,
+   "good fix 5 of 10": 7
+  },
+  "reanchors": 8,
+  "rms": 0.7494203705221919,
+  "p95": 1.2703550558546102,
+  "max": 1.4467810570253483,
+  "end": 0.5013120097968976,
+  "drift_m_per_min": 1.0968973575771528,
+  "roll_rms_deg": 5.148884892752651,
+  "pitch_rms_deg": 4.048102494563512,
+  "tilt_mean_deg": 10.290924749896634,
+  "judge_rms": 2.4784854770054126,
+  "judge_p95": 4.48071706872583,
+  "judge_max": 5.574873570700453,
+  "judge_jitter_rms": 1.6270061567367644,
+  "height_mean": 9.611339375051266,
+  "seconds": 60.0,
+  "px4_hgt_err_m": [
+   -0.12,
+   0.08
+  ],
+  "px4_yaw_err_deg": [
+   0.3,
+   4.54,
+   1.92
+  ],
+  "ev_delay_ms": 83.0,
+  "hold_py_md5": "0fa6392307",
+  "px4_text": [],
+  "load_at_start": [
+   3.66,
+   6.57,
+   4.76
+  ],
+  "waited_s": 120,
+  "started": "2026-11-19 03:19:41",
+  "md5": {
+   "hold.py": "0fa6392307",
+   "apb_main.py": "fb4b99bdd6",
+   "px4sim/sitl.py": "66d3c7ecfd",
+   "px4sim/camera.py": "96d9acfa8c",
+   "px4sim/onboard.py": "21e3820632",
+   "capture.py": "5b76a4f3c7",
+   "fc_link.py": "38b88c2f69",
+   "settings.py": "e667a78298"
+  },
+  "load_at_end": [
+   10.6,
+   8.16,
+   5.55
+  ],
+  "wall_s": 120.1,
+  "case_args": {
+   "variant": "apb",
+   "height": 10.0,
+   "wind": "w20g40",
+   "hold_s": 60.0,
+   "seed": 1,
+   "video": "JUSTICE_D",
+   "label": "lowout_apb_jd_10m_w20g40_s1",
+   "settings": {
+    "min_height_m": 3.0
+   },
+   "hold_cfg": {
+    "h_min": 2.0
+   }
+  }
+ },
+ "lowout_apb_jd_10m_w20g40_s2": {
+  "case": "lowout_apb_jd_10m_w20g40_s2",
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 3, 0.9 s after the vision feed started"
+   ]
+  ],
+  "climb_s": 17.8,
+  "ekf_yaw_minus_true_deg": 13.36,
+  "onboard": [
+   [
+    5.08,
+    "connected",
+    "px4, clock ready True, ATTITUDE 100 Hz"
+   ],
+   [
+    116.52,
+    "done",
+    "stopped after 1 start(s); frame age when taken p50 12 ms, p95 22 ms; SCALED_IMU 0 Hz, 0 rows kept"
+   ]
+  ],
+  "params_fail": [],
+  "onboard_exit": 0,
+  "clock_err_ms_mean": 0.7535138389573324,
+  "clock_err_ms_absmax": 0.8392517533053478,
+  "handover_ms_p50": 4.71441700028663,
+  "handover_ms_p95": 21.19710466831748,
+  "frames": 3576,
+  "processed": 684,
+  "fixes": 479,
+  "fix_rate_hz": 7.982801146590227,
+  "pct_frames_fix": 13.394854586129753,
+  "frac_init": 0.013157894736842105,
+  "frac_ok": 0.75,
+  "frac_degraded": 0.2236842105263158,
+  "frac_lost": 0.013157894736842105,
+  "proc_ms_mean": 87.03084795321638,
+  "age_ms_p50": 107.1,
+  "age_ms_p95": 278.45999999999987,
+  "hold_why": {
+   "whole picture: halves disagree": 66,
+   "whole picture and points disagree": 44,
+   "init": 9,
+   "good fix 1 of 10": 7,
+   "good fix 2 of 10": 7,
+   "good fix 3 of 10": 7,
+   "good fix 4 of 10": 7,
+   "good fix 5 of 10": 7
+  },
+  "reanchors": 9,
+  "rms": 0.6462037408000707,
+  "p95": 1.1594516381862798,
+  "max": 1.4482974630694314,
+  "end": 0.8826727595929501,
+  "drift_m_per_min": 1.0359239063562562,
+  "roll_rms_deg": 4.365206082558001,
+  "pitch_rms_deg": 1.7579655633302924,
+  "tilt_mean_deg": 10.768448019483335,
+  "judge_rms": 2.4488875055826576,
+  "judge_p95": 4.483151715943363,
+  "judge_max": 5.114077782208951,
+  "judge_jitter_rms": 1.2230753875416618,
+  "height_mean": 9.68490454890069,
+  "seconds": 60.004,
+  "px4_hgt_err_m": [
+   -0.15,
+   0.07
+  ],
+  "px4_yaw_err_deg": [
+   -0.52,
+   1.23,
+   0.21
+  ],
+  "ev_delay_ms": 83.0,
+  "hold_py_md5": "0fa6392307",
+  "px4_text": [],
+  "load_at_start": [
+   3.89,
+   6.37,
+   5.21
+  ],
+  "waited_s": 120,
+  "started": "2026-11-19 03:23:42",
+  "md5": {
+   "hold.py": "0fa6392307",
+   "apb_main.py": "fb4b99bdd6",
+   "px4sim/sitl.py": "66d3c7ecfd",
+   "px4sim/camera.py": "96d9acfa8c",
+   "px4sim/onboard.py": "21e3820632",
+   "capture.py": "5b76a4f3c7",
+   "fc_link.py": "38b88c2f69",
+   "settings.py": "e667a78298"
+  },
+  "load_at_end": [
+   6.52,
+   6.9,
+   5.56
+  ],
+  "wall_s": 120.1,
+  "case_args": {
+   "variant": "apb",
+   "height": 10.0,
+   "wind": "w20g40",
+   "hold_s": 60.0,
+   "seed": 2,
+   "video": "JUSTICE_D",
+   "label": "lowout_apb_jd_10m_w20g40_s2",
+   "settings": {
+    "min_height_m": 3.0
+   },
+   "hold_cfg": {
+    "h_min": 2.0
+   }
+  }
+ },
+ "lowout_apb_jd_60m_w20g40_out3s_s1": {
+  "case": "lowout_apb_jd_60m_w20g40_out3s_s1",
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 3, 0.9 s after the vision feed started"
+   ]
+  ],
+  "climb_s": 28.7,
+  "ekf_yaw_minus_true_deg": 11.72,
+  "onboard": [
+   [
+    4.04,
+    "connected",
+    "px4, clock ready True, ATTITUDE 100 Hz"
+   ],
+   [
+    14.13,
+    "run",
+    "FAIL no usable video frame in 10 s. Check the camera and video_device."
+   ],
+   [
+    78.31,
+    "run",
+    "FAIL no camera frame for 2 s: the camera stopped. The program opens it again. If this repeats, check the camera cable and video_device or video_command in settings.json."
+   ],
+   [
+    116.52,
+    "done",
+    "stopped after 3 start(s); frame age when taken p50 14 ms, p95 34 ms; SCALED_IMU 0 Hz, 0 rows kept"
+   ]
+  ],
+  "params_fail": [],
+  "onboard_exit": 0,
+  "clock_err_ms_mean": 0.777302375742133,
+  "clock_err_ms_absmax": 1.030401937981651,
+  "handover_ms_p50": 8.15461599995615,
+  "handover_ms_p95": 32.44254849960271,
+  "frames": 3351,
+  "processed": 798,
+  "fixes": 784,
+  "fix_rate_hz": 13.066666666666666,
+  "pct_frames_fix": 23.39600119367353,
+  "frac_init": 0.0012531328320802004,
+  "frac_ok": 0.9924812030075187,
+  "frac_degraded": 0.006265664160401002,
+  "frac_lost": 0.0,
+  "proc_ms_mean": 70.49649122807017,
+  "age_ms_p50": 117.25,
+  "age_ms_p95": 184.9349999999999,
+  "hold_why": {
+   "picture broken up": 2,
+   "picture just after a broken-up one": 2,
+   "init": 1,
+   "good fix 1 of 10": 1,
+   "good fix 2 of 10": 1,
+   "good fix 3 of 10": 1,
+   "good fix 4 of 10": 1,
+   "good fix 5 of 10": 1
+  },
+  "reanchors": 0,
+  "rms": 0.787958984734618,
+  "p95": 1.4939215358882327,
+  "max": 1.946915087826696,
+  "end": 0.566141200758937,
+  "drift_m_per_min": 0.8640781873250213,
+  "roll_rms_deg": 4.892130131353649,
+  "pitch_rms_deg": 4.050313619013102,
+  "tilt_mean_deg": 10.181881522412956,
+  "judge_rms": 13.971641274942801,
+  "judge_p95": 22.17027118442574,
+  "judge_max": 25.1542303609517,
+  "judge_jitter_rms": 7.197444761511291,
+  "height_mean": 59.617721510502015,
+  "seconds": 60.0,
+  "px4_hgt_err_m": [
+   -0.09,
+   0.08
+  ],
+  "px4_yaw_err_deg": [
+   -2.78,
+   0.8,
+   -2.55
+  ],
+  "ev_delay_ms": 83.0,
+  "hold_py_md5": "0fa6392307",
+  "px4_text": [],
+  "load_at_start": [
+   3.55,
+   5.81,
+   5.3
+  ],
+  "waited_s": 90,
+  "started": "2026-11-19 03:27:12",
+  "md5": {
+   "hold.py": "0fa6392307",
+   "apb_main.py": "fb4b99bdd6",
+   "px4sim/sitl.py": "66d3c7ecfd",
+   "px4sim/camera.py": "96d9acfa8c",
+   "px4sim/onboard.py": "21e3820632",
+   "capture.py": "5b76a4f3c7",
+   "fc_link.py": "38b88c2f69",
+   "settings.py": "e667a78298"
+  },
+  "load_at_end": [
+   10.47,
+   7.84,
+   6.1
+  ],
+  "wall_s": 120.2,
+  "case_args": {
+   "variant": "apb",
+   "height": 60.0,
+   "wind": "w20g40",
+   "hold_s": 60.0,
+   "seed": 1,
+   "video": "JUSTICE_D",
+   "label": "lowout_apb_jd_60m_w20g40_out3s_s1",
+   "outage": [
+    20.0,
+    3.0
+   ]
+  },
+  "outage_metrics": {
+   "dist_at_outage_start": 0.42164879352353796,
+   "dist_at_outage_end": 1.3466149501737623,
+   "move_during_outage": 0.9490481806219438,
+   "max_dist_before": 0.8982218213052704,
+   "max_dist_during": 1.3466149501737623,
+   "max_dist_10s_after": 1.946915087826696,
+   "max_dist_rest": 1.3100188895695368,
+   "last_fix_before": 20.20820000000001,
+   "first_frame_after": 23.028000000000006,
+   "first_fix_after": 24.054300000000012,
+   "first_fix_after_file": "lowout_apb_jd_60m_w20g40_out3s_s1_onboard_2.csv",
+   "s_to_first_fix_after_outage_end": 1.054300000000012,
+   "no_fix_gap_s": 3.8461000000000034,
+   "dist_at_first_fix": 1.8675453836619433,
+   "restart_lines": [
+    [
+     -41.99,
+     "run",
+     "FAIL no usable video frame in 10 s. Check the camera and video_device."
+    ],
+    [
+     22.19,
+     "run",
+     "FAIL no camera frame for 2 s: the camera stopped. The program opens it again. If this repeats, check the camera cable and video_device or video_command in settings.json."
+    ]
+   ],
+   "first_rows_after": [
+    [
+     23.028,
+     "lowout_apb_jd_60m_w20g40_out3s_s1_onboard_2.csv",
+     "init",
+     "init",
+     "engaged: FC mode POSCTL; re-anchored to FC position 2.64 -0.22"
+    ],
+    [
+     23.228,
+     "lowout_apb_jd_60m_w20g40_out3s_s1_onboard_2.csv",
+     "ok",
+     "good fix 1 of 10",
+     ""
+    ],
+    [
+     23.378,
+     "lowout_apb_jd_60m_w20g40_out3s_s1_onboard_2.csv",
+     "ok",
+     "good fix 2 of 10",
+     ""
+    ]
+   ],
+   "reanchor_rows": []
+  }
+ },
+ "lowout_apb_jd_60m_w20g40_out3s_s2": {
+  "case": "lowout_apb_jd_60m_w20g40_out3s_s2",
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 3, 0.8 s after the vision feed started"
+   ]
+  ],
+  "climb_s": 28.7,
+  "ekf_yaw_minus_true_deg": 8.36,
+  "onboard": [
+   [
+    4.04,
+    "connected",
+    "px4, clock ready True, ATTITUDE 100 Hz"
+   ],
+   [
+    14.16,
+    "run",
+    "FAIL no usable video frame in 10 s. Check the camera and video_device."
+   ],
+   [
+    78.26,
+    "run",
+    "FAIL no camera frame for 2 s: the camera stopped. The program opens it again. If this repeats, check the camera cable and video_device or video_command in settings.json."
+   ],
+   [
+    116.54,
+    "done",
+    "stopped after 3 start(s); frame age when taken p50 13 ms, p95 23 ms; SCALED_IMU 0 Hz, 0 rows kept"
+   ]
+  ],
+  "params_fail": [],
+  "onboard_exit": 0,
+  "clock_err_ms_mean": 0.6968631251405193,
+  "clock_err_ms_absmax": 0.8196410972161061,
+  "handover_ms_p50": 5.353854998247698,
+  "handover_ms_p95": 17.87168979863054,
+  "frames": 3419,
+  "processed": 841,
+  "fixes": 831,
+  "fix_rate_hz": 13.84907672821812,
+  "pct_frames_fix": 24.30535244223457,
+  "frac_init": 0.0011890606420927466,
+  "frac_ok": 0.990487514863258,
+  "frac_degraded": 0.008323424494649227,
+  "frac_lost": 0.0,
+  "proc_ms_mean": 66.9424494649227,
+  "age_ms_p50": 108.0,
+  "age_ms_p95": 173.05,
+  "hold_why": {
+   "init": 1,
+   "good fix 1 of 10": 1,
+   "good fix 2 of 10": 1,
+   "good fix 3 of 10": 1,
+   "good fix 4 of 10": 1,
+   "good fix 5 of 10": 1,
+   "good fix 6 of 10": 1,
+   "good fix 7 of 10": 1
+  },
+  "reanchors": 0,
+  "rms": 0.7797297077824193,
+  "p95": 1.3796988607298737,
+  "max": 1.7129668458207743,
+  "end": 0.6313631282931069,
+  "drift_m_per_min": 0.9358424368094206,
+  "roll_rms_deg": 4.490585731734424,
+  "pitch_rms_deg": 1.6961481094936948,
+  "tilt_mean_deg": 10.662420169205049,
+  "judge_rms": 13.569395715184541,
+  "judge_p95": 22.18738504749247,
+  "judge_max": 26.52278265285307,
+  "judge_jitter_rms": 5.633378317753713,
+  "height_mean": 59.703584717371164,
+  "seconds": 60.00399999999999,
+  "px4_hgt_err_m": [
+   -0.22,
+   0.03
+  ],
+  "px4_yaw_err_deg": [
+   -1.24,
+   7.06,
+   3.72
+  ],
+  "ev_delay_ms": 83.0,
+  "hold_py_md5": "0fa6392307",
+  "px4_text": [],
+  "load_at_start": [
+   3.97,
+   6.31,
+   5.75
+  ],
+  "waited_s": 120,
+  "started": "2026-11-19 03:31:12",
+  "md5": {
+   "hold.py": "0fa6392307",
+   "apb_main.py": "fb4b99bdd6",
+   "px4sim/sitl.py": "66d3c7ecfd",
+   "px4sim/camera.py": "96d9acfa8c",
+   "px4sim/onboard.py": "21e3820632",
+   "capture.py": "5b76a4f3c7",
+   "fc_link.py": "38b88c2f69",
+   "settings.py": "e667a78298"
+  },
+  "load_at_end": [
+   8.96,
+   7.07,
+   6.08
+  ],
+  "wall_s": 120.6,
+  "case_args": {
+   "variant": "apb",
+   "height": 60.0,
+   "wind": "w20g40",
+   "hold_s": 60.0,
+   "seed": 2,
+   "video": "JUSTICE_D",
+   "label": "lowout_apb_jd_60m_w20g40_out3s_s2",
+   "outage": [
+    20.0,
+    3.0
+   ]
+  },
+  "outage_metrics": {
+   "dist_at_outage_start": 0.23981613414805517,
+   "dist_at_outage_end": 0.5869664911869017,
+   "move_during_outage": 0.4101016078065605,
+   "max_dist_before": 1.7129668458207743,
+   "max_dist_during": 0.5869664911869017,
+   "max_dist_10s_after": 1.101625040858236,
+   "max_dist_rest": 1.3966671879388353,
+   "last_fix_before": 20.1472,
+   "first_frame_after": 23.0287,
+   "first_fix_after": 23.968099999999996,
+   "first_fix_after_file": "lowout_apb_jd_60m_w20g40_out3s_s2_onboard_2.csv",
+   "s_to_first_fix_after_outage_end": 0.9680999999999962,
+   "no_fix_gap_s": 3.8208999999999946,
+   "dist_at_first_fix": 0.36196331347745364,
+   "restart_lines": [
+    [
+     -41.98,
+     "run",
+     "FAIL no usable video frame in 10 s. Check the camera and video_device."
+    ],
+    [
+     22.12,
+     "run",
+     "FAIL no camera frame for 2 s: the camera stopped. The program opens it again. If this repeats, check the camera cable and video_device or video_command in settings.json."
+    ]
+   ],
+   "first_rows_after": [
+    [
+     23.029,
+     "lowout_apb_jd_60m_w20g40_out3s_s2_onboard_2.csv",
+     "init",
+     "init",
+     "engaged: FC mode POSCTL; re-anchored to FC position 4.37 -1.89"
+    ],
+    [
+     23.195,
+     "lowout_apb_jd_60m_w20g40_out3s_s2_onboard_2.csv",
+     "ok",
+     "good fix 1 of 10",
+     ""
+    ],
+    [
+     23.245,
+     "lowout_apb_jd_60m_w20g40_out3s_s2_onboard_2.csv",
+     "ok",
+     "good fix 2 of 10",
+     ""
+    ]
+   ],
+   "reanchor_rows": []
+  }
+ },
+ "lowout_truth_jd_5m_w20g40_s1": {
+  "case": "lowout_truth_jd_5m_w20g40_s1",
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 3, 2.5 s after the vision feed started"
+   ]
+  ],
+  "climb_s": 14.9,
+  "ekf_yaw_minus_true_deg": 12.63,
+  "rms": 0.46380196353758973,
+  "p95": 0.7946555777506553,
+  "max": 0.9550757158072296,
+  "end": 0.28900772987257267,
+  "drift_m_per_min": 0.4240889012753574,
+  "roll_rms_deg": 5.0973820717935965,
+  "pitch_rms_deg": 3.8389026540798015,
+  "tilt_mean_deg": 10.015827003753927,
+  "judge_rms": 1.3144610882510896,
+  "judge_p95": 2.342613738428246,
+  "judge_max": 2.9330809444335357,
+  "judge_jitter_rms": 0.9103894671780105,
+  "height_mean": 4.5832402155204734,
+  "seconds": 60.0,
+  "px4_hgt_err_m": [
+   -0.1,
+   0.13
+  ],
+  "px4_yaw_err_deg": [
+   -0.37,
+   2.14,
+   0.2
+  ],
+  "frames": 1199,
+  "fix_rate_hz": 19.983333333333334,
+  "frac_init": 0.0,
+  "frac_ok": 1.0,
+  "frac_degraded": 0.0,
+  "frac_lost": 0.0,
+  "proc_ms_mean": 0.6568822276914839,
+  "late_ms_p95": 2.6666666666699257,
+  "ev_delay_ms": 83.0,
+  "hold_why": {},
+  "hold_py_md5": "0fa6392307",
+  "px4_text": [],
+  "load_at_start": [
+   3.48,
+   5.85,
+   5.76
+  ],
+  "waited_s": 120,
+  "started": "2026-11-19 03:35:13",
+  "md5": {
+   "hold.py": "0fa6392307",
+   "apb_main.py": "fb4b99bdd6",
+   "px4sim/sitl.py": "66d3c7ecfd",
+   "px4sim/camera.py": "96d9acfa8c",
+   "px4sim/onboard.py": "21e3820632",
+   "capture.py": "5b76a4f3c7",
+   "fc_link.py": "38b88c2f69",
+   "settings.py": "e667a78298"
+  },
+  "load_at_end": [
+   5.5,
+   5.76,
+   5.73
+  ],
+  "wall_s": 93.5,
+  "case_args": {
+   "variant": "truth",
+   "height": 5.0,
+   "wind": "w20g40",
+   "hold_s": 60.0,
+   "seed": 1,
+   "video": "JUSTICE_D",
+   "label": "lowout_truth_jd_5m_w20g40_s1"
+  }
+ },
+ "lowout_truth_jd_10m_w20g40_s1": {
+  "case": "lowout_truth_jd_10m_w20g40_s1",
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 3, 2.5 s after the vision feed started"
+   ]
+  ],
+  "climb_s": 18.2,
+  "ekf_yaw_minus_true_deg": 12.8,
+  "rms": 0.4681440042657858,
+  "p95": 0.8181972973111248,
+  "max": 1.043165891857583,
+  "end": 0.2497675615187165,
+  "drift_m_per_min": 0.457135765183483,
+  "roll_rms_deg": 5.23210721071457,
+  "pitch_rms_deg": 3.949430171614508,
+  "tilt_mean_deg": 10.115083769666747,
+  "judge_rms": 2.4316725997662734,
+  "judge_p95": 4.201919062663425,
+  "judge_max": 5.149274543900902,
+  "judge_jitter_rms": 1.5002133424950397,
+  "height_mean": 9.58475524475525,
+  "seconds": 60.004,
+  "px4_hgt_err_m": [
+   -0.1,
+   0.07
+  ],
+  "px4_yaw_err_deg": [
+   -0.02,
+   3.14,
+   0.06
+  ],
+  "frames": 1200,
+  "fix_rate_hz": 19.998666755549632,
+  "frac_init": 0.0,
+  "frac_ok": 1.0,
+  "frac_degraded": 0.0,
+  "frac_lost": 0.0,
+  "proc_ms_mean": 0.6841221424656396,
+  "late_ms_p95": 2.6666666666699257,
+  "ev_delay_ms": 83.0,
+  "hold_why": {},
+  "hold_py_md5": "0fa6392307",
+  "px4_text": [],
+  "load_at_start": [
+   3.57,
+   5.53,
+   5.74
+  ],
+  "waited_s": 240,
+  "started": "2026-11-19 03:40:46",
+  "md5": {
+   "hold.py": "0fa6392307",
+   "apb_main.py": "fb4b99bdd6",
+   "px4sim/sitl.py": "66d3c7ecfd",
+   "px4sim/camera.py": "96d9acfa8c",
+   "px4sim/onboard.py": "21e3820632",
+   "capture.py": "5b76a4f3c7",
+   "fc_link.py": "38b88c2f69",
+   "settings.py": "e667a78298"
+  },
+  "load_at_end": [
+   4.02,
+   5.41,
+   5.7
+  ],
+  "wall_s": 96.2,
+  "case_args": {
+   "variant": "truth",
+   "height": 10.0,
+   "wind": "w20g40",
+   "hold_s": 60.0,
+   "seed": 1,
+   "video": "JUSTICE_D",
+   "label": "lowout_truth_jd_10m_w20g40_s1"
+  }
+ },
+ "lowout_apb_jd_5m_calm_s1": {
+  "case": "lowout_apb_jd_5m_calm_s1",
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 3, 1.0 s after the vision feed started"
+   ]
+  ],
+  "climb_s": 14.9,
+  "ekf_yaw_minus_true_deg": 12.3,
+  "onboard": [
+   [
+    4.03,
+    "connected",
+    "px4, clock ready True, ATTITUDE 100 Hz"
+   ],
+   [
+    14.12,
+    "run",
+    "FAIL no usable video frame in 10 s. Check the camera and video_device."
+   ],
+   [
+    116.52,
+    "done",
+    "stopped after 2 start(s); frame age when taken p50 13 ms, p95 21 ms; SCALED_IMU 0 Hz, 0 rows kept"
+   ]
+  ],
+  "params_fail": [],
+  "onboard_exit": 0,
+  "clock_err_ms_mean": 0.7382559373603503,
+  "clock_err_ms_absmax": 0.8337383191019399,
+  "handover_ms_p50": 4.196521502308315,
+  "handover_ms_p95": 8.519672518377774,
+  "frames": 3600,
+  "processed": 920,
+  "fixes": 819,
+  "fix_rate_hz": 13.649090060662623,
+  "pct_frames_fix": 22.75,
+  "frac_init": 0.004347826086956522,
+  "frac_ok": 0.9010869565217391,
+  "frac_degraded": 0.09239130434782608,
+  "frac_lost": 0.002173913043478261,
+  "proc_ms_mean": 64.67021739130435,
+  "age_ms_p50": 100.9,
+  "age_ms_p95": 177.0399999999998,
+  "hold_why": {
+   "whole picture: halves disagree": 64,
+   "waiting for image motion that proves the picture is live": 25,
+   "init": 2,
+   "good fix 1 of 10": 2,
+   "good fix 2 of 10": 1,
+   "good fix 3 of 10": 1,
+   "good fix 4 of 10": 1,
+   "good fix 5 of 10": 1
+  },
+  "reanchors": 2,
+  "rms": 0.11393683413513199,
+  "p95": 0.17809741973447205,
+  "max": 0.18864113835883695,
+  "end": 0.18864113835883695,
+  "drift_m_per_min": 0.10267493078058088,
+  "roll_rms_deg": 0.18172325784979357,
+  "pitch_rms_deg": 0.17464004744981776,
+  "tilt_mean_deg": 0.009865732573614484,
+  "judge_rms": 0.11538463828336136,
+  "judge_p95": 0.2042810709580512,
+  "judge_max": 0.2621030622876654,
+  "judge_jitter_rms": 0.09107095214192122,
+  "height_mean": 4.66409962433175,
+  "seconds": 60.004,
+  "px4_hgt_err_m": [
+   -0.11,
+   0.02
+  ],
+  "px4_yaw_err_deg": [
+   0.79,
+   4.07,
+   3.91
+  ],
+  "ev_delay_ms": 83.0,
+  "hold_py_md5": "0fa6392307",
+  "px4_text": [],
+  "load_at_start": [
+   3.83,
+   5.23,
+   5.63
+  ],
+  "waited_s": 30,
+  "started": "2026-11-19 03:42:53",
+  "md5": {
+   "hold.py": "0fa6392307",
+   "apb_main.py": "fb4b99bdd6",
+   "px4sim/sitl.py": "66d3c7ecfd",
+   "px4sim/camera.py": "96d9acfa8c",
+   "px4sim/onboard.py": "21e3820632",
+   "capture.py": "5b76a4f3c7",
+   "fc_link.py": "38b88c2f69",
+   "settings.py": "e667a78298"
+  },
+  "load_at_end": [
+   12.1,
+   8.48,
+   6.8
+  ],
+  "wall_s": 120.5,
+  "case_args": {
+   "variant": "apb",
+   "height": 5.0,
+   "wind": "calm",
+   "hold_s": 60.0,
+   "seed": 1,
+   "video": "JUSTICE_D",
+   "label": "lowout_apb_jd_5m_calm_s1",
+   "settings": {
+    "min_height_m": 3.0
+   },
+   "hold_cfg": {
+    "h_min": 2.0
+   }
+  }
+ },
+ "lowout_apb_jd_10m_calm_s1": {
+  "case": "lowout_apb_jd_10m_calm_s1",
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 3, 1.0 s after the vision feed started"
+   ]
+  ],
+  "climb_s": 17.9,
+  "ekf_yaw_minus_true_deg": 12.02,
+  "onboard": [
+   [
+    4.04,
+    "connected",
+    "px4, clock ready True, ATTITUDE 100 Hz"
+   ],
+   [
+    14.13,
+    "run",
+    "FAIL no usable video frame in 10 s. Check the camera and video_device."
+   ],
+   [
+    116.56,
+    "done",
+    "stopped after 2 start(s); frame age when taken p50 13 ms, p95 22 ms; SCALED_IMU 0 Hz, 0 rows kept"
+   ]
+  ],
+  "params_fail": [],
+  "onboard_exit": 0,
+  "clock_err_ms_mean": 0.7645017288642938,
+  "clock_err_ms_absmax": 0.8861382937936924,
+  "handover_ms_p50": 4.637795665985323,
+  "handover_ms_p95": 10.037468685550262,
+  "frames": 3600,
+  "processed": 739,
+  "fixes": 647,
+  "fix_rate_hz": 10.782614492367175,
+  "pct_frames_fix": 17.97222222222222,
+  "frac_init": 0.0013531799729364006,
+  "frac_ok": 0.8917456021650879,
+  "frac_degraded": 0.10554803788903924,
+  "frac_lost": 0.0013531799729364006,
+  "proc_ms_mean": 80.70013531799728,
+  "age_ms_p50": 113.3,
+  "age_ms_p95": 226.54,
+  "hold_why": {
+   "whole picture and points disagree": 47,
+   "whole picture: halves disagree": 30,
+   "good fix 6 of 10": 2,
+   "good fix 7 of 10": 2,
+   "good fix 8 of 10": 2,
+   "good fix 9 of 10": 2,
+   "init": 1,
+   "good fix 1 of 10": 1
+  },
+  "reanchors": 1,
+  "rms": 0.119823728750942,
+  "p95": 0.21275425153253363,
+  "max": 0.26907667706390853,
+  "end": 0.26907667706390853,
+  "drift_m_per_min": 0.22749109633675288,
+  "roll_rms_deg": 0.2509629475533768,
+  "pitch_rms_deg": 0.2407675592185254,
+  "tilt_mean_deg": 0.015088696662700563,
+  "judge_rms": 0.22770080309353022,
+  "judge_p95": 0.4034258477848402,
+  "judge_max": 0.47519514462263746,
+  "judge_jitter_rms": 0.14709348862146732,
+  "height_mean": 9.610326552710966,
+  "seconds": 60.004000000000005,
+  "px4_hgt_err_m": [
+   -0.13,
+   0.07
+  ],
+  "px4_yaw_err_deg": [
+   -0.08,
+   2.46,
+   1.42
+  ],
+  "ev_delay_ms": 83.0,
+  "hold_py_md5": "0fa6392307",
+  "px4_text": [],
+  "load_at_start": [
+   6.52,
+   6.39,
+   6.32
+  ],
+  "waited_s": -480,
+  "started": "2026-11-19 03:52:53",
+  "md5": {
+   "hold.py": "0fa6392307",
+   "apb_main.py": "fb4b99bdd6",
+   "px4sim/sitl.py": "66d3c7ecfd",
+   "px4sim/camera.py": "96d9acfa8c",
+   "px4sim/onboard.py": "21e3820632",
+   "capture.py": "5b76a4f3c7",
+   "fc_link.py": "38b88c2f69",
+   "settings.py": "e667a78298"
+  },
+  "load_at_end": [
+   14.06,
+   9.64,
+   7.54
+  ],
+  "wall_s": 120.8,
+  "case_args": {
+   "variant": "apb",
+   "height": 10.0,
+   "wind": "calm",
+   "hold_s": 60.0,
+   "seed": 1,
+   "video": "JUSTICE_D",
+   "label": "lowout_apb_jd_10m_calm_s1",
+   "settings": {
+    "min_height_m": 3.0
+   },
+   "hold_cfg": {
+    "h_min": 2.0
+   }
+  }
+ },
+ "lowout_apb_jd_100m_w20g40_out3s_s1": {
+  "case": "lowout_apb_jd_100m_w20g40_out3s_s1",
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 3, 1.0 s after the vision feed started"
+   ]
+  ],
+  "climb_s": 37.5,
+  "ekf_yaw_minus_true_deg": 9.82,
+  "onboard": [
+   [
+    4.08,
+    "connected",
+    "px4, clock ready True, ATTITUDE 100 Hz"
+   ],
+   [
+    14.18,
+    "run",
+    "FAIL no usable video frame in 10 s. Check the camera and video_device."
+   ],
+   [
+    78.2,
+    "run",
+    "FAIL no camera frame for 2 s: the camera stopped. The program opens it again. If this repeats, check the camera cable and video_device or video_command in settings.json."
+   ],
+   [
+    116.54,
+    "done",
+    "stopped after 3 start(s); frame age when taken p50 14 ms, p95 23 ms; SCALED_IMU 0 Hz, 0 rows kept"
+   ]
+  ],
+  "params_fail": [],
+  "onboard_exit": 0,
+  "clock_err_ms_mean": 0.8990188494360134,
+  "clock_err_ms_absmax": 1.0619722584976898,
+  "handover_ms_p50": 4.564772665617056,
+  "handover_ms_p95": 11.424194598293974,
+  "frames": 3419,
+  "processed": 912,
+  "fixes": 898,
+  "fix_rate_hz": 14.965668955402974,
+  "pct_frames_fix": 26.26498976308862,
+  "frac_init": 0.0010964912280701754,
+  "frac_ok": 0.9517543859649122,
+  "frac_degraded": 0.047149122807017545,
+  "frac_lost": 0.0,
+  "proc_ms_mean": 61.6765350877193,
+  "age_ms_p50": 104.65,
+  "age_ms_p95": 151.56,
+  "hold_why": {
+   "picture broken up": 2,
+   "picture just after a broken-up one": 2,
+   "init": 1,
+   "good fix 1 of 10": 1,
+   "good fix 2 of 10": 1,
+   "good fix 3 of 10": 1,
+   "good fix 4 of 10": 1,
+   "good fix 5 of 10": 1
+  },
+  "reanchors": 0,
+  "rms": 0.9682273251181179,
+  "p95": 1.6307513225746317,
+  "max": 1.7529514855670456,
+  "end": 0.8339619503023883,
+  "drift_m_per_min": 1.5765308246866545,
+  "roll_rms_deg": 5.0842215910589506,
+  "pitch_rms_deg": 4.082676715915705,
+  "tilt_mean_deg": 10.00942010117811,
+  "judge_rms": 22.552418807830957,
+  "judge_p95": 37.41024430110693,
+  "judge_max": 43.14690874830598,
+  "judge_jitter_rms": 12.1316642807203,
+  "height_mean": 99.45157136592853,
+  "seconds": 60.004,
+  "px4_hgt_err_m": [
+   -0.03,
+   0.3
+  ],
+  "px4_yaw_err_deg": [
+   -4.27,
+   3.75,
+   0.46
+  ],
+  "ev_delay_ms": 83.0,
+  "hold_py_md5": "0fa6392307",
+  "px4_text": [],
+  "load_at_start": [
+   2.89,
+   6.48,
+   6.71
+  ],
+  "waited_s": 210,
+  "started": "2026-11-19 03:58:24",
+  "md5": {
+   "hold.py": "0fa6392307",
+   "apb_main.py": "fb4b99bdd6",
+   "px4sim/sitl.py": "66d3c7ecfd",
+   "px4sim/camera.py": "96d9acfa8c",
+   "px4sim/onboard.py": "21e3820632",
+   "capture.py": "5b76a4f3c7",
+   "fc_link.py": "38b88c2f69",
+   "settings.py": "e667a78298"
+  },
+  "load_at_end": [
+   6.64,
+   7.5,
+   7.11
+  ],
+  "wall_s": 120.4,
+  "case_args": {
+   "variant": "apb",
+   "height": 100.0,
+   "wind": "w20g40",
+   "hold_s": 60.0,
+   "seed": 1,
+   "video": "JUSTICE_D",
+   "label": "lowout_apb_jd_100m_w20g40_out3s_s1",
+   "outage": [
+    20.0,
+    3.0
+   ]
+  },
+  "outage_metrics": {
+   "dist_at_outage_start": 0.4543052516001254,
+   "dist_at_outage_end": 0.9006221840711747,
+   "move_during_outage": 1.029506317716316,
+   "max_dist_before": 1.7529514855670456,
+   "max_dist_during": 0.9006221840711747,
+   "max_dist_10s_after": 1.3496192710346195,
+   "max_dist_rest": 1.6424887059834818,
+   "last_fix_before": 20.094200000000008,
+   "first_frame_after": 23.020000000000003,
+   "first_fix_after": 23.786200000000004,
+   "first_fix_after_file": "lowout_apb_jd_100m_w20g40_out3s_s1_onboard_2.csv",
+   "s_to_first_fix_after_outage_end": 0.7862000000000045,
+   "no_fix_gap_s": 3.6919999999999966,
+   "dist_at_first_fix": 1.0201339501011981,
+   "restart_lines": [
+    [
+     -41.95,
+     "run",
+     "FAIL no usable video frame in 10 s. Check the camera and video_device."
+    ],
+    [
+     22.07,
+     "run",
+     "FAIL no camera frame for 2 s: the camera stopped. The program opens it again. If this repeats, check the camera cable and video_device or video_command in settings.json."
+    ]
+   ],
+   "first_rows_after": [
+    [
+     23.02,
+     "lowout_apb_jd_100m_w20g40_out3s_s1_onboard_2.csv",
+     "init",
+     "init",
+     "engaged: FC mode POSCTL; re-anchored to FC position 9.95 6.80"
+    ],
+    [
+     23.203,
+     "lowout_apb_jd_100m_w20g40_out3s_s1_onboard_2.csv",
+     "ok",
+     "good fix 1 of 10",
+     ""
+    ],
+    [
+     23.287,
+     "lowout_apb_jd_100m_w20g40_out3s_s1_onboard_2.csv",
+     "ok",
+     "good fix 2 of 10",
+     ""
+    ]
+   ],
+   "reanchor_rows": []
+  }
+ }
+}

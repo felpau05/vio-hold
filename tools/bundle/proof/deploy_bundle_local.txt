@@ -1,0 +1,44 @@
+### 1. BOARD=local BUNDLE_DIR=<empty folder> PY=<the extracted python3.12, emulated> tools/deploy.sh bundle
+board root@local:/home/root/vio, copy with rsync
++ set the board clock from this laptop
+clock: laptop 2026-11-20 04:00:06 EST, board 2026-11-20 04:00:06 EST
++ copy tools/bundle/vio-bundle-aarch64.tar.gz and extract it into WORK/dtb/vio-bundle
++ check: cd WORK/dtb/vio-bundle/vio && WORK/scripts/qpy -u apb_main.py check
+FAIL not calibrated. Run 'apb_main.py calib'.
+FAIL flight controller: no MAVLink heartbeat on udpin:127.0.0.1:14540 in 5 s and no MSP answer on /dev/ttymxc2. Check the cable, the baud rate and that mavlink-router runs.
+[ WARN:0@6.560] global cap.cpp:212 open VIDEOIO(V4L2): backend is generally available but can't be used to capture by name
+FAIL video: cannot open video device /dev/video0. Check the grabber and video_device in settings.json.
+PASS Hold.process median [emulated time removed] -> [rate removed] (need 10)
+INFO fix age about [emulated time removed] (video delay + process). Use it for EKF2_EV_DELAY when time sync fails. ArduPilot: after the first hover set VISO_DELAY_MS from 'apb_main.py delay <run log>'.
+FAIL no mask. Run 'apb_main.py mask'.
+PASS free disk 26.8 GB at WORK/dtb/vio-bundle/vio/logs (need 2.0 GB: raw recording takes 2.6 MB/s at 360x288, 25 Hz)
+4 FAIL
+next: put these two lines into tools/deploy.env. Then push, start, stop and status use the bundle:
+  PY=WORK/scripts/qpy
+  BOARD_DIR=WORK/dtb/vio-bundle/vio
+exit code 0
+### 2. the same command again
+board root@local:/home/root/vio, copy with rsync
++ set the board clock from this laptop
+clock: laptop 2026-11-20 04:00:23 EST, board 2026-11-20 04:00:23 EST
+WORK/dtb/vio-bundle is on the board already: not copied (FORCE=1 copies it again and overwrites the board's settings.json)
++ check: cd WORK/dtb/vio-bundle/vio && WORK/scripts/qpy -u apb_main.py check
+next: put these two lines into tools/deploy.env. Then push, start, stop and status use the bundle:
+  PY=WORK/scripts/qpy
+  BOARD_DIR=WORK/dtb/vio-bundle/vio
+exit code 0
+### 3. no BUNDLE_DIR on this laptop (no /data /sdcard /usb /home/root)
+board root@local:/home/root/vio, copy with rsync
+FAIL no folder on the board with 400 MB free (800 MB on a FAT card); tried /data /sdcard /usb /home/root. Set BUNDLE_DIR.
+exit code 1
+### 4. copy and extract only (PY=true: no check run), then compare every file with the bundle
+board root@local:/home/root/vio, copy with rsync
++ set the board clock from this laptop
+clock: laptop 2026-11-20 04:00:53 EST, board 2026-11-20 04:00:53 EST
++ copy tools/bundle/vio-bundle-aarch64.tar.gz and extract it into WORK/dtb2/vio-bundle
++ check: cd WORK/dtb2/vio-bundle/vio && true -u apb_main.py check
+next: put these two lines into tools/deploy.env. Then push, start, stop and status use the bundle:
+  PY=true
+  BOARD_DIR=WORK/dtb2/vio-bundle/vio
+exit code 0
+same 5570 files with the same sha256 as the bundle that the emulated checks used

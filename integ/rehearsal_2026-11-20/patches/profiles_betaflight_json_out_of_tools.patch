@@ -1,0 +1,24 @@
+--- a/tools/profiles/betaflight.json
++++ /dev/null
+@@ -1,21 +0,0 @@
+-{
+- "_why": {
+-  "_note": "Betaflight aircraft (msp_link.py). Needs betasim/patches applied first: they add msp_lock_gain and msp_gyro_lsb_per_dps to settings.py. msp_device must be the FC's MSP UART, and mavlink-router must not hold that port.",
+-  "send_speed": "on: msp_link sends a flow message from send_speed only; no speed, nothing sent.",
+-  "send_hz": "20: one rangefinder + one flow message per send = 40 of the 95 MSP commands per second; the FC needs a flow message at least every 100 ms.",
+-  "att_hz": "40: MSP_MULTIPLE_MSP polls (attitude, gyro, height) per second, 5 of them replaced by MSP_STATUS_EX. SITL: the FC answered 99 commands per second (betasim/results/proto.txt).",
+-  "min_att_hz": "25: the poll gives 35 attitude rows per second (40 minus 5 status polls) when no command is dropped.",
+-  "att_stale_s": "0.1: polled attitude, 25 ms period plus up to 10 ms serial task delay.",
+-  "msp_lock_gain": "0.2 per s: mode v2, our model: a constant speed error e gives a bounded error e / (2 x 0.2) instead of a growing one (tests_apb/test_msp_link.py F). SITL: betasim/results/matrix.txt.",
+-  "fc_baud": "115200: the Betaflight default MSP baud (io/serial.c); the load is about 3.2 kB/s of 11.5 kB/s.",
+-  "min_height_m": "3: as outdoor_day. Betaflight also needs 10 m or less: rangefinder_max_range_cm and poshold_opticalflow_max_range stop at 1000 cm."
+- },
+- "send_speed": true,
+- "send_hz": 20,
+- "att_hz": 40,
+- "min_att_hz": 25,
+- "att_stale_s": 0.1,
+- "msp_lock_gain": 0.2,
+- "fc_baud": 115200,
+- "min_height_m": 3.0
+-}

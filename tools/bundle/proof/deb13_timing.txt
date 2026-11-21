@@ -1,0 +1,4 @@
+$ qpy apb_main.py timing PROJ/apsim/runs/c_wig_40m_w20g40_s12_raw/raw_20261116_212126_001.npz PROJ/apsim/runs/c_wig_40m_w20g40_s12_raw/raw_20261116_212126_002.npz (cwd: the bundle's vio folder; root file system py312; qemu CPU cortex-a53)
+PASS video delay 60 ms (was 60), readout +23 ms (was +23), residual 0.66 deg, 21 deg/s
+PASS settings written. Start run again, then set VISO_DELAY_MS from 'apb_main.py delay' after the hover.
+exit code 0

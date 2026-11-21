@@ -1,0 +1,28 @@
+ol_JD_full_100m_w20g40_s11_centre  att_true             fix 100.0 %  rms  0.292 m  worst  0.752 m  lost    0  hold 5.1 ms
+ol_JD_full_100m_w20g40_s11_centre  att_true_lens_centre fix 100.0 %  rms  0.278 m  worst  0.693 m  lost    0  hold 4.9 ms
+ol_JD_full_100m_w20g40_s12_centre  att_true             fix 100.0 %  rms  0.302 m  worst  0.742 m  lost    0  hold 5.1 ms
+ol_JD_full_100m_w20g40_s12_centre  att_true_lens_centre fix 100.0 %  rms  0.352 m  worst  0.687 m  lost    0  hold 4.9 ms
+ol_JD_full_100m_w20g40_s13_centre  att_true             fix 100.0 %  rms  0.329 m  worst  0.771 m  lost    0  hold 5.0 ms
+ol_JD_full_100m_w20g40_s13_centre  att_true_lens_centre fix 100.0 %  rms  0.296 m  worst  0.681 m  lost    0  hold 4.9 ms
+ol_JD_crop_100m_w20g40_s12_centre  att_true             fix 100.0 %  rms  0.361 m  worst  0.682 m  lost    0  hold 5.7 ms
+ol_JD_crop_100m_w20g40_s12_centre  att_true_lens_centre fix 100.0 %  rms  0.302 m  worst  0.596 m  lost    0  hold 5.4 ms
+ol_JD_crop_100m_w20g40_s11_centre  att_true             fix 100.0 %  rms  0.283 m  worst  0.692 m  lost    0  hold 5.7 ms
+ol_JD_crop_100m_w20g40_s11_centre  att_true_lens_centre fix 100.0 %  rms  0.273 m  worst  0.672 m  lost    0  hold 5.4 ms
+ol_JD_crop_100m_w20g40_s13_centre  att_true             fix 100.0 %  rms  0.331 m  worst  0.791 m  lost    0  hold 5.6 ms
+ol_JD_crop_100m_w20g40_s13_centre  att_true_lens_centre fix 100.0 %  rms  0.351 m  worst  0.840 m  lost    0  hold 5.3 ms
+ol_JD_full_50m_w20g40_s13_centre   att_true             fix 100.0 %  rms  0.290 m  worst  0.741 m  lost    0  hold 4.8 ms
+ol_JD_full_50m_w20g40_s13_centre   att_true_lens_centre fix 100.0 %  rms  0.278 m  worst  0.682 m  lost    0  hold 4.9 ms
+ol_JD_full_50m_w20g40_s11_centre   att_true             fix 100.0 %  rms  0.250 m  worst  0.573 m  lost    0  hold 5.1 ms
+ol_JD_full_50m_w20g40_s11_centre   att_true_lens_centre fix 100.0 %  rms  0.256 m  worst  0.570 m  lost    0  hold 5.0 ms
+ol_JD_full_50m_w20g40_s12_centre   att_true             fix 100.0 %  rms  0.213 m  worst  0.515 m  lost    0  hold 5.2 ms
+ol_JD_full_50m_w20g40_s12_centre   att_true_lens_centre fix 100.0 %  rms  0.248 m  worst  0.596 m  lost    0  hold 5.0 ms
+ol_JD_crop_50m_w20g40_s13_centre   att_true             fix 100.0 %  rms  0.192 m  worst  0.476 m  lost    0  hold 5.5 ms
+ol_JD_crop_50m_w20g40_s13_centre   att_true_lens_centre fix 100.0 %  rms  0.198 m  worst  0.478 m  lost    0  hold 5.0 ms
+ol_JD_crop_50m_w20g40_s11_centre   att_true             fix 100.0 %  rms  0.188 m  worst  0.409 m  lost    0  hold 5.5 ms
+ol_JD_crop_50m_w20g40_s11_centre   att_true_lens_centre fix 100.0 %  rms  0.182 m  worst  0.394 m  lost    0  hold 5.2 ms
+ol_JD_crop_50m_w20g40_s12_centre   att_true             fix 100.0 %  rms  0.243 m  worst  0.505 m  lost    0  hold 5.6 ms
+ol_JD_crop_50m_w20g40_s12_centre   att_true_lens_centre fix 100.0 %  rms  0.212 m  worst  0.448 m  lost    0  hold 5.3 ms
+
+real	3m10.258s
+user	36m21.061s
+sys	0m16.019s

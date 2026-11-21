@@ -1,0 +1,348 @@
+{
+ "case": "reh_jd_wig_10m_s31",
+ "cfg": {
+  "variant": "apb",
+  "vehicle": "medium",
+  "height": 10.0,
+  "wind": "w20g40",
+  "hold_s": 60.0,
+  "seed": 31,
+  "wind_from_deg": 270.0,
+  "ground": "ottawa2019fall",
+  "video": "JUSTICE_D",
+  "readout_s": 0.014,
+  "exposure_s": 0.004,
+  "video_delay_s": 0.024,
+  "stamp_err_s": 0.0,
+  "proc_s": 0.0,
+  "noise": 1.0,
+  "noise_corr_px": 0.0,
+  "vib_deg": 0.2,
+  "true_lens": "sim Justice D near crop",
+  "model_lens": null,
+  "focal_scale": 1.0,
+  "pp_shift": [
+   0.0,
+   0.0
+  ],
+  "cam_top": "front",
+  "cam_mirror": false,
+  "cam_tilt": [
+   0.0,
+   0.0
+  ],
+  "cam_twist": 0.0,
+  "est_top": null,
+  "est_mirror": null,
+  "est_tilt": null,
+  "est_twist": null,
+  "osd": false,
+  "osd_mask": true,
+  "breakup": 0.0,
+  "freeze": null,
+  "repeat": 0.0,
+  "freeze_noise": false,
+  "att_hz": 200.0,
+  "hgt_bias_m": 0.0,
+  "hgt_noise_m": 0.0,
+  "ev_delay_s": null,
+  "speed": 1.0,
+  "flyaway_m": 30.0,
+  "label": "reh_jd_wig_10m_s31",
+  "engage_wait_s": 25.0,
+  "att_source": "px4",
+  "att_tau_s": 20.0,
+  "px4": {},
+  "hold_cfg": {
+   "h_min": 2.0
+  },
+  "outage": null,
+  "breakup_from": -Infinity,
+  "settings": {
+   "fc_device": "udpin:127.0.0.1:15042",
+   "origin_lat_lon_alt": [
+    45.417,
+    -75.715,
+    70.0
+   ],
+   "raw_record": true,
+   "log_dir": "<project>/integ/rehearsal_2026-11-20/runs/reh_jd_wig_10m_s31_raw",
+   "min_height_m": 3.0
+  },
+  "cpu_factor": 10.0,
+  "reanchor_on_lost": null,
+  "sync_wait_s": 0.0,
+  "est_delay_err_s": 0.03,
+  "still_start": false,
+  "flicker_hz": 0.0,
+  "flicker_depth": 0.5,
+  "people": 0,
+  "reflect": false,
+  "ceiling_m": null,
+  "props": false,
+  "mask_corners": 0.0,
+  "mask_border": 0,
+  "baro_wander_m": 0.0,
+  "baro_tau_s": 20.0,
+  "mag_yaw_deg": 0.0,
+  "mag_yaw_dps": 0.0,
+  "instance": 2,
+  "speedup": null,
+  "pilot_speed_up": 500,
+  "wind_turb": 1.0,
+  "cpu_model": "fixed",
+  "board_s": 0.08,
+  "feed_delay_s": 0.0,
+  "feed_noise_m": 0.0,
+  "feed_hz": 25.0,
+  "ap": {},
+  "wiggle_s": 8.0,
+  "wiggle_pwm": 150,
+  "wiggle_hz": 0.7,
+  "pilot_guided": 0.0
+ },
+ "events": [
+  [
+   0.0,
+   "hold starts, mode 5, 0.0 s after the Loiter request started"
+  ]
+ ],
+ "ap_params": {
+  "ARMING_CHECK": 0,
+  "PILOT_SPEED_UP": 500,
+  "SIM_WIND_T": 1,
+  "SIM_WIND_SPD": 0,
+  "SIM_WIND_TURB": 0,
+  "SIM_WIND_DIR": 270.0,
+  "SERIAL1_BAUD": 115,
+  "VISO_TYPE": 1,
+  "EK3_SRC1_POSXY": 6,
+  "EK3_SRC1_VELXY": 0,
+  "EK3_SRC1_POSZ": 1,
+  "EK3_SRC1_VELZ": 0,
+  "EK3_SRC1_YAW": 1,
+  "GPS1_TYPE": 0,
+  "VISO_DELAY_MS": 140
+ },
+ "link_bps": 11520,
+ "truth_q_check_deg": 0.0,
+ "climb_s": 13.3,
+ "wiggle_t": [
+  25.336031872004913,
+  33.33603900300362
+ ],
+ "ekf_yaw_minus_true_deg": 2.38,
+ "onboard": [
+  [
+   7.02,
+   "connected",
+   "ardupilot, clock ready True, ATTITUDE 100 Hz"
+  ],
+  [
+   97.77,
+   "done",
+   "stopped after 1 start(s); frame age when taken p50 10 ms, p95 23 ms; SCALED_IMU 0 Hz, 0 rows kept"
+  ]
+ ],
+ "params_fail": [],
+ "onboard_exit": 0,
+ "clock_err_ms_mean": 3.835804533342587,
+ "clock_err_ms_absmax": 4.03924608568218,
+ "handover_ms_p50": 5.469652001920622,
+ "handover_ms_p95": 10.265879500366282,
+ "frames": 3551,
+ "processed": 736,
+ "fixes": 560,
+ "fix_rate_hz": 9.332558808722915,
+ "pct_frames_fix": 15.770205575894114,
+ "frac_init": 0.006793478260869565,
+ "frac_ok": 0.7948369565217391,
+ "frac_degraded": 0.19157608695652173,
+ "frac_lost": 0.006793478260869565,
+ "proc_ms_mean": 80.69836956521739,
+ "age_ms_p50": 158.4,
+ "age_ms_p95": 179.20999999999998,
+ "hold_why": {
+  "whole picture and points disagree": 73,
+  "whole picture: halves disagree": 49,
+  "init": 5,
+  "good fix 1 of 10": 4,
+  "good fix 2 of 10": 4,
+  "good fix 3 of 10": 4,
+  "good fix 4 of 10": 4,
+  "good fix 5 of 10": 4
+ },
+ "reanchors": 5,
+ "rms": 0.6051193544933978,
+ "p95": 0.9991508789823466,
+ "max": 1.1772366618682018,
+ "end": 1.1666669368141465,
+ "drift_m_per_min": 0.8960086631284999,
+ "roll_rms_deg": 6.38224455115226,
+ "pitch_rms_deg": 2.1614416935942495,
+ "tilt_mean_deg": 14.33091339839011,
+ "judge_rms": 3.0401266183940767,
+ "judge_p95": 4.816300065137302,
+ "judge_max": 6.514067948383301,
+ "judge_jitter_rms": 1.5866169239221684,
+ "height_mean": 9.83223972568057,
+ "seconds": 60.00497950000398,
+ "link": {
+  "down": {
+   "bytes_per_s": 5451,
+   "sent": {
+    "30": 9378,
+    "33": 937,
+    "32": 747,
+    "22": 619,
+    "0": 194,
+    "253": 24,
+    "77": 16,
+    "111": 9,
+    "49": 2,
+    "242": 1
+   },
+   "dropped": {}
+  },
+  "up": {
+   "bytes_per_s": 544,
+   "sent": {
+    "102": 609,
+    "0": 94,
+    "76": 15,
+    "111": 9,
+    "20": 8,
+    "48": 1,
+    "75": 1
+   },
+   "dropped": {}
+  }
+ },
+ "onboard_att_hz": 108.5,
+ "onboard_att_dropped_hz": 0.0,
+ "ap_text": [
+  [
+   0.0,
+   "Barometer 1 calibration complete"
+  ],
+  [
+   0.0,
+   "Barometer 2 calibration complete"
+  ],
+  [
+   0.0,
+   "ArduPilot Ready"
+  ],
+  [
+   0.0,
+   "AHRS: DCM active"
+  ],
+  [
+   0.0,
+   "RC7: SaveWaypoint LOW"
+  ],
+  [
+   0.0,
+   "No ap_message for mavlink id (331)"
+  ],
+  [
+   0.0,
+   "No ap_message for mavlink id (290)"
+  ],
+  [
+   0.0,
+   "No ap_message for mavlink id (291)"
+  ],
+  [
+   0.0,
+   "No ap_message for mavlink id (231)"
+  ],
+  [
+   0.0,
+   "No ap_message for mavlink id (141)"
+  ],
+  [
+   0.0,
+   "EKF3 IMU0 initialised"
+  ],
+  [
+   0.0,
+   "EKF3 IMU1 initialised"
+  ],
+  [
+   0.0,
+   "AHRS: EKF3 active"
+  ],
+  [
+   0.0,
+   "EKF3 IMU0 tilt alignment complete"
+  ],
+  [
+   0.0,
+   "EKF3 IMU1 tilt alignment complete"
+  ],
+  [
+   0.0,
+   "EKF3 IMU0 MAG0 initial yaw alignment complete"
+  ],
+  [
+   0.0,
+   "EKF3 IMU1 MAG0 initial yaw alignment complete"
+  ],
+  [
+   0.0,
+   "Radio Failsafe - Disarming"
+  ],
+  [
+   0.0,
+   "Warning: Arming Checks Disabled"
+  ],
+  [
+   0.0,
+   "Arming motors"
+  ],
+  [
+   0.0,
+   "Radio Failsafe Cleared"
+  ],
+  [
+   0.0,
+   "EKF3 IMU0 origin set"
+  ],
+  [
+   0.0,
+   "EKF3 IMU1 origin set"
+  ],
+  [
+   0.0,
+   "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+  ],
+  [
+   0.0,
+   "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+  ],
+  [
+   0.0,
+   "EKF3 IMU1 is using external nav data"
+  ],
+  [
+   0.0,
+   "EKF3 IMU1 initial pos NED = -0.4,0.1,-9.8 (m)"
+  ],
+  [
+   0.0,
+   "EKF3 IMU0 is using external nav data"
+  ],
+  [
+   0.0,
+   "EKF3 IMU0 initial pos NED = -0.4,0.1,-9.8 (m)"
+  ]
+ ],
+ "hold_s_flown": 60.0,
+ "load_at_start": [
+  2.9,
+  4.04,
+  3.23
+ ],
+ "wall_s": 99
+}

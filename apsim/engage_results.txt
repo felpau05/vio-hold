@@ -1,0 +1,38 @@
+run name            h m  option               seed  rms m  max m rms10s  % fix fix Hz  kf at  load ferr60 ferr10  events (s after the switch)
+eng_30m_off_s1       30  fresh_kf false          1   0.42   0.78   0.41   20.4   12.2      -   4.7   0.21   0.07  -15.27s FC mode ALT_HOLD; -11.48s re-anchored to last position (no FC position) 0.00 0.00; -0.02s engaged: FC mode LOITER
+eng_30m_off_s2       30  fresh_kf false          2   0.43   0.92   0.51   20.4   12.3      -   4.0   0.26   0.08  -14.72s FC mode ALT_HOLD; -10.89s re-anchored to last position (no FC position) 0.00 0.00; 0.01s engaged: FC mode LOITER
+eng_30m_on_s1        30  fresh_kf true           1   0.38   0.74   0.38   20.4   12.2  -0.04   3.7   0.16   0.10  -14.6s FC mode ALT_HOLD; -10.79s re-anchored to last position (no FC position) 0.00 0.00; -0.04s engaged: FC mode LOITER; fresh keyframe requested
+eng_30m_on_s2        30  fresh_kf true           2   0.41   0.96   0.53   20.3   12.2  -0.01   6.3   0.15   0.10  -14.96s FC mode ALT_HOLD; -11.16s re-anchored to last position (no FC position) 0.00 0.00; -8.87s re-anchored to FC position 0.25 0.12; -0.01s engaged: FC mode LOITER; fresh keyframe requested
+eng_test_30m_s1      30  test                    1   0.37   0.72   0.30   17.1   10.2  -0.01   6.3   0.33   0.09  -14.56s FC mode ALT_HOLD; -10.73s re-anchored to last position (no FC position) 0.00 0.00; -0.01s engaged: FC mode LOITER; fresh keyframe requested; 10s recovery test: video dropped for 3 s; 13s recovery test: video back; re-anchored to FC position 0.42 0.70; 13.09s re-anchored to FC position 0.41 0.70
+eng_60m_off_s1       60  fresh_kf false          1   0.48   1.13   0.47   20.3   12.2      -   7.4   0.25   0.15  -21.41s FC mode ALT_HOLD; -17.59s re-anchored to last position (no FC position) 0.00 0.00; -0.03s engaged: FC mode LOITER
+eng_60m_off_s2       60  fresh_kf false          2   0.58   1.16   0.73   20.3   12.2      -   5.4   0.28   0.25  -21.45s FC mode ALT_HOLD; -17.65s re-anchored to last position (no FC position) 0.00 0.00; -15.12s re-anchored to FC position 0.05 0.08; -0.02s engaged: FC mode LOITER
+eng_60m_on_s1        60  fresh_kf true           1   0.48   0.85   0.45   20.4   12.2   0.02   5.5   0.29   0.23  -21.56s FC mode ALT_HOLD; -17.74s re-anchored to last position (no FC position) 0.00 0.00; 0.02s engaged: FC mode LOITER; fresh keyframe requested
+eng_60m_on_s2        60  fresh_kf true           2   0.74   1.33   0.93   20.3   12.2  -0.03   5.8   0.51   0.48  -21.38s FC mode ALT_HOLD; -17.56s re-anchored to last position (no FC position) 0.00 0.00; -0.03s engaged: FC mode LOITER; fresh keyframe requested
+eng_60m_on_s2r       60  fresh_kf true           2   0.49   1.15   0.75   20.3   12.2   0.01   4.3   0.24   0.35  -21.49s FC mode ALT_HOLD; -17.69s re-anchored to last position (no FC position) 0.00 0.00; 0.01s engaged: FC mode LOITER; fresh keyframe requested
+rec_60m_s1           60  outage 3 s at 20 s      1   0.74   1.30   0.72   19.0   11.4      -   4.1   0.50   0.45  -21.41s FC mode ALT_HOLD; -17.59s re-anchored to last position (no FC position) 0.00 0.00; -0.01s engaged: FC mode LOITER; 20.04s recovery test: video dropped for 3 s; 23.04s recovery test: video back; re-anchored to FC position -0.15 1.36; 23.12s re-anchored to FC position -0.14 1.38
+rec_60m_s2           60  outage 3 s at 20 s      2   0.78   1.70   0.32   19.0   11.4      -   6.5   0.52   0.13  -21.51s FC mode ALT_HOLD; -17.71s re-anchored to last position (no FC position) 0.00 0.00; -0.04s engaged: FC mode LOITER; 20.03s recovery test: video dropped for 3 s; 23.03s recovery test: video back; re-anchored to FC position 0.35 -0.86; 23.13s re-anchored to FC position 0.35 -0.88
+eng_100m_off_s1     100  fresh_kf false          1   0.66   1.11   0.65   20.4   12.2      -   6.0   0.58   0.48  -29.4s FC mode ALT_HOLD; -25.6s re-anchored to last position (no FC position) 0.00 0.00; 0.01s engaged: FC mode LOITER
+eng_100m_on_s1      100  fresh_kf true           1   0.75   1.37   0.39   20.3   12.2  -0.00   6.7   0.43   0.26  -29.4s FC mode ALT_HOLD; -25.57s re-anchored to last position (no FC position) 0.00 0.00; -0s engaged: FC mode LOITER; fresh keyframe requested
+
+Recovery (s and m; times after the switch; drift = true distance from the hold point; d start/end: at the
+drop and at video back; move in: displacement during the drop; back->fix: video back to the first sent
+fix; shift: change of the mean fix error, 5 s before the drop against 1-7 s after video back):
+run name            drop at  back at  d start    d end   max in  move in  max 10s  rms 10sback->fix  max all  max bef    shift
+eng_test_30m_s1       10.00    13.00     0.14     0.30     0.30     0.43     0.72     0.46     1.11     0.72     0.56     0.48
+rec_60m_s1            20.04    23.04     0.64     0.49     0.65     0.78     1.10     0.76     1.12     1.30     1.30     0.33
+rec_60m_s2            20.03    23.03     0.45     0.27     0.45     0.17     1.38     1.05     1.12     1.70     0.83     0.59
+Same windows in the run without the drop (same height and seed, fresh_kf false): rms / max m
+run name          reference              during drop      10 s after     0 s to drop      whole hold
+rec_60m_s1        (this run)             0.56 / 0.65     0.76 / 1.10     0.79 / 1.30     0.74 / 1.30
+                  eng_60m_off_s1         0.25 / 0.42     0.73 / 1.13     0.48 / 0.83     0.48 / 1.13
+rec_60m_s2        (this run)             0.35 / 0.45     1.05 / 1.38     0.42 / 0.83     0.78 / 1.70
+                  eng_60m_off_s2         0.38 / 0.43     0.56 / 0.77     0.59 / 1.16     0.58 / 1.16
+
+apsim/engage_matrix.py. ArduCopter 4.6 SITL, variant apb (onboard program, board model fixed 80 ms per
+Hold.process), video JUSTICE_D, ground ottawa2019fall (tuning site), w20g40, 60 s hold, SITL instance 1.
+rms/max: true horizontal distance from the hold point over the hold (sitl.score). rms10s: over the first
+10 s after the switch. % fix: fixes sent per rendered frame (60 fps). kf at: time after the switch when
+Hold served the fresh-keyframe request (<label>_kf.csv). load: 1-minute load at the start (16 cores).
+ferr60/ferr10: RMS of the sent-fix error against the truth, relative to the error at the switch, over
+the hold / its first 10 s (fix_err: the part of the estimator error that moves the drone).
+Events: sitl_ap events, run-log notes (no VISO_DELAY_MS advice), FC mode changes, FC texts.

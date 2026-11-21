@@ -1,0 +1,75 @@
+### 1. push with NO_RESTART (copy only)
+board root@local:WORK/dt/vio, copy with tar
++ set the board clock from this laptop
+clock: laptop 2026-11-20 03:36:54 EST, board 2026-11-20 03:36:54 EST
++ mkdir -p WORK/dt/vio/logs
++ tar cf - apb_main.py hold.py fc_link.py capture.py calib.py settings.py settings.json justice_lens_profiles.json EVENT_DAY.txt DECISION_CARD.txt tools/board_check.sh | ssh ... tar xf - -C WORK/dt/vio
+copied; not restarted (NO_RESTART)
+rc=0
+### 2. start inside a terminal session (as ssh -t); the session then ends
+board root@local:WORK/dt/vio, copy with tar
++ set the board clock from this laptop
+clock: laptop 2026-11-20 03:36:55 EST, board 2026-11-20 03:36:55 EST
++ stop the running program (SIGINT, then SIGTERM after 5 s)
++ start: cd WORK/dt/vio && setsid nohup HOME/.venvs/vio/bin/python -u apb_main.py run --raw > logs/console.txt
+waiting 4 s for the program to start ...
+--- logs/console.txt (last 15 lines)
+[ WARN:0@0.038] global cap.cpp:212 open VIDEOIO(V4L2): backend is generally available but can't be used to capture by name
+FAIL cannot open video device /dev/no_camera_here. Check the grabber and video_device in settings.json.
+[ WARN:0@1.038] global cap.cpp:212 open VIDEOIO(V4L2): backend is generally available but can't be used to capture by name
+FAIL cannot open video device /dev/no_camera_here. Check the grabber and video_device in settings.json.
+[ WARN:0@2.038] global cap.cpp:212 open VIDEOIO(V4L2): backend is generally available but can't be used to capture by name
+FAIL cannot open video device /dev/no_camera_here. Check the grabber and video_device in settings.json.
+[ WARN:0@3.039] global cap.cpp:212 open VIDEOIO(V4L2): backend is generally available but can't be used to capture by name
+FAIL cannot open video device /dev/no_camera_here. Check the grabber and video_device in settings.json.
+--- running:
+yes
+rc=0
+### 3. after the session ended: status
+board root@local:WORK/dt/vio, copy with tar
+--- logs/console.txt (last 15 lines)
+[ WARN:0@0.038] global cap.cpp:212 open VIDEOIO(V4L2): backend is generally available but can't be used to capture by name
+FAIL cannot open video device /dev/no_camera_here. Check the grabber and video_device in settings.json.
+[ WARN:0@1.038] global cap.cpp:212 open VIDEOIO(V4L2): backend is generally available but can't be used to capture by name
+FAIL cannot open video device /dev/no_camera_here. Check the grabber and video_device in settings.json.
+[ WARN:0@2.038] global cap.cpp:212 open VIDEOIO(V4L2): backend is generally available but can't be used to capture by name
+FAIL cannot open video device /dev/no_camera_here. Check the grabber and video_device in settings.json.
+[ WARN:0@3.039] global cap.cpp:212 open VIDEOIO(V4L2): backend is generally available but can't be used to capture by name
+FAIL cannot open video device /dev/no_camera_here. Check the grabber and video_device in settings.json.
+[ WARN:0@4.039] global cap.cpp:212 open VIDEOIO(V4L2): backend is generally available but can't be used to capture by name
+FAIL cannot open video device /dev/no_camera_here. Check the grabber and video_device in settings.json.
+[ WARN:0@5.039] global cap.cpp:212 open VIDEOIO(V4L2): backend is generally available but can't be used to capture by name
+FAIL cannot open video device /dev/no_camera_here. Check the grabber and video_device in settings.json.
+--- running:
+yes
+rc=0
+### process: session id differs from this shell's
+    PID     SID    PGID COMMAND
+1023098 1023098 1023098 HOME/.venvs/vio/bin/python -u -c import runpy, signal, sys; signal.signal(signal.SIGINT, signal.default_int_handler); sys.argv = ['apb_main.py'] + sys.argv[1:]; runpy.run_path('WORK/dt/vio/apb_main.py', run_name='__main__') run --raw
+this shell sid: 1023024
+### 4. stop
+board root@local:WORK/dt/vio, copy with tar
++ stop the running program (SIGINT, then SIGTERM after 5 s)
+running: no
+rc=0
+### 5. status after stop
+board root@local:WORK/dt/vio, copy with tar
+--- logs/console.txt (last 15 lines)
+FAIL cannot open video device /dev/no_camera_here. Check the grabber and video_device in settings.json.
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "<frozen runpy>", line 286, in run_path
+  File "<frozen runpy>", line 98, in _run_module_code
+  File "<frozen runpy>", line 88, in _run_code
+  File "WORK/dt/vio/apb_main.py", line 1158, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "WORK/dt/vio/apb_main.py", line 1154, in main
+    return modes[args.mode](s, args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "WORK/dt/vio/apb_main.py", line 1114, in mode_run
+    time.sleep(1.0)
+KeyboardInterrupt
+--- running:
+NO: the program does not run. Read the console lines above.
+rc=0

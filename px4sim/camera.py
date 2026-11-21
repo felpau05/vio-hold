@@ -1,8 +1,15 @@
-"""Downward analog camera for the closed-loop PX4 test, rendered from the TRUE pose.
+"""Downward camera for the closed-loop PX4 test, rendered from the TRUE pose.
 
 The geometry here is written from first principles (adapted from review/geometry/indep.py). It does
 NOT import euler_R, R_BC_NADIR, make_R_bc or RAYS from hold.py or sim_test.py, so a frame or mount
 convention error in hold.py shows up as a closed-loop error instead of cancelling out.
+
+Two kinds of camera (c["video"]):
+- analog (VIDEO: PAL, NTSC): one field, width halved, analog noise correlated along x, break-up possible.
+- digital (DIGITAL: JUSTICE_D): the whole sensor picture is rendered (1280x720 progressive, rolling shutter
+  per sensor row), white sensor noise, 8-bit, then shrunk by the capture's whole factor with cv2.INTER_AREA
+  (as capture.DigitalSource does with video_reduce). No break-up. Its true lens is one of TRUE_LENSES:
+  these live only here, in no lens file, so the estimator cannot read them.
 
 Conventions: NED world, FRD body, camera x = image right, y = image down, z = optical axis.
 Quaternions are (w, x, y, z) and rotate body vectors into NED.
@@ -89,10 +96,46 @@ def mount(top="front", mirror=False, tilt_deg=(0.0, 0.0), twist_deg=0.0):
 
 
 # ------------------------------------------------------------------ lens (equidistant fisheye)
+# True lenses of the Justice D (digital, 1280x720), for the simulator only. The real lens is not known:
+# justice_lens_profiles.json holds three assumed profiles (full sensor fx = fy = 482.5, crop fx = fy = 643.3,
+# anamorphic fx 643.3 / fy 482.5). Each true lens here is near one of them but is none of them: fx and fy differ
+# by 1-2 %, k1 is -0.035 or -0.018, k2 is small, and the centre is about 11 px from the picture centre.
+# All numbers are chosen (assumed), not measured.
+TRUE_LENSES = {
+    # fx +1.5 %, fy -0.25 % against 482.5 (fx / fy 1.017); centre (+9, -6) px
+    "sim Justice D near full sensor": dict(projection="equidistant_fisheye", image_size=[1280, 720], fx=489.7,
+                                           fy=481.3, cx=648.5, cy=353.5, k1=-0.035, k2=0.003, k3=0.0, k4=0.0),
+    # fx -1.3 %, fy +0.3 % against 643.3 (fy / fx 1.016); centre (-7, +8) px
+    "sim Justice D near crop": dict(projection="equidistant_fisheye", image_size=[1280, 720], fx=634.9,
+                                    fy=645.1, cx=632.5, cy=367.5, k1=-0.018, k2=-0.002, k3=0.0, k4=0.0),
+}
+
+
+def profile(name):
+    """A lens profile: a dict as given, one of TRUE_LENSES, or a profile of justice_lens_profiles.json."""
+    if isinstance(name, dict):
+        return name
+    if name in TRUE_LENSES:
+        return TRUE_LENSES[name]
+    return next(m for m in json.load(open(LENS_JSON))["models"] if m["name"] == name)
+
+
+def calib_lens(true_name, dfx=0.005, dfy=-0.005, dk1=0.01, name=None):
+    """The lens a hand-turn calibration (calib.solve fit_lens) can give for a true lens, as a lens-file profile:
+    fx and fy off by dfx and dfy (0.5 %), k1 off by dk1, no k2-k4, the centre at the picture centre (calib does
+    not fit the centre). The error signs are a choice (assumed), the sizes are those of the task."""
+    p = profile(true_name)
+    w, h = p["image_size"]
+    return dict(name=name or f"calib-like {true_name}", projection="equidistant_fisheye", image_size=[w, h],
+                fx=p["fx"] * (1 + dfx), fy=p["fy"] * (1 + dfy), cx=(w - 1) / 2, cy=(h - 1) / 2,
+                b2=0.0, p1=0.0, p2=0.0, k1=p["k1"] + dk1, k2=0.0, k3=0.0, k4=0.0,
+                note=f"simulator: {true_name} with fx {dfx:+.1%}, fy {dfy:+.1%}, k1 {dk1:+.3f}, no k2, centre at the picture centre")
+
+
 def lens(name, w, h, focal_scale=1.0, pp_shift=(0.0, 0.0)):
     """K, D for a w x h picture with the profile's picture extent. Pixel centres are integers, so
     an edge coordinate u + 0.5 scales with the picture."""
-    p = next(m for m in json.load(open(LENS_JSON))["models"] if m["name"] == name)
+    p = profile(name)
     sx, sy = w / p["image_size"][0], h / p["image_size"][1]
     K = np.array([[p["fx"] * sx * focal_scale, 0, (p["cx"] + 0.5) * sx - 0.5 + pp_shift[0]],
                   [0, p["fy"] * sy * focal_scale, (p["cy"] + 0.5) * sy - 0.5 + pp_shift[1]],
@@ -310,23 +353,45 @@ def osd_mask(w, h, scale=0.85):
 
 # ------------------------------------------------------------------ camera
 VIDEO = {"PAL": (360, 288, 25.0), "NTSC": (360, 240, 30.0)}   # one field, width halved (as Hold is fed)
+# Digital: sensor picture width, height, frames per second, and the whole factor the capture shrinks it by
+# (settings video_reduce, cv2.INTER_AREA). Orqa Justice D (organizer; APB manual CSI 1): 1280x720 progressive at
+# 60 fps; the onboard program gives Hold 640x360 (tools/profiles/justice_d.json video_reduce 2).
+DIGITAL = {"JUSTICE_D": (1280, 720, 60.0, 2)}
+SKY_GREY = 200.0     # digital only: a ray above the horizon sees flat sky of this grey. assumed (bright overcast)
+
+
+def picture_size(video):
+    """(width, height, fps) of the picture as Hold gets it."""
+    if video in DIGITAL:
+        w, h, fps, k = DIGITAL[video]
+        return w // k, h // k, fps
+    return VIDEO[video]
 
 
 class Camera:
-    """Rolling-shutter downward camera. Row r is exposed at t0 + r/H * readout (readout < 0: the
-    sensor reads bottom to top), where t0 is the mid-exposure time of row 0."""
+    """Rolling-shutter downward camera. Sensor row r is exposed at t0 + r/rows * readout (readout < 0:
+    the sensor reads bottom to top), where t0 is the mid-exposure time of row 0. W, H, fps: the picture
+    as Hold gets it. SW, SH: the rendered sensor picture (the same as W, H for an analog field)."""
 
     def __init__(self, c, ground):
-        self.W, self.H, self.fps = VIDEO[c["video"]]
-        self.K, self.D = lens(c["true_lens"], self.W, self.H, c["focal_scale"], c["pp_shift"])
+        self.digital = c["video"] in DIGITAL
+        if self.digital:
+            self.SW, self.SH, self.fps, self.reduce = DIGITAL[c["video"]]
+            self.W, self.H = self.SW // self.reduce, self.SH // self.reduce
+        else:
+            self.W, self.H, self.fps = VIDEO[c["video"]]
+            self.SW, self.SH, self.reduce = self.W, self.H, 1
+        self.K, self.D = lens(c["true_lens"], self.SW, self.SH, c["focal_scale"], c["pp_shift"])   # sensor pixels
         self.R_bc = mount(c["cam_top"], c["cam_mirror"], c["cam_tilt"], c["cam_twist"])
-        uu, vv = np.meshgrid(np.arange(self.W, dtype=float), np.arange(self.H, dtype=float))
+        uu, vv = np.meshgrid(np.arange(self.SW, dtype=float), np.arange(self.SH, dtype=float))
         self.rays_b = (unproject(uu, vv, self.K, self.D) @ self.R_bc.T).astype(np.float32)
-        cx, cy = (self.W - 1) / 2, (self.H - 1) / 2
+        cx, cy = (self.SW - 1) / 2, (self.SH - 1) / 2
         self.centre_b = unproject(np.array([cx]), np.array([cy]), self.K, self.D)[0] @ self.R_bc.T
         self.ground, self.c = ground, c
         self.rng = np.random.default_rng(c["seed"] + 7)
         self.readout, self.exposure = c["readout_s"], c["exposure_s"]
+        if self.digital and c.get("breakup"):
+            raise ValueError("A digital camera has no analog break-up. Set breakup to 0.")
 
     def vib(self, t):
         """Motor vibration that the camera feels and the flight controller does not (body-frame turn)."""
@@ -337,30 +402,76 @@ class Camera:
         return np.stack([np.ones_like(t), rx / 2, ry / 2, np.zeros_like(t)], -1) / np.sqrt(1 + (rx * rx + ry * ry) / 4)[:, None]
 
     def render(self, t0, pose):
-        """pose(t) -> (N, E, height, q) arrays. Returns a float picture before noise."""
+        """pose(t) -> (N, E, height, q) arrays. Returns a float picture before noise (sensor size SW x SH)."""
         n_sub = 1 + int(self.exposure / 0.005)          # shortcut: motion blur from <= 3 sub-frames per exposure
         out = 0.0
         for dt in (np.linspace(-0.5, 0.5, n_sub) * self.exposure if n_sub > 1 else [0.0]):
-            tr = t0 + dt + np.arange(self.H) / self.H * self.readout
+            tr = t0 + dt + np.arange(self.SH) / self.SH * self.readout
             N, E, h, q = pose(tr)
             qv = self.vib(tr)
             R = q_matrix(q if qv is None else qmul(q, qv)).astype(np.float32)
+            Nf, Ef = N[:, None].astype(np.float32), E[:, None].astype(np.float32)
+            if self.digital and not (self.c.get("reflect") or self.c.get("people")):
+                out = out + self._ground_rows(R, Nf, Ef, h)
+                continue
             b = np.matmul(self.rays_b, R.transpose(0, 2, 1))          # row r: R_r @ ray, for every pixel
             bz = np.maximum(b[..., 2], 0.05)
             s = h[:, None].astype(np.float32) / bz
-            Nf, Ef = N[:, None].astype(np.float32), E[:, None].astype(np.float32)
             g = self.ground.sample(Nf + s * b[..., 0], Ef + s * b[..., 1], float(np.mean(h)) / self.K[0, 0])
             g = self._indoor(g, tr, Nf, Ef, h[:, None].astype(np.float32), b, bz)
+            if self.digital:          # a wide digital lens can see past 90 deg off nadir: sky, not ground
+                g[b[..., 2] <= 0.0] = SKY_GREY
             out = out + g
         out = out / n_sub
         if self.c.get("flicker_hz"):
             # Mains lamps: brightness 1 + m cos(2 pi f t) (f = 100 or 120 Hz), averaged over the exposure (sinc), per
             # row time: horizontal bands that move when f is not a multiple of the field rate.
             f, m = self.c["flicker_hz"], self.c.get("flicker_depth", 0.5)
-            tr = t0 + np.arange(self.H) / self.H * self.readout
+            tr = t0 + np.arange(self.SH) / self.SH * self.readout
             out = out * (1 + m * np.sinc(f * self.exposure) * np.cos(2 * np.pi * f * tr + 0.7))[:, None]
         if self.c.get("props"):
             out = self._props(out, t0)
+        return out
+
+    BLOCKS = 4        # digital: rows are rendered and noised in this many blocks on threads (numpy and cv2 release the GIL)
+
+    def _blocks(self, fn):
+        if not hasattr(self, "_pool"):
+            from concurrent.futures import ThreadPoolExecutor
+            self._pool = ThreadPoolExecutor(self.BLOCKS)
+            edges = np.linspace(0, self.SH, self.BLOCKS + 1).astype(int)
+            self._rows = [slice(a, b) for a, b in zip(edges[:-1], edges[1:])]
+        list(self._pool.map(fn, range(self.BLOCKS)))
+
+    def _ground_rows(self, R, N, E, h):
+        """The same ground rays as render() (clamp, one pyramid level for the whole frame), per row block on threads,
+        plus sky above the horizon."""
+        out = np.empty((self.SH, self.SW), np.float32)
+        gsd = float(np.mean(h)) / self.K[0, 0]
+        hf = h[:, None].astype(np.float32)
+
+        def blk(i):
+            r = self._rows[i]
+            b = np.matmul(self.rays_b[r], R[r].transpose(0, 2, 1))
+            s = hf[r] / np.maximum(b[..., 2], 0.05)
+            g = self.ground.sample(N[r] + s * b[..., 0], E[r] + s * b[..., 1], gsd)
+            g[b[..., 2] <= 0.0] = SKY_GREY
+            out[r] = g
+        self._blocks(blk)
+        return out
+
+    def _noise_8bit(self, img):
+        """img + white noise (c["noise"] grey per pixel), clipped to 8 bits; one generator per row block, so the
+        result does not depend on the thread order."""
+        if not hasattr(self, "_gens"):
+            self._gens = [np.random.default_rng(s) for s in np.random.SeedSequence(self.c["seed"] + 7).spawn(self.BLOCKS)]
+        out = np.empty(img.shape, np.uint8)
+
+        def blk(i):
+            r = self._rows[i]
+            x = img[r] + self.c["noise"] * self._gens[i].standard_normal(img[r].shape, dtype=np.float32)
+            out[r] = np.clip(x, 0, 255, out=x)
+        self._blocks(blk)
         return out
 
     def _indoor(self, g, tr, N, E, h, b, bz):
@@ -418,7 +529,15 @@ class Camera:
         return out
 
     def finish(self, img):
-        """Lens blur, then analog noise correlated along x (measured std 3.7 grey on the real video)."""
+        """Lens blur, then analog noise correlated along x (measured std 3.7 grey on the real video).
+        Digital: lens blur, white sensor noise per sensor pixel (c["noise"] grey), 8 bits, then the capture's
+        INTER_AREA shrink to W x H (capture.DigitalSource)."""
+        if self.digital:
+            img = cv2.GaussianBlur(np.asarray(img, np.float32), (3, 3), 0.8)   # assumed: lens + demosaic blur, 0.8 sensor px
+            if not hasattr(self, "_rows"):
+                self._blocks(lambda i: None)
+            img = self._noise_8bit(img)
+            return cv2.resize(img, (self.W, self.H), interpolation=cv2.INTER_AREA)
         img = cv2.GaussianBlur(img, (3, 3), 0.8)
         n = cv2.GaussianBlur(self.rng.standard_normal(img.shape).astype(np.float32), (0, 0),
                              sigmaX=self.c["noise_corr_px"], sigmaY=0.01)
@@ -444,12 +563,15 @@ class Camera:
         return N + s * b[..., 0], E + s * b[..., 1]
 
     def pixel_of(self, P, N, E, h, q):
-        """Pixel where ground point P = (north, east) appears for the pose (N, E, h, q); None if behind."""
+        """Pixel (of the W x H picture) where ground point P = (north, east) appears for the pose (N, E, h, q);
+        None if behind."""
         d_b = qrot(q * np.array([1, -1, -1, -1.0]), np.array([P[0] - N, P[1] - E, h]))
         d_c = self.R_bc.T @ d_b
         if d_c[2] <= 0:
             return None
         u, v = project(d_c, self.K, self.D)
+        if self.reduce > 1:           # sensor pixel -> pixel of the shrunk picture (INTER_AREA: block centres)
+            u, v = (u + 0.5) / self.reduce - 0.5, (v + 0.5) / self.reduce - 0.5
         return float(u), float(v)
 
 
@@ -468,6 +590,9 @@ class Frames:
         return k / self.cam.fps
 
     def __iter__(self):
+        if self.cam.digital:
+            yield from self._digital()
+            return
         c, cam, link, k = self.c, self.cam, self.link, None
         burst_p = c["breakup"] / (4.0 * max(1e-9, 1 - c["breakup"]))   # assumed: bursts of 4 frames on average
         while not link.done:
@@ -503,6 +628,49 @@ class Frames:
                 self.prev = img
                 if self.judge is not None:
                     self.judge.write(img, t0, k)
+            self.n_out += 1
+            self.t_avail = self.t_start(k) + self.lag
+            yield img, t0 + c["stamp_err_s"]
+
+    READY_S = 0.006   # digital: render once the truth covers the frame's last row by this much (truth samples 4-5 ms apart)
+
+    def _digital(self):
+        """Digital camera frames. A 1280x720 render takes about as long as one 60 fps frame on this laptop, so it
+        starts as soon as the truth covers the frame's last row, and the frame is handed over at its stamp time
+        (end of readout + video_delay_s), not before: the render time does not add to the frame age as long as it
+        is under video_delay_s - READY_S. No break-up; a lost link gives no frames (CSI: no receiver static)."""
+        c, cam, link, k = self.c, self.cam, self.link, None
+        ready = abs(cam.readout) + cam.exposure + self.READY_S
+        self.late = []                                    # sim s each frame was handed over after its stamp
+        while not link.done:
+            kk = int(math.floor((link.now() - ready) * cam.fps))
+            if k is not None and kk <= k:
+                link.wait_until(self.t_start(k + 1) + ready)
+                continue
+            # The next frame in turn; a frame is dropped only when a newer one is already past its stamp (a capture
+            # queue of depth one). Taking the newest ready frame instead skipped every other frame when video_delay_s
+            # is longer than a frame (run jdcal_apb_100m_w20g40_s11: 30 of 60 fps).
+            k = kk if k is None else max(k + 1, int(math.floor((link.now() - self.lag) * cam.fps)))
+            t0 = self.t_start(k) + cam.exposure / 2 + (abs(cam.readout) if cam.readout < 0 else 0.0)
+            img = None
+            if self.render:
+                rel = t0 - link.t_engage
+                lost = (c.get("outage") and c["outage"][0] <= rel < c["outage"][0] + c["outage"][1]) or \
+                    t0 < getattr(link, "t_video", -math.inf)
+                frozen = c["freeze"] and c["freeze"][0] <= rel < c["freeze"][0] + c["freeze"][1]
+                if lost:
+                    continue
+                if self.prev is not None and (frozen or (c["repeat"] > 0 and cam.rng.random() < c["repeat"])):
+                    img = self.prev                       # a frozen stream repeats the buffer exactly
+                else:
+                    img = cam.finish(cam.render(t0, link.truth_at))
+                    if c["osd"]:
+                        img = osd_draw(img, t0, link.h_now())
+                self.prev = img
+            link.wait_until(self.t_start(k) + self.lag)
+            self.late.append(link.now() - (self.t_start(k) + self.lag))
+            if self.judge is not None and img is not None:
+                self.judge.write(img, t0, k)
             self.n_out += 1
             self.t_avail = self.t_start(k) + self.lag
             yield img, t0 + c["stamp_err_s"]

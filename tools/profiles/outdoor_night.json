@@ -1,7 +1,11 @@
 {
  "_why": {
-  "min_height_m": "As outdoor_day. The night sim runs (6 lamps on dark ground, 50 m and 100 m) used the default settings.",
-  "_note": "Run calib again in night light. A 20 ms exposure moved the video delay by 8 ms in the sim (H11). Night at 50 m gave 7.4 fixes/s in the sim; the autopilot wants 8 or more."
+  "min_height_m": "As outdoor_day. Not tested at night below 50 m: the night sim runs (6 lamps on dark ground, 50 m and 100 m) used the default settings.",
+  "_note": "Run calib again in night light. A 20 ms exposure moved the video delay by 8 ms in the sim (H11). Night at 50 m gave 7.4 fixes/s in the sim; the autopilot wants 8 or more.",
+  "hold_cfg.h_min": "As outdoor_day."
  },
- "min_height_m": 15.0
+ "min_height_m": 3.0,
+ "hold_cfg": {
+  "h_min": 2.0
+ }
 }

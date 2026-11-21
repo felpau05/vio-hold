@@ -1,0 +1,20 @@
+A. D1 timing: the frames of the wiggle window only
+  PASS switch at 125.0 s: calib gets the 150 frames from 109.0 to 124.0 s of 300 (got 150, 109.1 to 124.0 s; )
+  PASS the 'engaged' note on a row with no frame (no t): the last frame's t (125.0 s) is the switch
+  PASS two 'engaged' notes: the window of the first; the INFO line says so
+  PASS raw files and no run log: FAIL, settings not changed (['FAIL give one run log and the raw files of the same run: apb_main.py timing <log_dir>/run_<stamp>.csv <log_dir>/raw_<stamp>_*.npz'])
+  PASS a run log with no 'engaged' note: FAIL, settings not changed (["FAIL no 'engaged' note in /tmp/tmpfy8f2j2q/tmpwrfhzhm9/run_20261120_100000.csv: no switch to position hold, so the wiggle is not known. Keep the delay and readout of the ground calibration."])
+  PASS raw files of another run of this boot (t 500 to 520 s): FAIL, settings not changed (['FAIL no raw frame in the 15 s before the switch at t 125.0 s (raw frames t 500.0 to 519.9 s). The switch came before the recording, or the raw files are from another run.'])
+  PASS raw files of a run before a reboot (same frame times, another start stamp): FAIL (['FAIL the raw files are not from the run of /tmp/tmpfy8f2j2q/tmpe8ys9kr3/run_20261120_100000.csv: their names have another start time. Give raw_<stamp>_*.npz with the stamp of the run log.'])
+B. D2 check: the height stream of each firmware
+  PASS ardupilot, on the ground with GPS off (ardupilot sends GLOBAL_POSITION_INT only): ['PASS GLOBAL_POSITION_INT 10 Hz (asked 10)']
+  PASS px4, on the ground with GPS off (px4 sends LOCAL_POSITION_NED only): ['PASS LOCAL_POSITION_NED 10 Hz (asked 10)']
+C. D3 bench, mask, calib: one FAIL line
+  PASS bench, no FC: exit 1, ''FAIL no MAVLink heartbeat on udpin:127.0.0.1:14599 in 5 s (test)''
+  PASS mask, no FC: exit 1, ''FAIL no MAVLink heartbeat on udpin:127.0.0.1:14599 in 5 s (test)''
+  PASS calib, no FC: exit 1, ''FAIL no MAVLink heartbeat on udpin:127.0.0.1:14599 in 5 s (test)''
+  PASS calib, a mask of another size (ValueError): '"FAIL mask is 10x10 but the picture is 360x288. Run 'apb_main.py mask' again."'
+D. D4 free disk: when check passes, the recorder records
+  PASS 0.3 GB free: check 'FAIL', recorder off (FAIL free disk 0.3 GB at /tmp/tmpfy8f2j2q (need 0.5 GB: raw recording takes 1.0 MB/s at 360x288, 10 Hz). Set log_dir to a bigger disk (SD card: /sdcard/logs), or delete old logs.)
+  PASS 0.6 GB free: check 'PASS', recorder records (PASS free disk 0.6 GB at /tmp/tmpfy8f2j2q (need 0.5 GB: raw recording takes 1.0 MB/s at 360x288, 10 Hz))
+ALL PASSED

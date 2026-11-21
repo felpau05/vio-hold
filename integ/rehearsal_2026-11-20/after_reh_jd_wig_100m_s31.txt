@@ -1,0 +1,34 @@
+reh_jd_wig_100m_s31: hold RMS 9.85 m, max 13.73 m; wiggle 44.6-52.6 s; 11 raw chunks; flight settings video_delay_s 0.07
+
+[apb_main.py delay <run log>]
+  load 1.92 2.51 2.96
+  exit 0, 0 s
+  | PASS VISO_DELAY_MS 147 (from 964 fixes; fix age at send p50 159 ms, p95 176 ms). PX4: EKF2_EV_DELAY = the p50 when time sync fails, and EKF2_DELAY_MAX at least the p95.
+
+[apb_main.py timing, wiggle chunk(s) 002 003]
+  load 1.92 2.51 2.96
+  exit 0, 2 s
+  | PASS video delay 40 ms (was 70), readout +13 ms (was +14), residual 0.72 deg, 20 deg/s
+  | PASS settings written. Start run again, then set VISO_DELAY_MS from 'apb_main.py delay' after the hover.
+
+[apb_main.py timing, wiggle chunk(s) + the next one]
+  load 1.92 2.51 2.96
+  exit 0, 3 s
+  | PASS video delay 40 ms (was 70), readout +14 ms (was +14), residual 0.68 deg, 20 deg/s
+  | PASS settings written. Start run again, then set VISO_DELAY_MS from 'apb_main.py delay' after the hover.
+
+[apb_main.py timing, all chunks]
+  load 1.93 2.51 2.96
+  exit 0, 8 s
+  | PASS video delay 36 ms (was 70), readout +16 ms (was +14), residual 0.94 deg, 27 deg/s
+  | PASS settings written. Start run again, then set VISO_DELAY_MS from 'apb_main.py delay' after the hover.
+
+[tools/replay_tune.py, all chunks]
+  load 1.93 2.50 2.95
+  exit 0, 38 s
+  |     default   76.7     13.52     43.8   58   2.4  picture broken up (98), picture just after (39)
+  |   -> 3 (gain 8%; fix 75.5 against 76.7 %)
+  | 
+  | changed: {"video_delay_s": 0.028, "focal_scale": 1.0145, "hold_cfg": {"max_pts": 120, "fb_every": 3}}
+  | apply: python3 tools/use_profile.py merge <project>/integ/rehearsal_2026-11-20/runs/reh_jd_wig_100m_s31_tune/tune_patch.json   (then tools/deploy.sh)
+  | log of the final settings: <project>/integ/rehearsal_2026-11-20/runs/reh_jd_wig_100m_s31_tune/best.csv; done in 38 s

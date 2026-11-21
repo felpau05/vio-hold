@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-"""Merge builder B's runs (px4sim/runs/<label>.json) into px4sim/results.json and rewrite results.txt;
-print builder B's own table (case, drift RMS, max, % frames with a fix, fix Hz, set, seed) to stdout.
+"""Merge the B runs (px4sim/runs/<label>.json) into px4sim/results.json and rewrite results.txt;
+print the B table (case, drift RMS, max, % frames with a fix, fix Hz, set, seed) to stdout.
 Run: ~/.venvs/vio/bin/python integ/avail/merge.py LABEL... > integ/avail/summary_b.txt"""
 import json
 import os

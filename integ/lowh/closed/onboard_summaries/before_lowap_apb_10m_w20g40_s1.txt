@@ -1,0 +1,3 @@
+tools/log_summary.py output for lowap_apb_10m_w20g40_s1, version before (hold.py of <work>); whole flight, ground to landing
+log  s  sent/s  %sent  proc p50  p95  max  age p50  p95  gap s  ok  deg  lost  switch (before, after, gap s)  recover s
+<work>  70.1  8.8  67.2  80.6  81.3  83.3  128  136  1.53  669  135  12  (6,6,1.28)  -

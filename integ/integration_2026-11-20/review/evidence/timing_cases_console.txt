@@ -1,0 +1,798 @@
+== base_10m: the flight as flown (true 40 ms, +14 ms)
+$ apb_main.py timing base_10m/run_20261120_034211.csv base_10m/raw_20261120_034211_000.npz base_10m/raw_20261120_034211_001.npz ... (9 raw files)
+INFO 184 frames from 16 s to 1 s before the switch at t 37.3 s
+PASS video delay 40 ms (was 70), readout +15 ms (was +14), residual 0.48 deg, 23 deg/s
+PASS settings written. Start run again, then set VISO_DELAY_MS from 'apb_main.py delay' after the hover.
+exit 0, 1.2 s, settings after: video_delay_s 40 ms, readout_s +15 ms
+
+== base_30m: the flight as flown (true 40 ms, +14 ms)
+$ apb_main.py timing base_30m/run_20261120_033928.csv base_30m/raw_20261120_033928_000.npz base_30m/raw_20261120_033928_001.npz ... (9 raw files)
+INFO 185 frames from 16 s to 1 s before the switch at t 42.0 s
+FAIL delay 40 ms, residual 1.23 deg (orientation front fits 1.24 deg). Settings not changed. Run calib on the ground.
+exit 1, 1.2 s, settings after: video_delay_s 70 ms, readout_s +14 ms
+
+== base_60m: the flight as flown (true 40 ms, +14 ms)
+$ apb_main.py timing base_60m/run_20261120_033410.csv base_60m/raw_20261120_033410_000.npz base_60m/raw_20261120_033410_001.npz ... (10 raw files)
+INFO 182 frames from 16 s to 1 s before the switch at t 48.8 s
+PASS video delay 38 ms (was 70), readout +23 ms (was +14), residual 0.85 deg, 24 deg/s
+PASS settings written. Start run again, then set VISO_DELAY_MS from 'apb_main.py delay' after the hover.
+exit 0, 1.4 s, settings after: video_delay_s 38 ms, readout_s +23 ms
+
+== base_100m: the flight as flown (true 40 ms, +14 ms)
+$ apb_main.py timing base_100m/run_20261120_033700.csv base_100m/raw_20261120_033700_000.npz base_100m/raw_20261120_033700_001.npz ... (11 raw files)
+INFO 183 frames from 16 s to 1 s before the switch at t 56.7 s
+PASS video delay 36 ms (was 70), readout +11 ms (was +14), residual 0.54 deg, 23 deg/s
+PASS settings written. Start run again, then set VISO_DELAY_MS from 'apb_main.py delay' after the hover.
+exit 0, 1.3 s, settings after: video_delay_s 36 ms, readout_s +11 ms
+
+== e_log10m_raw30m: run log of the 10 m flight; raw files of the 30 m flight, named with a stamp 1 s later (a second run in the same minute, frame clock from boot)
+$ apb_main.py timing e_log10m_raw30m/run_20261120_034211.csv e_log10m_raw30m/raw_20261120_034212_000.npz e_log10m_raw30m/raw_20261120_034212_001.npz ... (9 raw files)
+INFO 184 frames from 16 s to 1 s before the switch at t 37.3 s
+FAIL delay 22 ms, residual 1.54 deg (orientation front fits 1.55 deg). Settings not changed. Run calib on the ground.
+exit 1, 1.3 s, settings after: video_delay_s 70 ms, readout_s +14 ms
+
+== e_log10m_raw60m: run log of the 10 m flight; raw files of the 60 m flight, named with a stamp 1 s later (a second run in the same minute, frame clock from boot)
+$ apb_main.py timing e_log10m_raw60m/run_20261120_034211.csv e_log10m_raw60m/raw_20261120_034212_000.npz e_log10m_raw60m/raw_20261120_034212_001.npz ... (10 raw files)
+INFO 183 frames from 16 s to 1 s before the switch at t 37.3 s
+FAIL the recording turned 0 deg/s RMS with 9534 matches; need 20 deg/s and 1000. Rock the roll and pitch sticks harder for 8 s.
+exit 1, 0.4 s, settings after: video_delay_s 70 ms, readout_s +14 ms
+
+== e_log10m_raw100m: run log of the 10 m flight; raw files of the 100 m flight, named with a stamp 1 s later (a second run in the same minute, frame clock from boot)
+$ apb_main.py timing e_log10m_raw100m/run_20261120_034211.csv e_log10m_raw100m/raw_20261120_034212_000.npz e_log10m_raw100m/raw_20261120_034212_001.npz ... (11 raw files)
+INFO 182 frames from 16 s to 1 s before the switch at t 37.3 s
+FAIL the recording turned 1 deg/s RMS with 9304 matches; need 20 deg/s and 1000. Rock the roll and pitch sticks harder for 8 s.
+exit 1, 0.4 s, settings after: video_delay_s 70 ms, readout_s +14 ms
+
+== e_log30m_raw10m: run log of the 30 m flight; raw files of the 10 m flight, named with a stamp 1 s later (a second run in the same minute, frame clock from boot)
+$ apb_main.py timing e_log30m_raw10m/run_20261120_033928.csv e_log30m_raw10m/raw_20261120_033929_000.npz e_log30m_raw10m/raw_20261120_033929_001.npz ... (9 raw files)
+INFO 184 frames from 16 s to 1 s before the switch at t 42.0 s
+FAIL delay 52 ms, residual 1.34 deg (orientation front fits 1.39 deg). Settings not changed. Run calib on the ground.
+exit 1, 1.1 s, settings after: video_delay_s 70 ms, readout_s +14 ms
+
+== e_log30m_raw60m: run log of the 30 m flight; raw files of the 60 m flight, named with a stamp 1 s later (a second run in the same minute, frame clock from boot)
+$ apb_main.py timing e_log30m_raw60m/run_20261120_033928.csv e_log30m_raw60m/raw_20261120_033929_000.npz e_log30m_raw60m/raw_20261120_033929_001.npz ... (10 raw files)
+INFO 184 frames from 16 s to 1 s before the switch at t 42.0 s
+FAIL the recording turned 17 deg/s RMS with 9873 matches; need 20 deg/s and 1000. Rock the roll and pitch sticks harder for 8 s.
+exit 1, 0.4 s, settings after: video_delay_s 70 ms, readout_s +14 ms
+
+== e_log30m_raw100m: run log of the 30 m flight; raw files of the 100 m flight, named with a stamp 1 s later (a second run in the same minute, frame clock from boot)
+$ apb_main.py timing e_log30m_raw100m/run_20261120_033928.csv e_log30m_raw100m/raw_20261120_033929_000.npz e_log30m_raw100m/raw_20261120_033929_001.npz ... (11 raw files)
+INFO 183 frames from 16 s to 1 s before the switch at t 42.0 s
+FAIL the recording turned 0 deg/s RMS with 10236 matches; need 20 deg/s and 1000. Rock the roll and pitch sticks harder for 8 s.
+exit 1, 0.4 s, settings after: video_delay_s 70 ms, readout_s +14 ms
+
+== e_log60m_raw10m: run log of the 60 m flight; raw files of the 10 m flight, named with a stamp 1 s later (a second run in the same minute, frame clock from boot)
+$ apb_main.py timing e_log60m_raw10m/run_20261120_033410.csv e_log60m_raw10m/raw_20261120_033411_000.npz e_log60m_raw10m/raw_20261120_033411_001.npz ... (9 raw files)
+INFO 183 frames from 16 s to 1 s before the switch at t 48.8 s
+FAIL the recording turned 7 deg/s RMS with 6039 matches; need 20 deg/s and 1000. Rock the roll and pitch sticks harder for 8 s.
+exit 1, 0.4 s, settings after: video_delay_s 70 ms, readout_s +14 ms
+
+== e_log60m_raw30m: run log of the 60 m flight; raw files of the 30 m flight, named with a stamp 1 s later (a second run in the same minute, frame clock from boot)
+$ apb_main.py timing e_log60m_raw30m/run_20261120_033410.csv e_log60m_raw30m/raw_20261120_033411_000.npz e_log60m_raw30m/raw_20261120_033411_001.npz ... (9 raw files)
+INFO 183 frames from 16 s to 1 s before the switch at t 48.8 s
+PASS video delay 38 ms (was 70), readout +21 ms (was +14), residual 0.83 deg, 21 deg/s
+PASS settings written. Start run again, then set VISO_DELAY_MS from 'apb_main.py delay' after the hover.
+exit 0, 1.1 s, settings after: video_delay_s 38 ms, readout_s +21 ms
+
+== e_log60m_raw100m: run log of the 60 m flight; raw files of the 100 m flight, named with a stamp 1 s later (a second run in the same minute, frame clock from boot)
+$ apb_main.py timing e_log60m_raw100m/run_20261120_033410.csv e_log60m_raw100m/raw_20261120_033411_000.npz e_log60m_raw100m/raw_20261120_033411_001.npz ... (11 raw files)
+INFO 183 frames from 16 s to 1 s before the switch at t 48.8 s
+FAIL the recording turned 14 deg/s RMS with 9777 matches; need 20 deg/s and 1000. Rock the roll and pitch sticks harder for 8 s.
+exit 1, 0.4 s, settings after: video_delay_s 70 ms, readout_s +14 ms
+
+== e_log100m_raw10m: run log of the 100 m flight; raw files of the 10 m flight, named with a stamp 1 s later (a second run in the same minute, frame clock from boot)
+$ apb_main.py timing e_log100m_raw10m/run_20261120_033700.csv e_log100m_raw10m/raw_20261120_033701_000.npz e_log100m_raw10m/raw_20261120_033701_001.npz ... (9 raw files)
+INFO 184 frames from 16 s to 1 s before the switch at t 56.7 s
+FAIL the recording turned 5 deg/s RMS with 7252 matches; need 20 deg/s and 1000. Rock the roll and pitch sticks harder for 8 s.
+exit 1, 0.4 s, settings after: video_delay_s 70 ms, readout_s +14 ms
+
+== e_log100m_raw30m: run log of the 100 m flight; raw files of the 30 m flight, named with a stamp 1 s later (a second run in the same minute, frame clock from boot)
+$ apb_main.py timing e_log100m_raw30m/run_20261120_033700.csv e_log100m_raw30m/raw_20261120_033701_000.npz e_log100m_raw30m/raw_20261120_033701_001.npz ... (9 raw files)
+INFO 183 frames from 16 s to 1 s before the switch at t 56.7 s
+FAIL the recording turned 7 deg/s RMS with 8810 matches; need 20 deg/s and 1000. Rock the roll and pitch sticks harder for 8 s.
+exit 1, 0.4 s, settings after: video_delay_s 70 ms, readout_s +14 ms
+
+== e_log100m_raw60m: run log of the 100 m flight; raw files of the 60 m flight, named with a stamp 1 s later (a second run in the same minute, frame clock from boot)
+$ apb_main.py timing e_log100m_raw60m/run_20261120_033700.csv e_log100m_raw60m/raw_20261120_033701_000.npz e_log100m_raw60m/raw_20261120_033701_001.npz ... (10 raw files)
+INFO 183 frames from 16 s to 1 s before the switch at t 56.7 s
+FAIL delay 60 ms, residual 1.35 deg (orientation front fits 1.41 deg). Settings not changed. Run calib on the ground.
+exit 1, 1.4 s, settings after: video_delay_s 70 ms, readout_s +14 ms
+
+== f_drop000_10m: raw chunk 000 absent
+$ apb_main.py timing f_drop000_10m/run_20261120_034211.csv f_drop000_10m/raw_20261120_034211_001.npz f_drop000_10m/raw_20261120_034211_002.npz ... (8 raw files)
+INFO 134 frames from 16 s to 1 s before the switch at t 37.3 s
+PASS video delay 40 ms (was 70), readout +17 ms (was +14), residual 0.43 deg, 27 deg/s
+PASS settings written. Start run again, then set VISO_DELAY_MS from 'apb_main.py delay' after the hover.
+exit 0, 0.9 s, settings after: video_delay_s 40 ms, readout_s +17 ms
+
+== f_drop001_10m: raw chunk 001 absent
+$ apb_main.py timing f_drop001_10m/run_20261120_034211.csv f_drop001_10m/raw_20261120_034211_000.npz f_drop001_10m/raw_20261120_034211_002.npz ... (8 raw files)
+INFO 60 frames from 16 s to 1 s before the switch at t 37.3 s
+FAIL the recording turned 1 deg/s RMS with 2823 matches; need 20 deg/s and 1000. Rock the roll and pitch sticks harder for 8 s.
+exit 1, 0.3 s, settings after: video_delay_s 70 ms, readout_s +14 ms
+
+== f_drop002_10m: raw chunk 002 absent
+$ apb_main.py timing f_drop002_10m/run_20261120_034211.csv f_drop002_10m/raw_20261120_034211_000.npz f_drop002_10m/raw_20261120_034211_001.npz ... (8 raw files)
+INFO 174 frames from 16 s to 1 s before the switch at t 37.3 s
+PASS video delay 40 ms (was 70), readout +17 ms (was +14), residual 0.45 deg, 24 deg/s
+PASS settings written. Start run again, then set VISO_DELAY_MS from 'apb_main.py delay' after the hover.
+exit 0, 1.1 s, settings after: video_delay_s 40 ms, readout_s +17 ms
+
+== f_drop001_30m: raw chunk 001 absent
+$ apb_main.py timing f_drop001_30m/run_20261120_033928.csv f_drop001_30m/raw_20261120_033928_000.npz f_drop001_30m/raw_20261120_033928_002.npz ... (8 raw files)
+INFO 68 frames from 16 s to 1 s before the switch at t 42.0 s
+PASS video delay 38 ms (was 70), readout +23 ms (was +14), residual 0.74 deg, 24 deg/s
+PASS settings written. Start run again, then set VISO_DELAY_MS from 'apb_main.py delay' after the hover.
+exit 0, 0.6 s, settings after: video_delay_s 38 ms, readout_s +23 ms
+
+== f_drop002_30m: raw chunk 002 absent
+$ apb_main.py timing f_drop002_30m/run_20261120_033928.csv f_drop002_30m/raw_20261120_033928_000.npz f_drop002_30m/raw_20261120_033928_001.npz ... (8 raw files)
+INFO 117 frames from 16 s to 1 s before the switch at t 42.0 s
+FAIL delay 32 ms, residual 1.38 deg (orientation front fits 1.39 deg). Settings not changed. Run calib on the ground.
+exit 1, 0.9 s, settings after: video_delay_s 70 ms, readout_s +14 ms
+
+== f_drop001_60m: raw chunk 001 absent
+$ apb_main.py timing f_drop001_60m/run_20261120_033410.csv f_drop001_60m/raw_20261120_033410_000.npz f_drop001_60m/raw_20261120_033410_002.npz ... (9 raw files)
+INFO 145 frames from 16 s to 1 s before the switch at t 48.8 s
+PASS video delay 38 ms (was 70), readout +21 ms (was +14), residual 0.57 deg, 27 deg/s
+PASS settings written. Start run again, then set VISO_DELAY_MS from 'apb_main.py delay' after the hover.
+exit 0, 1.1 s, settings after: video_delay_s 38 ms, readout_s +21 ms
+
+== f_drop002_60m: raw chunk 002 absent
+$ apb_main.py timing f_drop002_60m/run_20261120_033410.csv f_drop002_60m/raw_20261120_033410_000.npz f_drop002_60m/raw_20261120_033410_001.npz ... (9 raw files)
+INFO 59 frames from 16 s to 1 s before the switch at t 48.8 s
+FAIL the recording turned 2 deg/s RMS with 3131 matches; need 20 deg/s and 1000. Rock the roll and pitch sticks harder for 8 s.
+exit 1, 0.3 s, settings after: video_delay_s 70 ms, readout_s +14 ms
+
+== f_drop003_60m: raw chunk 003 absent
+$ apb_main.py timing f_drop003_60m/run_20261120_033410.csv f_drop003_60m/raw_20261120_033410_000.npz f_drop003_60m/raw_20261120_033410_001.npz ... (9 raw files)
+INFO 160 frames from 16 s to 1 s before the switch at t 48.8 s
+PASS video delay 38 ms (was 70), readout +23 ms (was +14), residual 0.78 deg, 26 deg/s
+PASS settings written. Start run again, then set VISO_DELAY_MS from 'apb_main.py delay' after the hover.
+exit 0, 1.2 s, settings after: video_delay_s 38 ms, readout_s +23 ms
+
+== f_drop002_100m: raw chunk 002 absent
+$ apb_main.py timing f_drop002_100m/run_20261120_033700.csv f_drop002_100m/raw_20261120_033700_000.npz f_drop002_100m/raw_20261120_033700_001.npz ... (10 raw files)
+INFO 122 frames from 16 s to 1 s before the switch at t 56.7 s
+PASS video delay 38 ms (was 70), readout +13 ms (was +14), residual 0.50 deg, 27 deg/s
+PASS settings written. Start run again, then set VISO_DELAY_MS from 'apb_main.py delay' after the hover.
+exit 0, 0.9 s, settings after: video_delay_s 38 ms, readout_s +13 ms
+
+== f_drop003_100m: raw chunk 003 absent
+$ apb_main.py timing f_drop003_100m/run_20261120_033700.csv f_drop003_100m/raw_20261120_033700_000.npz f_drop003_100m/raw_20261120_033700_001.npz ... (10 raw files)
+INFO 61 frames from 16 s to 1 s before the switch at t 56.7 s
+FAIL the recording turned 12 deg/s RMS with 3420 matches; need 20 deg/s and 1000. Rock the roll and pitch sticks harder for 8 s.
+exit 1, 0.3 s, settings after: video_delay_s 70 ms, readout_s +14 ms
+
+== a_still8_10m: pilot holds still 8 s after the wiggle, then switches (the flight's own engaged note moved to log t 41.3)
+$ apb_main.py timing a_still8_10m/run_20261120_034211.csv a_still8_10m/raw_20261120_034211_000.npz a_still8_10m/raw_20261120_034211_001.npz ... (9 raw files)
+INFO 184 frames from 16 s to 1 s before the switch at t 41.3 s
+FAIL delay 40 ms, residual 1.04 deg (orientation front fits 1.19 deg). Settings not changed. Run calib on the ground.
+exit 1, 1.1 s, settings after: video_delay_s 70 ms, readout_s +14 ms
+
+== a_still10_10m: pilot holds still 10 s after the wiggle, then switches (the flight's own engaged note moved to log t 43.3)
+$ apb_main.py timing a_still10_10m/run_20261120_034211.csv a_still10_10m/raw_20261120_034211_000.npz a_still10_10m/raw_20261120_034211_001.npz ... (9 raw files)
+INFO 183 frames from 16 s to 1 s before the switch at t 43.2 s
+FAIL delay 58 ms, residual 1.48 deg (orientation front fits 1.49 deg). Settings not changed. Run calib on the ground.
+exit 1, 1.1 s, settings after: video_delay_s 70 ms, readout_s +14 ms
+
+== a_still12_10m: pilot holds still 12 s after the wiggle, then switches (the flight's own engaged note moved to log t 45.3)
+$ apb_main.py timing a_still12_10m/run_20261120_034211.csv a_still12_10m/raw_20261120_034211_000.npz a_still12_10m/raw_20261120_034211_001.npz ... (9 raw files)
+INFO 183 frames from 16 s to 1 s before the switch at t 45.3 s
+FAIL the recording turned 17 deg/s RMS with 5862 matches; need 20 deg/s and 1000. Rock the roll and pitch sticks harder for 8 s.
+exit 1, 0.4 s, settings after: video_delay_s 70 ms, readout_s +14 ms
+
+== a_still15_10m: pilot holds still 15 s after the wiggle, then switches (the flight's own engaged note moved to log t 48.3)
+$ apb_main.py timing a_still15_10m/run_20261120_034211.csv a_still15_10m/raw_20261120_034211_000.npz a_still15_10m/raw_20261120_034211_001.npz ... (9 raw files)
+INFO 183 frames from 16 s to 1 s before the switch at t 48.3 s
+FAIL the recording turned 10 deg/s RMS with 6040 matches; need 20 deg/s and 1000. Rock the roll and pitch sticks harder for 8 s.
+exit 1, 0.4 s, settings after: video_delay_s 70 ms, readout_s +14 ms
+
+== a_still20_10m: pilot holds still 20 s after the wiggle, then switches (the flight's own engaged note moved to log t 53.3)
+$ apb_main.py timing a_still20_10m/run_20261120_034211.csv a_still20_10m/raw_20261120_034211_000.npz a_still20_10m/raw_20261120_034211_001.npz ... (9 raw files)
+INFO 183 frames from 16 s to 1 s before the switch at t 53.3 s
+FAIL the recording turned 5 deg/s RMS with 6604 matches; need 20 deg/s and 1000. Rock the roll and pitch sticks harder for 8 s.
+exit 1, 0.4 s, settings after: video_delay_s 70 ms, readout_s +14 ms
+
+== a_still25_10m: pilot holds still 25 s after the wiggle, then switches (the flight's own engaged note moved to log t 58.3)
+$ apb_main.py timing a_still25_10m/run_20261120_034211.csv a_still25_10m/raw_20261120_034211_000.npz a_still25_10m/raw_20261120_034211_001.npz ... (9 raw files)
+INFO 184 frames from 16 s to 1 s before the switch at t 58.3 s
+FAIL the recording turned 5 deg/s RMS with 7401 matches; need 20 deg/s and 1000. Rock the roll and pitch sticks harder for 8 s.
+exit 1, 0.4 s, settings after: video_delay_s 70 ms, readout_s +14 ms
+
+== a_still30_10m: pilot holds still 30 s after the wiggle, then switches (the flight's own engaged note moved to log t 63.3)
+$ apb_main.py timing a_still30_10m/run_20261120_034211.csv a_still30_10m/raw_20261120_034211_000.npz a_still30_10m/raw_20261120_034211_001.npz ... (9 raw files)
+INFO 184 frames from 16 s to 1 s before the switch at t 63.3 s
+FAIL the recording turned 5 deg/s RMS with 7419 matches; need 20 deg/s and 1000. Rock the roll and pitch sticks harder for 8 s.
+exit 1, 0.4 s, settings after: video_delay_s 70 ms, readout_s +14 ms
+
+== a_still40_10m: pilot holds still 40 s after the wiggle, then switches (the flight's own engaged note moved to log t 73.3)
+$ apb_main.py timing a_still40_10m/run_20261120_034211.csv a_still40_10m/raw_20261120_034211_000.npz a_still40_10m/raw_20261120_034211_001.npz ... (9 raw files)
+INFO 184 frames from 16 s to 1 s before the switch at t 73.3 s
+FAIL the recording turned 5 deg/s RMS with 6967 matches; need 20 deg/s and 1000. Rock the roll and pitch sticks harder for 8 s.
+exit 1, 0.4 s, settings after: video_delay_s 70 ms, readout_s +14 ms
+
+== b_wig3_10m: only the first 3 s of the wiggle in the window: switch 1 s after 3 s of wiggle (engaged note moved to log t 29.3)
+$ apb_main.py timing b_wig3_10m/run_20261120_034211.csv b_wig3_10m/raw_20261120_034211_000.npz b_wig3_10m/raw_20261120_034211_001.npz ... (9 raw files)
+INFO 181 frames from 16 s to 1 s before the switch at t 29.3 s
+FAIL the recording turned 16 deg/s RMS with 5204 matches; need 20 deg/s and 1000. Rock the roll and pitch sticks harder for 8 s.
+exit 1, 0.4 s, settings after: video_delay_s 70 ms, readout_s +14 ms
+
+== c_start5_10m: program started 5 s before the switch (frames and log rows before t 32.3 removed)
+$ apb_main.py timing c_start5_10m/run_20261120_034211.csv c_start5_10m/raw_20261120_034211_001.npz c_start5_10m/raw_20261120_034211_002.npz ... (8 raw files)
+INFO 48 frames from 16 s to 1 s before the switch at t 37.3 s
+FAIL the recording turned 17 deg/s RMS with 1496 matches; need 20 deg/s and 1000. Rock the roll and pitch sticks harder for 8 s.
+exit 1, 0.3 s, settings after: video_delay_s 70 ms, readout_s +14 ms
+
+== c_start7_10m: program started 7 s before the switch (frames and log rows before t 30.3 removed)
+$ apb_main.py timing c_start7_10m/run_20261120_034211.csv c_start7_10m/raw_20261120_034211_001.npz c_start7_10m/raw_20261120_034211_002.npz ... (8 raw files)
+INFO 72 frames from 16 s to 1 s before the switch at t 37.3 s
+FAIL delay 100 ms, residual 1.60 deg (orientation front fits 1.78 deg). Settings not changed. Run calib on the ground.
+exit 1, 0.6 s, settings after: video_delay_s 70 ms, readout_s +14 ms
+
+== c_start9_10m: program started 9 s before the switch (frames and log rows before t 28.3 removed)
+$ apb_main.py timing c_start9_10m/run_20261120_034211.csv c_start9_10m/raw_20261120_034211_001.npz c_start9_10m/raw_20261120_034211_002.npz ... (8 raw files)
+INFO 97 frames from 16 s to 1 s before the switch at t 37.3 s
+PASS video delay 38 ms (was 70), readout +16 ms (was +14), residual 0.96 deg, 26 deg/s
+PASS settings written. Start run again, then set VISO_DELAY_MS from 'apb_main.py delay' after the hover.
+exit 0, 0.7 s, settings after: video_delay_s 38 ms, readout_s +16 ms
+
+== c_start11_10m: program started 11 s before the switch (frames and log rows before t 26.3 removed)
+$ apb_main.py timing c_start11_10m/run_20261120_034211.csv c_start11_10m/raw_20261120_034211_001.npz c_start11_10m/raw_20261120_034211_002.npz ... (8 raw files)
+INFO 121 frames from 16 s to 1 s before the switch at t 37.3 s
+PASS video delay 38 ms (was 70), readout +13 ms (was +14), residual 0.47 deg, 27 deg/s
+PASS settings written. Start run again, then set VISO_DELAY_MS from 'apb_main.py delay' after the hover.
+exit 0, 0.8 s, settings after: video_delay_s 38 ms, readout_s +13 ms
+
+== c_start13_10m: program started 13 s before the switch (frames and log rows before t 24.3 removed)
+$ apb_main.py timing c_start13_10m/run_20261120_034211.csv c_start13_10m/raw_20261120_034211_000.npz c_start13_10m/raw_20261120_034211_001.npz ... (9 raw files)
+INFO 146 frames from 16 s to 1 s before the switch at t 37.3 s
+PASS video delay 38 ms (was 70), readout +16 ms (was +14), residual 0.37 deg, 26 deg/s
+PASS settings written. Start run again, then set VISO_DELAY_MS from 'apb_main.py delay' after the hover.
+exit 0, 0.9 s, settings after: video_delay_s 38 ms, readout_s +16 ms
+
+== d_ground_10m: first 'engaged' from a switch test 1 s after the program start (on the ground), released 2 s later; the real switch stays
+$ apb_main.py timing d_ground_10m/run_20261120_034211.csv d_ground_10m/raw_20261120_034211_000.npz d_ground_10m/raw_20261120_034211_001.npz ... (9 raw files)
+FAIL no raw frame in the 15 s before the switch at t 16.2 s (raw frames t 15.3 to 97.4 s). The switch came before the recording, or the raw files are from another run.
+exit 1, 0.2 s, settings after: video_delay_s 70 ms, readout_s +14 ms
+
+== d_test17_10m: first 'engaged' from a switch test 17 s after the program start, released 2 s later; the real switch stays
+$ apb_main.py timing d_test17_10m/run_20261120_034211.csv d_test17_10m/raw_20261120_034211_000.npz d_test17_10m/raw_20261120_034211_001.npz ... (9 raw files)
+INFO 189 frames from 16 s to 1 s before the switch at t 32.2 s (the first of 2 switches in the log)
+PASS video delay 40 ms (was 70), readout +15 ms (was +14), residual 0.52 deg, 20 deg/s
+PASS settings written. Start run again, then set VISO_DELAY_MS from 'apb_main.py delay' after the hover.
+exit 0, 1.1 s, settings after: video_delay_s 40 ms, readout_s +15 ms
+
+== d_test3_10m: first 'engaged' from a switch test 3 s after the program start, released 2 s later; the real switch stays
+$ apb_main.py timing d_test3_10m/run_20261120_034211.csv d_test3_10m/raw_20261120_034211_000.npz d_test3_10m/raw_20261120_034211_001.npz ... (9 raw files)
+INFO 45 frames from 16 s to 1 s before the switch at t 18.2 s (the first of 2 switches in the log)
+FAIL the recording turned 17 deg/s RMS with 357 matches; need 20 deg/s and 1000. Rock the roll and pitch sticks harder for 8 s.
+exit 1, 0.3 s, settings after: video_delay_s 70 ms, readout_s +14 ms
+
+== a_still8_30m: pilot holds still 8 s after the wiggle, then switches (the flight's own engaged note moved to log t 46.0)
+$ apb_main.py timing a_still8_30m/run_20261120_033928.csv a_still8_30m/raw_20261120_033928_000.npz a_still8_30m/raw_20261120_033928_001.npz ... (9 raw files)
+INFO 184 frames from 16 s to 1 s before the switch at t 46.1 s
+FAIL delay 44 ms, residual 1.06 deg (orientation front fits 1.10 deg). Settings not changed. Run calib on the ground.
+exit 1, 1.2 s, settings after: video_delay_s 70 ms, readout_s +14 ms
+
+== a_still10_30m: pilot holds still 10 s after the wiggle, then switches (the flight's own engaged note moved to log t 48.0)
+$ apb_main.py timing a_still10_30m/run_20261120_033928.csv a_still10_30m/raw_20261120_033928_000.npz a_still10_30m/raw_20261120_033928_001.npz ... (9 raw files)
+INFO 184 frames from 16 s to 1 s before the switch at t 48.1 s
+PASS video delay 42 ms (was 70), readout +24 ms (was +14), residual 0.77 deg, 22 deg/s
+PASS settings written. Start run again, then set VISO_DELAY_MS from 'apb_main.py delay' after the hover.
+exit 0, 1.2 s, settings after: video_delay_s 42 ms, readout_s +24 ms
+
+== a_still12_30m: pilot holds still 12 s after the wiggle, then switches (the flight's own engaged note moved to log t 50.0)
+$ apb_main.py timing a_still12_30m/run_20261120_033928.csv a_still12_30m/raw_20261120_033928_000.npz a_still12_30m/raw_20261120_033928_001.npz ... (9 raw files)
+INFO 183 frames from 16 s to 1 s before the switch at t 50.0 s
+FAIL the recording turned 19 deg/s RMS with 6649 matches; need 20 deg/s and 1000. Rock the roll and pitch sticks harder for 8 s.
+exit 1, 0.4 s, settings after: video_delay_s 70 ms, readout_s +14 ms
+
+== a_still15_30m: pilot holds still 15 s after the wiggle, then switches (the flight's own engaged note moved to log t 53.0)
+$ apb_main.py timing a_still15_30m/run_20261120_033928.csv a_still15_30m/raw_20261120_033928_000.npz a_still15_30m/raw_20261120_033928_001.npz ... (9 raw files)
+INFO 183 frames from 16 s to 1 s before the switch at t 53.0 s
+FAIL the recording turned 12 deg/s RMS with 7383 matches; need 20 deg/s and 1000. Rock the roll and pitch sticks harder for 8 s.
+exit 1, 0.4 s, settings after: video_delay_s 70 ms, readout_s +14 ms
+
+== a_still20_30m: pilot holds still 20 s after the wiggle, then switches (the flight's own engaged note moved to log t 58.0)
+$ apb_main.py timing a_still20_30m/run_20261120_033928.csv a_still20_30m/raw_20261120_033928_000.npz a_still20_30m/raw_20261120_033928_001.npz ... (9 raw files)
+INFO 183 frames from 16 s to 1 s before the switch at t 58.0 s
+FAIL the recording turned 8 deg/s RMS with 8025 matches; need 20 deg/s and 1000. Rock the roll and pitch sticks harder for 8 s.
+exit 1, 0.4 s, settings after: video_delay_s 70 ms, readout_s +14 ms
+
+== a_still25_30m: pilot holds still 25 s after the wiggle, then switches (the flight's own engaged note moved to log t 63.0)
+$ apb_main.py timing a_still25_30m/run_20261120_033928.csv a_still25_30m/raw_20261120_033928_000.npz a_still25_30m/raw_20261120_033928_001.npz ... (9 raw files)
+INFO 183 frames from 16 s to 1 s before the switch at t 63.0 s
+FAIL the recording turned 7 deg/s RMS with 8474 matches; need 20 deg/s and 1000. Rock the roll and pitch sticks harder for 8 s.
+exit 1, 0.4 s, settings after: video_delay_s 70 ms, readout_s +14 ms
+
+== a_still30_30m: pilot holds still 30 s after the wiggle, then switches (the flight's own engaged note moved to log t 68.0)
+$ apb_main.py timing a_still30_30m/run_20261120_033928.csv a_still30_30m/raw_20261120_033928_000.npz a_still30_30m/raw_20261120_033928_001.npz ... (9 raw files)
+INFO 183 frames from 16 s to 1 s before the switch at t 68.1 s
+FAIL the recording turned 7 deg/s RMS with 7825 matches; need 20 deg/s and 1000. Rock the roll and pitch sticks harder for 8 s.
+exit 1, 0.4 s, settings after: video_delay_s 70 ms, readout_s +14 ms
+
+== a_still40_30m: pilot holds still 40 s after the wiggle, then switches (the flight's own engaged note moved to log t 78.0)
+$ apb_main.py timing a_still40_30m/run_20261120_033928.csv a_still40_30m/raw_20261120_033928_000.npz a_still40_30m/raw_20261120_033928_001.npz ... (9 raw files)
+INFO 182 frames from 16 s to 1 s before the switch at t 78.0 s
+FAIL the recording turned 7 deg/s RMS with 7317 matches; need 20 deg/s and 1000. Rock the roll and pitch sticks harder for 8 s.
+exit 1, 0.4 s, settings after: video_delay_s 70 ms, readout_s +14 ms
+
+== b_wig3_30m: only the first 3 s of the wiggle in the window: switch 1 s after 3 s of wiggle (engaged note moved to log t 34.0)
+$ apb_main.py timing b_wig3_30m/run_20261120_033928.csv b_wig3_30m/raw_20261120_033928_000.npz b_wig3_30m/raw_20261120_033928_001.npz ... (9 raw files)
+INFO 184 frames from 16 s to 1 s before the switch at t 34.0 s
+FAIL the recording turned 14 deg/s RMS with 7570 matches; need 20 deg/s and 1000. Rock the roll and pitch sticks harder for 8 s.
+exit 1, 0.4 s, settings after: video_delay_s 70 ms, readout_s +14 ms
+
+== c_start5_30m: program started 5 s before the switch (frames and log rows before t 37.0 removed)
+$ apb_main.py timing c_start5_30m/run_20261120_033928.csv c_start5_30m/raw_20261120_033928_002.npz c_start5_30m/raw_20261120_033928_003.npz ... (7 raw files)
+INFO 48 frames from 16 s to 1 s before the switch at t 42.0 s
+FAIL delay 52 ms, residual 1.14 deg (orientation front fits 1.18 deg). Settings not changed. Run calib on the ground.
+exit 1, 0.5 s, settings after: video_delay_s 70 ms, readout_s +14 ms
+
+== c_start7_30m: program started 7 s before the switch (frames and log rows before t 35.0 removed)
+$ apb_main.py timing c_start7_30m/run_20261120_033928.csv c_start7_30m/raw_20261120_033928_001.npz c_start7_30m/raw_20261120_033928_002.npz ... (8 raw files)
+INFO 73 frames from 16 s to 1 s before the switch at t 42.0 s
+PASS video delay 36 ms (was 70), readout +21 ms (was +14), residual 0.80 deg, 25 deg/s
+PASS settings written. Start run again, then set VISO_DELAY_MS from 'apb_main.py delay' after the hover.
+exit 0, 0.6 s, settings after: video_delay_s 36 ms, readout_s +21 ms
+
+== c_start9_30m: program started 9 s before the switch (frames and log rows before t 33.0 removed)
+$ apb_main.py timing c_start9_30m/run_20261120_033928.csv c_start9_30m/raw_20261120_033928_001.npz c_start9_30m/raw_20261120_033928_002.npz ... (8 raw files)
+INFO 97 frames from 16 s to 1 s before the switch at t 42.0 s
+PASS video delay 38 ms (was 70), readout +21 ms (was +14), residual 0.60 deg, 27 deg/s
+PASS settings written. Start run again, then set VISO_DELAY_MS from 'apb_main.py delay' after the hover.
+exit 0, 0.7 s, settings after: video_delay_s 38 ms, readout_s +21 ms
+
+== c_start11_30m: program started 11 s before the switch (frames and log rows before t 31.0 removed)
+$ apb_main.py timing c_start11_30m/run_20261120_033928.csv c_start11_30m/raw_20261120_033928_001.npz c_start11_30m/raw_20261120_033928_002.npz ... (8 raw files)
+INFO 122 frames from 16 s to 1 s before the switch at t 42.0 s
+PASS video delay 28 ms (was 70), readout +15 ms (was +14), residual 0.71 deg, 28 deg/s
+PASS settings written. Start run again, then set VISO_DELAY_MS from 'apb_main.py delay' after the hover.
+exit 0, 0.8 s, settings after: video_delay_s 28 ms, readout_s +15 ms
+
+== c_start13_30m: program started 13 s before the switch (frames and log rows before t 29.0 removed)
+$ apb_main.py timing c_start13_30m/run_20261120_033928.csv c_start13_30m/raw_20261120_033928_001.npz c_start13_30m/raw_20261120_033928_002.npz ... (8 raw files)
+INFO 146 frames from 16 s to 1 s before the switch at t 42.0 s
+PASS video delay 38 ms (was 70), readout +21 ms (was +14), residual 0.64 deg, 27 deg/s
+PASS settings written. Start run again, then set VISO_DELAY_MS from 'apb_main.py delay' after the hover.
+exit 0, 1.0 s, settings after: video_delay_s 38 ms, readout_s +21 ms
+
+== d_ground_30m: first 'engaged' from a switch test 1 s after the program start (on the ground), released 2 s later; the real switch stays
+$ apb_main.py timing d_ground_30m/run_20261120_033928.csv d_ground_30m/raw_20261120_033928_000.npz d_ground_30m/raw_20261120_033928_001.npz ... (9 raw files)
+FAIL no raw frame in the 15 s before the switch at t 16.2 s (raw frames t 15.3 to 102.1 s). The switch came before the recording, or the raw files are from another run.
+exit 1, 0.2 s, settings after: video_delay_s 70 ms, readout_s +14 ms
+
+== d_test17_30m: first 'engaged' from a switch test 17 s after the program start, released 2 s later; the real switch stays
+$ apb_main.py timing d_test17_30m/run_20261120_033928.csv d_test17_30m/raw_20261120_033928_000.npz d_test17_30m/raw_20261120_033928_001.npz ... (9 raw files)
+INFO 189 frames from 16 s to 1 s before the switch at t 32.2 s (the first of 2 switches in the log)
+FAIL the recording turned 10 deg/s RMS with 7983 matches; need 20 deg/s and 1000. Rock the roll and pitch sticks harder for 8 s.
+exit 1, 0.4 s, settings after: video_delay_s 70 ms, readout_s +14 ms
+
+== d_test3_30m: first 'engaged' from a switch test 3 s after the program start, released 2 s later; the real switch stays
+$ apb_main.py timing d_test3_30m/run_20261120_033928.csv d_test3_30m/raw_20261120_033928_000.npz d_test3_30m/raw_20261120_033928_001.npz ... (9 raw files)
+INFO 45 frames from 16 s to 1 s before the switch at t 18.2 s (the first of 2 switches in the log)
+FAIL the recording turned 17 deg/s RMS with 355 matches; need 20 deg/s and 1000. Rock the roll and pitch sticks harder for 8 s.
+exit 1, 0.3 s, settings after: video_delay_s 70 ms, readout_s +14 ms
+
+== a_still8_60m: pilot holds still 8 s after the wiggle, then switches (the flight's own engaged note moved to log t 52.8)
+$ apb_main.py timing a_still8_60m/run_20261120_033410.csv a_still8_60m/raw_20261120_033410_000.npz a_still8_60m/raw_20261120_033410_001.npz ... (10 raw files)
+INFO 183 frames from 16 s to 1 s before the switch at t 52.8 s
+PASS video delay 38 ms (was 70), readout +16 ms (was +14), residual 0.91 deg, 27 deg/s
+PASS settings written. Start run again, then set VISO_DELAY_MS from 'apb_main.py delay' after the hover.
+exit 0, 1.4 s, settings after: video_delay_s 38 ms, readout_s +16 ms
+
+== a_still10_60m: pilot holds still 10 s after the wiggle, then switches (the flight's own engaged note moved to log t 54.8)
+$ apb_main.py timing a_still10_60m/run_20261120_033410.csv a_still10_60m/raw_20261120_033410_000.npz a_still10_60m/raw_20261120_033410_001.npz ... (10 raw files)
+INFO 183 frames from 16 s to 1 s before the switch at t 54.8 s
+FAIL delay 42 ms, residual 1.07 deg (orientation front fits 1.11 deg). Settings not changed. Run calib on the ground.
+exit 1, 1.3 s, settings after: video_delay_s 70 ms, readout_s +14 ms
+
+== a_still12_60m: pilot holds still 12 s after the wiggle, then switches (the flight's own engaged note moved to log t 56.8)
+$ apb_main.py timing a_still12_60m/run_20261120_033410.csv a_still12_60m/raw_20261120_033410_000.npz a_still12_60m/raw_20261120_033410_001.npz ... (10 raw files)
+INFO 182 frames from 16 s to 1 s before the switch at t 56.8 s
+FAIL delay 58 ms, residual 1.50 deg (orientation front fits 1.52 deg). Settings not changed. Run calib on the ground.
+exit 1, 1.3 s, settings after: video_delay_s 70 ms, readout_s +14 ms
+
+== a_still15_60m: pilot holds still 15 s after the wiggle, then switches (the flight's own engaged note moved to log t 59.8)
+$ apb_main.py timing a_still15_60m/run_20261120_033410.csv a_still15_60m/raw_20261120_033410_000.npz a_still15_60m/raw_20261120_033410_001.npz ... (10 raw files)
+INFO 182 frames from 16 s to 1 s before the switch at t 59.7 s
+FAIL delay 50 ms, residual 2.24 deg (orientation front fits 2.30 deg). Settings not changed. Run calib on the ground.
+exit 1, 1.3 s, settings after: video_delay_s 70 ms, readout_s +14 ms
+
+== a_still20_60m: pilot holds still 20 s after the wiggle, then switches (the flight's own engaged note moved to log t 64.8)
+$ apb_main.py timing a_still20_60m/run_20261120_033410.csv a_still20_60m/raw_20261120_033410_000.npz a_still20_60m/raw_20261120_033410_001.npz ... (10 raw files)
+INFO 183 frames from 16 s to 1 s before the switch at t 64.7 s
+FAIL delay 54 ms, residual 1.48 deg (orientation front fits 1.62 deg). Settings not changed. Run calib on the ground.
+exit 1, 1.3 s, settings after: video_delay_s 70 ms, readout_s +14 ms
+
+== a_still25_60m: pilot holds still 25 s after the wiggle, then switches (the flight's own engaged note moved to log t 69.8)
+$ apb_main.py timing a_still25_60m/run_20261120_033410.csv a_still25_60m/raw_20261120_033410_000.npz a_still25_60m/raw_20261120_033410_001.npz ... (10 raw files)
+INFO 182 frames from 16 s to 1 s before the switch at t 69.8 s
+PASS video delay 66 ms (was 70), readout +39 ms (was +14), residual 0.98 deg, 33 deg/s
+PASS settings written. Start run again, then set VISO_DELAY_MS from 'apb_main.py delay' after the hover.
+exit 0, 1.3 s, settings after: video_delay_s 66 ms, readout_s +39 ms
+
+== a_still30_60m: pilot holds still 30 s after the wiggle, then switches (the flight's own engaged note moved to log t 74.8)
+$ apb_main.py timing a_still30_60m/run_20261120_033410.csv a_still30_60m/raw_20261120_033410_000.npz a_still30_60m/raw_20261120_033410_001.npz ... (10 raw files)
+INFO 182 frames from 16 s to 1 s before the switch at t 74.8 s
+PASS video delay 50 ms (was 70), readout +30 ms (was +14), residual 0.93 deg, 31 deg/s
+PASS settings written. Start run again, then set VISO_DELAY_MS from 'apb_main.py delay' after the hover.
+exit 0, 1.2 s, settings after: video_delay_s 50 ms, readout_s +30 ms
+
+== a_still40_60m: pilot holds still 40 s after the wiggle, then switches (the flight's own engaged note moved to log t 84.8)
+$ apb_main.py timing a_still40_60m/run_20261120_033410.csv a_still40_60m/raw_20261120_033410_000.npz a_still40_60m/raw_20261120_033410_001.npz ... (10 raw files)
+INFO 183 frames from 16 s to 1 s before the switch at t 84.8 s
+PASS video delay 40 ms (was 70), readout +20 ms (was +14), residual 0.83 deg, 27 deg/s
+PASS settings written. Start run again, then set VISO_DELAY_MS from 'apb_main.py delay' after the hover.
+exit 0, 1.1 s, settings after: video_delay_s 40 ms, readout_s +20 ms
+
+== b_wig3_60m: only the first 3 s of the wiggle in the window: switch 1 s after 3 s of wiggle (engaged note moved to log t 40.7)
+$ apb_main.py timing b_wig3_60m/run_20261120_033410.csv b_wig3_60m/raw_20261120_033410_000.npz b_wig3_60m/raw_20261120_033410_001.npz ... (10 raw files)
+INFO 183 frames from 16 s to 1 s before the switch at t 40.7 s
+FAIL the recording turned 13 deg/s RMS with 9715 matches; need 20 deg/s and 1000. Rock the roll and pitch sticks harder for 8 s.
+exit 1, 0.4 s, settings after: video_delay_s 70 ms, readout_s +14 ms
+
+== c_start5_60m: program started 5 s before the switch (frames and log rows before t 43.8 removed)
+$ apb_main.py timing c_start5_60m/run_20261120_033410.csv c_start5_60m/raw_20261120_033410_002.npz c_start5_60m/raw_20261120_033410_003.npz ... (8 raw files)
+INFO 47 frames from 16 s to 1 s before the switch at t 48.8 s
+FAIL the recording turned 19 deg/s RMS with 1783 matches; need 20 deg/s and 1000. Rock the roll and pitch sticks harder for 8 s.
+exit 1, 0.3 s, settings after: video_delay_s 70 ms, readout_s +14 ms
+
+== c_start7_60m: program started 7 s before the switch (frames and log rows before t 41.8 removed)
+$ apb_main.py timing c_start7_60m/run_20261120_033410.csv c_start7_60m/raw_20261120_033410_002.npz c_start7_60m/raw_20261120_033410_003.npz ... (8 raw files)
+INFO 72 frames from 16 s to 1 s before the switch at t 48.8 s
+PASS video delay 42 ms (was 70), readout +22 ms (was +14), residual 0.73 deg, 24 deg/s
+PASS settings written. Start run again, then set VISO_DELAY_MS from 'apb_main.py delay' after the hover.
+exit 0, 0.7 s, settings after: video_delay_s 42 ms, readout_s +22 ms
+
+== c_start9_60m: program started 9 s before the switch (frames and log rows before t 39.8 removed)
+$ apb_main.py timing c_start9_60m/run_20261120_033410.csv c_start9_60m/raw_20261120_033410_002.npz c_start9_60m/raw_20261120_033410_003.npz ... (8 raw files)
+INFO 96 frames from 16 s to 1 s before the switch at t 48.8 s
+PASS video delay 42 ms (was 70), readout +32 ms (was +14), residual 0.85 deg, 26 deg/s
+PASS settings written. Start run again, then set VISO_DELAY_MS from 'apb_main.py delay' after the hover.
+exit 0, 0.8 s, settings after: video_delay_s 42 ms, readout_s +32 ms
+
+== c_start11_60m: program started 11 s before the switch (frames and log rows before t 37.8 removed)
+$ apb_main.py timing c_start11_60m/run_20261120_033410.csv c_start11_60m/raw_20261120_033410_002.npz c_start11_60m/raw_20261120_033410_003.npz ... (8 raw files)
+INFO 121 frames from 16 s to 1 s before the switch at t 48.8 s
+PASS video delay 38 ms (was 70), readout +21 ms (was +14), residual 0.79 deg, 28 deg/s
+PASS settings written. Start run again, then set VISO_DELAY_MS from 'apb_main.py delay' after the hover.
+exit 0, 0.9 s, settings after: video_delay_s 38 ms, readout_s +21 ms
+
+== c_start13_60m: program started 13 s before the switch (frames and log rows before t 35.8 removed)
+$ apb_main.py timing c_start13_60m/run_20261120_033410.csv c_start13_60m/raw_20261120_033410_002.npz c_start13_60m/raw_20261120_033410_003.npz ... (8 raw files)
+INFO 145 frames from 16 s to 1 s before the switch at t 48.8 s
+PASS video delay 38 ms (was 70), readout +21 ms (was +14), residual 0.57 deg, 27 deg/s
+PASS settings written. Start run again, then set VISO_DELAY_MS from 'apb_main.py delay' after the hover.
+exit 0, 1.1 s, settings after: video_delay_s 38 ms, readout_s +21 ms
+
+== d_ground_60m: first 'engaged' from a switch test 1 s after the program start (on the ground), released 2 s later; the real switch stays
+$ apb_main.py timing d_ground_60m/run_20261120_033410.csv d_ground_60m/raw_20261120_033410_000.npz d_ground_60m/raw_20261120_033410_001.npz ... (10 raw files)
+FAIL no raw frame in the 15 s before the switch at t 16.6 s (raw frames t 15.7 to 108.9 s). The switch came before the recording, or the raw files are from another run.
+exit 1, 0.2 s, settings after: video_delay_s 70 ms, readout_s +14 ms
+
+== d_test17_60m: first 'engaged' from a switch test 17 s after the program start, released 2 s later; the real switch stays
+$ apb_main.py timing d_test17_60m/run_20261120_033410.csv d_test17_60m/raw_20261120_033410_000.npz d_test17_60m/raw_20261120_033410_001.npz ... (10 raw files)
+INFO 188 frames from 16 s to 1 s before the switch at t 32.6 s (the first of 2 switches in the log)
+FAIL the recording turned 6 deg/s RMS with 8021 matches; need 20 deg/s and 1000. Rock the roll and pitch sticks harder for 8 s.
+exit 1, 0.4 s, settings after: video_delay_s 70 ms, readout_s +14 ms
+
+== d_test3_60m: first 'engaged' from a switch test 3 s after the program start, released 2 s later; the real switch stays
+$ apb_main.py timing d_test3_60m/run_20261120_033410.csv d_test3_60m/raw_20261120_033410_000.npz d_test3_60m/raw_20261120_033410_001.npz ... (10 raw files)
+INFO 45 frames from 16 s to 1 s before the switch at t 18.6 s (the first of 2 switches in the log)
+FAIL the recording turned 18 deg/s RMS with 395 matches; need 20 deg/s and 1000. Rock the roll and pitch sticks harder for 8 s.
+exit 1, 0.3 s, settings after: video_delay_s 70 ms, readout_s +14 ms
+
+== a_still8_100m: pilot holds still 8 s after the wiggle, then switches (the flight's own engaged note moved to log t 60.6)
+$ apb_main.py timing a_still8_100m/run_20261120_033700.csv a_still8_100m/raw_20261120_033700_000.npz a_still8_100m/raw_20261120_033700_001.npz ... (11 raw files)
+INFO 183 frames from 16 s to 1 s before the switch at t 60.6 s
+PASS video delay 40 ms (was 70), readout +12 ms (was +14), residual 0.45 deg, 25 deg/s
+PASS settings written. Start run again, then set VISO_DELAY_MS from 'apb_main.py delay' after the hover.
+exit 0, 1.2 s, settings after: video_delay_s 40 ms, readout_s +12 ms
+
+== a_still10_100m: pilot holds still 10 s after the wiggle, then switches (the flight's own engaged note moved to log t 62.6)
+$ apb_main.py timing a_still10_100m/run_20261120_033700.csv a_still10_100m/raw_20261120_033700_000.npz a_still10_100m/raw_20261120_033700_001.npz ... (11 raw files)
+INFO 184 frames from 16 s to 1 s before the switch at t 62.6 s
+PASS video delay 46 ms (was 70), readout +16 ms (was +14), residual 0.51 deg, 24 deg/s
+PASS settings written. Start run again, then set VISO_DELAY_MS from 'apb_main.py delay' after the hover.
+exit 0, 1.2 s, settings after: video_delay_s 46 ms, readout_s +16 ms
+
+== a_still12_100m: pilot holds still 12 s after the wiggle, then switches (the flight's own engaged note moved to log t 64.6)
+$ apb_main.py timing a_still12_100m/run_20261120_033700.csv a_still12_100m/raw_20261120_033700_000.npz a_still12_100m/raw_20261120_033700_001.npz ... (11 raw files)
+INFO 184 frames from 16 s to 1 s before the switch at t 64.6 s
+PASS video delay 42 ms (was 70), readout +14 ms (was +14), residual 0.49 deg, 23 deg/s
+PASS settings written. Start run again, then set VISO_DELAY_MS from 'apb_main.py delay' after the hover.
+exit 0, 1.3 s, settings after: video_delay_s 42 ms, readout_s +14 ms
+
+== a_still15_100m: pilot holds still 15 s after the wiggle, then switches (the flight's own engaged note moved to log t 67.6)
+$ apb_main.py timing a_still15_100m/run_20261120_033700.csv a_still15_100m/raw_20261120_033700_000.npz a_still15_100m/raw_20261120_033700_001.npz ... (11 raw files)
+INFO 184 frames from 16 s to 1 s before the switch at t 67.6 s
+FAIL the recording turned 20 deg/s RMS with 7376 matches; need 20 deg/s and 1000. Rock the roll and pitch sticks harder for 8 s.
+exit 1, 0.4 s, settings after: video_delay_s 70 ms, readout_s +14 ms
+
+== a_still20_100m: pilot holds still 20 s after the wiggle, then switches (the flight's own engaged note moved to log t 72.6)
+$ apb_main.py timing a_still20_100m/run_20261120_033700.csv a_still20_100m/raw_20261120_033700_000.npz a_still20_100m/raw_20261120_033700_001.npz ... (11 raw files)
+INFO 184 frames from 16 s to 1 s before the switch at t 72.6 s
+PASS video delay 50 ms (was 70), readout +30 ms (was +14), residual 0.91 deg, 24 deg/s
+PASS settings written. Start run again, then set VISO_DELAY_MS from 'apb_main.py delay' after the hover.
+exit 0, 1.2 s, settings after: video_delay_s 50 ms, readout_s +30 ms
+
+== a_still25_100m: pilot holds still 25 s after the wiggle, then switches (the flight's own engaged note moved to log t 77.6)
+$ apb_main.py timing a_still25_100m/run_20261120_033700.csv a_still25_100m/raw_20261120_033700_000.npz a_still25_100m/raw_20261120_033700_001.npz ... (11 raw files)
+INFO 183 frames from 16 s to 1 s before the switch at t 77.6 s
+FAIL delay 50 ms, residual 1.72 deg (orientation front fits 1.83 deg). Settings not changed. Run calib on the ground.
+exit 1, 1.1 s, settings after: video_delay_s 70 ms, readout_s +14 ms
+
+== a_still30_100m: pilot holds still 30 s after the wiggle, then switches (the flight's own engaged note moved to log t 82.6)
+$ apb_main.py timing a_still30_100m/run_20261120_033700.csv a_still30_100m/raw_20261120_033700_000.npz a_still30_100m/raw_20261120_033700_001.npz ... (11 raw files)
+INFO 183 frames from 16 s to 1 s before the switch at t 82.6 s
+FAIL delay 50 ms, residual 1.02 deg (orientation front fits 1.11 deg). Settings not changed. Run calib on the ground.
+exit 1, 1.1 s, settings after: video_delay_s 70 ms, readout_s +14 ms
+
+== a_still40_100m: pilot holds still 40 s after the wiggle, then switches (the flight's own engaged note moved to log t 92.6)
+$ apb_main.py timing a_still40_100m/run_20261120_033700.csv a_still40_100m/raw_20261120_033700_000.npz a_still40_100m/raw_20261120_033700_001.npz ... (11 raw files)
+INFO 183 frames from 16 s to 1 s before the switch at t 92.6 s
+PASS video delay 40 ms (was 70), readout +17 ms (was +14), residual 0.65 deg, 31 deg/s
+PASS settings written. Start run again, then set VISO_DELAY_MS from 'apb_main.py delay' after the hover.
+exit 0, 1.2 s, settings after: video_delay_s 40 ms, readout_s +17 ms
+
+== b_wig3_100m: only the first 3 s of the wiggle in the window: switch 1 s after 3 s of wiggle (engaged note moved to log t 48.6)
+$ apb_main.py timing b_wig3_100m/run_20261120_033700.csv b_wig3_100m/raw_20261120_033700_000.npz b_wig3_100m/raw_20261120_033700_001.npz ... (11 raw files)
+INFO 183 frames from 16 s to 1 s before the switch at t 48.6 s
+FAIL the recording turned 13 deg/s RMS with 9822 matches; need 20 deg/s and 1000. Rock the roll and pitch sticks harder for 8 s.
+exit 1, 0.4 s, settings after: video_delay_s 70 ms, readout_s +14 ms
+
+== c_start5_100m: program started 5 s before the switch (frames and log rows before t 51.7 removed)
+$ apb_main.py timing c_start5_100m/run_20261120_033700.csv c_start5_100m/raw_20261120_033700_003.npz c_start5_100m/raw_20261120_033700_004.npz ... (8 raw files)
+INFO 48 frames from 16 s to 1 s before the switch at t 56.7 s
+FAIL the recording turned 17 deg/s RMS with 1899 matches; need 20 deg/s and 1000. Rock the roll and pitch sticks harder for 8 s.
+exit 1, 0.2 s, settings after: video_delay_s 70 ms, readout_s +14 ms
+
+== c_start7_100m: program started 7 s before the switch (frames and log rows before t 49.7 removed)
+$ apb_main.py timing c_start7_100m/run_20261120_033700.csv c_start7_100m/raw_20261120_033700_003.npz c_start7_100m/raw_20261120_033700_004.npz ... (8 raw files)
+INFO 72 frames from 16 s to 1 s before the switch at t 56.7 s
+PASS video delay 40 ms (was 70), readout +12 ms (was +14), residual 0.37 deg, 23 deg/s
+PASS settings written. Start run again, then set VISO_DELAY_MS from 'apb_main.py delay' after the hover.
+exit 0, 0.6 s, settings after: video_delay_s 40 ms, readout_s +12 ms
+
+== c_start9_100m: program started 9 s before the switch (frames and log rows before t 47.7 removed)
+$ apb_main.py timing c_start9_100m/run_20261120_033700.csv c_start9_100m/raw_20261120_033700_003.npz c_start9_100m/raw_20261120_033700_004.npz ... (8 raw files)
+INFO 97 frames from 16 s to 1 s before the switch at t 56.7 s
+PASS video delay 30 ms (was 70), readout -3 ms (was +14), residual 0.43 deg, 26 deg/s
+PASS settings written. Start run again, then set VISO_DELAY_MS from 'apb_main.py delay' after the hover.
+exit 0, 0.8 s, settings after: video_delay_s 30 ms, readout_s -3 ms
+
+== c_start11_100m: program started 11 s before the switch (frames and log rows before t 45.7 removed)
+$ apb_main.py timing c_start11_100m/run_20261120_033700.csv c_start11_100m/raw_20261120_033700_003.npz c_start11_100m/raw_20261120_033700_004.npz ... (8 raw files)
+INFO 121 frames from 16 s to 1 s before the switch at t 56.7 s
+PASS video delay 38 ms (was 70), readout +13 ms (was +14), residual 0.46 deg, 27 deg/s
+PASS settings written. Start run again, then set VISO_DELAY_MS from 'apb_main.py delay' after the hover.
+exit 0, 0.8 s, settings after: video_delay_s 38 ms, readout_s +13 ms
+
+== c_start13_100m: program started 13 s before the switch (frames and log rows before t 43.7 removed)
+$ apb_main.py timing c_start13_100m/run_20261120_033700.csv c_start13_100m/raw_20261120_033700_002.npz c_start13_100m/raw_20261120_033700_003.npz ... (9 raw files)
+INFO 145 frames from 16 s to 1 s before the switch at t 56.7 s
+PASS video delay 32 ms (was 70), readout +4 ms (was +14), residual 0.39 deg, 26 deg/s
+PASS settings written. Start run again, then set VISO_DELAY_MS from 'apb_main.py delay' after the hover.
+exit 0, 1.0 s, settings after: video_delay_s 32 ms, readout_s +4 ms
+
+== d_ground_100m: first 'engaged' from a switch test 1 s after the program start (on the ground), released 2 s later; the real switch stays
+$ apb_main.py timing d_ground_100m/run_20261120_033700.csv d_ground_100m/raw_20261120_033700_000.npz d_ground_100m/raw_20261120_033700_001.npz ... (11 raw files)
+FAIL no raw frame in the 15 s before the switch at t 16.2 s (raw frames t 15.3 to 116.7 s). The switch came before the recording, or the raw files are from another run.
+exit 1, 0.2 s, settings after: video_delay_s 70 ms, readout_s +14 ms
+
+== d_test17_100m: first 'engaged' from a switch test 17 s after the program start, released 2 s later; the real switch stays
+$ apb_main.py timing d_test17_100m/run_20261120_033700.csv d_test17_100m/raw_20261120_033700_000.npz d_test17_100m/raw_20261120_033700_001.npz ... (11 raw files)
+INFO 188 frames from 16 s to 1 s before the switch at t 32.2 s (the first of 2 switches in the log)
+FAIL the recording turned 6 deg/s RMS with 7847 matches; need 20 deg/s and 1000. Rock the roll and pitch sticks harder for 8 s.
+exit 1, 0.4 s, settings after: video_delay_s 70 ms, readout_s +14 ms
+
+== d_test3_100m: first 'engaged' from a switch test 3 s after the program start, released 2 s later; the real switch stays
+$ apb_main.py timing d_test3_100m/run_20261120_033700.csv d_test3_100m/raw_20261120_033700_000.npz d_test3_100m/raw_20261120_033700_001.npz ... (11 raw files)
+INFO 45 frames from 16 s to 1 s before the switch at t 18.2 s (the first of 2 switches in the log)
+FAIL the recording turned 17 deg/s RMS with 322 matches; need 20 deg/s and 1000. Rock the roll and pitch sticks harder for 8 s.
+exit 1, 0.3 s, settings after: video_delay_s 70 ms, readout_s +14 ms
+
+== a2_still8_10m: as a_still8, and the mode column ALT_HOLD before the moved note (a pilot who holds position in Altitude mode; the attitude is the hold's)
+$ apb_main.py timing a2_still8_10m/run_20261120_034211.csv a2_still8_10m/raw_20261120_034211_000.npz a2_still8_10m/raw_20261120_034211_001.npz ... (9 raw files)
+INFO 184 frames from 16 s to 1 s before the switch at t 41.3 s
+FAIL delay 40 ms, residual 1.04 deg (orientation front fits 1.19 deg). Settings not changed. Run calib on the ground.
+exit 1, 1.1 s, settings after: video_delay_s 70 ms, readout_s +14 ms
+
+== a2_still10_10m: as a_still10, and the mode column ALT_HOLD before the moved note (a pilot who holds position in Altitude mode; the attitude is the hold's)
+$ apb_main.py timing a2_still10_10m/run_20261120_034211.csv a2_still10_10m/raw_20261120_034211_000.npz a2_still10_10m/raw_20261120_034211_001.npz ... (9 raw files)
+INFO 183 frames from 16 s to 1 s before the switch at t 43.2 s
+FAIL delay 58 ms, residual 1.48 deg (orientation front fits 1.49 deg). Settings not changed. Run calib on the ground.
+exit 1, 1.0 s, settings after: video_delay_s 70 ms, readout_s +14 ms
+
+== a2_still12_10m: as a_still12, and the mode column ALT_HOLD before the moved note (a pilot who holds position in Altitude mode; the attitude is the hold's)
+$ apb_main.py timing a2_still12_10m/run_20261120_034211.csv a2_still12_10m/raw_20261120_034211_000.npz a2_still12_10m/raw_20261120_034211_001.npz ... (9 raw files)
+INFO 183 frames from 16 s to 1 s before the switch at t 45.3 s
+FAIL the recording turned 17 deg/s RMS with 5862 matches; need 20 deg/s and 1000. Rock the roll and pitch sticks harder for 8 s.
+exit 1, 0.4 s, settings after: video_delay_s 70 ms, readout_s +14 ms
+
+== a2_still15_10m: as a_still15, and the mode column ALT_HOLD before the moved note (a pilot who holds position in Altitude mode; the attitude is the hold's)
+$ apb_main.py timing a2_still15_10m/run_20261120_034211.csv a2_still15_10m/raw_20261120_034211_000.npz a2_still15_10m/raw_20261120_034211_001.npz ... (9 raw files)
+INFO 183 frames from 16 s to 1 s before the switch at t 48.3 s
+FAIL the recording turned 10 deg/s RMS with 6040 matches; need 20 deg/s and 1000. Rock the roll and pitch sticks harder for 8 s.
+exit 1, 0.4 s, settings after: video_delay_s 70 ms, readout_s +14 ms
+
+== a2_still20_10m: as a_still20, and the mode column ALT_HOLD before the moved note (a pilot who holds position in Altitude mode; the attitude is the hold's)
+$ apb_main.py timing a2_still20_10m/run_20261120_034211.csv a2_still20_10m/raw_20261120_034211_000.npz a2_still20_10m/raw_20261120_034211_001.npz ... (9 raw files)
+INFO 183 frames from 16 s to 1 s before the switch at t 53.3 s
+FAIL the recording turned 5 deg/s RMS with 6604 matches; need 20 deg/s and 1000. Rock the roll and pitch sticks harder for 8 s.
+exit 1, 0.4 s, settings after: video_delay_s 70 ms, readout_s +14 ms
+
+== a2_still25_10m: as a_still25, and the mode column ALT_HOLD before the moved note (a pilot who holds position in Altitude mode; the attitude is the hold's)
+$ apb_main.py timing a2_still25_10m/run_20261120_034211.csv a2_still25_10m/raw_20261120_034211_000.npz a2_still25_10m/raw_20261120_034211_001.npz ... (9 raw files)
+INFO 184 frames from 16 s to 1 s before the switch at t 58.3 s
+FAIL the recording turned 5 deg/s RMS with 7401 matches; need 20 deg/s and 1000. Rock the roll and pitch sticks harder for 8 s.
+exit 1, 0.4 s, settings after: video_delay_s 70 ms, readout_s +14 ms
+
+== a2_still30_10m: as a_still30, and the mode column ALT_HOLD before the moved note (a pilot who holds position in Altitude mode; the attitude is the hold's)
+$ apb_main.py timing a2_still30_10m/run_20261120_034211.csv a2_still30_10m/raw_20261120_034211_000.npz a2_still30_10m/raw_20261120_034211_001.npz ... (9 raw files)
+INFO 184 frames from 16 s to 1 s before the switch at t 63.3 s
+FAIL the recording turned 5 deg/s RMS with 7419 matches; need 20 deg/s and 1000. Rock the roll and pitch sticks harder for 8 s.
+exit 1, 0.5 s, settings after: video_delay_s 70 ms, readout_s +14 ms
+
+== a2_still40_10m: as a_still40, and the mode column ALT_HOLD before the moved note (a pilot who holds position in Altitude mode; the attitude is the hold's)
+$ apb_main.py timing a2_still40_10m/run_20261120_034211.csv a2_still40_10m/raw_20261120_034211_000.npz a2_still40_10m/raw_20261120_034211_001.npz ... (9 raw files)
+INFO 184 frames from 16 s to 1 s before the switch at t 73.3 s
+FAIL the recording turned 5 deg/s RMS with 6967 matches; need 20 deg/s and 1000. Rock the roll and pitch sticks harder for 8 s.
+exit 1, 0.4 s, settings after: video_delay_s 70 ms, readout_s +14 ms
+
+== a2_still8_30m: as a_still8, and the mode column ALT_HOLD before the moved note (a pilot who holds position in Altitude mode; the attitude is the hold's)
+$ apb_main.py timing a2_still8_30m/run_20261120_033928.csv a2_still8_30m/raw_20261120_033928_000.npz a2_still8_30m/raw_20261120_033928_001.npz ... (9 raw files)
+INFO 184 frames from 16 s to 1 s before the switch at t 46.1 s
+FAIL delay 44 ms, residual 1.06 deg (orientation front fits 1.10 deg). Settings not changed. Run calib on the ground.
+exit 1, 1.1 s, settings after: video_delay_s 70 ms, readout_s +14 ms
+
+== a2_still10_30m: as a_still10, and the mode column ALT_HOLD before the moved note (a pilot who holds position in Altitude mode; the attitude is the hold's)
+$ apb_main.py timing a2_still10_30m/run_20261120_033928.csv a2_still10_30m/raw_20261120_033928_000.npz a2_still10_30m/raw_20261120_033928_001.npz ... (9 raw files)
+INFO 184 frames from 16 s to 1 s before the switch at t 48.1 s
+PASS video delay 42 ms (was 70), readout +24 ms (was +14), residual 0.77 deg, 22 deg/s
+PASS settings written. Start run again, then set VISO_DELAY_MS from 'apb_main.py delay' after the hover.
+exit 0, 1.1 s, settings after: video_delay_s 42 ms, readout_s +24 ms
+
+== a2_still12_30m: as a_still12, and the mode column ALT_HOLD before the moved note (a pilot who holds position in Altitude mode; the attitude is the hold's)
+$ apb_main.py timing a2_still12_30m/run_20261120_033928.csv a2_still12_30m/raw_20261120_033928_000.npz a2_still12_30m/raw_20261120_033928_001.npz ... (9 raw files)
+INFO 183 frames from 16 s to 1 s before the switch at t 50.0 s
+FAIL the recording turned 19 deg/s RMS with 6649 matches; need 20 deg/s and 1000. Rock the roll and pitch sticks harder for 8 s.
+exit 1, 0.4 s, settings after: video_delay_s 70 ms, readout_s +14 ms
+
+== a2_still15_30m: as a_still15, and the mode column ALT_HOLD before the moved note (a pilot who holds position in Altitude mode; the attitude is the hold's)
+$ apb_main.py timing a2_still15_30m/run_20261120_033928.csv a2_still15_30m/raw_20261120_033928_000.npz a2_still15_30m/raw_20261120_033928_001.npz ... (9 raw files)
+INFO 183 frames from 16 s to 1 s before the switch at t 53.0 s
+FAIL the recording turned 12 deg/s RMS with 7383 matches; need 20 deg/s and 1000. Rock the roll and pitch sticks harder for 8 s.
+exit 1, 0.4 s, settings after: video_delay_s 70 ms, readout_s +14 ms
+
+== a2_still20_30m: as a_still20, and the mode column ALT_HOLD before the moved note (a pilot who holds position in Altitude mode; the attitude is the hold's)
+$ apb_main.py timing a2_still20_30m/run_20261120_033928.csv a2_still20_30m/raw_20261120_033928_000.npz a2_still20_30m/raw_20261120_033928_001.npz ... (9 raw files)
+INFO 183 frames from 16 s to 1 s before the switch at t 58.0 s
+FAIL the recording turned 8 deg/s RMS with 8025 matches; need 20 deg/s and 1000. Rock the roll and pitch sticks harder for 8 s.
+exit 1, 0.4 s, settings after: video_delay_s 70 ms, readout_s +14 ms
+
+== a2_still25_30m: as a_still25, and the mode column ALT_HOLD before the moved note (a pilot who holds position in Altitude mode; the attitude is the hold's)
+$ apb_main.py timing a2_still25_30m/run_20261120_033928.csv a2_still25_30m/raw_20261120_033928_000.npz a2_still25_30m/raw_20261120_033928_001.npz ... (9 raw files)
+INFO 183 frames from 16 s to 1 s before the switch at t 63.0 s
+FAIL the recording turned 7 deg/s RMS with 8474 matches; need 20 deg/s and 1000. Rock the roll and pitch sticks harder for 8 s.
+exit 1, 0.4 s, settings after: video_delay_s 70 ms, readout_s +14 ms
+
+== a2_still30_30m: as a_still30, and the mode column ALT_HOLD before the moved note (a pilot who holds position in Altitude mode; the attitude is the hold's)
+$ apb_main.py timing a2_still30_30m/run_20261120_033928.csv a2_still30_30m/raw_20261120_033928_000.npz a2_still30_30m/raw_20261120_033928_001.npz ... (9 raw files)
+INFO 183 frames from 16 s to 1 s before the switch at t 68.1 s
+FAIL the recording turned 7 deg/s RMS with 7825 matches; need 20 deg/s and 1000. Rock the roll and pitch sticks harder for 8 s.
+exit 1, 0.4 s, settings after: video_delay_s 70 ms, readout_s +14 ms
+
+== a2_still40_30m: as a_still40, and the mode column ALT_HOLD before the moved note (a pilot who holds position in Altitude mode; the attitude is the hold's)
+$ apb_main.py timing a2_still40_30m/run_20261120_033928.csv a2_still40_30m/raw_20261120_033928_000.npz a2_still40_30m/raw_20261120_033928_001.npz ... (9 raw files)
+INFO 182 frames from 16 s to 1 s before the switch at t 78.0 s
+FAIL the recording turned 7 deg/s RMS with 7317 matches; need 20 deg/s and 1000. Rock the roll and pitch sticks harder for 8 s.
+exit 1, 0.4 s, settings after: video_delay_s 70 ms, readout_s +14 ms
+
+== a2_still8_60m: as a_still8, and the mode column ALT_HOLD before the moved note (a pilot who holds position in Altitude mode; the attitude is the hold's)
+$ apb_main.py timing a2_still8_60m/run_20261120_033410.csv a2_still8_60m/raw_20261120_033410_000.npz a2_still8_60m/raw_20261120_033410_001.npz ... (10 raw files)
+INFO 183 frames from 16 s to 1 s before the switch at t 52.8 s
+PASS video delay 38 ms (was 70), readout +16 ms (was +14), residual 0.91 deg, 27 deg/s
+PASS settings written. Start run again, then set VISO_DELAY_MS from 'apb_main.py delay' after the hover.
+exit 0, 1.3 s, settings after: video_delay_s 38 ms, readout_s +16 ms
+
+== a2_still10_60m: as a_still10, and the mode column ALT_HOLD before the moved note (a pilot who holds position in Altitude mode; the attitude is the hold's)
+$ apb_main.py timing a2_still10_60m/run_20261120_033410.csv a2_still10_60m/raw_20261120_033410_000.npz a2_still10_60m/raw_20261120_033410_001.npz ... (10 raw files)
+INFO 183 frames from 16 s to 1 s before the switch at t 54.8 s
+FAIL delay 42 ms, residual 1.07 deg (orientation front fits 1.11 deg). Settings not changed. Run calib on the ground.
+exit 1, 1.3 s, settings after: video_delay_s 70 ms, readout_s +14 ms
+
+== a2_still12_60m: as a_still12, and the mode column ALT_HOLD before the moved note (a pilot who holds position in Altitude mode; the attitude is the hold's)
+$ apb_main.py timing a2_still12_60m/run_20261120_033410.csv a2_still12_60m/raw_20261120_033410_000.npz a2_still12_60m/raw_20261120_033410_001.npz ... (10 raw files)
+INFO 182 frames from 16 s to 1 s before the switch at t 56.8 s
+FAIL delay 58 ms, residual 1.50 deg (orientation front fits 1.52 deg). Settings not changed. Run calib on the ground.
+exit 1, 1.4 s, settings after: video_delay_s 70 ms, readout_s +14 ms
+
+== a2_still15_60m: as a_still15, and the mode column ALT_HOLD before the moved note (a pilot who holds position in Altitude mode; the attitude is the hold's)
+$ apb_main.py timing a2_still15_60m/run_20261120_033410.csv a2_still15_60m/raw_20261120_033410_000.npz a2_still15_60m/raw_20261120_033410_001.npz ... (10 raw files)
+INFO 182 frames from 16 s to 1 s before the switch at t 59.7 s
+FAIL delay 50 ms, residual 2.24 deg (orientation front fits 2.30 deg). Settings not changed. Run calib on the ground.
+exit 1, 1.3 s, settings after: video_delay_s 70 ms, readout_s +14 ms
+
+== a2_still20_60m: as a_still20, and the mode column ALT_HOLD before the moved note (a pilot who holds position in Altitude mode; the attitude is the hold's)
+$ apb_main.py timing a2_still20_60m/run_20261120_033410.csv a2_still20_60m/raw_20261120_033410_000.npz a2_still20_60m/raw_20261120_033410_001.npz ... (10 raw files)
+INFO 183 frames from 16 s to 1 s before the switch at t 64.7 s
+FAIL delay 54 ms, residual 1.48 deg (orientation front fits 1.62 deg). Settings not changed. Run calib on the ground.
+exit 1, 1.4 s, settings after: video_delay_s 70 ms, readout_s +14 ms
+
+== a2_still25_60m: as a_still25, and the mode column ALT_HOLD before the moved note (a pilot who holds position in Altitude mode; the attitude is the hold's)
+$ apb_main.py timing a2_still25_60m/run_20261120_033410.csv a2_still25_60m/raw_20261120_033410_000.npz a2_still25_60m/raw_20261120_033410_001.npz ... (10 raw files)
+INFO 182 frames from 16 s to 1 s before the switch at t 69.8 s
+PASS video delay 66 ms (was 70), readout +39 ms (was +14), residual 0.98 deg, 33 deg/s
+PASS settings written. Start run again, then set VISO_DELAY_MS from 'apb_main.py delay' after the hover.
+exit 0, 1.3 s, settings after: video_delay_s 66 ms, readout_s +39 ms
+
+== a2_still30_60m: as a_still30, and the mode column ALT_HOLD before the moved note (a pilot who holds position in Altitude mode; the attitude is the hold's)
+$ apb_main.py timing a2_still30_60m/run_20261120_033410.csv a2_still30_60m/raw_20261120_033410_000.npz a2_still30_60m/raw_20261120_033410_001.npz ... (10 raw files)
+INFO 182 frames from 16 s to 1 s before the switch at t 74.8 s
+PASS video delay 50 ms (was 70), readout +30 ms (was +14), residual 0.93 deg, 31 deg/s
+PASS settings written. Start run again, then set VISO_DELAY_MS from 'apb_main.py delay' after the hover.
+exit 0, 1.2 s, settings after: video_delay_s 50 ms, readout_s +30 ms
+
+== a2_still40_60m: as a_still40, and the mode column ALT_HOLD before the moved note (a pilot who holds position in Altitude mode; the attitude is the hold's)
+$ apb_main.py timing a2_still40_60m/run_20261120_033410.csv a2_still40_60m/raw_20261120_033410_000.npz a2_still40_60m/raw_20261120_033410_001.npz ... (10 raw files)
+INFO 183 frames from 16 s to 1 s before the switch at t 84.8 s
+PASS video delay 40 ms (was 70), readout +20 ms (was +14), residual 0.83 deg, 27 deg/s
+PASS settings written. Start run again, then set VISO_DELAY_MS from 'apb_main.py delay' after the hover.
+exit 0, 1.2 s, settings after: video_delay_s 40 ms, readout_s +20 ms
+
+== a2_still8_100m: as a_still8, and the mode column ALT_HOLD before the moved note (a pilot who holds position in Altitude mode; the attitude is the hold's)
+$ apb_main.py timing a2_still8_100m/run_20261120_033700.csv a2_still8_100m/raw_20261120_033700_000.npz a2_still8_100m/raw_20261120_033700_001.npz ... (11 raw files)
+INFO 183 frames from 16 s to 1 s before the switch at t 60.6 s
+PASS video delay 40 ms (was 70), readout +12 ms (was +14), residual 0.45 deg, 25 deg/s
+PASS settings written. Start run again, then set VISO_DELAY_MS from 'apb_main.py delay' after the hover.
+exit 0, 1.4 s, settings after: video_delay_s 40 ms, readout_s +12 ms
+
+== a2_still10_100m: as a_still10, and the mode column ALT_HOLD before the moved note (a pilot who holds position in Altitude mode; the attitude is the hold's)
+$ apb_main.py timing a2_still10_100m/run_20261120_033700.csv a2_still10_100m/raw_20261120_033700_000.npz a2_still10_100m/raw_20261120_033700_001.npz ... (11 raw files)
+INFO 184 frames from 16 s to 1 s before the switch at t 62.6 s
+PASS video delay 46 ms (was 70), readout +16 ms (was +14), residual 0.51 deg, 24 deg/s
+PASS settings written. Start run again, then set VISO_DELAY_MS from 'apb_main.py delay' after the hover.
+exit 0, 1.3 s, settings after: video_delay_s 46 ms, readout_s +16 ms
+
+== a2_still12_100m: as a_still12, and the mode column ALT_HOLD before the moved note (a pilot who holds position in Altitude mode; the attitude is the hold's)
+$ apb_main.py timing a2_still12_100m/run_20261120_033700.csv a2_still12_100m/raw_20261120_033700_000.npz a2_still12_100m/raw_20261120_033700_001.npz ... (11 raw files)
+INFO 184 frames from 16 s to 1 s before the switch at t 64.6 s
+PASS video delay 42 ms (was 70), readout +14 ms (was +14), residual 0.49 deg, 23 deg/s
+PASS settings written. Start run again, then set VISO_DELAY_MS from 'apb_main.py delay' after the hover.
+exit 0, 1.3 s, settings after: video_delay_s 42 ms, readout_s +14 ms
+
+== a2_still15_100m: as a_still15, and the mode column ALT_HOLD before the moved note (a pilot who holds position in Altitude mode; the attitude is the hold's)
+$ apb_main.py timing a2_still15_100m/run_20261120_033700.csv a2_still15_100m/raw_20261120_033700_000.npz a2_still15_100m/raw_20261120_033700_001.npz ... (11 raw files)
+INFO 184 frames from 16 s to 1 s before the switch at t 67.6 s
+FAIL the recording turned 20 deg/s RMS with 7376 matches; need 20 deg/s and 1000. Rock the roll and pitch sticks harder for 8 s.
+exit 1, 0.4 s, settings after: video_delay_s 70 ms, readout_s +14 ms
+
+== a2_still20_100m: as a_still20, and the mode column ALT_HOLD before the moved note (a pilot who holds position in Altitude mode; the attitude is the hold's)
+$ apb_main.py timing a2_still20_100m/run_20261120_033700.csv a2_still20_100m/raw_20261120_033700_000.npz a2_still20_100m/raw_20261120_033700_001.npz ... (11 raw files)
+INFO 184 frames from 16 s to 1 s before the switch at t 72.6 s
+PASS video delay 50 ms (was 70), readout +30 ms (was +14), residual 0.91 deg, 24 deg/s
+PASS settings written. Start run again, then set VISO_DELAY_MS from 'apb_main.py delay' after the hover.
+exit 0, 1.2 s, settings after: video_delay_s 50 ms, readout_s +30 ms
+
+== a2_still25_100m: as a_still25, and the mode column ALT_HOLD before the moved note (a pilot who holds position in Altitude mode; the attitude is the hold's)
+$ apb_main.py timing a2_still25_100m/run_20261120_033700.csv a2_still25_100m/raw_20261120_033700_000.npz a2_still25_100m/raw_20261120_033700_001.npz ... (11 raw files)
+INFO 183 frames from 16 s to 1 s before the switch at t 77.6 s
+FAIL delay 50 ms, residual 1.72 deg (orientation front fits 1.83 deg). Settings not changed. Run calib on the ground.
+exit 1, 1.2 s, settings after: video_delay_s 70 ms, readout_s +14 ms
+
+== a2_still30_100m: as a_still30, and the mode column ALT_HOLD before the moved note (a pilot who holds position in Altitude mode; the attitude is the hold's)
+$ apb_main.py timing a2_still30_100m/run_20261120_033700.csv a2_still30_100m/raw_20261120_033700_000.npz a2_still30_100m/raw_20261120_033700_001.npz ... (11 raw files)
+INFO 183 frames from 16 s to 1 s before the switch at t 82.6 s
+FAIL delay 50 ms, residual 1.02 deg (orientation front fits 1.11 deg). Settings not changed. Run calib on the ground.
+exit 1, 1.1 s, settings after: video_delay_s 70 ms, readout_s +14 ms
+
+== a2_still40_100m: as a_still40, and the mode column ALT_HOLD before the moved note (a pilot who holds position in Altitude mode; the attitude is the hold's)
+$ apb_main.py timing a2_still40_100m/run_20261120_033700.csv a2_still40_100m/raw_20261120_033700_000.npz a2_still40_100m/raw_20261120_033700_001.npz ... (11 raw files)
+INFO 183 frames from 16 s to 1 s before the switch at t 92.6 s
+PASS video delay 40 ms (was 70), readout +17 ms (was +14), residual 0.65 deg, 31 deg/s
+PASS settings written. Start run again, then set VISO_DELAY_MS from 'apb_main.py delay' after the hover.
+exit 0, 1.2 s, settings after: video_delay_s 40 ms, readout_s +17 ms
+

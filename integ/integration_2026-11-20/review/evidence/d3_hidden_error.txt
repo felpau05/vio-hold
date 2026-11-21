@@ -1,0 +1,24 @@
+== old apb_main.py: calib --rec calib4_full_full_30hz_s5_rec.npz, lens_file = a lens file cut after 300 bytes (copy in d3/)
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 353, in raw_decode
+    obj, end = self.scan_once(s, idx)
+               ^^^^^^^^^^^^^^^^^^^^^^
+json.decoder.JSONDecodeError: Unterminated string starting at: line 18 column 4 (char 298)
+exit 1
+== old apb_main.py: mask --rec <the run log .csv by mistake>
+  File "<review>/mut/old/apb_main.py", line 919, in _recording
+    d = np.load(args.rec)
+        ^^^^^^^^^^^^^^^^^
+  File "~/.venvs/vio/lib/python3.12/site-packages/numpy/lib/_npyio_impl.py", line 489, in load
+    raise ValueError(
+ValueError: This file contains pickled (object) data. If you trust the file you can load it unsafely using the `allow_pickle=` keyword argument or `pickle.load()`.
+exit 1
+== base apb_main.py: calib --rec calib4_full_full_30hz_s5_rec.npz, lens_file = a lens file cut after 300 bytes (copy in d3/)
+Point the camera at a scene more than 50 m away (drone on its side). Turn the drone by hand, +-15 to 20 deg about all three axes, about once every 2 s.
+FAIL Unterminated string starting at: line 18 column 4 (char 298)
+exit 1
+== base apb_main.py: mask --rec <the run log .csv by mistake>
+Turn and tilt the drone by hand while it records, so the ground moves and the OSD stays.
+FAIL This file contains pickled (object) data. If you trust the file you can load it unsafely using the `allow_pickle=` keyword argument or `pickle.load()`.
+exit 1

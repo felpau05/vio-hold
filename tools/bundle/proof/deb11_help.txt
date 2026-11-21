@@ -1,0 +1,35 @@
+$ qpy apb_main.py --help (cwd: the bundle's vio folder; root file system py310; qemu CPU cortex-a53)
+usage: apb_main.py [-h] [--settings SETTINGS] [--set-params] [--rec REC]
+                   [--seconds SECONDS] [--raw] [--height HEIGHT]
+                   {check,mask,calib,bench,run,replay,delay,timing}
+                   [files ...]
+
+The anchor hold on the APB (i.MX8M Plus), and its event-day tools.
+
+  apb_main.py check [--set-params]   firmware, parameters, stream rates, video, CPU time, disk
+  apb_main.py mask  [--rec FILE]     record while the drone is turned by hand; build the OSD mask
+  apb_main.py calib [--rec FILE]     record a hand rotation; solve orientation, delay, readout, focal, tilt
+  apb_main.py bench [--height 1.5]  ground test, props off: the hold at a fixed height, moves in body axes
+  apb_main.py run   [--raw]          the hold: send the fix to the flight controller
+  apb_main.py replay FILE...         a raw recording through the same pipeline (for tuning)
+  apb_main.py delay LOG.csv...       VISO_DELAY_MS from the fix ages of a flight
+  apb_main.py timing RAW.npz...      video delay and readout from an in-flight stick wiggle (raw chunks)
+
+Every check prints one line: PASS or FAIL, and what to do. run refuses to start when a check fails.
+Safety rule: send nothing when in doubt (stale inputs, bad picture, low height, too few good frames).
+
+positional arguments:
+  {check,mask,calib,bench,run,replay,delay,timing}
+  files                 replay: raw recording .npz files; delay: run log .csv
+                        files
+
+options:
+  -h, --help            show this help message and exit
+  --settings SETTINGS
+  --set-params          check: write wrong FC parameters
+  --rec REC             mask/calib: use this recording instead of recording
+                        now
+  --seconds SECONDS     mask/calib: recording length
+  --raw                 run: also save raw frames and FC data
+  --height HEIGHT       bench: lens height above the floor (m)
+exit code 0

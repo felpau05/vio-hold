@@ -1,0 +1,53 @@
+$ qpy tests_apb/test_basics.py (cwd: the bundle's vio folder plus the test files; root file system py310; qemu CPU cortex-a53)
+settings
+  PASS defaults round-trip (67 keys)
+  PASS {'fc_baudrate': 1} refused: /tmp/tmp4z2l7y6b/s.json: unknown key 'fc_baudrate'. Fix the spelling or remove it.
+  PASS {'top': 'Front'} refused: /tmp/tmp4z2l7y6b/s.json: 'top' must be one of front, right, rear, left; it is 'Front'.
+  PASS {'mirror': 1} refused: /tmp/tmp4z2l7y6b/s.json: 'mirror' must be true or false; it is 1.
+  PASS {'tilt_deg': [1]} refused: /tmp/tmp4z2l7y6b/s.json: 'tilt_deg' must be a list of 2 numbers; it is [1].
+  PASS {'readout_s': '16ms'} refused: /tmp/tmp4z2l7y6b/s.json: 'readout_s' must be a number; it is '16ms'.
+  PASS {'origin_lat_lon_alt': [45.4]} refused: /tmp/tmp4z2l7y6b/s.json: 'origin_lat_lon_alt' must be null or [lat, lon, alt]; it is [45.4].
+  PASS negative readout and an origin are accepted
+capture
+  PASS judge: fresh, fresh+noise, repeat, NO SIGNAL screen, driver flag -> [None, None, 'repeated frame', 'flat picture (no signal?)', 'no signal (driver)']
+  PASS field split: PAL 720x576 -> 360x288 per field; 'frame' and single-field buffers pass through
+  PASS standard from the driver, else from the frame rate
+  FAIL V4L2 queries on this laptop's /dev/video0: {}
+  PASS missing device reported, no crash
+pipeline gates
+  PASS low height: height 4.0 m under 15 m
+  PASS attitude does not cover the last row: attitude late
+  PASS bad picture: repeated frame
+mask mode on the real analog video (DVR, PAL, OSD burned in)
+  PASS PASS mask covers 21% of the picture; saved /tmp/tmp4z2l7y6b/mask.png; 320x240 field; overlap with the colour reference real/mask_clip-1.png IoU 0.75 (reference covers 19%)
+  PASS a still picture is refused: FAIL mask covers 95% of the picture. The picture did not move enough: turn the drone more and run again.
+[ WARN:0@24.201] global cap.cpp:212 open VIDEOIO(V4L2): backend is generally available but can't be used to capture by name
+[ WARN:0@34.318] global cap.cpp:212 open VIDEOIO(V4L2): backend is generally available but can't be used to capture by name
+[ WARN:0@44.168] global cap.cpp:212 open VIDEOIO(V4L2): backend is generally available but can't be used to capture by name
+check mode against the fake PX4 (no video device here)
+    | FAIL not calibrated. Run 'apb_main.py calib'.
+    | PASS firmware: px4 (system 1)
+    | PASS ATTITUDE 100 Hz (asked 100, need 40)
+    | PASS LOCAL_POSITION_NED 10 Hz (asked 10)
+    | PASS FC clock offset fitted
+    | PASS TIMESYNC round trip p90 3.7 ms (PX4 needs under 10 ms)
+    | FAIL param EKF2_EV_CTRL = 15; need 1. Run 'apb_main.py check --set-params', then reboot the FC.
+    | FAIL param EKF2_GPS_CTRL = 7; need 0. Run 'apb_main.py check --set-params', then reboot the FC.
+    | FAIL param EKF2_HGT_REF = 1; need 0. Run 'apb_main.py check --set-params', then reboot the FC.
+    | PASS param EKF2_BARO_CTRL = 1
+    | FAIL param EKF2_RNG_CTRL = 1; need 0. Run 'apb_main.py check --set-params', then reboot the FC.
+    | PASS param EKF2_EV_NOISE_MD = 0
+    | PASS param EKF2_EV_DELAY = 0.0
+    | FAIL param EKF2_DELAY_MAX = 110.0; need 300. Run 'apb_main.py check --set-params', then reboot the FC.
+    | PASS param COM_ARM_WO_GPS = 1
+    | INFO height now 2.0 m (run needs 15 m)
+    | FAIL video: cannot open video device /dev/nonexistent. Check the grabber and video_device in settings.json.
+    | PASS Hold.process median [emulated time removed] -> [rate removed] (need 10)
+    | INFO fix age about [emulated time removed] (video delay + process). Use it for EKF2_EV_DELAY when time sync fails. ArduPilot: after the first hover set VISO_DELAY_MS from 'apb_main.py delay <run log>'.
+    | FAIL no mask. Run 'apb_main.py mask'.
+    | PASS free disk 27.4 GB at /tmp/tmp4z2l7y6b (need 2.0 GB: raw recording takes 2.6 MB/s at 360x288, 25 Hz)
+    | 8 FAIL
+  PASS first check: 8 FAIL lines, one line per check
+  PASS after --set-params every parameter passes
+1 FAIL in 48 s
+exit code 1

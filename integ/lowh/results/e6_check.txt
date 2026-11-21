@@ -1,0 +1,48 @@
+E6 scene per seed (e6_check.py). Copies: lowh_base = repository hold.py; e6_geo = variant 'geo' (warp start and J at the
+last fix: the geometric part of the first try); e6_local = variant 'local' (unit change only); lowh_copy = the patch
+(geo2_local). Only the yaw-90 runs use the whole-picture path enough to differ.
+
+== lowh_base (repository hold.py)
+yaw 60 seed 1: rms 0.99 end 0.44 sent 0.97 kfs 9 dense calls 0 ok 0 why {}; err by 5 s: 1.04 1.08 0.85 0.95
+yaw 60 seed 3: rms 0.94 end 0.31 sent 0.97 kfs 8 dense calls 0 ok 0 why {}; err by 5 s: 0.98 1.01 0.82 0.91
+yaw 60 seed 11: rms 0.86 end 0.28 sent 0.97 kfs 8 dense calls 1 ok 1 why {}; err by 5 s: 1.02 0.98 0.64 0.71
+yaw 60 seed 12: rms 0.89 end 0.36 sent 0.97 kfs 9 dense calls 1 ok 1 why {}; err by 5 s: 0.87 0.98 0.81 0.91
+yaw 60 seed 13: rms 1.10 end 0.40 sent 0.97 kfs 7 dense calls 0 ok 0 why {}; err by 5 s: 1.35 1.38 0.76 0.72
+yaw 90 seed 1: rms 1.87 end 1.93 sent 0.94 kfs 11 dense calls 27 ok 26 why {'whole picture and points disagree': 1}; err by 5 s: 1.21 1.39 2.07 2.54
+yaw 90 seed 3: rms 1.63 end 1.26 sent 0.97 kfs 15 dense calls 46 ok 45 why {'whole picture and points disagree': 1}; err by 5 s: 1.48 1.82 1.70 1.50
+yaw 90 seed 11: rms 1.51 end 0.91 sent 0.98 kfs 12 dense calls 4 ok 4 why {}; err by 5 s: 1.47 1.51 1.41 1.64
+yaw 90 seed 12: rms 1.23 end 1.16 sent 0.97 kfs 13 dense calls 4 ok 4 why {}; err by 5 s: 1.00 1.04 1.34 1.48
+yaw 90 seed 13: rms 1.70 end 0.71 sent 0.98 kfs 13 dense calls 4 ok 4 why {}; err by 5 s: 1.52 1.56 1.74 1.96
+== e6_geo (variant geo)
+yaw 60 seed 1: rms 0.99 end 0.44 sent 0.97 kfs 9 dense calls 0 ok 0 why {}; err by 5 s: 1.04 1.08 0.85 0.95
+yaw 60 seed 3: rms 0.94 end 0.31 sent 0.97 kfs 8 dense calls 0 ok 0 why {}; err by 5 s: 0.98 1.01 0.82 0.91
+yaw 60 seed 11: rms 0.86 end 0.28 sent 0.97 kfs 8 dense calls 1 ok 1 why {}; err by 5 s: 1.02 0.98 0.64 0.71
+yaw 60 seed 12: rms 0.89 end 0.36 sent 0.97 kfs 9 dense calls 1 ok 1 why {}; err by 5 s: 0.87 0.98 0.81 0.91
+yaw 60 seed 13: rms 1.10 end 0.40 sent 0.97 kfs 7 dense calls 0 ok 0 why {}; err by 5 s: 1.35 1.38 0.76 0.72
+yaw 90 seed 1: rms 1.94 end 1.61 sent 0.97 kfs 14 dense calls 10 ok 9 why {'whole picture and points disagree': 1}; err by 5 s: 1.21 1.33 2.26 2.59
+yaw 90 seed 3: rms 2.32 end 0.93 sent 0.94 kfs 12 dense calls 79 ok 78 why {'whole picture and points disagree': 1}; err by 5 s: 2.21 2.52 2.39 2.11
+yaw 90 seed 11: rms 1.71 end 1.42 sent 0.98 kfs 13 dense calls 4 ok 4 why {}; err by 5 s: 1.47 1.51 1.68 2.11
+yaw 90 seed 12: rms 1.53 end 1.64 sent 0.97 kfs 12 dense calls 4 ok 4 why {}; err by 5 s: 1.00 1.04 1.69 2.11
+yaw 90 seed 13: rms 1.64 end 0.69 sent 0.98 kfs 13 dense calls 4 ok 4 why {}; err by 5 s: 1.52 1.56 1.64 1.83
+== e6_local (variant local)
+yaw 60 seed 1: rms 0.99 end 0.44 sent 0.97 kfs 9 dense calls 0 ok 0 why {}; err by 5 s: 1.04 1.08 0.85 0.95
+yaw 60 seed 3: rms 0.94 end 0.31 sent 0.97 kfs 8 dense calls 0 ok 0 why {}; err by 5 s: 0.98 1.01 0.82 0.91
+yaw 60 seed 11: rms 0.86 end 0.28 sent 0.97 kfs 8 dense calls 1 ok 1 why {}; err by 5 s: 1.02 0.98 0.64 0.71
+yaw 60 seed 12: rms 0.89 end 0.36 sent 0.97 kfs 9 dense calls 1 ok 1 why {}; err by 5 s: 0.87 0.98 0.81 0.91
+yaw 60 seed 13: rms 1.10 end 0.40 sent 0.97 kfs 7 dense calls 0 ok 0 why {}; err by 5 s: 1.35 1.38 0.76 0.72
+yaw 90 seed 1: rms 1.87 end 1.93 sent 0.94 kfs 11 dense calls 27 ok 26 why {'whole picture and points disagree': 1}; err by 5 s: 1.21 1.39 2.07 2.54
+yaw 90 seed 3: rms 1.63 end 1.26 sent 0.97 kfs 15 dense calls 46 ok 45 why {'whole picture and points disagree': 1}; err by 5 s: 1.48 1.82 1.70 1.50
+yaw 90 seed 11: rms 1.51 end 0.91 sent 0.98 kfs 12 dense calls 4 ok 4 why {}; err by 5 s: 1.47 1.51 1.41 1.64
+yaw 90 seed 12: rms 1.23 end 1.16 sent 0.97 kfs 13 dense calls 4 ok 4 why {}; err by 5 s: 1.00 1.04 1.34 1.48
+yaw 90 seed 13: rms 1.70 end 0.71 sent 0.98 kfs 13 dense calls 4 ok 4 why {}; err by 5 s: 1.52 1.56 1.74 1.96
+== lowh_copy (the patch, variant geo2_local)
+yaw 60 seed 1: rms 0.99 end 0.44 sent 0.97 kfs 9 dense calls 0 ok 0 why {}; err by 5 s: 1.04 1.08 0.85 0.95
+yaw 60 seed 3: rms 0.94 end 0.31 sent 0.97 kfs 8 dense calls 0 ok 0 why {}; err by 5 s: 0.98 1.01 0.82 0.91
+yaw 60 seed 11: rms 0.86 end 0.28 sent 0.97 kfs 7 dense calls 1 ok 1 why {}; err by 5 s: 1.02 0.98 0.64 0.71
+yaw 60 seed 12: rms 0.89 end 0.36 sent 0.97 kfs 9 dense calls 1 ok 1 why {}; err by 5 s: 0.87 0.98 0.81 0.91
+yaw 60 seed 13: rms 1.10 end 0.40 sent 0.97 kfs 7 dense calls 0 ok 0 why {}; err by 5 s: 1.35 1.38 0.76 0.72
+yaw 90 seed 1: rms 1.87 end 1.93 sent 0.94 kfs 12 dense calls 27 ok 26 why {'whole picture and points disagree': 1}; err by 5 s: 1.21 1.39 2.07 2.54
+yaw 90 seed 3: rms 1.50 end 0.94 sent 0.97 kfs 13 dense calls 37 ok 36 why {'whole picture and points disagree': 1}; err by 5 s: 1.48 1.29 1.62 1.57
+yaw 90 seed 11: rms 1.51 end 0.90 sent 0.98 kfs 10 dense calls 4 ok 4 why {}; err by 5 s: 1.47 1.51 1.41 1.64
+yaw 90 seed 12: rms 1.23 end 1.16 sent 0.97 kfs 13 dense calls 4 ok 4 why {}; err by 5 s: 1.00 1.04 1.33 1.48
+yaw 90 seed 13: rms 1.70 end 0.70 sent 0.98 kfs 12 dense calls 4 ok 4 why {}; err by 5 s: 1.52 1.56 1.73 1.95

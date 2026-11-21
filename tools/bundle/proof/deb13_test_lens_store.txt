@@ -1,0 +1,23 @@
+$ qpy tests_apb/test_lens_store.py (cwd: the bundle's vio folder plus the test files; root file system py312; qemu CPU cortex-a53)
+(a) calib, then use_profile.py apply justice_d outdoor_night goal_a ardupilot
+  PASS after calib: rc 0, lens in use [301.0, 289.6, 319.5, 179.5, -0.0368], lens file unchanged True, lens_name 'Justice D full sensor (assumed)'
+  PASS after apply: rc 0, lens in use [301.0, 289.6, 319.5, 179.5, -0.0368] (want [301.0, 289.6, 319.5, 179.5, -0.0368]), calibrated True, lens_name 'Justice D full sensor (assumed)'
+  PASS an overlay may not set lens_measured: 'overlay: 'lens_measured' comes from calib, mask or the field, not from a profile.'
+(b) calib on the board, then deploy.sh pull and push (BOARD=local); (f) logs from the board's log_dir
+  PASS first push: rc 0
+  PASS calib on the board: rc 0, lens in use [301.0, 289.6, 319.5, 179.5, -0.0368]
+  PASS (f) pull with rsync: rc 0, laptop logs ['console.txt', 'run_20261119_101500.csv']
+  PASS pull, then push: rc 0, lens in use on the board [301.0, 289.6, 319.5, 179.5, -0.0368] (want [301.0, 289.6, 319.5, 179.5, -0.0368]), start problems ["no mask. Run 'apb_main.py mask' (with no OSD in the picture it masks almost nothing)."]
+  PASS (f) pull with tar: rc 0, laptop logs ['console.txt', 'run_20261119_101500.csv', 'run_20261119_102000.csv']
+  PASS board lens_measured differs from the laptop's: push stops: rc 1 | FAIL the board's calibration differs from this laptop's (lens_measured). Run 'tools/deploy.sh pull', apply your changes again, then push. FORCE=1 overwrites the board's values.
+  PASS (f) a fresh run log in log_dir that sends: push stops: rc 1 | FAIL the program on the board is sending positions now (the drone may be flying). Land first. FORCE=1 skips this stop.
+(d) an old settings file with no lens_measured
+  PASS analog: loads, lens_measured null, lens = profile x focal_scale as before: fx 199.51 (profile 199.51)
+  PASS digital, old calibrated profile: loads, lens_measured null, lens = profile x focal_scale as before: fx 301.00 (profile 301.00)
+  PASS a lens_measured without fx, fy ... is refused: '/tmp/tmprke_eive/bad.json: 'lens_measured' must be null or {"by": "hand turn" or "target", "image_size": [w, h], "fx", "fy", "cx", "cy", "k1" to "k4"}. Run calib again, or set it to null; it is {'by': 'target'}.'
+(e) run and check with a measured lens of another picture shape
+  PASS digital camera, 640x360 measured lens: check says ['PASS lens_measured (hand turn) is 640x360, the picture 640x360: run uses it, not the lens_name profile']
+  PASS analog camera 360x288: run refuses: ["cannot build the hold: ValueError('lens_measured (hand turn) is for 640x360 pictures, but the picture is 360x288. The shapes differ. Set lens_measured to null in settings.json, then run calib for this camera.')"]
+  PASS analog camera 360x288: check says ['FAIL lens_measured (hand turn) is for 640x360 pictures, but the picture is 360x288. The shapes differ. Set lens_measured to null in settings.json, then run calib for this camera.'], last line '4 FAIL'
+ALL PASS in 23 s
+exit code 0

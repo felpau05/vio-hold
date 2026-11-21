@@ -1,0 +1,52 @@
+--- a/msp_link.py
++++ b/msp_link.py
+@@ -247,7 +247,7 @@
+         self.rtts, self.texts, self.reset_counter = deque(maxlen=1), deque(maxlen=20), 0
+         self.budget, self.lock = Budget(), Lock(float(s.get("msp_lock_gain", 0.0)))
+         self.lsb = float(s.get("msp_gyro_lsb_per_dps", 16.4))
+-        self.fix, self.t_flow, self.gyro_hist = None, None, deque(maxlen=GYRO_LAG + 1)
++        self.fix, self.t_flow, self.gyro_hist, self.rem = None, None, deque(maxlen=GYRO_LAG + 1), np.zeros(2)
+         self.sent = deque(maxlen=2000)                 # (t, vn, ve, vn_sent, ve_sent, h, mx, my): for tests and logs
+         self._tx, self._got, self._stop, self._poll = threading.Lock(), threading.Condition(), False, None
+         self._reader = threading.Thread(target=self._read, daemon=True)
+@@ -391,12 +391,18 @@
+         gap = self.t_flow is None or now - self.t_flow > GAP_S
+         if gap:
+             self.gyro_hist.clear()
++            self.rem[:] = 0
+         g = self.gyro.rows[-1]
+         self.gyro_hist.append((g[1], g[2]))
+         gx, gy = self.gyro_hist[0] if len(self.gyro_hist) > GYRO_LAG else (0.0, 0.0)   # what the FC subtracts
+         v = self.lock.step(now, self.fix[1], (vn, ve))
+         dt = 0.05 if self.t_flow is None else now - self.t_flow   # the FC divides by its own arrival gap
+-        mx, my = flow_motion(v[0], v[1], yaw, h, roll, pitch, gx, gy, dt)
++        m = np.array(flow_motion(v[0], v[1], yaw, h, roll, pitch, gx, gy, dt)) + self.rem
++        # One motion count is h / (200 dt) m/s: 0.5 m/s at 5 m and 20 Hz. Plain rounding sent 0 for any speed under
++        # 0.25 m/s. Carrying the remainder keeps the sum of the counts (the FC's integrated flow) within one count.
++        q = np.round(m)
++        self.rem = m - q
++        mx, my = float(q[0]), float(q[1])
+         cos_tilt = math.cos(roll) * math.cos(pitch)
+         self._send(frame_v2(MSP2_RANGEFINDER, rangefinder_payload(h / cos_tilt)) +
+                    frame_v2(MSP2_FLOW, flow_payload(mx, my)))
+--- a/tests_apb/test_msp_link.py
++++ b/tests_apb/test_msp_link.py
+@@ -164,6 +164,18 @@
+ check([f[0] for f in frames[:2]] == [0x1F01, 0x1F02] and len(frames) == 16, "each send: rangefinder then flow")
+ check(all(abs(m[0]) < 1e-9 for m in sent[:6]) and all(m[0] > 0 for m in sent[6:]),
+       "gyro term starts with the 7th message (the FC subtracts the sample of 6 messages earlier)")
++fc.fix = (0.0, np.zeros(2), 5.0)
++fc.t_flow, fc.gyro_hist, fc.gyro.rows[:] = None, type(fc.gyro_hist)(maxlen=M.GYRO_LAG + 1), [(time.monotonic(), 0.0, 0.0, 0.0)]
++fc.att.rows[:] = [(time.monotonic(), 0.0, 0.0, 0.0)]                # level, facing north
++sent = []
++for _ in range(20):                                 # 0.1 m/s north at 5 m: 0.2 counts per 50 ms message
++    time.sleep(0.05)
++    sent.append(fc.send_speed(0, 0.1, 0.0, 0.0))
++fwd = sum(m[1] for m in sent if m) / 200 * 5.0      # the FC's integrated flow angle x height, m
++want = sum(r[3] * (r[0] - q[0]) for q, r in zip(list(fc.sent)[-20:-1], list(fc.sent)[-19:]))
++check(all(m[1] in (0.0, 1.0) for m in sent if m) and abs(fwd - 0.1 * (fc.sent[-1][0] - fc.sent[-20][0]) - 0.1 * 0.05) < 0.026,
++      f"0.1 m/s at 5 m (0.2 counts per message): counts carry their remainder; integrated {fwd:.3f} m, "
++      f"sent speed x time {want:.3f} m (one count = 0.025 m)")
+ fc.close()
+ 
+ print("F. position lock (mode v2) with our model: constant speed error 0.10 m/s, 60 s at 20 Hz, perfect FC hold")

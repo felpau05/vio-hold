@@ -1,0 +1,128 @@
+--- a/apb_main.py
++++ b/apb_main.py
+@@ -8,7 +8,8 @@
+   apb_main.py run   [--raw]          the hold: send the fix to the flight controller
+   apb_main.py replay FILE...         a raw recording through the same pipeline (for tuning)
+   apb_main.py delay LOG.csv...       VISO_DELAY_MS from the fix ages of a flight
+-  apb_main.py timing RAW.npz...      video delay and readout from an in-flight stick wiggle (raw chunks)
++  apb_main.py timing RUN.csv RAW.npz...  video delay and readout from the in-flight stick wiggle: the raw frames of
++                                     the 15 s before the pilot's first switch to position hold in the run log
+ 
+ Every check prints one line: PASS or FAIL, and what to do. run refuses to start when a check fails.
+ Safety rule: send nothing when in doubt (stale inputs, bad picture, low height, too few good frames).
+@@ -18,6 +19,7 @@
+ import glob
+ import math
+ import os
++import re
+ import shutil
+ import sys
+ import threading
+@@ -787,10 +789,13 @@
+     if fc is not None:
+         import fc_link
+         time.sleep(2.0)
+-        r_att, r_pos = fc.rate("ATTITUDE"), fc.rate("LOCAL_POSITION_NED")
++        # ArduPilot sends LOCAL_POSITION_NED only once it has a position (from our fixes): its height stream is
++        # GLOBAL_POSITION_INT (fc_link._read), so that is the one to measure on the ground.
++        hkind = "GLOBAL_POSITION_INT" if fc.firmware == "ardupilot" else "LOCAL_POSITION_NED"
++        r_att, r_pos = fc.rate("ATTITUDE"), fc.rate(hkind)
+         line(r_att >= s["min_att_hz"], f"ATTITUDE {r_att:.0f} Hz (asked {s['att_hz']}, need {s['min_att_hz']})"
+              + ("" if r_att >= s["min_att_hz"] else ". Turn off other streams (MAV_0_RATE 23040) and stop ULog streaming."))
+-        line(r_pos >= 0.5 * s["hgt_hz"], f"LOCAL_POSITION_NED {r_pos:.0f} Hz (asked {s['hgt_hz']})"
++        line(r_pos >= 0.5 * s["hgt_hz"], f"{hkind} {r_pos:.0f} Hz (asked {s['hgt_hz']})"
+              + ("" if r_pos >= 0.5 * s["hgt_hz"] else ". The FC sends no height: check the baro and the EKF."))
+         line(fc.clock.ready(), "FC clock offset fitted" if fc.clock.ready() else "FC clock offset not fitted: attitude too sparse.")
+         if fc.firmware == "px4":
+@@ -906,7 +911,8 @@
+     if s["record_hz"] > 0:
+         rate = min(rate, s["record_hz"])
+     mbs = shape[0] * shape[1] * rate / 1e6
+-    need = s["min_free_gb"] * mbs / (360 * 288 * 25 / 1e6)
++    # Never under min_free_gb: Raw stops recording under it, unscaled (no_sd, 10 Hz: the scaled value is 0.44 GB).
++    need = max(s["min_free_gb"] * mbs / (360 * 288 * 25 / 1e6), s["min_free_gb"])
+     line(free >= need, f"free disk {free:.1f} GB at {where} (need {need:.1f} GB: raw recording takes {mbs:.1f} MB/s "
+          f"at {shape[1]}x{shape[0]}, {rate:.0f} Hz)" + ("" if free >= need else
+          ". Set log_dir to a bigger disk (SD card: /sdcard/logs), or delete old logs."))
+@@ -1022,14 +1028,49 @@
+ 
+ 
+ def mode_timing(s, args, say=print):
+-    """Video delay and readout from the raw chunks of an in-flight wiggle (EVENT_DAY step 7): calib.py's own
+-    search with the calibrated picture orientation, in the flight's own light. apsim, 100 m, start 40 ms
+-    wrong: found 64.0 ms against a true 60.4 ms (integ/control/wiggle_*.txt)."""
++    """Video delay and readout from the in-flight wiggle (EVENT_DAY step 7): calib.py's own search with the
++    calibrated picture orientation, in the flight's own light. apsim, 100 m, start 40 ms wrong: found 64.0 ms
++    against a true 60.4 ms (integ/control/wiggle_*.txt). It uses only the raw frames from 16 s to 1 s before the
++    first "engaged" note of the run log (the wiggle, item 8b): on the chunks of a hold in gusts it passed with
++    12 ms against a true 40 ms (integ/rehearsal_2026-11-20, D1)."""
+     import calib
+-    d = [np.load(f) for f in sorted(args.files)]
++    logs, raws = [f for f in args.files if f.endswith(".csv")], sorted(f for f in args.files if f.endswith(".npz"))
++    if len(logs) != 1 or not raws:
++        say("FAIL give one run log and the raw files of the same run: apb_main.py timing <log_dir>/run_<stamp>.csv "
++            "<log_dir>/raw_<stamp>_*.npz")
++        return 1
++    # The frame clock starts again at each boot, so the raw files of a run before a reboot can fall in the window.
++    # Raw and Log take their stamps at the same start of run_live.
++    st = [re.search(r"_(\d{8}_\d{6})", os.path.basename(f)) for f in logs + raws]
++    st = [time.mktime(time.strptime(m[1], "%Y%m%d_%H%M%S")) for m in st if m]
++    if len(st) == 1 + len(raws) and max(abs(x - st[0]) for x in st) > 2:
++        say(f"FAIL the raw files are not from the run of {logs[0]}: their names have another start time. Give "
++            "raw_<stamp>_*.npz with the stamp of the run log.")
++        return 1
++    t, sw = math.nan, []
++    with open(logs[0]) as f:
++        for row in csv.DictReader(f):
++            t = float(row["t"]) if row["t"] else t       # a row with no frame has no t: use the last frame's
++            if (row["note"] or "").startswith("engaged"):
++                sw.append(t)
++    if not sw:
++        say(f"FAIL no 'engaged' note in {logs[0]}: no switch to position hold, so the wiggle is not known. Keep the "
++            "delay and readout of the ground calibration.")
++        return 1
++    d = [np.load(f) for f in raws]
++    tg = [x["t_grab"] for x in d]
++    keep = [(x >= sw[0] - 16.0) & (x <= sw[0] - 1.0) for x in tg]
++    if not any(k.any() for k in keep):
++        say(f"FAIL no raw frame in the 15 s before the switch at t {sw[0]:.1f} s (raw frames t {min(x.min() for x in tg):.1f}"
++            f" to {max(x.max() for x in tg):.1f} s). The switch came before the recording, or the raw files are from "
++            "another run.")
++        return 1
+     att = np.concatenate([x["att"] for x in d])
+-    rec = dict(imgs=np.concatenate([x["imgs"] for x in d]), t_grab=np.concatenate([x["t_grab"] for x in d]),
++    rec = dict(imgs=np.concatenate([x["imgs"][k] for x, k in zip(d, keep) if k.any()]),    # only the window in memory
++               t_grab=np.concatenate([x[k] for x, k in zip(tg, keep)]),
+                att=att[np.unique(att[:, 0], return_index=True)[1]], K=d[0]["K"], D=d[0]["D"])
++    say(f"INFO {len(rec['t_grab'])} frames from 16 s to 1 s before the switch at t {sw[0]:.1f} s"
++        + (f" (the first of {len(sw)} switches in the log)" if len(sw) > 1 else ""))
+     r = calib.Rec(rec, load_mask(s, rec["imgs"].shape[1:3]))
+     if r.rate_dps < s["calib_min_rate_dps"] or len(r.ia) < 1000:
+         say(f"FAIL the recording turned {r.rate_dps:.0f} deg/s RMS with {len(r.ia)} matches; need "
+@@ -1117,7 +1158,8 @@
+ def main(argv=None):
+     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+     p.add_argument("mode", choices=["check", "mask", "calib", "bench", "run", "replay", "delay", "timing"])
+-    p.add_argument("files", nargs="*", help="replay: raw recording .npz files; delay: run log .csv files")
++    p.add_argument("files", nargs="*", help="replay: raw recording .npz files; delay: run log .csv files; "
++                                            "timing: one run log .csv and the raw .npz files of that run")
+     p.add_argument("--settings", default=S.PATH)
+     p.add_argument("--set-params", action="store_true", help="check: write wrong FC parameters")
+     p.add_argument("--rec", help="mask/calib: use this recording instead of recording now")
+@@ -1150,8 +1192,14 @@
+         return 0
+     if args.mode == "timing":
+         return mode_timing(s, args)
+-    modes = {"check": mode_check, "mask": mode_mask, "calib": mode_calib, "bench": mode_bench, "run": mode_run}
+-    return modes[args.mode](s, args)
++    if args.mode == "run":
++        return mode_run(s, args)
++    tools = {"check": mode_check, "mask": mode_mask, "calib": mode_calib, "bench": mode_bench}
++    try:
++        return tools[args.mode](s, args)
++    except (RuntimeError, ValueError) as e:     # no FC, no frames, "will not start", a bad mask: one FAIL line
++        print(f"FAIL {e}")
++        return 1
+ 
+ 
+ if __name__ == "__main__":

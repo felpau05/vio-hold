@@ -1,0 +1,11 @@
+$ qpy apb_main.py check --settings settings_emul.json (cwd: the bundle's vio folder; root file system py310; qemu CPU cortex-a53)
+[ WARN:0@5.695] global cap.cpp:212 open VIDEOIO(V4L2): backend is generally available but can't be used to capture by name
+FAIL not calibrated. Run 'apb_main.py calib'.
+FAIL flight controller: no MAVLink heartbeat on udpin:127.0.0.1:14540 in 5 s and no MSP answer on /dev/ttymxc2. Check the cable, the baud rate and that mavlink-router runs.
+FAIL video: cannot open video device /dev/video2. Check the grabber and video_device in settings.json.
+PASS Hold.process median [emulated time removed] -> [rate removed] (need 10)
+INFO fix age about [emulated time removed] (video delay + process). Use it for EKF2_EV_DELAY when time sync fails. ArduPilot: after the first hover set VISO_DELAY_MS from 'apb_main.py delay <run log>'.
+FAIL no mask. Run 'apb_main.py mask'.
+PASS free disk 32.5 GB at WORK/run/vio-bundle/vio/logs (need 2.0 GB: raw recording takes 2.6 MB/s at 360x288, 25 Hz)
+4 FAIL
+exit code 4

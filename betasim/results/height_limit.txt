@@ -1,0 +1,36 @@
+Height above 10 m: source check (orqa-betaflight 2026.6, commit 09ea1c692f; paths under src/main/). No SITL run:
+the check stopped at step 3e, as the task says, because the rangefinder enters the height estimate and no
+setting removes it while the flow stays in use.
+
+a. Where the 1000 cm limit applies
+   - cli/settings.c 2005: rangefinder_max_range_cm, allowed 50-1000 (default 400, flight/position.c 105).
+   - cli/settings.c 1186: poshold_opticalflow_max_range, allowed 50-1000 (default 400, pg/pos_hold_multirotor.c 41).
+   - flight/position_estimator.c 100-111: one helper refuses a height under 10 cm or over the limit.
+     Used at 468 (height fusion, limit rangefinder_max_range_cm) and 517-525 (flow, limit = the smaller of the two).
+   - Not a limit: the MTF02P table value 600 cm (drivers/rangefinder/rangefinder_lidarmt.c 60) is copied to
+     rangefinderMaxRangeCm (sensors/rangefinder.c 202-204) and nothing reads it. The driver passes any distance.
+
+   Does the rangefinder enter the height estimate? Yes. feedRangefinderMeasurements (position_estimator.c
+   458-492) fuses (rangefinder - its first value after arming) into the vertical Kalman filter with R = 100 cm^2
+   (25 cm^2 with RANGEFINDER_PREFER or _ONLY). The barometer gets R = 1500 / (altitude_prefer_baro / 100)
+   cm^2, so 1500 at best (445-448). The rangefinder is 15 times stronger. While it is fused, the barometer offset
+   is also pulled toward the estimate (cross-calibration, 165, 569-587).
+   Which setting removes it: altitude_source = BARO_ONLY or GPS_ONLY (461-465). The same two values also stop
+   the flow (512-515). rangefinder_max_range_cm also bounds the flow (518). So no setting keeps the flow and
+   removes the rangefinder from the height estimate. Result: STOP at 3e.
+
+b. The idea "send a fixed range Rs, multiply the flow by h / Rs", term by term
+   - Flow rate: rate = motion / 200 / dt (rangefinder_lidarmt.c 179). Scaling the motion by h / Rs: works.
+   - Gyro: the FC subtracts its gyro in rad/s, which does not depend on height (opticalflow.c 210-211). Only the
+     translation part may be scaled; msp_link adds the gyro part after the speed part, so that works.
+   - Tilt: the FC uses raw x cos(tilt) (rangefinder.c 360) and x cos(roll), x cos(pitch) (position_estimator.c
+     550-551). Send Rs / cos(tilt), as msp_link does now: the tilt terms cancel. The 45 deg cone limit stays.
+   - 80 mm and 10 cm minimums (rangefinder_lidarmt.c 43, 170; position_estimator.c 96): any Rs >= 0.1 m passes.
+   - Speed resolution: one motion count = Rs / (200 dt) m/s, so a small Rs is finer, not coarser.
+   - Height estimate: FAILS. With a fixed Rs the rangefinder term reads 0 change, with 15 times the weight of
+     the barometer, so the FC's height stops following the true height and ALT HOLD (which POS HOLD uses in the
+     tested switch layout) holds the wrong value. A shifted range (h - constant) keeps the height change right,
+     but its first value after arming sets the zero, so the FC height jumps by the shift, and the jump reverses
+     when the range stops (Hold loses its fix, or the drone leaves the 0.1-10 m band). Not tested; not added.
+
+c, d. Not done: stopped at 3e.

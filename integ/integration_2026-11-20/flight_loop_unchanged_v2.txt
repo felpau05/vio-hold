@@ -1,0 +1,5 @@
+apb_main.py (version 2) against .snapshots/pre_agents_20261120_0320.tgz, top-level definitions compared by syntax tree (comments ignored).
+56 top-level definitions identical: import argparse, import csv, import glob, import math, import os, import shutil, import sys, import threading, import time, import traceback, import cv2, import numpy as np, import settings as S, from calib import sweep, from hold import Hold, Series, build_static_mask, euler_R, load_lens, make_R_bc, lens, load_mask, make_hold, GyroAtt, ImuAtt, att_filter, catch_up, REANCHOR_ON_LOST, Pipe, AP_MODES, AP_HOLD, PX4_MAIN, (PX4_POSCTL, PX4_AUTO, PX4_AUTO_LOITER), fc_mode, _join, Engage, OutageTest, Log, stamp, RateGate, Raw, live_gate, start_problems, delay_advice, Speed, WindAssist, NO_FRAME_S, run_live, replay, record, open_video, open_fc, hold_timing, STAMP_JITTER_MS, stamp_jitter_ms, _recording, mode_mask, mode_calib, mode_bench, mode_run, if __name__ == '__main__':
+changed: (module docstring), mode_check, mode_timing, main
+only in the old file: none
+only in the new file: import json, import re, HOLD_MODES, WIGGLE_RATIO, gap_s, wiggle_rates

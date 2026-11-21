@@ -1,0 +1,86 @@
+--- /home/paul/Videos/vio-hold-attempt/apsim/low_ap_matrix.py	2026-11-19 04:24:15.260999124 -0500
++++ <work>/ab_before/apsim/low_ap_matrix.py	2026-11-19 07:03:36.955196499 -0500
+@@ -25,7 +25,7 @@
+ HERE, PROJ, RUNS = E.HERE, E.PROJ, E.RUNS
+ E.OUT, E.TXT = os.path.join(HERE, "low_ap_results.json"), os.path.join(HERE, "low_ap_results.txt")
+ LOW_SETTINGS, LOW_HOLD = {"min_height_m": 3.0}, {"h_min": 2.0}
+-DEADLINE = "06:05"     # no new run starts after this local time
++DEADLINE = "09:30"     # no new run starts after this local time
+ SUITE_FILE = os.path.join(PROJ, "tests_apb", "out_timing_test.txt")
+ SUITE_AFTER = "2026-11-19 04:16"   # coordinator: no SITL until the test suite has written this file after 04:16
+ 
+--- /home/paul/Videos/vio-hold-attempt/apsim/run_sitl.sh	2026-11-16 04:14:39.976723833 -0500
++++ <work>/ab_before/apsim/run_sitl.sh	2026-11-19 07:03:36.958178453 -0500
+@@ -1,6 +1,6 @@
+ #!/bin/sh
+ # ArduCopter SITL (built from apsim/ardupilot, Orqa's mil-mavl = Copter-4.6.0 + board commit), headless,
+-# in the container ap_sim (--network host). Several instances can run side by side (-I k).
++# in the container ap_sim_ab_before (--network host). Several instances can run side by side (-I k).
+ #   apsim/run_sitl.sh start <instance> <gcs_port> <onboard_port> <speedup> <parm file under apsim/> <log under apsim/>
+ #   apsim/run_sitl.sh stop <instance>
+ # SERIAL0 = UDP to <gcs_port> (the supervisor), SERIAL1 = UDP to <onboard_port> (the onboard program,
+@@ -11,16 +11,16 @@
+ APSIM=$(cd "$(dirname "$0")" && pwd)
+ IMAGE=ardupilot/ardupilot-dev-base:latest
+ if [ "$1" = "stop" ]; then
+-  docker exec ap_sim pkill -f "arducopter .* -I $2 " >/dev/null 2>&1 || true
++  docker exec ap_sim_ab_before pkill -f "arducopter .* -I $2 " >/dev/null 2>&1 || true
+   exit 0
+ fi
+ I=$2; G=$3; O=$4; SPD=$5; PARM=$6; LOG=$7
+-if [ "$(docker inspect -f '{{.State.Running}}' ap_sim 2>/dev/null)" != "true" ]; then
+-  docker rm -f ap_sim >/dev/null 2>&1 || true
+-  docker run -d --rm --name ap_sim --network host -u "$(id -u):$(id -g)" -e HOME=/tmp \
++if [ "$(docker inspect -f '{{.State.Running}}' ap_sim_ab_before 2>/dev/null)" != "true" ]; then
++  docker rm -f ap_sim_ab_before >/dev/null 2>&1 || true
++  docker run -d --rm --name ap_sim_ab_before --network host -u "$(id -u):$(id -g)" -e HOME=/tmp \
+     -v "$APSIM":/apsim "$IMAGE" sleep infinity >/dev/null
+ fi
+-docker exec -d ap_sim sh -c "mkdir -p /tmp/ap$I && cd /tmp/ap$I && exec /apsim/ardupilot/build/sitl/bin/arducopter \
++docker exec -d ap_sim_ab_before sh -c "mkdir -p /tmp/ap$I && cd /tmp/ap$I && exec /apsim/ardupilot/build/sitl/bin/arducopter \
+   -S -w --model quad --speedup $SPD -I $I --home 45.417,-75.715,70,0 \
+   --defaults /apsim/ardupilot/Tools/autotest/default_params/copter.parm,/apsim/$PARM \
+   --serial0 udpclient:127.0.0.1:$G --serial1 udpclient:127.0.0.1:$O > /apsim/$LOG 2>&1"
+--- /home/paul/Videos/vio-hold-attempt/apsim/low_ap_matrix.py	2026-11-19 04:24:15.260999124 -0500
++++ <work>/ab_after/apsim/low_ap_matrix.py	2026-11-19 07:03:36.963196482 -0500
+@@ -25,7 +25,7 @@
+ HERE, PROJ, RUNS = E.HERE, E.PROJ, E.RUNS
+ E.OUT, E.TXT = os.path.join(HERE, "low_ap_results.json"), os.path.join(HERE, "low_ap_results.txt")
+ LOW_SETTINGS, LOW_HOLD = {"min_height_m": 3.0}, {"h_min": 2.0}
+-DEADLINE = "06:05"     # no new run starts after this local time
++DEADLINE = "09:30"     # no new run starts after this local time
+ SUITE_FILE = os.path.join(PROJ, "tests_apb", "out_timing_test.txt")
+ SUITE_AFTER = "2026-11-19 04:16"   # coordinator: no SITL until the test suite has written this file after 04:16
+ 
+--- /home/paul/Videos/vio-hold-attempt/apsim/run_sitl.sh	2026-11-16 04:14:39.976723833 -0500
++++ <work>/ab_after/apsim/run_sitl.sh	2026-11-19 07:03:36.965809330 -0500
+@@ -1,6 +1,6 @@
+ #!/bin/sh
+ # ArduCopter SITL (built from apsim/ardupilot, Orqa's mil-mavl = Copter-4.6.0 + board commit), headless,
+-# in the container ap_sim (--network host). Several instances can run side by side (-I k).
++# in the container ap_sim_ab_after (--network host). Several instances can run side by side (-I k).
+ #   apsim/run_sitl.sh start <instance> <gcs_port> <onboard_port> <speedup> <parm file under apsim/> <log under apsim/>
+ #   apsim/run_sitl.sh stop <instance>
+ # SERIAL0 = UDP to <gcs_port> (the supervisor), SERIAL1 = UDP to <onboard_port> (the onboard program,
+@@ -11,16 +11,16 @@
+ APSIM=$(cd "$(dirname "$0")" && pwd)
+ IMAGE=ardupilot/ardupilot-dev-base:latest
+ if [ "$1" = "stop" ]; then
+-  docker exec ap_sim pkill -f "arducopter .* -I $2 " >/dev/null 2>&1 || true
++  docker exec ap_sim_ab_after pkill -f "arducopter .* -I $2 " >/dev/null 2>&1 || true
+   exit 0
+ fi
+ I=$2; G=$3; O=$4; SPD=$5; PARM=$6; LOG=$7
+-if [ "$(docker inspect -f '{{.State.Running}}' ap_sim 2>/dev/null)" != "true" ]; then
+-  docker rm -f ap_sim >/dev/null 2>&1 || true
+-  docker run -d --rm --name ap_sim --network host -u "$(id -u):$(id -g)" -e HOME=/tmp \
++if [ "$(docker inspect -f '{{.State.Running}}' ap_sim_ab_after 2>/dev/null)" != "true" ]; then
++  docker rm -f ap_sim_ab_after >/dev/null 2>&1 || true
++  docker run -d --rm --name ap_sim_ab_after --network host -u "$(id -u):$(id -g)" -e HOME=/tmp \
+     -v "$APSIM":/apsim "$IMAGE" sleep infinity >/dev/null
+ fi
+-docker exec -d ap_sim sh -c "mkdir -p /tmp/ap$I && cd /tmp/ap$I && exec /apsim/ardupilot/build/sitl/bin/arducopter \
++docker exec -d ap_sim_ab_after sh -c "mkdir -p /tmp/ap$I && cd /tmp/ap$I && exec /apsim/ardupilot/build/sitl/bin/arducopter \
+   -S -w --model quad --speedup $SPD -I $I --home 45.417,-75.715,70,0 \
+   --defaults /apsim/ardupilot/Tools/autotest/default_params/copter.parm,/apsim/$PARM \
+   --serial0 udpclient:127.0.0.1:$G --serial1 udpclient:127.0.0.1:$O > /apsim/$LOG 2>&1"

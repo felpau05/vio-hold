@@ -1,0 +1,21 @@
+# load (1 min) at start: 1.43
+== raw_20261120_033410_000.npz
+FAIL give one run log and the raw files of the same run: apb_main.py timing <log_dir>/run_<stamp>.csv <log_dir>/raw_<stamp>_*.npz
+== raw_20261120_033410_001.npz
+FAIL give one run log and the raw files of the same run: apb_main.py timing <log_dir>/run_<stamp>.csv <log_dir>/raw_<stamp>_*.npz
+== raw_20261120_033410_002.npz
+FAIL give one run log and the raw files of the same run: apb_main.py timing <log_dir>/run_<stamp>.csv <log_dir>/raw_<stamp>_*.npz
+== raw_20261120_033410_003.npz
+FAIL give one run log and the raw files of the same run: apb_main.py timing <log_dir>/run_<stamp>.csv <log_dir>/raw_<stamp>_*.npz
+== raw_20261120_033410_004.npz
+FAIL give one run log and the raw files of the same run: apb_main.py timing <log_dir>/run_<stamp>.csv <log_dir>/raw_<stamp>_*.npz
+== raw_20261120_033410_005.npz
+FAIL give one run log and the raw files of the same run: apb_main.py timing <log_dir>/run_<stamp>.csv <log_dir>/raw_<stamp>_*.npz
+== raw_20261120_033410_006.npz
+FAIL give one run log and the raw files of the same run: apb_main.py timing <log_dir>/run_<stamp>.csv <log_dir>/raw_<stamp>_*.npz
+== raw_20261120_033410_007.npz
+FAIL give one run log and the raw files of the same run: apb_main.py timing <log_dir>/run_<stamp>.csv <log_dir>/raw_<stamp>_*.npz
+== raw_20261120_033410_008.npz
+FAIL give one run log and the raw files of the same run: apb_main.py timing <log_dir>/run_<stamp>.csv <log_dir>/raw_<stamp>_*.npz
+== raw_20261120_033410_009.npz
+FAIL give one run log and the raw files of the same run: apb_main.py timing <log_dir>/run_<stamp>.csv <log_dir>/raw_<stamp>_*.npz

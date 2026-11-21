@@ -1,0 +1,88 @@
+BETAFLIGHT AIRCRAFT: EVENT-DAY BENCH PROCEDURE (propellers off, 30 minutes or less)
+
+Use this when the event aircraft runs Betaflight. Base: research/betaflight_route.md section 12.
+Before the day: sh betasim/enable.sh (applies betasim/patches, which let apb_main.py use msp_link.py, and
+copies betasim/profiles/betaflight.json into tools/profiles). It stops and changes nothing if a patch does not
+apply. Then: python tools/use_profile.py apply outdoor_day betaflight
+Undo after the event: apply the profiles without betaflight, then sh betasim/disable.sh.
+Facts behind each step: betasim/FLOW_CHAIN.txt and betasim/results/.
+
+STOP CONDITIONS (any one: do not fly the Betaflight route; the pilot flies without it)
+  S1. The firmware is not Betaflight, or it has no POS HOLD mode (box 11).
+  S2. The CLI does not know opticalflow_hardware MT or rangefinder_hardware MTF02P.
+  S3. apb_main.py check prints FAIL on a flight-controller line after step 6.
+  S4. A flow sign in step 8 is wrong.
+  S5. The flow values do not freeze when the camera is covered (step 9).
+  S6. The flight must go above 10 m. Above 10 m the FC refuses the flow: both range settings stop at 1000 cm.
+      Sending a smaller range does not get around it: the FC also fuses the rangefinder into its height
+      estimate, 15 times stronger than the barometer, and no setting removes it while the flow stays in use
+      (betasim/results/height_limit.txt).
+
+STEPS
+1. (1 min) Propellers off. Battery in, or USB power. Laptop with Betaflight Configurator, CLI tab.
+2. (2 min) CLI: version
+   Read the firmware name, version and date. Betaflight 2026.6 or newer is the tested branch. Else S1.
+3. (2 min) CLI: get opticalflow_hardware
+   then: get rangefinder_hardware
+   then: get poshold_position_source
+   Each must print its allowed values. MT, MTF02P and OPTICALFLOW_ONLY must be among them. "Invalid name"
+   means the build has no flow or no Position Hold: S2.
+4. (3 min) CLI: serial
+   Find the UART wired to the APB (on ORQAAPB it is UART4, identifier 3). Make it MSP at 115200, for example:
+     serial 3 1 115200 57600 0 115200
+   Keep the other numbers of that line as they were if they differ. The profile uses 115200 (fc_baud).
+5. (3 min) CLI, type exactly:
+     feature RANGEFINDER
+     feature OPTICALFLOW
+     set rangefinder_hardware = MTF02P
+     set opticalflow_hardware = MT
+     set rangefinder_max_range_cm = 1000
+     set poshold_opticalflow_max_range = 1000
+     set altitude_source = DEFAULT
+     set poshold_position_source = OPTICALFLOW_ONLY
+     set opticalflow_rotation = 0
+     set opticalflow_flip_x = OFF
+     set debug_mode = BARO
+     save
+   Why: altitude_source BARO_ONLY or GPS_ONLY turns the flow off. MTF02P gives the 100 ms rangefinder freshness window (MTF01 gives 50 ms). OPTICALFLOW_ONLY keeps a
+   jammed or false GPS out of the hold (read in source; the SITL runs used AUTO with GPS off). Leave rotation
+   and flip at 0: msp_link computes the message in body axes. debug_mode BARO gives msp_link the barometer
+   height. Do not send the FC's fused height back: in the SITL that closed a loop, and the FC height lagged the
+   true height by 5 m (betasim/results/closed_try1.json).
+   Then CLI: aux
+   One aux line must have mode id 11 (POS HOLD) on the pilot's hold switch. Mode id 3 (ALT HOLD) on the same
+   switch is what the SITL flew. Do not change the pilot's switch layout without the pilot.
+6. (3 min) On the APB: stop mavlink-router (it holds the UART). msp_device in settings.json = the APB device
+   of that UART. Then: python apb_main.py check
+   The FC lines must read PASS: firmware betaflight; ATTITUDE 25 Hz or more; ALTITUDE; MSP firmware
+   (variant BTFL); POS HOLD mode (box 11); rangefinder detected; optical flow detected; barometer height.
+   Else S3. The camera and calibration lines are the same as on any other aircraft.
+7. (2 min) Lift the aircraft by 1 m by hand and put it back. apb_main check (again) prints the barometer
+   height. It must change by about 1 m and come back. Else S3 (debug_mode is not BARO, or no barometer).
+8. (8 min) Flow sign. CLI: set debug_mode = OPTICALFLOW, save. Run: python apb_main.py bench --height 1.0
+   Hold the aircraft level, camera 1 m above a textured floor. Configurator, Sensors tab, Debug 0 and 1
+   (the flow rate the FC computed, x 1000):
+   a. Move it 0.5 m forward (nose direction) in about 1 s. Debug 1 must go positive, then back to about 0.
+   b. Move it 0.5 m to the left. Debug 0 must go positive (in Betaflight the flow X axis points left).
+   c. Move it 0.5 m to the right. Debug 0 must go negative.
+   d. Tilt it 10 deg in roll, then in pitch, without moving it. Debug 4 and 5 (after the FC subtracts its gyro)
+      must stay smaller than debug 0 and 1 did in a to c.
+   A wrong sign: S4. Check the camera "top" setting and the calibration; do not use opticalflow_flip_x.
+9. (2 min) Still in bench: cover the camera for 3 s. The apb log shows "no fix" and Debug 0 and 1 stop
+   changing. Else S5. In flight this makes the FC stop using the flow after 100 ms, end the hold after 2 s
+   (OSD warning POSHOLD_FAILED) and give the sticks to the pilot. Stop bench (Ctrl-C).
+10. (2 min) CLI: set debug_mode = BARO, save. Run apb_main.py check once more: all FC lines PASS.
+11. (1 min) Setup tab: no arming-disable flag that was absent before these steps.
+
+FLIGHT
+- Take off in the pilot's normal mode, climb to 5 m (3 to 10 m; 10 m is the limit, S6).
+- python apb_main.py run. The log must show sent fixes before the pilot selects POS HOLD.
+- The pilot selects POS HOLD and keeps a hand on the switch. The program never changes the flight mode.
+- Release: the pilot switches POS HOLD off, or the sticks move past the deadband, or our fixes stop (2 s).
+
+WHAT THE SIMULATOR SHOWED, AND WHAT IT DID NOT
+- Shown in the Betaflight SITL: our messages are accepted and acknowledged; the mean flow rate is within
+  1.1 % of the rate sent, on both axes and signs (1 run, 4 legs of 23 reads); the FC answers about 99 MSP commands per second and drops what is over that; Position
+  Hold holds on our flow with no GPS (betasim/results/proto.txt, matrix.txt).
+- Not shown: the real board's serial timing, its gyro scale (msp_gyro_lsb_per_dps 16.4 assumed for a
+  2000 deg/s gyro), the real barometer noise, and a real airframe. The SITL plant is a crude model.

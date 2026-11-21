@@ -10,8 +10,10 @@
 
 An overlay holds settings.py keys only. A key that starts with "_" is a note ("_why") and is never written.
 For hold_cfg, params_px4 and params_ardupilot an overlay owns only the inner keys it names.
-Calibration values (calib.py), the mask and the field origin are never in an overlay, so apply keeps them,
-and it keeps every value no overlay names (for example a VISO_DELAY_MS set by hand).
+Calibration values (calib.py, also the measured lens lens_measured), the mask and the field origin are never in an
+overlay, so apply keeps them, and it keeps every value no overlay names (for example a VISO_DELAY_MS set by hand). One exception: a camera
+profile (justice_d) gives starting values for readout_s and video_delay_s. apply writes them only when the
+camera changes or the file is not calibrated, and a camera change without them writes the defaults.
 The old file is kept as settings.json.bak; settings.json.profiles names the last apply.
 """
 import argparse
@@ -30,7 +32,8 @@ import settings as S            # noqa: E402
 
 PROFILES = os.path.join(HERE, "profiles")
 CALIB_KEYS = {"top", "mirror", "tilt_deg", "twist_deg", "focal_scale", "readout_s", "video_delay_s", "calibrated",
-              "calib_capture", "calib_info", "mask_file", "origin_lat_lon_alt"}
+              "calib_capture", "calib_info", "mask_file", "origin_lat_lon_alt", "lens_measured"}
+SEEDS = {"readout_s", "video_delay_s"}     # a camera's starting values; calib measures them later
 DICTS = {k for k, v in S.DEFAULTS.items() if isinstance(v, dict)}
 
 
@@ -53,7 +56,7 @@ def check_keys(d, where, overlay):
     for k, v in d.items():
         if k not in S.DEFAULTS:
             raise ValueError(f"{where}: unknown key '{k}'. Fix the spelling or remove it.")
-        if overlay and k in CALIB_KEYS:
+        if overlay and k in CALIB_KEYS - SEEDS:
             raise ValueError(f"{where}: '{k}' comes from calib, mask or the field, not from a profile.")
         if k in DICTS and not isinstance(v, dict):
             raise ValueError(f"{where}: '{k}' must be an object.")
@@ -123,10 +126,11 @@ def print_diff(a, b, la="before", lb="after"):
 
 def cmd_apply(names, path):
     s = S.load(path)
+    camera = s["camera"]
     owned = {}
     for p in sorted(glob.glob(os.path.join(PROFILES, "*.json"))):
         owned.update(leaves(read(p, overlay=True)))
-    for key in owned:                                 # back to the default first: no value is left over
+    for key in set(owned) - SEEDS:                    # back to the default first: no value is left over
         k, _, sub = key.partition(".")
         if not sub:
             s[k] = copy.deepcopy(S.DEFAULTS[k])
@@ -134,8 +138,17 @@ def cmd_apply(names, path):
             s[k][sub] = S.DEFAULTS[k][sub]
         else:
             s[k].pop(sub, None)
+    seeds = {}
     for name in names:
-        merge(s, read(overlay_path(name), overlay=True))
+        d = read(overlay_path(name), overlay=True)
+        seeds.update({k: d.pop(k) for k in SEEDS & set(d)})
+        merge(s, d)
+    if s["camera"] != camera:                         # the old camera's delay and readout do not fit the new one
+        s.update({k: seeds.get(k, S.DEFAULTS[k]) for k in SEEDS})
+    elif not s["calibrated"]:
+        s.update(seeds)
+    elif seeds:
+        print("apply kept the calibrated readout_s and video_delay_s (same camera).")
     old = write(s, path)
     with open(path + ".profiles", "w") as f:          # for show: what the last apply named
         f.write(" + ".join(names) + "\n")
