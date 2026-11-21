@@ -69,8 +69,9 @@ def ports(c):
 
 
 def parm_file(c, s_onb, label):
-    """Autopilot parameters of the case. apb/truth/none: the onboard program's params_ardupilot (GNSS off,
-    external nav); gps: the SITL defaults (GPS on, no vision)."""
+    """Autopilot parameters of the case. apb/truth/none: the onboard program's params_ardupilot (external
+    nav; GPS on for the log but not an EKF source, gnss_rule.py); gps: the SITL defaults (GPS on, no vision).
+    The results in apsim/results.txt ran with GPS1_TYPE 0."""
     p = dict(ARMING_CHECK=0, PILOT_SPEED_UP=c["pilot_speed_up"], SIM_WIND_T=1, SIM_WIND_SPD=0, SIM_WIND_TURB=0,
              SIM_WIND_DIR=c["wind_from_deg"],   # SIM_WIND_T 1: same wind at every height (default: weaker below 60 m)
              SERIAL1_BAUD=115)   # the relay's 11520 B/s; ArduPilot takes this baud's transfer time off each

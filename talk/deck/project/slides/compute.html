@@ -1,0 +1,14 @@
+<section id="compute">
+<p class="eyebrow">BACKUP · APB COMPUTE</p>
+<h2>Where the time goes on four ARM cores</h2>
+<div class="row">
+<div class="col-text">
+<div class="in" style="--i:0"><p class="big">27 → 13 ms</p><p class="biglabel">picture checks and sensors per frame after optimizing</p></div>
+<p class="point in" style="--i:1"><b>Found:</b> the camera buffers are uncached, so one frame copy cost 12 ms. <b>Decision:</b> capture runs in its own thread and keeps 30 fps.</p>
+<p class="point in" style="--i:2"><b>Attitude filter 30× faster</b> with plain quaternion maths. <b>Next:</b> the estimator (47 ms) is the biggest cost; 13–16 fixes per second today [update].</p>
+</div>
+<img class="fig in" style="--i:3" src="/_blob/af39b11d60e81ef26148b5923e00ebd3" alt="Bar chart of milliseconds per frame on the APB">
+</div>
+<p class="source">Measured on the APB (i.MX8M Plus, 4 × Cortex-A53): numpy 1.26, OpenCV 4.11 in /data</p>
+<aside>Lucas-Kanade forward plus backward tracking is most of the estimator's time. Board at 56 to 64 degrees C under load.</aside>
+</section>

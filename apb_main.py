@@ -27,6 +27,7 @@ import traceback
 import cv2
 import numpy as np
 
+import gnss_rule
 import settings as S
 from calib import sweep          # noqa: F401  (sim_test.timing_test calls apb_main.sweep)
 from hold import Hold, Series, build_static_mask, euler_R, load_lens, make_R_bc  # noqa: F401
@@ -284,6 +285,9 @@ def start_problems(s, fc, src, shape):
         out.append(f"firmware {fc.firmware} is not supported.")
     if fc.firmware == "ardupilot" and s["origin_lat_lon_alt"] is None:
         out.append("ArduPilot needs origin_lat_lon_alt in settings.json (lat, lon, alt of the field).")
+    # Event GNSS rule: a GPS source in the FC voids the flight, and GPS off leaves the judges no drift data.
+    # Checked at every start, because a setting can change between 'check' and 'run'.
+    out += [text[5:] for ok, text in gnss_rule.check(fc.firmware, fc.get_param) if not ok]
     return out
 
 
@@ -604,6 +608,8 @@ def mode_check(s, args, say=print):
             line(ok, f"TIMESYNC round trip p90 {np.percentile(rtt, 90):.1f} ms (PX4 needs under 10 ms)" if len(rtt) else
                  "TIMESYNC: no reply. Set EKF2_EV_DELAY to the fix age below.")
         for ok, text in fc_link.check_params(fc, s, write=args.set_params):
+            line(ok, text[5:])
+        for ok, text in gnss_rule.check(fc.firmware, fc.get_param):
             line(ok, text[5:])
         if fc.firmware == "ardupilot":
             line(s["origin_lat_lon_alt"] is not None, "origin set" if s["origin_lat_lon_alt"] else

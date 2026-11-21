@@ -1,0 +1,14 @@
+<section id="findings" class="alt">
+<p class="eyebrow">BACKUP · FIRST WALK</p>
+<h2>What worked, what didn’t, and why</h2>
+<div class="row">
+<div class="col-text">
+<p class="point in" style="--i:0"><b>Worked:</b> our lens calibration caught a datasheet error that would have read every distance 14 % short.</p>
+<p class="point in" style="--i:1"><b>Worked:</b> processing on the APB made twice as fast; covering the lens gives NOT READY at once.</p>
+<p class="point in" style="--i:2"><b>Didn’t:</b> our first walk read 1 m as 0.46 m. The motion was in the pictures (green); the estimator dropped it in gaps. Fix: [in progress].</p>
+</div>
+<img class="fig in" style="--i:3" src="/_blob/f874c0d21da79a95fe7659d6a5d2f353" alt="Bar chart: tape-measured distances against raw tracking and the estimator on the first walk">
+</div>
+<p class="source">All measured on the event aircraft. First walk: hand-carried at about 1 m over a plain glossy floor</p>
+<aside>The rules reward "what worked, what did not and why". Lens: the datasheet is for 720p and the board runs 1080p; two checkerboards disagreed, a third test against the gyro settled it. Compute: 27 to 13 ms per frame; the uncached camera memory made a frame copy cost 12 ms, so capture got its own thread. Walk: show the failure plainly, then the diagnosis. [Add the after-fix bars from walk 2.]</aside>
+</section>
