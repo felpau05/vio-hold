@@ -1,0 +1,13 @@
+--- a/settings.py
++++ b/settings.py
+@@ -19,6 +19,10 @@
+     # assumed: the APB UART to the FC (research/hardware.md). Probed for Betaflight/iNav (MSP) when
+     # no MAVLink heartbeat arrives.
+     "msp_device": "/dev/ttymxc2",
++    # Betaflight (msp_link.py). 0 = mode v1 (speed only); > 0 = mode v2, 1/s: the speed sent also pulls the
++    # FC's integrated position toward our fix (tests_apb/test_msp_link.py F, betasim/results/matrix.txt).
++    "msp_lock_gain": 0.0,
++    "msp_gyro_lsb_per_dps": 16.4,      # MSP_RAW_IMU gyro counts per deg/s: 16.4 for a 2000 deg/s gyro range
+     "att_hz": 100,                     # research/px4_vision.md section 9: fits the 230400 link with other streams off
+     "hgt_hz": 10,                      # LOCAL_POSITION_NED: baro height and the FC position for re-anchoring
+     "min_att_hz": 40,                  # H14 start gate: attitude at 40 Hz or more

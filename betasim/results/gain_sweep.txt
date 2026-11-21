@@ -1,0 +1,10 @@
+b_g0.1_s1      RMS 1.39 m  max 2.58 m  speed RMS 0.73 m/s  north error main period 20.3 s  samples 277, 60 s
+b_g0.1_s2      RMS 1.44 m  max 2.83 m  speed RMS 0.64 m/s  north error main period 30.4 s  samples 276, 60 s
+b_g0.2_s1      RMS 1.42 m  max 2.92 m  speed RMS 0.74 m/s  north error main period 19.1 s  samples 261, 60 s
+g0.2_s1        RMS 1.11 m  max 2.13 m  speed RMS 0.69 m/s  north error main period 30.0 s  samples 273, 60 s
+g0.2_s2        RMS 1.24 m  max 2.29 m  speed RMS 0.58 m/s  north error main period 20.2 s  samples 276, 60 s
+b_g0.5_s1      RMS 1.15 m  max 2.12 m  speed RMS 0.71 m/s  north error main period 20.4 s  samples 278, 60 s
+b_g1.0_s1      RMS 1.15 m  max 2.15 m  speed RMS 0.71 m/s  north error main period 20.3 s  samples 277, 60 s
+b_g1.0_s2      RMS 1.19 m  max 2.38 m  speed RMS 0.61 m/s  north error main period 30.6 s  samples 278, 60 s
+g0_s1          RMS 3.88 m  max 6.54 m  speed RMS 0.65 m/s  north error main period 60.7 s  samples 276, 60 s
+g0_s2          RMS 4.52 m  max 7.92 m  speed RMS 0.64 m/s  north error main period 60.9 s  samples 277, 60 s

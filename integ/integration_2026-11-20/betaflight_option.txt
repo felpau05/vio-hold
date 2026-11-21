@@ -1,0 +1,17 @@
+Step 6: the Betaflight option on a copy of the project files, 2026-11-20 04:42:21.
+Copy: every top-level .py .json .txt .md file, tools/, tests_apb/, betasim/ (to a scratch folder outside any git repository).
+Project state: apb_main.py with D1 to D4, tests_apb/run_all.sh with the new test line, msp_link.py without M1.
+files in the copy: 196
+== betasim/enable.sh
+Betaflight link on. Next: python tools/use_profile.py apply outdoor_day betaflight
+exit 0
+== in the enabled copy
+apb_main.py lines with "betaflight": 4
+run_all.sh loop names: test_msp_link
+test_ground_tools: ALL PASSED
+test_msp_link: ALL PASSED
+== betasim/disable.sh
+Betaflight link off.
+exit 0
+RESULT: the copy is restored exactly: 196 files, every md5 the same as before enable.sh.
+No Betaflight patch file needed a correction. The project itself was not enabled: tools/profiles/betaflight.json does not exist.

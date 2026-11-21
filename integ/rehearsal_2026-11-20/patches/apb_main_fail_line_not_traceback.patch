@@ -1,0 +1,15 @@
+--- a/apb_main.py
++++ b/apb_main.py
+@@ -1151,7 +1151,11 @@
+     if args.mode == "timing":
+         return mode_timing(s, args)
+     modes = {"check": mode_check, "mask": mode_mask, "calib": mode_calib, "bench": mode_bench, "run": mode_run}
+-    return modes[args.mode](s, args)
++    try:
++        return modes[args.mode](s, args)
++    except RuntimeError as e:        # no FC, no frames, "will not start": one FAIL line, not a traceback
++        print(f"FAIL {e}")
++        return 1
+ 
+ 
+ if __name__ == "__main__":

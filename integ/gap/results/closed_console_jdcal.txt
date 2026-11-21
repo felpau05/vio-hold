@@ -1,0 +1,6 @@
+load 8.62, other SITL processes 0: waiting 30 s
+load 5.47, other SITL processes 0: waiting 30 s
+ 00:50:02 up  3:40,  1 user,  load average: 3.37, 5.35, 5.56
+[gapfix_jdcal_apb_100m_w20g40_s11] hold starts, mode 5, 0.0 s after the Loiter request started
+[gapfix_jdcal_apb_100m_w20g40_s11] rms 0.564  p95 0.812  max 0.852  drift_m_per_min 0.543  roll_rms_deg 8.03  pitch_rms_deg 3.38  judge_rms 24.3  fix_rate_hz 12.2  pct_frames_fix 20.3  age_ms_p50 149  onboard_att_hz 108
+gapfix_jdcal_apb_100m_w20g40_s11 rms 0.564 max 0.852 p95 0.812 fix_rate_hz 12.2 pct_frames_fix 20.3 age_ms_p50 149 handover_ms_p50 6.93 handover_ms_p95 14.5 proc_ms_mean 81 processed 731 frames 3.6e+03 [(np.float64(0.0), 'hold starts, mode 5, 0.0 s after the Loiter request started')]

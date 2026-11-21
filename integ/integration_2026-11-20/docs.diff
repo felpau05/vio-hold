@@ -1,0 +1,90 @@
+--- a/EVENT_DAY.txt
++++ b/EVENT_DAY.txt
+@@ -46,8 +46,9 @@
+ After an apply that changes the camera or the capture settings, do step 3 (mask) and step 4 (calibration) again.
+ The program refuses a calibration that another capture made.
+ Disk: justice_d records 30 pictures each second (6.9 MB/s). The "free disk" line of check then needs 5.3 GB: only an
+-SD card has that. no_sd records 10 pictures each second (2.3 MB/s). The line then needs 0.44 GB.
++SD card has that. no_sd records 10 pictures each second (2.3 MB/s). The line then needs 0.5 GB (min_free_gb).
+ The raw recorder stops under min_free_gb free space (no_sd: 0.5 GB). The hold continues without a recording.
++The line never needs less than min_free_gb, so a PASS means that the recorder starts.
+ 
+ 
+ STEP 1. FLIGHT CONTROLLER PARAMETERS (4 min)
+@@ -77,7 +78,8 @@
+ 4. Point the nose north with a phone compass.
+ 5. Read the heading in the ground station.
+ 6. Turn the nose 90 degrees to the right by hand. Read the heading again.
+-Pass: Every line shows PASS, except "not calibrated" and "no mask" (ArduPilot: also "LOCAL_POSITION_NED", see step 5).
++Pass: Every line shows PASS, except "not calibrated" and "no mask". (The height line: ArduPilot GLOBAL_POSITION_INT, see
++step 5; PX4 LOCAL_POSITION_NED.)
+ ArduPilot: Pass: The "origin set" line shows PASS. Without the origin ArduPilot never accepts Loiter.
+ Pass: ATTITUDE shows 100 Hz or more. If it is less, set the SRn_ rates of the APB port to 0 (n = that SERIAL port).
+ Pass: The heading is within 10 degrees of north.
+@@ -179,10 +181,10 @@
+ STEP 5. SYSTEM CHECK AGAIN (1 min)
+ 1. Type: python3 apb_main.py check
+ Pass: The last line shows ALL PASS.
+-ArduPilot: the line "LOCAL_POSITION_NED 0 Hz" shows FAIL on the ground, so the last line shows "1 FAIL". This is
+-expected: ArduPilot sends that message only after it has a position, and only our fixes in flight give one. The
+-program reads the height from GLOBAL_POSITION_INT. Accept this one FAIL when the "INFO height now" line is there.
+-(Rehearsal 2026-11-20, ArduCopter SITL. A patch for the check line: integ/rehearsal_2026-11-20/patches.)
++ArduPilot: the height line is "GLOBAL_POSITION_INT <n> Hz". The program reads the height from that message.
++ArduPilot sends LOCAL_POSITION_NED only after it has a position, and only our fixes in flight give one.
++(ArduCopter SITL, GPS off: "PASS GLOBAL_POSITION_INT 10 Hz", integ/integration_2026-11-20. Before this correction the
++line was "FAIL LOCAL_POSITION_NED 0 Hz" on every ground check.)
+ 
+ 
+ STEP 6. GROUND TESTS, PROPELLERS OFF (6 min)
+@@ -264,16 +266,15 @@
+ 15. Timing (after the wiggle of item 8b), on the board:
+    a. Type: ls <log_dir>/run_*.csv <log_dir>/raw_*_000.npz
+       The newest run log and raw files share a start time in the name: run_<stamp>.csv, raw_<stamp>_000.npz.
+-   b. Type this line. It prints the raw files that end in the 14 s before the switch (the wiggle):
+-      python3 -c "import numpy as n,glob,csv,sys; s=[float(r['t']) for r in csv.DictReader(open(sys.argv[1])) if r['note'].startswith('engaged')][0]; print(*[f for f in sorted(glob.glob(sys.argv[2])) if -14 <= n.load(f)['t_grab'][-1]-s <= 0])" <log_dir>/run_<stamp>.csv "<log_dir>/raw_<stamp>_*.npz"
+-   c. Type: python3 apb_main.py timing <the file names that b printed>
++   b. Type: python3 apb_main.py timing <log_dir>/run_<stamp>.csv <log_dir>/raw_<stamp>_*.npz
++      timing uses only the raw frames from 16 s to 1 s before the first "engaged" note of the run log (the wiggle).
+    Pass: "PASS video delay ... ms" and "settings written". It changes video_delay_s and readout_s on the board.
+-   If b prints no file name or an error (no switch in the log), or c shows FAIL: keep the delay and readout of the
+-   ground calibration (step 4).
+-   Do not give timing other raw files: it can pass on a hold in gusts with a wrong delay (DECISION_CARD row 42).
+-   (SITL, Justice D, delay set 30 ms too long, one flight each: at 10 m, 60 m and 100 m this found 40 ms (true 40 ms)
+-   and a readout within 1 ms; at 30 m it showed FAIL and changed nothing. apsim, analog, start 40 ms wrong: within 4 ms
+-   at 40 m and 100 m, integ/control/wiggle_calib.txt.)
++   If b shows FAIL (no switch in the log, no raw frame before the switch, raw files of another run, or the fit):
++   keep the delay and readout of the ground calibration (step 4).
++   (SITL, Justice D, delay set 30 ms too long, one flight each, the run log and all raw files: 10 m 40 ms, 60 m 38 ms,
++   100 m 36 ms (true 40 ms), readout +15, +23, +11 ms (true +14); at 30 m it showed FAIL and changed nothing
++   (integ/integration_2026-11-20/timing_with_run_log.txt). apsim, analog, start 40 ms wrong: within 4 ms at 40 m and
++   100 m, integ/control/wiggle_calib.txt.)
+ 16. ArduPilot: on the board, type: python3 apb_main.py delay <log_dir>/run_<stamp>.csv
+    It prints "PASS VISO_DELAY_MS <n>". Use that number, NOT the median fix age: ArduPilot times each fix by the
+    smallest age of every 100 (apb_main.delay_advice). The run log also shows it every 100 fixes ("VISO_DELAY_MS advice").
+--- a/DECISION_CARD.txt
++++ b/DECISION_CARD.txt
+@@ -110,7 +110,7 @@
+    CAUSE  justice_d records 30 pictures each second (6.9 MB/s). check then needs 5.3 GB. The 4 GB eMMC is too small.
+    DO     With an SD card: set log_dir to /sdcard/logs in settings.json. Or delete old logs.
+           No SD card: on the laptop, apply your profile names with no_sd last (... justice_d no_sd). check then needs
+-          0.44 GB. Pull and delete the raw files after each flight (EIGHT_HOURS, storage rule).
++          0.5 GB. Pull and delete the raw files after each flight (EIGHT_HOURS, storage rule).
+ 24 SEE    board_check.sh: "board temperature <n> C: the board stops at 95 C" shows FAIL.
+    CAUSE  The board is hot. It stops at 95 C.
+    DO     Cool the board before the flight. Run sh tools/board_check.sh again.
+@@ -180,8 +180,10 @@
+ 41 SEE    A switch position gives RTL (PX4: AUTO), or a mode name that is not in EVENT_DAY step 6B.
+    CAUSE  The pilot's switch map is the stock one (aircraft manual: Acro, Position Hold, Return to Home).
+    DO     Do not use that position in a flight. Ask the pilot to map the positions as EVENT_DAY step 6B states.
+-42 SEE    timing: "PASS video delay ..." from chunks that you chose by hand.
+-   CAUSE  timing also passes on chunks of a hold in gusts, with wrong values (SITL, 60 m: 12 ms against a true 40 ms,
+-          readout -29 against +14 ms).
+-   DO     Give timing only the chunks that the line in EVENT_DAY step 7, item 15b prints. If it prints none, keep the
+-          values of the ground calibration (step 4).
++42 SEE    timing: "FAIL give one run log ...", "FAIL no 'engaged' note ...", "FAIL no raw frame in the 15 s before
++          the switch ..." or "FAIL the raw files are not from the run ...".
++   CAUSE  timing needs the run log and the raw files of the same run. It uses only the frames of the 15 s before the
++          first switch to position hold: on the chunks of a hold in gusts it passed with wrong values (SITL, 60 m:
++          12 ms against a true 40 ms, readout -29 against +14 ms).
++   DO     Type the line of EVENT_DAY step 7, item 15b with the stamp of the newest run log. If it shows FAIL again,
++          keep the values of the ground calibration (step 4).

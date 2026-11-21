@@ -1,0 +1,9 @@
+{
+ "_why": {
+  "_note": "For a board with no SD card (the rules can forbid a team SD card: Stage 1 p.6 Q8, Q9). Logs and raw recordings then go to the 4 GB eMMC: keep log_dir at its default \"logs\" (the program folder). Name this profile AFTER justice_d in the apply command: both set record_hz, and the later name wins. Pull and delete the raw files after each flight (EIGHT_HOURS, storage rule).",
+  "record_hz": "10 pictures each second for the recorders (run --raw, calib, mask): 2.3 MB/s at 640x360, 140 MB per minute. justice_d gives 30 (6.9 MB/s). Calibration at 10 Hz: integ/rehearsal_2026-11-20/README.txt (item B).",
+  "min_free_gb": "0.5 GB: the raw recorder stops under this free space (the hold continues). The check line 'free disk' then needs 0.44 GB at 10 Hz (it scales min_free_gb from 360x288 at 25 Hz to the picture size and rate). With the default 2.0 at justice_d's 30 Hz it needs 5.3 GB, more than the eMMC holds."
+ },
+ "record_hz": 10,
+ "min_free_gb": 0.5
+}

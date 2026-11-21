@@ -1,0 +1,31 @@
+--- a/apb_main.py
++++ b/apb_main.py
+@@ -228,6 +228,8 @@
+     if fw == "ardupilot":
+         name = AP_MODES.get(m, f"mode {m}")
+         return name, name in AP_HOLD
++    if fw == "betaflight":                              # m: the active MSP box ids; 11 = POS HOLD
++        return ("POS_HOLD", True) if 11 in m else ("no POS_HOLD", False)
+     if fw == "px4":
+         main, sub = (m >> 16) & 0xFF, (m >> 24) & 0xFF
+         if main == PX4_AUTO and sub == PX4_AUTO_LOITER:
+@@ -435,7 +437,7 @@
+         make_hold(s, shape)                    # mask size, lens profile, hold_cfg names
+     except (ValueError, KeyError, StopIteration) as e:
+         out.append(f"cannot build the hold: {e!r}")
+-    if fc.firmware not in ("px4", "ardupilot"):
++    if fc.firmware not in ("px4", "ardupilot", "betaflight"):
+         out.append(f"firmware {fc.firmware} is not supported.")
+     if fc.firmware == "ardupilot" and s["origin_lat_lon_alt"] is None:
+         out.append("ArduPilot needs origin_lat_lon_alt in settings.json (lat, lon, alt of the field).")
+@@ -800,8 +802,8 @@
+             ok = len(rtt) >= 10 and np.percentile(rtt, 90) < 10.0
+             line(ok, f"TIMESYNC round trip p90 {np.percentile(rtt, 90):.1f} ms (PX4 needs under 10 ms)" if len(rtt) else
+                  "TIMESYNC: no reply. Set EKF2_EV_DELAY to the fix age below.")
+-        for ok, text in fc_link.check_params(fc, s, write=args.set_params):
+-            line(ok, text[5:])
++        for ok, text in (fc.check() if fc.firmware == "betaflight" else fc_link.check_params(fc, s, write=args.set_params)):
++            line(ok, text if fc.firmware == "betaflight" else text[5:])
+         if fc.firmware == "ardupilot":
+             line(s["origin_lat_lon_alt"] is not None, "origin set" if s["origin_lat_lon_alt"] else
+                  "origin_lat_lon_alt is empty. Put the field's lat, lon, alt in settings.json.")

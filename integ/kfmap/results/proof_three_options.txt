@@ -1,0 +1,10 @@
+kf_ottawa2022_crop_10m_s11_proof3_relast: before vs off: frames 660 / 660, frames that differ 0 -> IDENTICAL
+kf_ottawa2022_crop_10m_s11_proof3_relast: patched vs dl: frames 660 / 660, frames that differ 0 -> IDENTICAL
+kf_ottawa2022_crop_10m_s11_proof3_relast: hpy vs dlturn: frames 660 / 660, frames that differ 0 -> IDENTICAL
+kf_ottawa2022_crop_10m_s11_proof3_relast: hpyn55 vs pyn55: frames 660 / 660, frames that differ 0 -> IDENTICAL
+kf_ottawa2022_crop_10m_s11_proof3_relast: off vs pyn55: frames 660 / 660, frames that differ 659 (first at t 0.0853 s) -> DIFFERENT
+kf_farmland_crop_5m_s12_proof3_relast: before vs off: frames 660 / 660, frames that differ 0 -> IDENTICAL
+kf_farmland_crop_5m_s12_proof3_relast: patched vs dl: frames 660 / 660, frames that differ 0 -> IDENTICAL
+kf_farmland_crop_5m_s12_proof3_relast: hpy vs dlturn: frames 660 / 660, frames that differ 0 -> IDENTICAL
+kf_farmland_crop_5m_s12_proof3_relast: hpyn55 vs pyn55: frames 660 / 660, frames that differ 0 -> IDENTICAL
+kf_farmland_crop_5m_s12_proof3_relast: off vs pyn55: frames 660 / 660, frames that differ 659 (first at t 0.0853 s) -> DIFFERENT

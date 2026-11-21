@@ -1,0 +1,65 @@
+{
+ "cpu": "Intel(R) Core(TM) 7 240H",
+ "threads": "cv2.setNumThreads(1); numpy single-threaded",
+ "cv2": "5.0.0",
+ "numpy": "2.5.5",
+ "frames": 400,
+ "skip_first": 5,
+ "height": 100,
+ "seed": 11,
+ "flight": {
+  "file": "apsim/runs/c_d140_100m_w20g40_s11.npz",
+  "md5": "18cf27119c",
+  "dh": 0.27
+ },
+ "hold_py_md5": "af6c12c07e",
+ "started": "2026-11-18 22:57:24",
+ "load_1min_at_start": 6.99,
+ "sizes": {
+  "320x180": {
+   "median_ms": 2.73,
+   "p95_ms": 2.83,
+   "mean_ms": 2.73,
+   "max_ms": 3.12,
+   "frames_timed": 395,
+   "states": {
+    "init": 1,
+    "ok": 399
+   }
+  },
+  "640x360": {
+   "median_ms": 3.22,
+   "p95_ms": 3.37,
+   "mean_ms": 3.24,
+   "max_ms": 4.25,
+   "frames_timed": 395,
+   "states": {
+    "init": 1,
+    "ok": 399
+   }
+  },
+  "1280x720": {
+   "median_ms": 4.99,
+   "p95_ms": 5.23,
+   "mean_ms": 5.0,
+   "max_ms": 5.36,
+   "frames_timed": 395,
+   "states": {
+    "init": 2,
+    "ok": 398
+   }
+  }
+ },
+ "ratio_median_to_640x360": {
+  "320x180": 0.85,
+  "640x360": 1.0,
+  "1280x720": 1.55
+ },
+ "luma_reduce_1280x720_yuyv": {
+  "median_ms": 0.279,
+  "p95_ms": 0.283,
+  "runs": 1000,
+  "capture_py_mtime": "Wed Nov 18 22:51:41 2026"
+ },
+ "load_1min_at_end": 6.99
+}

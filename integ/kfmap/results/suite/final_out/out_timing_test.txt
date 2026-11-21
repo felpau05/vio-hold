@@ -1,0 +1,2 @@
+timing sweep found latency 56 ms (expected 57), readout 16 ms (true 16)
+timing_test PASSED

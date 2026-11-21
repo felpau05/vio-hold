@@ -1,0 +1,23 @@
+Q3: the autopilot's position error at the switch (the Loiter target is the EKF position at that moment).
+
+EKF error = ArduCopter's LOCAL_POSITION_NED (npz 'ekf') minus the true position turned into the EKF's heading frame
+(ekf_yaw_minus_true_deg), with the constant frame offset removed: the mean of that difference over the 2 s before the
+longest gap starts (fixes were sent then). Printed at the start and the end of the longest gap and at the switch,
+with the true mean distance from the hold point over the 60 s hold (run json 'rms').
+
+run                            gap s  gap from/to s EKF err gap start  gap end  switch switch+5s hold RMS hold max
+an_apb_100m_w20g40_s11          1.48  -6.65/ -5.17              0.11     0.39    0.15      0.35    0.827    1.350
+an_apb_20m_calm_s11             0.76  -2.26/ -1.50              0.02     0.07    0.09      0.06    0.099    0.179
+an_apb_50m_w20g40_s11           1.40  -6.46/ -5.06              0.08     0.26    0.31      0.31    0.340    0.760
+jd_apb_100m_w20g40_s11          4.50  -6.59/ -2.09              0.11     1.09    0.51      0.33    0.437    0.803
+jd_apb_100m_w20g40_s12          1.72  -4.45/ -2.73              0.20     0.54    0.43      0.07    0.654    1.234
+jd_apb_100m_w20g40_s13          0.33  -5.39/ -5.06              0.04     0.04    0.28      0.38    0.715    1.434
+jd_apb_20m_calm_s11             2.37  -2.19/ +0.18              0.04     0.04    0.04      0.11    0.159    0.255
+jd_apb_50m_w20g40_s11           1.15  -6.52/ -5.37              0.16     0.41    0.22      0.45    0.622    1.391
+jdcal2_apb_100m_w20g40_s11      3.87  -3.84/ +0.03              0.20     1.41    1.39      0.13    1.615    2.135
+jdcal3_apb_100m_w20g40_s11      3.68  -6.28/ -2.60              0.07     0.56    0.32      0.06    0.783    1.305
+jdcal_apb_100m_w20g40_s11       2.50  -6.59/ -4.09              0.15     0.91    0.45      0.35    0.661    1.109
+jdfull_apb_100m_w20g40_s11      0.90  -1.62/ -0.72              0.05     0.09    0.15      0.20    1.101    2.148
+c_d140_100m_w20g40_s11          1.68  -7.55/ -5.87              0.22     0.64    0.97      0.30    0.768    1.267
+c_d140_100m_w20g40_s12          5.28  -7.26/ -1.98              0.21     2.37    0.91      0.44    0.874    1.315
+c_d140_100m_w20g40_s13          2.88  -6.53/ -3.65              0.03     0.20    0.20      0.37    0.548    0.923

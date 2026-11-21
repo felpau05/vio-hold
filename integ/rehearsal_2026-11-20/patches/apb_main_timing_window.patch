@@ -1,0 +1,32 @@
+--- a/apb_main.py
++++ b/apb_main.py
+@@ -8,7 +8,8 @@
+   apb_main.py run   [--raw]          the hold: send the fix to the flight controller
+   apb_main.py replay FILE...         a raw recording through the same pipeline (for tuning)
+   apb_main.py delay LOG.csv...       VISO_DELAY_MS from the fix ages of a flight
+-  apb_main.py timing RAW.npz...      video delay and readout from an in-flight stick wiggle (raw chunks)
++  apb_main.py timing [RUN.csv] RAW.npz...  video delay and readout from an in-flight stick wiggle (raw chunks;
++                                     with the run log: only the 15 s before the pilot's switch)
+ 
+ Every check prints one line: PASS or FAIL, and what to do. run refuses to start when a check fails.
+ Safety rule: send nothing when in doubt (stale inputs, bad picture, low height, too few good frames).
+@@ -1026,10 +1027,18 @@
+     search with the calibrated picture orientation, in the flight's own light. apsim, 100 m, start 40 ms
+     wrong: found 64.0 ms against a true 60.4 ms (integ/control/wiggle_*.txt)."""
+     import calib
+-    d = [np.load(f) for f in sorted(args.files)]
++    d = [np.load(f) for f in sorted(args.files) if f.endswith(".npz")]
+     att = np.concatenate([x["att"] for x in d])
+     rec = dict(imgs=np.concatenate([x["imgs"] for x in d]), t_grab=np.concatenate([x["t_grab"] for x in d]),
+                att=att[np.unique(att[:, 0], return_index=True)[1]], K=d[0]["K"], D=d[0]["D"])
++    logs = [f for f in args.files if f.endswith(".csv")]
++    if logs:   # a run log: only the frames 16 s to 1 s before the pilot's first switch (the wiggle, then 4 s to settle)
++        sw = [float(r["t"]) for r in csv.DictReader(open(logs[0])) if r["t"] and r["note"].startswith("engaged")]
++        if not sw:
++            say(f"FAIL no 'engaged' note in {logs[0]}: the switch time is not known. Give the wiggle chunks only.")
++            return 1
++        keep = (rec["t_grab"] >= sw[0] - 16.0) & (rec["t_grab"] <= sw[0] - 1.0)
++        rec["imgs"], rec["t_grab"] = rec["imgs"][keep], rec["t_grab"][keep]
+     r = calib.Rec(rec, load_mask(s, rec["imgs"].shape[1:3]))
+     if r.rate_dps < s["calib_min_rate_dps"] or len(r.ia) < 1000:
+         say(f"FAIL the recording turned {r.rate_dps:.0f} deg/s RMS with {len(r.ia)} matches; need "

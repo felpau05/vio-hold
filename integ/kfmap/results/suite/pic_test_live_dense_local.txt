@@ -1,0 +1,10 @@
+PASS hover 10 m seed 11: longest time with no fix in the last 10 s is 0.08 s (limit 0.3 s)
+FAIL hover 10 m seed 12: longest time with no fix in the last 10 s is 0.33 s (limit 0.3 s)
+PASS hover 40 m seed 11: longest time with no fix in the last 10 s is 0.08 s (limit 0.3 s)
+PASS hover 40 m seed 12: longest time with no fix in the last 10 s is 0.08 s (limit 0.3 s)
+PASS hover 100 m seed 11: longest time with no fix in the last 10 s is 0.08 s (limit 0.3 s)
+PASS hover 100 m seed 12: longest time with no fix in the last 10 s is 0.08 s (limit 0.3 s)
+PASS freeze repeat 40 m: the last fix is 0.00 s after the freeze starts (limit 1.0 s). Fixes on the frozen picture: 1 of 72
+PASS freeze noise 40 m: the last fix is 0.50 s after the freeze starts (limit 1.0 s). Fixes on the frozen picture: 7 of 72
+FAIL overlay only: 21 fixes sent in 288 frames (limit 0). Times of the fixes: [4.8353, 4.9187, 5.002, 5.0853, 10.5853, 10.6687, 10.752, 10.8353, 10.9187, 11.002, 11.0853, 11.1687, 11.252, 11.3353, 11.4187, 11.502, 11.5853, 19.6687, 19.752, 19.8353, 19.9187]
+2 FAIL in 54 s

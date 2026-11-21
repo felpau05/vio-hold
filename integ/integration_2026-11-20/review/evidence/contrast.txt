@@ -1,0 +1,94 @@
+a_still10_100m         window   46.6..  61.6  best 8 s   46.6..  54.6  rate in  28.0  rest  17.4  ratio   1.6
+a_still10_10m          window   27.2..  42.2  best 8 s   27.2..  35.2  rate in  28.0  rest   4.4  ratio   6.4
+a_still10_30m          window   32.1..  47.1  best 8 s   32.1..  40.1  rate in  29.1  rest   7.9  ratio   3.7
+a_still10_60m          window   38.8..  53.8  best 8 s   38.8..  46.8  rate in  28.8  rest  18.6  ratio   1.5
+a_still12_100m         window   48.6..  63.6  best 8 s   48.6..  56.6  rate in  22.8  rest  23.9  ratio   1.0
+a_still12_10m          window   29.3..  44.3  best 8 s   29.3..  37.3  rate in  22.9  rest   5.2  ratio   4.4
+a_still12_30m          window   34.0..  49.0  best 8 s   34.0..  42.0  rate in  24.1  rest   8.6  ratio   2.8
+a_still12_60m          window   40.8..  55.8  best 8 s   47.7..  55.7  rate in  25.2  rest  25.5  ratio   1.0
+a_still15_100m         window   51.6..  66.6  best 8 s   57.7..  65.7  rate in  23.5  rest  14.5  ratio   1.6
+a_still15_10m          window   32.3..  47.3  best 8 s   32.3..  40.3  rate in  12.7  rest   5.2  ratio   2.4
+a_still15_30m          window   37.0..  52.0  best 8 s   37.0..  45.0  rate in  15.4  rest   7.4  ratio   2.1
+a_still15_60m          window   43.7..  58.7  best 8 s   50.1..  58.1  rate in  29.3  rest  17.4  ratio   1.7
+a_still20_100m         window   56.6..  71.6  best 8 s   61.8..  69.8  rate in  25.9  rest  22.4  ratio   1.2
+a_still20_10m          window   37.3..  52.3  best 8 s   37.4..  45.4  rate in   5.2  rest   4.6  ratio   1.1
+a_still20_30m          window   42.0..  57.0  best 8 s   42.1..  50.1  rate in   8.3  rest   6.7  ratio   1.2
+a_still20_60m          window   48.7..  63.7  best 8 s   54.4..  62.4  rate in  36.0  rest  24.1  ratio   1.5
+a_still25_100m         window   61.6..  76.6  best 8 s   67.3..  75.3  rate in  31.1  rest  23.1  ratio   1.3
+a_still25_10m          window   42.3..  57.3  best 8 s   44.8..  52.8  rate in   5.0  rest   3.7  ratio   1.3
+a_still25_30m          window   47.0..  62.0  best 8 s   53.6..  61.6  rate in   7.2  rest   6.2  ratio   1.2
+a_still25_60m          window   53.8..  68.8  best 8 s   54.4..  62.4  rate in  36.0  rest  28.9  ratio   1.2
+a_still30_100m         window   66.6..  81.6  best 8 s   70.9..  78.9  rate in  32.4  rest  27.4  ratio   1.2
+a_still30_10m          window   47.3..  62.3  best 8 s   47.3..  55.3  rate in   5.0  rest   4.3  ratio   1.1
+a_still30_30m          window   52.1..  67.1  best 8 s   56.8..  64.8  rate in   8.1  rest   6.6  ratio   1.2
+a_still30_60m          window   58.8..  73.8  best 8 s   58.8..  66.8  rate in  34.4  rest  25.5  ratio   1.3
+a_still40_100m         window   76.6..  91.6  best 8 s   77.3..  85.3  rate in  35.4  rest  25.5  ratio   1.4
+a_still40_10m          window   57.3..  72.3  best 8 s   64.2..  72.2  rate in   4.7  rest   4.7  ratio   1.0
+a_still40_30m          window   62.0..  77.0  best 8 s   68.0..  76.0  rate in   7.8  rest   7.0  ratio   1.1
+a_still40_60m          window   68.8..  83.8  best 8 s   75.4..  83.4  rate in  30.1  rest  22.8  ratio   1.3
+a_still8_100m          window   44.6..  59.6  best 8 s   44.8..  52.8  rate in  31.7  rest  12.6  ratio   2.5
+a_still8_10m           window   25.3..  40.3  best 8 s   25.4..  33.4  rate in  31.6  rest   5.1  ratio   6.2
+a_still8_30m           window   30.1..  45.1  best 8 s   30.2..  38.2  rate in  32.2  rest   9.1  ratio   3.5
+a_still8_60m           window   36.8..  51.8  best 8 s   37.1..  45.1  rate in  32.1  rest  18.1  ratio   1.8
+b_wig3_100m            window   32.6..  47.6  best 8 s   39.5..  47.5  rate in  18.3  rest   0.4  ratio  51.5
+b_wig3_10m             window   14.3..  28.3  best 8 s   20.2..  28.2  rate in  18.6  rest   9.6  ratio   1.9
+b_wig3_30m             window   18.0..  33.0  best 8 s   24.9..  32.9  rate in  18.7  rest   0.2  ratio  93.4
+b_wig3_60m             window   24.7..  39.7  best 8 s   31.6..  39.6  rate in  18.3  rest   0.3  ratio  58.7
+base_100m              window   40.7..  55.7  best 8 s   44.8..  52.8  rate in  31.7  rest   3.6  ratio   8.7
+base_10m               window   21.3..  36.3  best 8 s   25.4..  33.4  rate in  31.6  rest   4.1  ratio   7.6
+base_30m               window   26.0..  41.0  best 8 s   30.1..  38.1  rate in  32.2  rest   7.4  ratio   4.4
+base_60m               window   32.8..  47.8  best 8 s   37.1..  45.1  rate in  32.1  rest   6.1  ratio   5.3
+c_start11_100m         window   44.8..  55.7  best 8 s   44.8..  52.8  rate in  31.6  rest   3.9  ratio   8.1
+c_start11_10m          window   25.5..  36.3  best 8 s   25.5..  33.5  rate in  31.5  rest   4.9  ratio   6.4
+c_start11_30m          window   30.2..  41.0  best 8 s   30.2..  38.2  rate in  32.2  rest  10.9  ratio   3.0
+c_start11_60m          window   36.9..  47.8  best 8 s   37.1..  45.1  rate in  32.1  rest   7.4  ratio   4.3
+c_start13_100m         window   42.8..  55.7  best 8 s   44.7..  52.7  rate in  31.7  rest   4.5  ratio   7.0
+c_start13_10m          window   23.5..  36.3  best 8 s   25.5..  33.5  rate in  31.6  rest   5.1  ratio   6.2
+c_start13_30m          window   28.2..  41.0  best 8 s   30.2..  38.2  rate in  32.2  rest   8.7  ratio   3.7
+c_start13_60m          window   35.0..  47.8  best 8 s   37.1..  45.1  rate in  32.1  rest   7.2  ratio   4.5
+c_start5_100m          attitude covers 4.9 s of the window
+c_start5_10m           attitude covers 4.9 s of the window
+c_start5_30m           attitude covers 4.8 s of the window
+c_start5_60m           attitude covers 4.9 s of the window
+c_start7_100m          attitude covers 6.9 s of the window
+c_start7_10m           attitude covers 6.9 s of the window
+c_start7_30m           attitude covers 6.9 s of the window
+c_start7_60m           attitude covers 6.9 s of the window
+c_start9_100m          attitude covers 8.9 s of the window
+c_start9_10m           attitude covers 8.9 s of the window
+c_start9_30m           attitude covers 8.8 s of the window
+c_start9_60m           attitude covers 8.9 s of the window
+d_ground_100m          attitude covers 0.9 s of the window
+d_ground_10m           attitude covers 0.9 s of the window
+d_ground_30m           attitude covers 0.9 s of the window
+d_ground_60m           attitude covers 0.9 s of the window
+d_test17_100m          window   16.2..  31.2  best 8 s   16.2..  24.2  rate in   8.2  rest   0.6  ratio  13.5
+d_test17_10m           window   16.2..  31.2  best 8 s   23.1..  31.1  rate in  26.7  rest   8.8  ratio   3.0
+d_test17_30m           window   16.2..  31.2  best 8 s   23.1..  31.1  rate in  10.7  rest   8.5  ratio   1.3
+d_test17_60m           window   16.6..  31.6  best 8 s   16.6..  24.6  rate in   8.4  rest   0.3  ratio  27.5
+d_test3_100m           attitude covers 2.9 s of the window
+d_test3_10m            attitude covers 2.9 s of the window
+d_test3_30m            attitude covers 2.9 s of the window
+d_test3_60m            attitude covers 2.9 s of the window
+e_log100m_raw10m       window   40.7..  55.7  best 8 s   40.7..  48.7  rate in   5.1  rest   5.0  ratio   1.0
+e_log100m_raw30m       window   40.7..  55.7  best 8 s   42.2..  50.2  rate in   8.3  rest   5.7  ratio   1.5
+e_log100m_raw60m       window   40.7..  55.7  best 8 s   47.6..  55.6  rate in  24.9  rest  26.1  ratio   1.0
+e_log10m_raw100m       window   21.3..  36.3  best 8 s   21.3..  29.3  rate in   0.6  rest   0.4  ratio   1.6
+e_log10m_raw30m        window   21.3..  36.3  best 8 s   28.2..  36.2  rate in  28.1  rest   0.4  ratio  68.0
+e_log10m_raw60m        window   21.3..  36.3  best 8 s   27.7..  35.7  rate in   0.4  rest   0.3  ratio   1.3
+e_log30m_raw100m       window   26.0..  41.0  best 8 s   26.4..  34.4  rate in   0.6  rest   0.2  ratio   2.6
+e_log30m_raw10m        window   26.0..  41.0  best 8 s   26.0..  34.0  rate in  30.7  rest   3.0  ratio  10.2
+e_log30m_raw60m        window   26.0..  41.0  best 8 s   32.9..  40.9  rate in  22.6  rest   0.4  ratio  59.3
+e_log60m_raw100m       window   32.8..  47.8  best 8 s   39.7..  47.7  rate in  19.3  rest   0.3  ratio  55.6
+e_log60m_raw10m        window   32.8..  47.8  best 8 s   32.8..  40.8  rate in   9.5  rest   5.0  ratio   1.9
+e_log60m_raw30m        window   32.8..  47.8  best 8 s   32.8..  40.8  rate in  27.4  rest   8.1  ratio   3.4
+f_drop000_10m          window   24.4..  36.3  best 8 s   25.4..  33.4  rate in  31.6  rest   5.4  ratio   5.8
+f_drop001_10m          window   21.3..  36.3  best 8 s   25.0..  33.0  rate in   1.2  rest   0.2  ratio   6.1
+f_drop001_30m          window   26.0..  41.0  best 8 s   32.6..  40.6  rate in  22.7  rest   0.2  ratio 105.0
+f_drop001_60m          window   32.8..  47.8  best 8 s   37.1..  45.1  rate in  32.1  rest   6.1  ratio   5.3
+f_drop002_100m         window   40.7..  55.7  best 8 s   44.8..  52.8  rate in  31.7  rest   3.6  ratio   8.7
+f_drop002_10m          window   21.3..  36.3  best 8 s   25.4..  33.4  rate in  31.6  rest   4.2  ratio   7.6
+f_drop002_30m          window   26.0..  41.0  best 8 s   30.0..  38.0  rate in  26.3  rest   0.5  ratio  51.5
+f_drop002_60m          window   32.8..  47.8  best 8 s   39.7..  47.7  rate in   3.2  rest   0.4  ratio   8.7
+f_drop003_100m         window   40.7..  55.7  best 8 s   44.7..  52.7  rate in  10.4  rest   0.3  ratio  35.2
+f_drop003_60m          window   32.8..  47.8  best 8 s   37.1..  45.1  rate in  32.1  rest   6.1  ratio   5.2

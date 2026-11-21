@@ -1,0 +1,36 @@
+Version needs of each ELF (Executable and Linkable Format) file in the bundle, read with: readelf -V -W FILE
+and readelf -d -W FILE (NEEDED). Bundle: tools/bundle/vio-bundle-aarch64.tar.gz, sha256 fed4126a63e092efa3040c26d20b46ec429d50447ce36b6202be5d63ef74602d
+
+== Highest GLIBC version that each ELF file needs (count of files per version)
+     44 2.17
+      1 2.18
+      7 2.27
+      3 none
+
+== Lowest glibc for the whole bundle: 2.27. The files that need GLIBC_2.27:
+2.27 python/lib/python3.12/site-packages/numpy/_core/_multiarray_tests.cpython-312-aarch64-linux-gnu.so
+2.27 python/lib/python3.12/site-packages/numpy/_core/_multiarray_umath.cpython-312-aarch64-linux-gnu.so
+2.27 python/lib/python3.12/site-packages/numpy.libs/libscipy_openblas64_-1b7162d6.so
+2.27 python/lib/python3.12/site-packages/numpy/linalg/_umath_linalg.cpython-312-aarch64-linux-gnu.so
+2.27 python/lib/python3.12/site-packages/numpy/random/_bounded_integers.cpython-312-aarch64-linux-gnu.so
+2.27 python/lib/python3.12/site-packages/numpy/random/_generator.cpython-312-aarch64-linux-gnu.so
+2.27 python/lib/python3.12/site-packages/numpy/random/mtrand.cpython-312-aarch64-linux-gnu.so
+python/bin/python3.12 needs: 2.17
+
+== Libraries that the bundle needs from the board (NEEDED, not inside the bundle), with the count of files that need each
+  11 ld-linux-aarch64.so.1
+  1 libcrypt.so.1
+  49 libc.so.6
+  7 libdl.so.2
+  11 libgcc_s.so.1
+  29 libm.so.6
+  27 libpthread.so.0
+  3 librt.so.1
+  5 libstdc++.so.6
+  1 libutil.so.1
+  6 libz.so.1
+libcrypt.so.1 is needed only by lib-dynload/_crypt (the crypt module). The program does not import it.
+libstdc++.so.6, libgcc_s.so.1, libz.so.1: the bundle has a copy in syslibs/ (Debian 11 arm64), for LD_LIBRARY_PATH.
+
+== C++ library versions needed (highest): GLIBCXX_3.4.21
+== syslibs need GLIBC up to: 2.18

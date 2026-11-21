@@ -1,0 +1,21 @@
+Y1 the default feed is the code of the tested bundle
+  PASS GyroAtt(20) equals the old class on 600 rows, bit for bit
+Y2 gyro_fcyaw: the FC yaw, our roll and pitch
+  PASS yaw equals the FC yaw in each row (largest difference 0 rad)
+  PASS roll and pitch within 0.01 deg of the default (largest 0.0000 deg)
+Y3 an FC yaw jump of 20 deg at 2.0 s
+  PASS the default still differs from the FC yaw by 18.1 deg 2 s after the jump (the cause)
+  PASS gyro_fcyaw differs by 0 deg
+  PASS roll and pitch error move by 0.0025 deg or less in each step across the jump (limit 0.05)
+  PASS largest roll or pitch error after the jump 0.069 deg (the FC tilt wander is 0.5 deg)
+Y4 the setting
+  PASS default att_source is 'gyro'
+  PASS att_filter: gyro -> GyroAtt, FC yaw off
+  PASS att_filter: gyro_fcyaw -> GyroAtt with the FC yaw
+  PASS settings accepts att_source gyro_fcyaw
+Y5 the interlock for hold_cfg dense_turn
+  PASS no dense_turn: no problem
+  PASS dense_turn with att_source gyro: ['hold_cfg dense_turn needs att_source gyro_fcyaw, but att_source is gyro. Apply the profile low_height as a whole (tools/use_profile.py), or set dense_turn to false.']
+  PASS dense_turn with gyro_fcyaw: no problem
+  PASS start_problems stops the run for it
+ALL PASS

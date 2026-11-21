@@ -1,0 +1,113 @@
+=== 03:53:50 STEP 1 smoke
+gate 03:53:50: wait: SITL_ACTIVE load=4.71 arducopter container
+gate 03:54:50: wait: SITL_ACTIVE load=2.58 arducopter container
+gate 03:55:50: wait: SITL_ACTIVE load=2.66 arducopter container
+gate 03:56:50: wait: SITL_ACTIVE load=4.24 arducopter container
+gate 03:57:50: wait: SITL_ACTIVE load=2.81 arducopter container
+gate 03:58:50: wait: SITL_ACTIVE load=5.96 arducopter container
+gate 03:59:50: wait: SITL_ACTIVE load=3.09 container
+gate 04:00:50: wait: SITL_ACTIVE load=2.83 arducopter container
+gate 04:01:50: wait: SITL_ACTIVE load=4.39 container
+gate 04:02:50: wait: SITL_ACTIVE load=6.52 arducopter container
+gate 04:03:50: wait: SITL_ACTIVE load=6.98 container
+gate 04:04:50: wait: SITL_ACTIVE load=2.96 container
+gate 04:05:50: wait: SITL_ACTIVE load=2.77 container
+gate 04:06:50: wait: SITL_ACTIVE load=2.61 arducopter container
+gate 04:07:51: wait: SITL_ACTIVE load=5.11 arducopter container
+gate 04:08:51: wait: SITL_ACTIVE load=2.80 arducopter container
+gate 04:09:51: wait: SITL_ACTIVE load=6.55 arducopter container
+gate 04:10:51: wait: SITL_ACTIVE load=4.18 container
+gate 04:11:51: wait: SITL_ACTIVE load=5.59 arducopter container
+gate 04:12:51: wait: SITL_ACTIVE load=5.71 container
+gate 04:13:51: wait: SITL_ACTIVE load=2.61 arducopter container
+gate 04:14:51: wait: SITL_ACTIVE load=4.76 arducopter container
+gate 04:15:51: wait: SITL_ACTIVE load=3.08 container
+gate 04:16:51: wait: SITL_ACTIVE load=5.49 arducopter container
+gate 04:17:51: wait: SITL_ACTIVE load=3.57 container
+gate 04:18:51: wait: SITL_ACTIVE load=3.83 arducopter container
+gate 04:19:51: wait: SITL_ACTIVE load=6.50 container
+gate 04:20:51: wait: SITL_ACTIVE load=3.34 arducopter container
+gate 04:21:51: wait: SITL_ACTIVE load=3.66 arducopter container
+gate 04:22:52: wait: SITL_ACTIVE load=2.95 arducopter container
+gate 04:23:52: wait: SITL_ACTIVE load=6.05 arducopter container
+gate 04:24:52: wait: SITL_ACTIVE load=3.80 container
+gate 04:25:52: wait: SITL_ACTIVE load=3.53 arducopter container
+gate 04:26:52: wait: SITL_ACTIVE load=5.10 container
+gate 04:27:52: wait: SITL_ACTIVE load=4.87 arducopter container
+gate 04:28:52: wait: SITL_ACTIVE load=4.69 arducopter container
+gate 04:29:52: wait: SITL_ACTIVE load=4.12 arducopter container
+gate 04:30:52: wait: SITL_ACTIVE load=3.83 arducopter container
+gate 04:31:52: wait: SITL_ACTIVE load=4.72 arducopter container
+gate 04:32:52: wait: SITL_ACTIVE load=7.53 container
+gate 04:33:52: wait: SITL_ACTIVE load=3.00 container
+gate 04:34:52: wait: SITL_ACTIVE load=7.87 arducopter container
+gate 04:35:52: wait: SITL_ACTIVE load=8.81 container
+gate 04:36:53: wait: SITL_ACTIVE load=3.38 container
+gate 04:37:53: wait: SITL_ACTIVE load=6.63 arducopter container
+gate 04:38:53: wait: SITL_ACTIVE load=7.28 container
+gate 04:39:53: wait: SITL_ACTIVE load=4.35 arducopter container
+gate 04:40:53: wait: SITL_ACTIVE load=5.85 arducopter container
+gate 04:41:53: wait: SITL_ACTIVE load=4.07 container
+gate 04:42:53: wait: SITL_ACTIVE load=5.43 arducopter container
+gate 04:43:53: wait: SITL_ACTIVE load=6.06 container
+gate 04:44:53: wait: SITL_ACTIVE load=2.50 arducopter container
+gate 04:45:54: wait: SITL_ACTIVE load=6.01 arducopter container
+gate 04:46:54: wait: SITL_ACTIVE load=4.31 container
+gate 04:47:54: wait: SITL_ACTIVE load=3.73 arducopter container
+gate 04:48:54: wait: SITL_ACTIVE load=5.51 arducopter container
+gate 04:49:54: wait: SITL_ACTIVE load=2.88 container
+gate 04:50:54: wait: SITL_ACTIVE load=10.30 container
+gate 04:51:54: wait: SITL_ACTIVE load=12.62 container
+gate 04:52:54: wait: SITL_ACTIVE load=5.71 container
+gate 04:53:55: wait: SITL_ACTIVE load=2.53 container
+gate 04:54:55: wait: SITL_ACTIVE container
+gate 04:55:55: wait: SITL_ACTIVE container
+gate 04:56:55: wait: SITL_ACTIVE container
+gate 04:57:55: wait: SITL_ACTIVE container
+gate 04:58:55: wait: SITL_ACTIVE container
+gate 04:59:55: wait: SITL_ACTIVE container
+gate 05:00:55: wait: SITL_ACTIVE container
+gate 05:01:55: wait: SITL_ACTIVE container
+gate 05:02:55: wait: SITL_ACTIVE load=2.92 container
+gate 05:03:55: wait: SITL_ACTIVE load=3.38 container
+gate 05:04:55: wait: SITL_ACTIVE container
+gate 05:05:56: wait: SITL_ACTIVE load=3.32 container
+gate 05:06:56: wait: SITL_ACTIVE load=3.29 container
+gate 05:07:56: wait: SITL_ACTIVE load=4.28 arducopter container
+gate 05:08:56: wait: SITL_ACTIVE load=5.62 container
+gate 05:09:56: wait: SITL_ACTIVE load=3.18 arducopter container
+gate 05:10:56: wait: SITL_ACTIVE load=4.48 arducopter container
+gate 05:11:56: wait: SITL_ACTIVE load=4.27 arducopter container
+gate 05:12:56: wait: SITL_ACTIVE load=8.96 arducopter container
+gate 05:13:56: wait: SITL_ACTIVE load=4.18 container
+gate 05:14:57: wait: SITL_ACTIVE load=4.99 arducopter container
+gate 05:15:57: wait: SITL_ACTIVE load=6.61 container
+gate 05:16:57: wait: SITL_ACTIVE load=2.74 arducopter container
+gate 05:17:57: wait: SITL_ACTIVE load=7.66 arducopter container
+gate 05:18:57: wait: SITL_ACTIVE load=4.65 container
+gate 05:19:57: wait: SITL_ACTIVE load=5.43 arducopter container
+gate 05:20:57: wait: SITL_ACTIVE load=11.78 container
+gate 05:21:57: wait: SITL_ACTIVE load=4.47 container
+gate 05:22:57: wait: SITL_ACTIVE load=4.46 arducopter container
+gate 05:23:57: wait: SITL_ACTIVE load=7.64 arducopter container
+gate 05:24:58: wait: SITL_ACTIVE load=2.96 container
+gate 05:25:58: wait: SITL_ACTIVE load=7.51 arducopter container
+gate 05:26:58: wait: SITL_ACTIVE load=6.53 container
+gate 05:27:58: wait: SITL_ACTIVE load=2.65 arducopter container
+gate 05:28:58: wait: SITL_ACTIVE load=10.74 arducopter container
+gate 05:29:58: wait: SITL_ACTIVE load=5.63 container
+gate 05:30:58: wait: SITL_ACTIVE load=3.53 arducopter container
+gate 05:31:58: wait: SITL_ACTIVE load=7.87 arducopter container
+gate 05:32:58: wait: SITL_ACTIVE load=3.19 container
+gate 05:33:58: wait: SITL_ACTIVE load=5.84 arducopter container
+gate 05:34:59: wait: SITL_ACTIVE load=3.67 container
+gate 05:35:59: wait: SITL_ACTIVE load=5.39 arducopter container
+gate 05:36:59: wait: SITL_ACTIVE load=5.67 container
+gate 05:37:59: wait: SITL_ACTIVE load=4.24 arducopter container
+gate 05:38:59: wait: SITL_ACTIVE load=10.17 arducopter container
+gate 05:39:59: wait: SITL_ACTIVE load=4.61 container
+gate 05:40:59: wait: SITL_ACTIVE load=3.27 arducopter container
+gate 05:41:59: wait: SITL_ACTIVE load=3.99 container
+gate 05:42:59: wait: SITL_ACTIVE load=6.13 arducopter container
+gate 05:43:59: wait: SITL_ACTIVE load=6.39 arducopter container
+gate 05:44:59: wait: SITL_ACTIVE load=3.07 container

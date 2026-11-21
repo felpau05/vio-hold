@@ -1,0 +1,23 @@
+case                      drag   rms m   max m  % fix  gap s  events (s after hold start)
+dr_gapX_off_s102           off    6.30   30.03  22.12  14.71  28.14s ArduCopter left Loiter (mode 9): EKF3 IMU0 initial pos NED = -0.3,-0.3,-23.2 (m); EKF variance; EKF Failsafe: changed to LAND Mode; 34.7s FLY-AWAY: 30.0 m from the hold point; ALT_HOLD, vision stopped; 28.1s EKF variance; 28.1s EKF Failsafe: changed to LAND Mode; 35.2s EKF3 IMU0 stopped aidin
+dr_gapX_on_s102             on    7.57   30.03  16.36  19.11  39.12s FLY-AWAY: 30.0 m from the hold point; ALT_HOLD, vision stopped; 30.3s Dead Reckoning started
+dr_gap_dbl_s102            dbl    0.70    1.30  46.73   1.32  
+dr_gap_half_s102          half    3.75    5.68  45.87   1.40  
+dr_gap_off_s102            off    2.07    3.17  41.00   2.20  
+dr_gap_off_s110            off    1.73    2.40  44.73   1.40  
+dr_gap_on_s102              on    2.10    3.86  39.33   1.76  
+dr_gap_on_s110              on    1.59    2.70  37.71   2.16  
+dr_n30_off_s11             off    0.33    0.75  48.87   0.12  
+dr_n30_on_s11               on    0.37    0.78  47.87   0.12  
+dr_n60_off_s11             off    0.53    0.87  48.67   0.12  
+dr_n60_off_s12             off    0.42    0.74  48.47   0.16  
+dr_n60_on_s11               on    0.52    1.00  49.00   0.12  
+dr_n60_on_s12               on    0.47    0.86  49.13   0.12  
+dr_out60_off_s11           off    0.55    1.07  45.27   4.12  
+dr_out60_on_s11             on    0.59    1.14  45.13   4.04  
+
+apsim/drag_matrix.py. drag: off = current params_ardupilot; on = {"EK3_DRAG_BCOEF_X": 17.2, "EK3_DRAG_BCOEF_Y": 17.2, "EK3_DRAG_MCOEF": 0.25, "FS_DR_ENABLE": 0}; half/dbl = drag force x0.5 / x2. gap s = longest time without a sent fix in the hold.
+Hold 60 s, w20g40, variant apb (onboard program, cpu_model fixed). Events: sitl_ap events + FC texts.
+FS_DR_ENABLE: off runs keep the default 2 (RTL; no effect without drag, the EKF never dead-reckons);
+on/half/dbl runs set 0 (checked in each dataflash log). gapX: a run ends at a fly-away, so its gap s
+is cut there (the video outage is 20 s). gap_* (hold-out field, no forced outage) had no gap > 2.2 s.

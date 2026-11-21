@@ -1,0 +1,9 @@
+bad_pictures dense_local start 03:31:23 load 2.91
+bad_pictures dense_local end 03:31:45 rc=0 load 6.50
+test_live dense_local start 03:32:45 load 2.97
+test_live dense_local end 03:33:39 rc=2 load 3.21
+bad_pictures dense_localkf_map start 03:33:49 load 2.94
+bad_pictures dense_localkf_map end 03:34:08 rc=0 load 6.71
+test_live dense_localkf_map start 03:34:58 load 2.91
+test_live dense_localkf_map end 03:35:51 rc=2 load 2.62
+lock removed 03:35:51

@@ -1,0 +1,88 @@
+$ qpy tests_apb/test_digital.py (cwd: the bundle's vio folder plus the test files; root file system py310; qemu CPU cortex-a53)
+grey picture from each buffer layout, reduced 2x (1280x720 -> 640x360)
+  PASS YUYV: (360, 640) equals the INTER_AREA reduction of Y, why=None
+  PASS UYVY: (360, 640) equals the INTER_AREA reduction of Y, why=None
+  PASS NV12: (360, 640) equals the INTER_AREA reduction of Y, why=None
+  PASS GREY: (360, 640) equals the INTER_AREA reduction of Y, why=None
+  PASS BGR3: (360, 640) equals the INTER_AREA reduction of Y, why=None
+  PASS close() releases the capture
+  PASS video_reduce 1 gives the full 1280x720 Y picture
+picture checks
+  PASS 120 fresh frames of a still scene, noise 0.3 grey: 0 refused (smallest mean difference 0.216 grey, analog repeat_mad 1.0)
+  PASS no new buffer inside the timeout: newest() gives None
+  PASS frozen stream: first accepted, the 5 repeats refused (repeated buffer (frozen stream))
+  PASS black picture (covered lens) refused: black or flat picture (lens covered?)
+  PASS black picture with OSD text (covered lens) refused: black or flat picture (lens covered?)
+  PASS the next good picture is accepted: None
+  PASS bright flat snow with 3 tarps and almost no noise is accepted: None
+  PASS flat grey picture refused: black or flat picture (lens covered?)
+stamps
+  PASS driver stamp used; t0 = stamp - video_delay_s (stamp from driver)
+  PASS implausible driver stamp: read time used (stamp from read)
+settings
+  PASS old settings file (no new keys) loads; camera analog; open_video picks ['analog', 'digital']
+  PASS lens(): field 0 for analog top field, None for the digital camera -> [0, None]
+  PASS {'camera': 'usb'} refused: /tmp/tmputu9msqf/old.json: 'camera' must be one of analog, digital; it is 'usb'.
+  PASS {'video_reduce': 1.5} refused: /tmp/tmputu9msqf/old.json: 'video_reduce' must be a whole number, 1 or more; it is 1.5.
+  PASS {'video_reduce': 0} refused: /tmp/tmputu9msqf/old.json: 'video_reduce' must be a whole number, 1 or more; it is 0.
+  PASS {'pixel_format': 'YUV'} refused: /tmp/tmputu9msqf/old.json: 'pixel_format' must be empty or 4 characters (a FOURCC such as YUYV); it is 'YUV'.
+  PASS {'video_size': [1280]} refused: /tmp/tmputu9msqf/old.json: 'video_size' must be a list of 2 numbers; it is [1280].
+  PASS {'video_command': 5} refused: /tmp/tmputu9msqf/old.json: 'video_command' must be a str; it is 5.
+  PASS {'record_hz': '30'} refused: /tmp/tmputu9msqf/old.json: 'record_hz' must be a number; it is '30'.
+  PASS {'record_rate': 30} refused: /tmp/tmputu9msqf/old.json: unknown key 'record_rate'. Fix the spelling or remove it.
+  PASS video_standard 'none', a FOURCC and a pipeline are accepted
+  PASS video_command and record_hz are accepted 
+  PASS defaults: record_hz 0 (keep each frame), video_command empty (not used)
+capture mode
+  PASS analog 'PAL field=top 360x288', digital 'digital 1280x720@60 reduce=2 640x360', digital reduce 1 'digital 1280x720@60 reduce=1 1280x720' all differ
+  PASS the analog mode string is unchanged, so old analog calibrations stay valid
+  PASS video_command (read-time stamps) has its own mode 'digital 1280x720@60 command reduce=2 640x360', so run refuses a calibration made without it
+recorder rate: record_hz on a 60 fps stream with 3 ms stamp jitter
+  PASS record(), record_hz 0: each usable frame kept, as before (118 of 120; 2 refused)
+  PASS record(), record_hz 30: 59 of 118 usable frames kept with their exact stamps, at most 30 each second (a smallest gap of 1/30 s would keep about 46)
+  PASS run: Hold gets each frame with record_hz 0 and 30 (119 and 119 of 119)
+  PASS run --raw, record_hz 0: each frame saved, as before (119)
+  PASS run --raw, record_hz 30: 60 of 119 frames saved with their exact stamps, at most 30 each second
+video_command: raw frames from a child process
+  PASS 3 YUYV frames in pieces: the third is the INTER_AREA reduction of its Y. video_command has priority over video_pipeline, and no OpenCV capture is opened
+  PASS stamp: the read time (stamp from read)
+  PASS the command gives no more data: newest() gives None after the timeout
+  PASS close() stops the command and the child process of its shell
+  PASS the command stops after 1 frame and part of a frame: the frame, then None (exit code 3)
+  PASS video_command with no pixel_format refused: cannot cut the video_command output into frames: pixel_format is ''. Set pixel_format to the format that video_command writes (YUYV, UYVY, NV12 or GREY).
+  PASS the program stops with an error before close(): the command does not stay alive
+  PASS check mode, the command stops: ['FAIL video_command stopped with exit code 3. It must write raw YUYV frames of 1280x720 to its standard output. Read its error above, then check video_command and pixel_format in settings.json.']
+  PASS check mode, the command gives no data: ['FAIL video_command gave no frame in 2 s. It must write raw YUYV frames of 1280x720 to its standard output. Read its error above, then check video_command and pixel_format in settings.json.']
+video file: a digital frame is reduced by video_reduce; an analog frame is split into fields as before
+  PASS digital, video_reduce 4: (180, 320) is the INTER_AREA reduction of each frame, no field split
+  PASS analog: (360, 640) is the top field, width halved, as before
+check mode with a digital camera at 60 and at 45 fps (no flight controller)
+    | FAIL not calibrated. Run 'apb_main.py calib'.
+    | FAIL flight controller: no flight controller in this test
+    | PASS video: 121 frames in 2 s, 121 usable, driver 1280x720, pixel format YUYV, buffer 720x1280x2, stamps from driver
+    | PASS video rate 60.1 fps (setting video_fps 60)
+    | PASS frame stamps from driver: intervals differ from their median by 0.2 ms (p95, limit 12 ms for a hold at 40 m)
+    | INFO picture for Hold: 640x360 (frame / 2)
+    | FAIL lens profile 'Round 1 independent k2' is 960x720, the picture 640x360. Their shapes differ. Set lens_name to a 16:9 profile, or apply the justice_d profile with tools/use_profile.py.
+    | PASS Hold.process median [emulated time removed] -> [rate removed] (need 10)
+    | INFO fix age about [emulated time removed] (video delay + process). Use it for EKF2_EV_DELAY when time sync fails. ArduPilot: after the first hover set VISO_DELAY_MS from 'apb_main.py delay <run log>'.
+    | FAIL no mask. Run 'apb_main.py mask'.
+    | PASS free disk 27.4 GB at /tmp/tmputu9msqf (need 10.7 GB: raw recording takes 13.8 MB/s at 640x360, 60 Hz)
+    | 4 FAIL
+  PASS video line: driver size, pixel format, stamp source: ['PASS video: 121 frames in 2 s, 121 usable, driver 1280x720, pixel format YUYV, buffer 720x1280x2, stamps from driver']
+  PASS 60 fps measured against video_fps 60: PASS
+  PASS 45 fps measured against video_fps 60: FAIL
+  PASS no video standard line for the digital camera
+  PASS free disk uses the real picture and rate: ['PASS free disk 27.4 GB at /tmp/tmputu9msqf (need 10.7 GB: raw recording takes 13.8 MB/s at 640x360, 60 Hz)']
+  PASS record_hz 30: free disk counts 30 pictures each second: ['PASS free disk 27.4 GB at /tmp/tmputu9msqf (need 5.3 GB: raw recording takes 6.9 MB/s at 640x360, 30 Hz)']
+  PASS the 4:3 lens profile on the 16:9 picture: ["FAIL lens profile 'Round 1 independent k2' is 960x720, the picture 640x360. Their shapes differ. Set lens_name to a 16:9 profile, or apply the justice_d profile with tools/use_profile.py."]
+  PASS a 16:9 lens profile: ["PASS lens profile 'Justice D full sensor (assumed)' is 1280x720, the picture 640x360"]
+  PASS analog: no lens shape line (a field is not the profile's shape)
+tools/use_profile.py apply justice_d
+  PASS apply justice_d outdoor_day goal_a ardupilot -> loader accepts: {'camera': 'digital', 'video_device': '/dev/video2', 'video_size': [1280, 720], 'video_fps': 60, 'video_reduce': 2, 'lens_name': 'Justice D full sensor (assumed)', 'readout_s': 0.016, 'video_delay_s': 0.04, 'record_hz': 30, 'video_command': ''}
+  PASS each unmeasured value has a _why note that starts with 'assumed:'
+  PASS the video_command note gives the gst-launch example and says that its format name is assumed
+  PASS apply again after calib keeps the measured video_delay_s and readout_s
+  PASS apply without justice_d gives the analog camera and its values back (record_hz 0)
+ALL PASS in 50 s
+exit code 0

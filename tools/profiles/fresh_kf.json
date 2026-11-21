@@ -1,0 +1,6 @@
+{
+ "_why": {
+  "_note": "At the pilot's switch, Hold takes a new keyframe of the spot where the pilot steadied the aircraft and makes it the home keyframe (Hold.request_keyframe). The position stays continuous: no re-anchor, no wait for a liveness proof (tests_apb/test_event.py E5: 0.003 m move in a still hover). Closed loop (ArduCopter SITL, Justice D, w20g40, 30 m and 60 m, seeds 1 and 2, apsim/engage_results.txt): no difference beyond the spread between identical runs (on minus off -0.04 to +0.16 m RMS; identical runs differ by up to 0.25 m). Keep it off unless a real flight shows a gain. Apply it without this overlay to switch it off."
+ },
+ "fresh_kf_at_engage": true
+}

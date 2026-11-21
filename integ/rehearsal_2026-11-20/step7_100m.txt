@@ -1,0 +1,23 @@
+height 100 m, recording <project>/integ/rehearsal_2026-11-20/runs/jd_100m (6 chunks)
+true: video_delay_s 0.04, readout_s 0.014, focal_scale 1.0 (lens_measured = the calib-like lens of the sim)
+wrong on purpose: video_delay_s 0.07 (+30 ms)
+
+[replay_tune.py]
+  load average 2.18 2.00 1.49
+  exit 0, wall 47 s
+  
+  changed: {"video_delay_s": 0.0415}
+  apply: python3 tools/use_profile.py merge <project>/integ/rehearsal_2026-11-20/runs/jd_100m/tune/tune_patch.json   (then tools/deploy.sh)
+  log of the final settings: <project>/integ/rehearsal_2026-11-20/runs/jd_100m/tune/best.csv; done in 47 s
+
+[apb_main.py timing, all chunks]
+  load average 3.24 2.34 1.63
+  exit 1, wall 2 s
+  FAIL the recording turned 5 deg/s RMS with 98410 matches; need 20 deg/s and 1000. Rock the roll and pitch sticks harder for 8 s.
+
+[accuracy against the truth: replay of the same recording]
+  load average 3.06 2.32 1.63
+  true settings        1790 sent fixes of 1800 frames, error RMS 0.338 m, p95 0.537 m
+  wrong settings       1790 sent fixes of 1800 frames, error RMS 0.481 m, p95 0.807 m
+  wrong + tune patch   1790 sent fixes of 1800 frames, error RMS 0.340 m, p95 0.544 m
+  patch: {"video_delay_s": 0.0415}

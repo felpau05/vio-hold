@@ -1,0 +1,17 @@
+{
+ "_why": {
+  "_note": "NOT RECOMMENDED for the event (SITL, 2026-11-19): it did not hold position through a 20 s outage (1 seed), and the max drift was higher with it in all 4 two-seed pairs of normal holds (+0.12 to +0.69 m). Kept only as a record of the test. EKF3 drag fusion (wind from rotor and body drag), tested in ArduCopter 4.6 SITL, apsim/drag_results.txt. NOT a fix for vision gaps: in a forced 20 s video outage at 100 m, w20g40 (run dr_gapX_on_s102, 1 seed), the drone stayed in Loiter but flew 30 m from the hold point 19.1 s into the gap. Without drag fusion (dr_gapX_off_s102), the EKF failsafe changed to LAND 8.1 s into the gap and the drone was 30 m away at 14.7 s. In normal holds (30 m, 60 m, the hold-out field, a 3 s outage) RMS drift changed by less than the spread between runs.",
+  "EK3_DRAG_BCOEF_X": "17.2 kg/m2 = mass / areaCd of the SITL quad model (libraries/SITL/SIM_Frame.cpp:466-481; the SITL log prints 17.209). For the real drone this is an assumption: measure it from a flight log before use.",
+  "EK3_DRAG_BCOEF_Y": "same as X (the SITL model is symmetric).",
+  "EK3_DRAG_MCOEF": "0.25 1/s = SITL mdrag_coef 0.2 x sqrt(rho x disc_area x hover thrust) / mass (SIM_Motor.cpp:111-114), at hover thrust and 100-170 m AMSL. The SITL's printed 0.209 is for its 45 deg reference tilt. For the real drone this is an assumption.",
+  "FS_DR_ENABLE": "assumed: FS_DR_ENABLE 0 keeps Loiter on dead reckoning until FS_DR_TIMEOUT. The event crew decides the failsafe action. Confirm with the event pilots before a flight. The default 2 (RTL) starts RTL as soon as the EKF dead-reckons (ArduCopter/events.cpp failsafe_deadreckon_check); with GNSS off that is an uncommanded flight.",
+  "FS_DR_TIMEOUT": "30 s, the default. No run showed that a lower value is needed. Note: with VISO_TYPE 1, Copter::ekf_has_relative_position stays true after this timeout (ArduCopter/system.cpp)."
+ },
+ "params_ardupilot": {
+  "EK3_DRAG_BCOEF_X": 17.2,
+  "EK3_DRAG_BCOEF_Y": 17.2,
+  "EK3_DRAG_MCOEF": 0.25,
+  "FS_DR_ENABLE": 0,
+  "FS_DR_TIMEOUT": 30
+ }
+}

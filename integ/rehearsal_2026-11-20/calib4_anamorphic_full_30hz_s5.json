@@ -1,0 +1,30 @@
+{
+ "rc": 0,
+ "lens": {
+  "by": "hand turn",
+  "image_size": [
+   640,
+   360
+  ],
+  "fx": 644.7917379181644,
+  "fy": 483.97278438128507,
+  "cx": 319.5,
+  "cy": 179.5,
+  "k1": -0.0008146837219800518,
+  "k2": 0.0,
+  "k3": 0.0,
+  "k4": 0.0,
+  "note": "calib.py 2026-11-20 03:46 from 'Justice D full sensor (assumed)': residual 0.056 deg, points to 65 deg off axis, k1 fitted; centre and k2-k4 kept"
+ },
+ "resid": 0.056,
+ "delay": 0.057999999999999996,
+ "readout": 0.010999999999999972,
+ "out": [
+  "Point the camera at a scene more than 50 m away (drone on its side). Turn the drone by hand, +-15 to 20 deg about all three axes, about once every 2 s.",
+  "PASS picture top = left (residual 0.06 deg; next best front mirrored 8.51 deg, 153x)",
+  "INFO video delay 58 ms, readout +11 ms, lens at 640x360: fx 322.4 fy 242.0 k1 -0.0008, tilt roll +1.13 pitch -1.86 twist +1.51 deg",
+  "INFO quality: residual 0.056 deg, tracked points reach 65 deg from the optical axis (picture corner 71 deg), turn rate about picture x 33, y 22, z 26 deg/s",
+  "PASS measured lens written to lens_measured in /tmp/tmpexr_2t4a/settings.json. focal_scale is 1.0. lens_name 'Justice D full sensor (assumed)' stays as the start for calib. To use the profile lens again, set lens_measured to null.",
+  "PASS settings written; calibrated = true"
+ ]
+}

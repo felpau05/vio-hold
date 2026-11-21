@@ -1,0 +1,44 @@
+Mutations: one change at a time on a copy of the program files, then tests_apb/test_ground_tools.py (version 2).
+m1 to m9: the reviewer's (review/evidence/mutations.txt), on the new code text. x1 to x8: the new rules.
+
+m1 delay and readout written swapped: CAUGHT (1 FAILED)
+    FAIL PASS path: calib finds 41 ms / +17 ms: video_delay_s 0.017, readout_s 0.041
+m2 rate gate removed: CAUGHT (1 FAILED)
+    FAIL the wiggle window turned 12 deg/s RMS (under calib_min_rate_dps 20): FAIL, settings not changed
+m3 stamp tolerance 600 s: CAUGHT (1 FAILED)
+    FAIL raw file names 2 s after the log's: FAIL (INFO 150 frames from 16 s to 1 s before the switch at t 125.0 s
+m4 window moved by video_delay_s: CAUGHT (7 FAILED)
+    FAIL switch on the frame of t_grab 125.05 s (log t 124.98): calib gets the 150 recorded frames of t_grab 109.0
+    FAIL the 'engaged' note on a row with no frame (no t): the last frame's t is the switch
+    FAIL B1: a switch test 0.5 s after the start: the flight's switch is used; INFO names the other (['INFO 150 fr
+m5 last good switch: CAUGHT (1 FAILED)
+    FAIL B1: two good switches: the first one (the later one has no wiggle)
+m6 catch every Exception: CAUGHT (1 FAILED)
+    FAIL bench, a program error (KeyError): the error goes on with its traceback (1)
+m7 disk floor 0.9 x min_free_gb: CAUGHT (1 FAILED)
+    FAIL 0.47 GB free (min_free_gb 0.5): 'PASS free disk 0.47 GB at <tmp> (need 0.45 GB: raw recording 
+m8 ArduPilot height stream not asked: CAUGHT (1 FAILED)
+    FAIL fc_link asks ArduPilot for GLOBAL_POSITION_INT at hgt_hz (-1 us, want 100000)
+m9 window end 6 s before the switch: CAUGHT (7 FAILED)
+    FAIL switch on the frame of t_grab 125.05 s (log t 124.98): calib gets the 150 recorded frames of t_grab 109.0
+    FAIL the 'engaged' note on a row with no frame (no t): the last frame's t is the switch
+    FAIL B1: a switch test 0.5 s after the start: the flight's switch is used; INFO names the other (['INFO 150 fr
+x1 B1 hold rule off: CAUGHT (1 FAILED)
+    FAIL B1: a switch test in the air 7 s before the switch: FAIL with both reasons (INFO 150 frames from 16 s to 
+x2 B1 height rule off: CAUGHT (2 FAILED)
+    FAIL B1: a switch test 11 s after takeoff (its 15 s reach the ground): the next switch is used (['FAIL the raw
+    FAIL B1: a switch test in the air 7 s before the switch: FAIL with both reasons (INFO 150 frames from 16 s to 
+x3 B1 log coverage rule off: CAUGHT (1 FAILED)
+    FAIL B1: a switch test 0.5 s after the start: the flight's switch is used; INFO names the other (['FAIL the ra
+x4 S2 frame check off: CAUGHT (2 FAILED)
+    FAIL S2: raw frames of another run of this boot (t + 400 s): FAIL (FAIL the raw files miss 15.0 s of the 15 s 
+    FAIL S2: raw frames of a run before a reboot, same times + 13 ms, same name stamp: FAIL (INFO 150 frames from 
+x5 raw coverage rule off: CAUGHT (1 FAILED)
+    FAIL chunk 001 (110 to 120 s) not given: FAIL (INFO 50 frames from 16 s to 1 s before the switch at t 125.0 s)
+x6 B2 limit 1: CAUGHT (2 FAILED)
+    FAIL B2: turning all the time (a hold in gusts), no wiggle: FAIL (FAIL the recording turned 0 deg/s RMS with 0
+    FAIL B2: the switch 15 s after the wiggle, turning in gusts: FAIL (FAIL the recording turned 0 deg/s RMS with 
+x7 S3 WARN off: CAUGHT (1 FAILED)
+    FAIL 0.6 GB free (min_free_gb 0.5): 'PASS free disk 0.60 GB at <tmp> (need 0.50 GB: raw recording t
+x8 S4 lens file not named: CAUGHT (1 FAILED)
+    FAIL calib, a damaged lens file: the FAIL line names it (''FAIL Unterminated string starting at: line 13 colum

@@ -1,0 +1,15 @@
+A. 8 orientations; true mount tilt roll +2.0 pitch -1.5 deg, twist +1.0 deg; FC bias +0.5 -0.3 deg
+  PASS true front mirror False -> found front mirror False; delay 72 ms (want 72), readout +14 ms (true +16), focal 0.965 (true 0.96), tilt [ 1.35 -1.24] (want [1.50 -1.20]) twist +1.19; resid 0.167 deg vs next 8.92 (53x) 3.9 s 
+  PASS true front mirror True  -> found front mirror True; delay 38 ms (want 37), readout +18 ms (true +16), focal 1.030 (true 1.03), tilt [ 1.39 -1.37] (want [1.50 -1.20]) twist +0.96; resid 0.148 deg vs next 7.58 (51x) 3.7 s 
+  PASS true right mirror False -> found right mirror False; delay 100 ms (want 101), readout -18 ms (true -16), focal 0.961 (true 0.96), tilt [ 1.22 -1.13] (want [1.50 -1.20]) twist +1.02; resid 0.152 deg vs next 9.20 (61x) 3.9 s 
+  PASS true right mirror True  -> found right mirror True; delay 40 ms (want 41), readout -15 ms (true -16), focal 1.032 (true 1.03), tilt [ 1.36 -1.33] (want [1.50 -1.20]) twist +0.95; resid 0.140 deg vs next 8.91 (64x) 3.8 s 
+  PASS true rear  mirror False -> found rear mirror False; delay 72 ms (want 72), readout +20 ms (true +20), focal 0.960 (true 0.96), tilt [ 1.56 -1.45] (want [1.50 -1.20]) twist +0.93; resid 0.153 deg vs next 8.54 (56x) 3.9 s 
+  PASS true rear  mirror True  -> found rear mirror True; delay 38 ms (want 37), readout +21 ms (true +20), focal 1.033 (true 1.03), tilt [ 1.46 -1.17] (want [1.50 -1.20]) twist +1.08; resid 0.142 deg vs next 7.77 (55x) 3.7 s 
+  PASS true left  mirror False -> found left mirror False; delay 106 ms (want 105), readout -9 ms (true -12), focal 0.964 (true 0.96), tilt [ 1.47 -1.32] (want [1.50 -1.20]) twist +1.09; resid 0.150 deg vs next 9.52 (63x) 3.8 s 
+  PASS true left  mirror True  -> found left mirror True; delay 44 ms (want 45), readout -16 ms (true -12), focal 1.027 (true 1.03), tilt [ 1.52 -1.47] (want [1.50 -1.20]) twist +0.92; resid 0.162 deg vs next 9.25 (57x) 3.7 s 
+B. apb_main calib --rec: writes settings and the calibrated flag
+  PASS rc 0, settings top=rear mirror=False calibrated=True delay 68 ms; output: Point the camera at a scene more than 50 m away (drone on its side). Turn the drone by hand, +-15 to 20 deg about all three axes, about once every 2 s. | PASS picture top = rear (residual 0.14 deg; next best front mirrored 8.46 deg, 59x) | INFO video delay 68 ms, readout +18 ms, focal scale 1.001, tilt roll -0.78 pitch +0.26 twist +0.12 deg | PASS settings written; calibrated = true
+  PASS repeat: PASS delay 0 ms from the previous calibration (need 3 ms or less)
+C. too little rotation is refused
+  PASS ok=False why: the drone turned too little (10 deg/s RMS, per axis 7, 5, 6); need 20 deg/s and two axes. Turn it more, about all three axes.
+ALL PASS in 59 s

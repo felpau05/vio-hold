@@ -1,0 +1,21 @@
+apb_main from the copy in .snapshots/pre_agents_20261120_0320.tgz (the code before the corrections); tests_apb/test_ground_tools.py run against it (lines cut at 230 characters)
+A. D1 timing: the frames of the wiggle window only
+  FAIL switch at 125.0 s: calib gets the 150 frames from 109.0 to 124.0 s of 300 (got none; This file contains pickled (object) data. If you trust the file you can load it unsafely using the `allow_pickle=` keyword argument or `pi
+  FAIL the 'engaged' note on a row with no frame (no t): the last frame's t (125.0 s) is the switch
+  FAIL two 'engaged' notes: the window of the first; the INFO line says so
+  FAIL raw files and no run log: FAIL, settings not changed (['FAIL the recording turned 0 deg/s RMS with 0 matches; need 20 deg/s and 1000. Rock the roll and pitch sticks harder for 8 s.'])
+  FAIL a run log with no 'engaged' note: FAIL, settings not changed (This file contains pickled (object) data. If you trust the file you can load it unsafely using the `allow_pickle=` keyword argument or `pickle.load()`.)
+  FAIL raw files of another run of this boot (t 500 to 520 s): FAIL, settings not changed (This file contains pickled (object) data. If you trust the file you can load it unsafely using the `allow_pickle=` keyword argument or `pic
+  FAIL raw files of a run before a reboot (same frame times, another start stamp): FAIL (This file contains pickled (object) data. If you trust the file you can load it unsafely using the `allow_pickle=` keyword argument or `pickl
+B. D2 check: the height stream of each firmware
+  FAIL ardupilot, on the ground with GPS off (ardupilot sends GLOBAL_POSITION_INT only): ['FAIL LOCAL_POSITION_NED 0 Hz (asked 10). The FC sends no height: check the baro and the EKF.']
+  PASS px4, on the ground with GPS off (px4 sends LOCAL_POSITION_NED only): ['PASS LOCAL_POSITION_NED 10 Hz (asked 10)']
+C. D3 bench, mask, calib: one FAIL line
+  FAIL bench, no FC: exit 1, 'RuntimeError('no MAVLink heartbeat on udpin:127.0.0.1:14599 in 5 s (test)')'
+  FAIL mask, no FC: exit 1, ''Turn and tilt the drone by hand while it records, so the ground moves and the OSD stays.''
+  FAIL calib, no FC: exit 1, ''Point the camera at a scene more than 50 m away (drone on its side). Turn the drone by hand, +-15 to 20 deg about all three axes, about once every 2 s.''
+  FAIL calib, a mask of another size (ValueError): ''Point the camera at a scene more than 50 m away (drone on its side). Turn the drone by hand, +-15 to 20 deg about all three axes, about once every 2 s.''
+D. D4 free disk: when check passes, the recorder records
+  FAIL 0.3 GB free: check 'PASS', recorder off (PASS free disk 0.3 GB at /tmp/tmp1bvyz4kq (need 0.2 GB: raw recording takes 1.0 MB/s at 360x288, 10 Hz))
+  PASS 0.6 GB free: check 'PASS', recorder records (PASS free disk 0.6 GB at /tmp/tmp1bvyz4kq (need 0.2 GB: raw recording takes 1.0 MB/s at 360x288, 10 Hz))
+13 FAILED

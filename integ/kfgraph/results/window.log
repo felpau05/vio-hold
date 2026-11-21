@@ -1,0 +1,110 @@
+gate 05:46:25: wait: SITL_ACTIVE load=8.42 arducopter container
+gate 05:47:25: wait: SITL_ACTIVE load=3.45 container
+gate 05:48:26: wait: SITL_ACTIVE load=5.69 arducopter container
+gate 05:49:26: wait: SITL_ACTIVE load=3.75 container
+gate 05:50:26: wait: SITL_ACTIVE load=4.94 arducopter container
+gate 05:51:26: wait: SITL_ACTIVE load=5.75 container
+gate 05:52:26: wait: SITL_ACTIVE load=3.93 arducopter container
+gate 05:53:26: wait: SITL_ACTIVE load=6.20 arducopter container
+gate 05:54:26: wait: SITL_ACTIVE load=4.34 container
+gate 05:55:26: wait: SITL_ACTIVE load=4.13 arducopter container
+gate 05:56:26: wait: SITL_ACTIVE load=9.40 arducopter container
+gate 05:57:27: wait: SITL_ACTIVE load=3.75 container
+gate 05:58:27: wait: SITL_ACTIVE load=5.69 arducopter container
+gate 05:59:27: wait: SITL_ACTIVE load=5.90 container
+gate 06:00:27: wait: SITL_ACTIVE load=2.96 arducopter container
+gate 06:01:27: wait: SITL_ACTIVE load=7.95 arducopter container
+gate 06:02:27: wait: SITL_ACTIVE load=4.99 container
+gate 06:03:27: wait: SITL_ACTIVE load=3.27 arducopter container
+gate 06:04:27: wait: SITL_ACTIVE load=9.81 arducopter container
+gate 06:05:27: wait: SITL_ACTIVE load=4.38 container
+gate 06:06:28: wait: SITL_ACTIVE load=6.29 arducopter container
+gate 06:07:28: wait: SITL_ACTIVE load=7.84 arducopter container
+gate 06:08:28: wait: SITL_ACTIVE load=3.72 container
+gate 06:09:28: wait: SITL_ACTIVE load=3.55 arducopter container
+gate 06:10:28: wait: SITL_ACTIVE load=4.35 container
+gate 06:11:28: wait: SITL_ACTIVE load=3.57 arducopter container
+gate 06:12:28: wait: SITL_ACTIVE load=5.85 arducopter container
+gate 06:13:28: wait: SITL_ACTIVE load=3.09 arducopter container
+gate 06:14:29: wait: SITL_ACTIVE load=7.89 arducopter container
+gate 06:15:29: wait: SITL_ACTIVE load=6.09 container
+gate 06:16:29: wait: SITL_ACTIVE load=3.06 arducopter container
+gate 06:17:29: wait: SITL_ACTIVE load=8.33 arducopter container
+gate 06:18:29: wait: SITL_ACTIVE load=5.35 container
+gate 06:19:29: wait: SITL_ACTIVE load=4.49 arducopter container
+gate 06:20:29: wait: SITL_ACTIVE load=9.52 arducopter container
+gate 06:21:29: wait: SITL_ACTIVE load=4.09 container
+gate 06:22:29: wait: SITL_ACTIVE load=8.44 arducopter container
+gate 06:23:29: wait: SITL_ACTIVE load=7.22 container
+gate 06:24:30: wait: SITL_ACTIVE load=2.99 arducopter container
+gate 06:25:30: wait: SITL_ACTIVE load=8.02 arducopter container
+gate 06:26:30: wait: SITL_ACTIVE load=4.41 container
+gate 06:27:30: wait: SITL_ACTIVE load=6.29 arducopter container
+gate 06:28:30: wait: SITL_ACTIVE load=11.64 container
+gate 06:29:30: wait: SITL_ACTIVE load=4.73 container
+gate 06:30:30: wait: load=2.71
+=== 06:31:30 BATCH 1 smoke start
+=== 06:31:30 RUN --split tuning --ground ottawa2019fall --height 10 --seed 1 --seconds 20 --reanchor last --tag _smoke --ver snap=integ/kfgraph/hold_snapshot.py --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+kg_tun_ottawa2019fall_crop_10m_s1_smoke_relast_snap: fix 8.4/s, gap 2.42 s, err RMS 0.273 max 0.492 m, false 123, reanchors 6, ms 7.69 (p95 13.1), graph None
+kg_tun_ottawa2019fall_crop_10m_s1_smoke_relast_off: fix 8.4/s, gap 2.42 s, err RMS 0.273 max 0.492 m, false 123, reanchors 6, ms 7.16 (p95 12.48), graph None
+kg_tun_ottawa2019fall_crop_10m_s1_smoke_relast_on: fix 8.4/s, gap 2.42 s, err RMS 0.13 max 0.345 m, false 26, reanchors 6, ms 16.63 (p95 24.0), graph {'frames': 196, 'used': 196, 'meas_mean': 1.9, 'kept_mean': 1.9, 'solve_ms_median': 1.218, 'solve_ms_p95': 1.72, 'solve_ms_max': 1.923, 'corr_median_m': 0.002, 'corr_max_m': 0.137, 'gated_edges_max': 0}
+=== 06:31:45 END rc=0 --split tuning --ground ottawa2019fall --height 10 --seed 1 --seconds 20 --reanchor last --tag _smoke --ver snap=integ/kfgraph/hold_snapshot.py --ver off=integ/kfgraph/hold_graph
+=== 06:31:45 BATCH 1 done
+=== 06:31:45 TIMING one core
+=== 06:31:47 BATCH 2 start
+=== 06:31:47 RUN --split tuning --ground ottawa2019fall --height 5 --seed 1 --reanchor last --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+=== 06:31:47 RUN --split tuning --ground ottawa2019fall --height 10 --seed 1 --reanchor last --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+=== 06:31:47 RUN --split tuning --ground ottawa2019fall --height 5 --seed 2 --reanchor last --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+=== 06:31:47 RUN --split tuning --ground ottawa2019fall --height 10 --seed 2 --reanchor last --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+Terminated
+Terminated
+=== 06:32:12 END rc=0 --split tuning --ground ottawa2019fall --height 5 --seed 2 --reanchor last --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+=== 06:32:12 END rc=0 --split tuning --ground ottawa2019fall --height 5 --seed 1 --reanchor last --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+Terminated
+=== 06:32:12 END rc=0 --split tuning --ground ottawa2019fall --height 10 --seed 2 --reanchor last --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+=== 06:32:12 RUN --split tuning --ground ottawa2019fall --height 20 --seed 1 --reanchor last --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+=== 06:32:12 RUN --split validation --ground ottawa2022 --height 10 --seed 11 --reanchor last --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}' --ver snap=integ/kfgraph/hold_snapshot.py
+=== 06:32:12 RUN --split tuning --ground ottawa2019fall --height 20 --seed 2 --reanchor last --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+Traceback (most recent call last):
+  File "/home/paul/Videos/vio-hold-attempt/integ/kfgraph/ol_graph.py", line 218, in <module>
+    main()
+  File "/home/paul/Videos/vio-hold-attempt/integ/kfgraph/ol_graph.py", line 166, in main
+    e = h.process(img, t0, att, hgt)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/paul/Videos/vio-hold-attempt/integ/kfgraph/hold_graph.py", line 925, in process
+    g = self._graph_step(img, t0, att, hgt, tref, kf, r, h, switched)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/paul/Videos/vio-hold-attempt/integ/kfgraph/hold_graph.py", line 1077, in _graph_step
+    cand.remove(hk)
+ValueError: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+=== 06:32:15 END rc=0 --split tuning --ground ottawa2019fall --height 10 --seed 1 --reanchor last --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+gate 06:32:16: wait: load=3.68 another-kfgraph-replay
+Terminated
+Terminated
+Terminated
+=== 06:32:19 END rc=0 --split validation --ground ottawa2022 --height 10 --seed 11 --reanchor last --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}' --ver 
+=== 06:32:19 END rc=0 --split tuning --ground ottawa2019fall --height 20 --seed 1 --reanchor last --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+=== 06:32:19 END rc=0 --split tuning --ground ottawa2019fall --height 20 --seed 2 --reanchor last --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+gate 06:32:19: wait: load=3.68
+gate 06:32:19: wait: load=3.68
+gate 06:32:19: wait: load=3.68
+xargs: bash: terminated by signal 15
+=== 06:32:55 RESTART after the cand.remove bug fix (tuning 10 m s1 crashed; 6 jobs stopped to keep 1 replay at a time)
+=== 06:32:55 BATCH 2 start
+gate 06:32:55: wait: load=2.60
+gate 06:32:55: wait: load=2.60
+gate 06:32:55: wait: load=2.60
+gate 06:32:55: wait: load=2.60
+=== 06:33:51 RUN --split tuning --ground ottawa2019fall --height 10 --seed 2 --reanchor last --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+gate 06:33:55: wait: another-kfgraph-replay
+gate 06:33:55: wait: another-kfgraph-replay
+gate 06:33:57: wait: another-kfgraph-replay
+Terminated
+=== 06:34:05 END rc=0 --split tuning --ground ottawa2019fall --height 10 --seed 2 --reanchor last --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+gate 06:34:05: wait: no-GO
+=== 06:34:16 RESTART: a gate process that had started before the no-GO change let one replay start at 06:33:51 (killed 06:34:00, no file). Now nothing starts without GO.
+=== 06:34:16 BATCH 2 start
+gate 06:34:16: wait: no-GO
+gate 06:34:16: wait: no-GO
+gate 06:34:16: wait: no-GO
+gate 06:34:16: wait: no-GO
