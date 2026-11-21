@@ -1,0 +1,3 @@
+PASS the whole recording gives fixes: {'frames': 150, 'sent': 113, 'init': 1, 'ok': 123, 'degraded': 8}
+PASS 3 chunks give the same 150 log rows as the whole recording ({'frames': 150, 'sent': 113, 'init': 1, 'ok': 123, 'degraded': 8})
+ALL PASS

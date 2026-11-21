@@ -1,0 +1,139 @@
+#!/usr/bin/env python3
+"""KF_MAP / DENSE_LOCAL closed-loop driver (integ/kfmap), from integ/lowh/closed/scripts/ab_driver.py: runs
+low_ap_matrix.py labels in the copies kf_off, kf_dl, kf_both (scratchpad closed/), one SITL at a time, in the order given
+(arguments copy:label). Gate before each run: 1-min load < 3.0, no arducopter process, no other simulator script, no
+px4_sim container. Retry once on failure. Log: integ/kfmap/closed/driver.log (one JSON line per event)."""
+import hashlib
+import json
+import os
+import signal
+import subprocess
+import sys
+import time
+
+SP = os.environ["KF_CLOSED"]          # the folder that holds the copies
+PY = os.path.expanduser("~/.venvs/vio/bin/python")
+LOG = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "driver.log")
+LOAD_MAX = 3.0
+LAST_START = "06:45"     # no new run starts after this local time (coordinator: none after 06:45; simulators stop at 07:00)
+TIMEOUT_S = 420          # a run that takes longer is called hung
+
+
+def log(**kw):
+    kw["t"] = time.strftime("%H:%M:%S")
+    line = json.dumps(kw, default=str)
+    print(line, flush=True)
+    open(LOG, "a").write(line + "\n")
+
+
+def arducopters():
+    out = []
+    for p in os.listdir("/proc"):
+        if p.isdigit():
+            try:
+                a = open(f"/proc/{p}/cmdline", "rb").read().split(b"\0")
+            except OSError:
+                continue
+            if a and a[0].endswith(b"arducopter"):
+                out.append((p, b" ".join(a).decode(errors="replace")))
+    return out
+
+
+def sitl_py():
+    """Other simulator scripts (any copy) still alive."""
+    out = []
+    me = os.getpid()
+    for p in os.listdir("/proc"):
+        if p.isdigit() and int(p) != me:
+            try:
+                a = open(f"/proc/{p}/cmdline", "rb").read()
+            except OSError:
+                continue
+            if any(k in a for k in (b"sitl_ap", b"low_ap_matrix", b"engage_matrix", b"px4sim/sitl.py",
+                                    b"drag_matrix", b"gapjump_matrix", b"run_all.sh", b"safety_matrix", b"gnss_matrix")) and b"kf_driver" not in a:
+                out.append((p, a.replace(b"\0", b" ").decode(errors="replace")[:160]))
+    return out
+
+
+def px4_busy():
+    r = subprocess.run(["docker", "ps", "-q", "-f", "name=^px4_sim$"], capture_output=True, text=True)
+    return bool(r.stdout.strip())
+
+
+def gate():
+    t0 = time.time()
+    while True:
+        if time.strftime("%H:%M") >= LAST_START:
+            return None
+        ac, py, px, l1 = arducopters(), sitl_py(), px4_busy(), os.getloadavg()[0]
+        if not ac and not py and not px and l1 < LOAD_MAX:
+            return dict(load=os.getloadavg(), waited_s=round(time.time() - t0))
+        if int(time.time() - t0) % 60 < 6:
+            log(ev="wait", load=round(l1, 2), arducopter=ac, sim_py=py, px4_sim=px)
+        time.sleep(5)
+
+
+def result(copy, label):
+    try:
+        r = json.load(open(os.path.join(SP, copy, "apsim", "low_ap_results.json")))[label]
+    except (OSError, ValueError, KeyError):
+        return None, "no entry in low_ap_results.json"
+    err = [e for e in (r.get("events") or []) if "ERROR" in str(e[1])]
+    if err:
+        return r, f"error event: {err}"
+    if not r.get("hold_s_flown") or r["hold_s_flown"] < 59.5:
+        return r, f"hold_s_flown {r.get('hold_s_flown')}; events {r.get('events')}"
+    return r, None
+
+
+def run_one(copy, label, attempt):
+    g = gate()
+    if g is None:
+        log(ev="skip", copy=copy, label=label, why=f"after {LAST_START}")
+        return "skipped"
+    d = os.path.join(SP, copy)
+    if attempt == 1:
+        cmd = [PY, os.path.join(d, "apsim", "low_ap_matrix.py"), "run", label]
+        out = open(os.path.join(SP, f"drv_{copy}_{label}.txt"), "w")
+    else:   # run() skips a label already in the results: call one() directly, own log file
+        cmd = [PY, os.path.join(d, "apsim", "low_ap_matrix.py"), "one", label]
+        out = open(os.path.join(d, "apsim", "logs", f"lowap_{label}_retry.txt"), "w")
+    log(ev="start", copy=copy, label=label, attempt=attempt, load=g["load"], waited_s=g["waited_s"])
+    t0 = time.time()
+    p = subprocess.Popen(cmd, cwd=d, stdout=out, stderr=subprocess.STDOUT, start_new_session=True)
+    try:
+        rc = p.wait(timeout=TIMEOUT_S)
+    except subprocess.TimeoutExpired:
+        rc = "timeout"
+        try:
+            os.killpg(p.pid, signal.SIGKILL)
+        except ProcessLookupError:
+            pass
+        p.wait()
+    subprocess.run(["sh", os.path.join(d, "apsim", "run_sitl.sh"), "stop", "1"], capture_output=True)
+    r, bad = result(copy, label)
+    log(ev="end", copy=copy, label=label, attempt=attempt, rc=rc, wall_s=round(time.time() - t0), bad=bad,
+        rms=r and r.get("rms"), load_start_runner=r and r.get("load_start"),
+        hold_md5=hashlib.md5(open(os.path.join(SP, copy, "hold.py"), "rb").read()).hexdigest(),
+        hold_cfg=r and r.get("settings_file_hold_cfg"))
+    if bad:
+        # keep the failed record before a retry overwrites it
+        fp = os.path.join(d, "apsim", f"failed_{label}_a{attempt}.json")
+        json.dump(dict(rc=rc, bad=bad, record=r), open(fp, "w"), indent=1, default=str)
+        return "failed"
+    return "ok"
+
+
+def main(jobs):
+    for job in jobs:
+        copy, label = job.split(":", 1)
+        st = run_one(copy, label, 1)
+        if st == "failed":
+            st = run_one(copy, label, 2)
+        log(ev="final", copy=copy, label=label, status=st)
+        if st == "skipped":
+            return
+
+
+if __name__ == "__main__":
+    main(sys.argv[1:])

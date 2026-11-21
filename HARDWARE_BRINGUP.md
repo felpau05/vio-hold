@@ -23,6 +23,6 @@ The idea of this sheet and rows 2, 4, 10 and 13 come from Aydan's `HARDWARE_BRIN
 | 13 | Vibration: gyro noise and picture noise with the motors on, propellers off and on. | the crew's procedure, then the run log | |
 | 14 | Bench: 1.00 m carried forward reads how much. Tilt 15 degrees changes it by how much. A hand on the lens stops the fixes after how long. | `python3 apb_main.py bench --height 1.5` (step 6) | |
 | 15 | The flight mode that each switch position gives. | step 6B | |
-| 16 | The takeover demonstration for the pilot: each step and its result. | `PILOT_SAFETY.txt` | |
+| 16 | The takeover demonstration for the pilot: each bench step B0 to B7 and its result. | EVENT_DAY step 6C (the page for the pilot is `PILOT_SAFETY.txt`) | |
 
 When a value changes a setting, add a line to the tuning log in `DATA_SPLITS.md` (what, which data, who, when).

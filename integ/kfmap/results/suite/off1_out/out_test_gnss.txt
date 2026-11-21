@@ -1,0 +1,34 @@
+G1: the gnss_mode setting
+  PASS default 'none'; 'gps' refused: /tmp/tmpvzwpm8r3/bad.json: 'gnss_mode' must be one of none, setup, fallback, velocity; it is 'gps'.
+G2: gnss_mode none: the same MAVLink messages and commands as before the change, no source-set command
+  PASS before {'SET_GPS_GLOBAL_ORIGIN': 1, 'COMMAND_INT': 1, 'VISION_POSITION_ESTIMATE': 75}; none {'SET_GPS_GLOBAL_ORIGIN': 1, 'COMMAND_INT': 1, 'VISION_POSITION_ESTIMATE': 75}; same log columns True; same notes True (['FC mode ALT_HOLD', 'engaged: FC mode LOITER'])
+  PASS positive control, gnss_mode setup: the only new message is COMMAND_LONG 42007, 1 time(s)
+G3: gnss_mode setup: set 2 requested once fixes flow, before the pilot's switch, the FC reply logged
+  PASS request 1.03 s after the first fix, reply before the switch: True; commands [2.0]; notes ['FC mode ALT_HOLD', "EKF source set 2 (our position only) requested: fixes for 1.0 s, before the pilot's switch", 'FC reply to EKF source set 2 (our position only): ACCEPTED', 'engaged: FC mode LOITER']
+G4: the pilot's switch comes before the program is ready: a WARNING note, set 2 then follows in the hold
+  PASS notes ['FC mode ALT_HOLD', 'engaged: FC mode LOITER; WARNING: the hold started before the FC accepted EKF source set 2. GNSS aids this hold', 'EKF source set 2 (our position only) requested: fixes for 1.0 s, in a hold', 'FC reply to EKF source set 2 (our position only): ACCEPTED']
+G5: gnss_mode fallback: no fix for gnss_fallback_s in the hold -> set 1 (GNSS), kept until the release
+  PASS commands [2.0, 1.0, 2.0] (want 2, 1, 2); fallback before video back and set 2 only after the release: True; notes ['FC mode ALT_HOLD', "EKF source set 2 (our position only) requested: fixes for 0.5 s, before the pilot's switch", 'FC reply to EKF source set 2 (our position only): ACCEPTED', 'engaged: FC mode LOITER', 'recovery test: video dropped for 1.2 s', 'EKF source set 1 (GNSS) requested: GNSS FALLBACK: no fix for 0.5 s in the hold (gnss_fallback_s 0.5). GNSS aids the hold from this time', 'FC reply to EKF source set 1 (GNSS): ACCEPTED', 'recovery test: video back', "released: FC mode ALT_HOLD; EKF source set 2 (our position only) requested: fixes for 1.3 s, before the pilot's switch", 'FC reply to EKF source set 2 (our position only): ACCEPTED']
+G6: an FC that denies the command or does not answer: at most one request each second, each logged
+  PASS reply DENIED: 4 requests in 4 s; notes ['FC mode ALT_HOLD', "EKF source set 2 (our position only) requested: fixes for 0.3 s, before the pilot's switch", 'FC reply to EKF source set 2 (our position only): DENIED', "EKF source set 2 (our position only) requested: fixes for 1.3 s, before the pilot's switch"]
+  PASS reply no FC reply: 4 requests in 4 s; notes ['FC mode ALT_HOLD', "EKF source set 2 (our position only) requested: fixes for 0.3 s, before the pilot's switch", 'EKF source set 2 (our position only) requested: no FC reply in 1 s, try 2', 'EKF source set 2 (our position only) requested: no FC reply in 1 s, try 3']
+G7: settings that do not fit the level; PX4; the profiles equal apb_main.GNSS_AP
+  PASS none: []; setup without the profile: ['gnss_mode setup needs other params_ardupilot values: GPS1_TYPE 0 (need 1), EK3_SRC1_POSXY 6 (need 3), EK3_SRC1_VELXY 0 (need 3), EK3_SRC2_POSXY None (need 6), EK3_SRC2_VELXY None (need 0), EK3_SRC2_POSZ None (need 1), EK3_SRC2_VELZ None (need 0), EK3_SRC2_YAW None (need 1), EK3_SRC_OPTIONS None (need 0). Apply tools/profiles/gnss_setup.json.']; with it: []; PX4: ['gnss_mode velocity needs ArduPilot EKF source sets. The program does not support it on px4. Apply the profiles again without gnss_*.']
+  PASS each profile owns gnss_mode and the level's params_ardupilot keys only: {'setup': True, 'fallback': True, 'velocity': True}
+  PASS run refuses it: ["capture is 'digital ?x?@60 reduce=2 640x360' but the calibration was made with 'digital 640x360'. Run calib again.", "no mask. Run 'apb_main.py mask' (with no OSD in the picture it masks almost nothing).", 'gnss_mode fallback needs other params_ardupilot values: GPS1_TYPE 0 (need 1), EK3_SRC1_POSXY 6 (need 3), EK3_SRC1_VELXY 0 (need 3), EK3_SRC2_POSXY None (need 6), EK3_SRC2_VELXY None (need 0), EK3_SRC2_POSZ None (need 1), EK3_SRC2_VELZ None (need 0), EK3_SRC2_YAW None (need 1), EK3_SRC_OPTIONS None (need 0). Apply tools/profiles/gnss_fallback.json.']
+G8: tools/use_profile.py apply ... gnss_setup, then apply without it
+  PASS apply with the level fits it, apply without it gives the same file as before: {'setup': True, 'fallback': True, 'velocity': True}
+    applied outdoor_day + justice_d + gnss_velocity -> /tmp/tmpvzwpm8r3/settings.json
+      gnss_mode: before "none" -> after "velocity"
+      params_ardupilot.EK3_SRC1_POSXY: before 6 -> after 3
+      params_ardupilot.EK3_SRC1_VELXY: before 0 -> after 3
+      params_ardupilot.EK3_SRC2_POSXY: before "(none)" -> after 6
+      params_ardupilot.EK3_SRC2_POSZ: before "(none)" -> after 1
+      params_ardupilot.EK3_SRC2_VELXY: before "(none)" -> after 3
+      params_ardupilot.EK3_SRC2_VELZ: before "(none)" -> after 0
+      params_ardupilot.EK3_SRC2_YAW: before "(none)" -> after 1
+      params_ardupilot.EK3_SRC_OPTIONS: before "(none)" -> after 0
+      params_ardupilot.GPS1_TYPE: before 0 -> after 1
+G9: check mode: a PASS or FAIL line for each parameter of the level
+  PASS 12 lines for 12 parameters; FAIL lines ["FAIL param EK3_SRC2_POSXY = 0; need 6. Run 'apb_main.py check --set-params', then reboot the FC."]; level line ['PASS gnss_mode setup: settings match the level']
+ALL PASS in 32 s

@@ -1,0 +1,14 @@
+  t   3.0 s  Hold the lens 1.50 m above a textured floor. Press Ctrl+C to stop.
+  t   4.1 s  forward +0.00 m   right -0.00 m   (ok, 138 points)
+  t   5.7 s  forward +0.80 m   right -0.00 m   (ok, 70 points)
+  t   7.3 s  forward +1.00 m   right -0.00 m   (ok, 51 points)
+  t   8.8 s  forward +1.00 m   right -0.00 m   (ok, 47 points)
+  t  10.4 s  forward +1.01 m   right +0.65 m   (ok, 76 points)
+  t  11.9 s  forward +1.01 m   right +1.00 m   (ok, 130 points)
+  t  13.5 s  forward +1.01 m   right +1.00 m   (ok, 131 points)
+  t  15.0 s  forward +1.01 m   right +1.00 m   (ok, 130 points)
+  t  16.6 s  forward +1.01 m   right +1.00 m   (ok, 129 points)
+  PASS before the move (wobble +-3 deg only): largest move 0.00 m (H3 tilt test: under 0.10 m)
+  PASS after 1 m toward the nose: forward +1.00 right -0.00 m
+  PASS after 1 m to the right: forward +1.01 right +1.00 m
+ALL PASS in 17 s

@@ -1,0 +1,16 @@
+--flight lowap_apb_10m_w20g40_s1 --ground ottawa2019fall --seed 1 --reanchor last --att gyro --diag true_yaw
+--flight lowap_apb_10m_w20g40_s2 --ground ottawa2019fall --seed 2 --reanchor last --att gyro --diag true_yaw
+--flight lowap_apb_10m_w20g40_s1 --ground ottawa2019fall --seed 1 --reanchor last --att gyro --diag true_tilt
+--flight lowap_apb_10m_w20g40_s2 --ground ottawa2019fall --seed 2 --reanchor last --att gyro --diag true_tilt
+--flight lowap_apb_10m_w20g40_s1 --ground ottawa2019fall --seed 1 --reanchor last --att fc --yaw_rate_dps -0.15 --seconds 30
+--flight lowap_apb_10m_w20g40_s1 --ground ottawa2019fall --seed 1 --reanchor last --att fc --yaw_off_deg 5 --seconds 30
+--flight lowap_apb_10m_w20g40_s1 --ground ottawa2019fall --seed 1 --reanchor last --att gyro --diag true_att
+--flight lowap_apb_10m_w20g40_s2 --ground ottawa2019fall --seed 2 --reanchor last --att gyro --diag true_att
+--flight lowap_apb_10m_w20g40_s1 --height 5 --ground ottawa2019fall --seed 1 --reanchor last --att gyro
+--flight lowap_apb_10m_w20g40_s1 --height 20 --ground ottawa2019fall --seed 1 --reanchor last --att gyro
+--flight lowap_apb_10m_w20g40_s2 --height 5 --ground ottawa2019fall --seed 2 --reanchor last --att gyro
+--flight lowap_apb_10m_w20g40_s2 --height 20 --ground ottawa2019fall --seed 2 --reanchor last --att gyro
+--flight lowap_apb_5m_w20g40_s1 --ground ottawa2019fall --seed 1 --reanchor last --att gyro
+--flight lowap_apb_5m_w20g40_s2 --ground ottawa2019fall --seed 2 --reanchor last --att gyro
+--flight gn_none_10m_s2 --ground ottawa2019fall --seed 2 --reanchor last --att gyro --seconds 38
+--flight gn_none_10m_s2 --ground ottawa2019fall --seed 2 --reanchor last --att fc --seconds 38
