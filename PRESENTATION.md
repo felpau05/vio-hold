@@ -1,38 +1,43 @@
-# PRESENTATION.md: 5-minute talk, 2-minute Q&A, and the question bank
+# PRESENTATION.md: the talk (Stage 2 version, 2026-11-21), Q&A, question bank
 
-The spec tells us what the talk must cover (Stage 1, p.4): **sensor-fusion approach, treatment of rolling shutter,
-use of APB compute, response when VIO degrades.** It also says: separate your work from existing tools, show measured
-results and limitations, and failures with a clear account still earn credit. Claims without evidence do not.
-Judges score evidence, so the talk is a guided tour of `EVIDENCE.md`.
+**What is scored.** F = 10 points, judges' panel: our contribution, experiments and decisions, results and limitations,
+**our work separated from existing tools**, what worked, what did not and why (Stage 1 p.4-5). The talk must cover the four
+topics: **sensor-fusion approach, treatment of rolling shutter, use of APB compute, response when VIO degrades.** The
+scorecard calls F "Entrepreneurial Drive and Storytelling". Bonus up to **+5: timing and rolling shutter, with measured
+evidence** (Stage 2 section 07). **Length and format: not in Stage 2. Ask the organizers.** The plan below assumes 5:00 + Q&A.
 
-Rule for every number on a slide: say **where it came from** (real flight / real recording / simulation) in the same breath.
-Everything before the event is simulated with an assumed camera. Never let a simulated number sound like a flight result.
+**The story in one line:** we measured the real hardware instead of trusting the datasheet, and every number on the slides
+came from the aircraft. Say where each number came from (board, walk, flight, simulation) in the same breath.
 
-## Structure (5:00, six slides, about 50 seconds each)
+Figures: `talk/stage2/*.png`, rebuilt from the recordings by `talk/make_stage2_figures.py` (re-run after new walks or flights).
 
-| Time | Slide | What to say | Evidence on the slide |
-|---|---|---|---|
-| 0:00-0:30 | 1. The problem | A cheap FPV rolling-shutter camera and an IMU, no GNSS, must hold a spot. VIO gets harder with height: features shrink, parallax drops, drift builds. We asked how far this hardware can be pushed. | One photo of the M2-AI; the target in one line: highest altitude, stable hold, everything on the APB |
-| 0:30-1:20 | 2. Approach (sensor fusion) | Down-looking Justice D plus FC attitude plus baro height. We track ground points, rotate each ray by the attitude, solve the horizontal move in metres, and send `VISION_POSITION_ESTIMATE` with a variance. The autopilot's EKF fuses it and holds. The pilot's switch is the engage. | One architecture diagram (camera -> Hold -> MAVLink -> EKF -> position hold). Mark which parts are ours and which are ArduPilot/PX4/OpenCV |
-| 1:20-2:10 | 3. Rolling shutter | A rolling shutter exposes row by row, so under motion each row sees a different attitude. We give every row its own attitude (from gyro time stamps) and calibrate the readout time and camera delay in flight with a roll/pitch wiggle. | **The with/without comparison** (readout 0 vs calibrated) on real data. If real data is missing, the simulated one, labelled |
-| 2:10-2:50 | 4. APB compute | Where the time goes. Hold costs about 7.7 ms per frame at 640x360 on a laptop; on the A53: `[fill in: ms median/p95, fixes/s, CPU %]`. Why we process at half resolution and when we step up. | A small table from `apb_main.py timing` on the real APB |
-| 2:50-3:40 | 5. When VIO degrades | Gates for frozen frames, static overlay, no ground, moving objects, attitude mismatch. When a gate trips we **send nothing** rather than a confident wrong position; the EKF coasts. We re-find the anchor after an outage (0.11-0.18 s after a 3 s blackout in simulation). Variance grows with height and with calibration error. | One log plot: fixes stop, then resume. Plus the honest-variance finding (we caught our own overconfident variance) |
-| 3:40-4:30 | 6. Results and limits | `[fill in: altitude ladder table: level, held yes/no, RMS/max drift, repeats]`. Then what failed and why (one line per failure). Then the simulated results labelled as simulated. | Ladder table from real flights; hold-out result stated once |
-| 4:30-5:00 | Close | Our contribution in one sentence; the main limit (focal-length sensitivity, no yaw during hold); what we would do with another week. | One line each |
+## Slides (5:00, seven slides)
 
-### Slide 6 content to prepare now (simulated, label it)
-- ArduPilot closed loop, analog camera, 100 m, wind 20 gusting 40: **RMS 0.62 m, max 0.99 m**, drift 1.4 m/min, about 12 fixes/s (`apsim/results.txt`).
-- Justice D open-loop sim: RMS about 0.3 m at 100 m, 0.6-1.3 m at 200 m, 1-2 m at 300-400 m (`integ/justice_d_openloop.txt`). Assumed noise and delay.
-- **Focal-length error finding:** a 7 % error triples the error (0.35 -> about 1.0 m at 100 m), so we built in-flight calibration, which recovered a 0.93 scale as 0.934 in simulation (`integ/calib_loop_justice_d.txt`).
-- Things that failed and what we learned: the FC's own attitude flew away every time (so we integrate the gyro, `att_source=gyro`); the first open-field run flew away (so the whole-picture low-texture path exists); speed-feed made it worse (dropped, kept in the tuning log).
-- Test discipline: tuned on one set of sites, validated on a second, hold-out reported once (`DATA_SPLITS.md`).
+| Time | Slide | What to say | On the slide | Status |
+|---|---|---|---|---|
+| 0:00-0:30 | 1. The problem | Hold a drone in place with no GPS: a cheap rolling-shutter fisheye, the board's own IMU and barometer, everything on a 4-core ARM board. The bench judge carries it; in flight it must stay within 3 m / 2 m for 30 s. | Photo of the aircraft; the target in one line | Photo to take |
+| 0:30-1:20 | 2. Approach (fusion) | Camera tracks the floor; the gyro gives the tilt of every picture row; height from the lift (accelerometer) and the picture scale; position becomes stick commands to Betaflight over MSP while the pilot's switch is on. **Ours:** estimator, V4L2 capture, IMU timing, calibration, live page, MSP link. **Not ours:** OpenCV, numpy, Betaflight, Orqa's board image. | Block diagram, our parts coloured | Diagram to draw |
+| 1:20-2:20 | 3. Timing and rolling shutter (+5) | Frame stamps measured: end of frame, 16.666 ms apart, 2 µs spread. Camera and gyro clocks aligned from a hand rotation: best fit at -12 ms, 0.21 px. Each picture row gets its own attitude. Found and fixed: the IMU driver gave stamps 15 s wrong unless the two streams started in the right order. | `01_gyro_camera_offset.png`, `02_frame_stamps.png` | **Ready** (readout time: to measure) |
+| 2:20-3:00 | 4. Calibration decides the distances | Datasheet lens 17 % off for this camera mode. Checkerboard on a flat screen: 0.17 px on views the fit never saw. A paper round disagreed by 7 %; the gyro, which needs no target, sided with the flat board. | `03_lens_measured.png` | **Ready** |
+| 3:00-3:40 | 5. APB compute | Camera buffers are uncached (12 ms per copy): capture in its own thread, 30 fps kept. Picture checks 27 -> 13 ms; attitude filter 30x faster. Estimator 47 ms: 13-16 fixes/s. | `05_compute.png` | **Ready** (update after optimizing) |
+| 3:40-4:20 | 6. When VIO degrades | Covered lens: NOT READY at once, safe stick values (1500, never minimum). The first walk showed analog-era checks firing on a digital camera and the estimator losing motion in its gaps; we found it in the data and fixed it. The barometer read a 1 m lift backwards indoors, so height comes from the accelerometer during the lift. | `04_first_walk.png` + [after-fix walk] | Half ready: needs walk 2 |
+| 4:20-5:00 | 7. Results and limits | [Bench A-E results; flight ladder with `hold_judge.py`.] Limits: [plain glossy floors, carrier in view, ...]. One line on what we would do next. | Results table | **TBD** (walks, bench, flights) |
 
-### Delivery
-- Open with the question, not the team name. Speak to the four required topics in the order above so judges can tick them.
-- One idea per slide, big numbers, no paragraphs. Put the ownership split (ours vs OpenCV/numpy/pymavlink/ArduPilot/PX4) in the footer of slide 2.
-- Put one real-flight artifact on screen (a plot or a short clip) rather than only tables. If a flight failed, show it anyway with the cause.
-- Practise to 4:40 so there is slack. Two people: one speaks slides 1-3, the other 4-6, one runs the clicker. Hand off on a number.
-- Have `EVIDENCE.md`, the altitude ladder log and one backup plot open on the laptop for questions.
+## To collect for the slides
+- Photo of the aircraft; a screenshot of the live page (READY) and of the preview with the checkerboard.
+- A short phone clip of a walk or the bench test (judges remember a clip more than a table).
+- After walk 2: the same bar chart with the fixed estimator (`make_stage2_figures.py`, update `fig_walk`).
+- Readout time of the rolling shutter (from a fast rotation recording): completes the timing slide.
+- Bench rehearsal results (A-E) and flight logs scored with `hold_judge.py`.
+
+## Delivery
+- Open with the problem, not the team name. Cover the four required topics in order so judges can tick them.
+- One idea per slide, big numbers, no paragraphs; the source of each number in the slide footer.
+- Show one failure openly with its cause and fix (the first walk). The rules reward "what did not work and why".
+- Practise to 4:40. Two speakers: hand off on a number. Have the recordings, `HARDWARE_BRINGUP.md` and one backup plot open.
+
+
+> The section below is from before Stage 2 (ArduPilot / MAVLink design, simulated numbers). Keep the answers that still hold; update the rest.
 
 ## Q&A (2 minutes: about 3 questions). How to answer
 1. Answer in the first sentence. Then one number or one file as proof. Stop. Two minutes is short.
