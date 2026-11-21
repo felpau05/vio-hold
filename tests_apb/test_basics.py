@@ -41,7 +41,13 @@ def settings_part(d):
     check(S.load(p) == s, f"defaults round-trip ({len(s)} keys)")
     for bad, word in (({"fc_baudrate": 1}, "unknown key"), ({"top": "Front"}, "must be one of"),
                       ({"mirror": 1}, "true or false"), ({"tilt_deg": [1]}, "list of 2"),
-                      ({"readout_s": "16ms"}, "a number"), ({"origin_lat_lon_alt": [45.4]}, "lat, lon, alt")):
+                      ({"readout_s": "16ms"}, "a number"), ({"origin_lat_lon_alt": [45.4]}, "lat, lon, alt"),
+                      ({"params_ardupilot": {"GPS1_TYPE": 0}}, "GNSS rule"),
+                      ({"params_ardupilot": {"EK3_SRC1_POSXY": 3}}, "GNSS rule"),
+                      ({"params_ardupilot": {"EK3_SRC2_YAW": 8}}, "GNSS rule"),
+                      ({"params_ardupilot": {"AHRS_GPS_USE": 1}}, "GNSS rule"),
+                      ({"params_px4": {"EKF2_GPS_CTRL": 7}}, "GNSS rule"),
+                      ({"params_ardupilot": {"VISO_TYPE": "1"}}, "must be a number")):
         json.dump(bad, open(p, "w"))
         try:
             S.load(p)

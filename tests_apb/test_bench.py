@@ -40,6 +40,13 @@ def main():
     s["calib_capture"] = capture.capture_mode(s, {}, (sim_test.H, sim_test.W))
     src = capture.CallableSource(SimCamera(t_start, "bench", 12.0), s)
     apb_main.open_video = lambda s: src
+    open_fc = apb_main.open_fc
+
+    def open_fc_gnss_ok(s):        # the fake PX4 starts with EKF2_GPS_CTRL 7; 'check --set-params' writes 0
+        fc = open_fc(s)
+        fc.set_param("EKF2_GPS_CTRL", 0)
+        return fc
+    apb_main.open_fc = open_fc_gnss_ok
     lines = []
     say = lambda x: lines.append((time.monotonic() - t_start, x))      # noqa: E731
     try:

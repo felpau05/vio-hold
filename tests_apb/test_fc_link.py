@@ -25,6 +25,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.dirname(HERE))
 sys.path.insert(0, HERE)
 import fc_link            # noqa: E402
+import gnss_rule          # noqa: E402
 import settings as S      # noqa: E402
 from fake_fc import BOOT_S, scenario   # noqa: E402
 
@@ -147,9 +148,22 @@ def part_b(d):
         lines = fc_link.check_params(fc, s)
         names = [l.split()[2].rstrip(":") for _, l in lines]
         bad = sorted(n for (ok, _), n in zip(lines, names) if not ok)
-        check("GPS_TYPE" in names and bad == ["EK3_SRC1_POSXY", "EK3_SRC1_VELXY", "EK3_SRC1_VELZ", "GPS_TYPE",
-                                              "VISO_DELAY_MS", "VISO_TYPE"],
+        check("GPS_TYPE" in names and bad == ["AHRS_GPS_USE", "EK3_GSF_RUN_MASK", "EK3_GSF_USE_MASK", "EK3_SRC1_POSXY",
+                                              "EK3_SRC1_VELXY", "EK3_SRC1_VELZ", "VISO_DELAY_MS", "VISO_TYPE"],
               f"ArduPilot parameter check (GPS1_TYPE read as GPS_TYPE): FAIL for {bad}")
+        g = gnss_rule.check(fc.firmware, fc.get_param)
+        g_bad = sorted(l.split()[3] for ok, l in g if not ok)
+        check(len(g) == 20 and g_bad == ["AHRS_GPS_USE", "EK3_GSF_RUN_MASK", "EK3_GSF_USE_MASK", "EK3_SRC1_POSXY",
+                                         "EK3_SRC1_VELXY", "EK3_SRC1_VELZ"]
+              and any(l.startswith("PASS GNSS rule: GPS_TYPE = 1") for _, l in g),
+              f"GNSS rule on ArduCopter defaults ({len(g)} lines): FAIL for {g_bad}")
+        fc_link.check_params(fc, s, write=True)
+        g = gnss_rule.check(fc.firmware, fc.get_param)
+        check(all(ok for ok, _ in g), f"GNSS rule after --set-params: {[l for ok, l in g if not ok] or 'all PASS'}")
+        fc.set_param("GPS_TYPE", 0)
+        fc.set_param("EK3_SRC3_YAW", 8)
+        g_bad = sorted(l.split()[3] for ok, l in gnss_rule.check(fc.firmware, fc.get_param) if not ok)
+        check(g_bad == ["EK3_SRC3_YAW", "GPS_TYPE"], f"GNSS rule: GPS off and GSF yaw in source set 3: FAIL for {g_bad}")
         fc.send_origin(45.4, -75.7, 60.0)
         fc.send_fix(Est1(time.monotonic() - 0.08, np.array([0.1, 0.2]), 0.4, 80, "ok", False, None))
         time.sleep(0.3)

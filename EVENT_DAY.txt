@@ -11,7 +11,7 @@ STEP 1. FLIGHT CONTROLLER PARAMETERS (3 min)
 2. Power the drone.
 3. Type: python3 apb_main.py check --set-params
 4. Reboot the flight controller.
-Pass: In step 2, every "param" line shows PASS.
+Pass: In step 2, every "param" line and every "GNSS rule" line shows PASS.
 If the firmware line shows FAIL, stop here. The program cannot fly this firmware.
 
 
@@ -114,3 +114,15 @@ Pass: The run log shows sent = 1 on most rows after the switch to Position mode.
 
 After step 7: climb to the target height in Altitude mode. Do not yaw. Then select Position mode.
 To tune after a flight: python3 apb_main.py replay logs/raw_*.npz
+
+
+GNSS RULE (Stage 2, section 04): WHAT TO SHOW THE JUDGE AT THE FIRST BENCH SESSION
+The judges measure the drift with the GPS in the FC log. Thus GPS stays on.
+Our solution does not use GNSS at any time, not only during the hold.
+1. The FC: no EKF source set uses GPS. The DCM fallback and the GSF yaw use no GPS.
+   Show the "GNSS rule" lines of: python3 apb_main.py check
+2. Our program: it reads no GPS message from the FC. It reads ATTITUDE, LOCAL_POSITION_NED and
+   GLOBAL_POSITION_INT. From GLOBAL_POSITION_INT it uses only relative_alt and vz. These come from the
+   FC EKF, and its height source is the barometer (EK3_SRC1_POSZ 1).
+3. The rule is in gnss_rule.py. run does not start if one GNSS rule line fails. settings.json cannot
+   hold a value that breaks the rule.
