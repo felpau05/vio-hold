@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VIO Position Hold – Grand Final Talk</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap">
+<style>
+* { margin: 0; }
+html, body { height: 100%; background: #0d1319; overflow: hidden; }
+#stage { position: absolute; left: 50%; top: 50%; width: 1920px; height: 1080px; transform-origin: 0 0; }
+#stage > section { position: absolute; inset: 0; width: 1920px; height: 1080px; display: none; }
+#stage > section.on { display: flex; }
+aside { display: none; }
+body.notes aside { display: block; position: absolute; left: 0; right: 0; bottom: 0; padding: 20px 128px; font-size: 26px;
+  line-height: 1.4; background: rgba(13,19,25,.92); color: #EEF1F4; font-family: Inter, Arial, sans-serif; }
+.arrow { clip-path: polygon(0 30%, 60% 30%, 60% 0, 100% 50%, 60% 100%, 60% 70%, 0 70%); flex: none; }
+#pg { position: fixed; right: 16px; bottom: 12px; color: #A9B4C0; font: 14px Inter, Arial, sans-serif; }
+:root {
+  --dark: #15202B;
+  --light: #F6F5F1;
+  --alt: #ECEAE4;
+  --ink: #15202B;
+  --soft: #4A5260;
+  --blue: #2A78D6;
+  --line: #D5D2CA;
+  --onDark: #EEF1F4;
+  --onDarkSoft: #A9B4C0;
+}
+
+body { font-family: 'Inter', Arial, sans-serif; color: var(--ink); }
+
+section {
+  padding: 128px 128px 160px;
+  box-sizing: border-box;
+  background: var(--light);
+  display: flex;
+  flex-direction: column;
+  counter-increment: page;
+}
+section.alt { background: var(--alt); }
+section.dark { background: var(--dark); color: var(--onDark); }
+
+.eyebrow { font-size: 24px; font-weight: 600; color: var(--blue); letter-spacing: 2px; margin-bottom: 16px; }
+h1 { font-family: 'Space Grotesk', Arial, sans-serif; font-size: 96px; font-weight: 700; line-height: 1.05; color: var(--onDark); }
+h2 { font-family: 'Space Grotesk', Arial, sans-serif; font-size: 64px; font-weight: 700; line-height: 1.1; color: var(--ink); margin-bottom: 48px; }
+h3 { font-family: 'Space Grotesk', Arial, sans-serif; font-size: 32px; font-weight: 600; line-height: 1.2; color: var(--ink); }
+
+.lede { font-size: 32px; line-height: 1.4; color: var(--onDarkSoft); }
+.point { font-size: 28px; line-height: 1.4; color: var(--soft); }
+.point b { color: var(--ink); }
+
+.row { display: flex; gap: 64px; align-items: flex-start; }
+.col-text { width: 560px; display: flex; flex-direction: column; gap: 28px; }
+.fig { width: 1040px; height: 585px; object-fit: contain; background: #FCFCFB; border-radius: 12px; }
+
+.big { font-family: 'Space Grotesk', Arial, sans-serif; font-size: 72px; font-weight: 700; line-height: 1; color: var(--blue); }
+.biglabel { font-size: 24px; line-height: 1.35; color: var(--soft); margin-top: 12px; }
+
+.stats { display: flex; gap: 32px; }
+.stat { flex: 1; background: #FFFFFF; border-radius: 16px; padding: 40px 36px; }
+
+.pipe { display: flex; gap: 16px; align-items: center; }
+.card { width: 272px; box-sizing: border-box; border-radius: 16px; padding: 28px 24px; }
+.card.ours { background: #DCE9F8; border: 3px solid var(--blue); }
+.card.theirs { background: #FFFFFF; border: 3px solid var(--line); }
+.card .who { font-size: 24px; font-weight: 600; color: var(--soft); margin-top: 10px; }
+.card .ourtag { font-size: 24px; font-weight: 600; color: #1C5CAB; margin-top: 10px; }
+
+.keyline { font-size: 28px; line-height: 1.5; color: var(--soft); margin-top: 48px; }
+.keyline b { color: var(--ink); }
+
+.results { font-size: 28px; color: var(--ink); width: 1664px; }
+.tbd { color: var(--soft); }
+
+.source { position: absolute; left: 128px; bottom: 64px; width: 1664px; font-size: 24px; color: var(--soft); }
+.dark .source { color: var(--onDarkSoft); }
+
+.coverline { width: 160px; height: 8px; background: var(--blue); margin: 48px 0 40px; }
+.team { font-size: 28px; color: var(--onDarkSoft); margin-top: 32px; }
+
+@keyframes rise { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+.in { animation: rise 500ms ease-out both; animation-delay: calc(var(--i, 0) * 120ms); }
+.results th { text-align: left; }
+.results td, .results th { padding: 16px 0; border-bottom: 1px solid #2E3B48; }
+
+</style></head><body>
+<div id="stage">
+<section id="cover" class="dark" style="justify-content:center">
+<p class="eyebrow">CONTESTED BATTLEFIELD AERIAL OPERATIONS CHALLENGE · GRAND FINAL</p>
+<h1>Holding position without GPS<br>on a 4-core ARM board</h1>
+<div class="coverline"></div>
+<p class="lede">A rolling-shutter fisheye, the board’s own IMU, and only measured numbers.</p>
+<p class="team">[Team name] · [Names]</p>
+<aside>Open with the problem, not the team name. One sentence: we hold a drone in place with no GPS using a cheap downward camera and the APB’s own sensors, and everything on these slides was measured on the event aircraft.</aside>
+</section>
+
+<section id="problem">
+<p class="eyebrow">THE PROBLEM</p>
+<h2>Hold a spot with no GPS, using only what is on board</h2>
+<div class="stats">
+<div class="stat in" style="--i:0"><p class="big">30 s</p><p class="biglabel">within 3 m sideways and 2 m in height, judged from the flight log</p></div>
+<div class="stat in" style="--i:1"><p class="big">0</p><p class="biglabel">GNSS while the hold is engaged</p></div>
+<div class="stat in" style="--i:2"><p class="big">~140°</p><p class="biglabel">rolling-shutter fisheye looking down (the datasheet said 114°)</p></div>
+<div class="stat in" style="--i:3"><p class="big">4 × A53</p><p class="biglabel">all processing on the APB board, no laptop</p></div>
+</div>
+<p class="keyline">The bench judge carries the drone at about 1 m; in flight the pilot climbs to 10, 20, 35, 50 or 75 m and flips the switch.</p>
+<p class="source">Source: Stage 2 participant package; camera field of view measured on the event aircraft</p>
+<aside>Set the stage in 30 seconds. The four numbers are the constraints. Point at the fisheye: the datasheet said 114 degrees, the real 1080p mode is much wider, and that is the first sign of the theme of the talk: we measured instead of trusting the datasheet. [Add a photo of the aircraft here once taken.]</aside>
+</section>
+
+<section id="approach" class="alt">
+<p class="eyebrow">SENSOR FUSION</p>
+<h2>Camera, gyro and height become stick commands</h2>
+<div class="pipe">
+<div class="card theirs in" style="--i:0"><h3>Justice D camera</h3><p class="who">Orqa hardware</p></div>
+<div class="arrow" style="width:44px;height:24px;background:#4A5260"></div>
+<div class="card ours in" style="--i:1"><h3>Capture and IMU timing</h3><p class="ourtag">ours</p></div>
+<div class="arrow" style="width:44px;height:24px;background:#4A5260"></div>
+<div class="card ours in" style="--i:2"><h3>Floor tracking estimator</h3><p class="ourtag">ours, on OpenCV</p></div>
+<div class="arrow" style="width:44px;height:24px;background:#4A5260"></div>
+<div class="card ours in" style="--i:3"><h3>MSP stick commands</h3><p class="ourtag">ours</p></div>
+<div class="arrow" style="width:44px;height:24px;background:#4A5260"></div>
+<div class="card theirs in" style="--i:4"><h3>Betaflight ANGLE mode</h3><p class="who">flight controller</p></div>
+</div>
+<p class="keyline"><b>How it works:</b> track floor points, give each picture row its own gyro attitude, scale by height, solve the move in metres, then turn the position error into roll and pitch commands while the pilot’s switch is on.<br><b>Not ours:</b> OpenCV, numpy, Betaflight, Orqa’s Linux image. <b>Ours:</b> everything in blue.</p>
+<p class="source">Height: accelerometer during the lift plus picture scale [in progress]; the barometer was too noisy indoors</p>
+<aside>Walk the pipeline left to right. Stress the ownership split: the blue boxes are our code. The judges score contribution separately from existing tools. Mention that the position is turned into stick commands over MSP because Betaflight has no vision input in this version.</aside>
+</section>
+
+<section id="timing">
+<p class="eyebrow">TIMING AND ROLLING SHUTTER</p>
+<h2>Every clock measured, not assumed</h2>
+<div class="row">
+<div class="col-text">
+<div class="in" style="--i:0"><p class="big">−12 ms</p><p class="biglabel">gyro against camera clock, from a hand rotation (fit error 0.21 px)</p></div>
+<div class="in" style="--i:1"><p class="big">16.666 ms</p><p class="biglabel">between frames, 2 µs spread; stamped at the end of each frame</p></div>
+<p class="point"><b>Rolling shutter:</b> each picture row gets its own attitude from the 200 Hz gyro.</p>
+<p class="point"><b>Bug found:</b> the IMU driver’s stamps were 15 s off unless both streams started in one order.</p>
+</div>
+<img class="fig in" style="--i:2" src="../stage2/01_gyro_camera_offset.png" alt="Fit error against gyro time shift: lowest at minus 12 milliseconds">
+</div>
+<p class="source">Measured on the event aircraft: driver stamps (CLOCK_MONOTONIC), ICM-42605 at 200 Hz; readout time [to measure]</p>
+<aside>This slide targets the timing and rolling-shutter bonus. Say how each number was measured: the curve is the fit error of the image motion predicted by the gyro, against a time shift; it has one clear minimum at minus 12 ms. Frame stamps are 16.666 ms apart with 2 microseconds spread. Then the IMU stamp bug: a real finding that would have broken every row’s attitude. [Add the rolling-shutter readout time once measured.]</aside>
+</section>
+
+<section id="lens" class="alt">
+<p class="eyebrow">CALIBRATION</p>
+<h2>The datasheet lens would have made every distance wrong</h2>
+<div class="row">
+<div class="col-text">
+<div class="in" style="--i:0"><p class="big">17 %</p><p class="biglabel">datasheet focal length too high for the 1080p mode: distances 14 % short</p></div>
+<div class="in" style="--i:1"><p class="big">0.17 px</p><p class="biglabel">checkerboard fit error on views the fit never saw</p></div>
+<p class="point"><b>Two boards disagreed by 7 %.</b> A rotation under the ceiling, checked against the gyro and needing no target, sided with the flat screen.</p>
+</div>
+<img class="fig in" style="--i:2" src="../stage2/03_lens_measured.png" alt="Pixels per degree against angle: datasheet, flat-screen board, paper board and the gyro point">
+</div>
+<p class="source">Equidistant fisheye fit (OpenCV) on 101 views; gyro method ours, from the ceiling rotation</p>
+<aside>Decisions with evidence. The datasheet line is flat at the top: it would have read every distance 14 percent short, which fails B1. Then the honest bit: our two checkerboard rounds disagreed by 7 percent. We did not pick the one we liked; we added a third method that needs no target at all, pure rotation against the gyro, and it sided with the flat board. The remaining 3 to 5 percent gap gets settled by the taped walk distances.</aside>
+</section>
+
+<section id="compute">
+<p class="eyebrow">APB COMPUTE</p>
+<h2>Where the time goes on four ARM cores</h2>
+<div class="row">
+<div class="col-text">
+<div class="in" style="--i:0"><p class="big">12 ms</p><p class="biglabel">to copy one frame: the camera buffers are uncached, so capture runs in its own thread</p></div>
+<div class="in" style="--i:1"><p class="big">27 → 13 ms</p><p class="biglabel">picture checks and sensors per frame after optimizing</p></div>
+<p class="point"><b>Attitude filter 30× faster</b> with plain quaternion maths. <b>13–16 fixes per second</b> today [to raise].</p>
+</div>
+<img class="fig in" style="--i:2" src="../stage2/05_compute.png" alt="Bar chart of milliseconds per frame on the APB">
+</div>
+<p class="source">Measured on the APB (i.MX8M Plus, 4 × Cortex-A53): numpy 1.26, OpenCV 4.11 in /data</p>
+<aside>Use of APB compute is one of the four required topics. Say what we found, not just the totals: the uncached camera memory made a plain copy cost 12 ms, so the capture got its own thread and we keep 30 frames per second. The estimator itself is the next target: [update after optimizing].</aside>
+</section>
+
+<section id="degrade" class="alt">
+<p class="eyebrow">WHEN VISION DEGRADES</p>
+<h2>Our first walk failed, and the data showed why</h2>
+<div class="row">
+<div class="col-text">
+<p class="point in" style="--i:0"><b>Lens covered:</b> NOT READY at once; the flight controller gets safe sticks (1500), never minimum values.</p>
+<p class="point in" style="--i:1"><b>Analog-era checks</b> fired on the digital camera: READY 15 % → 75 % once removed.</p>
+<p class="point in" style="--i:2"><b>Lost motion:</b> the estimator froze during its gaps; raw floor tracking kept it. Fix: [in progress].</p>
+<p class="point in" style="--i:3"><b>Barometer</b> read a 1 m lift backwards indoors: height now from the accelerometer during the lift.</p>
+</div>
+<img class="fig in" style="--i:4" src="../stage2/04_first_walk.png" alt="Bar chart: tape-measured distances against raw tracking and the estimator on the first walk">
+</div>
+<p class="source">Hand-carried walk at about 1 m over a plain glossy floor, carrier’s legs and ceiling-light reflections in view</p>
+<aside>The rules reward what did not work and why. Show the failure plainly: 1 metre measured as 0.46. Then the diagnosis from the data: the motion is in the pictures (green bars), the estimator dropped it in its gaps. [Replace or add the after-fix bars from walk 2.]</aside>
+</section>
+
+<section id="results" class="dark">
+<p class="eyebrow">RESULTS AND LIMITS</p>
+<h2 style="color:#F6F5F1">What we scored, and what is still hard</h2>
+<table class="results" style="color:#EEF1F4">
+<tr><th style="width:34%">Item</th><th style="width:40%">Pass condition</th><th style="width:26%">Result</th></tr>
+<tr><td>B1 displacement</td><td>within 0.25 m of the tape</td><td class="tbd">[TBD]</td></tr>
+<tr><td>B2 loop return</td><td>within 0.3 m of zero</td><td class="tbd">[TBD]</td></tr>
+<tr><td>B3 height change</td><td>within 0.15 m of 0.5 m</td><td class="tbd">[TBD]</td></tr>
+<tr><td>C, D, E bench</td><td>signs, handover, cover, restart</td><td class="tbd">[TBD]</td></tr>
+<tr><td>G flight ladder</td><td>30 s within 3 m / 2 m</td><td class="tbd">[TBD: highest level]</td></tr>
+</table>
+<p class="keyline" style="color:#A9B4C0"><b style="color:#EEF1F4">Still hard:</b> plain glossy floors, the carrier in view, indoor barometer noise. <b style="color:#EEF1F4">Next:</b> [one line].</p>
+<aside>Fill this from the bench sessions and from flight logs scored with hold_judge.py. Say for each number where it came from. End with one line on the main limit and what we would do next.</aside>
+</section>
+
+</div>
+<div id="pg"></div>
+<script>
+const S = [...document.querySelectorAll('#stage > section')], stage = document.getElementById('stage');
+let i = Math.max(0, Math.min(S.length - 1, (parseInt(location.hash.slice(1)) || 1) - 1));
+function fit() { const k = Math.min(innerWidth / 1920, innerHeight / 1080);
+  stage.style.transform = `scale(${k}) translate(-50%, -50%)`; }
+function show(n) { i = Math.max(0, Math.min(S.length - 1, n)); S.forEach((s, j) => s.classList.toggle('on', j === i));
+  document.getElementById('pg').textContent = `${i + 1} / ${S.length}  ·  arrows to move, F full screen, N notes`;
+  history.replaceState(null, '', '#' + (i + 1)); }
+addEventListener('keydown', e => {
+  if (['ArrowRight', 'PageDown', ' '].includes(e.key)) show(i + 1);
+  else if (['ArrowLeft', 'PageUp'].includes(e.key)) show(i - 1);
+  else if (e.key === 'f' || e.key === 'F') document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen();
+  else if (e.key === 'n' || e.key === 'N') document.body.classList.toggle('notes'); });
+addEventListener('click', e => show(e.clientX > innerWidth / 3 ? i + 1 : i - 1));
+addEventListener('resize', fit); fit(); show(i);
+</script></body></html>
