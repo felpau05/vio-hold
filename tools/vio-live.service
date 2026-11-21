@@ -1,0 +1,28 @@
+# Starts the live program at power-up (Stage 2 bench item E2: "restarts by itself, ready within 60 s").
+# Install ONLY after the organizers agree (Stage 2 section 02: "Do not change the ... boot configuration").
+# Install, remove and status: sh /data/vio/vio_boot.sh install | remove | status
+#
+# Order: orqa-autostart turns on the MSP line to the FC (gpiochip3 line 13). rth-event-setup sets the
+# Justice D format (about 8 s after power-up). The program starts after both.
+# After= only, no Wants=: both organizer units start at boot through their own links. A Wants= on these
+# oneshot units can run the organizer GPIO and camera scripts again at each restart of this unit.
+# The start arguments come from /data/vio/boot.env (one line: VIO_ARGS=...). Without it, the default below.
+[Unit]
+Description=vio-hold live program: camera, estimator, FC commands over MSP (bench items C, D, E)
+After=orqa-autostart.service rth-event-setup.service
+StartLimitIntervalSec=0
+
+[Service]
+Type=forking
+PIDFile=/data/vio/apb_live.pid
+Environment="VIO_ARGS=--height 1.0 --pos floor --rc"
+EnvironmentFile=-/data/vio/boot.env
+ExecStartPre=/bin/sh /data/vio/vio_boot.sh clean-pid
+ExecStart=/bin/sh /data/vio/apb_ctl.sh start $VIO_ARGS
+ExecStop=/bin/sh /data/vio/apb_ctl.sh stop
+Restart=on-failure
+RestartSec=3
+TimeoutStartSec=30
+
+[Install]
+WantedBy=multi-user.target
