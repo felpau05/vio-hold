@@ -15,6 +15,7 @@ import argparse
 import json
 import math
 import os
+import shutil
 import sys
 import threading
 import time
@@ -49,11 +50,17 @@ class Recorder:
     """apb_rec.py-format chunks (replay with apb_est.py replay) written from the live program: every frame the
     grabber gets, plus the IMU and barometer rows. Saving runs in its own thread."""
 
-    def __init__(self, base, gyro, acc, baro):
-        self.base, self.gyro, self.acc, self.baro = base, gyro, acc, baro
+    MIN_FREE_MB = 300
+
+    def __init__(self, base, gyro, acc, baro, fps=15.0, say=print):
+        self.base, self.gyro, self.acc, self.baro, self.fps, self.say = base, gyro, acc, baro, fps, say
         self.imgs, self.ts, self.seqs, self.k, self.savers = [], [], [], 0, []
+        self.t_keep, self.full = -1.0, False
 
     def add(self, img, t, seq):
+        if self.full or t - self.t_keep < 1.0 / self.fps - 0.004:
+            return
+        self.t_keep = t
         self.imgs.append(img)
         self.ts.append(t)
         self.seqs.append(seq)
@@ -77,6 +84,10 @@ class Recorder:
         th = threading.Thread(target=save, daemon=False)
         th.start()
         self.savers.append(th)
+        free = shutil.disk_usage(os.path.dirname(self.base)).free / 1e6
+        if free < self.MIN_FREE_MB + 160:           # room for one more chunk (~75-160 MB) above the floor
+            self.full = True
+            self.say(f"recording stopped: {free:.0f} MB free (live mode goes on)")
 
     def close(self):
         self.flush()
@@ -237,7 +248,7 @@ def run(s, port=8080, fps=30.0, seconds=None, log_dir="/data/vio/logs", say=prin
         rec = None
         if rec_label:
             os.makedirs(rec_dir, exist_ok=True)
-            rec = Recorder(os.path.join(rec_dir, f"{rec_label}_{time.strftime('%H%M%S')}"), gyro, acc, baro)
+            rec = Recorder(os.path.join(rec_dir, f"{rec_label}_{time.strftime('%H%M%S')}"), gyro, acc, baro, say=say)
             say(f"recording to {rec.base}_*.npz")
         grab = Grabber(cam, fps, rec)
         t_start = time.monotonic()
@@ -352,7 +363,7 @@ def main():
     ap.add_argument("--fps", type=float, default=30.0)
     ap.add_argument("--seconds", type=float)
     ap.add_argument("--height", type=float, help="desk tests only: fixed lens height (m), no barometer")
-    ap.add_argument("--rec", metavar="LABEL", help="also record every frame for replay (about 15 MB/s)")
+    ap.add_argument("--rec", metavar="LABEL", help="also record for replay (15 fps, ~7.5 MB/s; stops by itself near 300 MB free)")
     a = ap.parse_args()
     A.stop_on_signals()
     run(S.load(), a.port, a.fps, a.seconds, fixed_height=a.height, rec_label=a.rec)
