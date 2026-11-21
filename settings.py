@@ -7,6 +7,8 @@ calib.py writes its results back with save().
 import json
 import os
 
+import gnss_rule
+
 HERE = os.path.dirname(os.path.abspath(__file__))
 PATH = os.path.join(HERE, "settings.json")
 
@@ -57,8 +59,12 @@ DEFAULTS = {
     # capture (VISP CTimeMS - RTimeUS) and the program advised 144; 100 -> 140 cut the 100 m windy drift from
     # 1.08 / 2.32 m (RMS middle / worst, validation seeds 11-13) to 0.77 / 0.87 m (integ/control). Still an
     # assumption for the real board: set it from "apb_main.py delay <run log>" after the first hover.
+    # GPS1_TYPE 1, not the autotest's 0: the event GNSS rule (gnss_rule.py) needs GPS on for the judges' log,
+    # and no EKF source may use it. AHRS_GPS_USE 0 and EK3_GSF_*_MASK 0 close the other two ways that ArduPilot
+    # uses GPS (DCM fallback, GSF yaw). The apsim results above ran with GPS1_TYPE 0.
     "params_ardupilot": {"VISO_TYPE": 1, "EK3_SRC1_POSXY": 6, "EK3_SRC1_VELXY": 0, "EK3_SRC1_POSZ": 1,
-                         "EK3_SRC1_VELZ": 0, "EK3_SRC1_YAW": 1, "GPS1_TYPE": 0, "VISO_DELAY_MS": 140},
+                         "EK3_SRC1_VELZ": 0, "EK3_SRC1_YAW": 1, "GPS1_TYPE": 1, "AHRS_GPS_USE": 0,
+                         "EK3_GSF_RUN_MASK": 0, "EK3_GSF_USE_MASK": 0, "VISO_DELAY_MS": 140},
 
     # Video.
     "video_device": "/dev/video0",     # research/hardware.md: /dev/video0 = analog capture on the APB
@@ -138,7 +144,16 @@ def _check(k, v):
         return None if isinstance(v, (int, float)) and not isinstance(v, bool) else "must be a number"
     if isinstance(d, list) and (not isinstance(v, list) or len(v) != len(d)):
         return f"must be a list of {len(d)} numbers"
-    return None if isinstance(v, type(d)) else f"must be a {type(d).__name__}"
+    if not isinstance(v, type(d)):
+        return f"must be a {type(d).__name__}"
+    if k in ("params_ardupilot", "params_px4"):
+        for name, x in v.items():
+            if not isinstance(x, (int, float)) or isinstance(x, bool):
+                return f"{name} must be a number"
+            why = gnss_rule.value_problem(k[len("params_"):], name, x)
+            if why:
+                return f"breaks the event GNSS rule (gnss_rule.py): {why}"
+    return None
 
 
 def load(path=PATH):

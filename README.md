@@ -15,6 +15,7 @@ the Justice analog camera.
 | `hold.py` | The estimator: picture + tilt + height in, position out |
 | `apb_main.py` | The onboard program: camera, FC link, Hold, sends positions. Modes: `run`, `check`, `mask`, `calib`, `bench`, `replay`, `delay`, `timing` |
 | `fc_link.py`, `capture.py`, `calib.py`, `settings.py` | FC link (MAVLink), camera input, camera calibration, settings |
+| `gnss_rule.py` | The event GNSS rule as FC parameter values. `run` does not start when the FC breaks it |
 | `settings.json`, `tools/profiles/` | Settings; ready profiles (indoor, outdoor day/night, goal A/B, ArduPilot, PX4) |
 | `sim_ground.py`, `fetch_ground.py` | Open-loop simulator on real aerial photos (estimator only, no drone physics) |
 | `px4sim/` | Closed loop: PX4 flies in a simulator, and its only horizontal position comes from us |
