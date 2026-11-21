@@ -42,8 +42,9 @@ python3 -m venv ~/.venvs/vio
 ~/.venvs/vio/bin/python fetch_ground.py ground     # aerial photos for the simulators (once)
 ```
 
-Closed-loop simulators need Docker. All simulators (`sim_*.py`, `px4sim/`, `apsim/`) still render the old
-analog camera, not the Justice D; their results do not describe the Justice D (see `SPEC.md`).
+Closed-loop simulators need Docker (Docker Desktop must be running). The simulators render the old analog camera by
+default; add `camera=justice_d` (closed loop) or `VIO_SIM_CAMERA=justice_d` (open loop) for the simulated Justice D.
+Its noise, readout and delay are assumed, not measured (see `SPEC.md`). Old result tables are analog.
 
 - PX4: `px4sim/sitl.py` pulls the `px4io/px4-sitl` image by itself.
 - ArduPilot: clone and build Orqa's branch once, inside `apsim/`:

@@ -1,7 +1,7 @@
 # CONTEXT.md: where the project stands (updated 2026-11-19)
 
 Written at the end of a working session so a new person (or a new Claude session) can pick up without the chat.
-Branch: `spec-justice-d` (2 commits on top of `main`, not pushed). Source of truth for the rules:
+Branch: `spec-justice-d` (4 commits on top of `main`; pushed to origin 2026-11-20; no pull request opened yet). Source of truth for the rules:
 the Stage 1 participant rules (rev 1.3). Read `SPEC.md` next.
 
 ## The project
@@ -99,16 +99,17 @@ Goal from the user: all software done; hardware items may wait.
 1. (Done: Docker/networking fixed, ArduCopter SITL built, ArduPilot case 100 m `w20g40` confirmed.) Run one **PX4** case
    (100 m, `w20g40`; `px4sim/sitl.py`) to confirm that loop, then work the plain-ground cases (prairie 100 m seeds 3/5,
    1.7-1.9 m RMS, about 80 % degraded) on TUNING/VALIDATION sites only.
-2. Make the simulators render the Justice D (digital noise, 640x360, rolling shutter) so closed-loop results mean something.
+2. (Preset done, commit 141f517, not yet run end to end: needs Docker Desktop.) Run the closed-loop Justice D cases.
 3. Consider a focal-length-uncertainty term in the variance. (E6 re-verification is done: `review/estimator/e3_keyframes.py`
    and `e2_bad_cases.py` were rewritten for the current `hold.py`; `review/FINDINGS.md` updated.)
 4. Send `ORGANIZER_QUESTIONS.md`; fill `HARDWARE_BRINGUP.md` and `EVIDENCE.md` as hardware and Stage 2 arrive.
-5. Push `spec-justice-d` and open a pull request into `main` (not done).
+5. (Pushed 2026-11-20.) Open a pull request into `main`.
+6. Before the event: build `tools/wheels/` (aarch64 wheels for the APB, gitignored, currently absent) and write `tools/deploy.env`.
+   A readiness review on 2026-11-20 found test_ap_sitl is the only failing test and only because Docker Desktop was off.
 
 ## Open items for the team
 
 - Fill in who wrote `hold.py` and the rest of the who-wrote-what table in `EVIDENCE.md`.
 - Set `origin_lat_lon_alt` in `settings.json` at the field (ArduPilot only); run `mask` and `calib` on the real camera.
 - `EVIDENCE.md` shows a trailing-newline change that is not from this work; it is not committed.
-- Uncommitted work from 2026-11-18/19: `CONTEXT.md`, `review/FINDINGS.md`, `review/estimator/e2_bad_cases.py`, `e3_keyframes.py`,
-  `apsim/results.{json,txt}` (merged the new ArduPilot run). Commit on a branch, per README.
+- (The 2026-11-19 work listed here earlier is committed.)

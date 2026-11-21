@@ -18,11 +18,12 @@ Scored runs use the event evaluation setup; team development aids do not count (
 
 | Area | Result | File | Camera | Proves | Does not prove |
 |---|---|---|---|---|---|
-| A | | | | | |
+| A | Calibration loop recovers a 0.93 focal scale as 0.934, mount tilt within 0.2 deg, readout and delay within tolerance | `integ/calib_loop_justice_d.txt` | Justice D (simulated, assumed noise) | the calibration method works when the sim model is right | the real lens, real timing, real data quality |
 | B | Open-loop and closed-loop hold at 100 m, wind 20 gust 40 (ArduCopter SITL): tuning site RMS 1.56 m; 2 of 3 hold-out sites held | `apsim/summary.txt` | analog (simulated) | the estimator and control loop in simulation | the Justice D, real flight, the open-field case (flew away) |
-| C | | | | | |
+| C | Hold takes about 7.7 ms median per 640x360 frame on a laptop | `SPEC.md` open item 3 | n/a (x86 laptop) | rough cost | anything about the A53 cores: run `apb_main.py timing` on the APB |
 | D | Onboard-program tests 9/9 pass (fake flight controller) | `tests_apb/out_*.txt` | simulated | message flow, calibration, replay logic | a real FC |
-| E | | | | | |
+| B | Open loop Justice D sim: RMS about 0.3 m at 100 m, 0.6-1.3 m at 200 m; a 7 % focal error triples it | `integ/justice_d_openloop.txt` | Justice D (simulated, assumed) | estimator accuracy vs height and the focal-error sensitivity | no drone physics, wind or real camera; hold-out not run |
+| E | Gates for frozen, static, no-ground, moving-object and attitude mismatch; `att_source=fc` flies away so `gyro` is fixed | `tests/bad_pictures.py`, `review/FINDINGS.md`, `apsim/results.txt` | simulated | bad inputs are refused in simulation | behaviour on real degraded flight |
 | G | none yet | | | | |
 
 ## Presentation outline (spec p.4: sensor fusion, rolling shutter, APB compute, response when VIO degrades)

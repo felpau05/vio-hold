@@ -29,16 +29,16 @@ approved altitudes) is not out yet; every Stage 2 item below is an assumption un
   equidistant lens (focal length 480 / 643 / 693 px from V / H / D); I used the horizontal one. Run `calib` for
   `focal_scale` and replace it with a real calibration as soon as there is a camera to calibrate.
 - `apb_main.py check`: Justice D frame rate and size checks instead of the PAL/NTSC check.
-- Closed-loop simulators and `test_bench` pin `video_kind="analog"`, `field="top"` and the old lens: they still render
-  analog fields. **The simulators do not yet model the Justice D** (digital noise, 60 fps, rolling shutter of the real sensor).
-  Results in `apsim/`, `px4sim/` and `integ/` are for the old analog camera and say nothing about the Justice D.
+- Closed-loop simulators and `test_bench` default to `video_kind="analog"`, `field="top"` and the old lens. Result tables in
+  `apsim/`, `px4sim/` and `integ/` are for the old analog camera and say nothing about the Justice D. The closed-loop
+  simulators now have a Justice D preset (`camera=justice_d`, commit 141f517; noise, readout and delay assumed), but it has
+  **not yet been run end to end** (needs Docker Desktop running). `integ/calib_loop.py` ran with it.
 - `tests_apb/test_justice_d.py`: new test, part of `run_all.sh`.
 
 ## Simulated Justice D results (open loop, 2026-11-18; `integ/justice_d_openloop.txt`)
 
 `sim_ground.py` now has a Justice D camera (`VIO_SIM_CAMERA=justice_d`: 640x360, noise 2.0 grey, readout 14 ms, all assumed).
-Estimator only: no drone physics, no wind, no closed loop (Docker is not installed on this machine, so the PX4 and
-ArduPilot loops were not run). Seeds 1-6, 20 s hovers:
+Estimator only: no drone physics, no wind, no closed loop (these open-loop runs predate the closed-loop Justice D preset). Seeds 1-6, 20 s hovers:
 
 | Site | 50 m | 100 m | 200 m | 300 m | 400 m |
 |---|---|---|---|---|---|
