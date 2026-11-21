@@ -9,7 +9,7 @@ evidence** (Stage 2 section 07). **Length and format: not in Stage 2. Ask the or
 **The story in one line:** we measured the real hardware instead of trusting the datasheet, and every number on the slides
 came from the aircraft. Say where each number came from (board, walk, flight, simulation) in the same breath.
 
-Figures: `talk/stage2/*.png`, rebuilt from the recordings by `talk/make_stage2_figures.py` (re-run after new walks or flights).
+Figures: the talk figures and the deck are kept outside git since 2026-11-21. The last versions in git are at commit e45e769 (talk/stage2/*.png, talk/make_stage2_figures.py, talk/deck/).
 
 ## Slides (5:00, seven slides)
 
@@ -26,7 +26,7 @@ Figures: `talk/stage2/*.png`, rebuilt from the recordings by `talk/make_stage2_f
 ## To collect for the slides
 - Photo of the aircraft; a screenshot of the live page (READY) and of the preview with the checkerboard.
 - A short phone clip of a walk or the bench test (judges remember a clip more than a table).
-- After walk 2: the same bar chart with the fixed estimator (`make_stage2_figures.py`, update `fig_walk`).
+- After walk 2: the same bar chart with the fixed estimator (the figure script is outside git, see line 12).
 - Readout time of the rolling shutter (from a fast rotation recording): completes the timing slide.
 - Bench rehearsal results (A-E) and flight logs scored with `hold_judge.py`.
 

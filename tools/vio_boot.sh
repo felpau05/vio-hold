@@ -85,7 +85,8 @@ def top_imports(path):
     walk(ast.parse(open(path).read()).body)
     return out
 
-seen, todo, missing = set(), ["apb_live", "msp_rc"], []
+# apb_main: apb_live.run() imports it inside the function (Log, Pipe, lens), so it is not a module-level import.
+seen, todo, missing = set(), ["apb_live", "msp_rc", "apb_main"], []
 while todo:
     m = todo.pop()
     if m in seen:
