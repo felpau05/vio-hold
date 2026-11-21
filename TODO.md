@@ -23,7 +23,9 @@ A walk can also just be **recorded** now and replayed later, so calibration can 
       is most of it); camera and recording at 30 fps.
 - [x] **[code] Live display:** web page served by the APB (`http://192.168.75.1:8080`), large READY / NOT READY,
       forward / right (m), distance from zero, height change, **Zero here** button. Refresh about 5 Hz.
-- [ ] **[code] Mask** for the drone parts visible at the left and right edges of the picture.
+- [x] **[code] Mask** for the drone parts visible at the left and right edges of the picture. Not needed: with the
+      calibrated lens they sit at 71-73 deg off-nadir, outside Hold's 55 deg limit. `build_static_mask` on our
+      recordings also marked dark table clutter as not-ground (its dark rule would cut dark floor), so `mask_file` stays empty.
 - [x] **[code] Front direction** (`top`, `mirror`) from the slide check.
 - [ ] **[you] Battery check:** the APB keeps running with the USB cable unplugged (C needs it).
 - [ ] **[you] Distance marks:** tape or floor tiles with known spacing, a tape measure. Ask the organizers for tape.
