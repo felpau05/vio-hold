@@ -223,6 +223,11 @@ rehearsal and the manuals audit, review/manuals_audit_2026-11-20.md).
           After a change of the level: apply the profiles on the laptop and type NO_RESTART=1 tools/deploy.sh. Then on
           the board: check --set-params, restart the flight controller, check again. The save of EVENT_DAY step 1
           item 2b already holds the aircraft's values of these parameters, so step 8 puts them back.
+          A gnss_ profile together with low_height (tested 2026-11-21, 7 runs, simulator): gnss_setup holds as
+          well as no GNSS (10 m: 0.42 / 0.38 m against 0.44 / 0.41 m RMS; 5 m: 0.42 / 0.40 m). The change to our
+          position came 3.5 to 5.6 s before the switch, with a step of 0.02 to 0.11 m. gnss_fallback with a 6 s
+          video loss: GNSS again after 3 s, largest distance 1.55 m (1 run).
+          Our advice: fly no GNSS with low_height. gnss_setup is plan B. gnss_fallback is for practice flights.
           Commands, results and limits: integ/gnss_ladder/README.txt. Simulator only (ideal GNSS, arming checks off).
 46 SEE    The flight controller does not arm. It shows "PreArm: VisOdom: not healthy" or "Arm: VisOdom: not healthy".
    CAUSE  With VISO_TYPE 1 the vision arming check wants a position from us in the last 0.3 s. The program sends none

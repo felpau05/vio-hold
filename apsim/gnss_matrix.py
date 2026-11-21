@@ -2,7 +2,8 @@
 """GNSS levels (settings gnss_mode, apb_main.GnssLevel) on ArduCopter 4.6 SITL. integ/gnss_ladder/README.txt.
   ~/.venvs/vio/bin/python apsim/gnss_matrix.py run <label> [<label> ...]   one at a time, waits for load < 3
   ~/.venvs/vio/bin/python apsim/gnss_matrix.py table
-Labels: gn_<none|setup|fallback|velocity>_<h>m_s<seed>[_glitch]; gn_gps_<h>m_s<seed>_glitch (GNSS-only Loiter, no
+Labels: gn_<none|setup|fallback|velocity>_<h>m_s<seed>[_glitch][_lh]; _lh adds the profile low_height (added
+2026-11-21 07:15: the level together with low_height); gn_gps_<h>m_s<seed>_glitch (GNSS-only Loiter, no
 program: the control for the glitch). Each case is apsim/sitl_ap.run_case: variant apb, video JUSTICE_D, ground
 ottawa2019fall (tuning site), seeds 1-9 (tuning), w20g40, 40 s hold, SITL instance 1, the outdoor_day floor
 (min_height_m 3, hold_cfg h_min 2) for every level and height. fallback: video dropped for 6 s, 10 s after the switch
@@ -34,7 +35,7 @@ OUT, TXT = os.path.join(HERE, "gnss_results.json"), os.path.join(HERE, "gnss_res
 RUNS = os.path.join(HERE, "runs")
 INSTANCE = 1
 LOAD_MAX = 3.0
-DEADLINE = "02:15"
+DEADLINE = "08:10"
 WIN = 30.0
 GLITCH_AT, GLITCH_M = 10.0, 20.0
 RAMP_AT, RAMP_S = 5.0, 20.0            # _ramp: the same 20 m, reached at 1 m/s from 5 s to 25 s after the switch
@@ -43,7 +44,7 @@ OUTAGE = dict(outage_test_s=6.0, outage_after_s=10.0)
 
 
 def case(label):
-    m = re.match(r"gn_(none|setup|fallback|velocity|gps)_(\d+)m_s(\d+)(_glitch|_ramp)?$", label)
+    m = re.match(r"gn_(none|setup|fallback|velocity|gps)_(\d+)m_s(\d+)(_glitch|_ramp)?(_lh)?$", label)
     if not m:
         raise ValueError(f"unknown label {label}")
     import apb_main
@@ -54,8 +55,12 @@ def case(label):
         st.update(gnss_mode=lvl, params_ardupilot=dict(S.DEFAULTS["params_ardupilot"], **apb_main.GNSS_AP[lvl]))
     if lvl == "fallback":
         st.update(OUTAGE)
+    hc = dict(FLOOR[1])
+    if m.group(5):                         # _lh: the profile tools/profiles/low_height.json on top of the level
+        st.update(att_source="gyro_fcyaw")
+        hc.update(dense_local=True, dense_turn=True, dense_nadir_deg=0, kf_map=False)
     return dict(variant="gps" if lvl == "gps" else "apb", height=h, wind="w20g40", hold_s=40.0, seed=seed, label=label,
-                instance=INSTANCE, video="JUSTICE_D", settings=st, hold_cfg=dict(FLOOR[1]),
+                instance=INSTANCE, video="JUSTICE_D", settings=st, hold_cfg=hc,
                 glitch_deg=GLITCH_M / 111320.0 if glitch else 0.0, ramp=ramp, level=lvl)
 
 
