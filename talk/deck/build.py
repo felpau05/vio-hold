@@ -39,11 +39,14 @@ let i = Math.max(0, Math.min(S.length - 1, (parseInt(location.hash.slice(1)) || 
 function fit() { const k = Math.min(innerWidth / 1920, innerHeight / 1080);
   stage.style.transform = `scale(${k}) translate(-50%, -50%)`; }
 function show(n) { i = Math.max(0, Math.min(S.length - 1, n)); S.forEach((s, j) => s.classList.toggle('on', j === i));
-  document.getElementById('pg').textContent = `${i + 1} / ${S.length}  ·  arrows to move, F full screen, N notes`;
+  document.getElementById('pg').textContent = `${i + 1} / ${S.length}  ·  arrows to move, F full screen, N notes, B backup`;
   history.replaceState(null, '', '#' + (i + 1)); }
 addEventListener('keydown', e => {
   if (['ArrowRight', 'PageDown', ' '].includes(e.key)) show(i + 1);
   else if (['ArrowLeft', 'PageUp'].includes(e.key)) show(i - 1);
+  else if (e.key === 'Home') show(0);
+  else if (e.key === 'End') show(S.length - 1);
+  else if (e.key === 'b' || e.key === 'B') show(S.findIndex(s => s.id === 'backup'));
   else if (e.key === 'f' || e.key === 'F') document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen();
   else if (e.key === 'n' || e.key === 'N') document.body.classList.toggle('notes'); });
 addEventListener('click', e => show(e.clientX > innerWidth / 3 ? i + 1 : i - 1));

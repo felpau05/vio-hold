@@ -50,3 +50,16 @@ Each uses only verified facts. The cost-gap claim cannot be made: rows 3a and 3b
 - Published prices for other comparable products (Skydio, Auterion, Emesent). Not searched, because of the request budget.
 - A source for a tunnel, mine or indoor search use. Not searched.
 - The Caltrans report on GPS-free bridge flight. The file is over 10 MB and the fetch failed.
+
+## 4. Added 2026-11-21 (afternoon), for the "need" slide
+
+Checked by opening each page (page-fetch tool; quotes as returned).
+
+| # | Fact | Exact quote | Publisher | Date | URL | Status |
+|---|---|---|---|---|---|---|
+| 7a | Quantum Systems added optical navigation to Vector reconnaissance drones in Ukraine for GNSS-denied flight. | "Quantum Systems has upgraded its Vector reconnaissance drones deployed in Ukraine"; "allowing operations in Global Navigation Satellite System (GNSS)-denied environments" | The Defense Post (Inder Singh Bisht), reporting the company's announcement | 2024-07-15 | https://thedefensepost.com/2024/07/15/german-drone-ukraine-upgrades/amp/ | verified (trade press of a company claim) |
+| 7b | Kyiv bought more than 400 Vector systems. | "Kyiv has bought more than 400 Vector systems over the last two years for operational deployment." | same | 2024-07-15 | same | verified |
+| 8a | Canada's Defence Drone Initiative lists low-cost tactical ISR drones as its first of six initial use cases. | "Low-cost tactical intelligence, surveillance and reconnaissance drones"; "Small, affordable uncrewed aircraft could provide tactical units with local intelligence" | National Defence, backgrounder "Defence Drone Initiative" | 2026-07-23 | https://www.canada.ca/en/department-national-defence/news/2026/07/defence-drone-initiative.html | verified. The page does not mention GNSS, jamming or navigation, and gives no funding figure. |
+| 9a | GNSS disruptions affected 122,600 flights over northern Europe in Jan-Apr 2025 (joint report by SE, FI, EE, LT, LV, PL, submitted to ICAO). | "...affected 122,600 flights over northern Europe" | Ukrainska Pravda, citing SVT via The Moscow Times | 2025-09-07 | https://www.pravda.com.ua/eng/news/2025/09/7/7529725/ | second-hand only; not on the slide |
+| 10 | "About 75 % of small tactical UAV losses are caused by EW" (Technology Forces of Ukraine). | none | Ukrainska Pravda | 2026-01-28 | https://www.pravda.com.ua/eng/news/2026/01/28/8018266 | NOT verified (HTTP 403). Do not use. |
+| 11 | Lockheed Martin's Indago 4 quadcopter lists GPS-denied navigation using its Northstar software. | (feature listed on the product page) | Lockheed Martin, Indago 4 product page | not shown | https://www.lockheedmartin.com/en-us/products/procerus-technologies/indago-unmanned-aerial-system.html | verified by the team on the live page, 2026-11-21 |

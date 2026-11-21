@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>VIO Position Hold – Grand Final Talk</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap">
+<title>Sidro – Grand Final Talk</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap">
 <style>
 * { margin: 0; }
 html, body { height: 100%; background: #0d1319; overflow: hidden; }
@@ -80,34 +80,55 @@ h3 { font-family: 'Space Grotesk', Arial, sans-serif; font-size: 32px; font-weig
 .results th { text-align: left; }
 .results td, .results th { padding: 16px 0; border-bottom: 1px solid #2E3B48; }
 
+#next .lede { margin-top: 20px; }
+#value .stat h3 { margin-bottom: 14px; color: var(--blue); }
+
+.tl { display: grid; grid-template-columns: 180px 1fr; column-gap: 40px; row-gap: 26px; width: 1664px; align-items: baseline; }
+.tlt { font-family: 'Space Grotesk', Arial, sans-serif; font-size: 40px; font-weight: 700; color: var(--blue); }
+.tld { font-size: 28px; line-height: 1.4; color: var(--soft); }
+.tld b { color: var(--ink); }
+
 </style></head><body>
 <div id="stage">
 <section id="cover" class="dark" style="justify-content:center">
 <p class="eyebrow">CONTESTED BATTLEFIELD AERIAL OPERATIONS CHALLENGE · GRAND FINAL</p>
-<h1>Holding position without GPS<br>on a 4-core ARM board</h1>
+<h1 style="font-size:144px">Sidro</h1>
+<p class="lede" style="font-size:44px;color:#EEF1F4;margin-top:16px">The drone holds its spot when GNSS is jammed.</p>
 <div class="coverline"></div>
-<p class="lede">A rolling-shutter fisheye, the board’s own IMU, and only measured numbers.</p>
-<p class="team">[Team name] · [Names]</p>
-<aside>Open with the problem, not the team name. One sentence: we hold a drone in place with no GPS using a cheap downward camera and the APB’s own sensors, and everything on these slides was measured on the event aircraft.</aside>
+<p class="lede">The M2-AI’s own camera and IMU, every number measured on the aircraft.</p>
+<p class="team">Engits · Aydan Eng, Paul Felfli</p>
+<aside>Open with a scene, not the team name: “A reconnaissance drone is watching a position. The jammer switches on. GNSS is gone, and the drone starts to drift off target. That is the problem we solved.” Then: “We call it Sidro: it means anchor in Croatian, and it anchors the drone where the pilot left it.” Then the names, in one breath.</aside>
 </section>
 
-<section id="problem">
-<p class="eyebrow">THE PROBLEM</p>
-<h2>Hold a spot with no GPS, using only what is on board</h2>
+<section id="need">
+<p class="eyebrow">THE NEED AND THE VALUE</p>
+<h2>Without GNSS, a drone loses its spot, and its mission</h2>
 <div class="stats">
-<div class="stat in" style="--i:0"><p class="big">30 s</p><p class="biglabel">within 3 m sideways and 2 m in height, judged from the flight log</p></div>
-<div class="stat in" style="--i:1"><p class="big">0</p><p class="biglabel">GNSS while the hold is engaged</p></div>
-<div class="stat in" style="--i:2"><p class="big">~140°</p><p class="biglabel">rolling-shutter fisheye looking down (the datasheet said 114°)</p></div>
-<div class="stat in" style="--i:3"><p class="big">4 × A53</p><p class="biglabel">all processing on the APB board, no laptop</p></div>
+<div class="stat in" style="--i:0"><p class="big">220 %</p><p class="biglabel">more GPS signal-loss events on airliners, 2021 to 2024: interference is spreading</p></div>
+<div class="stat in" style="--i:1"><p class="big">Built in</p><p class="biglabel">Market leaders are adding it: Quantum Systems on its Vector reconnaissance drones, Lockheed Martin on its Indago 4 quadcopter</p></div>
+<div class="stat in" style="--i:2"><p class="big">#1</p><p class="biglabel">Canada’s first drone priority: low-cost tactical reconnaissance drones</p></div>
 </div>
-<p class="keyline">The bench judge carries the drone at about 1 m; in flight the pilot climbs to 10, 20, 35, 50 or 75 m and flips the switch.</p>
-<p class="source">Source: Stage 2 participant package; camera field of view measured on the event aircraft</p>
-<aside>Set the stage in 30 seconds. The four numbers are the constraints. Point at the fisheye: the datasheet said 114 degrees, the real 1080p mode is much wider, and that is the first sign of the theme of the talk: we measured instead of trusting the datasheet. [Add a photo of the aircraft here once taken.]</aside>
+<p class="keyline in" style="--i:3"><b>Holding position is what keeps the mission alive:</b> eyes stay on the target, the pilot works the camera instead of fighting drift, the drone does not slide into danger, and it works under bridges and indoors where GNSS never reaches.<br><b>And Sidro needs no new hardware:</b> it can ship as a software update to M2-AIs already flying, and to other drones with a downward camera and a small Linux board.</p>
+<p class="source">IATA data via EASA, 2025 · The Defense Post, 2024-07-15 · Lockheed Martin, Indago 4 · National Defence, Defence Drone Initiative, 2026-07-23 · National Academies, NCHRP 1114, 2024</p>
+<aside>One minute: first the need, then the value. Say the sources. 220 percent is IATA flight data. The middle card: market leaders recognise the need. Quantum Systems, a leading maker of reconnaissance drones, added optical navigation to its Vector drones in Ukraine (trade-press report of a company announcement, 2024). If asked how many: Kyiv had bought more than 400 Vector systems, each a high-end aircraft. Lockheed: its Indago 4 page lists GPS-denied navigation using its Northstar software (checked on lockheedmartin.com by the team, 2026-11-21). Canada: the Defence Drone Initiative lists low-cost tactical ISR drones first of six use cases; the page does not mention GNSS, so do not claim it does. If asked for a source on position hold: the National Academies say losing GNSS "may eliminate or reduce the airframe's ability to hold a certain position and altitude". The four uses in the bold line are our assessment. Then the business line: every team has the same hardware, so the value is that the result ships as an update to aircraft already flying. Do not say "75 percent of drones lost to jamming": not verified. If asked about other drones: it needs a downward camera, an IMU and a small Linux board; porting means new device names, a lens calibration and a clock check. Only one M2-AI has been measured so far.</aside>
 </section>
 
-<section id="approach" class="alt">
-<p class="eyebrow">SENSOR FUSION</p>
-<h2>Camera, gyro and height become stick commands</h2>
+<section id="money" class="alt">
+<p class="eyebrow">THE MONEY</p>
+<h2>Investors and governments are already paying for this</h2>
+<div class="stats">
+<div class="stat in" style="--i:0"><p class="big">$1.2 B</p><p class="biglabel">raised by Quantum Systems (2026), maker of the Vector drones upgraded with optical navigation [verify]</p></div>
+<div class="stat in" style="--i:1"><p class="big">$10 M</p><p class="biglabel">Series A for Vermeer (2025), a startup selling GNSS-free visual navigation for drones [verify]</p></div>
+<div class="stat in" style="--i:2"><p class="big">1 M / yr</p><p class="biglabel">drones Orqa, the M2-AI’s maker, is scaling toward after its 2026 Series A [verify]</p></div>
+</div>
+<p class="keyline in" style="--i:3"><b>Governments are asking for it:</b> the US Defense Innovation Unit, the US Air Force Research Lab, NATO’s innovation programmes and Canada’s drone initiative all list navigation without GNSS as a need [verify].<br><b>Our place:</b> Sidro is the software layer that gives Orqa’s own aircraft this capability, with no new hardware.</p>
+<p class="source">[verify all] The Robot Report, 2026 · DroneLife, 2025-10-23 · sUAS News, 2026-03 · DIU PROJ00598 · NATO JATEC RFI 026-001 · National Defence, 2026-07-23</p>
+<aside>45 seconds. The point for the CEOs: this is not a science project, real money is moving. Quantum Systems is the recon-drone leader and already bundles optical navigation; Vermeer shows investors fund exactly this capability; Orqa's own growth is our market. Then the line that ties it to us: we are the software for the aircraft Orqa already builds. Every [verify] must be checked on its source page and removed before the talk; drop any figure that does not check out. Orqa's 280,000 and 1 million per year are company claims: say "Orqa says".</aside>
+</section>
+
+<section id="how">
+<p class="eyebrow">HOW IT WORKS</p>
+<h2>Sidro holds the spot by watching the ground</h2>
 <div class="pipe">
 <div class="card theirs in" style="--i:0"><h3>Justice D camera</h3><p class="who">Orqa hardware</p></div>
 <div class="arrow" style="width:44px;height:24px;background:#4A5260"></div>
@@ -119,86 +140,90 @@ h3 { font-family: 'Space Grotesk', Arial, sans-serif; font-size: 32px; font-weig
 <div class="arrow" style="width:44px;height:24px;background:#4A5260"></div>
 <div class="card theirs in" style="--i:4"><h3>Betaflight ANGLE mode</h3><p class="who">flight controller</p></div>
 </div>
-<p class="keyline"><b>How it works:</b> track floor points, give each picture row its own gyro attitude, scale by height, solve the move in metres, then turn the position error into roll and pitch commands while the pilot’s switch is on.<br><b>Not ours:</b> OpenCV, numpy, Betaflight, Orqa’s Linux image. <b>Ours:</b> everything in blue.</p>
-<p class="source">Height: accelerometer during the lift plus picture scale [in progress]; the barometer was too noisy indoors</p>
-<aside>Walk the pipeline left to right. Stress the ownership split: the blue boxes are our code. The judges score contribution separately from existing tools. Mention that the position is turned into stick commands over MSP because Betaflight has no vision input in this version.</aside>
+<p class="keyline"><b>Sensor fusion:</b> track floor points, remove the drone’s tilt with the gyro, scale by height to get metres, steer back.<br><b>Rolling shutter:</b> every picture row gets its own gyro attitude, timed against the measured camera clock.<br><b>APB compute:</b> all on four ARM cores, no laptop; camera capture runs in its own thread.<br><b>When vision degrades:</b> we report NOT READY and hand back neutral sticks, never a guess.</p>
+<p class="source">Ours: everything in blue, plus calibration, tests and bench tools. Not ours: OpenCV, numpy, Betaflight, Orqa’s Linux image. GNSS is never read while the switch is on.</p>
+<p class="keyline in" style="--i:5"><b>Not tied to Betaflight:</b> our ArduPilot and PX4 link (MAVLink) is already written and tested in simulation, so most drone autopilots are covered.</p>
+<aside>One minute. The pilot flips a switch; from then on we keep the drone over that spot. Walk the pipeline left to right, then the four lines: they are the four topics the rules ask every team to cover. Betaflight has no vision input, so we act as the pilot's sticks over MSP. The neutral-sticks output is being wired in [update when the MSP link works].</aside>
+</section>
+
+<section id="backup" class="dark" style="justify-content:center">
+<p class="eyebrow">BACKUP</p>
+<h1 style="font-size:80px">The evidence behind it</h1>
+<div class="coverline"></div>
+<p class="lede">Who else does this · First walk · Timing and rolling shutter · Lens calibration · APB compute</p>
+<aside>Not shown in the 5 minutes. Jump here in Q&A (press B to jump to this slide, then the arrows) or for the separate timing judging.</aside>
+</section>
+
+<section id="cost">
+<p class="eyebrow">BACKUP · WHO ELSE DOES THIS</p>
+<h2>Others need extra hardware; Sidro runs on what is there</h2>
+<div class="stats">
+<div class="stat in" style="--i:0"><h3>Lockheed Martin Northstar</h3><p class="biglabel">Vision-based navigation software that runs on an NVIDIA Jetson computer (Xavier NX or AGX Orin) [verify]</p></div>
+<div class="stat in" style="--i:1"><h3>Vermeer</h3><p class="biglabel">A visual positioning system with its own cameras and hardware, added to the aircraft [verify]</p></div>
+<div class="stat in" style="--i:2;border:3px solid #2A78D6"><h3>Sidro</h3><p class="biglabel">Runs on the 4-core ARM board and the single downward camera the M2-AI already carries: nothing added</p></div>
+</div>
+<p class="keyline in" style="--i:3"><b>They prove the demand.</b> Sidro adds no computer, no camera and no weight: it is a software update to drones already in service.<br><b>Honest gap:</b> their systems fly today; Sidro has not completed a flight hold yet.</p>
+<p class="source">[verify] lockheedmartin.com/northstar · Vermeer: DroneLife, 2025-10-23 · Sidro: measured on the event aircraft</p>
+<aside>Backup for the question "who else does this?". Do not volunteer a comparison with Lockheed. Say: they prove the market, but they add a computer or a camera system to the aircraft; Sidro runs on the board and camera already there. Do not quote prices: we do not know what an M2-AI costs, so a price comparison could backfire. Do not claim we match their performance. Remove each [verify] only after checking the source page.</aside>
+</section>
+
+<section id="findings" class="alt">
+<p class="eyebrow">BACKUP · FIRST WALK</p>
+<h2>What worked, what didn’t, and why</h2>
+<div class="row">
+<div class="col-text">
+<p class="point in" style="--i:0"><b>Worked:</b> our lens calibration caught a datasheet error that would have read every distance 14 % short.</p>
+<p class="point in" style="--i:1"><b>Worked:</b> processing on the APB made twice as fast; covering the lens gives NOT READY at once.</p>
+<p class="point in" style="--i:2"><b>Didn’t:</b> our first walk read 1 m as 0.46 m. The motion was in the pictures (green); the estimator dropped it in gaps. Fix: [in progress].</p>
+</div>
+<img class="fig in" style="--i:3" src="../stage2/04_first_walk.png" alt="Bar chart: tape-measured distances against raw tracking and the estimator on the first walk">
+</div>
+<p class="source">All measured on the event aircraft. First walk: hand-carried at about 1 m over a plain glossy floor</p>
+<aside>The rules reward "what worked, what did not and why". Lens: the datasheet is for 720p and the board runs 1080p; two checkerboards disagreed, a third test against the gyro settled it. Compute: 27 to 13 ms per frame; the uncached camera memory made a frame copy cost 12 ms, so capture got its own thread. Walk: show the failure plainly, then the diagnosis. [Add the after-fix bars from walk 2.]</aside>
 </section>
 
 <section id="timing">
-<p class="eyebrow">TIMING AND ROLLING SHUTTER</p>
-<h2>Every clock measured, not assumed</h2>
+<p class="eyebrow">BACKUP · ROLLING SHUTTER AND TIMING</p>
+<h2>Every clock measured, every picture row corrected</h2>
 <div class="row">
 <div class="col-text">
-<div class="in" style="--i:0"><p class="big">−12 ms</p><p class="biglabel">gyro against camera clock, from a hand rotation (fit error 0.21 px)</p></div>
-<div class="in" style="--i:1"><p class="big">16.666 ms</p><p class="biglabel">between frames, 2 µs spread; stamped at the end of each frame</p></div>
-<p class="point"><b>Rolling shutter:</b> each picture row gets its own attitude from the 200 Hz gyro.</p>
-<p class="point"><b>Bug found:</b> the IMU driver’s stamps were 15 s off unless both streams started in one order.</p>
+<div class="in" style="--i:0"><p class="big">−12 ms</p><p class="biglabel">gyro against camera clock, found from a hand rotation</p></div>
+<p class="point in" style="--i:1"><b>Rolling shutter:</b> rows are read top to bottom, so each row gets the attitude from the 200 Hz gyro at its own moment.</p>
+<p class="point in" style="--i:2"><b>Bug we caught:</b> the IMU driver’s timestamps were 15 s off unless the sensors started in one order. It would have broken every row.</p>
 </div>
-<img class="fig in" style="--i:2" src="../stage2/01_gyro_camera_offset.png" alt="Fit error against gyro time shift: lowest at minus 12 milliseconds">
+<img class="fig in" style="--i:3" src="../stage2/01_gyro_camera_offset.png" alt="Fit error against gyro time shift: lowest at minus 12 milliseconds">
 </div>
-<p class="source">Measured on the event aircraft: driver stamps (CLOCK_MONOTONIC), ICM-42605 at 200 Hz; readout time [to measure]</p>
-<aside>This slide targets the timing and rolling-shutter bonus. Say how each number was measured: the curve is the fit error of the image motion predicted by the gyro, against a time shift; it has one clear minimum at minus 12 ms. Frame stamps are 16.666 ms apart with 2 microseconds spread. Then the IMU stamp bug: a real finding that would have broken every row’s attitude. [Add the rolling-shutter readout time once measured.]</aside>
+<p class="source">Measured on the event aircraft: 561 frame pairs, fit error 0.21 px; frame stamps 16.666 ms apart, 2 µs spread; readout time [to measure]</p>
+<aside>This slide is worth up to +5 bonus points on its own: "treatment of camera timing and rolling shutter, with your measured evidence". Slow down here. Explain the curve: we shift the gyro in time and check how well it predicts the picture motion; one clear best point at minus 12 ms. Then the bug: a real finding on the real hardware. [Add the rolling-shutter readout time and, if possible, a before/after showing the correction helps.]</aside>
 </section>
 
 <section id="lens" class="alt">
-<p class="eyebrow">CALIBRATION</p>
+<p class="eyebrow">BACKUP · CALIBRATION</p>
 <h2>The datasheet lens would have made every distance wrong</h2>
 <div class="row">
 <div class="col-text">
-<div class="in" style="--i:0"><p class="big">17 %</p><p class="biglabel">datasheet focal length too high for the 1080p mode: distances 14 % short</p></div>
-<div class="in" style="--i:1"><p class="big">0.17 px</p><p class="biglabel">checkerboard fit error on views the fit never saw</p></div>
-<p class="point"><b>Two boards disagreed by 7 %.</b> A rotation under the ceiling, checked against the gyro and needing no target, sided with the flat screen.</p>
+<div class="in" style="--i:0"><p class="big">14 % short</p><p class="biglabel">every distance, if we had used the datasheet lens: enough to fail B1</p></div>
+<p class="point in" style="--i:1"><b>Two checkerboards disagreed by 7 %.</b> Instead of picking one, we added a third test that needs no target, pure rotation against the gyro, and it sided with the flat screen.</p>
 </div>
 <img class="fig in" style="--i:2" src="../stage2/03_lens_measured.png" alt="Pixels per degree against angle: datasheet, flat-screen board, paper board and the gyro point">
 </div>
-<p class="source">Equidistant fisheye fit (OpenCV) on 101 views; gyro method ours, from the ceiling rotation</p>
-<aside>Decisions with evidence. The datasheet line is flat at the top: it would have read every distance 14 percent short, which fails B1. Then the honest bit: our two checkerboard rounds disagreed by 7 percent. We did not pick the one we liked; we added a third method that needs no target at all, pure rotation against the gyro, and it sided with the flat board. The remaining 3 to 5 percent gap gets settled by the taped walk distances.</aside>
+<p class="source">Datasheet values are for 1280×720; the event board runs 1920×1080. Equidistant fisheye fit (OpenCV) on 101 views, 0.17 px on held-out views</p>
+<aside>The datasheet focal length was 17 percent high for the 1080p mode, so distances would read 14 percent short. The remaining 3 to 5 percent gap between the screen board and the gyro point gets settled by the taped walk distances.</aside>
 </section>
 
 <section id="compute">
-<p class="eyebrow">APB COMPUTE</p>
+<p class="eyebrow">BACKUP · APB COMPUTE</p>
 <h2>Where the time goes on four ARM cores</h2>
 <div class="row">
 <div class="col-text">
-<div class="in" style="--i:0"><p class="big">12 ms</p><p class="biglabel">to copy one frame: the camera buffers are uncached, so capture runs in its own thread</p></div>
-<div class="in" style="--i:1"><p class="big">27 → 13 ms</p><p class="biglabel">picture checks and sensors per frame after optimizing</p></div>
-<p class="point"><b>Attitude filter 30× faster</b> with plain quaternion maths. <b>13–16 fixes per second</b> today [to raise].</p>
+<div class="in" style="--i:0"><p class="big">27 → 13 ms</p><p class="biglabel">picture checks and sensors per frame after optimizing</p></div>
+<p class="point in" style="--i:1"><b>Found:</b> the camera buffers are uncached, so one frame copy cost 12 ms. <b>Decision:</b> capture runs in its own thread and keeps 30 fps.</p>
+<p class="point in" style="--i:2"><b>Attitude filter 30× faster</b> with plain quaternion maths. <b>Next:</b> the estimator (47 ms) is the biggest cost; 13–16 fixes per second today [update].</p>
 </div>
-<img class="fig in" style="--i:2" src="../stage2/05_compute.png" alt="Bar chart of milliseconds per frame on the APB">
+<img class="fig in" style="--i:3" src="../stage2/05_compute.png" alt="Bar chart of milliseconds per frame on the APB">
 </div>
 <p class="source">Measured on the APB (i.MX8M Plus, 4 × Cortex-A53): numpy 1.26, OpenCV 4.11 in /data</p>
-<aside>Use of APB compute is one of the four required topics. Say what we found, not just the totals: the uncached camera memory made a plain copy cost 12 ms, so the capture got its own thread and we keep 30 frames per second. The estimator itself is the next target: [update after optimizing].</aside>
-</section>
-
-<section id="degrade" class="alt">
-<p class="eyebrow">WHEN VISION DEGRADES</p>
-<h2>Our first walk failed, and the data showed why</h2>
-<div class="row">
-<div class="col-text">
-<p class="point in" style="--i:0"><b>Lens covered:</b> NOT READY at once; the flight controller gets safe sticks (1500), never minimum values.</p>
-<p class="point in" style="--i:1"><b>Analog-era checks</b> fired on the digital camera: READY 15 % → 75 % once removed.</p>
-<p class="point in" style="--i:2"><b>Lost motion:</b> the estimator froze during its gaps; raw floor tracking kept it. Fix: [in progress].</p>
-<p class="point in" style="--i:3"><b>Barometer</b> read a 1 m lift backwards indoors: height now from the accelerometer during the lift.</p>
-</div>
-<img class="fig in" style="--i:4" src="../stage2/04_first_walk.png" alt="Bar chart: tape-measured distances against raw tracking and the estimator on the first walk">
-</div>
-<p class="source">Hand-carried walk at about 1 m over a plain glossy floor, carrier’s legs and ceiling-light reflections in view</p>
-<aside>The rules reward what did not work and why. Show the failure plainly: 1 metre measured as 0.46. Then the diagnosis from the data: the motion is in the pictures (green bars), the estimator dropped it in its gaps. [Replace or add the after-fix bars from walk 2.]</aside>
-</section>
-
-<section id="results" class="dark">
-<p class="eyebrow">RESULTS AND LIMITS</p>
-<h2 style="color:#F6F5F1">What we scored, and what is still hard</h2>
-<table class="results" style="color:#EEF1F4">
-<tr><th style="width:34%">Item</th><th style="width:40%">Pass condition</th><th style="width:26%">Result</th></tr>
-<tr><td>B1 displacement</td><td>within 0.25 m of the tape</td><td class="tbd">[TBD]</td></tr>
-<tr><td>B2 loop return</td><td>within 0.3 m of zero</td><td class="tbd">[TBD]</td></tr>
-<tr><td>B3 height change</td><td>within 0.15 m of 0.5 m</td><td class="tbd">[TBD]</td></tr>
-<tr><td>C, D, E bench</td><td>signs, handover, cover, restart</td><td class="tbd">[TBD]</td></tr>
-<tr><td>G flight ladder</td><td>30 s within 3 m / 2 m</td><td class="tbd">[TBD: highest level]</td></tr>
-</table>
-<p class="keyline" style="color:#A9B4C0"><b style="color:#EEF1F4">Still hard:</b> plain glossy floors, the carrier in view, indoor barometer noise. <b style="color:#EEF1F4">Next:</b> [one line].</p>
-<aside>Fill this from the bench sessions and from flight logs scored with hold_judge.py. Say for each number where it came from. End with one line on the main limit and what we would do next.</aside>
+<aside>Lucas-Kanade forward plus backward tracking is most of the estimator's time. Board at 56 to 64 degrees C under load.</aside>
 </section>
 
 </div>

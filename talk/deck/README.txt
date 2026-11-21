@@ -6,3 +6,6 @@ The talk's slide deck.
 To change a slide, edit project/slides/<id>.html (or deck.css), then rebuild index.html:
   ~/.venvs/vio/bin/python talk/deck/build.py
 Figures: ~/.venvs/vio/bin/python talk/make_stage2_figures.py
+
+Live preview while editing (rebuilds on save, the browser tab reloads by itself on the same slide):
+  ~/.venvs/vio/bin/python talk/deck/serve.py      then open http://localhost:8000/deck/   (Ctrl+C to stop)
