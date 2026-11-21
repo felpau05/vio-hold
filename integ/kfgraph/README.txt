@@ -108,3 +108,5 @@ Not done
   - Not built: a graph fix when the current keyframe fails; merge with KF_MAP's keyframe store.
 To run later (one command, after GO exists): integ/kfgraph/window.sh > integ/kfgraph/results/window.log 2>&1
   then: python integ/kfgraph/summarize.py validation ; python integ/kfgraph/summarize.py tuning
+
+POWER NOTE (added by the coordinating session 0a at 06:50 EST, 2026-11-21): the laptop ran on battery from at least 04:33 EST (upower history; the first 'discharging' row found), and session 1f saw CPU power-save mode at 06:49 with 9 % battery. Runs after about 04:33 (most of the SITL A/B, the regression and the suites) ran on battery power; power-save may have started earlier than 06:49. Timing numbers (E9/H6, process() ms, test time limits) from that period can be slower than on mains power. The SITL board model uses a fixed 80 ms per Hold.process, but the SITL itself ran slower; each run's start load is in its table. The off/on comparisons ran under the same conditions for both versions.

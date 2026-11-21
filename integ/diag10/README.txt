@@ -211,3 +211,5 @@ Height, same motion shifted (base / patch / py), s1 ; s2:
   20 m   0.120 / 0.120 / 0.120 ; 0.184 / 0.184 / 0.184   (corner path gives every fix; no whole-picture fix)
   -> open loop: 5 m is not better than 10 m; at 20 m the corner path (which measures the turn) takes over.
 VALIDATION gyro_fcyaw, ottawa2022 s11: base 0.216, patch 0.160 (gyro feed: 0.417, 0.612). Others still queued.
+
+POWER NOTE (added by the coordinating session 0a at 06:50 EST, 2026-11-21): the laptop ran on battery from at least 04:33 EST (upower history; the first 'discharging' row found), and session 1f saw CPU power-save mode at 06:49 with 9 % battery. Runs after about 04:33 (most of the SITL A/B, the regression and the suites) ran on battery power; power-save may have started earlier than 06:49. Timing numbers (E9/H6, process() ms, test time limits) from that period can be slower than on mains power. The SITL board model uses a fixed 80 ms per Hold.process, but the SITL itself ran slower; each run's start load is in its table. The off/on comparisons ran under the same conditions for both versions.
