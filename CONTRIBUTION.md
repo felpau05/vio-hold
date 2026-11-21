@@ -14,7 +14,7 @@ Licences are read from the installed package or from the source tree on this lap
 | opencv-python-headless | 5.0.0.93 | Apache 2.0 for OpenCV (package metadata, `cv2/LICENSE-3RD-PARTY.txt`). The wheel packaging is MIT (`cv2/LICENSE.txt`). Bundled third-party licences: `cv2/LICENSE-3RD-PARTY.txt` | Lucas-Kanade optical flow, corner detection, fisheye model, remap, phase correlation, camera reading (V4L2), resize, colour conversion | `hold.py`, `capture.py`, `calib.py`, `apb_main.py`, `px4sim/camera.py`, `sim_ground.py` |
 | matplotlib | 3.11.2 | Matplotlib licence, based on the PSF licence (`matplotlib-3.11.2.dist-info/LICENSE`) | Plots | `tools/plot_log.py`, `sim_ground.py`, `sim_test.py`, `sim_view.py`, `talk/make_figures.py` |
 | pymavlink | 2.4.50 | (L)GPL v3 for the generator. The generated code is MIT when it is embedded in a product (`pymavlink-2.4.50.dist-info/licenses/COPYING`) | MAVLink messages and connection (`mavutil`) | `fc_link.py`, `apb_main.py`, `px4sim/sitl.py`, `tests_apb/fake_fc.py` |
-| imageio-ffmpeg | 0.8.1 | BSD-2-Clause (`imageio_ffmpeg-0.8.1.dist-info/licenses/LICENSE`). It bundles an FFmpeg 9.0.2 binary. That binary reports `--enable-gpl --enable-version3` in its build configuration (`ffmpeg -version`), so it is GPL version 3 | Video file reading and writing for the simulators | `sim_ground.py`, `px4sim/camera.py`, `real_video.py` |
+| imageio-ffmpeg | 0.8.1 | BSD-2-Clause (`imageio_ffmpeg-0.8.1.dist-info/licenses/LICENSE`). It bundles an FFmpeg 9.0.2 binary. That binary reports `--enable-gpl --enable-version3` in its build configuration (`ffmpeg -version`), so it is GPL version 3 | Video file reading and writing for the simulators | `sim_ground.py`, `px4sim/camera.py`, `clip_tool.py` |
 | Python standard library | 3.12.3 | PSF licence (`/usr/lib/python3.12/LICENSE.txt`) | Everything else | All files |
 
 Offline bundle for the board (`tools/bundle/`, built by `tools/bundle/build.sh`; the archive is not in git):
@@ -60,7 +60,7 @@ Our own renderers draw the camera pictures (`px4sim/camera.py`, `sim_ground.py`)
 |---|---|---|---|
 | USGS The National Map orthophotos (prairie, farmland, suburb and four hold-out sites) | USGS states that USGS-authored or produced data are in the U.S. public domain, and that some non-USGS images on its pages are copyrighted (usgs.gov, "Copyrights and credits"). The header of `fetch_ground.py` says "public domain" for these sites | Ground pictures for the simulators | `fetch_ground.py` |
 | City of Ottawa Basemap imagery, 2022 and 2019 fall | The service states no licence (`fetch_ground.py` header). We use it inside our simulator only. We do not publish it. The photos are git-ignored (`ground/*.jpg`) | Ground pictures for the simulators, at the event site | `fetch_ground.py` |
-| One real test clip, name `online-reference` | Local only, not in git. The tests that need it skip. The team records its source and licence before the presentation | Tests of the picture checks | `real_video.py`, `tests/` |
+| One real test clip, name `clip-1` | Local only, not in git. The tests that need it skip. The team records its source and licence before the presentation | Tests of the picture checks | `clip_tool.py`, `tests/` |
 | Organizer documents (Stage 1 package, APB manual, aircraft manual, datasheets) | Supplied to teams | Camera, sensor and board facts. Page numbers are in `EVIDENCE.md` | `settings.py`, `tools/profiles/justice_d.json` |
 
 ### Published methods (ideas, no code copied)
