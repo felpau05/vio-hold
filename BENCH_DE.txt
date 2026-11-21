@@ -1,0 +1,268 @@
+BENCH ITEMS D, E1, E2: REHEARSAL ON THE REAL AIRCRAFT, PROPELLERS OFF
+
+Source: Stage 2, section 05, steps 6, 7 and 8. Section 04: we can fly only after we bank D and E.
+Only a result on the real aircraft counts. A simulator or a unit test is not a rehearsal result.
+Order of work: section 1 (questions), 4 (copy and freeze), 5 (start), 6 (R0), 7 (D), 8 (E1), 9 (E2).
+
+
+0. WHAT THE JUDGE DOES (Stage 2)
+
+D (15 pts). The judge turns the engage switch on and off. The judge does this once with our solution
+ready and once with it not ready.
+  Pass: Ready, switch on: our commands appear. Switch off: pilot control at once.
+  Pass: Not ready: Betaflight receives roll, pitch and yaw 1500, never minimum values.
+E1 (8 pts). The judge covers the Justice D for 3 s.
+  Pass: Within 1 s our solution shows not ready. Roll, pitch and yaw stay at 1500 while covered.
+  Pass: Normal output comes only after the camera is uncovered.
+E2 (7 pts). The judge power-cycles the APB.
+  Pass: Our solution restarts by itself and shows ready within 60 s.
+  Pass: Betaflight gets safe values from our first command.
+Session: 10 minutes, 2 tries for each item, 3 sessions or fewer. Declare the items at the start.
+Set-up: propellers off, battery in, radio on. The judge holds the aircraft level, about 1 m above the floor.
+The judge reads the Betaflight Receiver tab on the organizer laptop, on the FC USB.
+At the first session, the judge also asks for the GNSS answer (section 12, step 0).
+
+
+1. ASK THE ORGANIZERS FIRST. Q1 AND Q2 BLOCK THE REHEARSAL.
+
+Q1. Radio. Can we get a bound radio for the rehearsal? The FC must get CH10 (TL2).
+    At our first check, the FC showed no radio signal.
+Q2. Start at power-up (E2). Can we add one systemd unit, vio-live.service? It starts our program from /data.
+    Stage 2 section 02 forbids changes to the boot configuration. The organizer set-up uses the same
+    kind of unit (rth-event-setup.service). If the answer is no, ask which start method they accept.
+Q3. E2. How does the judge power-cycle the APB? Does the FC restart too?
+    Is our USB-C cable connected during E2? USB-C can possibly keep the APB on.
+    From which moment does the judge count the 60 s: the power cut, or the power-on?
+    Is the engage switch on or off during E2?
+Q4. D. How does the judge want "not ready"? Our proposal: we cover the lens with a dark card.
+Q5. E1. What does the judge use to cover the lens: a palm, a card or a cloth? Flat on the lens, or at a distance?
+Q6. E2. Can the aircraft rest on a table for 5 s after the power-up? (Our program needs 2 s of still gyro.)
+Write the answers here, with the name of the organizer:
+  Q1:
+  Q2:
+  Q3:
+  Q4:
+  Q5:
+  Q6:
+
+
+2. EQUIPMENT
+
+- The aircraft, propellers off, a charged battery.
+- The bound radio. Find the engage switch (TL2, CH10) and the arm switch (CH5).
+- Laptop 1 on the APB USB-C. Open our page: http://192.168.75.1:8080
+- Laptop 2 (or laptop 1) on the FC USB. Open Betaflight Configurator, Receiver tab. This is the judge's view.
+- A phone that records video, 60 fps if possible. Use it to count frames for the 1 s limit of E1.
+- A stopwatch for E2.
+- A dark card, about 10 x 10 cm, white paper, a dark cloth. Use them for "not ready" in D and for E1.
+- A dry lens cloth.
+- A floor like the judging floor. Look at the judging floor before the rehearsal.
+
+
+3. SAFETY RULES FOR EACH REHEARSAL
+
+1. Remove all propellers. Examine each motor.
+2. Do not arm. Keep the arm switch (CH5) low for the full rehearsal.
+3. Keep the engage switch low when you connect the battery. Exception: E2, section 9.
+   (Stage 2 section 03: before our first command, the FC reads minimum on four channels while the switch is on.)
+4. Do not stop our program to show "not ready". The FC has no timeout. It keeps the last command.
+5. In Betaflight Configurator, change nothing. Do not push Save. Only read the Receiver tab.
+6. Do not use tools/deploy.sh. It is the Stage 1 tool. It starts apb_main.py, not apb_live.py.
+7. Do not touch the Justice D lens. Skin oil makes the picture soft. Then READY can fail to come.
+   If somebody touches the lens, clean it with the dry lens cloth.
+8. Before each power cut of the APB, run: ssh root@192.168.75.1 sync
+   (A file that is not on the disk yet can be empty after a power cut.)
+
+
+4. COPY AND FREEZE THE PROGRAM. DO THIS BEFORE R0.
+
+The program changes often. A pass counts only for the code that the board ran.
+Run these commands on laptop 1, in the vio-hold-stage2-bench folder.
+1. Copy the program files together. An older apb_live.py does not know --rc. Then the program stops at start.
+   Do not copy settings.json. The board keeps its own copy.
+     scp apb_live.py apb_lift.py msp_rc.py msp_link.py apb_est.py apb_main.py apb_sensors.py calib.py \
+         capture.py fc_link.py hold.py settings.py v4l2_mmap.py root@192.168.75.1:/data/vio/
+     scp tools/apb_ctl.sh tools/vio_boot.sh tools/vio-live.service root@192.168.75.1:/data/vio/
+     ssh root@192.168.75.1 sync
+2. Run: ssh root@192.168.75.1 sh /data/vio/vio_boot.sh check
+   Pass: the last line shows "PASS files and start arguments".
+   Pass: the md5 values are the same as on the laptop: md5sum apb_live.py apb_lift.py msp_rc.py
+3. Write the three md5 values in the record sheet (section 10).
+4. Do not change these files until the judged session. If a value changes, start the count of passes again.
+
+
+5. START THE PROGRAM
+
+Before you install the boot unit (from laptop 1):
+  ssh root@192.168.75.1 sh /data/vio/apb_ctl.sh start --height 1.0 --pos floor --rc
+  (Use the same arguments as /data/vio/boot.env, if that file exists.)
+After you install the boot unit, the program starts at power-up. To see its state:
+  ssh root@192.168.75.1 sh /data/vio/vio_boot.sh status
+Check: the page shows "FC out roll ... engage switch off".
+If the page shows "(no FC reply)", stop. The MSP link to the FC does not work. See section 11.
+Write down the laptop time and the board time (ssh root@192.168.75.1 date). The board clock is wrong.
+You need the two times to find the logs.
+
+
+6. R0: CHANNEL ORDER AND ENGAGE SWITCH. DO THIS ONCE BEFORE D.
+
+Why: Stage 2 gives the order roll, pitch, throttle, yaw. A wrong order puts our throttle on another channel.
+1. Stop the program: ssh root@192.168.75.1 sh /data/vio/apb_ctl.sh stop
+   If you installed the boot unit, run this instead: ssh root@192.168.75.1 systemctl stop vio-live
+   Start the program by hand (section 5) with one more argument: --rc-hover 1350
+   Do not put --rc-hover 1350 in boot.env. It can stay there by mistake.
+2. Hold the aircraft still. Cover the lens with the card. Wait until the page shows NOT READY.
+3. Put the engage switch high.
+4. Read the four channels on the Receiver tab.
+   Pass: Roll 1500, Pitch 1500, Yaw 1500, Throttle 1350.
+   If 1350 is on a different channel, the order is wrong. Stop. Tell the owner of msp_rc.py. Do not do D.
+   If no channel shows 1350, MSP OVERRIDE is not on. See section 11.
+5. Read AUX 6 (CH10) on the Receiver tab. Do this with the switch low, then with the switch high.
+   Pass: high is 1800 or more. Low is less than 1800. (The FC engages MSP OVERRIDE only at 1800 to 2100.)
+   If high is less than 1800, the FC does not engage. Tell the organizer. Do not change the FC.
+   Pass: the page shows "engage switch ON" and "engage switch off" at the same times.
+6. Put the switch low. Remove the card. Stop the program: ssh root@192.168.75.1 sh /data/vio/apb_ctl.sh stop
+   Start it again without --rc-hover 1350 (section 5). If you installed the boot unit: vio_boot.sh restart.
+
+
+7. D REHEARSAL (Stage 2 step 6)
+
+One person holds the aircraft level, about 1 m above the floor. A second person uses the radio.
+The phone films the Receiver tab and our page.
+D, ready:
+1. Wait until the page shows READY.
+2. Put the engage switch high.
+   Pass: roll and pitch stay near 1500 at the switch-on. They do not jump to about 1400 or 1600.
+   (Before this step, do not push "Zero here". Carry the aircraft 1 m first. msp_rc.py 8b40e23f and later
+   send neutral until the zero at the switch-on. Older code can jump for 0.05 to 0.25 s.
+   If you see a jump, write it down and tell the owners of msp_rc.py and apb_live.py.)
+3. Carry the aircraft 0.5 m to the right. Then carry it 0.5 m forward.
+   Pass: the page shows "engage switch ON".
+   Pass: Roll goes below 1500 after the move to the right (about 1450 at gain 100 us/m).
+   Pass: Pitch goes below 1500 after the move forward. Yaw stays 1500. Throttle shows the hover value.
+4. Put the engage switch low. Move the radio roll stick.
+   Pass: at once, the Receiver tab follows the radio sticks.
+D, not ready:
+5. Cover the lens with the card. Do not touch the lens. Wait until the page shows NOT READY.
+6. Put the engage switch high. Carry the aircraft 0.5 m to the right.
+   Pass: Roll, pitch and yaw stay at 1500 for the full time.
+   Pass: Throttle shows the hover value. No channel goes to its minimum value.
+7. Put the engage switch low. Remove the card.
+Do D three times. Record each try in section 10.
+
+
+8. E1 REHEARSAL (Stage 2 step 7)
+
+1. Hold the aircraft level, about 1 m above the floor. Wait until the page shows READY.
+2. Put the engage switch high.
+   Pass: the page shows "engage switch ON". The Receiver tab shows the hover value on Throttle.
+3. Carry the aircraft 0.5 m to the right. Keep it there.
+   Pass: Roll is about 1450. (Then a change to 1500 during the cover is easy to see.)
+4. Start the phone video. Film the lens, our page and the Receiver tab together, if possible.
+5. Cover the full lens for 3 s. Then remove the cover. Keep the aircraft still during the cover.
+   (The floor track does not measure a move while the cover is on the lens. This is not part of E1.)
+   Pass: the page shows NOT READY within 1 s after the cover. Count the video frames. Our target is 0.5 s.
+   Pass: Roll, pitch and yaw are exactly 1500 on the Receiver tab during the cover. 1499 or 1501 is a fail.
+   Pass: after you remove the cover, the page shows READY again, and roll goes back to about 1450.
+   Write down how long this takes.
+6. Do steps 1 to 5 with each cover. Write down the "why" text on the page for each cover.
+   - a palm flat on the lens (no lens contact: keep a fingertip width away)
+   - a palm 2 cm, 10 cm and 20 cm from the lens
+   - a hand that comes in from the side
+   - a fingertip 1 cm from the lens (no contact)
+   - the dark card flat at 2 mm, and the dark card 1 cm from the lens
+   - white paper, and a dark cloth
+7. Cover half of the lens for 3 s. Write down what the page shows.
+   If a cover or the half cover keeps READY, ask the judge to use the cover that passed (section 12, step 5).
+   Tell the owners of apb_live.py and apb_lift.py which cover kept READY.
+8. Put the engage switch low.
+
+
+9. E2 REHEARSAL (Stage 2 step 8). THIS NEEDS A YES TO Q2.
+
+Install the boot unit once, after section 4.
+1. Run: ssh root@192.168.75.1 sh /data/vio/apb_ctl.sh stop
+2. Run: ssh root@192.168.75.1 sh /data/vio/vio_boot.sh install
+3. Run: ssh root@192.168.75.1 sh /data/vio/vio_boot.sh restart
+   Pass: "unit: enabled, active" and "running".
+After each new copy of the program, do section 4, then steps 1 and 3 again.
+To remove the unit: ssh root@192.168.75.1 sh /data/vio/vio_boot.sh remove
+Restart, switch high (the main test, because the judge can see our first command only with the switch high):
+4. Propellers off, arm switch low. One person holds the aircraft level by hand, 1 m above the floor,
+   as the judge does. Do not use a table.
+5. Wait for READY. Put the engage switch high. Carry the aircraft 0.5 m to the right. Roll is about 1450.
+6. Start the phone video on the Receiver tab. Run: ssh root@192.168.75.1 sync
+7. Cut the APB power with the method of the judge (Q3). Start the stopwatch at the cut.
+   Write down how long the power stays off.
+8. Do not reload our page. It connects again by itself.
+   Pass: during the cut, the page shows NO CONNECTION and "-" in each value (apb_live.py 9787a6f8 and later).
+   With older code, the text READY can stay on a red banner. That is not READY.
+9. Stop the stopwatch when the banner is green and shows READY, and the "up" value on the info line is small.
+   (A small "up" value shows a new program.)
+   Pass: READY in 60 s or less from the cut. Our target is 45 s or less.
+   Write down the time from the power-on to the end of the text "hold the drone still (gyro bias)".
+10. Pass, if the FC stays on: roll stays at about 1450 during the cut (the FC keeps the last command).
+    Then roll goes directly to 1500 at our first command. No other value comes between.
+    Pass, if the FC restarts too: the four channels go from the start values of the FC directly to
+    roll, pitch, yaw 1500 and the hover throttle. No other value comes between.
+11. Put the engage switch low.
+12. Run: ssh root@192.168.75.1 sh /data/vio/vio_boot.sh status
+    Pass: "unit: enabled, active" and "running".
+13. Do steps 4 to 12 three times.
+Restart, switch low:
+14. Do steps 4 to 12 again, with the engage switch low the full time. Skip step 10. Do this three times.
+15. If the page shows "no connection to the APB" for more than 30 s, examine the USB network of laptop 1.
+    Write down what you did. On the judging day, the page must connect again with no help.
+
+
+10. RECORD SHEET. EACH LINE IS ONE TRY.
+
+Write "REHEARSAL" on each line. Write a judged result on a different line, with "JUDGED".
+md5: the first 8 characters of apb_live.py, apb_lift.py and msp_rc.py on the board (section 4).
+| kind | date | laptop time | board time | md5 live/lift/rc | item | try | method or cover | result | time measured | power off time | log file | video file | note |
+|------|------|-------------|------------|------------------|------|-----|-----------------|--------|---------------|----------------|----------|------------|------|
+|      |      |             |            |                  |      |     |                 |        |               |                |          |            |      |
+
+
+11. IF A STEP FAILS
+
+| You see | Possible cause | Do this |
+|---|---|---|
+| "(no FC reply)" on the page | MSP line off, or a second program uses /dev/ttymxc2 | Run: ssh root@192.168.75.1 pgrep -af python3. Only one apb_live.py must run. |
+| Receiver tab does not change with the switch high | MSP OVERRIDE is not on CH10, CH10 high is less than 1800, or no radio signal | Read the Modes tab (change nothing): MSP OVERRIDE on AUX 6, 1800-2100. Read AUX 6 on the Receiver tab. Check the radio link. |
+| 1350 is not on Throttle in R0 | Wrong channel order | Stop. Tell the owner of msp_rc.py. Do not do D. |
+| Roll or pitch jumps at the switch-on | Old move from before the switch-on (review finding D-4), or msp_rc.py older than 8b40e23f | Read the md5 values. Write down the jump values. Tell the owners of msp_rc.py and apb_live.py. Until they correct it, push "Zero here" before each switch-on. |
+| D ready: roll and pitch stay 1500 after a move | Not ready in fact, or the floor track has no fit | Read the "why" line on the page. Write it down. |
+| E1: the page stays READY with a cover | Cover detector limit (COVER_FINE in apb_live.py), or a part cover | Write down the cover and the "why" line. Tell the owners of apb_live.py and apb_lift.py. |
+| E1: NOT READY comes after more than 0.5 s | Low frame rate | Write down the fps on the page. Tell the owner of apb_live.py. |
+| E2: "hold the drone still (gyro bias)" for more than 20 s | The hand moves | Write down the time. Tell the owner of apb_est.py and apb_live.py. Ask Q6. |
+| "no picture from the camera" for more than 10 s | The camera stream stopped. apb_live.py 9787a6f8 and later stop after 5 s (30 s before the first picture), and the boot unit starts them again after 3 s | If it occurs again and again, run: ssh root@192.168.75.1 tail -40 /data/vio/logs/apb_live_now.out. Without the boot unit, run apb_ctl.sh start by hand. Tell the owner of apb_live.py. |
+| "APB program loop stalled" on the page | The program loop did not write its state for more than 1 s | Write down the time and what you did. Tell the owner of apb_live.py. |
+| E2: the program does not run after power-up | Unit not enabled, or the start failed | Run vio_boot.sh status. Run: ssh root@192.168.75.1 tail -40 /data/vio/logs/apb_live_now.out. Then: journalctl -u vio-live -b --no-pager. (apb_ctl.sh shows logs/live_now.out. That is an old file.) |
+| E2: the page does not connect again | USB network of the laptop | Correct the laptop set-up before the judged session. |
+
+
+12. AT THE JUDGED SESSION
+
+0. First session only: give the GNSS answer (Stage 2 section 04). Show these three items.
+   - The top of apb_live.py: "Inputs are the APB camera, IMU and barometer only: no FC, no GNSS."
+   - msp_rc.py, the line ALLOWED = (MSP_SET_RAW_RC, MSP_RC). The program sends only these two MSP commands.
+     It reads only the RC channels from the FC, for the engage switch.
+   - Say: "Our program uses no GNSS at any time. Thus nothing changes at engage.
+     GPS stays connected for your drift measurement. Nothing in apb_live.py calls the GPS functions in msp_link.py."
+1. Declare D, E1 or E2 only after it passed three times in a row in the rehearsal, with the same md5 values.
+   Before you book: hold the aircraft 1 m above the judging floor, with no cover, in the judging light.
+   Pass: the page shows READY. It does not show "lens covered or blurred".
+   If it shows "lens covered or blurred", the floor is too plain or the light is too low.
+   Write down the "detail" value from the page. Tell the owner of apb_live.py.
+   (Real carpet gave detail 15.6. The limit is COVER_FINE 3.0.)
+2. Before the session: compare the md5 values on the board with the values on the passing lines.
+   Examine the Justice D lens. Clean it with the dry lens cloth.
+3. Say to the judge: "After switch on, our zero is here. Please move the aircraft about 0.5 m.
+   Then you see our roll and pitch change on the Receiver tab."
+4. For D, not ready: "We cover the lens with this card."
+5. For E1: "Please put the engage switch on. Wait for READY on our page. Move the aircraft about 0.5 m.
+   Then put your palm or this card flat on the lens for 3 s."
+6. For E2: "The switch can be on or off. We rehearsed both." Do E2 last. It restarts the APB.
+   If the judge touched the lens in E1, ask to clean it before E2.
+7. Do not stop our program during the session.
