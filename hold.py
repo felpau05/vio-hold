@@ -255,6 +255,9 @@ class Hold:
     MAX_OFF_NADIR = math.radians(55)   # slanted rays: poor lens model and flat-ground error
     H_MIN = 5.0               # m; lower or non-positive height: 'lost', nothing sent (H9). assumed: ground effect, baro offset on the pad
     MAX_PTS = 150             # keyframe points (E9: 120-150 keep accuracy and cut compute)
+    BRIGHT_MAX = 0            # grey; > 0: no keyframe corners where the picture is this bright or within BRIGHT_GROW px
+                              # of it (specular reflections move like objects 2-3x farther away). 0 = off
+    BRIGHT_GROW = 12          # px
     GRID = (6, 4)             # corners are picked per cell of this grid (E2, E3)
     LK_WIN = 15               # LK window (px); E9: 15 x 15 and 2 levels keep the accuracy of 21 x 21 and 3
     LK_LEVELS = 2             # LK pyramid levels above the full picture
@@ -441,10 +444,15 @@ class Hold:
     def _corners(self, img):
         """Up to MAX_PTS corners, at most MAX_PTS / cells per grid cell, best first (E2, E3)."""
         n, (gx, gy) = self.MAX_PTS, self.GRID
-        if self.keep is None:     # 4 positional arguments: clip_tool.MaskedHold replaces this call
+        keep = self.keep
+        if self.BRIGHT_MAX:       # no corners on or near bright blobs (reflections of ceiling lights on a glossy floor)
+            k = 2 * self.BRIGHT_GROW + 1
+            dark = cv2.erode((img < self.BRIGHT_MAX).astype(np.uint8) * 255, np.ones((k, k), np.uint8))
+            keep = dark if keep is None else cv2.bitwise_and(keep, dark)
+        if keep is None:          # 4 positional arguments: clip_tool.MaskedHold replaces this call
             p = cv2.goodFeaturesToTrack(img, 4 * n, 0.005, 7)
         else:
-            p = cv2.goodFeaturesToTrack(img, 4 * n, 0.005, 7, mask=self.keep)
+            p = cv2.goodFeaturesToTrack(img, 4 * n, 0.005, 7, mask=keep)
         if p is None:
             return None
         p = p.reshape(-1, 2)
