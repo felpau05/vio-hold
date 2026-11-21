@@ -96,3 +96,19 @@ their pages (talk/quotes_check_2026-11-21.md). The price of the comparable drone
 
 OTHER SMALL CHANGES: tools/profiles/att_gap.json and yaw_fc.json, DECISION_CARD rows 44 to 47, EVENT_DAY step 0
 (low_height), the question bank of PRESENTATION.md (items 37 and 38), CONTRIBUTION.md (one row).
+
+FINAL SUITE, BUNDLE, COMMITS (06:30 to 07:00)
+sh tests_apb/run_all.sh on the final files: 06:30:52 to 06:43:45 (run_all_final.txt, suite2_times.txt). 18 groups.
+- 16 groups with no FAIL, among them test_run, test_ap_sitl, test_gnss and test_att_yaw.
+- test_live: 1 FAIL, the known "overlay only: 21 fixes sent in 288 frames".
+- test_lens_d: rc 124, the 295 s time limit, in the suite and again alone (06:43 to 06:48). Cause: the laptop was on
+  battery (charger not connected, 9 % at 06:49, discharging from about 04:33) with the CPU in power-save mode.
+  Each test took about twice its time of 01:26 (test_calib 102 s against 60 s, test_live 111 against 53 s).
+  test_lens_d passed in 169 s at 01:26; calib.py and capture.py did not change since. Not run again on mains power.
+- For 2 minutes at the start, replays of another session ran at the same time (06:31 to 06:34).
+Session 0a's regression with the options off (04:49, on battery too): the same result for each ID.
+Bundle: built at 06:50, 113,850,660 bytes, 5571 files, sha256 9f852ebf0a10...; its program files have the same md5
+as the project files. The bundle of 02:08 is kept as tools/bundle/vio-bundle-aarch64_tested_0208.tar.gz.
+Commits on stage1-justice-d, not pushed: 8939114 (03:25), bf23797 (06:50), and one last small commit.
+NOT DONE at the end: tools/fc_params.py against the simulator after its last change; test_lens_d on mains power.
+

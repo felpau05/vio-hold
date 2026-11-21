@@ -543,3 +543,5 @@ list), EIGHT_HOURS, EVIDENCE.md area B and DATA_SPLITS.md (04:50 rows). Lines th
   tests_apb/ are unchanged by this study (the one apb_main line of 03:05 was taken out at 03:16). The scratchpad copies
   (now, nowpy, final, closed/ab; nowdl was deleted after use) hold the SITL raw files; the ones used here are copied to
   integ/kfmap/closed/runs/ (onboard logs gzip, truth .npz, results).
+
+POWER NOTE (added by the coordinating session 0a at 06:50 EST, 2026-11-21): the laptop ran on battery from at least 04:33 EST (upower history; the first 'discharging' row found), and session 1f saw CPU power-save mode at 06:49 with 9 % battery. Runs after about 04:33 (most of the SITL A/B, the regression and the suites) ran on battery power; power-save may have started earlier than 06:49. Timing numbers (E9/H6, process() ms, test time limits) from that period can be slower than on mains power. The SITL board model uses a fixed 80 ms per Hold.process, but the SITL itself ran slower; each run's start load is in its table. The off/on comparisons ran under the same conditions for both versions.
