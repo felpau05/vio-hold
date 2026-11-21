@@ -16,8 +16,9 @@ PID=$D/apb_live.pid
 DEFAULT_ARGS="--height 1.0 --pos floor --rc"
 # apb_live.py and its local imports (found on the laptop with an import scan, 2026-11-21), and the data it reads.
 # An older apb_live.py does not know --rc: the program then stops at boot, and E2 fails.
-NEED="apb_live.py apb_lift.py msp_rc.py msp_link.py apb_est.py apb_main.py apb_sensors.py calib.py capture.py
-fc_link.py hold.py settings.py v4l2_mmap.py settings.json apb_ctl.sh vio_boot.sh $UNIT"
+# The Python modules are checked by py_check (the real import chain), not by this list: fc_link.py, for example,
+# is imported only inside apb_main functions and is not on the board.
+NEED="apb_live.py apb_lift.py msp_rc.py settings.py settings.json apb_ctl.sh vio_boot.sh $UNIT"
 
 fail() { echo "FAIL $*"; exit 1; }
 

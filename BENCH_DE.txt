@@ -38,8 +38,8 @@ Q4. D. How does the judge want "not ready"? Our proposal: we cover the lens with
 Q5. E1. What does the judge use to cover the lens: a palm, a card or a cloth? Flat on the lens, or at a distance?
 Q6. E2. Can the aircraft rest on a table for 5 s after the power-up? (Our program needs 2 s of still gyro.)
 Write the answers here, with the name of the organizer:
-  Q1:
-  Q2:
+  Q1: radio bound and linked (Paul, 2026-11-21 15:43).
+  Q2: YES, the organizers agreed (Paul, 2026-11-21 16:2x). Unit installed and enabled 16:2x.
   Q3:
   Q4:
   Q5:
@@ -210,6 +210,9 @@ Restart, switch high (the main test, because the judge can see our first command
     Then roll goes directly to 1500 at our first command. No other value comes between.
     Pass, if the FC restarts too: the four channels go from the start values of the FC directly to
     roll, pitch, yaw 1500 and the hover throttle. No other value comes between.
+    (msp_rc.py 1805cb13 and later: the switch was ON at the program start, so the page shows
+    "engage switch ON AT START: commands neutral, turn the switch off and on". This is correct.
+    The commands follow a move only after the switch goes off and on again.)
 11. Put the engage switch low.
 12. Run: ssh root@192.168.75.1 sh /data/vio/vio_boot.sh status
     Pass: "unit: enabled, active" and "running".

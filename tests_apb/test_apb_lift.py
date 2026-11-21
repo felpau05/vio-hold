@@ -148,6 +148,18 @@ def main():
     check(all(d is None for d in during) and ls.gaps == 1 and ls.disp is not None and lost is not None and 0 < lost < 0.3,
           f"lens covered 5 frames during a 1.0 m move: unknown while covered, then goes on; reads "
           f"{None if ls.disp is None else round(float(ls.disp[0]), 3)} m (the move while covered is lost), {ls.gaps} gap")
+    ls2 = L.LiftScale(K, D, SHAPE)
+    for img, R in fr[:15]:
+        ls2.update(img, R)
+    try:
+        for _ in range(5):
+            ls2.update(np.full(SHAPE, 128, np.uint8), fr[15][1])
+        ok_u = ls2.disp is None and ls2.gaps >= 1
+    except Exception as ex:     # noqa: BLE001
+        ok_u = False
+        print("   ", type(ex).__name__, ex)
+    check(ok_u, "uniform frames after tracking (LK refuses every point): a gap, no error (board: 'NoneType' .reshape)")
+
     ls.zero()
     r0 = ls.update(*fr[-1])
     r = ls.update(*fr[-1])

@@ -140,6 +140,30 @@ def main():
     tail = [v[:4] for _, v in fc.rc[n0:]]
     check(len(tail) >= 10 and all(v == (1500, 1500, 1450, 1500) for v in tail[-10:]),
           f"close: last 10 commands neutral ({len(tail)} after close)")
+    # switch ON at program start (restart with the switch on): no edge, no zero, neutral until off then on
+    fc.ch[9] = 2000
+    rc2 = R.RcOut(port=M.Port(os.ttyname(slave)), hover_us=1450, say=lambda x: None).start()
+    n2 = len(fc.rc)
+    t = time.monotonic()
+    while time.monotonic() - t < 0.5:
+        rc2.update(True, 0.0, 0.5)
+        time.sleep(0.02)
+    tail2 = [v[:2] for _, v in fc.rc[n2:]]
+    check(rc2.engaged and not rc2.take_engage_edge() and tail2 and all(v == (1500, 1500) for v in tail2)
+          and "AT START" in rc2.info(), f"switch ON at start: no edge, neutral ({len(tail2)} commands, engaged {rc2.engaged}, {sorted(set(tail2))}, {rc2.info()})")
+    fc.ch[9] = 1000
+    time.sleep(0.3)
+    fc.ch[9] = 2000
+    time.sleep(0.3)
+    check(rc2.take_engage_edge(), "switch ON at start, then off and on: one edge")
+    rc2.zero_done()
+    t = time.monotonic()
+    while time.monotonic() - t < 0.3:
+        rc2.update(True, 0.0, 0.5)
+        time.sleep(0.02)
+    check(last(fc)[:2] == (1450, 1500), f"after off-on and the new zero: commands follow ({last(fc)[:2]})")
+    rc2.close()
+    fc.ch[9] = 1500
     try:
         R.RcOut(port=M.Port(os.ttyname(slave)), hover_us=1000)
         check(False, "hover_us 1000 refused")

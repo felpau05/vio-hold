@@ -66,6 +66,9 @@ class LiftScale:
 
     def _undist(self, px):
         """Full-size pixels -> undistorted normalized camera coordinates (x / z, y / z)."""
+        px = np.asarray(px, np.float64).reshape(-1, 2)
+        if not len(px):                 # cv2 returns None for no points (board error 2026-11-21: 'NoneType' .reshape)
+            return np.zeros((0, 2))
         return cv2.fisheye.undistortPoints(px.reshape(-1, 1, 2), self.K, self.D).reshape(-1, 2)
 
     @staticmethod
@@ -116,6 +119,9 @@ class LiftScale:
         p0, st2, _ = cv2.calcOpticalFlowPyrLK(small, self.prev, p1, None, winSize=(15, 15), maxLevel=3,
                                               minEigThreshold=self.MIN_EIG)
         good = (st.ravel() == 1) & (st2.ravel() == 1) & (np.linalg.norm(p0 - self.pts, axis=1) < self.FB_PX)
+        if good.sum() < self.MIN_PTS:                   # LK refused (nearly) every point: a gap, no fit to try
+            self._gap()
+            return self.update(img, R)
         ref, p1 = self.ref[good], p1[good]
         nc = self._undist(p1.astype(np.float64) * self.DOWN)
         keep = np.hypot(nc[:, 0], nc[:, 1]) < math.tan(math.radians(self.KEEP_DEG))

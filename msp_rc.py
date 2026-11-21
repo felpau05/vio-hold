@@ -71,7 +71,17 @@ class RcOut:
         self.log = None
         if log_dir:
             os.makedirs(log_dir, exist_ok=True)
-            self.log = open(os.path.join(log_dir, f"rc_{time.strftime('%H%M%S')}.csv"), "w", buffering=1)
+            # The board clock starts at the same time after each power-up: add the boot id, and a counter
+            # if the name is still taken, so a new boot never overwrites the log of the last one.
+            try:
+                boot = open("/proc/sys/kernel/random/boot_id").read().strip()[:8]
+            except OSError:
+                boot = "noboot"
+            base = os.path.join(log_dir, f"rc_{time.strftime('%H%M%S')}_{boot}")
+            name, k = base + ".csv", 1
+            while os.path.exists(name):
+                name, k = f"{base}_{k}.csv", k + 1
+            self.log = open(name, "w", buffering=1)
             self.log.write(",".join(LOG_COLS) + "\n")
         self.hz, self.gain, self.max_us, self.hover, self.stale_s, self.say = hz, gain_us_per_m, max_us, hover_us, stale_s, say
         self.lock = threading.Lock()
@@ -81,6 +91,8 @@ class RcOut:
         self.channels, self.t_channels = None, None
         self.engaged, self._edge = False, False
         self.wait_zero = False                           # after switch-on: neutral until the caller set the new zero
+        self.seen_off = False                            # a switch-on counts only after the switch was seen off
+        self.on_at_start = False                         # switch ON at program start: neutral until off, then on
         self.zero_mark = False                           # the next log row marks a new zero (start of a test)
         self.switch_low = False                          # fresh reading of a switch clearly off: neutral (D-4)
         self.errors = []
@@ -177,6 +189,8 @@ class RcOut:
             ch = self.channels
         # MSP_RC order: roll, pitch, yaw, throttle (Betaflight rcData). This is the Receiver tab view.
         fc = "-" if not ch or len(ch) < 4 else f"roll {ch[0]} pitch {ch[1]} thr {ch[3]} yaw {ch[2]}"
+        if self.on_at_start and self.wait_zero and st["engaged"]:
+            sw += " AT START: commands neutral, turn the switch off and on"
         return (f"FC out roll {r:.0f} pitch {p:.0f} thr {t:.0f} yaw {y:.0f} · FC sees {fc} · engage switch {sw}"
                 + (" (no FC reply)" if old else "") + (f" · FC error {st['rc_errors'][0]}" if st["rc_errors"] else ""))
 
@@ -219,6 +233,8 @@ class RcOut:
                 fresh = self.t_channels is not None and time.monotonic() - self.t_channels < 0.3
                 if fresh and self.switch_low:
                     ready = False        # switch off: the FC ignores us, and at switch-on it must get neutral (D-4)
+                if self.t_channels is None:
+                    ready = False        # switch position not known yet (no MSP_RC reply): neutral
             if time.monotonic() - t > self.stale_s:
                 ready = False
             self._send_cmd(command(ready, fwd, right, self.gain, self.max_us, self.hover))
@@ -261,7 +277,13 @@ class RcOut:
                     on = len(ch) > CH_ENGAGE and ch[CH_ENGAGE] >= SWITCH_HIGH_US
                     with self.lock:
                         self.switch_low = len(ch) > CH_ENGAGE and ch[CH_ENGAGE] < SWITCH_LOW_US
+                        if not on:
+                            self.seen_off = True
                         if on and not self.engaged:
-                            self._edge, self.wait_zero = True, True
+                            self.wait_zero = True
                             self.state = (False, None, None, time.monotonic())   # old move: never at switch-on
+                            if self.seen_off:
+                                self._edge, self.on_at_start = True, False
+                            else:
+                                self.on_at_start = True  # ON at start (restart, power cut): no zero here, neutral
                         self.channels, self.t_channels, self.engaged, self.n_rc = ch, time.monotonic(), on, self.n_rc + 1

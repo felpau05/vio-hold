@@ -27,8 +27,14 @@ HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 def fetch():
-    name = subprocess.run(["ssh", "-o", "ConnectTimeout=5", BOARD, "ls -t /data/vio/logs/rc_*.csv | head -1"],
-                          capture_output=True, text=True, timeout=20).stdout.strip()
+    # The log that the running program has open. Not "the newest file": after a power cut the board clock starts
+    # again at an earlier time, so an older log can have a newer file time. Fallback: the newest file.
+    find = ('for P in $(cat /data/vio/apb_live.pid 2>/dev/null) $(systemctl show -p MainPID --value vio-live 2>/dev/null); do '
+            'f=$(readlink /proc/$P/fd/* 2>/dev/null | grep "/logs/rc_" | head -1); [ -n "$f" ] && echo "$f" && exit 0; done; '
+            'ls -t /data/vio/logs/rc_*.csv | head -1')
+    name = subprocess.run(["ssh", "-o", "ConnectTimeout=5", BOARD, find],
+                          capture_output=True, text=True, timeout=20).stdout.strip().splitlines()
+    name = name[0] if name else ""
     if not name:
         sys.exit("FAIL no rc_*.csv on the board. Start apb_live.py with --rc first.")
     os.makedirs(os.path.join(HERE, "logs"), exist_ok=True)

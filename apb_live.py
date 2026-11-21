@@ -40,8 +40,30 @@ LIFT_H0_M = 1.0      # m; lens height assumed at "Zero here" for the camera heig
 CAM_STALL_S = 5.0     # s with no picture (after the first one): the camera watchdog stops the program (exit 1)
 CAM_FIRST_S = 30.0    # s to wait for the first picture (the Justice D format is set about 8 s after power-up)
 LIFT_MAX_ERR = 20     # floor-track errors (each one a gap) before it turns off for the run
+LIFT_RATIO_OK = (0.5, 2.0)   # h_now / h_zero range with valid floor-track values (B3 lifts 1.5x)
+GAP_GRACE_S = 0.5     # s a floor-track gap with a normal picture keeps READY and the last value (not for covers)
 HGT_HOLD_S = 5.0      # s; the last barometer height is carried forward this long (the APB barometer froze >1 min twice)
 ATT_WAIT_S = 0.015    # s; wait at most this long for the gyro to cover a frame
+
+
+def stamp():
+    """HHMMSS plus 4 characters of the kernel boot id. The board clock starts at the same time after each power-up
+    (E2 rehearsal 2026-11-21: two boots at 15:57:25), so the time alone made the second boot overwrite the first log."""
+    try:
+        with open("/proc/sys/kernel/random/boot_id") as f:
+            boot = f.read().strip().replace("-", "")[:4]
+    except OSError:
+        boot = ""
+    return time.strftime("%H%M%S") + (f"_{boot}" if boot else "")
+
+
+def unique_path(path):
+    """path, or path with _2, _3 ... when it exists (a restart in the same second of the same boot)."""
+    root, ext = os.path.splitext(path)
+    k, p = 2, path
+    while os.path.exists(p):
+        p, k = f"{root}_{k}{ext}", k + 1
+    return p
 
 
 def fine_detail(img):
@@ -191,6 +213,32 @@ button{font-size:18px;padding:12px 18px;margin:16px 8px 0 0;border-radius:8px;bo
 #info{color:var(--mut);font-size:13px;margin-top:16px;font-variant-numeric:tabular-nums}
 #streams{font-size:16px;margin-top:14px;font-variant-numeric:tabular-nums}
 #cam{display:block;width:100%;max-width:480px;aspect-ratio:16/9;margin-top:14px;border-radius:8px;background:var(--card)}
+/* stick panel (C, D): from tools/stick_view.html (vio-hold-fd). Its own dark box; every rule is scoped to #sk. */
+#sk{margin-top:18px;padding:14px;border-radius:12px;background:#111;color:#eee;border:3px solid #555}
+#sk .skt{font-size:15px;color:#aaa;margin-bottom:8px}
+#sk .skbar{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:10px}
+#sk .b{font-size:26px;font-weight:700;padding:8px 16px;border-radius:8px;background:#733}
+#sk .b.ok{background:#285}
+#sk_moved{font-size:26px;font-weight:700;margin:8px 0}
+#sk_check{font-size:24px;font-weight:700;padding:8px 16px;border-radius:8px;background:#334;display:inline-block;margin-bottom:12px}
+#sk_check.good{background:#285} #sk_check.bad{background:#a22}
+#sk_err{color:#f88;font-size:22px;font-weight:700}
+#sk .tw{overflow-x:auto}
+#sk table{border-collapse:collapse;width:100%;background:#181818;border:2px solid #444;border-radius:10px}
+#sk td{padding:8px 6px;border-bottom:1px solid #333;vertical-align:middle}
+#sk .name{font-size:22px;font-weight:700;width:120px}
+#sk .val{font-size:38px;font-weight:800;width:110px;font-variant-numeric:tabular-nums}
+#sk .dir{font-size:22px;font-weight:700;width:300px}
+#sk .send{color:#9ab;font-size:14px;width:110px}
+#sk .track{position:relative;height:26px;background:#2a2a2a;border-radius:6px;min-width:160px}
+#sk .mid{position:absolute;left:50%;top:-4px;bottom:-4px;width:2px;background:#888}
+#sk .fill{position:absolute;top:4px;bottom:4px;background:#fc3;border-radius:4px}
+#sk .scale{color:#888;font-size:12px;display:flex;justify-content:space-between}
+#sk tr.c0 .name,#sk tr.c0 .val,#sk tr.c0 .dir{color:#ff9f43} #sk tr.c0 .fill{background:#ff9f43}
+#sk tr.c1 .name,#sk tr.c1 .val,#sk tr.c1 .dir{color:#4fd1ff} #sk tr.c1 .fill{background:#4fd1ff}
+#sk tr.c2 .name,#sk tr.c2 .val,#sk tr.c2 .dir{color:#c39bff} #sk tr.c2 .fill{background:#c39bff}
+#sk tr.c3 .name,#sk tr.c3 .val,#sk tr.c3 .dir{color:#5fe08a} #sk tr.c3 .fill{background:#5fe08a}
+#sk .help{color:#aaa;margin-top:10px;font-size:14px;line-height:1.5}
 </style></head><body><main>
 <div id="ready">NOT READY</div><div id="why"></div>
 <div class="grid">
@@ -200,6 +248,19 @@ button{font-size:18px;padding:12px 18px;margin:16px 8px 0 0;border-radius:8px;bo
 <div class="c"><div class="l">Height change (m)</div><div class="v" id="dh">-</div></div>
 </div>
 <button onclick="post('zero')">Zero here</button><button onclick="post('floor')">Floor zero (drone on the floor)</button>
+<section id="sk" hidden><div class="skt">FC STICKS (msp_rc, for C and D)</div>
+<div class="skbar"><div id="sk_eng" class="b">SWITCH ?</div><div id="sk_rdy" class="b">?</div></div>
+<div id="sk_err"></div><div id="sk_moved">Drone moved: -</div><div id="sk_check">-</div>
+<div class="tw"><table>
+<tr class="c0"><td class="name">ROLL</td><td class="val" id="sk_v0">-</td><td class="dir" id="sk_d0">-</td><td><div class="track"><div class="mid"></div><div class="fill" id="sk_f0"></div></div><div class="scale"><span>1350 left</span><span>1500</span><span>right 1650</span></div></td><td class="send" id="sk_s0"></td></tr>
+<tr class="c1"><td class="name">PITCH</td><td class="val" id="sk_v1">-</td><td class="dir" id="sk_d1">-</td><td><div class="track"><div class="mid"></div><div class="fill" id="sk_f1"></div></div><div class="scale"><span>1350 back</span><span>1500</span><span>forward 1650</span></div></td><td class="send" id="sk_s1"></td></tr>
+<tr class="c2"><td class="name">YAW</td><td class="val" id="sk_v2">-</td><td class="dir" id="sk_d2">-</td><td><div class="track"><div class="mid"></div><div class="fill" id="sk_f2"></div></div><div class="scale"><span>1350 left</span><span>1500</span><span>right 1650</span></div></td><td class="send" id="sk_s2"></td></tr>
+<tr class="c3"><td class="name">THROTTLE</td><td class="val" id="sk_v3">-</td><td class="dir" id="sk_d3">-</td><td><div class="track"><div class="fill" id="sk_f3"></div></div><div class="scale"><span>1000 (0 %)</span><span>1500</span><span>2000 (100 %)</span></div></td><td class="send" id="sk_s3"></td></tr>
+</table></div>
+<div class="help">Big numbers = what the FC uses (the Betaflight Receiver tab values). "we send" = what our program sends.<br>
+Switch ON: the FC uses our values. Switch OFF: the FC uses your radio, and our program sends 1500.<br>
+Correct correction: drone moved RIGHT gives ROLL LEFT. Drone moved FORWARD gives PITCH BACK (Stage 2: roll and pitch oppose the move).
+The move here is in the drone's axes now, as the commands use it.</div></section>
 <img id="cam" alt="live Justice D picture"><div id="streams"></div><div id="info"></div></main><script>
 // live picture: the next request starts only after the last one arrived (no pile-up on a slow link), about every 0.5 s
 (function(){const c=document.getElementById('cam');let t0=0;
@@ -211,11 +272,42 @@ async function post(p){try{await fetch('/'+p,{method:'POST'})}catch(e){}}
 // gone, a route through Wi-Fi) the page shows NO CONNECTION and no numbers, never an old READY (review E2-03).
 // state_age_s: the APB loop has not written the state for this long (a stalled loop): NOT READY.
 const id=(k)=>document.getElementById(k);
+// stick panel: shown only when the program sends commands (--rc: the state has "engaged")
+const SKZ=150;
+function skBar(el,v,center){if(v==null){el.style.width='0';return;}
+ if(center){const d=Math.max(-1,Math.min(1,(v-1500)/SKZ));el.style.left=(d<0?50+50*d:50)+'%';el.style.width=(50*Math.abs(d))+'%';}
+ else{const p=Math.max(0,Math.min(1,(v-1000)/1000));el.style.left='0';el.style.width=(100*p)+'%';}}
+function skDir(k,v){if(v==null)return '-';const d=Math.round(v-1500),a=Math.abs(d);
+ if(k==3)return 'THRUST '+Math.round((v-1000)/10)+' %';
+ if(a<=3)return 'CENTER';
+ if(k==0)return d<0?'\u25C0 LEFT '+a:'RIGHT \u25B6 '+a;
+ if(k==1)return d<0?'\u25BC BACK (nose up) '+a:'\u25B2 FORWARD (nose down) '+a;
+ return d<0?'\u25C0 YAW LEFT '+a:'YAW RIGHT \u25B6 '+a;}
+function sticks(s,rdy){const sk=id('sk');if(s.engaged===undefined){sk.hidden=true;return;}sk.hidden=false;
+ const n=v=>v==null?'-':Math.round(v);id('sk_err').textContent='';
+ id('sk_eng').textContent=s.engaged?'SWITCH ON':'SWITCH OFF';id('sk_eng').className='b'+(s.engaged?' ok':'');
+ id('sk_rdy').textContent=rdy?'READY':'NOT READY';id('sk_rdy').className='b'+(rdy?' ok':'');
+ const fc=[s.fc_roll,s.fc_pitch,s.fc_yaw,s.fc_thr], we=[s.rc_roll,s.rc_pitch,s.rc_yaw,s.rc_thr];
+ for(let k=0;k<4;k++){id('sk_v'+k).textContent=n(fc[k]);id('sk_d'+k).textContent=skDir(k,fc[k]);skBar(id('sk_f'+k),fc[k],k<3);id('sk_s'+k).textContent='we send '+n(we[k]);}
+ const r=s.right_body??null,f=s.fwd_body??null;   // the drone's axes now: the commands use these
+ id('sk_moved').textContent=(r==null||f==null)?'Drone moved: unknown (no position now)':
+  `Drone moved: ${Math.abs(r).toFixed(2)} m ${r>=0?'RIGHT':'LEFT'}, ${Math.abs(f).toFixed(2)} m ${f>=0?'FORWARD':'BACK'}`;
+ const c=id('sk_check');
+ if(!s.engaged){c.textContent='Switch OFF: the FC uses your radio';c.className='';}
+ else if(!rdy){c.textContent='NOT READY: roll, pitch and yaw must be 1500';c.className=(fc[0]==1500&&fc[1]==1500&&fc[2]==1500)?'good':'bad';}
+ else if(r==null||Math.max(Math.abs(r),Math.abs(f))<0.2){c.textContent='Move the drone 0.5 m to see the correction';c.className='';}
+ else{const useR=Math.abs(r)>=Math.abs(f),mv=useR?r:f,cmd=(useR?fc[0]:fc[1])-1500,ok=cmd*mv<0;
+  c.textContent=(useR?'ROLL':'PITCH')+(ok?': OPPOSITE to the move. GOOD':': SAME direction as the move. WRONG');c.className=ok?'good':'bad';}}
+function sticksOff(){if(id('sk').hidden)return;id('sk_err').textContent='NO CONNECTION to the drone';
+ id('sk_eng').textContent='SWITCH ?';id('sk_eng').className='b';id('sk_rdy').textContent='?';id('sk_rdy').className='b';
+ id('sk_moved').textContent='Drone moved: -';id('sk_check').textContent='-';id('sk_check').className='';
+ for(let k=0;k<4;k++){id('sk_v'+k).textContent='-';id('sk_d'+k).textContent='-';skBar(id('sk_f'+k),null,k<3);id('sk_s'+k).textContent='';}}
 async function tick(){const ac=new AbortController();const to=setTimeout(()=>ac.abort(),1000);
 try{const s=await (await fetch('/state',{cache:'no-store',signal:ac.signal})).json();clearTimeout(to);
 const stale=s.state_age_s!=null&&s.state_age_s>1.0, rdy=!!s.ready&&!stale;
 const r=id('ready');r.textContent=rdy?'READY':'NOT READY';r.className=rdy?'ok':'';
 id('why').textContent=rdy?'':(stale?`APB program loop stalled (${s.state_age_s.toFixed(1)} s)`:(s.why||''));
+sticks(s,rdy);
 document.getElementById('fwd').textContent=f(s.fwd);document.getElementById('right').textContent=f(s.right);
 document.getElementById('dist').textContent=s.dist==null?'-':s.dist.toFixed(2);document.getElementById('dh').textContent=f(s.dh);
 const n1=(x,d=1)=>x==null?'-':x.toFixed(d), sg=(x)=>x==null?'-':(x>=0?'+':'')+x.toFixed(1);
@@ -223,7 +315,7 @@ document.getElementById('streams').textContent=`Camera: ${n1(s.fps)} fps, frame 
 document.getElementById('info').textContent=`${s.pos_info??''} · height change from ${s.dh_src??'-'} · barometer change ${f(s.dh_baro)} m · height ${s.h==null?'-':s.h.toFixed(2)} m · baro ${s.baro_age==null?'none':s.baro_age.toFixed(1)+' s ago'} (${s.baro_n??'-'} rows, ${s.baro_rej??'-'} rejected) · ${s.state||'-'} · ${s.n??'-'} points · ${s.fps?.toFixed(1)??'-'} fps · process ${s.proc_ms?.toFixed(0)??'-'} ms · frame age ${s.age_ms?.toFixed(0)??'-'} ms · SoC ${s.soc?.toFixed(0)??'-'} °C · up ${s.up?.toFixed(0)??'-'} s`;
 }catch(e){clearTimeout(to);const r=id('ready');r.textContent='NO CONNECTION';r.className='';
 id('why').textContent='no connection to the APB';for(const k of ['fwd','right','dist','dh'])id(k).textContent='-';
-id('streams').textContent='';}
+id('streams').textContent='';sticksOff();}
 finally{setTimeout(tick,200);}}
 tick();
 </script></body></html>"""
@@ -275,7 +367,7 @@ def serve(shared, port):
 
 
 def run(s, port=8080, fps=30.0, seconds=None, log_dir="/data/vio/logs", say=print, fixed_height=None,
-        rec_label=None, rec_dir="/data/vio/rec", use_lift=True, pos_src="hold", rc=None):
+        rec_label=None, rec_dir="/data/vio/rec", use_lift=True, pos_src="hold", rc=None, hold_too=False):
     """fixed_height (desk tests only): use this lens height (m) instead of the barometer.
     rec_label: also record every frame + IMU + barometer to rec_dir/<label>_<time>_<k>.npz."""
     from apb_main import Log, Pipe, lens
@@ -283,7 +375,7 @@ def run(s, port=8080, fps=30.0, seconds=None, log_dir="/data/vio/logs", say=prin
     shared = Shared()
     srv = serve(shared, port)
     os.makedirs(log_dir, exist_ok=True)
-    log = Log(os.path.join(log_dir, f"live_{time.strftime('%H%M%S')}.csv"))
+    log = Log(unique_path(os.path.join(log_dir, f"live_{stamp()}.csv")))
     cam = Camera()
     gyro, acc = A.open_imu(200)
     baro = A.Baro()
@@ -296,6 +388,7 @@ def run(s, port=8080, fps=30.0, seconds=None, log_dir="/data/vio/logs", say=prin
         h_lift0 = fixed_height if fixed_height else LIFT_H0_M
         lift_err = []
         odo_yaw = None                                  # yaw at the floor-track zero: forward/right axes
+        floor_last = None                               # (floor_pos, floor_body, t) of the last frame with a value
 
         lift_off = []                                   # set once: the floor track is off for this run
 
@@ -326,7 +419,7 @@ def run(s, port=8080, fps=30.0, seconds=None, log_dir="/data/vio/logs", say=prin
         rec = None
         if rec_label:
             os.makedirs(rec_dir, exist_ok=True)
-            rec = Recorder(os.path.join(rec_dir, f"{rec_label}_{time.strftime('%H%M%S')}"), gyro, acc, baro, say=say)
+            rec = Recorder(os.path.join(rec_dir, f"{rec_label}_{stamp()}"), gyro, acc, baro, say=say)
             say(f"recording to {rec.base}_*.npz")
         grab = Grabber(cam, fps, rec)
         t_last_frame = None                             # monotonic time of the newest picture (camera watchdog)
@@ -403,14 +496,22 @@ def run(s, port=8080, fps=30.0, seconds=None, log_dir="/data/vio/logs", say=prin
                 hgt.add(t0, last_h[1])                  # silent barometer: hold the last height a while
             # picture checks, then the estimator
             fd = fine_detail(img)
-            why = judge(img) or (f"lens covered or blurred (detail {fd:.1f})" if fd < COVER_FINE else None)
-            pic_bad = why is not None
+            judge_why = judge(img)
+            why = judge_why or (f"lens covered or blurred (detail {fd:.1f})" if fd < COVER_FINE else None)
+            # Floor mode: the floor track decides between motion blur and a cover. Real hand-carried blur reads detail
+            # 1.9-3.0 (board, 2026-11-21) and a hand cover 1.3-1.7: too close for one limit, and each blur gap lost
+            # the move. A blurry cover has almost no gradient, so LK refuses it (apb_lift MIN_EIG): a gap, NOT READY.
+            # A noisy dark cover is flat at 1/8 size: judge refuses it. Hold mode keeps the COVER_FINE check.
+            pic_bad = (judge_why is not None) if pos_src == "floor" else (why is not None)
             if att_f.bias is None:
                 why = why or "hold the drone still (gyro bias)"
             elif bh.p0 is None:
                 why = why or "measuring the floor (barometer zero)"
             fr = capture.Frame(img, t0, t_eof, seq, why)
-            e, ok, why2 = pipe.step(fr, att, hgt)
+            if pos_src == "floor" and not hold_too:
+                e, ok, why2 = None, False, why          # Hold skipped: it halved the frame rate (5-6 fps on the board)
+            else:
+                e, ok, why2 = pipe.step(fr, att, hgt)
             proc = (time.monotonic() - t1) * 1e3
             fps_t.append(t_eof)
             h = float(hgt.at(t0)) if hgt.rows else None
@@ -444,6 +545,7 @@ def run(s, port=8080, fps=30.0, seconds=None, log_dir="/data/vio/logs", say=prin
                 pos_zero_pending, h_zero = True, h
                 guarded(lift and lift.zero)
                 odo_yaw = None
+                floor_last = None                       # no kept value across a zero
             hold_pos = None
             if e is not None and e.var is not None:
                 yaw = float(np.interp(t0, *np.array(att.rows)[-200:, [0, 3]].T))
@@ -472,14 +574,35 @@ def run(s, port=8080, fps=30.0, seconds=None, log_dir="/data/vio/logs", say=prin
                         # the same move in the body axes of NOW (for commands: C, D)
                         c, sn = math.cos(yaw_now), math.sin(yaw_now)
                         floor_body = (float(d[0] * c + d[1] * sn), float(-d[0] * sn + d[1] * c))
-            # floor_ok: the floor track has a value for this picture (no gap, picture good). In --pos floor mode the
-            # READY banner follows it, so a covered lens shows NOT READY at once (E1).
-            st.update(floor_ok=floor_pos is not None,
+            # floor_ok: the floor track has a value for this picture (no gap, picture good).
+            # Gap grace (Paul, 2026-11-21: short gaps made the bars jump to 1500 and back): a gap with a normal picture
+            # (detail OK, judge OK, only no fit) keeps READY and the last position for up to GAP_GRACE_S. A gap with a
+            # cover sign (judge refuses the picture, or detail under COVER_FINE) is NOT READY at once: E1 wants 1500
+            # while covered, from the start of the cover.
+            # Height far from the zero: every distance scales with h_now / h_zero, and h_zero is assumed (--height).
+            # A zero near the floor or a table (the engage switch was ON at start, board 2026-11-21) then gave a
+            # runaway (24 m in 20 s, commands at the limit). Outside LIFT_RATIO_OK: NOT READY at once, no grace.
+            ratio = lift.ratio if lift is not None else None
+            height_bad = ratio is not None and not (LIFT_RATIO_OK[0] <= ratio <= LIFT_RATIO_OK[1])
+            if height_bad:
+                floor_pos = floor_body = None
+            floor_ok = floor_pos is not None
+            grace = False
+            if floor_ok:
+                floor_last = (floor_pos, floor_body, t_eof)
+            elif (pos_src == "floor" and floor_last is not None and not pic_bad and fd >= COVER_FINE and not height_bad
+                  and t_eof - floor_last[2] <= GAP_GRACE_S):
+                floor_pos, floor_body, grace = floor_last[0], floor_last[1], True
+            st.update(floor_ok=floor_ok, floor_grace=grace,
                       fwd_body=None if floor_body is None else floor_body[0],
                       right_body=None if floor_body is None else floor_body[1])
             if pos_src == "floor":
                 st.update(ready=floor_pos is not None,
-                          why=None if floor_pos is not None else (why or "floor track: no picture fit now"))
+                          why=None if floor_ok else
+                          f"floor track gap {t_eof - floor_last[2]:.1f} s (holding the last value)" if grace else
+                          f"lens height x{ratio:.1f} since the zero: push Zero here with the lens at about "
+                          f"{h_lift0:.1f} m" if height_bad else
+                          (why or "floor track: no picture fit now"))
             show = floor_pos if pos_src == "floor" else hold_pos
             if show is not None:
                 st.update(fwd=show[0], right=show[1], dist=float(math.hypot(*show)))
@@ -488,8 +611,9 @@ def run(s, port=8080, fps=30.0, seconds=None, log_dir="/data/vio/logs", say=prin
             other = hold_pos if pos_src == "floor" else floor_pos
             st["pos_info"] = (f"position from {'floor track' if pos_src == 'floor' else 'Hold'}"
                               + (f" ({lift.n} points, {lift.gaps} gaps)" if pos_src == "floor" and lift is not None else "")
-                              + f" · {'Hold' if pos_src == 'floor' else 'floor track'} "
-                              + ("-" if other is None else f"F {other[0]:+.2f} R {other[1]:+.2f}"))
+                              + (" · Hold off (--hold-too runs it)" if pos_src == "floor" and not hold_too else
+                                 f" · {'Hold' if pos_src == 'floor' else 'floor track'} "
+                                 + ("-" if other is None else f"F {other[0]:+.2f} R {other[1]:+.2f}")))
             dh_baro = None if h is None or h_zero is None else float(h - h_zero)
             if lift is not None and lift.ratio is not None:
                 st.update(dh=float(h_lift0 * (lift.ratio - 1.0)), dh_src=f"camera ({lift.n} points)", dh_baro=dh_baro)
@@ -547,6 +671,8 @@ def main():
     ap.add_argument("--height", type=float, help="desk tests only: fixed lens height (m), no barometer")
     ap.add_argument("--no-lift", action="store_true", help="no floor track (camera height change and move); "
                     "the barometer and Hold only")
+    ap.add_argument("--hold-too", action="store_true",
+                    help="with --pos floor: also run Hold (for comparison on the info line; about half the frame rate)")
     ap.add_argument("--pos", choices=("hold", "floor"), default="hold",
                     help="source of forward/right/distance on the page: Hold, or the floor track (apb_lift, B1/B2). "
                          "The info line shows the other one.")
@@ -564,7 +690,7 @@ def main():
         rc = msp_rc.RcOut(hover_us=a.rc_hover, gain_us_per_m=a.rc_gain, log_dir="/data/vio/logs").start()   # neutral at once (Stage 2 safety)
     A.stop_on_signals()
     run(S.load(), a.port, a.fps, a.seconds, fixed_height=a.height, rec_label=a.rec, use_lift=not a.no_lift,
-        pos_src=a.pos, rc=rc)
+        pos_src=a.pos, rc=rc, hold_too=a.hold_too)
     return 0
 
 

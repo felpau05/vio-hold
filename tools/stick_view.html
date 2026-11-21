@@ -1,0 +1,83 @@
+<!doctype html><meta charset="utf-8"><title>FC sticks</title>
+<style>
+:root{color-scheme:dark}
+body{font:18px system-ui,sans-serif;margin:0;padding:16px;background:#111;color:#eee}
+#bar{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.b{font-size:30px;font-weight:700;padding:10px 18px;border-radius:8px;background:#733}
+.b.ok{background:#285} .b.n{background:#334}
+#moved{font-size:30px;font-weight:700;margin:10px 0}
+#check{font-size:28px;font-weight:700;padding:10px 18px;border-radius:8px;background:#334;display:inline-block;margin-bottom:14px}
+#check.good{background:#285} #check.bad{background:#a22}
+table{border-collapse:collapse;width:100%;max-width:1100px}
+td{padding:10px 8px;border-bottom:1px solid #333;vertical-align:middle}
+.name{font-size:26px;font-weight:700;width:150px}
+.val{font-size:46px;font-weight:800;width:130px;font-variant-numeric:tabular-nums}
+.dir{font-size:28px;font-weight:700;width:360px}
+.send{color:#9ab;font-size:16px;width:120px}
+.track{position:relative;height:30px;background:#2a2a2a;border-radius:6px;min-width:220px}
+.mid{position:absolute;left:50%;top:-4px;bottom:-4px;width:2px;background:#888}
+.fill{position:absolute;top:4px;bottom:4px;background:#fc3;border-radius:4px}
+.scale{color:#888;font-size:13px;display:flex;justify-content:space-between}
+#err{color:#f88;font-size:24px;font-weight:700}
+tr.c0 .name,tr.c0 .val,tr.c0 .dir{color:#ff9f43} tr.c0 .fill{background:#ff9f43}
+tr.c1 .name,tr.c1 .val,tr.c1 .dir{color:#4fd1ff} tr.c1 .fill{background:#4fd1ff}
+tr.c2 .name,tr.c2 .val,tr.c2 .dir{color:#c39bff} tr.c2 .fill{background:#c39bff}
+tr.c3 .name,tr.c3 .val,tr.c3 .dir{color:#5fe08a} tr.c3 .fill{background:#5fe08a}
+table{background:#181818;border:2px solid #444;border-radius:10px}
+#help{color:#aaa;margin-top:16px;line-height:1.5;max-width:1100px}
+</style>
+<div id="bar"><div id="eng" class="b">SWITCH ?</div><div id="rdy" class="b">?</div></div>
+<div id="err"></div>
+<div id="moved">Drone moved: -</div>
+<div id="check">-</div>
+<table>
+<tr class="c0"><td class="name">ROLL</td><td class="val" id="v0">-</td><td class="dir" id="d0">-</td><td><div class="track"><div class="mid"></div><div class="fill" id="f0"></div></div><div class="scale"><span>1350 left</span><span>1500</span><span>right 1650</span></div></td><td class="send" id="s0"></td></tr>
+<tr class="c1"><td class="name">PITCH</td><td class="val" id="v1">-</td><td class="dir" id="d1">-</td><td><div class="track"><div class="mid"></div><div class="fill" id="f1"></div></div><div class="scale"><span>1350 back</span><span>1500</span><span>forward 1650</span></div></td><td class="send" id="s1"></td></tr>
+<tr class="c2"><td class="name">YAW</td><td class="val" id="v2">-</td><td class="dir" id="d2">-</td><td><div class="track"><div class="mid"></div><div class="fill" id="f2"></div></div><div class="scale"><span>1350 left</span><span>1500</span><span>right 1650</span></div></td><td class="send" id="s2"></td></tr>
+<tr class="c3"><td class="name">THROTTLE</td><td class="val" id="v3">-</td><td class="dir" id="d3">-</td><td><div class="track"><div class="fill" id="f3"></div></div><div class="scale"><span>1000 (0 %)</span><span>1500</span><span>2000 (100 %)</span></div></td><td class="send" id="s3"></td></tr>
+</table>
+<div id="help">Big numbers = what the FC uses (the Betaflight Receiver tab values). "we send" = what our program sends.<br>
+Switch ON: the FC uses our values. Switch OFF: the FC uses your radio, and our program sends 1500.<br>
+Correct correction: drone moved RIGHT gives ROLL LEFT. Drone moved FORWARD gives PITCH BACK. (Stage 2: roll and pitch oppose the move.)</div>
+<script>
+const $=id=>document.getElementById(id);
+const Z=150; // roll/pitch/yaw bars: 1500 +/- 150
+function bar(el,v,center){
+ if(v==null){el.style.width='0';return;}
+ if(center){const d=Math.max(-1,Math.min(1,(v-1500)/Z));
+  el.style.left=(d<0?50+50*d:50)+'%';el.style.width=(50*Math.abs(d))+'%';}
+ else{const p=Math.max(0,Math.min(1,(v-1000)/1000));el.style.left='0';el.style.width=(100*p)+'%';}}
+function dir(k,v){
+ if(v==null)return '-';const d=Math.round(v-1500),a=Math.abs(d);
+ if(k==3)return 'THRUST '+Math.round((v-1000)/10)+' %';
+ if(a<=3)return 'CENTER';
+ if(k==0)return d<0?'◀ LEFT '+a:'RIGHT ▶ '+a;
+ if(k==1)return d<0?'▼ BACK (nose up) '+a:'▲ FORWARD (nose down) '+a;
+ return d<0?'◀ YAW LEFT '+a:'YAW RIGHT ▶ '+a;}
+const n=v=>v==null?'-':Math.round(v);
+async function tick(){
+ try{const ac=new AbortController();const to=setTimeout(()=>ac.abort(),1000);
+  const s=await (await fetch('/state',{cache:'no-store',signal:ac.signal})).json();clearTimeout(to);
+  if(s.error)throw new Error(s.error);
+  $('err').textContent='';
+  $('eng').textContent=s.engaged?'SWITCH ON':'SWITCH OFF';$('eng').className='b'+(s.engaged?' ok':'');
+  $('rdy').textContent=s.ready?'READY':'NOT READY';$('rdy').className='b'+(s.ready?' ok':'');
+  const fc=[s.fc_roll,s.fc_pitch,s.fc_yaw,s.fc_thr], we=[s.rc_roll,s.rc_pitch,s.rc_yaw,s.rc_thr];
+  for(let k=0;k<4;k++){$('v'+k).textContent=n(fc[k]);$('d'+k).textContent=dir(k,fc[k]);bar($('f'+k),fc[k],k<3);$('s'+k).textContent='we send '+n(we[k]);}
+  const r=s.right,f=s.fwd;
+  if(r==null||f==null){$('moved').textContent='Drone moved: unknown (no position now)';}
+  else $('moved').textContent=`Drone moved: ${Math.abs(r).toFixed(2)} m ${r>=0?'RIGHT':'LEFT'}, ${Math.abs(f).toFixed(2)} m ${f>=0?'FORWARD':'BACK'}`;
+  const c=$('check');
+  if(!s.engaged){c.textContent='Switch OFF: the FC uses your radio';c.className='';}
+  else if(!s.ready){c.textContent='NOT READY: roll, pitch and yaw must be 1500';
+   c.className=(fc[0]==1500&&fc[1]==1500&&fc[2]==1500)?'good':'bad';}
+  else if(r==null||Math.max(Math.abs(r),Math.abs(f))<0.2){c.textContent='Move the drone 0.5 m to see the correction';c.className='';}
+  else{const useR=Math.abs(r)>=Math.abs(f);const mv=useR?r:f;const cmd=(useR?fc[0]:fc[1])-1500;
+   const ok=cmd*mv<0;
+   c.textContent=(useR?'ROLL':'PITCH')+(ok?': OPPOSITE to the move. GOOD':': SAME direction as the move. WRONG');
+   c.className=ok?'good':'bad';}
+ }catch(x){$('err').textContent='NO CONNECTION to the drone ('+x.message+')';
+  $('eng').textContent='SWITCH ?';$('eng').className='b';$('rdy').textContent='?';$('rdy').className='b';}
+ setTimeout(tick,200);}
+tick();
+</script>

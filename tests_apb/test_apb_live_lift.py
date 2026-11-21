@@ -21,7 +21,7 @@ import apb_live              # noqa: E402
 import apb_sensors as A      # noqa: E402
 import settings as S         # noqa: E402
 
-PORT, FPS = 18089, 15.0
+PORT, FPS = int(os.environ.get("TEST_PORT", "18089")), 15.0   # TEST_PORT: two runs at once (two sessions)
 FAILS = []
 
 
@@ -226,6 +226,89 @@ end_d = [d for t, d in dists if t > (len(frames) - still1 + 5) / FPS]
 check(calls[0] > 40 and not reset and len(end_d) > 2 and 0.9 < end_d[-1] < 1.05,
       f"one floor-track error mid-walk: no restart at 0 ({not reset}), end distance "
       f"{round(end_d[-1], 3) if end_d else None} (want 0.9-1.05; the move during the gap is lost)")
+
+# floor mode, Hold skipped: a walk with motion blur (detail under COVER_FINE, as on the board) stays READY and reads the
+# move; then a 3 s hand cover (bright, blurred: passes judge) is NOT READY within 1 s and to its end (E1), READY after.
+import cv2   # noqa: E402,F811
+
+
+def mblur(im, n=60):
+    k = np.full((1, n), 1.0 / n, np.float32)
+    return cv2.filter2D(im, -1, k)
+
+
+rng_c = np.random.default_rng(9)
+hand = lambda: np.clip(cv2.GaussianBlur(T.render(1.0, x=1.0)[0].astype(np.float32), (0, 0), 25) * 0.15 + 170
+                       + rng_c.normal(0, 2.0, T.SHAPE), 0, 255).astype(np.uint8)   # noqa: E731
+n_cov = int(3.0 * FPS)
+far_a, far_b = T.render(1.0, x=-2.0, y=1.5)[0], T.render(1.0, x=2.2, y=-1.8)[0]
+far_k = [0]
+
+
+def far():
+    # sharp pictures of two other places in turn: no fit on any frame (a still far picture would track again)
+    far_k[0] += 1
+    return far_a if far_k[0] % 2 else far_b
+
+n_short, n_long = 6, 15                          # 0.4 s (inside GAP_GRACE_S 0.5) and 1.0 s (longer)
+hold_s = lambda s: [T.render(1.0, x=1.0)[0] for _ in range(int(s * FPS))]   # noqa: E731
+frames = [T.render(1.0)[0] for _ in range(still0)] + [mblur(img) for img, _ in walk_frames] + hold_s(1.0) + \
+         [far() for _ in range(n_short)] + hold_s(1.0) + [far() for _ in range(n_long)] + hold_s(1.0) + \
+         [hand() for _ in range(n_cov)] + hold_s(1.5)
+t_walk0, t_walk1 = still0 / FPS, (still0 + len(walk_frames)) / FPS
+t_sh0 = t_walk1 + 1.0
+t_sh1 = t_sh0 + n_short / FPS
+t_lg0 = t_sh1 + 1.0
+t_lg1 = t_lg0 + n_long / FPS
+t_cov0 = t_lg1 + 1.0
+t_cov1 = t_cov0 + n_cov / FPS
+T0 = time.monotonic()
+states.clear()
+th = threading.Thread(target=poll, daemon=True)
+th.start()
+with tempfile.TemporaryDirectory() as d:
+    apb_live.run(S.load(), port=PORT, fps=FPS, seconds=len(frames) / FPS + 0.5, log_dir=d, say=lambda *a: None,
+                 fixed_height=1.0, pos_src="floor")
+th.join(timeout=3)
+walk_st = [st for t, st in states if t_walk0 + 0.4 < t < t_walk1]
+det_low = sum("lens covered or blurred" in (st.get("why") or "") or (st.get("ready") and True) for st in walk_st)
+rdy_w = [bool(st.get("ready")) for st in walk_st]
+before_cov = [st.get("dist") for t, st in states if t_walk1 + 0.3 < t < t_cov0 and st.get("dist") is not None]
+check(len(rdy_w) > 5 and sum(rdy_w) / len(rdy_w) > 0.9 and before_cov and abs(before_cov[-1] - 1.0) < 0.08,
+      f"floor mode, blurred walk (detail under {apb_live.COVER_FINE}): READY {sum(rdy_w)} of {len(rdy_w)}, "
+      f"distance {round(before_cov[-1], 3) if before_cov else None} (want 1.00 +- 0.08)")
+sh = [st for t, st in states if t_sh0 + 0.12 < t < t_sh1]
+check(len(sh) >= 2 and all(st.get("ready") for st in sh) and any(st.get("floor_grace") for st in sh)
+      and all(abs((st.get("dist") or 0) - before_cov[-1]) < 0.05 for st in sh),
+      f"short gap 0.4 s with a sharp picture: READY kept with the last value ({sum(bool(st.get('ready')) for st in sh)} of {len(sh)}),"
+      f" why: {sh[-1].get('why') if sh else None}")
+lg = [st for t, st in states if t_lg0 + 0.75 < t < t_lg1]
+check(len(lg) >= 2 and not any(st.get("ready") for st in lg),
+      f"long gap 1.0 s: NOT READY after the 0.5 s grace ({len(lg)} samples), why: {lg[-1].get('why') if lg else None}")
+cov_st = [(t, st) for t, st in states if t_cov0 + 0.25 < t < t_cov1]
+check(len(cov_st) > 5 and not any(st.get("ready") for _, st in cov_st) and all(st.get("floor_ok") is False for _, st in cov_st)
+      and not any(st.get("floor_grace") for _, st in cov_st),
+      f"floor mode, 3 s hand cover: NOT READY from 0.25 s after its start to its end, no grace ({len(cov_st)} samples), "
+      f"why: {cov_st[-1][1].get('why') if cov_st else None}")
+after = [bool(st.get("ready")) for t, st in states if t_cov1 + 0.5 < t < t_cov1 + 1.4]   # frames end at +1.5 s
+check(len(after) > 2 and all(after), f"floor mode: READY again after the cover ({sum(after)} of {len(after)})")
+check(all(st.get("state") is None for _, st in states) and "Hold off" in (states[-1][1].get("pos_info") or ""),
+      f"floor mode: Hold skipped (no Hold state), info says: {(states[-1][1].get('pos_info') or '')[:60]}")
+
+# zero with the lens low (0.3 m), then a lift to 1.0 m: h_now / h_zero 3.3 is outside LIFT_RATIO_OK -> NOT READY at once
+lowlift = [T.render(0.3 + 0.7 * (0.5 - 0.5 * math.cos(math.pi * k / 15)))[0] for k in range(1, 16)]
+frames = [T.render(0.3)[0] for _ in range(still0)] + lowlift + [T.render(1.0)[0] for _ in range(int(2.0 * FPS))]
+T0 = time.monotonic()
+states.clear()
+th = threading.Thread(target=poll, daemon=True)
+th.start()
+with tempfile.TemporaryDirectory() as d:
+    apb_live.run(S.load(), port=PORT, fps=FPS, seconds=len(frames) / FPS + 0.3, log_dir=d, say=lambda *a: None,
+                 fixed_height=1.0, pos_src="floor")
+th.join(timeout=3)
+hi = [st for t, st in states if (still0 + 15) / FPS + 0.3 < t < len(frames) / FPS]
+check(len(hi) > 5 and not any(st.get("ready") for st in hi) and "push Zero here" in (hi[-1].get("why") or ""),
+      f"zero at 0.3 m, lift to 1.0 m: NOT READY ({len(hi)} samples), why: {hi[-1].get('why') if hi else None}")
 
 # camera watchdog (E2): the pictures stop -> run() ends with an error after CAM_STALL_S (1 s here), so the boot unit
 # restarts the program. The page says why before the stop.
