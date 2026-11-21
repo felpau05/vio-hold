@@ -77,6 +77,12 @@ def main():
     src = capture.CallableSource(cam, s)
     fc = apb_main.open_fc(s)
     print(f"connected: {fc.firmware}, ATTITUDE {fc.rate('ATTITUDE', 1.0):.0f} Hz, clock fitted {fc.clock.ready()}")
+    try:
+        apb_main.run_live(s, src, fc, seconds=1.0, log_path=os.path.join(d, "refused.csv"))
+        check(False, "run started with EKF2_GPS_CTRL 7 (the EKF fuses GPS)")
+    except RuntimeError as e:
+        check("GNSS rule: EKF2_GPS_CTRL 7" in str(e), f"run refuses EKF2_GPS_CTRL 7: {e}")
+    check(fc.set_param("EKF2_GPS_CTRL", 0) == 0, "EKF2_GPS_CTRL set to 0, as 'check --set-params' does")
     stop = threading.Event()
     out = {}
 

@@ -1,0 +1,64 @@
+Fog: at which visibility and height does the hold stop, and does it send wrong fixes first?
+
+Fog model (Koschmieder): each pixel = ground * t + A * (1 - t), t = exp(-3.912 * d / V).
+d = slant distance from the camera to the ground point of the pixel (m). V = meteorological
+visibility (m): under 1000 m is fog, under 200 m is dense fog. A = airlight grey level.
+The fog goes in before the camera blur and noise, as in a real camera. The camera noise does not
+change with fog. ASSUMED: no auto gain that stretches the contrast again (the Justice D has no
+exposure control that we can set; its own auto gain is unknown).
+
+Hover (sim_test.hover) at the event levels 10, 20, 35, 50, 75 m. Sites: ottawa2019fall (event site,
+fall leaves), prairie (low texture). Camera = the sim's analog Justice model, not the Justice D.
+Columns: share of frames sent, RMS and worst error of sent fixes, false-fix (2 err^2/var > 9.21),
+'no ground' refusals.
+
+airlight 230, 10 s per run, 2 seeds; values = mean over seeds
+
+site ottawa2019fall, camera noise 7.4 grey
+  h(m)  vis(m)  contrast  img std  sent %   RMS(m)  worst(m)  false-fix %  confident-wrong
+    10   clear     100 %     27.3     100     0.07      0.13          0.0                0
+    10    1000      96 %     26.0      99     0.05      0.15          0.0                0
+    10     500      92 %     24.7      99     0.07      0.15          0.0                0
+    10     300      88 %     23.2      99     0.07      0.17          0.0                0
+    10     200      82 %     21.5     100     0.10      0.26          0.0                0
+    10     150      77 %     20.0      97     0.09      0.28          0.0                0
+    10     100      68 %     17.4      94     0.11      0.29          0.0                0
+    10      75      59 %     15.4      95     0.06      0.20          0.0                0
+    10      50      46 %     12.4      96     0.06      0.18          0.0                0
+    20   clear     100 %     32.2     100     0.07      0.19          0.0                0
+    20    1000      92 %     28.8     100     0.07      0.20          0.0                0
+    20     500      86 %     25.9     100     0.07      0.18          0.0                0
+    20     300      77 %     22.6     100     0.07      0.18          0.0                0
+    20     200      68 %     19.3     100     0.08      0.22          0.0                0
+    20     150      59 %     16.7     100     0.09      0.24          0.0                0
+    20     100      46 %     13.1     100     0.09      0.22          0.0                0
+    20      75      35 %     10.8     100     0.07      0.17          0.0                0
+    20      50      21 %      8.6     100     0.07      0.15          0.0                0
+    35   clear     100 %     37.0     100     0.11      0.26          0.0                0
+    35    1000      87 %     30.3     100     0.11      0.26          0.0                0
+    35     500      76 %     25.2     100     0.12      0.32          0.0                0
+    35     300      63 %     20.1     100     0.12      0.31          0.0                0
+    35     200      50 %     15.7     100     0.13      0.31          0.0                0
+    35     150      40 %     12.8     100     0.14      0.32          0.0                0
+    35     100      25 %      9.6     100     0.11      0.25          0.0                0
+    35      75      16 %      8.3     100     0.12      0.26          0.0                0
+    35      50       6 %      7.5      99     0.22      0.73          0.3                0
+    50   clear     100 %     39.2     100     0.15      0.37          0.0                0
+    50    1000      82 %     29.8     100     0.16      0.39          0.0                0
+    50     500      68 %     23.2     100     0.17      0.38          0.0                0
+    50     300      52 %     17.3     100     0.16      0.41          0.0                0
+    50     200      38 %     12.8     100     0.16      0.38          0.0                0
+    50     150      27 %     10.3     100     0.15      0.36          0.0                0
+    50     100      14 %      8.2     100     0.15      0.38          0.0                0
+    50      75       7 %      7.6     100     0.19      0.53          0.0                0
+    50      50       2 %      7.4       0      nan       nan          nan                0
+    75   clear     100 %     39.6      99     0.23      0.54          0.0                0
+    75    1000      75 %     27.2     100     0.23      0.52          0.0                0
+    75     500      56 %     19.6     100     0.23      0.51          0.0                0
+    75     300      38 %     13.6     100     0.22      0.55          0.0                0
+    75     200      23 %      9.9     100     0.23      0.53          0.0                0
+    75     150      14 %      8.4     100     0.24      0.56          0.0                0
+    75     100       5 %      7.5     100     0.43      1.44          0.2                1
+    75      75       2 %      7.4       0      nan       nan          nan                0
+    75      50       0 %      7.4       0      nan       nan          nan                0
+

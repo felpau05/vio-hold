@@ -1,0 +1,29 @@
+FOG (21 Nov 2026: thick white fog in Ottawa)
+
+Question: at which visibility and height does the hold stop, and does it send wrong fixes before it stops?
+Script: integ/fog/fog.py. Results: fog_noise3.7.txt (both sites), fog_noise7.4.txt (Ottawa, double noise).
+Model: pixel = ground x t + 230 x (1 - t), t = exp(-3.912 x slant distance / visibility).
+10 s hover per run, 2 seeds (the confident-wrong column is the total of both), event levels 10, 20, 35, 50, 75 m.
+
+RESULTS
+1. Ottawa 2019 fall photo (event site: paths, roads, buildings):
+   - The hold sent 92-100 % of frames with RMS 0.07-0.27 m down to 5 % ground contrast.
+   - It stopped at 50 m with visibility 50 m, and at 75 m with visibility 75 m. It sent 1-2 wrong fixes there.
+   - Double camera noise (7.4 grey) did not change the limit.
+2. Prairie photo (low texture, like a lawn):
+   - At 35-75 m, the hold sent confident wrong fixes (error over 1 m, outside the 99 % bound) when visibility
+     was 150 m or less at 35-50 m, and 200 m or less at 75 m. Up to 41 in the two 10 s runs together.
+     Worst error up to 3.5 m.
+   - At 20 m, it sent 5-13 confident wrong fixes (two runs together) at each visibility of 150 m and less.
+   - At 10 m, lawn is weak even in clear air (83 % sent). Fog takes it down to 22 % sent at visibility 50 m.
+3. The limits on DECISION_CARD entry 16 come from these tables, with about 2 x margin over paths.
+
+NOT MODELLED (the sim is optimistic for each of these)
+- Water drops on the lens, the auto gain of the Justice D, sensor pattern noise.
+- The Justice D camera itself. The sim uses the analog Justice camera model.
+- The real ground at the site in November. The site photo is from 2019 fall.
+- Fog that changes in thickness during the hold.
+
+NOT CHANGED
+The estimator code. The E1 match-quality gate (hold.py NCC_MIN, NCC_FRAME) is the part that stops the hold.
+It did not stop all wrong fixes on lawn in fog. A change to it needs a full regression run first.
