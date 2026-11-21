@@ -46,7 +46,7 @@
  ],
  "twist_deg": 0.0,
  "lens_file": "justice_lens_profiles.json",
- "lens_name": "Justice D nominal (spec FOV, uncalibrated)",
+ "lens_name": "Justice D 1080p board 2026-11-21",
  "focal_scale": 1.0,
  "readout_s": 0.014,
  "video_delay_s": 0.05,

@@ -33,9 +33,11 @@ A walk can also just be **recorded** now and replayed later, so calibration can 
 
 ## 2. Distances right (before any judged session)
 
-- [ ] **[you] Lens calibration recording:** checkerboard (10x7 squares) on a screen or paper, 40 s of views across
+- [x] **[you] Lens calibration recording:** checkerboard (10x7 squares) on a screen or paper, 40 s of views across
       the whole picture with `apb_rec.py`, then `~/.venvs/vio4/bin/python tools/lens_calib.py "rec/board_*.npz" --step 5 --name ...`.
       Tool checked on synthetic views of a known lens (focal within 0.4 %). Ceiling rotation stays for the IMU axes and timing.
+      Done: fx 413.2 / fy 413.8 at 960x540, 0.167 px on held-out views (HARDWARE_BRINGUP.md row 7). Optional: a short
+      extra round with the board at the far left and top-left of the picture.
 - [ ] **[code] `calib` on apb_rec recordings:** focal length, lens centre, camera-to-IMU rotation (`imu_R_sb`),
       camera delay, rolling-shutter readout. Today's lens profile is a spec-sheet guess and the visible fisheye
       circle says it is far off (about 300 px focal, not 482, at 960 px width).

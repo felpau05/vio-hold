@@ -175,9 +175,33 @@
       "p2": 0.0,
       "name": "Justice D nominal (spec FOV, uncalibrated)",
       "projection": "equidistant_fisheye",
-      "image_size": [1280, 720],
+      "image_size": [
+        1280,
+        720
+      ],
       "radial_turnover_deg_through_80": null,
       "note": "Stage 1 spec Q3: 1280x720, 114 x 86 x 121.5 deg. f = 640 px / 57 deg (horizontal FOV). Vertical and diagonal FOV imply f of 480 and 693 px, so the lens is not equidistant: calibrate."
+    },
+    {
+      "name": "Justice D 1080p board 2026-11-21",
+      "projection": "equidistant_fisheye",
+      "image_size": [
+        960,
+        540
+      ],
+      "fx": 413.1973117501351,
+      "fy": 413.787621619572,
+      "cx": 468.61221659126636,
+      "cy": 270.615848633573,
+      "b2": 0.0,
+      "p1": 0.0,
+      "p2": 0.0,
+      "k1": -0.0769418464723048,
+      "k2": 0.02568051975973447,
+      "k3": -0.012027516387587475,
+      "k4": 0.0018588164851158172,
+      "radial_turnover_deg_through_80": null,
+      "note": "tools/lens_calib.py 2026-11-21 11:38: 81 fit views, RMS 0.125 px, 20 held-out views 0.167 px, corners to 72 deg; event aircraft, /dev/video2 1920x1080 halved to 960x540; board 10x7 inner corners A4 25 mm; coverage gap at the far left and top-left (radial model extrapolates there)"
     }
   ],
   "source_xml_sha256": "59b3baab7f577b60e400858974ecc7fac19cfcdfb23bc62b56402da671b2cf44"
