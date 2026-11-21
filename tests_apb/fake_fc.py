@@ -33,7 +33,9 @@ PX4_PARAMS = {"EKF2_EV_CTRL": (15, 6), "EKF2_GPS_CTRL": (7, 6), "EKF2_HGT_REF": 
               "EKF2_RNG_CTRL": (1, 6), "EKF2_EV_NOISE_MD": (0, 6), "EKF2_EV_DELAY": (0.0, 9), "COM_ARM_WO_GPS": (1, 6),
               "EKF2_DELAY_MAX": (110.0, 9)}   # assumed: PX4's default fusion horizon (ms, float); not checked here
 AP_PARAMS = {"VISO_TYPE": (0, 2), "EK3_SRC1_POSXY": (3, 2), "EK3_SRC1_VELXY": (3, 2), "EK3_SRC1_POSZ": (1, 2),
-             "EK3_SRC1_VELZ": (3, 2), "EK3_SRC1_YAW": (1, 2), "GPS_TYPE": (1, 2), "VISO_DELAY_MS": (10, 4)}
+             "EK3_SRC1_VELZ": (3, 2), "EK3_SRC1_YAW": (1, 2), "GPS_TYPE": (1, 2), "VISO_DELAY_MS": (10, 4),
+             "AHRS_GPS_USE": (1, 2), "EK3_GSF_RUN_MASK": (3, 2), "EK3_GSF_USE_MASK": (3, 2), "LOG_BITMASK": (176126, 6)}
+AP_PARAMS.update({f"EK3_SRC{n}_{k}": (0, 2) for n in (2, 3) for k in ("POSXY", "VELXY", "POSZ", "VELZ", "YAW")})
 
 
 def scenario(name):

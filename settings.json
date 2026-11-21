@@ -30,7 +30,10 @@
   "EK3_SRC1_POSZ": 1,
   "EK3_SRC1_VELZ": 0,
   "EK3_SRC1_YAW": 1,
-  "GPS1_TYPE": 0,
+  "GPS1_TYPE": 1,
+  "AHRS_GPS_USE": 0,
+  "EK3_GSF_RUN_MASK": 0,
+  "EK3_GSF_USE_MASK": 0,
   "VISO_DELAY_MS": 140
  },
  "video_device": "/dev/video2",

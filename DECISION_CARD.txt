@@ -33,7 +33,7 @@ from the analog Justice A and may not apply; row 14 (indoors) is for the bench o
           ArduPilot: set VISO_DELAY_MS in params_ardupilot to the fix age (0 to 250).
 8  SEE    The autopilot refuses Position mode (Loiter).
    CAUSE  No fixes yet, or a parameter or the origin is missing (H2, EVENT_DAY step 7).
-   DO     Run python3 apb_main.py check. Every param line must show PASS. Fix FAIL with check --set-params.
+   DO     Run python3 apb_main.py check. Every param and GNSS rule line must show PASS. Fix FAIL with check --set-params.
           ArduPilot: set origin_lat_lon_alt in settings.json (the field's lat, lon, alt). PX4: wait 60 s after run.
           Climb above min_height_m first (indoor profile: 2 m, outdoor: 15 m). The program sends nothing lower.
 9  SEE    Steady drift in one direction.
@@ -63,3 +63,17 @@ from the analog Justice A and may not apply; row 14 (indoors) is for the bench o
 15 SEE    The trial is after dark, and the calibration was made in daylight.
    CAUSE  The exposure is longer at night. It moves the video delay (H11, +8 ms in the sim).
    DO     Run calib in the night light (EVENT_DAY step 4). Apply outdoor_night. Do the bench test (step 6).
+16 SEE    Fog. The camera sees less ground contrast at each higher level.
+   CAUSE  Fog contrast falls as exp(-3.912 x height / visibility). Sim results: integ/fog/SUMMARY.txt.
+          Over lawn (low texture), in thicker fog the sim hold sent confident wrong fixes before it stopped.
+   DO     Ask the flight lead for the visibility (V). Fly a level only if V is at or above the limit:
+            level            10 m    20 m    35 m    50 m    75 m
+            over lawn       200 m   200 m   200 m   200 m   300 m
+            over paths       50 m    50 m    75 m   100 m   150 m
+          Ask the pilot to engage over a path or an edge, not over open lawn.
+          If the "why" column of the run log shows "no ground", the fog is too thick for that level. Do not climb.
+17 SEE    Drops of water or mist on the Justice D lens. The picture is soft, or it has bright spots.
+   CAUSE  Fog puts water on the lens. A cold aircraft that goes into a warm room collects water on the lens.
+   DO     Before each flight, examine the lens. Clean it with a dry lens cloth.
+          After a flight in cold fog, put the aircraft in a closed bag before you go into the room.
+          Keep it in the bag until it is at room temperature. Then do the bench session.
