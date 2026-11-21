@@ -241,9 +241,17 @@ def load_rec(paths):
     return (paths, *out)
 
 
+# Hold settings for the digital Justice D on the APB. The analog-video checks fired on a hand-carried walk over a plain
+# floor (walk_h2, 2026-11-21): the frozen-picture motion proof ("waiting for image motion that proves the picture is
+# live") on 40 % of frames, because hand-held pauses jiggle the gyro more than LIVE_STILL_PX while the picture barely
+# moves; the breakup detector (impulse noise / band brightness, made for analog dropouts) on 5 %. The digital camera
+# proves it is live by itself (new driver buffers, sequence numbers, sensor noise; repeated frames are still refused).
+DIGITAL_HOLD = {"move_px": 0.0, "break_z": 1e9}
+
+
 def bench_settings(s):
-    """The low-height profile for hand-carried tests at about 1 m (Stage 2 bench)."""
-    return dict(s, min_height_m=0.2, hold_cfg=dict(s.get("hold_cfg", {}), h_min=0.1),
+    """The low-height profile for hand-carried tests at about 1 m (Stage 2 bench), digital camera."""
+    return dict(s, min_height_m=0.2, hold_cfg=dict(s.get("hold_cfg", {}), h_min=0.1, **DIGITAL_HOLD),
                 video_delay_s=apb(s, "video_delay_s_eof"))
 
 
