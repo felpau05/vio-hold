@@ -1,0 +1,18 @@
+<section id="approach" class="alt">
+<p class="eyebrow">SENSOR FUSION</p>
+<h2>Camera, gyro and height become stick commands</h2>
+<div class="pipe">
+<div class="card theirs in" style="--i:0"><h3>Justice D camera</h3><p class="who">Orqa hardware</p></div>
+<x-shape kind="arrow-right" style="width:44px;height:24px;background:#4A5260"></x-shape>
+<div class="card ours in" style="--i:1"><h3>Capture and IMU timing</h3><p class="ourtag">ours</p></div>
+<x-shape kind="arrow-right" style="width:44px;height:24px;background:#4A5260"></x-shape>
+<div class="card ours in" style="--i:2"><h3>Floor tracking estimator</h3><p class="ourtag">ours, on OpenCV</p></div>
+<x-shape kind="arrow-right" style="width:44px;height:24px;background:#4A5260"></x-shape>
+<div class="card ours in" style="--i:3"><h3>MSP stick commands</h3><p class="ourtag">ours</p></div>
+<x-shape kind="arrow-right" style="width:44px;height:24px;background:#4A5260"></x-shape>
+<div class="card theirs in" style="--i:4"><h3>Betaflight ANGLE mode</h3><p class="who">flight controller</p></div>
+</div>
+<p class="keyline"><b>How it works:</b> track floor points, give each picture row its own gyro attitude, scale by height, solve the move in metres, then turn the position error into roll and pitch commands while the pilot’s switch is on.<br><b>Not ours:</b> OpenCV, numpy, Betaflight, Orqa’s Linux image. <b>Ours:</b> everything in blue.</p>
+<p class="source">Height: accelerometer during the lift plus picture scale [in progress]; the barometer was too noisy indoors</p>
+<aside>Walk the pipeline left to right. Stress the ownership split: the blue boxes are our code. The judges score contribution separately from existing tools. Mention that the position is turned into stick commands over MSP because Betaflight has no vision input in this version.</aside>
+</section>

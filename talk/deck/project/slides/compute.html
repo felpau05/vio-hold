@@ -1,0 +1,14 @@
+<section id="compute">
+<p class="eyebrow">APB COMPUTE</p>
+<h2>Where the time goes on four ARM cores</h2>
+<div class="row">
+<div class="col-text">
+<div class="in" style="--i:0"><p class="big">12 ms</p><p class="biglabel">to copy one frame: the camera buffers are uncached, so capture runs in its own thread</p></div>
+<div class="in" style="--i:1"><p class="big">27 → 13 ms</p><p class="biglabel">picture checks and sensors per frame after optimizing</p></div>
+<p class="point"><b>Attitude filter 30× faster</b> with plain quaternion maths. <b>13–16 fixes per second</b> today [to raise].</p>
+</div>
+<img class="fig in" style="--i:2" src="/_blob/af39b11d60e81ef26148b5923e00ebd3" alt="Bar chart of milliseconds per frame on the APB">
+</div>
+<p class="source">Measured on the APB (i.MX8M Plus, 4 × Cortex-A53): numpy 1.26, OpenCV 4.11 in /data</p>
+<aside>Use of APB compute is one of the four required topics. Say what we found, not just the totals: the uncached camera memory made a plain copy cost 12 ms, so the capture got its own thread and we keep 30 frames per second. The estimator itself is the next target: [update after optimizing].</aside>
+</section>

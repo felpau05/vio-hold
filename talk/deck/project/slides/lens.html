@@ -1,0 +1,14 @@
+<section id="lens" class="alt">
+<p class="eyebrow">CALIBRATION</p>
+<h2>The datasheet lens would have made every distance wrong</h2>
+<div class="row">
+<div class="col-text">
+<div class="in" style="--i:0"><p class="big">17 %</p><p class="biglabel">datasheet focal length too high for the 1080p mode: distances 14 % short</p></div>
+<div class="in" style="--i:1"><p class="big">0.17 px</p><p class="biglabel">checkerboard fit error on views the fit never saw</p></div>
+<p class="point"><b>Two boards disagreed by 7 %.</b> A rotation under the ceiling, checked against the gyro and needing no target, sided with the flat screen.</p>
+</div>
+<img class="fig in" style="--i:2" src="/_blob/b4d0f8e79fca840ddb11dfa6160921d8" alt="Pixels per degree against angle: datasheet, flat-screen board, paper board and the gyro point">
+</div>
+<p class="source">Equidistant fisheye fit (OpenCV) on 101 views; gyro method ours, from the ceiling rotation</p>
+<aside>Decisions with evidence. The datasheet line is flat at the top: it would have read every distance 14 percent short, which fails B1. Then the honest bit: our two checkerboard rounds disagreed by 7 percent. We did not pick the one we liked; we added a third method that needs no target at all, pure rotation against the gyro, and it sided with the flat board. The remaining 3 to 5 percent gap gets settled by the taped walk distances.</aside>
+</section>

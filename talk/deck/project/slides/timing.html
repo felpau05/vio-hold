@@ -1,0 +1,15 @@
+<section id="timing">
+<p class="eyebrow">TIMING AND ROLLING SHUTTER</p>
+<h2>Every clock measured, not assumed</h2>
+<div class="row">
+<div class="col-text">
+<div class="in" style="--i:0"><p class="big">−12 ms</p><p class="biglabel">gyro against camera clock, from a hand rotation (fit error 0.21 px)</p></div>
+<div class="in" style="--i:1"><p class="big">16.666 ms</p><p class="biglabel">between frames, 2 µs spread; stamped at the end of each frame</p></div>
+<p class="point"><b>Rolling shutter:</b> each picture row gets its own attitude from the 200 Hz gyro.</p>
+<p class="point"><b>Bug found:</b> the IMU driver’s stamps were 15 s off unless both streams started in one order.</p>
+</div>
+<img class="fig in" style="--i:2" src="/_blob/d14b1a9ed7a676b3e8fcc3e77ca61199" alt="Fit error against gyro time shift: lowest at minus 12 milliseconds">
+</div>
+<p class="source">Measured on the event aircraft: driver stamps (CLOCK_MONOTONIC), ICM-42605 at 200 Hz; readout time [to measure]</p>
+<aside>This slide targets the timing and rolling-shutter bonus. Say how each number was measured: the curve is the fit error of the image motion predicted by the gyro, against a time shift; it has one clear minimum at minus 12 ms. Frame stamps are 16.666 ms apart with 2 microseconds spread. Then the IMU stamp bug: a real finding that would have broken every row’s attitude. [Add the rolling-shutter readout time once measured.]</aside>
+</section>
