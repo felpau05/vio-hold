@@ -1,0 +1,37 @@
+only old: ['<stmt Assign 28>', '<stmt If 59>']
+only new: ['import re', '<stmt Assign 29>', '<stmt If 60>']
+changed: ['<stmt Expr 0>', 'mode_check', 'mode_timing', 'main']
+same: 54
+  mode_run: same
+  run_live: same
+  Pipe: same
+  Engage: same
+  Raw: same
+  Log: same
+  catch_up: same
+  GyroAtt: same
+  ImuAtt: same
+  att_filter: same
+  live_gate: same
+  start_problems: same
+  make_hold: same
+  lens: same
+  load_mask: same
+  Speed: same
+  WindAssist: same
+  OutageTest: same
+  RateGate: same
+  stamp: same
+  delay_advice: same
+  fc_mode: same
+  _join: same
+  open_video: same
+  open_fc: same
+  NO_FRAME_S: same
+  AP_MODES: same
+  AP_HOLD: same
+  PX4_MAIN: same
+index-named statements (shifted by the new import):
+  old 28 == new 29: True PX4_POSCTL, PX4_AUTO, PX4_AUTO_LOITER = (3, 4, 3)
+  old 59 == new 60: True if __name__ == '__main__':
+    sys.exit(main())

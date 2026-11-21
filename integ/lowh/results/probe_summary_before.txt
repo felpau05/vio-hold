@@ -1,0 +1,175 @@
+== before_farmland_crop  (hold hold.py, ground farmland, lens crop, vib 0.2, tilt 0,0, exact lens False, Hold.pos kf; seeds [11, 12, 13])
+  still hover (d = 0): halves gap px median / p90 / max, refused, keyframe corners (median)
+        5 m   0.83 /  1.69 /  2.16   refused 0/18   corners 129
+       10 m   0.71 /  1.97 /  2.77   refused 0/18   corners 130
+       20 m   1.29 /  2.11 /  2.37   refused 0/18   corners 120
+       40 m   0.95 /  1.92 /  2.30   refused 0/18   corners 118
+  drift d = share x h: gap px median over seeds [geometric prediction 1 m step / tangent], refused n/3, fix error along the drift (m, median)
+       5 m  d/h 0.05 (0.25 m): fwd     0.9 [ 0.9/ 0.3] ref 0 e -0.01 | back    1.2 [ 1.4/ 0.3] ref 0 e +0.00 | right   1.5 [ 0.2/ 0.0] ref 0 e -0.01 | left    0.5 [ 0.1/ 0.0] ref 0 e -0.02
+       5 m  d/h 0.10 (0.50 m): fwd     1.1 [ 1.2/ 1.3] ref 1 e -0.01 | back    3.8 [ 3.5/ 1.3] ref 0 e -0.01 | right   1.0 [ 0.5/ 0.1] ref 2 e -0.02 | left    0.1 [ 0.2/ 0.1] ref 1 e -0.03
+       5 m  d/h 0.20 (1.00 m): fwd     1.6 [ 0.8/ 5.0] ref 1 e -0.03 | back    4.6 [ 9.3/ 4.9] ref 2 e -0.02 | right   2.9 [ 1.1/ 0.5] ref 2 e -0.10 | left    0.8 [ 0.2/ 0.5] ref 1 e -0.02
+       5 m  d/h 0.30 (1.50 m): fwd     4.3 [ 4.4/10.9] ref 2 e -0.04 | back    nan [17.2/10.7] ref 3 e +nan | right   nan [ 2.1/ 1.1] ref 3 e +nan | left    1.3 [ 0.6/ 1.1] ref 2 e -0.05
+      10 m  d/h 0.05 (0.50 m): fwd     1.0 [ 0.3/ 0.3] ref 0 e -0.01 | back    1.3 [ 0.8/ 0.3] ref 0 e -0.00 | right   1.2 [ 0.2/ 0.0] ref 0 e -0.00 | left    1.8 [ 0.2/ 0.0] ref 0 e -0.01
+      10 m  d/h 0.10 (1.00 m): fwd     1.9 [ 0.3/ 1.3] ref 0 e -0.01 | back    4.1 [ 2.2/ 1.3] ref 2 e +0.00 | right   1.6 [ 0.4/ 0.1] ref 0 e -0.02 | left    2.3 [ 0.4/ 0.1] ref 0 e -0.01
+      10 m  d/h 0.20 (2.00 m): fwd     2.3 [ 3.0/ 5.0] ref 1 e -0.02 | back    7.4 [ 6.9/ 4.9] ref 3 e +nan | right   1.8 [ 0.8/ 0.5] ref 1 e -0.07 | left    2.9 [ 0.6/ 0.5] ref 1 e -0.02
+      10 m  d/h 0.30 (3.00 m): fwd     6.5 [ 8.0/10.9] ref 3 e +nan | back    9.7 [13.6/10.7] ref 3 e +nan | right   7.4 [ 1.4/ 1.1] ref 3 e +nan | left    nan [ 1.2/ 1.1] ref 3 e +nan
+      20 m  d/h 0.05 (1.00 m): fwd     1.1 [ 0.1/ 0.3] ref 0 e -0.03 | back    1.0 [ 0.6/ 0.3] ref 0 e -0.01 | right   1.6 [ 0.1/ 0.0] ref 0 e +0.01 | left    2.1 [ 0.1/ 0.0] ref 0 e -0.02
+      20 m  d/h 0.10 (2.00 m): fwd     3.1 [ 0.7/ 1.3] ref 0 e -0.04 | back    3.9 [ 1.8/ 1.3] ref 1 e -0.04 | right   2.8 [ 0.2/ 0.1] ref 0 e +0.02 | left    1.8 [ 0.3/ 0.1] ref 0 e -0.06
+      20 m  d/h 0.20 (4.00 m): fwd     4.8 [ 3.9/ 5.0] ref 2 e -0.05 | back    6.1 [ 6.0/ 4.9] ref 3 e +nan | right   0.9 [ 0.2/ 0.5] ref 2 e +0.01 | left    2.5 [ 0.7/ 0.5] ref 1 e -0.12
+      20 m  d/h 0.30 (6.00 m): fwd     nan [ 9.3/10.9] ref 3 e +nan | back    9.4 [12.3/10.7] ref 3 e +nan | right   4.7 [ 0.7/ 1.1] ref 3 e +nan | left    7.6 [ 1.5/ 1.1] ref 3 e +nan
+      40 m  d/h 0.05 (2.00 m): fwd     0.4 [ 0.3/ 0.3] ref 0 e -0.01 | back    0.6 [ 0.4/ 0.3] ref 0 e -0.05 | right   1.3 [ 0.1/ 0.0] ref 0 e +0.02 | left    1.9 [ 0.1/ 0.0] ref 0 e -0.02
+      40 m  d/h 0.10 (4.00 m): fwd     2.8 [ 1.1/ 1.3] ref 0 e -0.04 | back    2.7 [ 1.4/ 1.3] ref 0 e -0.08 | right   2.1 [ 0.1/ 0.1] ref 0 e +0.02 | left    1.2 [ 0.3/ 0.1] ref 0 e -0.07
+      40 m  d/h 0.20 (8.00 m): fwd     3.4 [ 4.7/ 5.0] ref 3 e +nan | back    5.9 [ 5.2/ 4.9] ref 3 e +nan | right   1.9 [ 0.1/ 0.5] ref 3 e +nan | left    2.1 [ 0.9/ 0.5] ref 3 e +nan
+      40 m  d/h 0.30 (12.00 m): fwd     9.9 [10.5/10.9] ref 3 e +nan | back    9.6 [11.1/10.7] ref 3 e +nan | right   5.0 [ 0.4/ 1.1] ref 3 e +nan | left    4.9 [ 1.8/ 1.1] ref 3 e +nan
+  refusals: {'whole picture: halves disagree': 37, 'whole picture: weak peak': 41, 'image motion does not match the attitude': 7}
+
+== before_lowh_fine_crop  (hold hold.py, ground lowh_fine, lens crop, vib 0.2, tilt 0,0, exact lens False, Hold.pos kf; seeds [11, 12, 13])
+  still hover (d = 0): halves gap px median / p90 / max, refused, keyframe corners (median)
+        5 m   1.14 /  2.03 /  2.04   refused 0/18   corners 136
+       10 m   1.01 /  1.97 /  2.06   refused 0/18   corners 139
+       20 m   1.03 /  2.05 /  2.16   refused 0/18   corners 135
+       40 m   1.13 /  2.05 /  2.10   refused 0/18   corners 136
+  drift d = share x h: gap px median over seeds [geometric prediction 1 m step / tangent], refused n/3, fix error along the drift (m, median)
+       5 m  d/h 0.05 (0.25 m): fwd     0.8 [ 0.9/ 0.3] ref 0 e -0.00 | back    1.7 [ 1.4/ 0.3] ref 0 e +0.00 | right   1.3 [ 0.2/ 0.0] ref 0 e -0.01 | left    1.4 [ 0.1/ 0.0] ref 0 e -0.00
+       5 m  d/h 0.10 (0.50 m): fwd     1.4 [ 1.2/ 1.3] ref 1 e -0.00 | back    5.7 [ 3.5/ 1.3] ref 2 e -0.00 | right   2.5 [ 0.5/ 0.1] ref 0 e -0.01 | left    1.2 [ 0.2/ 0.1] ref 0 e -0.01
+       5 m  d/h 0.20 (1.00 m): fwd     1.6 [ 0.8/ 5.0] ref 1 e -0.00 | back   10.2 [ 9.3/ 4.9] ref 2 e -0.01 | right   2.4 [ 1.1/ 0.5] ref 2 e -0.03 | left    0.4 [ 0.2/ 0.5] ref 0 e -0.01
+       5 m  d/h 0.30 (1.50 m): fwd     nan [ 4.4/10.9] ref 3 e +nan | back    9.1 [17.2/10.7] ref 3 e +nan | right   5.0 [ 2.1/ 1.1] ref 2 e -0.10 | left    2.8 [ 0.6/ 1.1] ref 0 e -0.03
+      10 m  d/h 0.05 (0.50 m): fwd     0.2 [ 0.3/ 0.3] ref 0 e -0.00 | back    1.2 [ 0.8/ 0.3] ref 0 e -0.00 | right   1.2 [ 0.2/ 0.0] ref 0 e -0.01 | left    1.7 [ 0.2/ 0.0] ref 0 e -0.01
+      10 m  d/h 0.10 (1.00 m): fwd     2.0 [ 0.3/ 1.3] ref 1 e -0.01 | back    4.8 [ 2.2/ 1.3] ref 2 e -0.01 | right   2.0 [ 0.4/ 0.1] ref 0 e -0.02 | left    1.5 [ 0.4/ 0.1] ref 0 e -0.02
+      10 m  d/h 0.20 (2.00 m): fwd     2.5 [ 3.0/ 5.0] ref 1 e -0.01 | back    8.8 [ 6.9/ 4.9] ref 3 e +nan | right   1.9 [ 0.8/ 0.5] ref 1 e -0.08 | left    1.3 [ 0.6/ 0.5] ref 3 e +nan
+      10 m  d/h 0.30 (3.00 m): fwd    10.7 [ 8.0/10.9] ref 3 e +nan | back    8.6 [13.6/10.7] ref 3 e +nan | right   5.1 [ 1.4/ 1.1] ref 3 e +nan | left    4.2 [ 1.2/ 1.1] ref 2 e -0.11
+      20 m  d/h 0.05 (1.00 m): fwd     0.2 [ 0.1/ 0.3] ref 0 e -0.01 | back    1.0 [ 0.6/ 0.3] ref 0 e -0.00 | right   1.1 [ 0.1/ 0.0] ref 0 e -0.02 | left    1.8 [ 0.1/ 0.0] ref 0 e -0.02
+      20 m  d/h 0.10 (2.00 m): fwd     2.7 [ 0.7/ 1.3] ref 0 e -0.01 | back    4.2 [ 1.8/ 1.3] ref 2 e -0.02 | right   1.7 [ 0.2/ 0.1] ref 0 e -0.04 | left    1.9 [ 0.3/ 0.1] ref 0 e -0.03
+      20 m  d/h 0.20 (4.00 m): fwd     3.4 [ 3.9/ 5.0] ref 1 e -0.01 | back    8.1 [ 6.0/ 4.9] ref 3 e +nan | right   0.8 [ 0.2/ 0.5] ref 1 e -0.08 | left    2.2 [ 0.7/ 0.5] ref 3 e +nan
+      20 m  d/h 0.30 (6.00 m): fwd    10.5 [ 9.3/10.9] ref 3 e +nan | back    9.5 [12.3/10.7] ref 3 e +nan | right   3.6 [ 0.7/ 1.1] ref 2 e -0.16 | left    5.1 [ 1.5/ 1.1] ref 3 e +nan
+      40 m  d/h 0.05 (2.00 m): fwd     0.4 [ 0.3/ 0.3] ref 0 e -0.02 | back    0.7 [ 0.4/ 0.3] ref 0 e -0.01 | right   1.0 [ 0.1/ 0.0] ref 0 e -0.04 | left    1.8 [ 0.1/ 0.0] ref 0 e -0.04
+      40 m  d/h 0.10 (4.00 m): fwd     3.0 [ 1.1/ 1.3] ref 0 e -0.03 | back    3.7 [ 1.4/ 1.3] ref 0 e -0.03 | right   1.8 [ 0.1/ 0.1] ref 0 e -0.07 | left    1.9 [ 0.3/ 0.1] ref 0 e -0.07
+      40 m  d/h 0.20 (8.00 m): fwd     4.1 [ 4.7/ 5.0] ref 3 e +nan | back    7.1 [ 5.2/ 4.9] ref 3 e +nan | right   0.7 [ 0.1/ 0.5] ref 3 e +nan | left    2.1 [ 0.9/ 0.5] ref 3 e +nan
+      40 m  d/h 0.30 (12.00 m): fwd    10.8 [10.5/10.9] ref 3 e +nan | back    9.3 [11.1/10.7] ref 3 e +nan | right   3.4 [ 0.4/ 1.1] ref 3 e +nan | left    4.7 [ 1.8/ 1.1] ref 3 e +nan
+  refusals: {'whole picture: halves disagree': 56, 'whole picture and points disagree': 13, 'whole picture: weak peak': 6, 'image motion does not match the attitude': 8}
+
+== before_lowh_fine_crop_vib0  (hold hold.py, ground lowh_fine, lens crop, vib 0.0, tilt 0,0, exact lens False, Hold.pos kf; seeds [11, 12, 13])
+  still hover (d = 0): halves gap px median / p90 / max, refused, keyframe corners (median)
+        5 m   0.01 /  0.01 /  0.02   refused 0/18   corners 138
+       10 m   0.01 /  0.01 /  0.01   refused 0/18   corners 137
+       20 m   0.00 /  0.01 /  0.01   refused 0/18   corners 135
+       40 m   0.01 /  0.01 /  0.01   refused 0/18   corners 138
+  drift d = share x h: gap px median over seeds [geometric prediction 1 m step / tangent], refused n/3, fix error along the drift (m, median)
+       5 m  d/h 0.05 (0.25 m): fwd     1.0 [ 0.9/ 0.3] ref 0 e -0.00 | back    1.5 [ 1.4/ 0.3] ref 0 e -0.00 | right   0.3 [ 0.2/ 0.0] ref 0 e -0.01 | left    0.1 [ 0.1/ 0.0] ref 0 e -0.00
+       5 m  d/h 0.10 (0.50 m): fwd     1.4 [ 1.2/ 1.3] ref 0 e -0.00 | back    3.7 [ 3.5/ 1.3] ref 0 e -0.00 | right   0.7 [ 0.5/ 0.1] ref 0 e -0.01 | left    0.2 [ 0.2/ 0.1] ref 0 e -0.01
+       5 m  d/h 0.20 (1.00 m): fwd     0.5 [ 0.8/ 5.0] ref 1 e -0.00 | back    8.7 [ 9.3/ 4.9] ref 2 e -0.00 | right   2.3 [ 1.1/ 0.5] ref 3 e +nan | left    0.3 [ 0.2/ 0.5] ref 0 e -0.02
+       5 m  d/h 0.30 (1.50 m): fwd     3.9 [ 4.4/10.9] ref 1 e -0.02 | back    9.0 [17.2/10.7] ref 3 e +nan | right   4.0 [ 2.1/ 1.1] ref 1 e -0.09 | left    0.9 [ 0.6/ 1.1] ref 0 e -0.03
+      10 m  d/h 0.05 (0.50 m): fwd     0.5 [ 0.3/ 0.3] ref 0 e -0.00 | back    1.1 [ 0.8/ 0.3] ref 0 e -0.00 | right   0.3 [ 0.2/ 0.0] ref 0 e -0.01 | left    0.2 [ 0.2/ 0.0] ref 0 e -0.01
+      10 m  d/h 0.10 (1.00 m): fwd     0.3 [ 0.3/ 1.3] ref 0 e -0.01 | back    2.7 [ 2.2/ 1.3] ref 0 e -0.01 | right   0.9 [ 0.4/ 0.1] ref 0 e -0.02 | left    0.5 [ 0.4/ 0.1] ref 0 e -0.02
+      10 m  d/h 0.20 (2.00 m): fwd     2.4 [ 3.0/ 5.0] ref 1 e -0.01 | back    6.8 [ 6.9/ 4.9] ref 2 e -0.02 | right   2.0 [ 0.8/ 0.5] ref 3 e +nan | left    1.2 [ 0.6/ 0.5] ref 3 e +nan
+      10 m  d/h 0.30 (3.00 m): fwd     6.4 [ 8.0/10.9] ref 3 e +nan | back    8.3 [13.6/10.7] ref 3 e +nan | right   4.1 [ 1.4/ 1.1] ref 2 e -0.13 | left    2.6 [ 1.2/ 1.1] ref 0 e -0.11
+      20 m  d/h 0.05 (1.00 m): fwd     0.2 [ 0.1/ 0.3] ref 0 e -0.01 | back    0.8 [ 0.6/ 0.3] ref 0 e -0.01 | right   0.1 [ 0.1/ 0.0] ref 0 e -0.02 | left    0.3 [ 0.1/ 0.0] ref 0 e -0.02
+      20 m  d/h 0.10 (2.00 m): fwd     0.6 [ 0.7/ 1.3] ref 0 e -0.02 | back    2.1 [ 1.8/ 1.3] ref 0 e -0.02 | right   0.2 [ 0.2/ 0.1] ref 0 e -0.03 | left    0.7 [ 0.3/ 0.1] ref 0 e -0.03
+      20 m  d/h 0.20 (4.00 m): fwd     3.5 [ 3.9/ 5.0] ref 1 e -0.02 | back    6.3 [ 6.0/ 4.9] ref 3 e +nan | right   1.0 [ 0.2/ 0.5] ref 1 e -0.08 | left    1.9 [ 0.7/ 0.5] ref 2 e -0.08
+      20 m  d/h 0.30 (6.00 m): fwd     7.4 [ 9.3/10.9] ref 3 e +nan | back    9.3 [12.3/10.7] ref 3 e +nan | right   2.2 [ 0.7/ 1.1] ref 1 e -0.24 | left    3.8 [ 1.5/ 1.1] ref 2 e -0.24
+      40 m  d/h 0.05 (2.00 m): fwd     0.1 [ 0.3/ 0.3] ref 0 e -0.01 | back    0.5 [ 0.4/ 0.3] ref 0 e -0.02 | right   0.1 [ 0.1/ 0.0] ref 0 e -0.04 | left    0.3 [ 0.1/ 0.0] ref 0 e -0.04
+      40 m  d/h 0.10 (4.00 m): fwd     0.9 [ 1.1/ 1.3] ref 0 e -0.03 | back    1.7 [ 1.4/ 1.3] ref 0 e -0.03 | right   0.3 [ 0.1/ 0.1] ref 0 e -0.07 | left    0.7 [ 0.3/ 0.1] ref 0 e -0.07
+      40 m  d/h 0.20 (8.00 m): fwd     4.1 [ 4.7/ 5.0] ref 3 e +nan | back    5.4 [ 5.2/ 4.9] ref 3 e +nan | right   0.6 [ 0.1/ 0.5] ref 3 e +nan | left    2.0 [ 0.9/ 0.5] ref 3 e +nan
+      40 m  d/h 0.30 (12.00 m): fwd     7.6 [10.5/10.9] ref 3 e +nan | back    8.7 [11.1/10.7] ref 3 e +nan | right   2.0 [ 0.4/ 1.1] ref 3 e +nan | left    3.3 [ 1.8/ 1.1] ref 3 e +nan
+  refusals: {'whole picture: halves disagree': 41, 'whole picture and points disagree': 17, 'whole picture: weak peak': 1, 'image motion does not match the attitude': 9}
+
+== before_ottawa2022_crop_exactlens  (hold hold.py, ground ottawa2022, lens crop, vib 0.2, tilt 0,0, exact lens True, Hold.pos kf; seeds [11, 12, 13])
+  still hover (d = 0): halves gap px median / p90 / max, refused, keyframe corners (median)
+        5 m   1.28 /  4.58 /  6.78   refused 3/18   corners 120
+       10 m   0.92 /  1.75 /  1.95   refused 0/18   corners 108
+       20 m   1.47 /  2.36 /  2.81   refused 0/18   corners 88
+       40 m   1.02 /  2.20 /  2.56   refused 0/18   corners 119
+  drift d = share x h: gap px median over seeds [geometric prediction 1 m step / tangent], refused n/3, fix error along the drift (m, median)
+       5 m  d/h 0.05 (0.25 m): fwd     1.8 [ 0.9/ 0.3] ref 1 e -0.01 | back    2.0 [ 1.4/ 0.3] ref 1 e -0.00 | right   1.0 [ 0.2/ 0.0] ref 1 e +0.01 | left    2.0 [ 0.1/ 0.0] ref 1 e +0.01
+       5 m  d/h 0.10 (0.50 m): fwd     5.4 [ 1.2/ 1.3] ref 2 e -0.01 | back    5.5 [ 3.5/ 1.3] ref 2 e -0.01 | right   2.0 [ 0.5/ 0.1] ref 1 e +0.01 | left    1.3 [ 0.2/ 0.1] ref 1 e +0.01
+       5 m  d/h 0.20 (1.00 m): fwd     6.5 [ 0.8/ 5.0] ref 2 e -0.00 | back    3.5 [ 9.3/ 4.9] ref 2 e -0.01 | right   4.0 [ 1.1/ 0.5] ref 2 e +0.02 | left    1.0 [ 0.2/ 0.5] ref 2 e -0.00
+       5 m  d/h 0.30 (1.50 m): fwd     nan [ 4.4/10.9] ref 3 e +nan | back    nan [17.2/10.7] ref 3 e +nan | right   5.4 [ 2.1/ 1.1] ref 3 e +nan | left    nan [ 0.6/ 1.1] ref 3 e +nan
+      10 m  d/h 0.05 (0.50 m): fwd     0.5 [ 0.3/ 0.3] ref 0 e -0.01 | back    1.1 [ 0.8/ 0.3] ref 0 e +0.00 | right   1.6 [ 0.2/ 0.0] ref 0 e -0.01 | left    1.7 [ 0.2/ 0.0] ref 0 e +0.01
+      10 m  d/h 0.10 (1.00 m): fwd     2.6 [ 0.3/ 1.3] ref 1 e -0.00 | back    3.6 [ 2.2/ 1.3] ref 1 e -0.01 | right   2.1 [ 0.4/ 0.1] ref 0 e -0.00 | left    1.7 [ 0.4/ 0.1] ref 0 e +0.00
+      10 m  d/h 0.20 (2.00 m): fwd     3.0 [ 3.0/ 5.0] ref 2 e +0.00 | back    6.6 [ 6.9/ 4.9] ref 2 e -0.03 | right   3.0 [ 0.8/ 0.5] ref 2 e -0.02 | left    2.6 [ 0.6/ 0.5] ref 1 e +0.02
+      10 m  d/h 0.30 (3.00 m): fwd     9.6 [ 8.0/10.9] ref 3 e +nan | back   10.5 [13.6/10.7] ref 3 e +nan | right  16.3 [ 1.4/ 1.1] ref 3 e +nan | left    7.3 [ 1.2/ 1.1] ref 3 e +nan
+      20 m  d/h 0.05 (1.00 m): fwd     0.7 [ 0.1/ 0.3] ref 0 e -0.02 | back    0.6 [ 0.6/ 0.3] ref 0 e +0.02 | right   1.0 [ 0.1/ 0.0] ref 1 e +0.01 | left    1.9 [ 0.1/ 0.0] ref 1 e +0.01
+      20 m  d/h 0.10 (2.00 m): fwd     3.2 [ 0.7/ 1.3] ref 1 e +0.00 | back    3.5 [ 1.8/ 1.3] ref 1 e +0.01 | right   2.5 [ 0.2/ 0.1] ref 1 e +0.01 | left    3.1 [ 0.3/ 0.1] ref 1 e +0.02
+      20 m  d/h 0.20 (4.00 m): fwd     5.0 [ 3.9/ 5.0] ref 3 e +nan | back    6.8 [ 6.0/ 4.9] ref 3 e +nan | right   2.2 [ 0.2/ 0.5] ref 3 e +nan | left    3.8 [ 0.7/ 0.5] ref 1 e -0.03
+      20 m  d/h 0.30 (6.00 m): fwd    11.6 [ 9.3/10.9] ref 3 e +nan | back    8.1 [12.3/10.7] ref 3 e +nan | right   nan [ 0.7/ 1.1] ref 3 e +nan | left    8.4 [ 1.5/ 1.1] ref 3 e +nan
+      40 m  d/h 0.05 (2.00 m): fwd     0.8 [ 0.3/ 0.3] ref 0 e -0.02 | back    1.0 [ 0.4/ 0.3] ref 0 e +0.01 | right   0.8 [ 0.1/ 0.0] ref 0 e -0.00 | left    1.8 [ 0.1/ 0.0] ref 0 e -0.01
+      40 m  d/h 0.10 (4.00 m): fwd     3.0 [ 1.1/ 1.3] ref 0 e -0.03 | back    3.1 [ 1.4/ 1.3] ref 0 e -0.02 | right   1.9 [ 0.1/ 0.1] ref 0 e -0.06 | left    1.7 [ 0.3/ 0.1] ref 0 e +0.04
+      40 m  d/h 0.20 (8.00 m): fwd     4.8 [ 4.7/ 5.0] ref 3 e +nan | back    5.9 [ 5.2/ 4.9] ref 3 e +nan | right   0.9 [ 0.1/ 0.5] ref 3 e +nan | left    1.7 [ 0.9/ 0.5] ref 3 e +nan
+      40 m  d/h 0.30 (12.00 m): fwd     9.3 [10.5/10.9] ref 3 e +nan | back    6.9 [11.1/10.7] ref 3 e +nan | right   3.9 [ 0.4/ 1.1] ref 3 e +nan | left    5.7 [ 1.8/ 1.1] ref 3 e +nan
+  refusals: {'whole picture: halves disagree': 61, 'whole picture: weak peak': 34, 'whole picture and points disagree': 5, 'image motion does not match the attitude': 6}
+
+== before_ottawa2022_crop  (hold hold.py, ground ottawa2022, lens crop, vib 0.2, tilt 0,0, exact lens False, Hold.pos kf; seeds [11, 12, 13])
+  still hover (d = 0): halves gap px median / p90 / max, refused, keyframe corners (median)
+        5 m   1.36 /  4.31 /  6.55   refused 3/18   corners 122
+       10 m   0.95 /  1.83 /  1.90   refused 0/18   corners 109
+       20 m   1.44 /  2.30 /  2.75   refused 0/18   corners 90
+       40 m   1.00 /  2.16 /  2.42   refused 0/18   corners 122
+  drift d = share x h: gap px median over seeds [geometric prediction 1 m step / tangent], refused n/3, fix error along the drift (m, median)
+       5 m  d/h 0.05 (0.25 m): fwd     1.8 [ 0.9/ 0.3] ref 1 e -0.01 | back    2.2 [ 1.4/ 0.3] ref 1 e -0.00 | right   1.1 [ 0.2/ 0.0] ref 0 e -0.00 | left    1.9 [ 0.1/ 0.0] ref 1 e +0.00
+       5 m  d/h 0.10 (0.50 m): fwd     5.4 [ 1.2/ 1.3] ref 2 e -0.02 | back    3.8 [ 3.5/ 1.3] ref 1 e -0.01 | right   2.3 [ 0.5/ 0.1] ref 1 e -0.00 | left    1.5 [ 0.2/ 0.1] ref 1 e -0.00
+       5 m  d/h 0.20 (1.00 m): fwd     6.8 [ 0.8/ 5.0] ref 2 e -0.01 | back    4.9 [ 9.3/ 4.9] ref 2 e -0.02 | right   3.7 [ 1.1/ 0.5] ref 1 e -0.00 | left    0.8 [ 0.2/ 0.5] ref 2 e -0.03
+       5 m  d/h 0.30 (1.50 m): fwd     nan [ 4.4/10.9] ref 3 e +nan | back    nan [17.2/10.7] ref 3 e +nan | right   4.5 [ 2.1/ 1.1] ref 3 e +nan | left    nan [ 0.6/ 1.1] ref 3 e +nan
+      10 m  d/h 0.05 (0.50 m): fwd     0.4 [ 0.3/ 0.3] ref 0 e -0.01 | back    1.0 [ 0.8/ 0.3] ref 0 e -0.00 | right   1.5 [ 0.2/ 0.0] ref 0 e -0.02 | left    1.7 [ 0.2/ 0.0] ref 0 e -0.01
+      10 m  d/h 0.10 (1.00 m): fwd     2.2 [ 0.3/ 1.3] ref 1 e -0.00 | back    3.9 [ 2.2/ 1.3] ref 1 e -0.01 | right   2.0 [ 0.4/ 0.1] ref 1 e -0.02 | left    1.1 [ 0.4/ 0.1] ref 0 e -0.02
+      10 m  d/h 0.20 (2.00 m): fwd     2.4 [ 3.0/ 5.0] ref 1 e +0.00 | back    7.2 [ 6.9/ 4.9] ref 3 e +nan | right   2.7 [ 0.8/ 0.5] ref 2 e -0.06 | left    3.1 [ 0.6/ 0.5] ref 1 e -0.02
+      10 m  d/h 0.30 (3.00 m): fwd     8.6 [ 8.0/10.9] ref 3 e +nan | back   11.5 [13.6/10.7] ref 3 e +nan | right  14.5 [ 1.4/ 1.1] ref 3 e +nan | left    8.4 [ 1.2/ 1.1] ref 3 e +nan
+      20 m  d/h 0.05 (1.00 m): fwd     0.8 [ 0.1/ 0.3] ref 0 e -0.03 | back    0.7 [ 0.6/ 0.3] ref 0 e +0.01 | right   1.1 [ 0.1/ 0.0] ref 1 e -0.02 | left    2.2 [ 0.1/ 0.0] ref 1 e -0.01
+      20 m  d/h 0.10 (2.00 m): fwd     2.6 [ 0.7/ 1.3] ref 0 e -0.02 | back    4.2 [ 1.8/ 1.3] ref 2 e +0.00 | right   2.5 [ 0.2/ 0.1] ref 1 e -0.04 | left    3.9 [ 0.3/ 0.1] ref 1 e -0.04
+      20 m  d/h 0.20 (4.00 m): fwd     3.8 [ 3.9/ 5.0] ref 1 e -0.03 | back    8.8 [ 6.0/ 4.9] ref 3 e +nan | right   2.8 [ 0.2/ 0.5] ref 3 e +nan | left    3.5 [ 0.7/ 0.5] ref 1 e -0.12
+      20 m  d/h 0.30 (6.00 m): fwd    10.3 [ 9.3/10.9] ref 3 e +nan | back   10.3 [12.3/10.7] ref 3 e +nan | right   nan [ 0.7/ 1.1] ref 3 e +nan | left    7.9 [ 1.5/ 1.1] ref 3 e +nan
+      40 m  d/h 0.05 (2.00 m): fwd     0.7 [ 0.3/ 0.3] ref 0 e -0.02 | back    1.1 [ 0.4/ 0.3] ref 0 e -0.00 | right   0.8 [ 0.1/ 0.0] ref 0 e -0.04 | left    1.7 [ 0.1/ 0.0] ref 0 e -0.04
+      40 m  d/h 0.10 (4.00 m): fwd     2.6 [ 1.1/ 1.3] ref 0 e -0.04 | back    3.7 [ 1.4/ 1.3] ref 0 e -0.03 | right   2.1 [ 0.1/ 0.1] ref 0 e -0.10 | left    1.7 [ 0.3/ 0.1] ref 0 e -0.02
+      40 m  d/h 0.20 (8.00 m): fwd     3.9 [ 4.7/ 5.0] ref 3 e +nan | back    6.9 [ 5.2/ 4.9] ref 3 e +nan | right   1.1 [ 0.1/ 0.5] ref 3 e +nan | left    2.5 [ 0.9/ 0.5] ref 2 e -0.66
+      40 m  d/h 0.30 (12.00 m): fwd     9.0 [10.5/10.9] ref 3 e +nan | back    8.0 [11.1/10.7] ref 3 e +nan | right   4.4 [ 0.4/ 1.1] ref 3 e +nan | left    5.8 [ 1.8/ 1.1] ref 3 e +nan
+  refusals: {'whole picture: halves disagree': 57, 'whole picture: weak peak': 34, 'whole picture and points disagree': 5, 'image motion does not match the attitude': 5}
+
+== before_ottawa2022_crop_tilt3_-5  (hold hold.py, ground ottawa2022, lens crop, vib 0.2, tilt 3,-5, exact lens False, Hold.pos kf; seeds [11, 12, 13])
+  still hover (d = 0): halves gap px median / p90 / max, refused, keyframe corners (median)
+        5 m   1.76 /  6.52 /  7.82   refused 5/18   corners 122
+       10 m   1.50 /  2.00 /  2.25   refused 0/18   corners 109
+       20 m   1.73 /  2.68 /  3.39   refused 0/18   corners 90
+       40 m   1.50 /  2.31 /  2.67   refused 0/18   corners 122
+  drift d = share x h: gap px median over seeds [geometric prediction 1 m step / tangent], refused n/3, fix error along the drift (m, median)
+       5 m  d/h 0.05 (0.25 m): fwd     1.4 [ 0.9/ 0.3] ref 1 e -0.00 | back    1.5 [ 1.4/ 0.3] ref 0 e -0.01 | right   1.0 [ 0.2/ 0.0] ref 1 e +0.01 | left    1.6 [ 0.1/ 0.0] ref 0 e -0.01
+       5 m  d/h 0.10 (0.50 m): fwd     4.9 [ 1.2/ 1.3] ref 2 e -0.02 | back    5.0 [ 3.5/ 1.3] ref 2 e -0.00 | right   2.4 [ 0.5/ 0.1] ref 1 e +0.01 | left    2.2 [ 0.2/ 0.1] ref 1 e -0.01
+       5 m  d/h 0.20 (1.00 m): fwd     6.2 [ 0.8/ 5.0] ref 2 e +0.00 | back   17.9 [ 9.3/ 4.9] ref 3 e +nan | right   3.1 [ 1.1/ 0.5] ref 2 e +0.01 | left    0.8 [ 0.2/ 0.5] ref 2 e -0.04
+       5 m  d/h 0.30 (1.50 m): fwd     nan [ 4.4/10.9] ref 3 e +nan | back    nan [17.2/10.7] ref 3 e +nan | right   nan [ 2.1/ 1.1] ref 3 e +nan | left    nan [ 0.6/ 1.1] ref 3 e +nan
+      10 m  d/h 0.05 (0.50 m): fwd     0.4 [ 0.3/ 0.3] ref 0 e +0.00 | back    0.8 [ 0.8/ 0.3] ref 0 e -0.01 | right   0.6 [ 0.2/ 0.0] ref 0 e -0.00 | left    1.3 [ 0.2/ 0.0] ref 0 e -0.02
+      10 m  d/h 0.10 (1.00 m): fwd     2.0 [ 0.3/ 1.3] ref 1 e +0.00 | back    3.7 [ 2.2/ 1.3] ref 1 e -0.02 | right   2.0 [ 0.4/ 0.1] ref 1 e -0.01 | left    1.8 [ 0.4/ 0.1] ref 0 e -0.03
+      10 m  d/h 0.20 (2.00 m): fwd     2.4 [ 3.0/ 5.0] ref 1 e +0.00 | back    8.4 [ 6.9/ 4.9] ref 3 e +nan | right   2.5 [ 0.8/ 0.5] ref 2 e -0.04 | left    3.2 [ 0.6/ 0.5] ref 1 e -0.03
+      10 m  d/h 0.30 (3.00 m): fwd     8.3 [ 8.0/10.9] ref 3 e +nan | back   11.2 [13.6/10.7] ref 3 e +nan | right   7.5 [ 1.4/ 1.1] ref 2 e -0.12 | left    8.9 [ 1.2/ 1.1] ref 3 e +nan
+      20 m  d/h 0.05 (1.00 m): fwd     0.5 [ 0.1/ 0.3] ref 0 e +0.01 | back    1.1 [ 0.6/ 0.3] ref 0 e -0.01 | right   0.7 [ 0.1/ 0.0] ref 1 e +0.02 | left    1.8 [ 0.1/ 0.0] ref 1 e -0.04
+      20 m  d/h 0.10 (2.00 m): fwd     3.0 [ 0.7/ 1.3] ref 0 e -0.02 | back    4.3 [ 1.8/ 1.3] ref 2 e +0.01 | right   3.2 [ 0.2/ 0.1] ref 1 e -0.00 | left    4.5 [ 0.3/ 0.1] ref 2 e +0.06
+      20 m  d/h 0.20 (4.00 m): fwd     4.1 [ 3.9/ 5.0] ref 2 e +0.08 | back    8.0 [ 6.0/ 4.9] ref 3 e +nan | right   3.1 [ 0.2/ 0.5] ref 2 e -0.19 | left    4.4 [ 0.7/ 0.5] ref 3 e +nan
+      20 m  d/h 0.30 (6.00 m): fwd     9.6 [ 9.3/10.9] ref 3 e +nan | back    7.6 [12.3/10.7] ref 3 e +nan | right   9.7 [ 0.7/ 1.1] ref 2 e -0.66 | left    7.3 [ 1.5/ 1.1] ref 3 e +nan
+      40 m  d/h 0.05 (2.00 m): fwd     1.0 [ 0.3/ 0.3] ref 0 e +0.01 | back    1.7 [ 0.4/ 0.3] ref 0 e -0.01 | right   0.8 [ 0.1/ 0.0] ref 0 e +0.02 | left    1.1 [ 0.1/ 0.0] ref 0 e -0.06
+      40 m  d/h 0.10 (4.00 m): fwd     2.6 [ 1.1/ 1.3] ref 0 e +0.00 | back    3.7 [ 1.4/ 1.3] ref 0 e -0.06 | right   2.4 [ 0.1/ 0.1] ref 0 e -0.05 | left    2.2 [ 0.3/ 0.1] ref 0 e -0.04
+      40 m  d/h 0.20 (8.00 m): fwd     3.8 [ 4.7/ 5.0] ref 3 e +nan | back    6.9 [ 5.2/ 4.9] ref 3 e +nan | right   1.9 [ 0.1/ 0.5] ref 2 e +0.04 | left    1.7 [ 0.9/ 0.5] ref 2 e -0.62
+      40 m  d/h 0.30 (12.00 m): fwd     9.8 [10.5/10.9] ref 3 e +nan | back    8.5 [11.1/10.7] ref 3 e +nan | right   4.9 [ 0.4/ 1.1] ref 3 e +nan | left    5.0 [ 1.8/ 1.1] ref 3 e +nan
+  refusals: {'whole picture: halves disagree': 62, 'whole picture: weak peak': 35, 'whole picture and points disagree': 4, 'image motion does not match the attitude': 4}
+
+== before_ottawa2022_crop_vib0  (hold hold.py, ground ottawa2022, lens crop, vib 0.0, tilt 0,0, exact lens False, Hold.pos kf; seeds [11, 12, 13])
+  still hover (d = 0): halves gap px median / p90 / max, refused, keyframe corners (median)
+        5 m   0.06 /  0.14 /  0.16   refused 0/18   corners 125
+       10 m   0.01 /  0.02 /  0.03   refused 0/18   corners 109
+       20 m   0.01 /  0.02 /  0.03   refused 0/18   corners 94
+       40 m   0.00 /  0.01 /  0.01   refused 0/18   corners 125
+  drift d = share x h: gap px median over seeds [geometric prediction 1 m step / tangent], refused n/3, fix error along the drift (m, median)
+       5 m  d/h 0.05 (0.25 m): fwd     1.3 [ 0.9/ 0.3] ref 1 e -0.01 | back    2.2 [ 1.4/ 0.3] ref 0 e -0.01 | right   0.5 [ 0.2/ 0.0] ref 0 e +0.00 | left    0.2 [ 0.1/ 0.0] ref 1 e +0.00
+       5 m  d/h 0.10 (0.50 m): fwd     2.7 [ 1.2/ 1.3] ref 1 e -0.01 | back    4.2 [ 3.5/ 1.3] ref 2 e -0.01 | right   1.2 [ 0.5/ 0.1] ref 1 e +0.00 | left    0.6 [ 0.2/ 0.1] ref 1 e -0.00
+       5 m  d/h 0.20 (1.00 m): fwd     7.2 [ 0.8/ 5.0] ref 2 e -0.01 | back    6.9 [ 9.3/ 4.9] ref 2 e -0.02 | right   3.2 [ 1.1/ 0.5] ref 1 e -0.00 | left    3.7 [ 0.2/ 0.5] ref 2 e -0.03
+       5 m  d/h 0.30 (1.50 m): fwd     nan [ 4.4/10.9] ref 3 e +nan | back    nan [17.2/10.7] ref 3 e +nan | right   4.5 [ 2.1/ 1.1] ref 3 e +nan | left    nan [ 0.6/ 1.1] ref 3 e +nan
+      10 m  d/h 0.05 (0.50 m): fwd     0.5 [ 0.3/ 0.3] ref 0 e -0.00 | back    0.8 [ 0.8/ 0.3] ref 0 e -0.00 | right   0.7 [ 0.2/ 0.0] ref 0 e -0.02 | left    0.3 [ 0.2/ 0.0] ref 0 e -0.01
+      10 m  d/h 0.10 (1.00 m): fwd     0.4 [ 0.3/ 1.3] ref 0 e -0.00 | back    2.2 [ 2.2/ 1.3] ref 0 e -0.01 | right   1.5 [ 0.4/ 0.1] ref 0 e -0.06 | left    0.4 [ 0.4/ 0.1] ref 0 e -0.02
+      10 m  d/h 0.20 (2.00 m): fwd     2.5 [ 3.0/ 5.0] ref 1 e -0.00 | back    6.0 [ 6.9/ 4.9] ref 2 e -0.02 | right   3.8 [ 0.8/ 0.5] ref 2 e -0.06 | left    3.0 [ 0.6/ 0.5] ref 1 e -0.02
+      10 m  d/h 0.30 (3.00 m): fwd     6.2 [ 8.0/10.9] ref 3 e +nan | back   10.7 [13.6/10.7] ref 3 e +nan | right   8.6 [ 1.4/ 1.1] ref 2 e -0.14 | left    7.2 [ 1.2/ 1.1] ref 3 e +nan
+      20 m  d/h 0.05 (1.00 m): fwd     0.4 [ 0.1/ 0.3] ref 0 e -0.01 | back    0.9 [ 0.6/ 0.3] ref 0 e -0.01 | right   0.2 [ 0.1/ 0.0] ref 1 e -0.02 | left    0.5 [ 0.1/ 0.0] ref 1 e -0.01
+      20 m  d/h 0.10 (2.00 m): fwd     0.6 [ 0.7/ 1.3] ref 0 e -0.01 | back    2.4 [ 1.8/ 1.3] ref 1 e -0.03 | right   0.6 [ 0.2/ 0.1] ref 1 e -0.04 | left    1.5 [ 0.3/ 0.1] ref 1 e -0.04
+      20 m  d/h 0.20 (4.00 m): fwd     5.2 [ 3.9/ 5.0] ref 2 e -0.05 | back    6.3 [ 6.0/ 4.9] ref 3 e +nan | right   2.6 [ 0.2/ 0.5] ref 2 e -0.25 | left    2.4 [ 0.7/ 0.5] ref 1 e -0.19
+      20 m  d/h 0.30 (6.00 m): fwd     8.6 [ 9.3/10.9] ref 3 e +nan | back    9.5 [12.3/10.7] ref 3 e +nan | right   9.7 [ 0.7/ 1.1] ref 3 e +nan | left    6.5 [ 1.5/ 1.1] ref 3 e +nan
+      40 m  d/h 0.05 (2.00 m): fwd     0.1 [ 0.3/ 0.3] ref 0 e -0.01 | back    0.6 [ 0.4/ 0.3] ref 0 e -0.01 | right   0.1 [ 0.1/ 0.0] ref 0 e -0.04 | left    0.3 [ 0.1/ 0.0] ref 0 e -0.02
+      40 m  d/h 0.10 (4.00 m): fwd     0.8 [ 1.1/ 1.3] ref 0 e -0.02 | back    1.7 [ 1.4/ 1.3] ref 0 e -0.02 | right   0.3 [ 0.1/ 0.1] ref 0 e -0.10 | left    0.7 [ 0.3/ 0.1] ref 0 e -0.01
+      40 m  d/h 0.20 (8.00 m): fwd     3.5 [ 4.7/ 5.0] ref 3 e +nan | back    5.2 [ 5.2/ 4.9] ref 3 e +nan | right   1.6 [ 0.1/ 0.5] ref 3 e +nan | left    2.3 [ 0.9/ 0.5] ref 2 e -0.64
+      40 m  d/h 0.30 (12.00 m): fwd     6.7 [10.5/10.9] ref 3 e +nan | back    8.7 [11.1/10.7] ref 3 e +nan | right   3.4 [ 0.4/ 1.1] ref 3 e +nan | left    5.2 [ 1.8/ 1.1] ref 3 e +nan
+  refusals: {'whole picture: halves disagree': 53, 'whole picture: weak peak': 29, 'whole picture and points disagree': 3, 'image motion does not match the attitude': 6}
+

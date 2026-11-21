@@ -1,0 +1,4 @@
+# load (1 min) at start: 1.43
+FAIL no MAVLink heartbeat on udpin:127.0.0.1:14599 in 5 s and no MSP answer on /dev/ttymxc2. Check the cable, the baud rate and that mavlink-router runs.
+exit code 0
+exit code of apb_main.py bench: 1

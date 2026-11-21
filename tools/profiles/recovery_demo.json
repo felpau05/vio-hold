@@ -1,0 +1,7 @@
+{
+ "_why": {
+  "_note": "Stage 1 bonus route 'demonstrated recovery'. The program drops the video for 3 s, 10 s after the pilot's switch engages position hold, once for each engagement, and logs it (why 'recovery test: video dropped', notes 'recovery test: video dropped for 3 s' and 'video back'). A team member can also start a drop by hand on the board: touch <log_dir>/outage_now. Use it only for the recovery demonstration, never in a scored hold. Tests: tests_apb/test_event.py E4. Apply it without this overlay to switch it off."
+ },
+ "outage_test_s": 3.0,
+ "outage_after_s": 10.0
+}

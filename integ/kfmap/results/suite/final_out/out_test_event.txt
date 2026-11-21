@@ -1,0 +1,25 @@
+E1: the flight controller connection fails in mask/calib recording and in bench mode
+  PASS _recording: the error goes on (no heartbeat from the flight controller (test)) and the camera is closed: True
+  PASS mode_bench: the error goes on (no heartbeat from the flight controller (test)) and the camera is closed: True
+E2: flight mode names and which modes hold a position
+  PASS 12 cases decode as expected: all
+E3: the pilot's switch: ALT_HOLD, then LOITER, then ALT_HOLD again
+  PASS fresh_kf_at_engage False: notes ['FC mode ALT_HOLD', 'engaged: FC mode LOITER', 'released: FC mode ALT_HOLD']; modes ['ALT_HOLD', 'LOITER']; keyframe requests 0
+  PASS fresh_kf_at_engage True: notes ['FC mode ALT_HOLD', 'engaged: FC mode LOITER; fresh keyframe requested', 'released: FC mode ALT_HOLD']; modes ['ALT_HOLD', 'LOITER']; keyframe requests 1
+E4: the recovery demonstration drops the video and the run goes on
+  PASS after the switch: 18 frames dropped, 0.21 s after it; notes ['recovery test: video dropped for 0.3 s', 'recovery test: video back']; 71 frames went to Hold
+  PASS trigger file: 18 frames dropped from the start, file deleted: True
+  PASS outage_test_s 0 (the default): 0 frames dropped, the file is left alone, 59 frames to Hold
+E5: Hold.request_keyframe in a still hover at 50 m
+  PASS new keyframe True, it is home True, old home kept True; 30 of 30 fixes after the request; largest move 0.003 m
+E6: KF_BRIGHT 2 grey: a keyframe asked in the middle of an 8 grey brightness rise (1 s) waits for the end
+  PASS kf_bright 0: the new keyframe came at frame 30 (ramp ends at frame 60); 120 of 120 fixes
+  PASS kf_bright 2: the new keyframe came at frame 77 (ramp ends at frame 60); 120 of 120 fixes
+E7: tools/log_summary.py on a run with a switch and a 0.3 s recovery test
+  PASS switch (sent before, after, gap s) [(58, 57, 0.060499999999592546)]; recovery: first fix [0.0] s after 'video back'; longest gap 0.34 s; 28 fixes/s; fix age p50 40 ms, p95 40 ms
+  PASS the command line prints a table and the spread over 2 logs, no warning: age p95 ms: median 40.40, range 40.40 to 40.40 over 2 logs
+  PASS a log with fix ages of hours gets a warning: ['WARN /tmp/tmpxyih2yp4/e7_bad.csv: fix age p95 22000000 ms is outside 0 to 1000 ms. The frame stamps and the program clock (time.monotonic) differ. Do not use these ages as evidence.']
+E8: GAP_JUMP_S: the first picture after a 3 s gap, 10 grey brighter, in a still hover at 50 m
+  PASS gap_jump_s 0: first frame lost (picture broken up (impulse z 0, band brightness z 20)); lost in 30 frames True; same keyframe True; 27 fixes
+  PASS gap_jump_s 0.5: first frame ok (None); lost in 30 frames False; same keyframe True; 30 fixes
+ALL PASS in 36 s

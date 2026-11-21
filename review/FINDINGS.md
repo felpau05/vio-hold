@@ -182,7 +182,7 @@ Baseline run today (baseline_sim_ground_ottawa2019fall.txt): 400 m RMS 1.40 m, f
 - 3 m repeated grid of bright dots at 100 m: no period slip, RMS 0.31 m (e4_outliers.py)
 - Real climb 10 m/s from 100 to 150 m: 1 keyframe change, max error 1.31 m (e4_outliers.py)
 - Baro +10 m glitch for 2 s: 61 frames 'degraded', max error 1.05 m (e4_outliers.py)
-- The forward-backward check rejects wrong matches on real texture: 0 % pass at +1.5 px and +3 px (e4b_fb_check.py). My first suspicion that it was ineffective is disproved.
+- The forward-backward check rejects wrong matches on real texture: 0 % pass at +1.5 px and +3 px (e4b_fb_check.py). The first suspicion that it was ineffective is disproved.
 - 120 s hover with 5 m wander and the sim's attitude model: error bounded, no growth, 0 keyframe changes; inliers decay only 232 -> 179 (e7_long_hover.py, e7_long_hover.png)
 - The velocity EMA is numerically stable and continuous across keyframe changes (e5_velocity.py)
 - With a re-anchor after 'lost' (sim_test behaviour), fixes return 0.18 s after light returns, and nothing is sent on std-3 static (e5_velocity.py, e8_texture.py)
@@ -198,7 +198,7 @@ Baseline run today (baseline_sim_ground_ottawa2019fall.txt): 400 m RMS 1.40 m, f
 
 - Real EKF2/EKF3 innovation gating, resets and fallback when fed the frozen-frame or static fixes. The closed-loop consequence is inferred, and only a linear Kalman filter plus PX4-style cascade was modelled (e6_jitter.py).
 - Geometry conventions shared by the simulator and the estimator (euler_R, R_BC_NADIR, fisheye model, Justice A vs D lens): a shared error cancels and stays hidden.
-- Real FC attitude-error spectra (the sim uses white 0.1° noise plus a constant bias; I added only a 0.2° Gauss-Markov wander)
+- Real FC attitude-error spectra (the sim uses white 0.1° noise plus a constant bias; a 0.2° Gauss-Markov wander is the only addition)
 - Rolling-shutter readout-time error, analog field/interlace timing and capture timestamp jitter
 - Vibration aliasing when the motor frequency is near a multiple of the frame rate (aliases are visible in the PSD but not tested)
 - Timing on the actual i.MX8M Plus: only a Geekbench-based scale factor of about 11x single-core; the Python overhead on an in-order core is not measured
@@ -319,7 +319,7 @@ The real values of these inputs are not measured. The error sources that the sim
   net timing -3 ms: 1.74 m
   roll/pitch bias 0: 0.90 m
   timing 0 and bias 0: 0.68 m (the remainder is about the 0.1 deg attitude-noise floor)
-With exact inputs, my renderer feeding Hold gives 0.04 m at 300 m and 0.02 m at 100 m (t3 and t4 baselines).
+With exact inputs, the renderer feeding Hold gives 0.04 m at 300 m and 0.02 m at 100 m (t3 and t4 baselines).
 
 **Suggested fix.** Do not quote the 300 m number as a capability. Report an error budget:
 h*(att_noise (+) eps*tilt (+) omega*dt (+) b*dpsi) (+) |c|*(dpsi (+) dh/h)
@@ -395,12 +395,12 @@ At 100 m: 0.25 m and 0.36 m.
 - Simple case: level, nose north, h 10 m, camera moves 1 m north. The ground point moves DOWN the image by +18.2 px. With yaw 90 it moves right by +19.6 px. The code reads 'down' as a move north, which is correct (t0).
 - Ground offset g = h*b_xy/b_z = ground point minus camera. C = G - g. The MAX_OFF_NADIR test uses the angle from the vertical.
 - _new_kf G = pos + vel*(t - tref) + g, and process C = G - g + vel*(tref - t). Both are exact for a constant-velocity camera (6 m/s north, 6 m/s east with yaw 40, 4 m/s with a pitch rate): the G error is 0.0000 m and the pos error is 0.0000 m (t1 part A).
-- Independent test (item 8, t1_rays_independent.py): my quaternions, mount, fisheye and rolling-shutter projector put known ground points into pixels, and Hold._rays recovers them. Cases: level, roll +12, pitch +12, yaw +60, (8,-10,135), north 6 m/s, east 6 m/s, roll rate 1.5 rad/s, pitch rate -1.5 rad/s + north, yaw rate 1.5 rad/s. The worst per-point error is 0.002 cm and the row-time error is 0.000 ms.
-- Full-image independent pipeline (my renderer feeding Hold.process) with exact inputs: rms 0.02 m at 100 m and 0.04 m at 300 m (t3 and t4 baselines).
+- Independent test (item 8, t1_rays_independent.py): the quaternions, mount, fisheye and rolling-shutter projector put known ground points into pixels, and Hold._rays recovers them. Cases: level, roll +12, pitch +12, yaw +60, (8,-10,135), north 6 m/s, east 6 m/s, roll rate 1.5 rad/s, pitch rate -1.5 rad/s + north, yaw rate 1.5 rad/s. The worst per-point error is 0.002 cm and the row-time error is 0.000 ms.
+- Full-image independent pipeline (the renderer feeding Hold.process) with exact inputs: rms 0.02 m at 100 m and 0.04 m at 300 m (t3 and t4 baselines).
 - Row-time formula: row 0 is read at t0 and row 239 at t0 + 239/240*readout. tref is half a row (33 us) late, which does not matter. sim_test.run gives the global model a mid-frame stamp (t0 + FRAME_T_ERR + READOUT/2), which is a fair comparison. The rows used for timing are raw distorted rows, which is correct.
 - A camera turned 180 or 90 deg needs no change to the timing formula, only to R_bc (t1 part B: 0.0000 m errors). Hold accepts a negative readout, which models a bottom-to-top sensor exactly (t1 part C, t4).
 - load_lens: the scaling and half-pixel terms are correct for an area resize. The same ray has the same (u+0.5)/w and (v+0.5)/h at 960x720 and 360x240 (t0).
-- Fisheye model: Metashape's fisheye (r0 -> atan(r0) = theta, polynomial in theta) and OpenCV fisheye (polynomial in theta) are the same model for the selected profile (p1 = p2 = b2 = 0; fx != fy covers B1). My forward model equals cv2.fisheye.projectPoints to 1e-13 px. The undistortPoints round trip is exact up to 60 deg off axis.
+- Fisheye model: Metashape's fisheye (r0 -> atan(r0) = theta, polynomial in theta) and OpenCV fisheye (polynomial in theta) are the same model for the selected profile (p1 = p2 = b2 = 0; fx != fy covers B1). The forward model equals cv2.fisheye.projectPoints to 1e-13 px. The undistortPoints round trip is exact up to 60 deg off axis.
 - Height derivation (item 6): a constant baro offset dh gives the error (dh/h)*d, which the HGT_ERR term covers. Terrain relief z gives offsets k*g_true with k = h/(h-z) at any tilt, so C_est = C_kf + k*d. The relief error is (z/(h-z))*d + z*(h_now - h_kf)/h^2*g. Example: a 20 m roof, dh 5 m, g 150 m and h 100 m give 1.5 m for those points only. A lever arm L of about 5 cm gives |dR*L| < 3 cm. Hold reports the camera position, so set the EV lever arm in the FC. Earth curvature is 1 cm at 380 m.
 - Yaw derivation (item 7): a constant yaw error only rotates the move from the anchor, error 2*sin(d/2)*|d| (t5: 0.44 m for 5 deg x 5 m, predicted 0.44). A yaw error change dpsi since the keyframe gives dpsi*|c| (finding 3). With a keyframe change, the remaining error is (R(d2) - I)(c2 - c1).
 - The 2-D similarity-fit fix removes the yaw and baro lever and adds no noise (t5b: 2.59 -> 0.04 m, 0.50 -> 0.04 m, 0.03 -> 0.04 m).
@@ -425,7 +425,7 @@ At 100 m: 0.25 m and 0.36 m.
 - Justice D facts: NTSC or PAL, readout time, exposure range, WDR, and the OSD mirror/flip settings. Whether its lens equals the Justice A that was calibrated.
 - How the 960x720 USB capture maps to the APB decoder's active picture (crop, overscan, 704 or 720 samples). Whether the grabber deinterlaced with weave or bob.
 - How the FC EKF behaves with a wrong-signed EV (innovation gating and reset to EV). t2 assumes that the controller follows the EV directly.
-- Real terrain relief in images (my renderer uses flat ground; relief is a derivation only), motion blur, vibration aliasing in the rolling shutter, wind and drone dynamics, and LK tracking quality on real ground. These are outside the geometry lens.
+- Real terrain relief in images (the renderer uses flat ground; relief is a derivation only), motion blur, vibration aliasing in the rolling shutter, wind and drone dynamics, and LK tracking quality on real ground. These are outside the geometry lens.
 - Non-geometry logic in Hold: inlier thresholds, state machine, jump gate, LOST_AFTER, covariance tuning, and Series thread safety.
 
 # Lens: hardware_gap

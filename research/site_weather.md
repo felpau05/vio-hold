@@ -1,6 +1,6 @@
 # Event site and event-day conditions (research, 2026-11-15)
 
-Confidence key: HIGH = a source states it. LOW = my inference (marked "INFERENCE").
+Confidence key: HIGH = a source states it. LOW = the inference (marked "INFERENCE").
 
 ## 0. Most important findings
 
@@ -22,7 +22,7 @@ Measured values (anemometer height is 10 m by WMO standard. The API did not stat
 - Days with at least one hourly speed <= 5 km/h: 17.8 days (so calm hours are common).
 - Days with "Wind >= 28 knots" (52 km/h): 1.12 days. Days with wind >= 34 knots (63 km/h): 0.23 days. (The API does not say whether this is gust or sustained. Unknown.)
 - Another site (currentresults.com, 1981-2010, from ECCC) gives 13.8 km/h and 1.1 days per November of 52 km/h or more: https://www.currentresults.com/Weather/Canada/Cities/wind-november.php . It matches the API.
-- Gust statistics: **not found**. I give no gust number.
+- Gust statistics: **not found**. No gust number is given.
 - Direction spread beyond "west most frequent": not found.
 
 ### Wind at height (ESTIMATES, not measurements)
@@ -46,7 +46,7 @@ Other readings of the same normals: relative humidity at 06:00 LST 83.5 percent,
 
 Effects of cold on the drone (general, from hobby and aviation guides; not from Orqa):
 - Battery: cold lithium-polymer packs lose capacity and show more voltage sag. Sources give 30-50 percent capacity loss at very low temperatures and a danger of sudden sag below about 10 C. Pre-warm packs, avoid hard throttle bursts at the start, land with a larger reserve. Numbers differ by source and some sources sell batteries. Refs: https://hobbyking.com/blog/LiPoBatteryLowTemperaturePerformanceAnalysis , https://www.grepow.com/blog/fly-a-drone-in-winter-with-low-temperature-battery.html , https://open-exam-prep.com/study-guides/faa-part-107/chapter4/battery-performance
-- Barometer drift: I did not find a source for the barometer of the Orqa flight controller. Barometric height drifts with temperature change and with weather pressure change (INFERENCE, low confidence: a cold-soaked board that warms in flight will show a slow height bias. The method uses baro height for scale, so a bias gives a proportional scale error in metres).
+- Barometer drift: Did not find a source for the barometer of the Orqa flight controller. Barometric height drifts with temperature change and with weather pressure change (INFERENCE, low confidence: a cold-soaked board that warms in flight will show a slow height bias. The method uses baro height for scale, so a bias gives a proportional scale error in metres).
 - Lens fog and frost: not found in an authoritative source. INFERENCE: an analog camera moved from a warm room to cold air, or flying through humid air (06:00 humidity 83 percent), may fog or frost. Plan a lens warm-up and a dry cloth.
 
 ## 3. Snow cover on the ground
@@ -58,7 +58,7 @@ Primary (ECCC normals, **Ottawa CDA** station 6105976, 1981-2010, November): htt
 
 CYOW itself (same period, same API pattern, identifier 6106000): mean daily depth 1.53 cm, median 0.72 cm, month-end 3.83 cm. Days with depth >= 1 cm: 6; >= 5 cm: 3.3; >= 10 cm: 1.6; >= 20 cm: 0.5. Snowfall 20.22 cm total in November (std dev 21.41, so the month varies a lot).
 
-Reading (INFERENCE): about 16-20 percent of November days have 1 cm or more of snow on the ground. Those days cluster late in the month, so on 21-22 Nov the chance is probably higher than the month average. I found no day-specific probability and no "median first lasting snow cover" date. Those are unknowns. Median depth below 1 cm means that most years have bare or thinly dusted ground on average days. A thin dusting still changes the texture (white, low contrast), and a 5-10 cm cover would remove texture on lawns.
+Reading (INFERENCE): about 16-20 percent of November days have 1 cm or more of snow on the ground. Those days cluster late in the month, so on 21-22 Nov the chance is probably higher than the month average. Found no day-specific probability and no "median first lasting snow cover" date. Those are unknowns. Median depth below 1 cm means that most years have bare or thinly dusted ground on average days. A thin dusting still changes the texture (white, low contrast), and a 5-10 cm cover would remove texture on lawns.
 
 For comparison, white Christmas (>= 2 cm on 25 Dec) in Ottawa is 79 percent (1955-2024), 72 percent (2000-2024): https://www.canada.ca/en/environment-climate-change/services/weather-general-tools-resources/historical-christmas-snowfall-data.html . That is a month later and not the question, but it shows the trend toward lasting cover starts in December.
 
@@ -67,18 +67,18 @@ For comparison, white Christmas (>= 2 cm on 25 Dec) in Ottawa is 79 percent (195
 Source: https://www.timeanddate.com/sun/canada/ottawa?month=11&year=2026 (secondary, but computed astronomy).
 - Sunrise 7:11 AM (azimuth 118 degrees). Sunset 4:26 PM (azimuth 241 degrees). Day length 9 h 15 min. (Local time, EST, after DST ended 1 Nov.)
 - Solar noon 11:48 AM, sun altitude **24.4 degrees**.
-- Shadow length at solar noon = object height / tan(24.4 deg) = about 2.2 times object height (my calculation). A 24 m museum peak casts roughly a 53 m shadow at noon, longer toward the evening. The sun is low all day: shadows are long and move fast in the afternoon (INFERENCE: moving shadows are a real error source for a feature tracker on a flat lawn).
+- Shadow length at solar noon = object height / tan(24.4 deg) = about 2.2 times object height (the calculation). A 24 m museum peak casts roughly a 53 m shadow at noon, longer toward the evening. The sun is low all day: shadows are long and move fast in the afternoon (INFERENCE: moving shadows are a real error source for a feature tracker on a flat lawn).
 - Nov 21 is 1-2 minutes different from the 22 Nov figures (INFERENCE from the 2 min 5 s per-day change in the same source).
 - ECCC normals, CYOW November: 66 percent of hours with 8-10 tenths cloud (overcast), which gives soft, shadow-free light but low light level; 32 percent of daylight hours with bright sunshine.
-- Civil twilight timing: not looked up. After sunset (4:26 PM), ambient light is low within about 30-40 minutes (INFERENCE). Urban lights in LeBreton are not described by any source I found.
+- Civil twilight timing: not looked up. After sunset (4:26 PM), ambient light is low within about 30-40 minutes (INFERENCE). Urban lights in LeBreton are not described by any source found.
 
 ## 5. Airspace
 
 Primary and official sources:
 - CYR537: Class F restricted airspace over Parliament Hill, circle radius 0.4 mile, centre N45 25 29.05 W075 41 56.74, surface to 3000 ft, continuous. Controlling agency RCMP. Aircraft including model aircraft may not operate there without authorization. Effective 17 June 2021. Source: https://www.navcanada.ca/en/flight-planning/service-notices/2021-06-17-ottawa.aspx
-- Distance (my calculation, rough): the museum (about 45.417 N, 75.717 W; from public maps, not retrieved from a source here) is about 2 km west-southwest of the CYR537 centre. 0.4 mile is 0.64 km. So the museum is outside the circle by roughly 1.3 km. INFERENCE, low confidence. Verify on a chart.
+- Distance (the calculation, rough): the museum (about 45.417 N, 75.717 W; from public maps, not retrieved from a source here) is about 2 km west-southwest of the CYR537 centre. 0.4 mile is 0.64 km. So the museum is outside the circle by roughly 1.3 km. INFERENCE, low confidence. Verify on a chart.
 - Parliament Hill drone process: https://pps.parl.ca/wp-content/uploads/2025/03/ProcedureDronesCYR537-b-Updated-.pdf (search snippet only; not read in full).
-- CYOW control zone surface to 2000 ft MSL with Class C terminal area above (from Canada Flight Supplement snippets via search, not fully verified). CYRO (Rockcliffe) and Gatineau CYND are separate nearby zones. Exact boundaries over LeBreton are NOT confirmed. I could not read the NAV CANADA drone tool: https://nrc.canada.ca/en/drone-tool-2/map.html returned HTTP 403.
+- CYOW control zone surface to 2000 ft MSL with Class C terminal area above (from Canada Flight Supplement snippets via search, not fully verified). CYRO (Rockcliffe) and Gatineau CYND are separate nearby zones. Exact boundaries over LeBreton are NOT confirmed. Could not read the NAV CANADA drone tool: https://nrc.canada.ca/en/drone-tool-2/map.html returned HTTP 403.
 - Transport Canada: general limit 122 m (400 ft) AGL; controlled airspace needs an advanced pilot and NAV CANADA permission; basic ops stay in uncontrolled airspace. Since 1 April 2025 an SFOC is required to fly microdrones at advertised events (an outdoor event promoted to the public). SFOC fees from 4 Nov 2025: $20 very low, $75 low, $900 medium, $2,000 high. Source: https://tc.canada.ca/en/aviation/drone-safety/2025-summary-changes-canada-drone-regulations ; also https://tc.canada.ca/en/aviation/drone-safety/drone-pilot-licensing/get-permission-special-drone-operations/higher-risk-environments
 - Plausible event height (INFERENCE, low): the hard legal ceiling is 122 m AGL in all cases except a special authorization. Organizers must hold permissions for downtown-Ottawa airspace and likely limit height far below that, or use a net/enclosure. The brief says "as high as possible", so the cap is probably an event-set number. No source gives it. Ask the organizers. Plan the sim for 20-120 m, with the best case near 100 m or less.
 
@@ -91,7 +91,7 @@ From https://en.wikipedia.org/wiki/Canadian_War_Museum and the search results:
 - "The Commons": an urban park directly south, used for museum events (open lawn and hard surface; INFERENCE: events may put tents/temporary structures there).
 - Ottawa River to the north and west (water: no texture, moving, glare; fatal for tracking if it fills the view).
 - Pimisi station on O-Train Line 1 (LRT). Rail and platform give straight, repeating lines.
-- LeBreton Flats: formerly industrial, decontaminated. Redevelopment is ongoing: arena parcel sale (4.5 ha), Aqueduct District, library parcel; timelines unfixed (https://ncc-ccn.gc.ca/projects/lebreton-major-event-centre , https://www.ctvnews.ca/ottawa/article/ncc-suggests-new-sens-arena-at-lebreton-flats-could-open-by-mid-2030s-in-developer-pitch/). So there may be bare-earth lots, fences and construction. No source I found gives the current state.
+- LeBreton Flats: formerly industrial, decontaminated. Redevelopment is ongoing: arena parcel sale (4.5 ha), Aqueduct District, library parcel; timelines unfixed (https://ncc-ccn.gc.ca/projects/lebreton-major-event-centre , https://www.ctvnews.ca/ottawa/article/ncc-suggests-new-sens-arena-at-lebreton-flats-could-open-by-mid-2030s-in-developer-pitch/). So there may be bare-earth lots, fences and construction. No source found gives the current state.
 - Parking: not found in a source.
 Reading for the simulator (INFERENCE): expect large low-texture areas (lawn, water, asphalt, snow) with sparse high-contrast features (path edges, curbs, roof edges, rail lines). The real-photo simulator at the event site is the right test. Add runs with a river-filled view and with a uniform snow-covered lawn.
 
@@ -99,13 +99,13 @@ Reading for the simulator (INFERENCE): expect large low-texture areas (lawn, wat
 
 Organizer site https://redteamhack.ca/ (fetched):
 - Series name "2026 Red Team Hackathon Series". Organizers: Remote Robotic Systems and Orqa. Marketing sponsor The Icebreaker. Sponsors: Remote Robotic Systems, Orqa, Calian, ThinkOn.
-- **Grand Final: 21 Nov 2026, Canadian War Museum, 5:30 - 8:00 PM EST.** Format: finalists pitch live for the national title; winners crowned at an awards ceremony. Tickets via Eventbrite (I did not find the Eventbrite page).
+- **Grand Final: 21 Nov 2026, Canadian War Museum, 5:30 - 8:00 PM EST.** Format: finalists pitch live for the national title; winners crowned at an awards ceremony. Tickets via Eventbrite (did not find the Eventbrite page).
 - Ottawa Final challenge: "Contested Battlefield Aerial Operations": "Live position hold without GNSS using Visual-Inertial Odometry". Nothing more. No altitude, hardware, camera, limit, or judging text for the flight.
-- Series schedule listed: 7 Mar Vancouver (Find My Force, UBC); 21 Mar Calgary (Voice-Driven UxS); 30 May Ottawa (Verified Canadian Supply Chains, Bayview Yards); 20 Jun Toronto (Comms-Denied Autonomy). The winners page lists "Comms-Denied Autonomy" at Bayview Yards, Ottawa, 2 May, and the Toronto one on 20 June. The two pages disagree on names and dates. https://redteamhack.ca/winners
-- Grand Final qualified (first place of each event): Drop Table (BCIT), Project Pluto (U of Calgary), The Alpha Nova (Laurentian/Waterloo), ENGITS (Carleton). Per the winners page (the qualifiers are as listed there).
+- Series schedule listed: 7 Mar Vancouver (Find The Force, UBC); 21 Mar Calgary (Voice-Driven UxS); 30 May Ottawa (Verified Canadian Supply Chains, Bayview Yards); 20 Jun Toronto (Comms-Denied Autonomy). The winners page lists "Comms-Denied Autonomy" at Bayview Yards, Ottawa, 2 May, and the Toronto one on 20 June. The two pages disagree on names and dates. https://redteamhack.ca/winners
+- Grand Final qualifiers: the first place of each series event qualified (per the organizer's winners page). The list of teams is not kept here.
 - Terms https://redteamhack.ca/terms: max 11 teams; judging criteria Entrepreneurial Drive, Algorithm, Technical Implementation, Feasibility & Scalability, Storytelling & Vision (weighted, weights not given); prizes 1st $10,000, 2nd $6,000, 3rd-5th $1,000 each, Best Presenter $1,000 (these appear to be the regional-event terms; the page also says $200K+ for the series, and the BCIT article says a $20,000 prize pool); bring own laptops/hardware; liability waiver may be required; the terms do not mention drones.
-- BCIT story (Red Team Hackathon Series, organizers include the CEO of Remote Robotic Systems): https://www.bcit.ca/news/stories/computing-takes-first-place/ . Listing for Find My Force (software-only, labeled data): https://allhackathons.com/hackathon/find-my-force-redteam-hackathon-series/
-- Orqa: press about the MRM2-10AI (Eurosatory, June 2026) says it has an "Auto Pilot Board" with vision-based terminal guidance for GNSS-denied operation, onboard compute for customer AI models, an open development architecture and a Developer Program at developer.orqafpv.com. No processor or flight controller named. https://soldiersystems.net/2026/06/11/orqa-unveils-the-mrm2-10ai-at-eurosatory-a-tactical-drone-designed-to-dominate-in-the-age-of-electronic-warfare/ . The developer page fetched with no content. The brief's "M2-AI" may be this product (INFERENCE; the names differ). The team's i.MX8M Plus + STM32H743 and 230400 baud notes are NOT confirmed by any source I found.
+- BCIT story (Red Team Hackathon Series, organizers include the CEO of Remote Robotic Systems): https://www.bcit.ca/news/stories/computing-takes-first-place/ . Listing for Find The Force (software-only, labeled data): https://allhackathons.com/hackathon/find-the-force-redteam-hackathon-series/
+- Orqa: press about the MRM2-10AI (Eurosatory, June 2026) says it has an "Auto Pilot Board" with vision-based terminal guidance for GNSS-denied operation, onboard compute for customer AI models, an open development architecture and a Developer Program at developer.orqafpv.com. No processor or flight controller named. https://soldiersystems.net/2026/06/11/orqa-unveils-the-mrm2-10ai-at-eurosatory-a-tactical-drone-designed-to-dominate-in-the-age-of-electronic-warfare/ . The developer page fetched with no content. The brief's "M2-AI" may be this product (INFERENCE; the names differ). The team's i.MX8M Plus + STM32H743 and 230400 baud notes are NOT confirmed by any source found.
 
 ## 8. Unknowns
 

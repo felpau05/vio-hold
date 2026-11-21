@@ -1,0 +1,46 @@
+M1: betasim/patches/msp_link_count_carry.patch (msp_link.py carries the remainder of the flow counts)
+
+RESULT: NOT KEPT. In one of the 4 runs the hold error with M1 is larger than in betasim/results/matrix.txt
+(g0.2_s1: RMS 1.19 against 1.11 m, max 2.31 against 2.13 m). The step rule was "keep M1 only if the hold error is
+not larger in the 4 runs". msp_link.py and tests_apb/test_msp_link.py are back to their state before M1 (md5
+76a0b2f79f93 and 1d0393f0f610, the same as before), and betasim/results/ holds its files from before this work again.
+The patch file is not changed.
+
+But the difference is smaller than the spread of the same code: the rerun without M1 below moved 0.16 m (g0.2_s1)
+and 0.68 m (g0_s2) from the file. One run per case cannot show whether M1 helps or harms. To decide, run more seeds
+of each case (for example 5 seeds, with and without M1).
+
+TEST (no simulator)
+tests_apb/test_msp_link.py before M1: ALL PASSED.
+With M1 (the patch adds one check, section E): ALL PASSED, "0.1 m/s at 5 m (0.2 counts per message): counts carry
+their remainder; integrated 0.100 m, sent speed x time 0.095 m (one count = 0.025 m)".
+The new check run against the old msp_link.py: FAIL (1 FAILED). It fails on the clause "each count is 0 or 1": the
+old code returns 0.2 counts, and flow_payload rounds that to 0 for the FC. Its "integrated" number uses the returned
+values, not the sent bytes, so it reads 0.100 m on both versions; only the integer clause separates them.
+
+CLOSED LOOP: betasim/run_matrix.sh (Betaflight SITL, 60 s POS HOLD, wind 2 m/s plus gusts, speed error 0.10 m/s,
+one run per case, the runs one after another; gain 0 = mode v1, gain 0.2/s = mode v2).
+Hold error: true horizontal distance from the hold start, RMS / max, m.
+
+case     | before: matrix.txt         | without M1, run again      | with M1
+         | 03:50 to 03:54, load n/a   | 04:30:36 to 04:35:55       | 04:36:20 to 04:41:39
+g0_s1    | 3.88 / 6.54                | 3.72 / 6.34                | 3.63 / 6.29
+g0_s2    | 4.52 / 7.92                | 3.84 / 7.87                | 3.94 / 7.99
+g0.2_s1  | 1.11 / 2.13                | 1.27 / 2.61                | 1.19 / 2.31
+g0.2_s2  | 1.24 / 2.29                | 1.27 / 2.60                | 1.18 / 2.25
+
+Load (1 min): without M1 1.52 at the start, 1.24 at the end (samples every 10 s in betasim_noM1_rerun/
+load_every_10s.txt); with M1 1.30 at the start, 1.45 at the end, 1.20 to 1.67 in the samples (betasim_M1/). An
+emulated ARM test of another job ran at low priority during both. The load of the "before" runs was not recorded.
+Files: betasim_before/ (the file and its JSON), betasim_noM1_rerun/, betasim_M1/ (each: matrix.txt, closed_*.json).
+
+REVIEW OF THE PATCH (step 2)
+a. Cause or sign: the cause. flow_payload sends whole counts (int(round(x))), so each message lost its fraction and
+   any speed under 0.5 count per message (0.25 m/s at 5 m and 20 Hz) became 0. Carrying the remainder keeps the sum
+   of the sent counts within one count of the true sum.
+b. Flight loop: msp_link.MspLink.send_speed, which run_live calls (fc.send_speed) only when the Betaflight option is
+   on. With the option off (the event setup) no flight-loop line changes: fc_link.connect never makes an MspLink.
+c. Input the author did not test: a gap over GAP_S (0.5 s) clears the remainder (right). A refused send (budget, no
+   fix) keeps it (right). A yaw turn applies the old remainder (under 0.5 count) in the new body axes (small). A
+   non-finite count (roll at 90 degrees: cos = 0) makes flow_payload raise with or without M1; mode_run then opens a
+   new link, which also clears the remainder. Not reachable in a hold.

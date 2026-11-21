@@ -1,0 +1,9488 @@
+{
+ "gn_none_10m_s1": {
+  "case": "gn_none_10m_s1",
+  "rms": 0.9191055985476589,
+  "max": 1.5651095837509283,
+  "pct_frames_fix": 15.666666666666666,
+  "fix_rate_hz": 9.39882554555193,
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 5, 0.0 s after the Loiter request started"
+   ]
+  ],
+  "hold_s_flown": 40.0,
+  "climb_s": 13.4,
+  "age_ms_p50": 128.25,
+  "reanchors": 5,
+  "onboard_exit": 0,
+  "ekf_yaw_minus_true_deg": -2.09,
+  "level": "none",
+  "height": 10.0,
+  "seed": 1,
+  "glitch": false,
+  "settings": {
+   "min_height_m": 3.0
+  },
+  "params_gnss": {},
+  "wall_s": 67,
+  "load_start": [
+   2.4453125,
+   2.48876953125,
+   1.78955078125
+  ],
+  "texts_all": [
+   [
+    -25.55,
+    "Barometer 1 calibration complete"
+   ],
+   [
+    -25.55,
+    "Barometer 2 calibration complete"
+   ],
+   [
+    -23.1,
+    "ArduPilot Ready"
+   ],
+   [
+    -23.1,
+    "AHRS: DCM active"
+   ],
+   [
+    -22.81,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    -21.46,
+    "No ap_message for mavlink id (331)"
+   ],
+   [
+    -21.4,
+    "No ap_message for mavlink id (290)"
+   ],
+   [
+    -21.39,
+    "No ap_message for mavlink id (291)"
+   ],
+   [
+    -21.35,
+    "No ap_message for mavlink id (231)"
+   ],
+   [
+    -21.34,
+    "No ap_message for mavlink id (141)"
+   ],
+   [
+    -21.1,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    -21.1,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    -21.1,
+    "AHRS: EKF3 active"
+   ],
+   [
+    -19.72,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    -19.72,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    -19.62,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -19.62,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -14.28,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -13.85,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    -13.85,
+    "Arming motors"
+   ],
+   [
+    -13.4,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -10.18,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -10.18,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -8.82,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -8.82,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -2.51,
+    "EKF3 IMU1 is using external nav data"
+   ],
+   [
+    -2.51,
+    "EKF3 IMU1 initial pos NED = -0.3,0.0,-9.8 (m)"
+   ],
+   [
+    -2.51,
+    "EKF3 IMU0 is using external nav data"
+   ],
+   [
+    -2.51,
+    "EKF3 IMU0 initial pos NED = -0.3,0.0,-9.8 (m)"
+   ]
+  ],
+  "rms30": 0.8132046751534896,
+  "max30": 1.3602832460438514,
+  "herr30": 0.0800018310546875,
+  "h_switch": 9.840003967285156,
+  "ekf_step_switch": 0.006096378362860092,
+  "notes": [
+   [
+    -10.03,
+    "FC mode ALT_HOLD"
+   ],
+   [
+    -8.85,
+    "re-anchored to last position (no FC position) 0.00 0.00"
+   ],
+   [
+    -7.95,
+    "re-anchored to last position (no FC position) -0.00 -0.00"
+   ],
+   [
+    -6.82,
+    "re-anchored to last position (no FC position) -0.03 0.01"
+   ],
+   [
+    -5.68,
+    "re-anchored to last position (no FC position) -0.12 0.02"
+   ],
+   [
+    -5.18,
+    "re-anchored to last position (no FC position) -0.12 0.02"
+   ],
+   [
+    -3.88,
+    "re-anchored to last position (no FC position) -0.23 0.03"
+   ],
+   [
+    -3.73,
+    "re-anchored to last position (no FC position) -0.23 0.03"
+   ],
+   [
+    -2.25,
+    "re-anchored to FC position -0.31 0.04"
+   ],
+   [
+    -0.63,
+    "re-anchored to FC position -0.43 0.08"
+   ],
+   [
+    0.02,
+    "engaged: FC mode LOITER"
+   ],
+   [
+    9.7,
+    "re-anchored to FC position -0.53 0.21"
+   ],
+   [
+    27.3,
+    "re-anchored to FC position -0.50 -0.40"
+   ],
+   [
+    27.45,
+    "re-anchored to FC position -0.51 -0.42"
+   ],
+   [
+    27.62,
+    "re-anchored to FC position -0.51 -0.43"
+   ],
+   [
+    29.5,
+    "re-anchored to FC position -0.39 -0.31"
+   ]
+  ],
+  "fixes_in_window": 272,
+  "fc_texts": [
+   [
+    -25.55,
+    "Barometer 1 calibration complete"
+   ],
+   [
+    -25.55,
+    "Barometer 2 calibration complete"
+   ],
+   [
+    -23.1,
+    "ArduPilot Ready"
+   ],
+   [
+    -23.1,
+    "AHRS: DCM active"
+   ],
+   [
+    -22.81,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    -21.46,
+    "No ap_message for mavlink id (331)"
+   ],
+   [
+    -21.4,
+    "No ap_message for mavlink id (290)"
+   ],
+   [
+    -21.39,
+    "No ap_message for mavlink id (291)"
+   ],
+   [
+    -21.35,
+    "No ap_message for mavlink id (231)"
+   ],
+   [
+    -21.34,
+    "No ap_message for mavlink id (141)"
+   ],
+   [
+    -21.1,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    -21.1,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    -21.1,
+    "AHRS: EKF3 active"
+   ],
+   [
+    -19.72,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    -19.72,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    -19.62,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -19.62,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -14.28,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -13.85,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    -13.85,
+    "Arming motors"
+   ],
+   [
+    -13.4,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -10.18,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -10.18,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -8.82,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -8.82,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -2.51,
+    "EKF3 IMU1 is using external nav data"
+   ],
+   [
+    -2.51,
+    "EKF3 IMU1 initial pos NED = -0.3,0.0,-9.8 (m)"
+   ],
+   [
+    -2.51,
+    "EKF3 IMU0 is using external nav data"
+   ],
+   [
+    -2.51,
+    "EKF3 IMU0 initial pos NED = -0.3,0.0,-9.8 (m)"
+   ]
+  ],
+  "bin_ev": [
+   [
+    -13.08,
+    "MODE",
+    2
+   ],
+   [
+    -11.84,
+    "EV",
+    57
+   ],
+   [
+    -10.41,
+    "EV",
+    28
+   ],
+   [
+    -9.98,
+    "EV",
+    25
+   ],
+   [
+    -8.82,
+    "EV",
+    62
+   ],
+   [
+    -0.0,
+    "MODE",
+    5
+   ]
+  ],
+  "innov": {
+   "hold_0_30": {
+    "n": 300,
+    "ivn_distinct": 1,
+    "ive_distinct": 1,
+    "iv_std": 0.0,
+    "ipn_distinct": 12
+   }
+  }
+ },
+ "gn_setup_10m_s1_nolock": {
+  "case": "gn_setup_10m_s1_nolock",
+  "rms": 0.8443943450735909,
+  "max": 1.714438578203004,
+  "pct_frames_fix": 12.47392574050897,
+  "fix_rate_hz": 7.474264423443348,
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 5, 8.6 s after the Loiter request started"
+   ]
+  ],
+  "hold_s_flown": 40.0,
+  "climb_s": 13.8,
+  "age_ms_p50": 129.4,
+  "reanchors": 7,
+  "onboard_exit": 0,
+  "ekf_yaw_minus_true_deg": -4.97,
+  "level": "setup",
+  "height": 10.0,
+  "seed": 1,
+  "glitch": false,
+  "settings": {
+   "min_height_m": 3.0,
+   "gnss_mode": "setup"
+  },
+  "params_gnss": {
+   "EK3_SRC1_POSXY": 3,
+   "EK3_SRC1_VELXY": 3,
+   "EK3_SRC1_POSZ": 1,
+   "EK3_SRC1_VELZ": 0,
+   "EK3_SRC1_YAW": 1,
+   "GPS1_TYPE": 1,
+   "EK3_SRC2_POSXY": 6,
+   "EK3_SRC2_VELXY": 0,
+   "EK3_SRC2_POSZ": 1,
+   "EK3_SRC2_VELZ": 0,
+   "EK3_SRC2_YAW": 1,
+   "EK3_SRC_OPTIONS": 0
+  },
+  "wall_s": 76,
+  "load_start": [
+   1.5732421875,
+   1.556640625,
+   1.37353515625
+  ],
+  "texts_all": [
+   [
+    -34.48,
+    "Barometer 1 calibration complete"
+   ],
+   [
+    -34.48,
+    "Barometer 2 calibration complete"
+   ],
+   [
+    -32.03,
+    "ArduPilot Ready"
+   ],
+   [
+    -32.03,
+    "AHRS: DCM active"
+   ],
+   [
+    -31.73,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    -30.39,
+    "No ap_message for mavlink id (331)"
+   ],
+   [
+    -30.33,
+    "No ap_message for mavlink id (290)"
+   ],
+   [
+    -30.32,
+    "No ap_message for mavlink id (291)"
+   ],
+   [
+    -30.28,
+    "No ap_message for mavlink id (231)"
+   ],
+   [
+    -30.27,
+    "No ap_message for mavlink id (141)"
+   ],
+   [
+    -30.03,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    -30.03,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    -30.02,
+    "AHRS: EKF3 active"
+   ],
+   [
+    -28.64,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    -28.64,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    -28.54,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -28.54,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -24.67,
+    "GPS 1: probing for u-blox at 230400 baud"
+   ],
+   [
+    -24.65,
+    "GPS 1: detected u-blox"
+   ],
+   [
+    -23.09,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -22.62,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    -22.62,
+    "Arming motors"
+   ],
+   [
+    -22.37,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -18.94,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -18.94,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -17.56,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -17.54,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -8.56,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -8.06,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -7.56,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -7.06,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -6.56,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -6.05,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -5.55,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -5.04,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -4.54,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -4.04,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -3.54,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -3.03,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -2.53,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -2.02,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -1.51,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -1.02,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -0.51,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -0.24,
+    "EKF3 IMU1 is using external nav data"
+   ],
+   [
+    -0.24,
+    "EKF3 IMU1 initial pos NED = 0.9,3.7,-9.8 (m)"
+   ],
+   [
+    -0.23,
+    "EKF3 IMU0 is using external nav data"
+   ],
+   [
+    -0.23,
+    "EKF3 IMU0 initial pos NED = 0.9,3.7,-9.8 (m)"
+   ]
+  ],
+  "rms30": 0.9210073540738604,
+  "max30": 1.714438578203004,
+  "herr30": 0.20999908447265625,
+  "h_switch": 9.830001831054688,
+  "ekf_step_switch": 0.04637924532114665,
+  "notes": [
+   [
+    -18.79,
+    "FC mode ALT_HOLD"
+   ],
+   [
+    -17.63,
+    "re-anchored to last position (no FC position) 0.00 0.00"
+   ],
+   [
+    -16.89,
+    "re-anchored to last position (no FC position) -0.02 0.00"
+   ],
+   [
+    -15.68,
+    "re-anchored to last position (no FC position) -0.05 0.02"
+   ],
+   [
+    -14.46,
+    "re-anchored to last position (no FC position) -0.16 0.06"
+   ],
+   [
+    -13.24,
+    "re-anchored to last position (no FC position) -0.26 0.11"
+   ],
+   [
+    -12.09,
+    "re-anchored to last position (no FC position) -0.36 0.14"
+   ],
+   [
+    -10.56,
+    "re-anchored to last position (no FC position) -0.49 0.22"
+   ],
+   [
+    -8.84,
+    "re-anchored to last position (no FC position) -0.54 0.36"
+   ],
+   [
+    -7.06,
+    "re-anchored to last position (no FC position) -0.47 0.61"
+   ],
+   [
+    -4.29,
+    "re-anchored to last position (no FC position) -0.12 1.45"
+   ],
+   [
+    -1.29,
+    "EKF source set 2 (our position only) requested: fixes for 2.0 s, before the pilot's switch; re-anchored to last position (no FC position) 0.58 3.01"
+   ],
+   [
+    -1.21,
+    "FC reply to EKF source set 2 (our position only): ACCEPTED"
+   ],
+   [
+    0.02,
+    "engaged: FC mode LOITER"
+   ],
+   [
+    0.59,
+    "re-anchored to FC position 1.12 4.52"
+   ],
+   [
+    13.32,
+    "re-anchored to FC position 0.95 5.15"
+   ],
+   [
+    17.41,
+    "re-anchored to FC position 1.06 4.66"
+   ],
+   [
+    17.97,
+    "re-anchored to FC position 1.15 4.72"
+   ],
+   [
+    24.36,
+    "re-anchored to FC position 1.48 5.14"
+   ],
+   [
+    33.32,
+    "re-anchored to FC position 1.26 4.46"
+   ],
+   [
+    39.12,
+    "re-anchored to FC position 0.99 4.53"
+   ]
+  ],
+  "t_set2": -1.21,
+  "ekf_step_set2": 0.0,
+  "move5_set2": 2.8840519986488955,
+  "fixes_in_window": 233,
+  "fc_texts": [
+   [
+    -34.48,
+    "Barometer 1 calibration complete"
+   ],
+   [
+    -34.48,
+    "Barometer 2 calibration complete"
+   ],
+   [
+    -32.03,
+    "ArduPilot Ready"
+   ],
+   [
+    -32.03,
+    "AHRS: DCM active"
+   ],
+   [
+    -31.73,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    -30.39,
+    "No ap_message for mavlink id (331)"
+   ],
+   [
+    -30.33,
+    "No ap_message for mavlink id (290)"
+   ],
+   [
+    -30.32,
+    "No ap_message for mavlink id (291)"
+   ],
+   [
+    -30.28,
+    "No ap_message for mavlink id (231)"
+   ],
+   [
+    -30.27,
+    "No ap_message for mavlink id (141)"
+   ],
+   [
+    -30.03,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    -30.03,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    -30.02,
+    "AHRS: EKF3 active"
+   ],
+   [
+    -28.64,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    -28.64,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    -28.54,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -28.54,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -24.67,
+    "GPS 1: probing for u-blox at 230400 baud"
+   ],
+   [
+    -24.65,
+    "GPS 1: detected u-blox"
+   ],
+   [
+    -23.09,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -22.62,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    -22.62,
+    "Arming motors"
+   ],
+   [
+    -22.37,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -18.94,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -18.94,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -17.56,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -17.54,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -8.56,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -8.06,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -7.56,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -7.06,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -6.56,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -6.05,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -5.55,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -5.04,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -4.54,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -4.04,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -3.54,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -3.03,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -2.53,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -2.02,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -1.51,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -1.02,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -0.51,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -0.24,
+    "EKF3 IMU1 is using external nav data"
+   ],
+   [
+    -0.24,
+    "EKF3 IMU1 initial pos NED = 0.9,3.7,-9.8 (m)"
+   ],
+   [
+    -0.23,
+    "EKF3 IMU0 is using external nav data"
+   ],
+   [
+    -0.23,
+    "EKF3 IMU0 initial pos NED = 0.9,3.7,-9.8 (m)"
+   ]
+  ],
+  "bin_ev": [
+   [
+    -22.0,
+    "MODE",
+    2
+   ],
+   [
+    -20.61,
+    "EV",
+    57
+   ],
+   [
+    -19.18,
+    "EV",
+    28
+   ],
+   [
+    -18.93,
+    "EV",
+    25
+   ],
+   [
+    -17.54,
+    "EV",
+    62
+   ],
+   [
+    -1.23,
+    "EV",
+    86
+   ],
+   [
+    -0.0,
+    "MODE",
+    5
+   ]
+  ],
+  "note": "first run: the pilot armed before the EKF used GPS (no GPS position at the change to set 2); sitl_ap then got the wait for is using GPS",
+  "innov": {
+   "hold_0_30": {
+    "n": 300,
+    "ivn_distinct": 1,
+    "ive_distinct": 1,
+    "iv_std": 0.0,
+    "ipn_distinct": 19
+   },
+   "gnss_phase_8s_before_set2": {
+    "n": 80,
+    "ivn_distinct": 1,
+    "ive_distinct": 1,
+    "iv_std": 0.0,
+    "ipn_distinct": 28
+   }
+  }
+ },
+ "gn_setup_30m_s1": {
+  "case": "gn_setup_30m_s1",
+  "rms": 0.4590774277272713,
+  "max": 0.8134182215751773,
+  "pct_frames_fix": 18.731748018356278,
+  "fix_rate_hz": 11.224994713869371,
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 5, 0.0 s after the Loiter request started"
+   ]
+  ],
+  "hold_s_flown": 40.0,
+  "climb_s": 17.7,
+  "age_ms_p50": 129.8,
+  "reanchors": 1,
+  "onboard_exit": 0,
+  "ekf_yaw_minus_true_deg": -0.89,
+  "level": "setup",
+  "height": 30.0,
+  "seed": 1,
+  "glitch": false,
+  "settings": {
+   "min_height_m": 3.0,
+   "gnss_mode": "setup"
+  },
+  "params_gnss": {
+   "EK3_SRC1_POSXY": 3,
+   "EK3_SRC1_VELXY": 3,
+   "EK3_SRC1_POSZ": 1,
+   "EK3_SRC1_VELZ": 0,
+   "EK3_SRC1_YAW": 1,
+   "GPS1_TYPE": 1,
+   "EK3_SRC2_POSXY": 6,
+   "EK3_SRC2_VELXY": 0,
+   "EK3_SRC2_POSZ": 1,
+   "EK3_SRC2_VELZ": 0,
+   "EK3_SRC2_YAW": 1,
+   "EK3_SRC_OPTIONS": 0
+  },
+  "wall_s": 102,
+  "load_start": [
+   2.7373046875,
+   3.0947265625,
+   2.1376953125
+  ],
+  "texts_all": [
+   [
+    -60.86,
+    "Barometer 1 calibration complete"
+   ],
+   [
+    -60.86,
+    "Barometer 2 calibration complete"
+   ],
+   [
+    -58.41,
+    "ArduPilot Ready"
+   ],
+   [
+    -58.41,
+    "AHRS: DCM active"
+   ],
+   [
+    -58.11,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    -56.76,
+    "No ap_message for mavlink id (331)"
+   ],
+   [
+    -56.7,
+    "No ap_message for mavlink id (290)"
+   ],
+   [
+    -56.69,
+    "No ap_message for mavlink id (291)"
+   ],
+   [
+    -56.65,
+    "No ap_message for mavlink id (231)"
+   ],
+   [
+    -56.64,
+    "No ap_message for mavlink id (141)"
+   ],
+   [
+    -56.41,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    -56.41,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    -56.41,
+    "AHRS: EKF3 active"
+   ],
+   [
+    -55.03,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    -55.03,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    -54.93,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -54.93,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -51.06,
+    "GPS 1: probing for u-blox at 230400 baud"
+   ],
+   [
+    -51.04,
+    "GPS 1: detected u-blox"
+   ],
+   [
+    -40.84,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -40.82,
+    "Field Elevation Set: 70m"
+   ],
+   [
+    -40.65,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -19.25,
+    "EKF3 IMU0 is using GPS"
+   ],
+   [
+    -19.25,
+    "EKF3 IMU1 is using GPS"
+   ],
+   [
+    -18.91,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -18.47,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    -18.47,
+    "Arming motors"
+   ],
+   [
+    -17.69,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -13.43,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -13.43,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ]
+  ],
+  "rms30": 0.45332050559970855,
+  "max30": 0.8134182215751773,
+  "herr30": 0.089996337890625,
+  "h_switch": 29.790000915527344,
+  "ekf_step_switch": 0.00910556820786815,
+  "notes": [
+   [
+    -14.66,
+    "FC mode ALT_HOLD"
+   ],
+   [
+    -13.49,
+    "re-anchored to FC position 0.02 -0.02"
+   ],
+   [
+    -12.03,
+    "re-anchored to FC position 0.10 -0.11"
+   ],
+   [
+    -11.86,
+    "re-anchored to FC position 0.11 -0.13"
+   ],
+   [
+    -8.78,
+    "EKF source set 2 (our position only) requested: fixes for 2.0 s, before the pilot's switch"
+   ],
+   [
+    -8.69,
+    "FC reply to EKF source set 2 (our position only): ACCEPTED"
+   ],
+   [
+    0.01,
+    "engaged: FC mode LOITER"
+   ],
+   [
+    16.52,
+    "re-anchored to FC position 1.59 -1.86"
+   ]
+  ],
+  "t_set2": -8.69,
+  "ekf_step_set2": 0.20086386873999168,
+  "move5_set2": 0.8683436353673253,
+  "fixes_in_window": 327,
+  "fc_texts": [
+   [
+    -58.41,
+    "ArduPilot Ready"
+   ],
+   [
+    -58.41,
+    "AHRS: DCM active"
+   ],
+   [
+    -58.11,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    -56.76,
+    "No ap_message for mavlink id (331)"
+   ],
+   [
+    -56.7,
+    "No ap_message for mavlink id (290)"
+   ],
+   [
+    -56.69,
+    "No ap_message for mavlink id (291)"
+   ],
+   [
+    -56.65,
+    "No ap_message for mavlink id (231)"
+   ],
+   [
+    -56.64,
+    "No ap_message for mavlink id (141)"
+   ],
+   [
+    -56.41,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    -56.41,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    -56.41,
+    "AHRS: EKF3 active"
+   ],
+   [
+    -55.03,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    -55.03,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    -54.93,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -54.93,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -51.06,
+    "GPS 1: probing for u-blox at 230400 baud"
+   ],
+   [
+    -51.04,
+    "GPS 1: detected u-blox"
+   ],
+   [
+    -40.84,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -40.82,
+    "Field Elevation Set: 70m"
+   ],
+   [
+    -40.65,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -19.25,
+    "EKF3 IMU0 is using GPS"
+   ],
+   [
+    -19.25,
+    "EKF3 IMU1 is using GPS"
+   ],
+   [
+    -18.91,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -18.47,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    -18.47,
+    "Arming motors"
+   ],
+   [
+    -17.69,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -13.43,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -13.43,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ]
+  ],
+  "bin_ev": [
+   [
+    -18.31,
+    "MODE",
+    2
+   ],
+   [
+    -17.71,
+    "EV",
+    15
+   ],
+   [
+    -16.47,
+    "EV",
+    57
+   ],
+   [
+    -15.04,
+    "EV",
+    28
+   ],
+   [
+    -13.43,
+    "EV",
+    62
+   ],
+   [
+    -8.71,
+    "EV",
+    86
+   ],
+   [
+    -0.0,
+    "MODE",
+    5
+   ]
+  ],
+  "innov": {
+   "hold_0_30": {
+    "n": 300,
+    "ivn_distinct": 1,
+    "ive_distinct": 1,
+    "iv_std": 0.0,
+    "ipn_distinct": 40
+   },
+   "gnss_phase_8s_before_set2": {
+    "n": 80,
+    "ivn_distinct": 2,
+    "ive_distinct": 2,
+    "iv_std": 0.0065,
+    "ipn_distinct": 2
+   }
+  }
+ },
+ "gn_none_30m_s1": {
+  "case": "gn_none_30m_s1",
+  "rms": 0.43580762136463735,
+  "max": 0.8284798255245757,
+  "pct_frames_fix": 20.341809087119632,
+  "fix_rate_hz": 12.198774666631238,
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 5, 0.0 s after the Loiter request started"
+   ]
+  ],
+  "hold_s_flown": 40.0,
+  "climb_s": 18.1,
+  "age_ms_p50": 129.14999999999998,
+  "reanchors": 0,
+  "onboard_exit": 0,
+  "ekf_yaw_minus_true_deg": -1.32,
+  "level": "none",
+  "height": 30.0,
+  "seed": 1,
+  "glitch": false,
+  "settings": {
+   "min_height_m": 3.0
+  },
+  "params_gnss": {},
+  "wall_s": 72,
+  "load_start": [
+   2.6474609375,
+   3.4130859375,
+   2.44140625
+  ],
+  "texts_all": [
+   [
+    -30.24,
+    "Barometer 1 calibration complete"
+   ],
+   [
+    -30.24,
+    "Barometer 2 calibration complete"
+   ],
+   [
+    -27.79,
+    "ArduPilot Ready"
+   ],
+   [
+    -27.79,
+    "AHRS: DCM active"
+   ],
+   [
+    -27.5,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    -26.16,
+    "No ap_message for mavlink id (331)"
+   ],
+   [
+    -26.1,
+    "No ap_message for mavlink id (290)"
+   ],
+   [
+    -26.09,
+    "No ap_message for mavlink id (291)"
+   ],
+   [
+    -26.05,
+    "No ap_message for mavlink id (231)"
+   ],
+   [
+    -26.04,
+    "No ap_message for mavlink id (141)"
+   ],
+   [
+    -25.79,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    -25.79,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    -25.79,
+    "AHRS: EKF3 active"
+   ],
+   [
+    -24.41,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    -24.41,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    -24.31,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -24.31,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -18.97,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -18.53,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    -18.53,
+    "Arming motors"
+   ],
+   [
+    -18.09,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -14.85,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -14.85,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -13.51,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -13.51,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -10.4,
+    "EKF3 IMU1 is using external nav data"
+   ],
+   [
+    -10.4,
+    "EKF3 IMU1 initial pos NED = -0.1,-0.1,-16.7 (m)"
+   ],
+   [
+    -10.39,
+    "EKF3 IMU0 is using external nav data"
+   ],
+   [
+    -10.39,
+    "EKF3 IMU0 initial pos NED = -0.1,-0.1,-16.7 (m)"
+   ]
+  ],
+  "rms30": 0.457962330855768,
+  "max30": 0.8284798255245757,
+  "herr30": 0.05999755859375,
+  "h_switch": 29.69000244140625,
+  "ekf_step_switch": 0.005848885934933992,
+  "notes": [
+   [
+    -14.71,
+    "FC mode ALT_HOLD"
+   ],
+   [
+    -13.49,
+    "re-anchored to last position (no FC position) 0.00 0.00"
+   ],
+   [
+    -12.44,
+    "re-anchored to last position (no FC position) -0.02 -0.01"
+   ],
+   [
+    -11.46,
+    "re-anchored to last position (no FC position) -0.04 -0.01"
+   ],
+   [
+    0.01,
+    "engaged: FC mode LOITER"
+   ]
+  ],
+  "fixes_in_window": 366,
+  "fc_texts": [
+   [
+    -30.24,
+    "Barometer 1 calibration complete"
+   ],
+   [
+    -30.24,
+    "Barometer 2 calibration complete"
+   ],
+   [
+    -27.79,
+    "ArduPilot Ready"
+   ],
+   [
+    -27.79,
+    "AHRS: DCM active"
+   ],
+   [
+    -27.5,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    -26.16,
+    "No ap_message for mavlink id (331)"
+   ],
+   [
+    -26.1,
+    "No ap_message for mavlink id (290)"
+   ],
+   [
+    -26.09,
+    "No ap_message for mavlink id (291)"
+   ],
+   [
+    -26.05,
+    "No ap_message for mavlink id (231)"
+   ],
+   [
+    -26.04,
+    "No ap_message for mavlink id (141)"
+   ],
+   [
+    -25.79,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    -25.79,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    -25.79,
+    "AHRS: EKF3 active"
+   ],
+   [
+    -24.41,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    -24.41,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    -24.31,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -24.31,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -18.97,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -18.53,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    -18.53,
+    "Arming motors"
+   ],
+   [
+    -18.09,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -14.85,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -14.85,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -13.51,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -13.51,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -10.4,
+    "EKF3 IMU1 is using external nav data"
+   ],
+   [
+    -10.4,
+    "EKF3 IMU1 initial pos NED = -0.1,-0.1,-16.7 (m)"
+   ],
+   [
+    -10.39,
+    "EKF3 IMU0 is using external nav data"
+   ],
+   [
+    -10.39,
+    "EKF3 IMU0 initial pos NED = -0.1,-0.1,-16.7 (m)"
+   ]
+  ],
+  "bin_ev": [
+   [
+    -17.77,
+    "MODE",
+    2
+   ],
+   [
+    -16.53,
+    "EV",
+    57
+   ],
+   [
+    -15.09,
+    "EV",
+    28
+   ],
+   [
+    -14.65,
+    "EV",
+    25
+   ],
+   [
+    -13.51,
+    "EV",
+    62
+   ],
+   [
+    -0.0,
+    "MODE",
+    5
+   ]
+  ],
+  "innov": {
+   "hold_0_30": {
+    "n": 300,
+    "ivn_distinct": 1,
+    "ive_distinct": 1,
+    "iv_std": 0.0,
+    "ipn_distinct": 22
+   }
+  }
+ },
+ "gn_setup_10m_s2": {
+  "case": "gn_setup_10m_s2",
+  "rms": 0.4644005657446066,
+  "max": 0.9578831219901551,
+  "pct_frames_fix": 15.166666666666666,
+  "fix_rate_hz": 9.098867421662428,
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 5, 0.0 s after the Loiter request started"
+   ]
+  ],
+  "hold_s_flown": 40.0,
+  "climb_s": 13.6,
+  "age_ms_p50": 128.4,
+  "reanchors": 6,
+  "onboard_exit": 0,
+  "ekf_yaw_minus_true_deg": -0.51,
+  "level": "setup",
+  "height": 10.0,
+  "seed": 2,
+  "glitch": false,
+  "settings": {
+   "min_height_m": 3.0,
+   "gnss_mode": "setup"
+  },
+  "params_gnss": {
+   "EK3_SRC1_POSXY": 3,
+   "EK3_SRC1_VELXY": 3,
+   "EK3_SRC1_POSZ": 1,
+   "EK3_SRC1_VELZ": 0,
+   "EK3_SRC1_YAW": 1,
+   "GPS1_TYPE": 1,
+   "EK3_SRC2_POSXY": 6,
+   "EK3_SRC2_VELXY": 0,
+   "EK3_SRC2_POSZ": 1,
+   "EK3_SRC2_VELZ": 0,
+   "EK3_SRC2_YAW": 1,
+   "EK3_SRC_OPTIONS": 0
+  },
+  "wall_s": 98,
+  "load_start": [
+   2.54052734375,
+   3.658203125,
+   2.70166015625
+  ],
+  "texts_all": [
+   [
+    -56.65,
+    "Barometer 1 calibration complete"
+   ],
+   [
+    -56.65,
+    "Barometer 2 calibration complete"
+   ],
+   [
+    -54.2,
+    "ArduPilot Ready"
+   ],
+   [
+    -54.2,
+    "AHRS: DCM active"
+   ],
+   [
+    -53.91,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    -52.56,
+    "No ap_message for mavlink id (331)"
+   ],
+   [
+    -52.49,
+    "No ap_message for mavlink id (290)"
+   ],
+   [
+    -52.48,
+    "No ap_message for mavlink id (291)"
+   ],
+   [
+    -52.44,
+    "No ap_message for mavlink id (231)"
+   ],
+   [
+    -52.43,
+    "No ap_message for mavlink id (141)"
+   ],
+   [
+    -52.2,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    -52.2,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    -52.2,
+    "AHRS: EKF3 active"
+   ],
+   [
+    -50.82,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    -50.82,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    -50.72,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -50.72,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -46.85,
+    "GPS 1: probing for u-blox at 230400 baud"
+   ],
+   [
+    -46.83,
+    "GPS 1: detected u-blox"
+   ],
+   [
+    -36.63,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -36.61,
+    "Field Elevation Set: 70m"
+   ],
+   [
+    -36.44,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -15.04,
+    "EKF3 IMU0 is using GPS"
+   ],
+   [
+    -15.04,
+    "EKF3 IMU1 is using GPS"
+   ],
+   [
+    -14.66,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -14.2,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    -14.2,
+    "Arming motors"
+   ],
+   [
+    -13.54,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -9.22,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -9.22,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ]
+  ],
+  "rms30": 0.4152962551690343,
+  "max30": 0.7124491433381299,
+  "herr30": 0.04000091552734375,
+  "h_switch": 9.780006408691406,
+  "ekf_step_switch": 0.005881275142513134,
+  "notes": [
+   [
+    -10.42,
+    "FC mode ALT_HOLD"
+   ],
+   [
+    -9.18,
+    "re-anchored to FC position 0.02 -0.02"
+   ],
+   [
+    -5.03,
+    "re-anchored to FC position 0.31 -0.35"
+   ],
+   [
+    -1.62,
+    "EKF source set 2 (our position only) requested: fixes for 2.0 s, before the pilot's switch"
+   ],
+   [
+    -1.53,
+    "FC reply to EKF source set 2 (our position only): ACCEPTED"
+   ],
+   [
+    0.02,
+    "engaged: FC mode LOITER"
+   ],
+   [
+    2.3,
+    "re-anchored to FC position 0.94 -1.02"
+   ],
+   [
+    2.45,
+    "re-anchored to FC position 0.93 -1.00"
+   ],
+   [
+    6.55,
+    "re-anchored to FC position 0.94 -0.34"
+   ],
+   [
+    13.95,
+    "re-anchored to FC position 0.90 -1.06"
+   ],
+   [
+    14.12,
+    "re-anchored to FC position 0.90 -1.07"
+   ],
+   [
+    34.22,
+    "re-anchored to FC position 0.85 -0.36"
+   ]
+  ],
+  "t_set2": -1.53,
+  "ekf_step_set2": 0.016739616587853345,
+  "move5_set2": 0.43000832243854215,
+  "fixes_in_window": 269,
+  "fc_texts": [
+   [
+    -56.65,
+    "Barometer 1 calibration complete"
+   ],
+   [
+    -56.65,
+    "Barometer 2 calibration complete"
+   ],
+   [
+    -54.2,
+    "ArduPilot Ready"
+   ],
+   [
+    -54.2,
+    "AHRS: DCM active"
+   ],
+   [
+    -53.91,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    -52.56,
+    "No ap_message for mavlink id (331)"
+   ],
+   [
+    -52.49,
+    "No ap_message for mavlink id (290)"
+   ],
+   [
+    -52.48,
+    "No ap_message for mavlink id (291)"
+   ],
+   [
+    -52.44,
+    "No ap_message for mavlink id (231)"
+   ],
+   [
+    -52.43,
+    "No ap_message for mavlink id (141)"
+   ],
+   [
+    -52.2,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    -52.2,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    -52.2,
+    "AHRS: EKF3 active"
+   ],
+   [
+    -50.82,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    -50.82,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    -50.72,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -50.72,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -46.85,
+    "GPS 1: probing for u-blox at 230400 baud"
+   ],
+   [
+    -46.83,
+    "GPS 1: detected u-blox"
+   ],
+   [
+    -36.63,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -36.61,
+    "Field Elevation Set: 70m"
+   ],
+   [
+    -36.44,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -15.04,
+    "EKF3 IMU0 is using GPS"
+   ],
+   [
+    -15.04,
+    "EKF3 IMU1 is using GPS"
+   ],
+   [
+    -14.66,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -14.2,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    -14.2,
+    "Arming motors"
+   ],
+   [
+    -13.54,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -9.22,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -9.22,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ]
+  ],
+  "bin_ev": [
+   [
+    -14.1,
+    "MODE",
+    2
+   ],
+   [
+    -13.54,
+    "EV",
+    15
+   ],
+   [
+    -12.2,
+    "EV",
+    57
+   ],
+   [
+    -10.78,
+    "EV",
+    28
+   ],
+   [
+    -9.22,
+    "EV",
+    62
+   ],
+   [
+    -1.55,
+    "EV",
+    86
+   ],
+   [
+    -0.0,
+    "MODE",
+    5
+   ]
+  ],
+  "innov": {
+   "hold_0_30": {
+    "n": 300,
+    "ivn_distinct": 1,
+    "ive_distinct": 1,
+    "iv_std": 0.0,
+    "ipn_distinct": 15
+   },
+   "gnss_phase_8s_before_set2": {
+    "n": 80,
+    "ivn_distinct": 2,
+    "ive_distinct": 2,
+    "iv_std": 0.0069,
+    "ipn_distinct": 2
+   }
+  }
+ },
+ "gn_none_10m_s2": {
+  "case": "gn_none_10m_s2",
+  "rms": 0.8274430860594859,
+  "max": 1.2822881199467377,
+  "pct_frames_fix": 17.166666666666668,
+  "fix_rate_hz": 10.298978984455946,
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 5, 0.0 s after the Loiter request started"
+   ]
+  ],
+  "hold_s_flown": 40.0,
+  "climb_s": 13.7,
+  "age_ms_p50": 128.2,
+  "reanchors": 4,
+  "onboard_exit": 0,
+  "ekf_yaw_minus_true_deg": -2.1,
+  "level": "none",
+  "height": 10.0,
+  "seed": 2,
+  "glitch": false,
+  "settings": {
+   "min_height_m": 3.0
+  },
+  "params_gnss": {},
+  "wall_s": 67,
+  "load_start": [
+   2.5595703125,
+   3.623046875,
+   2.85986328125
+  ],
+  "texts_all": [
+   [
+    -25.84,
+    "Barometer 1 calibration complete"
+   ],
+   [
+    -25.84,
+    "Barometer 2 calibration complete"
+   ],
+   [
+    -23.39,
+    "ArduPilot Ready"
+   ],
+   [
+    -23.39,
+    "AHRS: DCM active"
+   ],
+   [
+    -23.09,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    -21.74,
+    "No ap_message for mavlink id (331)"
+   ],
+   [
+    -21.67,
+    "No ap_message for mavlink id (290)"
+   ],
+   [
+    -21.66,
+    "No ap_message for mavlink id (291)"
+   ],
+   [
+    -21.62,
+    "No ap_message for mavlink id (231)"
+   ],
+   [
+    -21.61,
+    "No ap_message for mavlink id (141)"
+   ],
+   [
+    -21.39,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    -21.39,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    -21.38,
+    "AHRS: EKF3 active"
+   ],
+   [
+    -20.0,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    -20.0,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    -19.9,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -19.9,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -14.5,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -14.05,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    -14.05,
+    "Arming motors"
+   ],
+   [
+    -13.71,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -10.39,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -10.39,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -9.01,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -9.0,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -0.95,
+    "EKF3 IMU0 is using external nav data"
+   ],
+   [
+    -0.95,
+    "EKF3 IMU0 initial pos NED = -0.3,0.1,-9.8 (m)"
+   ],
+   [
+    -0.94,
+    "EKF3 IMU1 is using external nav data"
+   ],
+   [
+    -0.94,
+    "EKF3 IMU1 initial pos NED = -0.3,0.1,-9.8 (m)"
+   ]
+  ],
+  "rms30": 0.7481278745359163,
+  "max30": 1.0961388137183132,
+  "herr30": 0.07000732421875,
+  "h_switch": 9.82000732421875,
+  "ekf_step_switch": 0.0061806435192471995,
+  "notes": [
+   [
+    -10.24,
+    "FC mode ALT_HOLD"
+   ],
+   [
+    -9.05,
+    "re-anchored to last position (no FC position) 0.00 0.00"
+   ],
+   [
+    -8.25,
+    "re-anchored to last position (no FC position) -0.01 -0.00"
+   ],
+   [
+    -7.1,
+    "re-anchored to last position (no FC position) -0.03 0.00"
+   ],
+   [
+    -6.87,
+    "re-anchored to last position (no FC position) -0.03 0.00"
+   ],
+   [
+    -5.57,
+    "re-anchored to last position (no FC position) -0.15 -0.00"
+   ],
+   [
+    -4.92,
+    "re-anchored to last position (no FC position) -0.15 -0.00"
+   ],
+   [
+    -4.27,
+    "re-anchored to last position (no FC position) -0.15 -0.00"
+   ],
+   [
+    -3.62,
+    "re-anchored to last position (no FC position) -0.15 -0.00"
+   ],
+   [
+    -1.99,
+    "re-anchored to last position (no FC position) -0.26 0.03"
+   ],
+   [
+    -0.35,
+    "re-anchored to FC position -0.37 0.11"
+   ],
+   [
+    -0.04,
+    "engaged: FC mode LOITER"
+   ],
+   [
+    1.68,
+    "re-anchored to FC position -0.40 0.23"
+   ],
+   [
+    1.83,
+    "re-anchored to FC position -0.41 0.25"
+   ],
+   [
+    4.45,
+    "re-anchored to FC position -0.37 0.52"
+   ],
+   [
+    9.5,
+    "re-anchored to FC position -0.51 0.33"
+   ]
+  ],
+  "fixes_in_window": 301,
+  "fc_texts": [
+   [
+    -25.84,
+    "Barometer 1 calibration complete"
+   ],
+   [
+    -25.84,
+    "Barometer 2 calibration complete"
+   ],
+   [
+    -23.39,
+    "ArduPilot Ready"
+   ],
+   [
+    -23.39,
+    "AHRS: DCM active"
+   ],
+   [
+    -23.09,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    -21.74,
+    "No ap_message for mavlink id (331)"
+   ],
+   [
+    -21.67,
+    "No ap_message for mavlink id (290)"
+   ],
+   [
+    -21.66,
+    "No ap_message for mavlink id (291)"
+   ],
+   [
+    -21.62,
+    "No ap_message for mavlink id (231)"
+   ],
+   [
+    -21.61,
+    "No ap_message for mavlink id (141)"
+   ],
+   [
+    -21.39,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    -21.39,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    -21.38,
+    "AHRS: EKF3 active"
+   ],
+   [
+    -20.0,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    -20.0,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    -19.9,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -19.9,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -14.5,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -14.05,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    -14.05,
+    "Arming motors"
+   ],
+   [
+    -13.71,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -10.39,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -10.39,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -9.01,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -9.0,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -0.95,
+    "EKF3 IMU0 is using external nav data"
+   ],
+   [
+    -0.95,
+    "EKF3 IMU0 initial pos NED = -0.3,0.1,-9.8 (m)"
+   ],
+   [
+    -0.94,
+    "EKF3 IMU1 is using external nav data"
+   ],
+   [
+    -0.94,
+    "EKF3 IMU1 initial pos NED = -0.3,0.1,-9.8 (m)"
+   ]
+  ],
+  "bin_ev": [
+   [
+    -13.36,
+    "MODE",
+    2
+   ],
+   [
+    -12.05,
+    "EV",
+    57
+   ],
+   [
+    -10.61,
+    "EV",
+    28
+   ],
+   [
+    -10.19,
+    "EV",
+    25
+   ],
+   [
+    -9.0,
+    "EV",
+    62
+   ],
+   [
+    -0.0,
+    "MODE",
+    5
+   ]
+  ],
+  "innov": {
+   "hold_0_30": {
+    "n": 300,
+    "ivn_distinct": 1,
+    "ive_distinct": 1,
+    "iv_std": 0.0,
+    "ipn_distinct": 8
+   }
+  }
+ },
+ "gn_setup_30m_s2": {
+  "case": "gn_setup_30m_s2",
+  "rms": 0.4865044321970853,
+  "max": 1.0593768656364446,
+  "pct_frames_fix": 17.7157148812005,
+  "fix_rate_hz": 10.62499937418739,
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 5, 0.0 s after the Loiter request started"
+   ]
+  ],
+  "hold_s_flown": 40.0,
+  "climb_s": 17.8,
+  "age_ms_p50": 128.8,
+  "reanchors": 1,
+  "onboard_exit": 0,
+  "ekf_yaw_minus_true_deg": -0.86,
+  "level": "setup",
+  "height": 30.0,
+  "seed": 2,
+  "glitch": false,
+  "settings": {
+   "min_height_m": 3.0,
+   "gnss_mode": "setup"
+  },
+  "params_gnss": {
+   "EK3_SRC1_POSXY": 3,
+   "EK3_SRC1_VELXY": 3,
+   "EK3_SRC1_POSZ": 1,
+   "EK3_SRC1_VELZ": 0,
+   "EK3_SRC1_YAW": 1,
+   "GPS1_TYPE": 1,
+   "EK3_SRC2_POSXY": 6,
+   "EK3_SRC2_VELXY": 0,
+   "EK3_SRC2_POSZ": 1,
+   "EK3_SRC2_VELZ": 0,
+   "EK3_SRC2_YAW": 1,
+   "EK3_SRC_OPTIONS": 0
+  },
+  "wall_s": 102,
+  "load_start": [
+   2.64306640625,
+   3.7314453125,
+   3.0146484375
+  ],
+  "texts_all": [
+   [
+    -60.91,
+    "Barometer 1 calibration complete"
+   ],
+   [
+    -60.91,
+    "Barometer 2 calibration complete"
+   ],
+   [
+    -58.46,
+    "ArduPilot Ready"
+   ],
+   [
+    -58.46,
+    "AHRS: DCM active"
+   ],
+   [
+    -58.16,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    -56.83,
+    "No ap_message for mavlink id (331)"
+   ],
+   [
+    -56.77,
+    "No ap_message for mavlink id (290)"
+   ],
+   [
+    -56.76,
+    "No ap_message for mavlink id (291)"
+   ],
+   [
+    -56.72,
+    "No ap_message for mavlink id (231)"
+   ],
+   [
+    -56.71,
+    "No ap_message for mavlink id (141)"
+   ],
+   [
+    -56.46,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    -56.46,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    -56.46,
+    "AHRS: EKF3 active"
+   ],
+   [
+    -55.08,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    -55.08,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    -54.98,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -54.98,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -51.11,
+    "GPS 1: probing for u-blox at 230400 baud"
+   ],
+   [
+    -51.09,
+    "GPS 1: detected u-blox"
+   ],
+   [
+    -40.89,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -40.87,
+    "Field Elevation Set: 70m"
+   ],
+   [
+    -40.7,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -19.3,
+    "EKF3 IMU0 is using GPS"
+   ],
+   [
+    -19.3,
+    "EKF3 IMU1 is using GPS"
+   ],
+   [
+    -18.98,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -18.51,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    -18.51,
+    "Arming motors"
+   ],
+   [
+    -17.72,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -13.48,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -13.48,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ]
+  ],
+  "rms30": 0.4259733628741701,
+  "max30": 0.8363475254766352,
+  "herr30": 0.06999969482421875,
+  "h_switch": 29.780006408691406,
+  "ekf_step_switch": 0.0071680115647010986,
+  "notes": [
+   [
+    -14.69,
+    "FC mode ALT_HOLD"
+   ],
+   [
+    -13.48,
+    "re-anchored to FC position 0.02 -0.02"
+   ],
+   [
+    -11.69,
+    "re-anchored to FC position 0.13 -0.14"
+   ],
+   [
+    -8.53,
+    "EKF source set 2 (our position only) requested: fixes for 2.0 s, before the pilot's switch"
+   ],
+   [
+    -8.44,
+    "FC reply to EKF source set 2 (our position only): ACCEPTED"
+   ],
+   [
+    0.02,
+    "engaged: FC mode LOITER"
+   ],
+   [
+    20.59,
+    "re-anchored to FC position 1.63 -1.45"
+   ]
+  ],
+  "t_set2": -8.44,
+  "ekf_step_set2": 0.22337467083983867,
+  "move5_set2": 0.8873966925066429,
+  "fixes_in_window": 303,
+  "fc_texts": [
+   [
+    -58.46,
+    "ArduPilot Ready"
+   ],
+   [
+    -58.46,
+    "AHRS: DCM active"
+   ],
+   [
+    -58.16,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    -56.83,
+    "No ap_message for mavlink id (331)"
+   ],
+   [
+    -56.77,
+    "No ap_message for mavlink id (290)"
+   ],
+   [
+    -56.76,
+    "No ap_message for mavlink id (291)"
+   ],
+   [
+    -56.72,
+    "No ap_message for mavlink id (231)"
+   ],
+   [
+    -56.71,
+    "No ap_message for mavlink id (141)"
+   ],
+   [
+    -56.46,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    -56.46,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    -56.46,
+    "AHRS: EKF3 active"
+   ],
+   [
+    -55.08,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    -55.08,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    -54.98,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -54.98,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -51.11,
+    "GPS 1: probing for u-blox at 230400 baud"
+   ],
+   [
+    -51.09,
+    "GPS 1: detected u-blox"
+   ],
+   [
+    -40.89,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -40.87,
+    "Field Elevation Set: 70m"
+   ],
+   [
+    -40.7,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -19.3,
+    "EKF3 IMU0 is using GPS"
+   ],
+   [
+    -19.3,
+    "EKF3 IMU1 is using GPS"
+   ],
+   [
+    -18.98,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -18.51,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    -18.51,
+    "Arming motors"
+   ],
+   [
+    -17.72,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -13.48,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -13.48,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ]
+  ],
+  "bin_ev": [
+   [
+    -18.36,
+    "MODE",
+    2
+   ],
+   [
+    -17.74,
+    "EV",
+    15
+   ],
+   [
+    -16.51,
+    "EV",
+    57
+   ],
+   [
+    -15.08,
+    "EV",
+    28
+   ],
+   [
+    -13.48,
+    "EV",
+    62
+   ],
+   [
+    -8.46,
+    "EV",
+    86
+   ],
+   [
+    -0.0,
+    "MODE",
+    5
+   ]
+  ],
+  "innov": {
+   "hold_0_30": {
+    "n": 300,
+    "ivn_distinct": 1,
+    "ive_distinct": 1,
+    "iv_std": 0.0,
+    "ipn_distinct": 55
+   },
+   "gnss_phase_8s_before_set2": {
+    "n": 80,
+    "ivn_distinct": 2,
+    "ive_distinct": 2,
+    "iv_std": 0.0064,
+    "ipn_distinct": 2
+   }
+  }
+ },
+ "gn_none_30m_s2": {
+  "case": "gn_none_30m_s2",
+  "rms": 0.5053438935017026,
+  "max": 1.0900048058385545,
+  "pct_frames_fix": 20.35878181059658,
+  "fix_rate_hz": 12.196956387359268,
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 5, 0.0 s after the Loiter request started"
+   ]
+  ],
+  "hold_s_flown": 40.0,
+  "climb_s": 18.3,
+  "age_ms_p50": 129.6,
+  "reanchors": 0,
+  "onboard_exit": 0,
+  "ekf_yaw_minus_true_deg": 1.19,
+  "level": "none",
+  "height": 30.0,
+  "seed": 2,
+  "glitch": false,
+  "settings": {
+   "min_height_m": 3.0
+  },
+  "params_gnss": {},
+  "wall_s": 72,
+  "load_start": [
+   2.85400390625,
+   3.56787109375,
+   3.03076171875
+  ],
+  "texts_all": [
+   [
+    -30.41,
+    "Barometer 1 calibration complete"
+   ],
+   [
+    -30.41,
+    "Barometer 2 calibration complete"
+   ],
+   [
+    -27.95,
+    "ArduPilot Ready"
+   ],
+   [
+    -27.95,
+    "AHRS: DCM active"
+   ],
+   [
+    -27.66,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    -26.29,
+    "No ap_message for mavlink id (331)"
+   ],
+   [
+    -26.24,
+    "No ap_message for mavlink id (290)"
+   ],
+   [
+    -26.22,
+    "No ap_message for mavlink id (291)"
+   ],
+   [
+    -26.18,
+    "No ap_message for mavlink id (231)"
+   ],
+   [
+    -26.17,
+    "No ap_message for mavlink id (141)"
+   ],
+   [
+    -25.95,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    -25.95,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    -25.95,
+    "AHRS: EKF3 active"
+   ],
+   [
+    -24.57,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    -24.57,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    -24.47,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -24.47,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -19.05,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -18.62,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    -18.62,
+    "Arming motors"
+   ],
+   [
+    -18.25,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -14.95,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -14.95,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -13.57,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -13.57,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -10.24,
+    "EKF3 IMU1 is using external nav data"
+   ],
+   [
+    -10.24,
+    "EKF3 IMU1 initial pos NED = 0.1,-0.0,-17.9 (m)"
+   ],
+   [
+    -10.23,
+    "EKF3 IMU0 is using external nav data"
+   ],
+   [
+    -10.23,
+    "EKF3 IMU0 initial pos NED = 0.1,-0.0,-17.9 (m)"
+   ]
+  ],
+  "rms30": 0.44644971775863296,
+  "max30": 0.9952484452439506,
+  "herr30": 0.100006103515625,
+  "h_switch": 29.68000030517578,
+  "ekf_step_switch": 0.005528140257963395,
+  "notes": [
+   [
+    -14.82,
+    "FC mode ALT_HOLD"
+   ],
+   [
+    -13.64,
+    "re-anchored to last position (no FC position) 0.00 0.00"
+   ],
+   [
+    -12.67,
+    "re-anchored to last position (no FC position) -0.03 -0.01"
+   ],
+   [
+    -11.94,
+    "re-anchored to last position (no FC position) -0.02 -0.03"
+   ],
+   [
+    -11.29,
+    "re-anchored to last position (no FC position) -0.01 -0.06"
+   ],
+   [
+    -0.04,
+    "engaged: FC mode LOITER"
+   ]
+  ],
+  "fixes_in_window": 366,
+  "fc_texts": [
+   [
+    -30.41,
+    "Barometer 1 calibration complete"
+   ],
+   [
+    -30.41,
+    "Barometer 2 calibration complete"
+   ],
+   [
+    -27.95,
+    "ArduPilot Ready"
+   ],
+   [
+    -27.95,
+    "AHRS: DCM active"
+   ],
+   [
+    -27.66,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    -26.29,
+    "No ap_message for mavlink id (331)"
+   ],
+   [
+    -26.24,
+    "No ap_message for mavlink id (290)"
+   ],
+   [
+    -26.22,
+    "No ap_message for mavlink id (291)"
+   ],
+   [
+    -26.18,
+    "No ap_message for mavlink id (231)"
+   ],
+   [
+    -26.17,
+    "No ap_message for mavlink id (141)"
+   ],
+   [
+    -25.95,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    -25.95,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    -25.95,
+    "AHRS: EKF3 active"
+   ],
+   [
+    -24.57,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    -24.57,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    -24.47,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -24.47,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -19.05,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -18.62,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    -18.62,
+    "Arming motors"
+   ],
+   [
+    -18.25,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -14.95,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -14.95,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -13.57,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -13.57,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -10.24,
+    "EKF3 IMU1 is using external nav data"
+   ],
+   [
+    -10.24,
+    "EKF3 IMU1 initial pos NED = 0.1,-0.0,-17.9 (m)"
+   ],
+   [
+    -10.23,
+    "EKF3 IMU0 is using external nav data"
+   ],
+   [
+    -10.23,
+    "EKF3 IMU0 initial pos NED = 0.1,-0.0,-17.9 (m)"
+   ]
+  ],
+  "bin_ev": [
+   [
+    -17.93,
+    "MODE",
+    2
+   ],
+   [
+    -16.62,
+    "EV",
+    57
+   ],
+   [
+    -15.19,
+    "EV",
+    28
+   ],
+   [
+    -14.75,
+    "EV",
+    25
+   ],
+   [
+    -13.57,
+    "EV",
+    62
+   ],
+   [
+    -0.0,
+    "MODE",
+    5
+   ]
+  ],
+  "innov": {
+   "hold_0_30": {
+    "n": 300,
+    "ivn_distinct": 1,
+    "ive_distinct": 1,
+    "iv_std": 0.0,
+    "ipn_distinct": 24
+   }
+  }
+ },
+ "gn_setup_30m_s1_glitch": {
+  "case": "gn_setup_30m_s1_glitch",
+  "rms": 0.44008963342735274,
+  "max": 0.9783416942616558,
+  "pct_frames_fix": 20.291666666666668,
+  "fix_rate_hz": 12.173471306906555,
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 5, 0.0 s after the Loiter request started"
+   ]
+  ],
+  "hold_s_flown": 40.0,
+  "climb_s": 17.8,
+  "age_ms_p50": 128.3,
+  "reanchors": 0,
+  "onboard_exit": 0,
+  "ekf_yaw_minus_true_deg": -0.88,
+  "level": "setup",
+  "height": 30.0,
+  "seed": 1,
+  "glitch": true,
+  "settings": {
+   "min_height_m": 3.0,
+   "gnss_mode": "setup"
+  },
+  "params_gnss": {
+   "EK3_SRC1_POSXY": 3,
+   "EK3_SRC1_VELXY": 3,
+   "EK3_SRC1_POSZ": 1,
+   "EK3_SRC1_VELZ": 0,
+   "EK3_SRC1_YAW": 1,
+   "GPS1_TYPE": 1,
+   "EK3_SRC2_POSXY": 6,
+   "EK3_SRC2_VELXY": 0,
+   "EK3_SRC2_POSZ": 1,
+   "EK3_SRC2_VELZ": 0,
+   "EK3_SRC2_YAW": 1,
+   "EK3_SRC_OPTIONS": 0
+  },
+  "wall_s": 102,
+  "load_start": [
+   1.96630859375,
+   3.14013671875,
+   2.92236328125
+  ],
+  "texts_all": [
+   [
+    -60.9,
+    "Barometer 1 calibration complete"
+   ],
+   [
+    -60.9,
+    "Barometer 2 calibration complete"
+   ],
+   [
+    -58.45,
+    "ArduPilot Ready"
+   ],
+   [
+    -58.45,
+    "AHRS: DCM active"
+   ],
+   [
+    -58.15,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    -56.81,
+    "No ap_message for mavlink id (331)"
+   ],
+   [
+    -56.75,
+    "No ap_message for mavlink id (290)"
+   ],
+   [
+    -56.74,
+    "No ap_message for mavlink id (291)"
+   ],
+   [
+    -56.7,
+    "No ap_message for mavlink id (231)"
+   ],
+   [
+    -56.69,
+    "No ap_message for mavlink id (141)"
+   ],
+   [
+    -56.45,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    -56.45,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    -56.44,
+    "AHRS: EKF3 active"
+   ],
+   [
+    -55.06,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    -55.06,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    -54.96,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -54.96,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -51.09,
+    "GPS 1: probing for u-blox at 230400 baud"
+   ],
+   [
+    -51.07,
+    "GPS 1: detected u-blox"
+   ],
+   [
+    -40.88,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -40.85,
+    "Field Elevation Set: 70m"
+   ],
+   [
+    -40.69,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -19.28,
+    "EKF3 IMU0 is using GPS"
+   ],
+   [
+    -19.28,
+    "EKF3 IMU1 is using GPS"
+   ],
+   [
+    -18.95,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -18.52,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    -18.52,
+    "Arming motors"
+   ],
+   [
+    -17.75,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -13.46,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -13.46,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    10.01,
+    "(supervisor) SIM_GPS_GLITCH_X 0.0001797 deg = 20 m north"
+   ]
+  ],
+  "rms30": 0.47304635698943465,
+  "max30": 0.9783416942616558,
+  "herr30": 0.06999969482421875,
+  "h_switch": 29.780006408691406,
+  "ekf_step_switch": 0.0077188995246480485,
+  "notes": [
+   [
+    -14.73,
+    "FC mode ALT_HOLD"
+   ],
+   [
+    -13.53,
+    "re-anchored to FC position 0.02 -0.02"
+   ],
+   [
+    -13.06,
+    "re-anchored to FC position 0.04 -0.04"
+   ],
+   [
+    -10.68,
+    "re-anchored to FC position 0.21 -0.24"
+   ],
+   [
+    -7.65,
+    "EKF source set 2 (our position only) requested: fixes for 2.1 s, before the pilot's switch"
+   ],
+   [
+    -7.56,
+    "FC reply to EKF source set 2 (our position only): ACCEPTED"
+   ],
+   [
+    0.02,
+    "engaged: FC mode LOITER"
+   ]
+  ],
+  "t_set2": -7.56,
+  "ekf_step_set2": 0.1537181536543716,
+  "move5_set2": 0.9536253571707985,
+  "fixes_in_window": 366,
+  "fc_texts": [
+   [
+    -58.45,
+    "ArduPilot Ready"
+   ],
+   [
+    -58.45,
+    "AHRS: DCM active"
+   ],
+   [
+    -58.15,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    -56.81,
+    "No ap_message for mavlink id (331)"
+   ],
+   [
+    -56.75,
+    "No ap_message for mavlink id (290)"
+   ],
+   [
+    -56.74,
+    "No ap_message for mavlink id (291)"
+   ],
+   [
+    -56.7,
+    "No ap_message for mavlink id (231)"
+   ],
+   [
+    -56.69,
+    "No ap_message for mavlink id (141)"
+   ],
+   [
+    -56.45,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    -56.45,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    -56.44,
+    "AHRS: EKF3 active"
+   ],
+   [
+    -55.06,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    -55.06,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    -54.96,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -54.96,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -51.09,
+    "GPS 1: probing for u-blox at 230400 baud"
+   ],
+   [
+    -51.07,
+    "GPS 1: detected u-blox"
+   ],
+   [
+    -40.88,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -40.85,
+    "Field Elevation Set: 70m"
+   ],
+   [
+    -40.69,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -19.28,
+    "EKF3 IMU0 is using GPS"
+   ],
+   [
+    -19.28,
+    "EKF3 IMU1 is using GPS"
+   ],
+   [
+    -18.95,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -18.52,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    -18.52,
+    "Arming motors"
+   ],
+   [
+    -17.75,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -13.46,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -13.46,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    10.01,
+    "(supervisor) SIM_GPS_GLITCH_X 0.0001797 deg = 20 m north"
+   ]
+  ],
+  "glitch_before": {
+   "rms": 0.3062244127821016,
+   "max": 0.5891823042034038,
+   "ekf_north_span": 0.3563954830169678
+  },
+  "glitch_after": {
+   "rms": 0.5374819283754941,
+   "max": 0.9783416942616558,
+   "ekf_north_span": 0.7214473485946655
+  },
+  "bin_ev": [
+   [
+    -18.35,
+    "MODE",
+    2
+   ],
+   [
+    -17.77,
+    "EV",
+    15
+   ],
+   [
+    -16.52,
+    "EV",
+    57
+   ],
+   [
+    -15.09,
+    "EV",
+    28
+   ],
+   [
+    -13.46,
+    "EV",
+    62
+   ],
+   [
+    -7.58,
+    "EV",
+    86
+   ],
+   [
+    -0.0,
+    "MODE",
+    5
+   ]
+  ],
+  "innov": {
+   "hold_0_30": {
+    "n": 300,
+    "ivn_distinct": 1,
+    "ive_distinct": 1,
+    "iv_std": 0.0,
+    "ipn_distinct": 20
+   },
+   "gnss_phase_8s_before_set2": {
+    "n": 80,
+    "ivn_distinct": 2,
+    "ive_distinct": 2,
+    "iv_std": 0.0065,
+    "ipn_distinct": 2
+   }
+  }
+ },
+ "gn_gps_30m_s1_glitch": {
+  "case": "gn_gps_30m_s1_glitch",
+  "rms": 0.5074515715537398,
+  "max": 1.071651478778741,
+  "pct_frames_fix": null,
+  "fix_rate_hz": null,
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 5, 22.0 s after the Loiter request started"
+   ]
+  ],
+  "hold_s_flown": 40.0,
+  "climb_s": 17.7,
+  "age_ms_p50": null,
+  "reanchors": null,
+  "onboard_exit": null,
+  "ekf_yaw_minus_true_deg": -2.82,
+  "level": "gps",
+  "height": 30.0,
+  "seed": 1,
+  "glitch": true,
+  "settings": {
+   "min_height_m": 3.0
+  },
+  "params_gnss": {},
+  "wall_s": 35,
+  "load_start": [
+   2.365234375,
+   3.04345703125,
+   2.91748046875
+  ],
+  "texts_all": [
+   [
+    -60.74,
+    "Barometer 1 calibration complete"
+   ],
+   [
+    -60.74,
+    "Barometer 2 calibration complete"
+   ],
+   [
+    -58.28,
+    "ArduPilot Ready"
+   ],
+   [
+    -58.28,
+    "AHRS: DCM active"
+   ],
+   [
+    -57.99,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    -56.28,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    -56.28,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    -56.28,
+    "AHRS: EKF3 active"
+   ],
+   [
+    -54.94,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    -54.94,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    -54.84,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -54.84,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -50.93,
+    "GPS 1: probing for u-blox at 230400 baud"
+   ],
+   [
+    -50.91,
+    "GPS 1: detected u-blox"
+   ],
+   [
+    -40.71,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -40.69,
+    "Field Elevation Set: 70m"
+   ],
+   [
+    -40.52,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -40.24,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -39.82,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    -39.82,
+    "Arming motors"
+   ],
+   [
+    -39.52,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -34.84,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -34.84,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -21.95,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -21.44,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -20.92,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -20.4,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -19.89,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -19.39,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -18.87,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -18.36,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -17.85,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -17.33,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -16.83,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -16.32,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -15.81,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -15.29,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -14.78,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -14.28,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -13.78,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -13.27,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -12.76,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -12.25,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -11.73,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -11.21,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -10.7,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -10.2,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -9.68,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -9.17,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -8.66,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -8.16,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -7.65,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -7.13,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -6.61,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -6.09,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -5.59,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -5.08,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -4.57,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -4.07,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -3.57,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -3.06,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -2.54,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -2.04,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -1.53,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -1.32,
+    "EKF3 IMU1 is using GPS"
+   ],
+   [
+    -1.02,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -0.53,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -0.52,
+    "EKF3 IMU0 is using GPS"
+   ],
+   [
+    10.04,
+    "(supervisor) SIM_GPS_GLITCH_X 0.0001797 deg = 20 m north"
+   ],
+   [
+    11.31,
+    "GPS Glitch or Compass error"
+   ],
+   [
+    19.88,
+    "EKF3 lane switch 1"
+   ],
+   [
+    19.88,
+    "EKF primary changed:1"
+   ],
+   [
+    29.91,
+    "Glitch cleared"
+   ]
+  ],
+  "rms30": 0.5375798078267987,
+  "max30": 1.071651478778741,
+  "herr30": 0.09000396728515625,
+  "h_switch": 29.780006408691406,
+  "ekf_step_switch": 0.01504693911343305,
+  "notes": [],
+  "fixes_in_window": 0,
+  "fc_texts": [
+   [
+    -58.28,
+    "ArduPilot Ready"
+   ],
+   [
+    -58.28,
+    "AHRS: DCM active"
+   ],
+   [
+    -57.99,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    -56.28,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    -56.28,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    -56.28,
+    "AHRS: EKF3 active"
+   ],
+   [
+    -54.94,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    -54.94,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    -54.84,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -54.84,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -50.93,
+    "GPS 1: probing for u-blox at 230400 baud"
+   ],
+   [
+    -50.91,
+    "GPS 1: detected u-blox"
+   ],
+   [
+    -40.71,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -40.69,
+    "Field Elevation Set: 70m"
+   ],
+   [
+    -40.52,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -40.24,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -39.82,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    -39.82,
+    "Arming motors"
+   ],
+   [
+    -39.52,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -34.84,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -34.84,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -21.95,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -21.44,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -20.92,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -20.4,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -19.89,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -19.39,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -18.87,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -18.36,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -17.85,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -17.33,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -16.83,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -16.32,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -15.81,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -15.29,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -14.78,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -14.28,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -13.78,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -13.27,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -12.76,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -12.25,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -11.73,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -11.21,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -10.7,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -10.2,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -9.68,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -9.17,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -8.66,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -8.16,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -7.65,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -7.13,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -6.61,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -6.09,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -5.59,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -5.08,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -4.57,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -4.07,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -3.57,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -3.06,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -2.54,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -2.04,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -1.53,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -1.32,
+    "EKF3 IMU1 is using GPS"
+   ],
+   [
+    -1.02,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -0.53,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -0.52,
+    "EKF3 IMU0 is using GPS"
+   ],
+   [
+    10.04,
+    "(supervisor) SIM_GPS_GLITCH_X 0.0001797 deg = 20 m north"
+   ],
+   [
+    11.31,
+    "GPS Glitch or Compass error"
+   ],
+   [
+    19.88,
+    "EKF3 lane switch 1"
+   ],
+   [
+    19.88,
+    "EKF primary changed:1"
+   ],
+   [
+    29.91,
+    "Glitch cleared"
+   ]
+  ],
+  "glitch_before": {
+   "rms": 0.4744884734936047,
+   "max": 0.7871627786644206,
+   "ekf_north_span": 0.4666709899902344
+  },
+  "glitch_after": {
+   "rms": 0.566531920453159,
+   "max": 1.071651478778741,
+   "ekf_north_span": 20.634385585784912
+  },
+  "bin_ev": [
+   [
+    -39.22,
+    "MODE",
+    2
+   ],
+   [
+    -37.82,
+    "EV",
+    57
+   ],
+   [
+    -36.4,
+    "EV",
+    28
+   ],
+   [
+    -34.84,
+    "EV",
+    62
+   ],
+   [
+    -0.01,
+    "MODE",
+    5
+   ],
+   [
+    19.88,
+    "EV",
+    62
+   ]
+  ],
+  "innov": {
+   "hold_0_30": {
+    "n": 300,
+    "ivn_distinct": 6,
+    "ive_distinct": 10,
+    "iv_std": 0.0218,
+    "ipn_distinct": 6
+   }
+  }
+ },
+ "gn_fallback_30m_s1": {
+  "case": "gn_fallback_30m_s1",
+  "rms": 0.8098280909988502,
+  "max": 1.522529102445009,
+  "pct_frames_fix": 16.798666110879534,
+  "fix_rate_hz": 10.074994793494763,
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 5, 0.0 s after the Loiter request started"
+   ]
+  ],
+  "hold_s_flown": 40.0,
+  "climb_s": 17.8,
+  "age_ms_p50": 129.1,
+  "reanchors": 1,
+  "onboard_exit": 0,
+  "ekf_yaw_minus_true_deg": -0.91,
+  "level": "fallback",
+  "height": 30.0,
+  "seed": 1,
+  "glitch": false,
+  "settings": {
+   "min_height_m": 3.0,
+   "gnss_mode": "fallback",
+   "outage_test_s": 6.0,
+   "outage_after_s": 10.0
+  },
+  "params_gnss": {
+   "EK3_SRC1_POSXY": 3,
+   "EK3_SRC1_VELXY": 3,
+   "EK3_SRC1_POSZ": 1,
+   "EK3_SRC1_VELZ": 0,
+   "EK3_SRC1_YAW": 1,
+   "GPS1_TYPE": 1,
+   "EK3_SRC2_POSXY": 6,
+   "EK3_SRC2_VELXY": 0,
+   "EK3_SRC2_POSZ": 1,
+   "EK3_SRC2_VELZ": 0,
+   "EK3_SRC2_YAW": 1,
+   "EK3_SRC_OPTIONS": 0
+  },
+  "wall_s": 102,
+  "load_start": [
+   2.708984375,
+   3.103515625,
+   2.94384765625
+  ],
+  "texts_all": [
+   [
+    -60.91,
+    "Barometer 1 calibration complete"
+   ],
+   [
+    -60.91,
+    "Barometer 2 calibration complete"
+   ],
+   [
+    -58.46,
+    "ArduPilot Ready"
+   ],
+   [
+    -58.46,
+    "AHRS: DCM active"
+   ],
+   [
+    -58.16,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    -56.83,
+    "No ap_message for mavlink id (331)"
+   ],
+   [
+    -56.77,
+    "No ap_message for mavlink id (290)"
+   ],
+   [
+    -56.76,
+    "No ap_message for mavlink id (291)"
+   ],
+   [
+    -56.72,
+    "No ap_message for mavlink id (231)"
+   ],
+   [
+    -56.71,
+    "No ap_message for mavlink id (141)"
+   ],
+   [
+    -56.46,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    -56.46,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    -56.45,
+    "AHRS: EKF3 active"
+   ],
+   [
+    -55.07,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    -55.07,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    -54.97,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -54.97,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -51.1,
+    "GPS 1: probing for u-blox at 230400 baud"
+   ],
+   [
+    -51.08,
+    "GPS 1: detected u-blox"
+   ],
+   [
+    -40.89,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -40.86,
+    "Field Elevation Set: 70m"
+   ],
+   [
+    -40.7,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -19.29,
+    "EKF3 IMU0 is using GPS"
+   ],
+   [
+    -19.29,
+    "EKF3 IMU1 is using GPS"
+   ],
+   [
+    -18.98,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -18.51,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    -18.51,
+    "Arming motors"
+   ],
+   [
+    -17.72,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -13.47,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -13.47,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ]
+  ],
+  "rms30": 0.7599234022794157,
+  "max30": 1.522529102445009,
+  "herr30": 0.100006103515625,
+  "h_switch": 29.780006408691406,
+  "ekf_step_switch": 0.00753818783559728,
+  "notes": [
+   [
+    -14.69,
+    "FC mode ALT_HOLD"
+   ],
+   [
+    -13.46,
+    "re-anchored to FC position 0.02 -0.02"
+   ],
+   [
+    -12.89,
+    "re-anchored to FC position 0.05 -0.05"
+   ],
+   [
+    -11.17,
+    "re-anchored to FC position 0.16 -0.19"
+   ],
+   [
+    -8.12,
+    "EKF source set 2 (our position only) requested: fixes for 2.1 s, before the pilot's switch"
+   ],
+   [
+    -8.04,
+    "FC reply to EKF source set 2 (our position only): ACCEPTED"
+   ],
+   [
+    0.01,
+    "engaged: FC mode LOITER"
+   ],
+   [
+    10.03,
+    "recovery test: video dropped for 6 s"
+   ],
+   [
+    13.04,
+    "EKF source set 1 (GNSS) requested: GNSS FALLBACK: no fix for 3.0 s in the hold (gnss_fallback_s 3). GNSS aids the hold from this time"
+   ],
+   [
+    13.06,
+    "FC reply to EKF source set 1 (GNSS): ACCEPTED"
+   ],
+   [
+    16.04,
+    "recovery test: video back; re-anchored to FC position 1.21 -3.05"
+   ],
+   [
+    16.14,
+    "re-anchored to FC position 1.21 -3.02"
+   ]
+  ],
+  "t_set2": -8.04,
+  "ekf_step_set2": 0.019037953906787627,
+  "move5_set2": 0.902319126521933,
+  "t_set1": 13.06,
+  "ekf_step_set1": 0.10116509668293848,
+  "move5_set1": 1.9827267920072713,
+  "max_after_set1": 1.522529102445009,
+  "fixes_in_window": 280,
+  "drop_at": 10.03,
+  "max_from_drop": 1.522529102445009,
+  "fc_texts": [
+   [
+    -58.46,
+    "ArduPilot Ready"
+   ],
+   [
+    -58.46,
+    "AHRS: DCM active"
+   ],
+   [
+    -58.16,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    -56.83,
+    "No ap_message for mavlink id (331)"
+   ],
+   [
+    -56.77,
+    "No ap_message for mavlink id (290)"
+   ],
+   [
+    -56.76,
+    "No ap_message for mavlink id (291)"
+   ],
+   [
+    -56.72,
+    "No ap_message for mavlink id (231)"
+   ],
+   [
+    -56.71,
+    "No ap_message for mavlink id (141)"
+   ],
+   [
+    -56.46,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    -56.46,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    -56.45,
+    "AHRS: EKF3 active"
+   ],
+   [
+    -55.07,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    -55.07,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    -54.97,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -54.97,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -51.1,
+    "GPS 1: probing for u-blox at 230400 baud"
+   ],
+   [
+    -51.08,
+    "GPS 1: detected u-blox"
+   ],
+   [
+    -40.89,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -40.86,
+    "Field Elevation Set: 70m"
+   ],
+   [
+    -40.7,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -19.29,
+    "EKF3 IMU0 is using GPS"
+   ],
+   [
+    -19.29,
+    "EKF3 IMU1 is using GPS"
+   ],
+   [
+    -18.98,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -18.51,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    -18.51,
+    "Arming motors"
+   ],
+   [
+    -17.72,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -13.47,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -13.47,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ]
+  ],
+  "bin_ev": [
+   [
+    -18.36,
+    "MODE",
+    2
+   ],
+   [
+    -17.74,
+    "EV",
+    15
+   ],
+   [
+    -16.5,
+    "EV",
+    57
+   ],
+   [
+    -15.07,
+    "EV",
+    28
+   ],
+   [
+    -13.47,
+    "EV",
+    62
+   ],
+   [
+    -8.06,
+    "EV",
+    86
+   ],
+   [
+    -0.0,
+    "MODE",
+    5
+   ],
+   [
+    13.09,
+    "EV",
+    85
+   ]
+  ],
+  "innov": {
+   "hold_0_30": {
+    "n": 300,
+    "ivn_distinct": 6,
+    "ive_distinct": 14,
+    "iv_std": 0.0272,
+    "ipn_distinct": 15
+   },
+   "gnss_phase_8s_before_set2": {
+    "n": 80,
+    "ivn_distinct": 2,
+    "ive_distinct": 2,
+    "iv_std": 0.0064,
+    "ipn_distinct": 2
+   }
+  }
+ },
+ "gn_velocity_30m_s1": {
+  "case": "gn_velocity_30m_s1",
+  "rms": 0.554663996586102,
+  "max": 0.934248516552009,
+  "pct_frames_fix": 17.507294706127553,
+  "fix_rate_hz": 10.498680653374604,
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 5, 0.0 s after the Loiter request started"
+   ]
+  ],
+  "hold_s_flown": 40.0,
+  "climb_s": 17.9,
+  "age_ms_p50": 128.8,
+  "reanchors": 1,
+  "onboard_exit": 0,
+  "ekf_yaw_minus_true_deg": -0.84,
+  "level": "velocity",
+  "height": 30.0,
+  "seed": 1,
+  "glitch": false,
+  "settings": {
+   "min_height_m": 3.0,
+   "gnss_mode": "velocity"
+  },
+  "params_gnss": {
+   "EK3_SRC1_POSXY": 3,
+   "EK3_SRC1_VELXY": 3,
+   "EK3_SRC1_POSZ": 1,
+   "EK3_SRC1_VELZ": 0,
+   "EK3_SRC1_YAW": 1,
+   "GPS1_TYPE": 1,
+   "EK3_SRC2_POSXY": 6,
+   "EK3_SRC2_VELXY": 3,
+   "EK3_SRC2_POSZ": 1,
+   "EK3_SRC2_VELZ": 0,
+   "EK3_SRC2_YAW": 1,
+   "EK3_SRC_OPTIONS": 0
+  },
+  "wall_s": 102,
+  "load_start": [
+   2.99658203125,
+   3.19189453125,
+   2.9970703125
+  ],
+  "texts_all": [
+   [
+    -60.95,
+    "Barometer 1 calibration complete"
+   ],
+   [
+    -60.95,
+    "Barometer 2 calibration complete"
+   ],
+   [
+    -58.5,
+    "ArduPilot Ready"
+   ],
+   [
+    -58.5,
+    "AHRS: DCM active"
+   ],
+   [
+    -58.2,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    -56.84,
+    "No ap_message for mavlink id (331)"
+   ],
+   [
+    -56.77,
+    "No ap_message for mavlink id (290)"
+   ],
+   [
+    -56.77,
+    "No ap_message for mavlink id (291)"
+   ],
+   [
+    -56.73,
+    "No ap_message for mavlink id (231)"
+   ],
+   [
+    -56.72,
+    "No ap_message for mavlink id (141)"
+   ],
+   [
+    -56.5,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    -56.5,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    -56.49,
+    "AHRS: EKF3 active"
+   ],
+   [
+    -55.11,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    -55.11,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    -55.01,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -55.01,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -51.14,
+    "GPS 1: probing for u-blox at 230400 baud"
+   ],
+   [
+    -51.12,
+    "GPS 1: detected u-blox"
+   ],
+   [
+    -40.93,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -40.9,
+    "Field Elevation Set: 70m"
+   ],
+   [
+    -40.74,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -19.33,
+    "EKF3 IMU0 is using GPS"
+   ],
+   [
+    -19.33,
+    "EKF3 IMU1 is using GPS"
+   ],
+   [
+    -18.96,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -18.5,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    -18.5,
+    "Arming motors"
+   ],
+   [
+    -17.84,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -13.51,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -13.51,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ]
+  ],
+  "rms30": 0.5686264298643775,
+  "max30": 0.934248516552009,
+  "herr30": 0.06999969482421875,
+  "h_switch": 29.780006408691406,
+  "ekf_step_switch": 0.008820478492788605,
+  "notes": [
+   [
+    -14.7,
+    "FC mode ALT_HOLD"
+   ],
+   [
+    -13.48,
+    "re-anchored to FC position 0.02 -0.02"
+   ],
+   [
+    -11.61,
+    "re-anchored to FC position 0.14 -0.15"
+   ],
+   [
+    -8.08,
+    "EKF source set 2 (our position only) requested: fixes for 2.1 s, before the pilot's switch"
+   ],
+   [
+    -8.0,
+    "FC reply to EKF source set 2 (our position only): ACCEPTED"
+   ],
+   [
+    -0.03,
+    "engaged: FC mode LOITER"
+   ],
+   [
+    16.0,
+    "re-anchored to FC position 1.41 -2.02"
+   ]
+  ],
+  "t_set2": -8.0,
+  "ekf_step_set2": 0.20705534827406105,
+  "move5_set2": 0.902319125791814,
+  "fixes_in_window": 298,
+  "fc_texts": [
+   [
+    -58.5,
+    "ArduPilot Ready"
+   ],
+   [
+    -58.5,
+    "AHRS: DCM active"
+   ],
+   [
+    -58.2,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    -56.84,
+    "No ap_message for mavlink id (331)"
+   ],
+   [
+    -56.77,
+    "No ap_message for mavlink id (290)"
+   ],
+   [
+    -56.77,
+    "No ap_message for mavlink id (291)"
+   ],
+   [
+    -56.73,
+    "No ap_message for mavlink id (231)"
+   ],
+   [
+    -56.72,
+    "No ap_message for mavlink id (141)"
+   ],
+   [
+    -56.5,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    -56.5,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    -56.49,
+    "AHRS: EKF3 active"
+   ],
+   [
+    -55.11,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    -55.11,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    -55.01,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -55.01,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -51.14,
+    "GPS 1: probing for u-blox at 230400 baud"
+   ],
+   [
+    -51.12,
+    "GPS 1: detected u-blox"
+   ],
+   [
+    -40.93,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -40.9,
+    "Field Elevation Set: 70m"
+   ],
+   [
+    -40.74,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -19.33,
+    "EKF3 IMU0 is using GPS"
+   ],
+   [
+    -19.33,
+    "EKF3 IMU1 is using GPS"
+   ],
+   [
+    -18.96,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -18.5,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    -18.5,
+    "Arming motors"
+   ],
+   [
+    -17.84,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -13.51,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -13.51,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ]
+  ],
+  "bin_ev": [
+   [
+    -18.4,
+    "MODE",
+    2
+   ],
+   [
+    -17.86,
+    "EV",
+    15
+   ],
+   [
+    -16.5,
+    "EV",
+    57
+   ],
+   [
+    -15.07,
+    "EV",
+    28
+   ],
+   [
+    -13.51,
+    "EV",
+    62
+   ],
+   [
+    -8.02,
+    "EV",
+    86
+   ],
+   [
+    -0.0,
+    "MODE",
+    5
+   ]
+  ],
+  "innov": {
+   "hold_0_30": {
+    "n": 300,
+    "ivn_distinct": 1,
+    "ive_distinct": 1,
+    "iv_std": 0.0,
+    "ipn_distinct": 24
+   },
+   "gnss_phase_8s_before_set2": {
+    "n": 80,
+    "ivn_distinct": 2,
+    "ive_distinct": 2,
+    "iv_std": 0.0065,
+    "ipn_distinct": 2
+   }
+  }
+ },
+ "gn_velocity_10m_s1": {
+  "case": "gn_velocity_10m_s1",
+  "rms": 0.46037526375150284,
+  "max": 1.0349561285407314,
+  "pct_frames_fix": 14.11911703456893,
+  "fix_rate_hz": 8.473936119776205,
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 5, 0.0 s after the Loiter request started"
+   ]
+  ],
+  "hold_s_flown": 40.0,
+  "climb_s": 13.7,
+  "age_ms_p50": 127.8,
+  "reanchors": 6,
+  "onboard_exit": 0,
+  "ekf_yaw_minus_true_deg": -0.54,
+  "level": "velocity",
+  "height": 10.0,
+  "seed": 1,
+  "glitch": false,
+  "settings": {
+   "min_height_m": 3.0,
+   "gnss_mode": "velocity"
+  },
+  "params_gnss": {
+   "EK3_SRC1_POSXY": 3,
+   "EK3_SRC1_VELXY": 3,
+   "EK3_SRC1_POSZ": 1,
+   "EK3_SRC1_VELZ": 0,
+   "EK3_SRC1_YAW": 1,
+   "GPS1_TYPE": 1,
+   "EK3_SRC2_POSXY": 6,
+   "EK3_SRC2_VELXY": 3,
+   "EK3_SRC2_POSZ": 1,
+   "EK3_SRC2_VELZ": 0,
+   "EK3_SRC2_YAW": 1,
+   "EK3_SRC_OPTIONS": 0
+  },
+  "wall_s": 98,
+  "load_start": [
+   2.62353515625,
+   3.47607421875,
+   3.16650390625
+  ],
+  "texts_all": [
+   [
+    -56.81,
+    "Barometer 1 calibration complete"
+   ],
+   [
+    -56.81,
+    "Barometer 2 calibration complete"
+   ],
+   [
+    -54.36,
+    "ArduPilot Ready"
+   ],
+   [
+    -54.36,
+    "AHRS: DCM active"
+   ],
+   [
+    -54.06,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    -52.71,
+    "No ap_message for mavlink id (331)"
+   ],
+   [
+    -52.64,
+    "No ap_message for mavlink id (290)"
+   ],
+   [
+    -52.63,
+    "No ap_message for mavlink id (291)"
+   ],
+   [
+    -52.6,
+    "No ap_message for mavlink id (231)"
+   ],
+   [
+    -52.59,
+    "No ap_message for mavlink id (141)"
+   ],
+   [
+    -52.36,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    -52.36,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    -52.35,
+    "AHRS: EKF3 active"
+   ],
+   [
+    -50.97,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    -50.97,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    -50.87,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -50.87,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -47.0,
+    "GPS 1: probing for u-blox at 230400 baud"
+   ],
+   [
+    -46.98,
+    "GPS 1: detected u-blox"
+   ],
+   [
+    -36.79,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -36.76,
+    "Field Elevation Set: 70m"
+   ],
+   [
+    -36.6,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -15.19,
+    "EKF3 IMU0 is using GPS"
+   ],
+   [
+    -15.19,
+    "EKF3 IMU1 is using GPS"
+   ],
+   [
+    -14.86,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -14.41,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    -14.41,
+    "Arming motors"
+   ],
+   [
+    -13.66,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -9.37,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -9.37,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ]
+  ],
+  "rms30": 0.49614293192454045,
+  "max30": 1.0349561285407314,
+  "herr30": 0.029998779296875,
+  "h_switch": 9.770004272460938,
+  "ekf_step_switch": 0.006091016410227242,
+  "notes": [
+   [
+    -10.61,
+    "FC mode ALT_HOLD"
+   ],
+   [
+    -9.42,
+    "re-anchored to FC position 0.02 -0.02"
+   ],
+   [
+    -8.21,
+    "re-anchored to FC position 0.08 -0.10"
+   ],
+   [
+    -5.27,
+    "re-anchored to FC position 0.30 -0.34"
+   ],
+   [
+    -5.12,
+    "re-anchored to FC position 0.32 -0.36"
+   ],
+   [
+    -2.01,
+    "EKF source set 2 (our position only) requested: fixes for 2.0 s, before the pilot's switch"
+   ],
+   [
+    -1.91,
+    "FC reply to EKF source set 2 (our position only): ACCEPTED"
+   ],
+   [
+    -0.04,
+    "engaged: FC mode LOITER"
+   ],
+   [
+    3.54,
+    "re-anchored to FC position 0.98 -0.91"
+   ],
+   [
+    11.38,
+    "re-anchored to FC position 0.99 -0.38"
+   ],
+   [
+    19.11,
+    "re-anchored to FC position 0.96 -1.09"
+   ],
+   [
+    23.34,
+    "re-anchored to FC position 1.22 -0.41"
+   ],
+   [
+    33.88,
+    "re-anchored to FC position 0.91 -1.48"
+   ],
+   [
+    35.83,
+    "re-anchored to FC position 0.79 -1.14"
+   ]
+  ],
+  "t_set2": -1.91,
+  "ekf_step_set2": 0.01894295210725383,
+  "move5_set2": 0.5025851075337313,
+  "fixes_in_window": 259,
+  "fc_texts": [
+   [
+    -56.81,
+    "Barometer 1 calibration complete"
+   ],
+   [
+    -56.81,
+    "Barometer 2 calibration complete"
+   ],
+   [
+    -54.36,
+    "ArduPilot Ready"
+   ],
+   [
+    -54.36,
+    "AHRS: DCM active"
+   ],
+   [
+    -54.06,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    -52.71,
+    "No ap_message for mavlink id (331)"
+   ],
+   [
+    -52.64,
+    "No ap_message for mavlink id (290)"
+   ],
+   [
+    -52.63,
+    "No ap_message for mavlink id (291)"
+   ],
+   [
+    -52.6,
+    "No ap_message for mavlink id (231)"
+   ],
+   [
+    -52.59,
+    "No ap_message for mavlink id (141)"
+   ],
+   [
+    -52.36,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    -52.36,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    -52.35,
+    "AHRS: EKF3 active"
+   ],
+   [
+    -50.97,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    -50.97,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    -50.87,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -50.87,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -47.0,
+    "GPS 1: probing for u-blox at 230400 baud"
+   ],
+   [
+    -46.98,
+    "GPS 1: detected u-blox"
+   ],
+   [
+    -36.79,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -36.76,
+    "Field Elevation Set: 70m"
+   ],
+   [
+    -36.6,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -15.19,
+    "EKF3 IMU0 is using GPS"
+   ],
+   [
+    -15.19,
+    "EKF3 IMU1 is using GPS"
+   ],
+   [
+    -14.86,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -14.41,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    -14.41,
+    "Arming motors"
+   ],
+   [
+    -13.66,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -9.37,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -9.37,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ]
+  ],
+  "bin_ev": [
+   [
+    -14.26,
+    "MODE",
+    2
+   ],
+   [
+    -13.68,
+    "EV",
+    15
+   ],
+   [
+    -12.41,
+    "EV",
+    57
+   ],
+   [
+    -10.99,
+    "EV",
+    28
+   ],
+   [
+    -9.37,
+    "EV",
+    62
+   ],
+   [
+    -1.93,
+    "EV",
+    86
+   ],
+   [
+    -0.0,
+    "MODE",
+    5
+   ]
+  ],
+  "innov": {
+   "hold_0_30": {
+    "n": 300,
+    "ivn_distinct": 1,
+    "ive_distinct": 1,
+    "iv_std": 0.0,
+    "ipn_distinct": 15
+   },
+   "gnss_phase_8s_before_set2": {
+    "n": 80,
+    "ivn_distinct": 2,
+    "ive_distinct": 2,
+    "iv_std": 0.0069,
+    "ipn_distinct": 2
+   }
+  }
+ },
+ "gn_setup_10m_s1": {
+  "case": "gn_setup_10m_s1",
+  "rms": 0.5813353478824882,
+  "max": 0.9873991488793056,
+  "pct_frames_fix": 15.958333333333334,
+  "fix_rate_hz": 9.57380396453635,
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 5, 0.0 s after the Loiter request started"
+   ]
+  ],
+  "hold_s_flown": 40.0,
+  "climb_s": 13.8,
+  "age_ms_p50": 128.0,
+  "reanchors": 3,
+  "onboard_exit": 0,
+  "ekf_yaw_minus_true_deg": -0.49,
+  "level": "setup",
+  "height": 10.0,
+  "seed": 1,
+  "glitch": false,
+  "settings": {
+   "min_height_m": 3.0,
+   "gnss_mode": "setup"
+  },
+  "params_gnss": {
+   "EK3_SRC1_POSXY": 3,
+   "EK3_SRC1_VELXY": 3,
+   "EK3_SRC1_POSZ": 1,
+   "EK3_SRC1_VELZ": 0,
+   "EK3_SRC1_YAW": 1,
+   "GPS1_TYPE": 1,
+   "EK3_SRC2_POSXY": 6,
+   "EK3_SRC2_VELXY": 0,
+   "EK3_SRC2_POSZ": 1,
+   "EK3_SRC2_VELZ": 0,
+   "EK3_SRC2_YAW": 1,
+   "EK3_SRC_OPTIONS": 0
+  },
+  "wall_s": 98,
+  "load_start": [
+   2.787109375,
+   3.80078125,
+   3.3662109375
+  ],
+  "texts_all": [
+   [
+    -56.9,
+    "Barometer 1 calibration complete"
+   ],
+   [
+    -56.9,
+    "Barometer 2 calibration complete"
+   ],
+   [
+    -54.45,
+    "ArduPilot Ready"
+   ],
+   [
+    -54.45,
+    "AHRS: DCM active"
+   ],
+   [
+    -54.16,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    -52.79,
+    "No ap_message for mavlink id (331)"
+   ],
+   [
+    -52.74,
+    "No ap_message for mavlink id (290)"
+   ],
+   [
+    -52.72,
+    "No ap_message for mavlink id (291)"
+   ],
+   [
+    -52.68,
+    "No ap_message for mavlink id (231)"
+   ],
+   [
+    -52.67,
+    "No ap_message for mavlink id (141)"
+   ],
+   [
+    -52.45,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    -52.45,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    -52.45,
+    "AHRS: EKF3 active"
+   ],
+   [
+    -51.07,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    -51.07,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    -50.97,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -50.97,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -47.1,
+    "GPS 1: probing for u-blox at 230400 baud"
+   ],
+   [
+    -47.08,
+    "GPS 1: detected u-blox"
+   ],
+   [
+    -36.88,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -36.86,
+    "Field Elevation Set: 70m"
+   ],
+   [
+    -36.69,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -15.29,
+    "EKF3 IMU0 is using GPS"
+   ],
+   [
+    -15.29,
+    "EKF3 IMU1 is using GPS"
+   ],
+   [
+    -14.87,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -14.44,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    -14.44,
+    "Arming motors"
+   ],
+   [
+    -13.75,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -9.37,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -9.37,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ]
+  ],
+  "rms30": 0.5940375709862256,
+  "max30": 0.9873991488793056,
+  "herr30": 0.04000091552734375,
+  "h_switch": 9.770004272460938,
+  "ekf_step_switch": 0.008178263267069092,
+  "notes": [
+   [
+    -10.62,
+    "FC mode ALT_HOLD"
+   ],
+   [
+    -9.43,
+    "re-anchored to FC position 0.02 -0.02"
+   ],
+   [
+    -7.57,
+    "re-anchored to FC position 0.13 -0.14"
+   ],
+   [
+    -4.03,
+    "EKF source set 2 (our position only) requested: fixes for 2.1 s, before the pilot's switch"
+   ],
+   [
+    -3.95,
+    "FC reply to EKF source set 2 (our position only): ACCEPTED"
+   ],
+   [
+    -1.67,
+    "re-anchored to FC position 0.69 -0.75"
+   ],
+   [
+    -0.05,
+    "engaged: FC mode LOITER"
+   ],
+   [
+    13.23,
+    "re-anchored to FC position 0.72 -0.56"
+   ],
+   [
+    15.27,
+    "re-anchored to FC position 0.57 -1.62"
+   ],
+   [
+    35.55,
+    "re-anchored to FC position 0.77 -1.10"
+   ]
+  ],
+  "t_set2": -3.95,
+  "ekf_step_set2": 0.03993925445446364,
+  "move5_set2": 0.8529513032750632,
+  "fixes_in_window": 290,
+  "fc_texts": [
+   [
+    -56.9,
+    "Barometer 1 calibration complete"
+   ],
+   [
+    -56.9,
+    "Barometer 2 calibration complete"
+   ],
+   [
+    -54.45,
+    "ArduPilot Ready"
+   ],
+   [
+    -54.45,
+    "AHRS: DCM active"
+   ],
+   [
+    -54.16,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    -52.79,
+    "No ap_message for mavlink id (331)"
+   ],
+   [
+    -52.74,
+    "No ap_message for mavlink id (290)"
+   ],
+   [
+    -52.72,
+    "No ap_message for mavlink id (291)"
+   ],
+   [
+    -52.68,
+    "No ap_message for mavlink id (231)"
+   ],
+   [
+    -52.67,
+    "No ap_message for mavlink id (141)"
+   ],
+   [
+    -52.45,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    -52.45,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    -52.45,
+    "AHRS: EKF3 active"
+   ],
+   [
+    -51.07,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    -51.07,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    -50.97,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -50.97,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -47.1,
+    "GPS 1: probing for u-blox at 230400 baud"
+   ],
+   [
+    -47.08,
+    "GPS 1: detected u-blox"
+   ],
+   [
+    -36.88,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -36.86,
+    "Field Elevation Set: 70m"
+   ],
+   [
+    -36.69,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -15.29,
+    "EKF3 IMU0 is using GPS"
+   ],
+   [
+    -15.29,
+    "EKF3 IMU1 is using GPS"
+   ],
+   [
+    -14.87,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -14.44,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    -14.44,
+    "Arming motors"
+   ],
+   [
+    -13.75,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -9.37,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -9.37,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ]
+  ],
+  "bin_ev": [
+   [
+    -14.35,
+    "MODE",
+    2
+   ],
+   [
+    -13.77,
+    "EV",
+    15
+   ],
+   [
+    -12.43,
+    "EV",
+    57
+   ],
+   [
+    -11.0,
+    "EV",
+    28
+   ],
+   [
+    -9.37,
+    "EV",
+    62
+   ],
+   [
+    -3.97,
+    "EV",
+    86
+   ],
+   [
+    -0.0,
+    "MODE",
+    5
+   ]
+  ],
+  "innov": {
+   "hold_0_30": {
+    "n": 300,
+    "ivn_distinct": 1,
+    "ive_distinct": 1,
+    "iv_std": 0.0,
+    "ipn_distinct": 12
+   },
+   "gnss_phase_8s_before_set2": {
+    "n": 80,
+    "ivn_distinct": 2,
+    "ive_distinct": 2,
+    "iv_std": 0.0069,
+    "ipn_distinct": 2
+   }
+  }
+ },
+ "gn_gps_30m_s1_ramp": {
+  "case": "gn_gps_30m_s1_ramp",
+  "rms": 13.626362231700393,
+  "max": 19.883865126122007,
+  "pct_frames_fix": null,
+  "fix_rate_hz": null,
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 5, 20.9 s after the Loiter request started"
+   ]
+  ],
+  "hold_s_flown": 40.0,
+  "climb_s": 17.8,
+  "age_ms_p50": null,
+  "reanchors": null,
+  "onboard_exit": null,
+  "ekf_yaw_minus_true_deg": -2.8,
+  "level": "gps",
+  "height": 30.0,
+  "seed": 1,
+  "glitch": true,
+  "settings": {
+   "min_height_m": 3.0
+  },
+  "params_gnss": {},
+  "wall_s": 34,
+  "load_start": [
+   2.48583984375,
+   4.14599609375,
+   3.63916015625
+  ],
+  "texts_all": [
+   [
+    -59.85,
+    "Barometer 1 calibration complete"
+   ],
+   [
+    -59.85,
+    "Barometer 2 calibration complete"
+   ],
+   [
+    -57.4,
+    "ArduPilot Ready"
+   ],
+   [
+    -57.4,
+    "AHRS: DCM active"
+   ],
+   [
+    -57.1,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    -55.4,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    -55.4,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    -55.4,
+    "AHRS: EKF3 active"
+   ],
+   [
+    -54.05,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    -54.05,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    -53.96,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -53.96,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -50.05,
+    "GPS 1: probing for u-blox at 230400 baud"
+   ],
+   [
+    -50.03,
+    "GPS 1: detected u-blox"
+   ],
+   [
+    -39.83,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -39.81,
+    "Field Elevation Set: 70m"
+   ],
+   [
+    -39.64,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -39.3,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -38.85,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    -38.85,
+    "Arming motors"
+   ],
+   [
+    -38.7,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -33.86,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -33.85,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -20.89,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -20.38,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -19.86,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -19.36,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -18.85,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -18.35,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -17.85,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -17.33,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -16.81,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -16.32,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -15.81,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -15.31,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -14.8,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -14.3,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -13.79,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -13.28,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -12.78,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -12.28,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -11.77,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -11.25,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -10.73,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -10.22,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -9.71,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -9.2,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -8.68,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -8.17,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -7.65,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -7.13,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -6.62,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -6.12,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -5.62,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -5.11,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -4.61,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -4.1,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -3.6,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -3.09,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -2.59,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -2.08,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -1.57,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -1.04,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -0.52,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -0.43,
+    "EKF3 IMU1 is using GPS"
+   ],
+   [
+    -0.04,
+    "EKF3 IMU0 is using GPS"
+   ],
+   [
+    25.23,
+    "(supervisor) GNSS ramp done: 20 m north"
+   ]
+  ],
+  "rms30": 10.950284010242974,
+  "max30": 19.68652981750028,
+  "herr30": 0.09999847412109375,
+  "h_switch": 29.770004272460938,
+  "ekf_step_switch": 0.019397374304472883,
+  "notes": [],
+  "fixes_in_window": 0,
+  "fc_texts": [
+   [
+    -59.85,
+    "Barometer 1 calibration complete"
+   ],
+   [
+    -59.85,
+    "Barometer 2 calibration complete"
+   ],
+   [
+    -57.4,
+    "ArduPilot Ready"
+   ],
+   [
+    -57.4,
+    "AHRS: DCM active"
+   ],
+   [
+    -57.1,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    -55.4,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    -55.4,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    -55.4,
+    "AHRS: EKF3 active"
+   ],
+   [
+    -54.05,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    -54.05,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    -53.96,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -53.96,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -50.05,
+    "GPS 1: probing for u-blox at 230400 baud"
+   ],
+   [
+    -50.03,
+    "GPS 1: detected u-blox"
+   ],
+   [
+    -39.83,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -39.81,
+    "Field Elevation Set: 70m"
+   ],
+   [
+    -39.64,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -39.3,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -38.85,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    -38.85,
+    "Arming motors"
+   ],
+   [
+    -38.7,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -33.86,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -33.85,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -20.89,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -20.38,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -19.86,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -19.36,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -18.85,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -18.35,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -17.85,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -17.33,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -16.81,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -16.32,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -15.81,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -15.31,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -14.8,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -14.3,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -13.79,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -13.28,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -12.78,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -12.28,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -11.77,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -11.25,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -10.73,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -10.22,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -9.71,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -9.2,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -8.68,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -8.17,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -7.65,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -7.13,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -6.62,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -6.12,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -5.62,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -5.11,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -4.61,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -4.1,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -3.6,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -3.09,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -2.59,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -2.08,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -1.57,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -1.04,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -0.52,
+    "Mode change to LOITER failed: requires position"
+   ],
+   [
+    -0.43,
+    "EKF3 IMU1 is using GPS"
+   ],
+   [
+    -0.04,
+    "EKF3 IMU0 is using GPS"
+   ],
+   [
+    25.23,
+    "(supervisor) GNSS ramp done: 20 m north"
+   ]
+  ],
+  "glitch_before": {
+   "rms": 0.310264617644276,
+   "max": 0.4315982808900313,
+   "ekf_north_span": 0.20533418655395508
+  },
+  "glitch_after": {
+   "rms": 11.998036486594396,
+   "max": 19.68652981750028,
+   "ekf_north_span": 0.9388113021850586
+  },
+  "glitch_kind": "ramp 1 m/s from 5 s to 25 s",
+  "bin_ev": [
+   [
+    -38.34,
+    "MODE",
+    2
+   ],
+   [
+    -36.84,
+    "EV",
+    57
+   ],
+   [
+    -35.42,
+    "EV",
+    28
+   ],
+   [
+    -33.86,
+    "EV",
+    62
+   ],
+   [
+    -0.02,
+    "MODE",
+    5
+   ]
+  ],
+  "innov": {
+   "hold_0_30": {
+    "n": 300,
+    "ivn_distinct": 52,
+    "ive_distinct": 14,
+    "iv_std": 0.2057,
+    "ipn_distinct": 90
+   }
+  }
+ },
+ "gn_setup_30m_s1_ramp": {
+  "case": "gn_setup_30m_s1_ramp",
+  "rms": 0.47490006071130036,
+  "max": 0.9151869644971348,
+  "pct_frames_fix": 20.36727879799666,
+  "fix_rate_hz": 12.1999947082525,
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 5, 0.0 s after the Loiter request started"
+   ]
+  ],
+  "hold_s_flown": 40.0,
+  "climb_s": 17.9,
+  "age_ms_p50": 128.9,
+  "reanchors": 0,
+  "onboard_exit": 0,
+  "ekf_yaw_minus_true_deg": -0.91,
+  "level": "setup",
+  "height": 30.0,
+  "seed": 1,
+  "glitch": true,
+  "settings": {
+   "min_height_m": 3.0,
+   "gnss_mode": "setup"
+  },
+  "params_gnss": {
+   "EK3_SRC1_POSXY": 3,
+   "EK3_SRC1_VELXY": 3,
+   "EK3_SRC1_POSZ": 1,
+   "EK3_SRC1_VELZ": 0,
+   "EK3_SRC1_YAW": 1,
+   "GPS1_TYPE": 1,
+   "EK3_SRC2_POSXY": 6,
+   "EK3_SRC2_VELXY": 0,
+   "EK3_SRC2_POSZ": 1,
+   "EK3_SRC2_VELZ": 0,
+   "EK3_SRC2_YAW": 1,
+   "EK3_SRC_OPTIONS": 0
+  },
+  "wall_s": 102,
+  "load_start": [
+   2.0419921875,
+   3.85791015625,
+   3.56103515625
+  ],
+  "texts_all": [
+   [
+    -60.95,
+    "Barometer 1 calibration complete"
+   ],
+   [
+    -60.95,
+    "Barometer 2 calibration complete"
+   ],
+   [
+    -58.5,
+    "ArduPilot Ready"
+   ],
+   [
+    -58.5,
+    "AHRS: DCM active"
+   ],
+   [
+    -58.2,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    -56.84,
+    "No ap_message for mavlink id (331)"
+   ],
+   [
+    -56.78,
+    "No ap_message for mavlink id (290)"
+   ],
+   [
+    -56.77,
+    "No ap_message for mavlink id (291)"
+   ],
+   [
+    -56.73,
+    "No ap_message for mavlink id (231)"
+   ],
+   [
+    -56.72,
+    "No ap_message for mavlink id (141)"
+   ],
+   [
+    -56.5,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    -56.5,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    -56.49,
+    "AHRS: EKF3 active"
+   ],
+   [
+    -55.11,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    -55.11,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    -55.01,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -55.01,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -51.14,
+    "GPS 1: probing for u-blox at 230400 baud"
+   ],
+   [
+    -51.12,
+    "GPS 1: detected u-blox"
+   ],
+   [
+    -40.93,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -40.9,
+    "Field Elevation Set: 70m"
+   ],
+   [
+    -40.74,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -19.33,
+    "EKF3 IMU0 is using GPS"
+   ],
+   [
+    -19.33,
+    "EKF3 IMU1 is using GPS"
+   ],
+   [
+    -18.96,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -18.5,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    -18.5,
+    "Arming motors"
+   ],
+   [
+    -17.84,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -13.51,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -13.51,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    25.37,
+    "(supervisor) GNSS ramp done: 20 m north"
+   ]
+  ],
+  "rms30": 0.520227781592375,
+  "max30": 0.9151869644971348,
+  "herr30": 0.089996337890625,
+  "h_switch": 29.790000915527344,
+  "ekf_step_switch": 0.007390869629195151,
+  "notes": [
+   [
+    -14.7,
+    "FC mode ALT_HOLD"
+   ],
+   [
+    -13.48,
+    "re-anchored to FC position 0.02 -0.02"
+   ],
+   [
+    -11.21,
+    "re-anchored to FC position 0.17 -0.19"
+   ],
+   [
+    -8.16,
+    "EKF source set 2 (our position only) requested: fixes for 2.0 s, before the pilot's switch"
+   ],
+   [
+    -8.1,
+    "FC reply to EKF source set 2 (our position only): ACCEPTED"
+   ],
+   [
+    -0.05,
+    "engaged: FC mode LOITER"
+   ]
+  ],
+  "t_set2": -8.1,
+  "ekf_step_set2": 0.22999405947857893,
+  "move5_set2": 0.9213366706005871,
+  "fixes_in_window": 365,
+  "fc_texts": [
+   [
+    -58.5,
+    "ArduPilot Ready"
+   ],
+   [
+    -58.5,
+    "AHRS: DCM active"
+   ],
+   [
+    -58.2,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    -56.84,
+    "No ap_message for mavlink id (331)"
+   ],
+   [
+    -56.78,
+    "No ap_message for mavlink id (290)"
+   ],
+   [
+    -56.77,
+    "No ap_message for mavlink id (291)"
+   ],
+   [
+    -56.73,
+    "No ap_message for mavlink id (231)"
+   ],
+   [
+    -56.72,
+    "No ap_message for mavlink id (141)"
+   ],
+   [
+    -56.5,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    -56.5,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    -56.49,
+    "AHRS: EKF3 active"
+   ],
+   [
+    -55.11,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    -55.11,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    -55.01,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -55.01,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -51.14,
+    "GPS 1: probing for u-blox at 230400 baud"
+   ],
+   [
+    -51.12,
+    "GPS 1: detected u-blox"
+   ],
+   [
+    -40.93,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -40.9,
+    "Field Elevation Set: 70m"
+   ],
+   [
+    -40.74,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -19.33,
+    "EKF3 IMU0 is using GPS"
+   ],
+   [
+    -19.33,
+    "EKF3 IMU1 is using GPS"
+   ],
+   [
+    -18.96,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -18.5,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    -18.5,
+    "Arming motors"
+   ],
+   [
+    -17.84,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -13.51,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -13.51,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    25.37,
+    "(supervisor) GNSS ramp done: 20 m north"
+   ]
+  ],
+  "glitch_before": {
+   "rms": 0.21894845894208606,
+   "max": 0.4239022644974919,
+   "ekf_north_span": 0.2704288959503174
+  },
+  "glitch_after": {
+   "rms": 0.561581416054722,
+   "max": 0.9151869644971348,
+   "ekf_north_span": 0.6717700958251953
+  },
+  "glitch_kind": "ramp 1 m/s from 5 s to 25 s",
+  "bin_ev": [
+   [
+    -18.4,
+    "MODE",
+    2
+   ],
+   [
+    -17.86,
+    "EV",
+    15
+   ],
+   [
+    -16.5,
+    "EV",
+    57
+   ],
+   [
+    -15.07,
+    "EV",
+    28
+   ],
+   [
+    -13.51,
+    "EV",
+    62
+   ],
+   [
+    -8.11,
+    "EV",
+    86
+   ],
+   [
+    -0.0,
+    "MODE",
+    5
+   ]
+  ],
+  "innov": {
+   "hold_0_30": {
+    "n": 300,
+    "ivn_distinct": 1,
+    "ive_distinct": 1,
+    "iv_std": 0.0,
+    "ipn_distinct": 23
+   },
+   "gnss_phase_8s_before_set2": {
+    "n": 80,
+    "ivn_distinct": 2,
+    "ive_distinct": 2,
+    "iv_std": 0.0065,
+    "ipn_distinct": 2
+   }
+  }
+ },
+ "gn_setup_10m_s1_lh": {
+  "case": "gn_setup_10m_s1_lh",
+  "rms": 0.4064499874142144,
+  "max": 0.7886424826939495,
+  "pct_frames_fix": 20.416666666666668,
+  "fix_rate_hz": 12.248469277254541,
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 5, 0.0 s after the Loiter request started"
+   ]
+  ],
+  "hold_s_flown": 40.0,
+  "climb_s": 13.6,
+  "age_ms_p50": 127.9,
+  "reanchors": 0,
+  "onboard_exit": 0,
+  "ekf_yaw_minus_true_deg": -0.54,
+  "level": "setup",
+  "height": 10.0,
+  "seed": 1,
+  "glitch": false,
+  "settings": {
+   "min_height_m": 3.0,
+   "gnss_mode": "setup",
+   "att_source": "gyro_fcyaw"
+  },
+  "params_gnss": {
+   "EK3_SRC1_POSXY": 3,
+   "EK3_SRC1_VELXY": 3,
+   "EK3_SRC1_POSZ": 1,
+   "EK3_SRC1_VELZ": 0,
+   "EK3_SRC1_YAW": 1,
+   "GPS1_TYPE": 1,
+   "EK3_SRC2_POSXY": 6,
+   "EK3_SRC2_VELXY": 0,
+   "EK3_SRC2_POSZ": 1,
+   "EK3_SRC2_VELZ": 0,
+   "EK3_SRC2_YAW": 1,
+   "EK3_SRC_OPTIONS": 0
+  },
+  "wall_s": 98,
+  "load_start": [
+   1.0830078125,
+   0.75927734375,
+   1.31787109375
+  ],
+  "texts_all": [
+   [
+    -56.69,
+    "Barometer 1 calibration complete"
+   ],
+   [
+    -56.69,
+    "Barometer 2 calibration complete"
+   ],
+   [
+    -54.24,
+    "ArduPilot Ready"
+   ],
+   [
+    -54.24,
+    "AHRS: DCM active"
+   ],
+   [
+    -53.95,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    -52.59,
+    "No ap_message for mavlink id (331)"
+   ],
+   [
+    -52.54,
+    "No ap_message for mavlink id (290)"
+   ],
+   [
+    -52.52,
+    "No ap_message for mavlink id (291)"
+   ],
+   [
+    -52.48,
+    "No ap_message for mavlink id (231)"
+   ],
+   [
+    -52.48,
+    "No ap_message for mavlink id (141)"
+   ],
+   [
+    -52.24,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    -52.24,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    -52.24,
+    "AHRS: EKF3 active"
+   ],
+   [
+    -50.86,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    -50.86,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    -50.76,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -50.76,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -46.89,
+    "GPS 1: probing for u-blox at 230400 baud"
+   ],
+   [
+    -46.87,
+    "GPS 1: detected u-blox"
+   ],
+   [
+    -36.67,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -36.65,
+    "Field Elevation Set: 70m"
+   ],
+   [
+    -36.48,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -15.08,
+    "EKF3 IMU0 is using GPS"
+   ],
+   [
+    -15.08,
+    "EKF3 IMU1 is using GPS"
+   ],
+   [
+    -14.78,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -14.33,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    -14.33,
+    "Arming motors"
+   ],
+   [
+    -13.54,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -9.26,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -9.26,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ]
+  ],
+  "rms30": 0.42405899911465744,
+  "max30": 0.7886424826939495,
+  "herr30": 0.04000091552734375,
+  "h_switch": 9.780006408691406,
+  "ekf_step_switch": 0.007061772172292689,
+  "notes": [
+   [
+    -10.52,
+    "FC mode ALT_HOLD"
+   ],
+   [
+    -9.32,
+    "re-anchored to FC position 0.02 -0.02"
+   ],
+   [
+    -5.01,
+    "EKF source set 2 (our position only) requested: fixes for 2.0 s, before the pilot's switch"
+   ],
+   [
+    -4.94,
+    "FC reply to EKF source set 2 (our position only): ACCEPTED"
+   ],
+   [
+    -0.01,
+    "engaged: FC mode LOITER"
+   ]
+  ],
+  "t_set2": -4.94,
+  "ekf_step_set2": 0.10508292773802412,
+  "move5_set2": 0.8492956529266263,
+  "fixes_in_window": 367,
+  "fc_texts": [
+   [
+    -56.69,
+    "Barometer 1 calibration complete"
+   ],
+   [
+    -56.69,
+    "Barometer 2 calibration complete"
+   ],
+   [
+    -54.24,
+    "ArduPilot Ready"
+   ],
+   [
+    -54.24,
+    "AHRS: DCM active"
+   ],
+   [
+    -53.95,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    -52.59,
+    "No ap_message for mavlink id (331)"
+   ],
+   [
+    -52.54,
+    "No ap_message for mavlink id (290)"
+   ],
+   [
+    -52.52,
+    "No ap_message for mavlink id (291)"
+   ],
+   [
+    -52.48,
+    "No ap_message for mavlink id (231)"
+   ],
+   [
+    -52.48,
+    "No ap_message for mavlink id (141)"
+   ],
+   [
+    -52.24,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    -52.24,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    -52.24,
+    "AHRS: EKF3 active"
+   ],
+   [
+    -50.86,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    -50.86,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    -50.76,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -50.76,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -46.89,
+    "GPS 1: probing for u-blox at 230400 baud"
+   ],
+   [
+    -46.87,
+    "GPS 1: detected u-blox"
+   ],
+   [
+    -36.67,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -36.65,
+    "Field Elevation Set: 70m"
+   ],
+   [
+    -36.48,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -15.08,
+    "EKF3 IMU0 is using GPS"
+   ],
+   [
+    -15.08,
+    "EKF3 IMU1 is using GPS"
+   ],
+   [
+    -14.78,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -14.33,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    -14.33,
+    "Arming motors"
+   ],
+   [
+    -13.54,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -9.26,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -9.26,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ]
+  ],
+  "bin_ev": [
+   [
+    -14.14,
+    "MODE",
+    2
+   ],
+   [
+    -13.56,
+    "EV",
+    15
+   ],
+   [
+    -12.32,
+    "EV",
+    57
+   ],
+   [
+    -10.89,
+    "EV",
+    28
+   ],
+   [
+    -9.26,
+    "EV",
+    62
+   ],
+   [
+    -4.95,
+    "EV",
+    86
+   ],
+   [
+    -0.0,
+    "MODE",
+    5
+   ]
+  ],
+  "innov": {
+   "hold_0_30": {
+    "n": 300,
+    "ivn_distinct": 1,
+    "ive_distinct": 1,
+    "iv_std": 0.0,
+    "ipn_distinct": 12
+   },
+   "gnss_phase_8s_before_set2": {
+    "n": 80,
+    "ivn_distinct": 2,
+    "ive_distinct": 2,
+    "iv_std": 0.0061,
+    "ipn_distinct": 2
+   }
+  }
+ },
+ "gn_none_10m_s1_lh": {
+  "case": "gn_none_10m_s1_lh",
+  "rms": 0.42332484633501566,
+  "max": 0.8706597575150632,
+  "pct_frames_fix": 20.125,
+  "fix_rate_hz": 12.073569475194668,
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 5, 0.0 s after the Loiter request started"
+   ]
+  ],
+  "hold_s_flown": 40.0,
+  "climb_s": 13.5,
+  "age_ms_p50": 128.0,
+  "reanchors": 0,
+  "onboard_exit": 0,
+  "ekf_yaw_minus_true_deg": -2.06,
+  "level": "none",
+  "height": 10.0,
+  "seed": 1,
+  "glitch": false,
+  "settings": {
+   "min_height_m": 3.0,
+   "att_source": "gyro_fcyaw"
+  },
+  "params_gnss": {},
+  "wall_s": 67,
+  "load_start": [
+   2.6708984375,
+   1.5478515625,
+   1.53466796875
+  ],
+  "texts_all": [
+   [
+    -25.61,
+    "Barometer 1 calibration complete"
+   ],
+   [
+    -25.61,
+    "Barometer 2 calibration complete"
+   ],
+   [
+    -23.16,
+    "ArduPilot Ready"
+   ],
+   [
+    -23.16,
+    "AHRS: DCM active"
+   ],
+   [
+    -22.86,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    -21.5,
+    "No ap_message for mavlink id (331)"
+   ],
+   [
+    -21.44,
+    "No ap_message for mavlink id (290)"
+   ],
+   [
+    -21.43,
+    "No ap_message for mavlink id (291)"
+   ],
+   [
+    -21.39,
+    "No ap_message for mavlink id (231)"
+   ],
+   [
+    -21.38,
+    "No ap_message for mavlink id (141)"
+   ],
+   [
+    -21.16,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    -21.16,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    -21.15,
+    "AHRS: EKF3 active"
+   ],
+   [
+    -19.77,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    -19.77,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    -19.67,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -19.67,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -14.26,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -13.82,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    -13.82,
+    "Arming motors"
+   ],
+   [
+    -13.46,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -10.16,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -10.16,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -8.78,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -8.77,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -7.28,
+    "EKF3 IMU0 is using external nav data"
+   ],
+   [
+    -7.28,
+    "EKF3 IMU0 initial pos NED = 0.1,0.0,-8.0 (m)"
+   ],
+   [
+    -7.27,
+    "EKF3 IMU1 is using external nav data"
+   ],
+   [
+    -7.27,
+    "EKF3 IMU1 initial pos NED = 0.1,0.0,-8.0 (m)"
+   ]
+  ],
+  "rms30": 0.44221844142171113,
+  "max30": 0.8706597575150632,
+  "herr30": 0.18000030517578125,
+  "h_switch": 9.730003356933594,
+  "ekf_step_switch": 0.0022378971414244533,
+  "notes": [
+   [
+    -10.01,
+    "FC mode ALT_HOLD"
+   ],
+   [
+    -8.82,
+    "re-anchored to last position (no FC position) 0.00 0.00"
+   ],
+   [
+    -0.02,
+    "engaged: FC mode LOITER"
+   ]
+  ],
+  "fixes_in_window": 359,
+  "fc_texts": [
+   [
+    -25.61,
+    "Barometer 1 calibration complete"
+   ],
+   [
+    -25.61,
+    "Barometer 2 calibration complete"
+   ],
+   [
+    -23.16,
+    "ArduPilot Ready"
+   ],
+   [
+    -23.16,
+    "AHRS: DCM active"
+   ],
+   [
+    -22.86,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    -21.5,
+    "No ap_message for mavlink id (331)"
+   ],
+   [
+    -21.44,
+    "No ap_message for mavlink id (290)"
+   ],
+   [
+    -21.43,
+    "No ap_message for mavlink id (291)"
+   ],
+   [
+    -21.39,
+    "No ap_message for mavlink id (231)"
+   ],
+   [
+    -21.38,
+    "No ap_message for mavlink id (141)"
+   ],
+   [
+    -21.16,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    -21.16,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    -21.15,
+    "AHRS: EKF3 active"
+   ],
+   [
+    -19.77,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    -19.77,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    -19.67,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -19.67,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -14.26,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -13.82,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    -13.82,
+    "Arming motors"
+   ],
+   [
+    -13.46,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -10.16,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -10.16,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -8.78,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -8.77,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -7.28,
+    "EKF3 IMU0 is using external nav data"
+   ],
+   [
+    -7.28,
+    "EKF3 IMU0 initial pos NED = 0.1,0.0,-8.0 (m)"
+   ],
+   [
+    -7.27,
+    "EKF3 IMU1 is using external nav data"
+   ],
+   [
+    -7.27,
+    "EKF3 IMU1 initial pos NED = 0.1,0.0,-8.0 (m)"
+   ]
+  ],
+  "bin_ev": [
+   [
+    -13.13,
+    "MODE",
+    2
+   ],
+   [
+    -11.81,
+    "EV",
+    57
+   ],
+   [
+    -10.38,
+    "EV",
+    28
+   ],
+   [
+    -9.96,
+    "EV",
+    25
+   ],
+   [
+    -8.77,
+    "EV",
+    62
+   ],
+   [
+    0.0,
+    "MODE",
+    5
+   ]
+  ],
+  "innov": {
+   "hold_0_30": {
+    "n": 300,
+    "ivn_distinct": 1,
+    "ive_distinct": 1,
+    "iv_std": 0.0,
+    "ipn_distinct": 15
+   }
+  }
+ },
+ "gn_setup_10m_s2_lh": {
+  "case": "gn_setup_10m_s2_lh",
+  "rms": 0.4352456082045182,
+  "max": 0.953860498924555,
+  "pct_frames_fix": 18.924551896623594,
+  "fix_rate_hz": 11.34999954514803,
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 5, 0.0 s after the Loiter request started"
+   ]
+  ],
+  "hold_s_flown": 40.0,
+  "climb_s": 13.6,
+  "age_ms_p50": 127.8,
+  "reanchors": 0,
+  "onboard_exit": 0,
+  "ekf_yaw_minus_true_deg": -0.46,
+  "level": "setup",
+  "height": 10.0,
+  "seed": 2,
+  "glitch": false,
+  "settings": {
+   "min_height_m": 3.0,
+   "gnss_mode": "setup",
+   "att_source": "gyro_fcyaw"
+  },
+  "params_gnss": {
+   "EK3_SRC1_POSXY": 3,
+   "EK3_SRC1_VELXY": 3,
+   "EK3_SRC1_POSZ": 1,
+   "EK3_SRC1_VELZ": 0,
+   "EK3_SRC1_YAW": 1,
+   "GPS1_TYPE": 1,
+   "EK3_SRC2_POSXY": 6,
+   "EK3_SRC2_VELXY": 0,
+   "EK3_SRC2_POSZ": 1,
+   "EK3_SRC2_VELZ": 0,
+   "EK3_SRC2_YAW": 1,
+   "EK3_SRC_OPTIONS": 0
+  },
+  "wall_s": 98,
+  "load_start": [
+   2.3515625,
+   2.52587890625,
+   1.94970703125
+  ],
+  "texts_all": [
+   [
+    -56.64,
+    "Barometer 1 calibration complete"
+   ],
+   [
+    -56.64,
+    "Barometer 2 calibration complete"
+   ],
+   [
+    -54.19,
+    "ArduPilot Ready"
+   ],
+   [
+    -54.19,
+    "AHRS: DCM active"
+   ],
+   [
+    -53.89,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    -52.54,
+    "No ap_message for mavlink id (331)"
+   ],
+   [
+    -52.48,
+    "No ap_message for mavlink id (290)"
+   ],
+   [
+    -52.47,
+    "No ap_message for mavlink id (291)"
+   ],
+   [
+    -52.43,
+    "No ap_message for mavlink id (231)"
+   ],
+   [
+    -52.42,
+    "No ap_message for mavlink id (141)"
+   ],
+   [
+    -52.19,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    -52.19,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    -52.18,
+    "AHRS: EKF3 active"
+   ],
+   [
+    -50.8,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    -50.8,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    -50.7,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -50.7,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -46.83,
+    "GPS 1: probing for u-blox at 230400 baud"
+   ],
+   [
+    -46.81,
+    "GPS 1: detected u-blox"
+   ],
+   [
+    -36.62,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -36.59,
+    "Field Elevation Set: 70m"
+   ],
+   [
+    -36.43,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -15.02,
+    "EKF3 IMU0 is using GPS"
+   ],
+   [
+    -15.02,
+    "EKF3 IMU1 is using GPS"
+   ],
+   [
+    -14.69,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -14.21,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    -14.21,
+    "Arming motors"
+   ],
+   [
+    -13.57,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -9.2,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -9.2,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ]
+  ],
+  "rms30": 0.3846695769999905,
+  "max30": 0.8410676217121207,
+  "herr30": 0.04000091552734375,
+  "h_switch": 9.790000915527344,
+  "ekf_step_switch": 0.008118110864634487,
+  "notes": [
+   [
+    -10.4,
+    "FC mode ALT_HOLD"
+   ],
+   [
+    -9.19,
+    "re-anchored to FC position 0.02 -0.02"
+   ],
+   [
+    -7.32,
+    "re-anchored to FC position 0.13 -0.15"
+   ],
+   [
+    -3.57,
+    "EKF source set 2 (our position only) requested: fixes for 2.0 s, before the pilot's switch"
+   ],
+   [
+    -3.49,
+    "FC reply to EKF source set 2 (our position only): ACCEPTED"
+   ],
+   [
+    -0.79,
+    "re-anchored to FC position 0.59 -0.74"
+   ],
+   [
+    0.01,
+    "engaged: FC mode LOITER"
+   ]
+  ],
+  "t_set2": -3.49,
+  "ekf_step_set2": 0.0920399486663553,
+  "move5_set2": 0.7997198001467216,
+  "fixes_in_window": 340,
+  "fc_texts": [
+   [
+    -56.64,
+    "Barometer 1 calibration complete"
+   ],
+   [
+    -56.64,
+    "Barometer 2 calibration complete"
+   ],
+   [
+    -54.19,
+    "ArduPilot Ready"
+   ],
+   [
+    -54.19,
+    "AHRS: DCM active"
+   ],
+   [
+    -53.89,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    -52.54,
+    "No ap_message for mavlink id (331)"
+   ],
+   [
+    -52.48,
+    "No ap_message for mavlink id (290)"
+   ],
+   [
+    -52.47,
+    "No ap_message for mavlink id (291)"
+   ],
+   [
+    -52.43,
+    "No ap_message for mavlink id (231)"
+   ],
+   [
+    -52.42,
+    "No ap_message for mavlink id (141)"
+   ],
+   [
+    -52.19,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    -52.19,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    -52.18,
+    "AHRS: EKF3 active"
+   ],
+   [
+    -50.8,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    -50.8,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    -50.7,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -50.7,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -46.83,
+    "GPS 1: probing for u-blox at 230400 baud"
+   ],
+   [
+    -46.81,
+    "GPS 1: detected u-blox"
+   ],
+   [
+    -36.62,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -36.59,
+    "Field Elevation Set: 70m"
+   ],
+   [
+    -36.43,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -15.02,
+    "EKF3 IMU0 is using GPS"
+   ],
+   [
+    -15.02,
+    "EKF3 IMU1 is using GPS"
+   ],
+   [
+    -14.69,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -14.21,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    -14.21,
+    "Arming motors"
+   ],
+   [
+    -13.57,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -9.2,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -9.2,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ]
+  ],
+  "bin_ev": [
+   [
+    -14.09,
+    "MODE",
+    2
+   ],
+   [
+    -13.57,
+    "EV",
+    15
+   ],
+   [
+    -12.21,
+    "EV",
+    57
+   ],
+   [
+    -10.78,
+    "EV",
+    28
+   ],
+   [
+    -9.2,
+    "EV",
+    62
+   ],
+   [
+    -3.5,
+    "EV",
+    86
+   ],
+   [
+    -0.0,
+    "MODE",
+    5
+   ]
+  ],
+  "innov": {
+   "hold_0_30": {
+    "n": 300,
+    "ivn_distinct": 1,
+    "ive_distinct": 1,
+    "iv_std": 0.0,
+    "ipn_distinct": 17
+   },
+   "gnss_phase_8s_before_set2": {
+    "n": 80,
+    "ivn_distinct": 2,
+    "ive_distinct": 2,
+    "iv_std": 0.0069,
+    "ipn_distinct": 2
+   }
+  }
+ },
+ "gn_none_10m_s2_lh": {
+  "case": "gn_none_10m_s2_lh",
+  "rms": 0.4654890486503222,
+  "max": 0.991514437971733,
+  "pct_frames_fix": 20.166666666666668,
+  "fix_rate_hz": 12.097275361216097,
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 5, 0.0 s after the Loiter request started"
+   ]
+  ],
+  "hold_s_flown": 40.0,
+  "climb_s": 13.9,
+  "age_ms_p50": 128.4,
+  "reanchors": 0,
+  "onboard_exit": 0,
+  "ekf_yaw_minus_true_deg": -1.83,
+  "level": "none",
+  "height": 10.0,
+  "seed": 2,
+  "glitch": false,
+  "settings": {
+   "min_height_m": 3.0,
+   "att_source": "gyro_fcyaw"
+  },
+  "params_gnss": {},
+  "wall_s": 67,
+  "load_start": [
+   2.82568359375,
+   3.29736328125,
+   2.3779296875
+  ],
+  "texts_all": [
+   [
+    -26.08,
+    "Barometer 1 calibration complete"
+   ],
+   [
+    -26.08,
+    "Barometer 2 calibration complete"
+   ],
+   [
+    -23.63,
+    "ArduPilot Ready"
+   ],
+   [
+    -23.63,
+    "AHRS: DCM active"
+   ],
+   [
+    -23.33,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    -22.0,
+    "No ap_message for mavlink id (331)"
+   ],
+   [
+    -21.93,
+    "No ap_message for mavlink id (290)"
+   ],
+   [
+    -21.92,
+    "No ap_message for mavlink id (291)"
+   ],
+   [
+    -21.88,
+    "No ap_message for mavlink id (231)"
+   ],
+   [
+    -21.87,
+    "No ap_message for mavlink id (141)"
+   ],
+   [
+    -21.63,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    -21.63,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    -21.62,
+    "AHRS: EKF3 active"
+   ],
+   [
+    -20.24,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    -20.24,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    -20.14,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -20.14,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -14.8,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -14.35,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    -14.35,
+    "Arming motors"
+   ],
+   [
+    -13.87,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -10.68,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -10.68,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -9.35,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -9.34,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -8.28,
+    "EKF3 IMU1 is using external nav data"
+   ],
+   [
+    -8.28,
+    "EKF3 IMU1 initial pos NED = 0.0,0.0,-6.7 (m)"
+   ],
+   [
+    -8.27,
+    "EKF3 IMU0 is using external nav data"
+   ],
+   [
+    -8.27,
+    "EKF3 IMU0 initial pos NED = 0.0,0.0,-6.7 (m)"
+   ]
+  ],
+  "rms30": 0.410050845049304,
+  "max30": 0.9019993422159065,
+  "herr30": 0.09999847412109375,
+  "h_switch": 9.650001525878906,
+  "ekf_step_switch": 0.003978101518393033,
+  "notes": [
+   [
+    -10.54,
+    "FC mode ALT_HOLD"
+   ],
+   [
+    -9.33,
+    "re-anchored to last position (no FC position) 0.00 0.00"
+   ],
+   [
+    -0.04,
+    "engaged: FC mode LOITER"
+   ]
+  ],
+  "fixes_in_window": 367,
+  "fc_texts": [
+   [
+    -26.08,
+    "Barometer 1 calibration complete"
+   ],
+   [
+    -26.08,
+    "Barometer 2 calibration complete"
+   ],
+   [
+    -23.63,
+    "ArduPilot Ready"
+   ],
+   [
+    -23.63,
+    "AHRS: DCM active"
+   ],
+   [
+    -23.33,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    -22.0,
+    "No ap_message for mavlink id (331)"
+   ],
+   [
+    -21.93,
+    "No ap_message for mavlink id (290)"
+   ],
+   [
+    -21.92,
+    "No ap_message for mavlink id (291)"
+   ],
+   [
+    -21.88,
+    "No ap_message for mavlink id (231)"
+   ],
+   [
+    -21.87,
+    "No ap_message for mavlink id (141)"
+   ],
+   [
+    -21.63,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    -21.63,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    -21.62,
+    "AHRS: EKF3 active"
+   ],
+   [
+    -20.24,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    -20.24,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    -20.14,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -20.14,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -14.8,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -14.35,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    -14.35,
+    "Arming motors"
+   ],
+   [
+    -13.87,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -10.68,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -10.68,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -9.35,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -9.34,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -8.28,
+    "EKF3 IMU1 is using external nav data"
+   ],
+   [
+    -8.28,
+    "EKF3 IMU1 initial pos NED = 0.0,0.0,-6.7 (m)"
+   ],
+   [
+    -8.27,
+    "EKF3 IMU0 is using external nav data"
+   ],
+   [
+    -8.27,
+    "EKF3 IMU0 initial pos NED = 0.0,0.0,-6.7 (m)"
+   ]
+  ],
+  "bin_ev": [
+   [
+    -13.6,
+    "MODE",
+    2
+   ],
+   [
+    -12.35,
+    "EV",
+    57
+   ],
+   [
+    -10.92,
+    "EV",
+    28
+   ],
+   [
+    -10.48,
+    "EV",
+    25
+   ],
+   [
+    -9.34,
+    "EV",
+    62
+   ],
+   [
+    -0.0,
+    "MODE",
+    5
+   ]
+  ],
+  "innov": {
+   "hold_0_30": {
+    "n": 300,
+    "ivn_distinct": 1,
+    "ive_distinct": 1,
+    "iv_std": 0.0,
+    "ipn_distinct": 14
+   }
+  }
+ },
+ "gn_setup_5m_s1_lh": {
+  "case": "gn_setup_5m_s1_lh",
+  "rms": 0.41775629654438523,
+  "max": 0.828549381418925,
+  "pct_frames_fix": 18.908788004997916,
+  "fix_rate_hz": 11.347440876907545,
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 5, 0.0 s after the Loiter request started"
+   ]
+  ],
+  "hold_s_flown": 40.0,
+  "climb_s": 14.1,
+  "age_ms_p50": 128.3,
+  "reanchors": 2,
+  "onboard_exit": 0,
+  "ekf_yaw_minus_true_deg": -0.51,
+  "level": "setup",
+  "height": 5.0,
+  "seed": 1,
+  "glitch": false,
+  "settings": {
+   "min_height_m": 3.0,
+   "gnss_mode": "setup",
+   "att_source": "gyro_fcyaw"
+  },
+  "params_gnss": {
+   "EK3_SRC1_POSXY": 3,
+   "EK3_SRC1_VELXY": 3,
+   "EK3_SRC1_POSZ": 1,
+   "EK3_SRC1_VELZ": 0,
+   "EK3_SRC1_YAW": 1,
+   "GPS1_TYPE": 1,
+   "EK3_SRC2_POSXY": 6,
+   "EK3_SRC2_VELXY": 0,
+   "EK3_SRC2_POSZ": 1,
+   "EK3_SRC2_VELZ": 0,
+   "EK3_SRC2_YAW": 1,
+   "EK3_SRC_OPTIONS": 0
+  },
+  "wall_s": 99,
+  "load_start": [
+   2.42724609375,
+   3.6279296875,
+   2.68310546875
+  ],
+  "texts_all": [
+   [
+    -57.21,
+    "Barometer 1 calibration complete"
+   ],
+   [
+    -57.21,
+    "Barometer 2 calibration complete"
+   ],
+   [
+    -54.76,
+    "ArduPilot Ready"
+   ],
+   [
+    -54.76,
+    "AHRS: DCM active"
+   ],
+   [
+    -54.46,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    -53.1,
+    "No ap_message for mavlink id (331)"
+   ],
+   [
+    -53.04,
+    "No ap_message for mavlink id (290)"
+   ],
+   [
+    -53.03,
+    "No ap_message for mavlink id (291)"
+   ],
+   [
+    -52.99,
+    "No ap_message for mavlink id (231)"
+   ],
+   [
+    -52.98,
+    "No ap_message for mavlink id (141)"
+   ],
+   [
+    -52.76,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    -52.76,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    -52.75,
+    "AHRS: EKF3 active"
+   ],
+   [
+    -51.37,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    -51.37,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    -51.27,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -51.27,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -47.4,
+    "GPS 1: probing for u-blox at 230400 baud"
+   ],
+   [
+    -47.38,
+    "GPS 1: detected u-blox"
+   ],
+   [
+    -37.19,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -37.16,
+    "Field Elevation Set: 70m"
+   ],
+   [
+    -37.0,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -15.59,
+    "EKF3 IMU0 is using GPS"
+   ],
+   [
+    -15.59,
+    "EKF3 IMU1 is using GPS"
+   ],
+   [
+    -15.26,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -14.81,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    -14.81,
+    "Arming motors"
+   ],
+   [
+    -14.02,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -9.38,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -9.38,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ]
+  ],
+  "rms30": 0.42399084817628063,
+  "max30": 0.828549381418925,
+  "herr30": 0.05999755859375,
+  "h_switch": 4.700004577636719,
+  "ekf_step_switch": 0.007375139220465835,
+  "notes": [
+   [
+    -11.02,
+    "FC mode ALT_HOLD"
+   ],
+   [
+    -9.04,
+    "re-anchored to FC position 0.05 -0.05"
+   ],
+   [
+    -5.71,
+    "EKF source set 2 (our position only) requested: fixes for 2.0 s, before the pilot's switch"
+   ],
+   [
+    -5.62,
+    "FC reply to EKF source set 2 (our position only): ACCEPTED"
+   ],
+   [
+    -5.14,
+    "re-anchored to FC position 0.32 -0.41"
+   ],
+   [
+    -0.01,
+    "engaged: FC mode LOITER"
+   ],
+   [
+    7.24,
+    "re-anchored to FC position 1.06 -0.58"
+   ],
+   [
+    14.19,
+    "re-anchored to FC position 0.56 -1.44"
+   ]
+  ],
+  "t_set2": -5.62,
+  "ekf_step_set2": 0.022242160876731067,
+  "move5_set2": 0.8419116050597498,
+  "fixes_in_window": 334,
+  "fc_texts": [
+   [
+    -57.21,
+    "Barometer 1 calibration complete"
+   ],
+   [
+    -57.21,
+    "Barometer 2 calibration complete"
+   ],
+   [
+    -54.76,
+    "ArduPilot Ready"
+   ],
+   [
+    -54.76,
+    "AHRS: DCM active"
+   ],
+   [
+    -54.46,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    -53.1,
+    "No ap_message for mavlink id (331)"
+   ],
+   [
+    -53.04,
+    "No ap_message for mavlink id (290)"
+   ],
+   [
+    -53.03,
+    "No ap_message for mavlink id (291)"
+   ],
+   [
+    -52.99,
+    "No ap_message for mavlink id (231)"
+   ],
+   [
+    -52.98,
+    "No ap_message for mavlink id (141)"
+   ],
+   [
+    -52.76,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    -52.76,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    -52.75,
+    "AHRS: EKF3 active"
+   ],
+   [
+    -51.37,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    -51.37,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    -51.27,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -51.27,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -47.4,
+    "GPS 1: probing for u-blox at 230400 baud"
+   ],
+   [
+    -47.38,
+    "GPS 1: detected u-blox"
+   ],
+   [
+    -37.19,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -37.16,
+    "Field Elevation Set: 70m"
+   ],
+   [
+    -37.0,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -15.59,
+    "EKF3 IMU0 is using GPS"
+   ],
+   [
+    -15.59,
+    "EKF3 IMU1 is using GPS"
+   ],
+   [
+    -15.26,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -14.81,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    -14.81,
+    "Arming motors"
+   ],
+   [
+    -14.02,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -9.38,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -9.38,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ]
+  ],
+  "bin_ev": [
+   [
+    -14.66,
+    "MODE",
+    2
+   ],
+   [
+    -14.04,
+    "EV",
+    15
+   ],
+   [
+    -12.81,
+    "EV",
+    57
+   ],
+   [
+    -11.38,
+    "EV",
+    28
+   ],
+   [
+    -9.37,
+    "EV",
+    62
+   ],
+   [
+    -5.65,
+    "EV",
+    86
+   ],
+   [
+    0.0,
+    "MODE",
+    5
+   ]
+  ],
+  "innov": {
+   "hold_0_30": {
+    "n": 300,
+    "ivn_distinct": 1,
+    "ive_distinct": 1,
+    "iv_std": 0.0,
+    "ipn_distinct": 13
+   },
+   "gnss_phase_8s_before_set2": {
+    "n": 80,
+    "ivn_distinct": 1,
+    "ive_distinct": 2,
+    "iv_std": 0.0026,
+    "ipn_distinct": 2
+   }
+  }
+ },
+ "gn_setup_5m_s2_lh": {
+  "case": "gn_setup_5m_s2_lh",
+  "rms": 0.45667888896727465,
+  "max": 0.9918261411959631,
+  "pct_frames_fix": 16.291666666666668,
+  "fix_rate_hz": 9.7740228682094,
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 5, 0.0 s after the Loiter request started"
+   ]
+  ],
+  "hold_s_flown": 40.0,
+  "climb_s": 14.1,
+  "age_ms_p50": 128.5,
+  "reanchors": 6,
+  "onboard_exit": 0,
+  "ekf_yaw_minus_true_deg": -0.46,
+  "level": "setup",
+  "height": 5.0,
+  "seed": 2,
+  "glitch": false,
+  "settings": {
+   "min_height_m": 3.0,
+   "gnss_mode": "setup",
+   "att_source": "gyro_fcyaw"
+  },
+  "params_gnss": {
+   "EK3_SRC1_POSXY": 3,
+   "EK3_SRC1_VELXY": 3,
+   "EK3_SRC1_POSZ": 1,
+   "EK3_SRC1_VELZ": 0,
+   "EK3_SRC1_YAW": 1,
+   "GPS1_TYPE": 1,
+   "EK3_SRC2_POSXY": 6,
+   "EK3_SRC2_VELXY": 0,
+   "EK3_SRC2_POSZ": 1,
+   "EK3_SRC2_VELZ": 0,
+   "EK3_SRC2_YAW": 1,
+   "EK3_SRC_OPTIONS": 0
+  },
+  "wall_s": 99,
+  "load_start": [
+   2.4453125,
+   3.98876953125,
+   3.03173828125
+  ],
+  "texts_all": [
+   [
+    -57.21,
+    "Barometer 1 calibration complete"
+   ],
+   [
+    -57.21,
+    "Barometer 2 calibration complete"
+   ],
+   [
+    -54.76,
+    "ArduPilot Ready"
+   ],
+   [
+    -54.76,
+    "AHRS: DCM active"
+   ],
+   [
+    -54.47,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    -53.13,
+    "No ap_message for mavlink id (331)"
+   ],
+   [
+    -53.07,
+    "No ap_message for mavlink id (290)"
+   ],
+   [
+    -53.06,
+    "No ap_message for mavlink id (291)"
+   ],
+   [
+    -53.02,
+    "No ap_message for mavlink id (231)"
+   ],
+   [
+    -53.01,
+    "No ap_message for mavlink id (141)"
+   ],
+   [
+    -52.76,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    -52.76,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    -52.76,
+    "AHRS: EKF3 active"
+   ],
+   [
+    -51.38,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    -51.38,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    -51.28,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -51.28,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -47.41,
+    "GPS 1: probing for u-blox at 230400 baud"
+   ],
+   [
+    -47.39,
+    "GPS 1: detected u-blox"
+   ],
+   [
+    -37.19,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -37.17,
+    "Field Elevation Set: 70m"
+   ],
+   [
+    -37.0,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -15.6,
+    "EKF3 IMU0 is using GPS"
+   ],
+   [
+    -15.6,
+    "EKF3 IMU1 is using GPS"
+   ],
+   [
+    -15.26,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -14.83,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    -14.83,
+    "Arming motors"
+   ],
+   [
+    -14.06,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -9.39,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -9.38,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ]
+  ],
+  "rms30": 0.4034496428827603,
+  "max30": 0.7378094378604421,
+  "herr30": 0.04999542236328125,
+  "h_switch": 4.700004577636719,
+  "ekf_step_switch": 0.005500580797811074,
+  "notes": [
+   [
+    -11.03,
+    "FC mode ALT_HOLD"
+   ],
+   [
+    -9.06,
+    "re-anchored to FC position 0.05 -0.05"
+   ],
+   [
+    -5.56,
+    "EKF source set 2 (our position only) requested: fixes for 2.0 s, before the pilot's switch"
+   ],
+   [
+    -5.48,
+    "FC reply to EKF source set 2 (our position only): ACCEPTED"
+   ],
+   [
+    -0.49,
+    "re-anchored to FC position 0.84 -0.97"
+   ],
+   [
+    -0.01,
+    "engaged: FC mode LOITER"
+   ],
+   [
+    6.19,
+    "re-anchored to FC position 1.00 -0.42"
+   ],
+   [
+    10.74,
+    "re-anchored to FC position 0.96 -1.41"
+   ],
+   [
+    22.41,
+    "re-anchored to FC position 1.03 -0.64"
+   ],
+   [
+    25.99,
+    "re-anchored to FC position 0.82 -1.40"
+   ],
+   [
+    33.41,
+    "re-anchored to FC position 1.00 -0.22"
+   ],
+   [
+    37.32,
+    "re-anchored to FC position 0.98 -1.34"
+   ]
+  ],
+  "t_set2": -5.48,
+  "ekf_step_set2": 0.029254325792154954,
+  "move5_set2": 0.8377399101962263,
+  "fixes_in_window": 299,
+  "fc_texts": [
+   [
+    -57.21,
+    "Barometer 1 calibration complete"
+   ],
+   [
+    -57.21,
+    "Barometer 2 calibration complete"
+   ],
+   [
+    -54.76,
+    "ArduPilot Ready"
+   ],
+   [
+    -54.76,
+    "AHRS: DCM active"
+   ],
+   [
+    -54.47,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    -53.13,
+    "No ap_message for mavlink id (331)"
+   ],
+   [
+    -53.07,
+    "No ap_message for mavlink id (290)"
+   ],
+   [
+    -53.06,
+    "No ap_message for mavlink id (291)"
+   ],
+   [
+    -53.02,
+    "No ap_message for mavlink id (231)"
+   ],
+   [
+    -53.01,
+    "No ap_message for mavlink id (141)"
+   ],
+   [
+    -52.76,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    -52.76,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    -52.76,
+    "AHRS: EKF3 active"
+   ],
+   [
+    -51.38,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    -51.38,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    -51.28,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -51.28,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -47.41,
+    "GPS 1: probing for u-blox at 230400 baud"
+   ],
+   [
+    -47.39,
+    "GPS 1: detected u-blox"
+   ],
+   [
+    -37.19,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -37.17,
+    "Field Elevation Set: 70m"
+   ],
+   [
+    -37.0,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -15.6,
+    "EKF3 IMU0 is using GPS"
+   ],
+   [
+    -15.6,
+    "EKF3 IMU1 is using GPS"
+   ],
+   [
+    -15.26,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -14.83,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    -14.83,
+    "Arming motors"
+   ],
+   [
+    -14.06,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -9.39,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -9.38,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ]
+  ],
+  "bin_ev": [
+   [
+    -14.66,
+    "MODE",
+    2
+   ],
+   [
+    -14.08,
+    "EV",
+    15
+   ],
+   [
+    -12.83,
+    "EV",
+    57
+   ],
+   [
+    -11.4,
+    "EV",
+    28
+   ],
+   [
+    -9.38,
+    "EV",
+    62
+   ],
+   [
+    -5.49,
+    "EV",
+    86
+   ],
+   [
+    -0.0,
+    "MODE",
+    5
+   ]
+  ],
+  "innov": {
+   "hold_0_30": {
+    "n": 300,
+    "ivn_distinct": 1,
+    "ive_distinct": 1,
+    "iv_std": 0.0,
+    "ipn_distinct": 12
+   },
+   "gnss_phase_8s_before_set2": {
+    "n": 80,
+    "ivn_distinct": 1,
+    "ive_distinct": 2,
+    "iv_std": 0.0026,
+    "ipn_distinct": 2
+   }
+  }
+ },
+ "gn_fallback_10m_s1_lh": {
+  "case": "gn_fallback_10m_s1_lh",
+  "rms": 0.8183779295096772,
+  "max": 1.5492355782570972,
+  "pct_frames_fix": 14.279749478079331,
+  "fix_rate_hz": 8.548933982983062,
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 5, 0.0 s after the Loiter request started"
+   ]
+  ],
+  "hold_s_flown": 40.0,
+  "climb_s": 13.7,
+  "age_ms_p50": 128.05,
+  "reanchors": 3,
+  "onboard_exit": 0,
+  "ekf_yaw_minus_true_deg": -0.51,
+  "level": "fallback",
+  "height": 10.0,
+  "seed": 1,
+  "glitch": false,
+  "settings": {
+   "min_height_m": 3.0,
+   "gnss_mode": "fallback",
+   "outage_test_s": 6.0,
+   "outage_after_s": 10.0,
+   "att_source": "gyro_fcyaw"
+  },
+  "params_gnss": {
+   "EK3_SRC1_POSXY": 3,
+   "EK3_SRC1_VELXY": 3,
+   "EK3_SRC1_POSZ": 1,
+   "EK3_SRC1_VELZ": 0,
+   "EK3_SRC1_YAW": 1,
+   "GPS1_TYPE": 1,
+   "EK3_SRC2_POSXY": 6,
+   "EK3_SRC2_VELXY": 0,
+   "EK3_SRC2_POSZ": 1,
+   "EK3_SRC2_VELZ": 0,
+   "EK3_SRC2_YAW": 1,
+   "EK3_SRC_OPTIONS": 0
+  },
+  "wall_s": 98,
+  "load_start": [
+   2.56201171875,
+   3.6025390625,
+   3.01611328125
+  ],
+  "texts_all": [
+   [
+    -56.73,
+    "Barometer 1 calibration complete"
+   ],
+   [
+    -56.73,
+    "Barometer 2 calibration complete"
+   ],
+   [
+    -54.28,
+    "ArduPilot Ready"
+   ],
+   [
+    -54.28,
+    "AHRS: DCM active"
+   ],
+   [
+    -53.98,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    -52.62,
+    "No ap_message for mavlink id (331)"
+   ],
+   [
+    -52.56,
+    "No ap_message for mavlink id (290)"
+   ],
+   [
+    -52.55,
+    "No ap_message for mavlink id (291)"
+   ],
+   [
+    -52.51,
+    "No ap_message for mavlink id (231)"
+   ],
+   [
+    -52.5,
+    "No ap_message for mavlink id (141)"
+   ],
+   [
+    -52.28,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    -52.28,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    -52.27,
+    "AHRS: EKF3 active"
+   ],
+   [
+    -50.89,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    -50.89,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    -50.79,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -50.79,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -46.92,
+    "GPS 1: probing for u-blox at 230400 baud"
+   ],
+   [
+    -46.9,
+    "GPS 1: detected u-blox"
+   ],
+   [
+    -36.71,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -36.68,
+    "Field Elevation Set: 70m"
+   ],
+   [
+    -36.52,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -15.11,
+    "EKF3 IMU0 is using GPS"
+   ],
+   [
+    -15.11,
+    "EKF3 IMU1 is using GPS"
+   ],
+   [
+    -14.78,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -14.32,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    -14.32,
+    "Arming motors"
+   ],
+   [
+    -13.66,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -9.29,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -9.29,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ]
+  ],
+  "rms30": 0.7583668526042018,
+  "max30": 1.5492355782570972,
+  "herr30": 0.03000640869140625,
+  "h_switch": 9.780006408691406,
+  "ekf_step_switch": 0.006400123788373533,
+  "notes": [
+   [
+    -10.51,
+    "FC mode ALT_HOLD"
+   ],
+   [
+    -9.33,
+    "re-anchored to FC position 0.02 -0.02"
+   ],
+   [
+    -5.43,
+    "EKF source set 2 (our position only) requested: fixes for 2.0 s, before the pilot's switch"
+   ],
+   [
+    -5.34,
+    "FC reply to EKF source set 2 (our position only): ACCEPTED"
+   ],
+   [
+    -0.04,
+    "engaged: FC mode LOITER"
+   ],
+   [
+    9.97,
+    "recovery test: video dropped for 6 s"
+   ],
+   [
+    12.92,
+    "EKF source set 1 (GNSS) requested: GNSS FALLBACK: no fix for 3.0 s in the hold (gnss_fallback_s 3). GNSS aids the hold from this time"
+   ],
+   [
+    12.96,
+    "FC reply to EKF source set 1 (GNSS): ACCEPTED"
+   ],
+   [
+    15.99,
+    "recovery test: video back; re-anchored to FC position 0.61 -2.44"
+   ],
+   [
+    16.09,
+    "re-anchored to FC position 0.61 -2.41"
+   ],
+   [
+    16.24,
+    "re-anchored to FC position 0.61 -2.34"
+   ],
+   [
+    23.69,
+    "re-anchored to FC position 1.21 -1.13"
+   ]
+  ],
+  "t_set2": -5.34,
+  "ekf_step_set2": 0.11309805606914305,
+  "move5_set2": 0.830253095019706,
+  "t_set1": 12.96,
+  "ekf_step_set1": 0.31547087858712586,
+  "move5_set1": 2.076222564393374,
+  "max_after_set1": 1.5492355782570972,
+  "fixes_in_window": 243,
+  "drop_at": 9.97,
+  "max_from_drop": 1.5492355782570972,
+  "fc_texts": [
+   [
+    -56.73,
+    "Barometer 1 calibration complete"
+   ],
+   [
+    -56.73,
+    "Barometer 2 calibration complete"
+   ],
+   [
+    -54.28,
+    "ArduPilot Ready"
+   ],
+   [
+    -54.28,
+    "AHRS: DCM active"
+   ],
+   [
+    -53.98,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    -52.62,
+    "No ap_message for mavlink id (331)"
+   ],
+   [
+    -52.56,
+    "No ap_message for mavlink id (290)"
+   ],
+   [
+    -52.55,
+    "No ap_message for mavlink id (291)"
+   ],
+   [
+    -52.51,
+    "No ap_message for mavlink id (231)"
+   ],
+   [
+    -52.5,
+    "No ap_message for mavlink id (141)"
+   ],
+   [
+    -52.28,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    -52.28,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    -52.27,
+    "AHRS: EKF3 active"
+   ],
+   [
+    -50.89,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    -50.89,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    -50.79,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -50.79,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -46.92,
+    "GPS 1: probing for u-blox at 230400 baud"
+   ],
+   [
+    -46.9,
+    "GPS 1: detected u-blox"
+   ],
+   [
+    -36.71,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -36.68,
+    "Field Elevation Set: 70m"
+   ],
+   [
+    -36.52,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -15.11,
+    "EKF3 IMU0 is using GPS"
+   ],
+   [
+    -15.11,
+    "EKF3 IMU1 is using GPS"
+   ],
+   [
+    -14.78,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -14.32,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    -14.32,
+    "Arming motors"
+   ],
+   [
+    -13.66,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -9.29,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -9.29,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ]
+  ],
+  "bin_ev": [
+   [
+    -14.18,
+    "MODE",
+    2
+   ],
+   [
+    -13.66,
+    "EV",
+    15
+   ],
+   [
+    -12.31,
+    "EV",
+    57
+   ],
+   [
+    -10.88,
+    "EV",
+    28
+   ],
+   [
+    -9.29,
+    "EV",
+    62
+   ],
+   [
+    -5.36,
+    "EV",
+    86
+   ],
+   [
+    -0.0,
+    "MODE",
+    5
+   ],
+   [
+    12.98,
+    "EV",
+    85
+   ]
+  ],
+  "innov": {
+   "hold_0_30": {
+    "n": 300,
+    "ivn_distinct": 6,
+    "ive_distinct": 8,
+    "iv_std": 0.017,
+    "ipn_distinct": 7
+   },
+   "gnss_phase_8s_before_set2": {
+    "n": 80,
+    "ivn_distinct": 2,
+    "ive_distinct": 2,
+    "iv_std": 0.0059,
+    "ipn_distinct": 2
+   }
+  }
+ }
+}

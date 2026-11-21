@@ -1,0 +1,5 @@
+FAIL not calibrated. Run 'apb_main.py calib'.
+PASS GLOBAL_POSITION_INT 10 Hz (asked 10)
+INFO height now 0.0 m (run needs 3 m)
+FAIL no mask. Run 'apb_main.py mask'.
+2 FAIL

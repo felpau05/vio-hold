@@ -1,0 +1,2 @@
+after justice_d: record_hz 30, min_free_gb 2.0: check needs 5.33 GB (max(s["min_free_gb"] * mbs / (360 * 288 * 25 / 1e6), s["min_free_gb"])); the recorder stops under 2.0 GB (self.min_gb)
+after no_sd: record_hz 10, min_free_gb 0.5: check needs 0.50 GB (max(s["min_free_gb"] * mbs / (360 * 288 * 25 / 1e6), s["min_free_gb"])); the recorder stops under 0.5 GB (self.min_gb)

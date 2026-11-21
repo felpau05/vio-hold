@@ -1,0 +1,3 @@
+$ qpy apb_main.py replay PROJ/apsim/runs/c_wig_40m_w20g40_s12_raw/raw_20261116_212126_001.npz PROJ/apsim/runs/c_wig_40m_w20g40_s12_raw/raw_20261116_212126_002.npz (cwd: the bundle's vio folder; root file system py310; qemu CPU cortex-a53)
+replay: {'frames': 245, 'sent': 170, 'init': 5, 'ok': 199, 'degraded': 27, 'lost': 14}; log WORK/run/vio-bundle/vio/logs/replay_20261120_084727.csv
+exit code 0

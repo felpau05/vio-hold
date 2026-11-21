@@ -8,7 +8,8 @@
   apb_main.py run   [--raw]          the hold: send the fix to the flight controller
   apb_main.py replay FILE...         a raw recording through the same pipeline (for tuning)
   apb_main.py delay LOG.csv...       VISO_DELAY_MS from the fix ages of a flight
-  apb_main.py timing RAW.npz...      video delay and readout from an in-flight stick wiggle (raw chunks)
+  apb_main.py timing RUN.csv RAW.npz...  video delay and readout from the in-flight stick wiggle: the raw frames of
+                                     the 15 s in the air before the pilot's switch to position hold in the run log
 
 Every check prints one line: PASS or FAIL, and what to do. run refuses to start when a check fails.
 Safety rule: send nothing when in doubt (stale inputs, bad picture, low height, too few good frames).
@@ -16,8 +17,10 @@ Safety rule: send nothing when in doubt (stale inputs, bad picture, low height, 
 import argparse
 import csv
 import glob
+import json
 import math
 import os
+import re
 import shutil
 import sys
 import threading
@@ -35,7 +38,12 @@ from hold import Hold, Series, build_static_mask, euler_R, load_lens, make_R_bc 
 # ---------------------------------------------------------------- the pipeline (run and replay)
 def lens(s, shape, focal=True):
     h, w = shape
-    K, D = load_lens(S.here(s["lens_file"]), s["lens_name"], w, h, field={"top": 0, "bottom": 1}.get(s["field"]))
+    if s.get("lens_measured"):       # calib or tools/lens_calib.py measured it; lens_name is then only calib's start
+        import calib
+        K, D = calib.measured_lens(s["lens_measured"], w, h)
+    else:
+        field = None if s["camera"] == "digital" else {"top": 0, "bottom": 1}.get(s["field"])   # a digital frame is whole
+        K, D = load_lens(S.here(s["lens_file"]), s["lens_name"], w, h, field=field)
     if focal:
         K[0, 0] *= s["focal_scale"]
         K[1, 1] *= s["focal_scale"]
@@ -65,10 +73,14 @@ class GyroAtt:
     with time constant tau_s. Why: while the FC fuses our fix, PX4 turns its gravity (tilt) fusion off
     (EKF2 gravity_fusion.cpp: !isHorizontalAidingActive()), so its tilt follows our fix, and our fix
     follows its tilt with gain = height. Closed loop in PX4 SITL with the raw FC attitude: fly-away past
-    30 m at 50, 100 and 122 m (px4sim/results.txt). Call with each ATTITUDE row in time order."""
+    30 m at 50, 100 and 122 m (px4sim/results.txt). Call with each ATTITUDE row in time order.
+    fc_yaw (att_source "gyro_fcyaw", off by default): roll and pitch as above, the yaw as the FC sends it. Why:
+    after take-off ArduCopter aligns its yaw in flight (a step), and with tau_s 20 s our yaw follows it for many
+    seconds (tests_apb/test_att_yaw.py Y3: 18 deg left 2 s after a 20 deg step). The tilt loop above has no yaw
+    part. Gain in closed loop: see the simulator A/B in integ/kfmap/README.txt before you use it."""
 
-    def __init__(self, tau_s):
-        self.tau, self.R, self.t, self.w = tau_s, None, None, None
+    def __init__(self, tau_s, fc_yaw=False):
+        self.tau, self.R, self.t, self.w, self.fc_yaw = tau_s, None, None, None, fc_yaw
 
     def target(self, row):
         """The slow reference the integrated rates lean toward: here the FC's attitude."""
@@ -90,6 +102,10 @@ class GyroAtt:
             self.R = u @ vt
         self.t, self.w = t, w
         R = self.R
+        if self.fc_yaw:                       # our roll and pitch, the FC's yaw: in the state too, for the next step
+            roll, pitch = math.atan2(R[2, 1], R[2, 2]), -math.asin(max(-1.0, min(1.0, R[2, 0])))
+            self.R = euler_R(roll, pitch, row[3])
+            return (t, roll, pitch, row[3], *row[4:])
         return (t, math.atan2(R[2, 1], R[2, 2]), -math.asin(max(-1.0, min(1.0, R[2, 0]))),
                 math.atan2(R[1, 0], R[0, 0]), *row[4:])
 
@@ -120,6 +136,8 @@ class ImuAtt(GyroAtt):
 def att_filter(s, fc=None):
     if s["att_source"] == "imu" and fc is not None:
         return ImuAtt(s["att_tau_s"], fc.imu)
+    if s["att_source"] == "gyro_fcyaw":
+        return GyroAtt(s["att_tau_s"], fc_yaw=True)
     # shortcut: replay has no accelerometer log, so "imu" replays as "gyro"; record SCALED_IMU in Raw to replay it.
     return GyroAtt(s["att_tau_s"]) if s["att_source"] in ("gyro", "imu") else None
 
@@ -201,41 +219,253 @@ class Pipe:
         return e, True, None
 
 
+# ---------------------------------------------------------------- pilot handover and the recovery demonstration
+# ArduCopter custom_mode numbers: enum class Mode::Number in ArduCopter/mode.h (apsim/ardupilot, Orqa's branch of
+# https://github.com/ArduPilot/ardupilot). LOITER and POSHOLD hold a position.
+AP_MODES = {0: "STABILIZE", 1: "ACRO", 2: "ALT_HOLD", 3: "AUTO", 4: "GUIDED", 5: "LOITER", 6: "RTL", 7: "CIRCLE",
+            9: "LAND", 16: "POSHOLD", 17: "BRAKE"}
+AP_HOLD = {"LOITER", "POSHOLD"}
+# PX4 custom_mode: the main mode in bits 16-23 and the sub mode in bits 24-31 (pymavlink 2.4.50, mavutil.py:
+# PX4_CUSTOM_MAIN_MODE_*, PX4_CUSTOM_SUB_MODE_AUTO_LOITER and interpret_px4_mode). POSCTL, and AUTO with the sub
+# mode LOITER, hold a position.
+PX4_MAIN = {1: "MANUAL", 2: "ALTCTL", 3: "POSCTL", 4: "AUTO", 5: "ACRO", 6: "OFFBOARD", 7: "STABILIZED"}
+PX4_POSCTL, PX4_AUTO, PX4_AUTO_LOITER = 3, 4, 3
+
+
+def fc_mode(fc):
+    """(name, holds_position) of the FC flight mode. (None, False) before the first HEARTBEAT. A firmware whose
+    modes this program does not know (Betaflight, iNav) gives ("mode N", False)."""
+    m, fw = getattr(fc, "mode", None), getattr(fc, "firmware", None)
+    if m is None:
+        return None, False
+    if fw == "ardupilot":
+        name = AP_MODES.get(m, f"mode {m}")
+        return name, name in AP_HOLD
+    if fw == "px4":
+        main, sub = (m >> 16) & 0xFF, (m >> 24) & 0xFF
+        if main == PX4_AUTO and sub == PX4_AUTO_LOITER:
+            return "AUTO_LOITER", True
+        return PX4_MAIN.get(main, f"main mode {main}"), main == PX4_POSCTL
+    return f"mode {m}", False
+
+
+def _join(*notes):
+    return "; ".join(n for n in notes if n) or None
+
+
+class Engage:
+    """Follows the FC flight mode for run_live (Stage 1 judging area D: engagement and release without a disruptive
+    transition). step() gives the mode name for the run log and a note at each mode change: "engaged" when the
+    pilot's switch selects position hold, "released" when it leaves it. At the switch it asks Hold for a fresh
+    keyframe when fresh_kf_at_engage is set. t_engaged: monotonic time of the last switch, None when not holding."""
+
+    def __init__(self, s):
+        self.s, self.name, self.held, self.t_engaged = s, None, False, None
+
+    def step(self, fc, pipe, now):
+        name, held = fc_mode(fc)
+        if name is None or name == self.name:
+            return self.name or "", None
+        if held and not self.held:
+            self.t_engaged, note = now, f"engaged: FC mode {name}"
+            if self.s["fresh_kf_at_engage"] and pipe.hold is not None:
+                pipe.hold.request_keyframe()
+                note += "; fresh keyframe requested"
+        elif self.held and not held:
+            self.t_engaged, note = None, f"released: FC mode {name}"
+        else:
+            note = f"FC mode {name}"
+        self.name, self.held = name, held
+        return name, note
+
+
+class OutageTest:
+    """The recovery demonstration (settings outage_test_s, outage_after_s; Stage 1 bonus route "demonstrated
+    recovery"). step() gives (dropping, note): run_live gives Hold no frame while dropping, as in a video outage.
+    A drop starts when the file outage_now appears in log_dir (step deletes it), or outage_after_s seconds after
+    the switch engaged position hold, once for each engagement."""
+    FILE = "outage_now"
+
+    def __init__(self, s):
+        self.len, self.after = float(s["outage_test_s"]), float(s["outage_after_s"])
+        self.path = os.path.join(S.here(s["log_dir"]), self.FILE)
+        self.dropping, self.until, self.done_for = False, -math.inf, None
+
+    def _file(self):
+        if not os.path.exists(self.path):
+            return False
+        try:
+            os.remove(self.path)
+        except OSError:
+            pass
+        return True
+
+    def step(self, now, t_engaged):
+        if self.len <= 0:
+            return False, None
+        start = self._file()
+        if self.after > 0 and t_engaged is not None and t_engaged != self.done_for and now - t_engaged >= self.after:
+            start, self.done_for = True, t_engaged
+        if start and not self.dropping:
+            self.dropping, self.until = True, now + self.len
+            return True, f"recovery test: video dropped for {self.len:g} s"
+        if self.dropping and now >= self.until:
+            self.dropping = False
+            return False, "recovery test: video back"
+        return self.dropping, None
+
+
+# How much GNSS (settings gnss_mode). ArduPilot EKF source set 1 = GNSS, set 2 = our position. EK3_SRCn values
+# (apsim/ardupilot libraries/AP_NavEKF/AP_NavEKF_Source.h 17-46): POSXY/VELXY 0 none, 3 GPS, 6 ExternalNav; POSZ/VELZ
+# 1 baro; YAW 1 compass. Height (baro) and yaw (compass) are the same in both sets, so only the horizontal source
+# changes. EK3_SRC_OPTIONS 0: a velocity of the inactive set is not fused (FuseAllVelocities, AP_NavEKF_Source.cpp
+# 174-178). GPS1_TYPE 1 (auto) needs an FC restart (AP_GPS_Params.cpp 29). integ/gnss_ladder/README.txt.
+_GNSS_SET = {"GPS1_TYPE": 1, "EK3_SRC1_POSXY": 3, "EK3_SRC1_VELXY": 3, "EK3_SRC1_POSZ": 1, "EK3_SRC1_VELZ": 0,
+             "EK3_SRC1_YAW": 1, "EK3_SRC2_POSXY": 6, "EK3_SRC2_VELXY": 0, "EK3_SRC2_POSZ": 1, "EK3_SRC2_VELZ": 0,
+             "EK3_SRC2_YAW": 1, "EK3_SRC_OPTIONS": 0}
+GNSS_AP = {"setup": _GNSS_SET, "fallback": _GNSS_SET, "velocity": dict(_GNSS_SET, EK3_SRC2_VELXY=3)}
+
+
+def gnss_problems(s, firmware):
+    """Reasons the settings do not fit gnss_mode; empty for "none". Set 2 with POSXY 0 would leave the EKF with no
+    horizontal position, so run refuses a level whose parameters are not the profile's."""
+    m = s.get("gnss_mode", "none")
+    if m == "none":
+        return []
+    if firmware != "ardupilot":
+        return [f"gnss_mode {m} needs ArduPilot EKF source sets. The program does not support it on {firmware}. "
+                "Apply the profiles again without gnss_*."]
+    have = s["params_ardupilot"]
+    bad = [f"{k} {have.get(k)} (need {v})" for k, v in GNSS_AP[m].items() if have.get(k) != v]
+    return [f"gnss_mode {m} needs other params_ardupilot values: " + ", ".join(bad) +
+            f". Apply tools/profiles/gnss_{m}.json."] if bad else []
+
+
+class GnssLevel:
+    """The GNSS level for run_live (settings gnss_mode). step() sends MAV_CMD_SET_EKF_SOURCE_SET and gives a run-log
+    note for each request and each FC reply. Set 2 (our position only) once fixes have flowed for gnss_ready_s with no
+    gap over 0.5 s, normally before the pilot's switch. "fallback": a hold with no fix for gnss_fallback_s gets set 1
+    (GNSS) and keeps it until the pilot releases. A hold that starts before the FC confirmed set 2 gets a WARNING note.
+    The program cannot read the active set back from the FC (no MAVLink message has it), so a restarted run_live
+    starts with "not known". "none", or a firmware other than ArduPilot: step() does nothing and sends nothing."""
+    CMD = 42007            # MAV_CMD_SET_EKF_SOURCE_SET (fc_link.FC.set_source_set)
+    ACK = {0: "ACCEPTED", 1: "TEMPORARILY_REJECTED", 2: "DENIED", 3: "UNSUPPORTED", 4: "FAILED"}
+    NAME = {1: "set 1 (GNSS)", 2: "set 2 (our position only)"}
+
+    def __init__(self, s):
+        self.mode, self.ready_s, self.fb_s = s["gnss_mode"], s["gnss_ready_s"], s["gnss_fallback_s"]
+        self.on, self.want, self.t_ask, self.tries = None, None, -math.inf, 0
+        self.flow = self.fell_for = self.warned_for = None
+
+    def _ask(self, fc, n, why, now):
+        self.tries = self.tries + 1 if self.want == n else 1
+        self.want, self.t_ask = n, now
+        fc.set_source_set(n)
+        return f"EKF source {self.NAME[n]} requested: {why}"
+
+    def step(self, fc, now, last_send, t_engaged):
+        if self.mode == "none" or getattr(fc, "firmware", None) != "ardupilot":
+            return None
+        notes, gap, holding = [], now - last_send, t_engaged is not None
+        self.flow = None if gap > 0.5 else (now if self.flow is None else self.flow)
+        if self.want is not None:
+            r = fc.acks.get(self.CMD)
+            if r is not None:
+                notes.append(f"FC reply to EKF source {self.NAME[self.want]}: {self.ACK.get(r, r)}")
+                self.on = self.want if r == 0 else self.on
+                self.want = None
+            elif now - self.t_ask > 1.0:
+                notes.append(self._ask(fc, self.want, f"no FC reply in 1 s, try {self.tries + 1}", now))
+        if self.want is None and now - self.t_ask >= 1.0:          # at most one new request each second
+            if self.mode == "fallback" and holding and self.on != 1 and gap > self.fb_s:
+                self.fell_for = t_engaged
+                notes.append(self._ask(fc, 1, f"GNSS FALLBACK: no fix for {min(gap, 999):.1f} s in the hold "
+                                              f"(gnss_fallback_s {self.fb_s:g}). GNSS aids the hold from this time", now))
+            elif self.on != 2 and self.flow is not None and now - self.flow >= self.ready_s and \
+                    not (holding and self.fell_for == t_engaged):
+                notes.append(self._ask(fc, 2, f"fixes for {now - self.flow:.1f} s, " +
+                                       ("in a hold" if holding else "before the pilot's switch"), now))
+        if holding and self.on != 2 and t_engaged not in (self.warned_for, self.fell_for):
+            self.warned_for = t_engaged
+            notes.append("WARNING: the hold started before the FC accepted EKF source set 2. GNSS aids this hold")
+        return _join(*notes)
+
+
 class Log:
-    COLS = ["t", "state", "n", "north", "east", "var", "sent", "why", "proc_ms", "age_ms", "height", "note"]
+    """The run log. A write error (full disk) never stops the fixes: errors counts it, the first prints one line."""
+    COLS = ["t", "state", "n", "north", "east", "var", "sent", "why", "proc_ms", "age_ms", "height", "note", "mode"]
 
     def __init__(self, path):
-        os.makedirs(os.path.dirname(path), exist_ok=True)
-        self.path, self.f = path, open(path, "w", newline="")
+        self.path, self.errors = path, 0
+        try:
+            os.makedirs(os.path.dirname(path), exist_ok=True)
+            self.f = open(path, "w", newline="")
+        except OSError as e:
+            self._error(e)
+            self.f = open(os.devnull, "w", newline="")
         self.w = csv.writer(self.f)
         self.w.writerow(self.COLS)
 
-    def row(self, fr, e, sent, why, proc_ms, age_ms, height, note):
+    def _error(self, e):
+        self.errors += 1
+        if self.errors == 1:
+            print(f"log write failed: {e}. The hold continues without a log. Free disk space at "
+                  f"{os.path.dirname(self.path)} before the next flight.", flush=True)
+
+    def row(self, fr, e, sent, why, proc_ms, age_ms, height, note, mode=""):
         f = lambda x: "" if x is None else f"{x:.4f}"      # noqa: E731
-        self.w.writerow([f"{fr.t0:.4f}" if fr else "", e.state if e else "", e.n if e else "",
-                         f(e.pos[0]) if e else "", f(e.pos[1]) if e else "", f(e.var) if e else "",
-                         int(sent), why or "", f"{proc_ms:.1f}", f"{age_ms:.1f}" if age_ms else "",
-                         f(height), note or ""])
-        self.f.flush()                                    # a crash keeps every line written so far
+        try:
+            self.w.writerow([f"{fr.t0:.4f}" if fr else "", e.state if e else "", e.n if e else "",
+                             f(e.pos[0]) if e else "", f(e.pos[1]) if e else "", f(e.var) if e else "",
+                             int(sent), why or "", f"{proc_ms:.1f}", f"{age_ms:.1f}" if age_ms else "",
+                             f(height), note or "", mode or ""])
+            self.f.flush()                                # a crash keeps every line written so far
+        except OSError as e:
+            self._error(e)
 
     def close(self):
-        self.f.close()
+        try:
+            self.f.close()
+        except OSError as e:
+            self._error(e)
 
 
 def stamp():
     return time.strftime("%Y%m%d_%H%M%S")
 
 
+class RateGate:
+    """keep(t) for the recorders (record_hz): True for the first frame in each 1/hz s slot of the stamps, so at most
+    hz frames each second, each with its exact stamp. hz 0 keeps each frame. Slots, not a smallest gap: with stamps
+    that jitter, a smallest gap of 1/30 s keeps every second or third frame of a 60 fps stream (about 23 each second)."""
+
+    def __init__(self, hz):
+        self.hz, self.slot = hz, None
+
+    def __call__(self, t):
+        if self.hz <= 0:
+            return True
+        k = math.floor(t * self.hz)
+        keep, self.slot = k != self.slot, k
+        return keep
+
+
 class Raw:
-    """Raw recording in 10 s chunks (frames, FC attitude, height, position), saved by a thread."""
+    """Raw recording in 10 s chunks (frames, FC attitude, height, position), saved by a thread.
+    At most record_hz frames each second (RateGate); Hold still gets each frame. It stops for the rest of the run
+    under min_free_gb free on its disk, so the run log keeps space. One save thread at most: a chunk that comes
+    while the last one is still being written is dropped (counted in dropped), so a slow disk cannot pile up threads."""
 
     def __init__(self, s, fc, shape):
         os.makedirs(S.here(s["log_dir"]), exist_ok=True)     # the run log may be elsewhere (apsim)
         self.base = os.path.join(S.here(s["log_dir"]), f"raw_{stamp()}")
         self.fc, self.K, self.D = fc, *lens(s, shape, focal=False)
-        self.imgs, self.tg, self.k = [], [], 0
+        self.imgs, self.tg, self.k, self.keep = [], [], 0, RateGate(s["record_hz"])
+        self.min_gb, self.off, self.saver, self.dropped = s["min_free_gb"], False, None, 0
 
     def add(self, fr):
+        if self.off or not self.keep(fr.t_grab):
+            return
         self.imgs.append(fr.img)
         self.tg.append(fr.t_grab)
         if fr.t_grab - self.tg[0] >= 10.0:
@@ -244,6 +474,19 @@ class Raw:
     def flush(self):
         if not self.imgs:
             return
+        where = os.path.dirname(self.base)
+        free = shutil.disk_usage(where).free / 1e9
+        if free < self.min_gb:
+            self.off, self.imgs, self.tg = True, [], []
+            print(f"the raw recorder stopped: the disk at {where} has {free:.1f} GB free, less than min_free_gb "
+                  f"{self.min_gb:g}. The hold continues. Delete old logs before the next flight.", flush=True)
+            return
+        if self.saver is not None and self.saver.is_alive():
+            self.imgs, self.tg, self.dropped = [], [], self.dropped + 1
+            if self.dropped == 1:
+                print(f"the raw recorder dropped a chunk: it still writes the last chunk to {where}. Set record_hz "
+                      "lower, or set log_dir to a faster disk.", flush=True)
+            return
         imgs, tg, self.imgs, self.tg = np.array(self.imgs), np.array(self.tg), [], []
         lo, hi = tg[0] - 1.0, tg[-1] + 1.0
         cut = lambda ser: np.array([r for r in list(ser.rows) if lo <= r[0] <= hi])     # noqa: E731
@@ -251,7 +494,8 @@ class Raw:
         self.k += 1
         data = dict(imgs=imgs, t_grab=tg, att=cut(self.fc.att), hgt=cut(self.fc.hgt), lpos=cut(self.fc.lpos),
                     K=self.K, D=self.D)
-        threading.Thread(target=np.savez, args=(path,), kwargs=data, daemon=False).start()
+        self.saver = threading.Thread(target=np.savez, args=(path,), kwargs=data, daemon=False)
+        self.saver.start()
 
 
 def live_gate(s, fc):
@@ -263,6 +507,16 @@ def live_gate(s, fc):
     if fc.age("ATTITUDE") > s["att_stale_s"]:
         return "attitude stale"
     return None
+
+
+def turn_problems(s):
+    """Hold's option dense_turn (the whole-picture path solves the yaw turn) must fly only with att_source
+    "gyro_fcyaw". ArduCopter SITL, 10 m, 2 seeds (integ/kfmap/closed/ab_table.txt): with "gyro" the FC's yaw moved
+    by 8.7 and 11.7 deg during the hold, with "gyro_fcyaw" by 2.2 and 1.6 deg. Empty list = no problem."""
+    if s["hold_cfg"].get("dense_turn") and s["att_source"] != "gyro_fcyaw":
+        return [f"hold_cfg dense_turn needs att_source gyro_fcyaw, but att_source is {s['att_source']}. Apply the "
+                "profile low_height as a whole (tools/use_profile.py), or set dense_turn to false."]
+    return []
 
 
 def start_problems(s, fc, src, shape):
@@ -284,7 +538,7 @@ def start_problems(s, fc, src, shape):
         out.append(f"firmware {fc.firmware} is not supported.")
     if fc.firmware == "ardupilot" and s["origin_lat_lon_alt"] is None:
         out.append("ArduPilot needs origin_lat_lon_alt in settings.json (lat, lon, alt of the field).")
-    return out
+    return out + gnss_problems(s, fc.firmware) + turn_problems(s)
 
 
 def delay_advice(ages_ms, n=100):
@@ -397,6 +651,10 @@ class WindAssist:
         return None
 
 
+NO_FRAME_S = 2.0     # s with no camera frame: run_live stops, so mode_run closes the camera and opens it again.
+                     # assumed: a live camera never pauses this long; a restart takes about 1 s plus the FC connection
+
+
 def run_live(s, src, fc, seconds=None, stop=None, log_path=None, fixed_height=None, on_fix=None):
     """The hold. Newest frame -> wait for attitude -> Hold.process -> send only when var is not None
     and every gate passes. Returns the log path. fixed_height (bench test only): use this height, not
@@ -419,14 +677,28 @@ def run_live(s, src, fc, seconds=None, stop=None, log_path=None, fixed_height=No
     last_send, ages = -math.inf, []
     spd = Speed(s["speed_window_s"]) if s["send_speed"] else None
     wa = WindAssist(s) if s["wind_assist"] and fc.firmware == "ardupilot" else None
+    eng, outage, gnss = Engage(s), OutageTest(s), GnssLevel(s)
+    t_frame = time.monotonic()
     try:
         while time.monotonic() < t_end and not (stop is not None and stop.is_set()):
             fr = src.newest(timeout=0.5)
-            if fr is None:
+            mode, mnote = eng.step(fc, pipe, time.monotonic())
+            drop, onote = outage.step(time.monotonic(), eng.t_engaged)
+            onote = _join(onote, gnss.step(fc, time.monotonic(), last_send, eng.t_engaged))
+            if fr is None or drop:
                 pipe.good = 0
                 note = wa.step(fc, None, False, time.monotonic()) if wa is not None else None
-                log.row(None, None, False, "no frame", 0.0, None, None, note)
+                log.row(fr, None, False, "no frame" if fr is None else "recovery test: video dropped", 0.0, None, None,
+                        _join(mnote, onote, note), mode)
+                if fr is not None:                                # the camera works: only the test drops its frames
+                    t_frame = time.monotonic()
+                    continue
+                if time.monotonic() - t_frame > NO_FRAME_S:      # a stopped camera does not come back by itself
+                    raise RuntimeError(f"no camera frame for {NO_FRAME_S:g} s: the camera stopped. The program opens "
+                                       "it again. If this repeats, check the camera cable and video_device or "
+                                       "video_command in settings.json.")
                 continue
+            t_frame = time.monotonic()
             need = fr.t0 + max(s["readout_s"], 0.0) + 0.005       # attitude must cover the last row (H5)
             end = time.monotonic() + s["att_wait_s"]
             while fc.att.last_t() < need and time.monotonic() < end:
@@ -460,7 +732,8 @@ def run_live(s, src, fc, seconds=None, stop=None, log_path=None, fixed_height=No
             if wa is not None:
                 note = wa.step(fc, e, sent, now) or note
             h = float(hgt.at(fr.t0)) if hgt.rows else None
-            log.row(fr, e, sent, why, proc_ms, (now - e.t) * 1e3 if e is not None else None, h, note)
+            log.row(fr, e, sent, why, proc_ms, (now - e.t) * 1e3 if e is not None else None, h, _join(mnote, onote, note),
+                    mode)
             if raw:
                 raw.add(fr)
     finally:
@@ -509,15 +782,17 @@ def replay(s, paths, log_path=None):
 
 # ---------------------------------------------------------------- event-day tools
 def record(src, fc, seconds, say=print):
-    """Frames as Hold gets them plus FC attitude/height, in the live clock. Bad pictures are skipped."""
+    """Frames as Hold gets them plus FC attitude/height, in the live clock. Bad pictures are skipped.
+    At most record_hz usable frames each second (RateGate): 60 fps at 640x360 for 30 s is 415 MB, and np.array copies it."""
     imgs, tg, end, last = [], [], time.monotonic() + seconds, -1
+    keep = RateGate(fc.s["record_hz"])
     while time.monotonic() < end:
         left = int(end - time.monotonic())
         if left != last and left % 5 == 0:
             say(f"  recording: {left} s left")
             last = left
         fr = src.newest(timeout=0.5)
-        if fr is not None and fr.why is None:
+        if fr is not None and fr.why is None and keep(fr.t_grab):
             imgs.append(fr.img)
             tg.append(fr.t_grab)
     if len(imgs) < 10:
@@ -534,7 +809,7 @@ def record(src, fc, seconds, say=print):
 
 def open_video(s):
     import capture
-    return capture.V4L2Source(s)
+    return capture.DigitalSource(s) if s["camera"] == "digital" else capture.V4L2Source(s)
 
 
 def open_fc(s, say=print):
@@ -550,26 +825,48 @@ def open_fc(s, say=print):
 
 
 def hold_timing(s, shape, n=60):
-    """Hold.process time on this CPU, on a synthetic moving texture at this picture size (ms list)."""
+    """Hold.process time on this CPU, on a synthetic moving texture at this picture size (ms list). The frames are
+    stamped at the camera's frame interval (analog: 25 Hz, as check mode assumes until measured)."""
     rng = np.random.default_rng(0)
     h, w = shape
+    dt = 1.0 / (s["video_fps"] if s["camera"] == "digital" else 25.0)
     tex = cv2.GaussianBlur(rng.normal(128, 40, (h + 200, w + 200)).astype(np.float32), (0, 0), 2.0)
     tex = np.clip((tex - tex.mean()) * 4 + 128, 0, 255).astype(np.uint8)
     s2 = dict(s, mask_file="")
     hold = make_hold(s2, shape)
     att, hgt = Series(1e9), Series(1e9)
-    for t in np.arange(-1, n / 25 + 1, 0.01):
+    for t in np.arange(-1, n * dt + 1, 0.01):
         att.add(t, 0.0, 0.0, 0.0)
-    for t in np.arange(-1, n / 25 + 1, 0.1):
+    for t in np.arange(-1, n * dt + 1, 0.1):
         hgt.add(t, 50.0)
     ms = []
     for i in range(n):
         dx, dy = int(50 + 30 * math.sin(i / 9)), int(50 + 30 * math.cos(i / 11))
         img = tex[dy:dy + h, dx:dx + w].copy()
         t1 = time.perf_counter()
-        hold.process(img, i / 25, att, hgt)
+        hold.process(img, i * dt, att, hgt)
         ms.append((time.perf_counter() - t1) * 1e3)
     return ms[5:]
+
+
+# Limit of the stamp line of check: the 95th percentile of |stamp interval - median interval|, ms. A stamp error dt moves
+# a fix by about h * w_rms * dt (review/hardware_gap/out_t1.txt; w_rms 0.62 rad/s, the roll and pitch rate of the sim
+# hover). There, at 100 m: 5 ms (0.31 m) kept the RMS error at 0.38 m (0.34 m with true stamps), 10 ms (0.62 m) doubled
+# it, and a random error of up to 16.7 ms (p95 16 ms) gave 0.98 m, less than a fixed 16 ms. At 40 m:
+# 0.31 m / (40 m * 0.62 rad/s) = 12 ms. One wrong stamp moves two intervals by its error, so the interval spread is
+# not smaller than the stamp error; a slow change of the delay does not show in it.
+STAMP_JITTER_MS = 12.0   # assumed: a hold at 40 m, and the real hover turns as fast as the sim hover (w_rms)
+
+
+def stamp_jitter_ms(stamps):
+    """95th percentile of |stamp interval - median interval| in ms, of (t_grab, seq) pairs in read order; None under
+    10 intervals. seq also counts the buffers that newest() skipped: an interval over k buffers is compared with k
+    median intervals."""
+    if len(stamps) < 11:
+        return None
+    t, q = np.array(stamps, float).T
+    dt, dq = np.diff(t), np.maximum(np.diff(q), 1)
+    return float(np.percentile(np.abs(dt - dq * np.median(dt / dq)), 95) * 1e3)
 
 
 def mode_check(s, args, say=print):
@@ -590,10 +887,13 @@ def mode_check(s, args, say=print):
     if fc is not None:
         import fc_link
         time.sleep(2.0)
-        r_att, r_pos = fc.rate("ATTITUDE"), fc.rate("LOCAL_POSITION_NED")
+        # ArduPilot sends LOCAL_POSITION_NED only once it has a position (from our fixes): its height stream is
+        # GLOBAL_POSITION_INT (fc_link._read), so that is the one to measure on the ground.
+        hkind = "GLOBAL_POSITION_INT" if fc.firmware == "ardupilot" else "LOCAL_POSITION_NED"
+        r_att, r_pos = fc.rate("ATTITUDE"), fc.rate(hkind)
         line(r_att >= s["min_att_hz"], f"ATTITUDE {r_att:.0f} Hz (asked {s['att_hz']}, need {s['min_att_hz']})"
              + ("" if r_att >= s["min_att_hz"] else ". Turn off other streams (MAV_0_RATE 23040) and stop ULog streaming."))
-        line(r_pos >= 0.5 * s["hgt_hz"], f"LOCAL_POSITION_NED {r_pos:.0f} Hz (asked {s['hgt_hz']})"
+        line(r_pos >= 0.5 * s["hgt_hz"], f"{hkind} {r_pos:.0f} Hz (asked {s['hgt_hz']})"
              + ("" if r_pos >= 0.5 * s["hgt_hz"] else ". The FC sends no height: check the baro and the EKF."))
         line(fc.clock.ready(), "FC clock offset fitted" if fc.clock.ready() else "FC clock offset not fitted: attitude too sparse.")
         if fc.firmware == "px4":
@@ -605,37 +905,90 @@ def mode_check(s, args, say=print):
                  "TIMESYNC: no reply. Set EKF2_EV_DELAY to the fix age below.")
         for ok, text in fc_link.check_params(fc, s, write=args.set_params):
             line(ok, text[5:])
+        if s["gnss_mode"] != "none":                  # the level's parameters are checked one by one above
+            bad = gnss_problems(s, fc.firmware)
+            line(not bad, bad[0] if bad else f"gnss_mode {s['gnss_mode']}: settings match the level")
+        if s["hold_cfg"].get("dense_turn"):           # the low-height option: never without the FC yaw
+            bad = turn_problems(s)
+            line(not bad, bad[0] if bad else "hold_cfg dense_turn with att_source gyro_fcyaw")
         if fc.firmware == "ardupilot":
             line(s["origin_lat_lon_alt"] is not None, "origin set" if s["origin_lat_lon_alt"] else
                  "origin_lat_lon_alt is empty. Put the field's lat, lon, alt in settings.json.")
         if fc.hgt.rows:
             say(f"INFO height now {fc.hgt.rows[-1][1]:.1f} m (run needs {s['min_height_m']:.0f} m)")
         fc.close()
-    shape = (288, 360)
+    digital, k = s["camera"] == "digital", s["video_reduce"]
+    shape = (int(s["video_size"][1]) // k, int(s["video_size"][0]) // k) if digital else (288, 360)
+    fps = s["video_fps"] if digital else 25.0           # until measured
     try:
         import capture
         src = open_video(s)
-        n, good, t1 = 0, 0, time.monotonic()
-        first = None
+        n, good, t1, stamps = 0, 0, time.monotonic(), []
+        first = last = None
         while time.monotonic() - t1 < 2.0:
             fr = src.newest(timeout=0.5)
             if fr is not None:
-                n, good, first = n + 1, good + (fr.why is None), first or fr
-        fps = n / 2.0
+                n, good, first, last = n + 1, good + (fr.why is None), first or fr, fr
+                stamps.append((fr.t_grab, fr.seq))
         info = src.info
+        cmd = getattr(getattr(src, "cap", None), "proc", None)     # video_command's child process
+        code = None if cmd is None else cmd.poll()      # before close() stops it
         src.close()
-        std = capture.standard(info, fps)
-        want = s["video_standard"]
-        line(first is not None, f"video: {n} frames in 2 s, {good} usable, driver {info.get('width')}x"
-             f"{info.get('height')} field order {info.get('field')}, stamps from {src.stamp}")
-        line(std is not None and want in ("auto", std), f"video standard {std} (setting {want})")
-        if src.stamp == "read":
-            line(False, "the driver gives no usable frame time; read time jitters by a frame (H1).")
-        if first is not None:
+        if digital:      # the buffer count (seq) also counts the buffers newest() skipped
+            fps = (last.seq - first.seq) / (last.t_grab - first.t_grab) if n > 1 and last.t_grab > first.t_grab else 0.0
+            line(first is not None, f"video: {n} frames in 2 s, {good} usable, driver {info.get('width')}x"
+                 f"{info.get('height')}, pixel format {info.get('fourcc')}, buffer {info.get('buffer')}, stamps from {src.stamp}")
+            ok = abs(fps - s["video_fps"]) <= 0.1 * s["video_fps"]
+            line(ok, f"video rate {fps:.1f} fps (setting video_fps {s['video_fps']})" + ("" if ok else
+                 ". Set video_fps to the camera's rate, or check "
+                 f"{'the camera, video_command and pixel_format' if cmd is not None else 'the camera and video_device'}."))
+            if cmd is not None and (first is None or code is not None):
+                what = f"stopped with exit code {code}" if code is not None else "gave no frame in 2 s"
+                line(False, f"video_command {what}. It must write raw {info.get('fourcc')} frames of {info.get('width')}x"
+                     f"{info.get('height')} to its standard output. Read its error above, then check video_command and "
+                     "pixel_format in settings.json.")
+        else:
+            fps = n / 2.0
+            std = capture.standard(info, fps)
+            want = s["video_standard"]
+            line(first is not None, f"video: {n} frames in 2 s, {good} usable, driver {info.get('width')}x"
+                 f"{info.get('height')} field order {info.get('field')}, stamps from {src.stamp}")
+            line(std is not None and want in ("auto", std), f"video standard {std} (setting {want})")
+        if first is not None:            # driver or read stamps: measured, not assumed (H1)
+            j = stamp_jitter_ms(stamps)
+            ok = j is not None and j <= STAMP_JITTER_MS
+            line(ok, f"frame stamps from {src.stamp}: " + (
+                f"{len(stamps) - 1} intervals in 2 s, too few to measure (need 10). Make the camera give frames, then "
+                "run check again." if j is None else
+                f"intervals differ from their median by {j:.1f} ms (p95, limit {STAMP_JITTER_MS:g} ms for a hold at "
+                f"40 m)" + ("" if ok else ". A stamp error moves the fix. A lost frame also counts. Use driver stamps "
+                                          "(video_device, no video_command), stop other programs on the board, and run "
+                                          "check again.")))
             shape = first.img.shape
-            say(f"INFO picture for Hold: {shape[1]}x{shape[0]} ({s['field']})")
+            say(f"INFO picture for Hold: {shape[1]}x{shape[0]} ({f'frame / {k}' if digital else s['field']})")
     except Exception as e:
         line(False, f"video: {e}")
+    if digital:          # load_lens stretches a profile of another shape onto the picture, with no error
+        import calib
+        from hold import same_aspect
+        try:
+            pw, ph = calib.profile(S.here(s["lens_file"]), s["lens_name"])["image_size"]
+            ok = same_aspect((pw, ph), shape[1], shape[0])
+            line(ok, f"lens profile '{s['lens_name']}' is {pw}x{ph}, the picture {shape[1]}x{shape[0]}" + ("" if ok else
+                 ". Their shapes differ. Set lens_name to a 16:9 profile, or apply the justice_d profile with "
+                 "tools/use_profile.py."))
+        except (ValueError, OSError) as e:
+            line(False, f"lens file {s['lens_file']}: {e}")
+    if s.get("lens_measured"):      # run refuses a measured lens of another shape (lens raises)
+        import calib
+        m = s["lens_measured"]
+        try:
+            calib.measured_lens(m, shape[1], shape[0])
+            line(True, f"lens_measured ({m['by']}) is {m['image_size'][0]}x{m['image_size'][1]}, the picture "
+                       f"{shape[1]}x{shape[0]}: run uses it, not the lens_name profile")
+        except ValueError as e:
+            line(False, str(e))
+            s = dict(s, lens_measured=None)         # hold_timing below needs a lens that fits: it times the profile
     ms = hold_timing(s, shape)
     med = float(np.median(ms))
     rate = 1000.0 / med
@@ -652,8 +1005,26 @@ def mode_check(s, args, say=print):
             line(False, str(e))
     else:
         line(False, "no mask. Run 'apb_main.py mask'.")
-    free = shutil.disk_usage(S.here(".")).free / 1e9
-    line(free >= s["min_free_gb"], f"free disk {free:.1f} GB (need {s['min_free_gb']})")
+    where = S.here(s["log_dir"])
+    while not os.path.exists(where):     # run makes log_dir: measure the disk it will be on
+        where = os.path.dirname(where)
+    free = shutil.disk_usage(where).free / 1e9
+    # Raw recording saves each picture Hold gets, at most at the camera rate and at record_hz (when set).
+    # min_free_gb is for 360x288 at 25 Hz.
+    rate = fps or (s["video_fps"] if digital else 25.0)
+    if s["record_hz"] > 0:
+        rate = min(rate, s["record_hz"])
+    mbs = shape[0] * shape[1] * rate / 1e6
+    # Never under min_free_gb: Raw stops recording under it, unscaled (no_sd, 10 Hz: the scaled value is 0.44 GB).
+    need = max(s["min_free_gb"] * mbs / (360 * 288 * 25 / 1e6), s["min_free_gb"])
+    rec_min = max(free - s["min_free_gb"], 0.0) * 1e3 / mbs / 60      # raw recording until Raw stops
+    line(free >= need, f"free disk {free:.2f} GB at {where} (need {need:.2f} GB: raw recording takes {mbs:.1f} MB/s "
+         f"at {shape[1]}x{shape[0]}, {rate:.0f} Hz), {rec_min:.0f} min of raw recording before the recorder stops"
+         + ("" if free >= need else ". Set log_dir to a bigger disk (SD card: /sdcard/logs), or delete old logs."))
+    if free >= need and rec_min < 10:
+        say(f"WARN free disk: {rec_min:.0f} min of raw recording before the recorder stops at min_free_gb "
+            f"{s['min_free_gb']:g} GB (under 10 min). run records from its start, also on the ground. Delete old "
+            "logs, or set log_dir to an SD card.")
     say(f"{'ALL PASS' if fails == 0 else f'{fails} FAIL'}")
     return fails
 
@@ -662,7 +1033,12 @@ def _recording(s, args, seconds, say):
     if args.rec:
         d = np.load(args.rec)
         return {k: d[k] for k in d.files}
-    src, fc = open_video(s), open_fc(s)
+    src = open_video(s)
+    try:
+        fc = open_fc(s)
+    except BaseException:                # no FC: close the camera before the error goes on (as mode_run, D1)
+        src.close()
+        raise
     try:
         rec = record(src, fc, seconds, say)
     finally:
@@ -695,9 +1071,29 @@ def mode_calib(s, args, say=print):
     import calib
     say("Point the camera at a scene more than 50 m away (drone on its side). Turn the drone by hand, "
         "+-15 to 20 deg about all three axes, about once every 2 s.")
-    rec = _recording(s, args, args.seconds or s["calib_seconds"], say)
+    # The recording keeps the lens_name profile (calib's start), also when lens_measured is for another camera.
+    rec = _recording(dict(s, lens_measured=None), args, args.seconds or s["calib_seconds"], say)
     mask = load_mask(s, rec["imgs"].shape[1:3])
-    r = calib.solve(rec, s, mask)
+    from hold import same_aspect
+    lens_path = S.here(s["lens_file"])
+    pw, ph = calib.profile(lens_path, s["lens_name"])["image_size"]
+    h, w = rec["imgs"].shape[1:3]
+    # A 16:9 profile is the digital camera: square pixels, so calib finds fx, fy and k1. No analog picture is
+    # 16:9, and an analog profile keeps one focal scale.
+    digital = same_aspect((16, 9), pw, ph)
+    # A lens measured with a target is not fitted again: calib fits one focal scale against it, as for analog.
+    target = (s.get("lens_measured") or {}).get("by") == "target"
+    why = None
+    if same_aspect((16, 9), w, h) != digital:
+        why = (f"the picture is {w}x{h}, but lens profile '{s['lens_name']}' is {pw}x{ph}. Set lens_name "
+               "to a profile with the same shape as the picture. For the digital camera, use a Justice D profile.")
+    elif target:          # the recording's K and D become the target lens: focal_scale is measured against it
+        try:
+            K, D = lens(s, (h, w), focal=False)
+            rec = dict(rec, K=K, D=D)
+        except ValueError as e:
+            why = str(e)
+    r = dict(ok=False, why=why) if why else calib.solve(rec, s, mask, fit_lens=digital and not target)
     if not r["ok"]:
         say(f"FAIL calibration: {r['why']}")
         s["calibrated"] = False
@@ -706,13 +1102,33 @@ def mode_calib(s, args, say=print):
     say(f"PASS picture top = {r['top']}{', mirrored' if r['mirror'] else ''} (residual {r['resid_deg']:.2f} deg; "
         f"next best {r['runner_up']['top']}{' mirrored' if r['runner_up']['mirror'] else ''} "
         f"{r['runner_up']['resid_deg']:.2f} deg, {r['ratio']:.0f}x)")
-    say(f"INFO video delay {r['video_delay_s'] * 1e3:.0f} ms, readout {r['readout_s'] * 1e3:+.0f} ms, focal scale "
-        f"{r['focal_scale']:.3f}, tilt roll {r['tilt_deg'][0]:+.2f} pitch {r['tilt_deg'][1]:+.2f} twist {r['twist_deg']:+.2f} deg")
-    if not 0.98 <= r["focal_scale"] <= 1.02:
-        say("FAIL focal scale is outside 0.98-1.02: do the lens check (G2) before you fly.")
+    if digital and not target:
+        L, c = r["lens"], r["cam_rate_dps"]
+        say(f"INFO video delay {r['video_delay_s'] * 1e3:.0f} ms, readout {r['readout_s'] * 1e3:+.0f} ms, lens at "
+            f"{L['w']}x{L['h']}: fx {L['fx']:.1f} fy {L['fy']:.1f} k1 {L['k1']:+.4f}, tilt roll {r['tilt_deg'][0]:+.2f} "
+            f"pitch {r['tilt_deg'][1]:+.2f} twist {r['twist_deg']:+.2f} deg")
+        say(f"INFO quality: residual {r['resid_deg']:.3f} deg, tracked points reach {r['cover_deg']:.0f} deg from the "
+            f"optical axis (picture corner {r['corner_deg']:.0f} deg), turn rate about picture x {c[0]:.0f}, y {c[1]:.0f}, "
+            f"z {c[2]:.0f} deg/s")
+        if not r["k1_fitted"]:
+            say(f"FAIL k1 not found: {r['k1_why']}")
+    else:
+        say(f"INFO video delay {r['video_delay_s'] * 1e3:.0f} ms, readout {r['readout_s'] * 1e3:+.0f} ms, focal scale "
+            f"{r['focal_scale']:.3f}{' against lens_measured (target)' if target else ''}, tilt roll {r['tilt_deg'][0]:+.2f} "
+            f"pitch {r['tilt_deg'][1]:+.2f} twist {r['twist_deg']:+.2f} deg")
+        if not 0.98 <= r["focal_scale"] <= 1.02:
+            say("FAIL focal scale is outside 0.98-1.02: " + (
+                "the lens measured with a target does not fit this recording. Measure the lens with the target again "
+                "(tools/lens_calib.py --settings). Or set lens_measured to null, then run calib to fit the lens by hand turn."
+                if target else "do the lens check (G2) before you fly."))
     prev = (s.get("calib_info") or {}).get("delay_s")
     calib.write(s, r, str(rec["mode"]) if "mode" in rec else "")
     S.save(s, args.settings)
+    if target:
+        say(f"PASS lens_measured (target) kept. focal_scale {r['focal_scale']:.3f} is measured against it.")
+    elif digital:
+        say(f"PASS measured lens written to lens_measured in {args.settings}. focal_scale is 1.0. lens_name "
+            f"'{s['lens_name']}' stays as the start for calib. To use the profile lens again, set lens_measured to null.")
     if prev is not None:
         d = abs(r["video_delay_s"] - prev) * 1e3
         say(f"{'PASS' if d <= 3 else 'FAIL'} delay {d:.0f} ms from the previous calibration (need 3 ms or less)")
@@ -720,15 +1136,125 @@ def mode_calib(s, args, say=print):
     return 0
 
 
+# timing: the mode names (run log, mode column) that hold a position. fc_mode gives them; POS_HOLD: the Betaflight option.
+HOLD_MODES = AP_HOLD | {"POSCTL", "AUTO_LOITER", "POS_HOLD"}
+# timing: the 8 s of the window with the most turning must turn this many times faster (RMS) than the rest, else the
+# window holds no wiggle. assumed: set on the same 4 rehearsal flights it was checked on, no hold-out data (wiggle
+# windows as flown 4.4 to 8.7; windows that passed calib's checks with a wrong value 1.0 to 1.8; review/evidence/
+# contrast.txt). Set high on purpose: a wrong FAIL keeps the ground calibration, a wrong PASS writes a wrong delay.
+WIGGLE_RATIO = 4.0
+
+
+def gap_s(t, lo, hi):
+    """The longest time (s) in [lo, hi] with no value of t."""
+    t = np.sort(t[(t >= lo) & (t <= hi)])
+    return float(np.diff(np.r_[lo, t, hi]).max())
+
+
+def wiggle_rates(att, lo, hi):
+    """(RMS turn rate of the 8 s with the most turning, RMS turn rate of the rest), deg/s, of the FC attitude rows
+    (t, roll, pitch, yaw rad) in [lo, hi], on a 0.1 s grid. None when the rows cover under 10 s of it."""
+    tt = np.arange(max(lo, att[0, 0]), min(hi, att[-1, 0]), 0.1)
+    if len(tt) < 100:
+        return None
+    ang = np.array([np.interp(tt, att[:, 0], c) for c in (att[:, 1], att[:, 2], np.unwrap(att[:, 3]))]).T
+    e = np.sum((np.diff(ang, axis=0) / 0.1) ** 2, axis=1)
+    c = np.convolve(e, np.ones(80), "valid")
+    i = int(np.argmax(c))
+    return math.degrees(math.sqrt(c[i] / 80)), math.degrees(math.sqrt(np.r_[e[:i], e[i + 80:]].mean()))
+
+
 def mode_timing(s, args, say=print):
-    """Video delay and readout from the raw chunks of an in-flight wiggle (EVENT_DAY step 7): calib.py's own
-    search with the calibrated picture orientation, in the flight's own light. apsim, 100 m, start 40 ms
-    wrong: found 64.0 ms against a true 60.4 ms (integ/control/wiggle_*.txt)."""
+    """Video delay and readout from the in-flight wiggle (EVENT_DAY step 7): calib.py's own search with the
+    calibrated picture orientation, in the flight's own light. apsim, 100 m, start 40 ms wrong: found 64.0 ms
+    against a true 60.4 ms (integ/control/wiggle_*.txt). It uses only the raw frames from 16 s to 1 s before the
+    first "engaged" note of the run log with 15 s in the air in no hold mode before it, and only when those 15 s hold
+    a wiggle (item 8b): on the chunks of a hold in gusts it passed with 12 ms against a true 40 ms
+    (integ/rehearsal_2026-11-20, D1; integ/integration_2026-11-20/review, B1 and B2)."""
     import calib
-    d = [np.load(f) for f in sorted(args.files)]
+    keep_ground = " Settings not changed. Keep the delay and readout of the ground calibration, or fly the wiggle again."
+    logs, raws = [f for f in args.files if f.endswith(".csv")], sorted(f for f in args.files if f.endswith(".npz"))
+    if len(logs) != 1 or not raws:
+        say("FAIL give one run log and the raw files of the same run: apb_main.py timing <log_dir>/run_<stamp>.csv "
+            "<log_dir>/raw_<stamp>_*.npz")
+        return 1
+    # Raw and Log take their stamps (to 1 s) at the same start of run_live: the names of one run differ by 1 s at most.
+    st = [re.search(r"_(\d{8}_\d{6})", os.path.basename(f)) for f in logs + raws]
+    st = [time.mktime(time.strptime(m[1], "%Y%m%d_%H%M%S")) for m in st if m]
+    if len(st) == 1 + len(raws) and max(abs(x - st[0]) for x in st) > 1:
+        say(f"FAIL the raw files are not from the run of {logs[0]}: their names have another start time. Give "
+            "raw_<stamp>_*.npz with the stamp of the run log.")
+        return 1
+    t, sw, rows = math.nan, [], []
+    with open(logs[0]) as f:
+        for row in csv.DictReader(f):
+            t = float(row["t"]) if row["t"] else t       # a row with no frame has no t: use the last frame's
+            if row["t"]:
+                rows.append((t, row.get("mode") or "", float(row["height"]) if row.get("height") else math.nan))
+            if (row["note"] or "").startswith("engaged"):
+                sw.append(t)
+    if not sw:
+        say(f"FAIL no 'engaged' note in {logs[0]}: no switch to position hold, so the wiggle is not known."
+            + keep_ground)
+        return 1
+    lt = np.array([r[0] for r in rows])
+    held = np.array([r[1] in HOLD_MODES for r in rows], bool)
+    lh = np.array([r[2] for r in rows])
+
+    # The wiggle's switch: the first "engaged" note with 15 s in the air in no hold mode before it. A switch test on
+    # the ground, or the FC already in a hold mode when the program starts, writes an earlier note.
+    def why_not(x):
+        w = (lt >= x - 16.0) & (lt <= x - 1.0)
+        if math.isnan(x) or gap_s(lt, x - 16.0, x - 1.0) > 1.0:
+            return "the run log covers only part of the 15 s before it (the program started later, or the camera stopped)"
+        if held[w].any():
+            return "position hold in the 15 s before it"
+        if (lh[w] < s["min_height_m"]).any():          # no height (empty) is not checked
+            return f"under min_height_m {s['min_height_m']:g} m in the 15 s before it (on the ground)"
+        return None
+    why = [why_not(x) for x in sw]
+    sw0 = next((x for x, y in zip(sw, why) if y is None), None)
+    skipped = "; ".join(f"switch at t {x:.1f} s: {y}" for x, y in zip(sw, why) if y)
+    if sw0 is None:
+        say(f"FAIL no switch to position hold after 15 s in the air in Altitude mode ({skipped})." + keep_ground)
+        return 1
+    d = [np.load(f) for f in raws]
+    tg = [x["t_grab"] for x in d]
+    # Each raw frame is in the run log at t = t_grab - video_delay_s (capture: Frame.t0). Raw files of another run
+    # (the frame clock starts again at each boot) do not match. Rehearsal flights: 0.03 ms at most
+    # (review/evidence/clock_check.txt).
+    a, ls = np.concatenate(tg), np.sort(lt)
+    b = a - s["video_delay_s"]
+    j = np.clip(np.searchsorted(ls, b), 1, len(ls) - 1)
+    miss = int(np.sum(np.minimum(abs(ls[j] - b), abs(ls[j - 1] - b)) > 0.001))
+    if miss:
+        say(f"FAIL {miss} of {len(a)} raw frames have no row in {logs[0]} at t_grab - video_delay_s "
+            f"({s['video_delay_s'] * 1e3:.0f} ms): the raw files are from another run, or video_delay_s changed since "
+            "this flight (timing writes it: run timing once for each flight)." + keep_ground)
+        return 1
+    # shortcut: the window compares t_grab with the log's t, so it is video_delay_s early (small against its 1 s
+    # margin); kept so that the flown values stay the same. Use b (the log's t) for a new flight table.
+    g = gap_s(a, sw0 - 16.0, sw0 - 1.0)
+    if g > 1.0:
+        say(f"FAIL the raw files miss {g:.1f} s of the 15 s before the switch at t {sw0:.1f} s: a raw chunk was "
+            "dropped or is not given, or the recorder stopped (free disk)." + keep_ground)
+        return 1
+    keep = [(x >= sw0 - 16.0) & (x <= sw0 - 1.0) for x in tg]
     att = np.concatenate([x["att"] for x in d])
-    rec = dict(imgs=np.concatenate([x["imgs"] for x in d]), t_grab=np.concatenate([x["t_grab"] for x in d]),
+    rec = dict(imgs=np.concatenate([x["imgs"][k] for x, k in zip(d, keep) if k.any()]),    # only the window in memory
+               t_grab=np.concatenate([x[k] for x, k in zip(tg, keep)]),
                att=att[np.unique(att[:, 0], return_index=True)[1]], K=d[0]["K"], D=d[0]["D"])
+    say(f"INFO {len(rec['t_grab'])} frames from 16 s to 1 s before the switch at t {sw0:.1f} s"
+        + (f" (switch {sw.index(sw0) + 1} of {len(sw)}; not used: {skipped})" if skipped else
+           f" (the first of {len(sw)} switches)" if len(sw) > 1 else ""))
+    w = wiggle_rates(rec["att"], sw0 - 16.0, sw0 - 1.0)
+    if w is None or w[0] <= WIGGLE_RATIO * w[1]:          # <=: a window with no turning at all is no wiggle
+        say(f"FAIL no wiggle in the 15 s before the switch at t {sw0:.1f} s: " + (
+            "the FC attitude covers under 10 s of it." if w is None else
+            f"its 8 s with the most turning turn {w[0]:.0f} deg/s RMS, the rest {w[1]:.1f} deg/s (need "
+            f"{WIGGLE_RATIO:g} times). The switch came more than 8 s after the wiggle, or there was no wiggle.")
+            + keep_ground)
+        return 1
     r = calib.Rec(rec, load_mask(s, rec["imgs"].shape[1:3]))
     if r.rate_dps < s["calib_min_rate_dps"] or len(r.ia) < 1000:
         say(f"FAIL the recording turned {r.rate_dps:.0f} deg/s RMS with {len(r.ia)} matches; need "
@@ -753,7 +1279,12 @@ def mode_bench(s, args, say=print, seconds=None):
     """Ground tests G1/H3/G2 with the propellers off: the hold at a fixed lens height, and every 0.5 s the
     fix's move since the first fix, in the body axes at that first fix (forward, right)."""
     s = dict(s, min_height_m=0.0, hold_cfg=dict(s["hold_cfg"], h_min=0.1))
-    src, fc = open_video(s), open_fc(s)
+    src = open_video(s)
+    try:
+        fc = open_fc(s)
+    except BaseException:                # no FC: close the camera before the error goes on (as mode_run, D1)
+        src.close()
+        raise
     st = {"last": 0.0}
 
     def show(e, att):
@@ -789,7 +1320,8 @@ def mode_run(s, args, say=print):
     while True:                          # a crash restarts clean and re-anchors to the FC position (H14)
         src = fc = None
         try:
-            src, fc = open_video(s), open_fc(s)
+            src = open_video(s)
+            fc = open_fc(s)              # after src is set: when open_fc fails, finally closes the camera
             say(f"running; log in {S.here(s['log_dir'])}")
             run_live(s, src, fc)
         except KeyboardInterrupt:
@@ -810,7 +1342,8 @@ def mode_run(s, args, say=print):
 def main(argv=None):
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument("mode", choices=["check", "mask", "calib", "bench", "run", "replay", "delay", "timing"])
-    p.add_argument("files", nargs="*", help="replay: raw recording .npz files; delay: run log .csv files")
+    p.add_argument("files", nargs="*", help="replay: raw recording .npz files; delay: run log .csv files; "
+                                            "timing: one run log .csv and the raw .npz files of that run")
     p.add_argument("--settings", default=S.PATH)
     p.add_argument("--set-params", action="store_true", help="check: write wrong FC parameters")
     p.add_argument("--rec", help="mask/calib: use this recording instead of recording now")
@@ -841,10 +1374,16 @@ def main(argv=None):
         path, counts = replay(s, files)
         print(f"replay: {counts}; log {path}")
         return 0
-    if args.mode == "timing":
-        return mode_timing(s, args)
-    modes = {"check": mode_check, "mask": mode_mask, "calib": mode_calib, "bench": mode_bench, "run": mode_run}
-    return modes[args.mode](s, args)
+    if args.mode == "run":
+        return mode_run(s, args)
+    tools = {"check": mode_check, "mask": mode_mask, "calib": mode_calib, "bench": mode_bench, "timing": mode_timing}
+    try:
+        return tools[args.mode](s, args)
+    except (RuntimeError, ValueError) as e:     # no FC, no frames, "will not start", a bad mask: one FAIL line
+        if isinstance(e, json.JSONDecodeError):  # after settings.json, the lens file is the only JSON these tools read
+            e = f"the lens file {S.here(s['lens_file'])} is damaged: {e}"
+        print(f"FAIL {e}")
+        return 1
 
 
 if __name__ == "__main__":

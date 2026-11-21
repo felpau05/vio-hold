@@ -1,0 +1,5 @@
+run_all start 04:42:52 load 1.27 1.41 2.01
+run_all end 04:50:47 load 2.64 2.63 2.34
+regression start 04:50:47 load 2.64 2.63 2.34
+regression exit 0
+regression end 04:52:29 load 13.53 8.49 4.63

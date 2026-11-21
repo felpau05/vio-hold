@@ -1,0 +1,4 @@
+ 10 m: 1030 raw frames, 1066 log rows with t; t_grab - nearest log t: min 69.97 ms, max 70.03 ms (video_delay_s in the flight settings 70 ms)
+ 30 m: 1083 raw frames, 1119 log rows with t; t_grab - nearest log t: min 69.97 ms, max 70.03 ms (video_delay_s in the flight settings 70 ms)
+ 60 m: 1158 raw frames, 1193 log rows with t; t_grab - nearest log t: min 69.97 ms, max 70.03 ms (video_delay_s in the flight settings 70 ms)
+100 m: 1260 raw frames, 1295 log rows with t; t_grab - nearest log t: min 69.97 ms, max 70.03 ms (video_delay_s in the flight settings 70 ms)

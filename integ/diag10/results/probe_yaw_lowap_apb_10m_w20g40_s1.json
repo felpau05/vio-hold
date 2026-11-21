@@ -1,0 +1,354 @@
+{
+"base_dense": [
+{
+"t": 6.0,
+"fail": [
+null,
+"whole picture: halves disagree (4.4 px)"
+]
+},
+{
+"t": 14.0,
+"fail": [
+"whole picture and points disagree (2.1 px)",
+"whole picture: halves disagree (4.3 px)"
+]
+},
+{
+"t": 22.0,
+"fail": [
+null,
+"whole picture: halves disagree (4.9 px)"
+]
+},
+{
+"t": 30.0,
+"lever_N": 13.95,
+"lever_E": -4.84,
+"lever": 14.77,
+"n": 131,
+"roll": -11.3,
+"pitch": 6.1
+}
+],
+"base_corner": [
+{
+"t": 6.0,
+"fail": [
+null,
+"whole picture: halves disagree (4.4 px)"
+]
+},
+{
+"t": 14.0,
+"fail": [
+"whole picture and points disagree (2.1 px)",
+"whole picture: halves disagree (4.3 px)"
+]
+},
+{
+"t": 22.0,
+"fail": [
+null,
+"whole picture: halves disagree (4.9 px)"
+]
+},
+{
+"t": 30.0,
+"lever_N": 13.95,
+"lever_E": -4.84,
+"lever": 14.77,
+"n": 131,
+"roll": -11.3,
+"pitch": 6.1
+}
+],
+"patch_dense": [
+{
+"t": 6.0,
+"lever_N": 14.67,
+"lever_E": -4.71,
+"lever": 15.41,
+"n": 108,
+"roll": -13.4,
+"pitch": 2.5
+},
+{
+"t": 14.0,
+"fail": [
+"whole picture and points disagree (2.2 px)",
+null
+]
+},
+{
+"t": 22.0,
+"fail": [
+null,
+"whole picture and points disagree (2.1 px)"
+]
+},
+{
+"t": 30.0,
+"lever_N": 13.92,
+"lever_E": -4.87,
+"lever": 14.75,
+"n": 131,
+"roll": -11.3,
+"pitch": 6.1
+}
+],
+"patch_corner": [
+{
+"t": 6.0,
+"lever_N": 14.67,
+"lever_E": -4.71,
+"lever": 15.41,
+"n": 108,
+"roll": -13.4,
+"pitch": 2.5
+},
+{
+"t": 14.0,
+"fail": [
+"whole picture and points disagree (2.2 px)",
+null
+]
+},
+{
+"t": 22.0,
+"fail": [
+null,
+"whole picture and points disagree (2.1 px)"
+]
+},
+{
+"t": 30.0,
+"lever_N": 13.92,
+"lever_E": -4.87,
+"lever": 14.75,
+"n": 131,
+"roll": -11.3,
+"pitch": 6.1
+}
+],
+"pn55_dense": [
+{
+"t": 6.0,
+"lever_N": 6.69,
+"lever_E": -2.69,
+"lever": 7.21,
+"n": 108,
+"roll": -13.4,
+"pitch": 2.5
+},
+{
+"t": 14.0,
+"fail": [
+null,
+"whole picture and points disagree (2.6 px)"
+]
+},
+{
+"t": 22.0,
+"lever_N": 6.5,
+"lever_E": -1.78,
+"lever": 6.74,
+"n": 89,
+"roll": -23.5,
+"pitch": -0.2
+},
+{
+"t": 30.0,
+"lever_N": 6.21,
+"lever_E": -2.94,
+"lever": 6.87,
+"n": 131,
+"roll": -11.3,
+"pitch": 6.1
+}
+],
+"pn55_corner": [
+{
+"t": 6.0,
+"lever_N": 6.69,
+"lever_E": -2.69,
+"lever": 7.21,
+"n": 108,
+"roll": -13.4,
+"pitch": 2.5
+},
+{
+"t": 14.0,
+"fail": [
+null,
+"whole picture and points disagree (2.6 px)"
+]
+},
+{
+"t": 22.0,
+"lever_N": 6.5,
+"lever_E": -1.78,
+"lever": 6.74,
+"n": 89,
+"roll": -23.5,
+"pitch": -0.2
+},
+{
+"t": 30.0,
+"lever_N": 6.21,
+"lever_E": -2.94,
+"lever": 6.87,
+"n": 131,
+"roll": -11.3,
+"pitch": 6.1
+}
+],
+"py_dense": [
+{
+"t": 6.0,
+"lever_N": -0.04,
+"lever_E": 0.05,
+"lever": 0.07,
+"n": 108,
+"roll": -13.4,
+"pitch": 2.5
+},
+{
+"t": 14.0,
+"fail": [
+"whole picture and points disagree (2.0 px)",
+null
+]
+},
+{
+"t": 22.0,
+"lever_N": 0.04,
+"lever_E": -0.02,
+"lever": 0.04,
+"n": 89,
+"roll": -23.5,
+"pitch": -0.2
+},
+{
+"t": 30.0,
+"lever_N": -0.05,
+"lever_E": 0.04,
+"lever": 0.07,
+"n": 131,
+"roll": -11.3,
+"pitch": 6.1
+}
+],
+"py_corner": [
+{
+"t": 6.0,
+"lever_N": -0.04,
+"lever_E": 0.05,
+"lever": 0.07,
+"n": 108,
+"roll": -13.4,
+"pitch": 2.5
+},
+{
+"t": 14.0,
+"fail": [
+"whole picture and points disagree (2.0 px)",
+null
+]
+},
+{
+"t": 22.0,
+"lever_N": 0.04,
+"lever_E": -0.02,
+"lever": 0.04,
+"n": 89,
+"roll": -23.5,
+"pitch": -0.2
+},
+{
+"t": 30.0,
+"lever_N": -0.05,
+"lever_E": 0.04,
+"lever": 0.07,
+"n": 131,
+"roll": -11.3,
+"pitch": 6.1
+}
+],
+"pyn55_dense": [
+{
+"t": 6.0,
+"lever_N": -0.0,
+"lever_E": 0.01,
+"lever": 0.01,
+"n": 108,
+"roll": -13.4,
+"pitch": 2.5
+},
+{
+"t": 14.0,
+"lever_N": 0.01,
+"lever_E": -0.02,
+"lever": 0.02,
+"n": 71,
+"roll": -22.1,
+"pitch": -4.6
+},
+{
+"t": 22.0,
+"lever_N": 0.02,
+"lever_E": -0.0,
+"lever": 0.02,
+"n": 89,
+"roll": -23.5,
+"pitch": -0.2
+},
+{
+"t": 30.0,
+"lever_N": -0.03,
+"lever_E": 0.02,
+"lever": 0.04,
+"n": 131,
+"roll": -11.3,
+"pitch": 6.1
+}
+],
+"pyn55_corner": [
+{
+"t": 6.0,
+"lever_N": -0.0,
+"lever_E": 0.01,
+"lever": 0.01,
+"n": 108,
+"roll": -13.4,
+"pitch": 2.5
+},
+{
+"t": 14.0,
+"lever_N": 0.01,
+"lever_E": -0.02,
+"lever": 0.02,
+"n": 71,
+"roll": -22.1,
+"pitch": -4.6
+},
+{
+"t": 22.0,
+"lever_N": 0.02,
+"lever_E": -0.0,
+"lever": 0.02,
+"n": 89,
+"roll": -23.5,
+"pitch": -0.2
+},
+{
+"t": 30.0,
+"lever_N": -0.03,
+"lever_E": 0.02,
+"lever": 0.04,
+"n": 131,
+"roll": -11.3,
+"pitch": 6.1
+}
+]
+}

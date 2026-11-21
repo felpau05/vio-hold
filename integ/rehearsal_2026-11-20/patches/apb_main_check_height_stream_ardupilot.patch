@@ -1,0 +1,18 @@
+--- a/apb_main.py
++++ b/apb_main.py
+@@ -787,10 +787,13 @@
+     if fc is not None:
+         import fc_link
+         time.sleep(2.0)
+-        r_att, r_pos = fc.rate("ATTITUDE"), fc.rate("LOCAL_POSITION_NED")
++        # ArduPilot sends LOCAL_POSITION_NED only once it has a position (our fixes); its height comes from
++        # GLOBAL_POSITION_INT (fc_link._read), so that is the stream to measure on the ground.
++        hkind = "GLOBAL_POSITION_INT" if fc.firmware == "ardupilot" else "LOCAL_POSITION_NED"
++        r_att, r_pos = fc.rate("ATTITUDE"), fc.rate(hkind)
+         line(r_att >= s["min_att_hz"], f"ATTITUDE {r_att:.0f} Hz (asked {s['att_hz']}, need {s['min_att_hz']})"
+              + ("" if r_att >= s["min_att_hz"] else ". Turn off other streams (MAV_0_RATE 23040) and stop ULog streaming."))
+-        line(r_pos >= 0.5 * s["hgt_hz"], f"LOCAL_POSITION_NED {r_pos:.0f} Hz (asked {s['hgt_hz']})"
++        line(r_pos >= 0.5 * s["hgt_hz"], f"{hkind} {r_pos:.0f} Hz (asked {s['hgt_hz']})"
+              + ("" if r_pos >= 0.5 * s["hgt_hz"] else ". The FC sends no height: check the baro and the EKF."))
+         line(fc.clock.ready(), "FC clock offset fitted" if fc.clock.ready() else "FC clock offset not fitted: attitude too sparse.")
+         if fc.firmware == "px4":

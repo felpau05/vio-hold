@@ -1,0 +1,13 @@
+$ qpy -c import os, sys, platform; print("Python", sys.version.split()[0], platform.machine(), "C library", *platform.libc_ver())
+import numpy, cv2, serial; os.environ["MAVLINK20"] = "1"; from pymavlink import mavutil; import pymavlink
+import cv2.videoio_registry as r
+print("numpy", numpy.__version__, "| cv2", cv2.__version__, "| pymavlink", pymavlink.__version__, "| pyserial", serial.__version__)
+print("cv2 V4L2 backend:", r.hasBackend(cv2.CAP_V4L2), "| GStreamer backend:", r.hasBackend(cv2.CAP_GSTREAMER))
+print("MAVLink 2 VISION_POSITION_ESTIMATE:", mavutil.mavlink.MAVLink_vision_position_estimate_message.__name__)
+import apb_main, hold, fc_link, capture, calib, settings; settings.load(); print("PASS onboard modules import, settings.json loads") (cwd: the bundle's vio folder; root file system py310; qemu CPU cortex-a53)
+Python 3.12.16 aarch64 C library glibc 2.31
+numpy 2.5.5 | cv2 5.0.0 | pymavlink 2.4.50 | pyserial 3.5
+cv2 V4L2 backend: True | GStreamer backend: False
+MAVLink 2 VISION_POSITION_ESTIMATE: MAVLink_vision_position_estimate_message
+PASS onboard modules import, settings.json loads
+exit code 0

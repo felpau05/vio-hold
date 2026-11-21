@@ -1,0 +1,6 @@
+{
+ "_why": {
+  "_note": "After more than 0.5 s with no picture (a short video outage), the break-up test does not compare the first picture with the old one (Hold.GAP_JUMP_S). Without it, the brightness change over the gap looks like a jump: the first frame is 'broken up', Hold is lost and the program re-anchors. ArduCopter SITL, 3 s drop at 60 m, w20g40 (apsim/gapjump_results.txt): with 0.5, no refusal and no re-anchor in 3 of 3 runs, first fix 0.86 s after the video came back; without it, a refusal and 2 re-anchors in 2 of 3 runs, first fix 1.12 s. The hold-point shift (0.14-0.29 m with it) is not smaller beyond the spread between seeds. It does not act on the digital camera's 2 s restart (a longer outage). It weakens the break-up test for one frame after each gap: an analog picture that breaks up right after static is judged on its level only. Tests: tests_apb/test_event.py E8. Apply it without this overlay to switch it off."
+ },
+ "hold_cfg": {"gap_jump_s": 0.5}
+}

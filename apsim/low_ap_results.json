@@ -1,0 +1,6804 @@
+{
+ "lowap_apb_5m_w20g40_s1": {
+  "case": "lowap_apb_5m_w20g40_s1",
+  "rms": 0.8531693823766744,
+  "p95": 1.2960132125496477,
+  "max": 1.6529166522275762,
+  "end": 1.08634129628949,
+  "pct_frames_fix": 12.652947719688543,
+  "fix_rate_hz": 7.583207561538363,
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 5, 0.0 s after the Loiter request started"
+   ]
+  ],
+  "hold_s_flown": 60.0,
+  "climb_s": 14.5,
+  "age_ms_p50": 128.4,
+  "drift_m_per_min": 0.749175362454397,
+  "proc_ms_mean": 80.78532608695652,
+  "handover_ms_p50": 5.549974499444943,
+  "handover_ms_p95": 9.225674248227733,
+  "reanchors": 16,
+  "hold_why": {
+   "whole picture: halves disagree": 131,
+   "init": 16,
+   "good fix 1 of 10": 16,
+   "good fix 2 of 10": 16,
+   "good fix 3 of 10": 16,
+   "good fix 4 of 10": 16,
+   "good fix 5 of 10": 14,
+   "good fix 6 of 10": 13
+  },
+  "onboard_exit": 0,
+  "frac_ok": 0.7391304347826086,
+  "onboard": [
+   [
+    7.1,
+    "connected",
+    "ardupilot, clock ready True, ATTITUDE 100 Hz"
+   ],
+   [
+    86.98,
+    "done",
+    "stopped after 1 start(s); frame age when taken p50 9 ms, p95 22 ms; SCALED_IMU 0 Hz, 0 rows kept"
+   ]
+  ],
+  "height": 5.0,
+  "seed": 1,
+  "settings": {
+   "min_height_m": 3.0
+  },
+  "video": "JUSTICE_D",
+  "wall_s": 88,
+  "load_start": [
+   1.44287109375,
+   1.79833984375,
+   3.30224609375
+  ],
+  "load_end": [
+   8.2900390625,
+   4.16845703125,
+   4.0166015625
+  ],
+  "jobs_start": {
+   "other_sitl": 0,
+   "px4_sim": false
+  },
+  "jobs_end": {
+   "other_sitl": 0,
+   "px4_sim": false
+  },
+  "option": "min_height_m 3, h_min 2",
+  "texts_all": [
+   [
+    -26.58,
+    "Barometer 1 calibration complete"
+   ],
+   [
+    -26.58,
+    "Barometer 2 calibration complete"
+   ],
+   [
+    -24.12,
+    "ArduPilot Ready"
+   ],
+   [
+    -24.12,
+    "AHRS: DCM active"
+   ],
+   [
+    -23.83,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    -22.5,
+    "No ap_message for mavlink id (331)"
+   ],
+   [
+    -22.44,
+    "No ap_message for mavlink id (290)"
+   ],
+   [
+    -22.43,
+    "No ap_message for mavlink id (291)"
+   ],
+   [
+    -22.39,
+    "No ap_message for mavlink id (231)"
+   ],
+   [
+    -22.38,
+    "No ap_message for mavlink id (141)"
+   ],
+   [
+    -22.13,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    -22.13,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    -22.12,
+    "AHRS: EKF3 active"
+   ],
+   [
+    -20.74,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    -20.74,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    -20.64,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -20.64,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -15.08,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -14.61,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    -14.61,
+    "Arming motors"
+   ],
+   [
+    -14.45,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -10.94,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -10.94,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -9.15,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -9.14,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -2.0,
+    "EKF3 IMU0 is using external nav data"
+   ],
+   [
+    -2.0,
+    "EKF3 IMU0 initial pos NED = 0.0,-0.0,-4.7 (m)"
+   ],
+   [
+    -1.98,
+    "EKF3 IMU1 is using external nav data"
+   ],
+   [
+    -1.98,
+    "EKF3 IMU1 initial pos NED = 0.0,-0.0,-4.7 (m)"
+   ]
+  ],
+  "rms_10s": 0.4700987274177277,
+  "max_10s": 0.8139415924563383,
+  "rms_10_60": 0.9106673845440633,
+  "max_10_60": 1.6529166522275762,
+  "notes": [
+   [
+    -10.79,
+    "FC mode ALT_HOLD"
+   ],
+   [
+    -8.84,
+    "re-anchored to last position (no FC position) 0.00 0.00"
+   ],
+   [
+    -7.54,
+    "re-anchored to last position (no FC position) 0.01 0.01"
+   ],
+   [
+    -6.04,
+    "re-anchored to last position (no FC position) 0.02 -0.01"
+   ],
+   [
+    -4.82,
+    "re-anchored to last position (no FC position) 0.02 -0.01"
+   ],
+   [
+    -3.04,
+    "re-anchored to last position (no FC position) 0.03 -0.03"
+   ],
+   [
+    -1.24,
+    "re-anchored to FC position 0.10 -0.02"
+   ],
+   [
+    -0.02,
+    "engaged: FC mode LOITER"
+   ],
+   [
+    1.28,
+    "re-anchored to FC position 0.23 0.11"
+   ],
+   [
+    5.13,
+    "re-anchored to FC position 0.19 0.38"
+   ],
+   [
+    6.51,
+    "re-anchored to FC position 0.29 0.55"
+   ],
+   [
+    9.03,
+    "re-anchored to FC position 0.18 0.23"
+   ],
+   [
+    13.18,
+    "re-anchored to FC position 0.06 0.70"
+   ],
+   [
+    14.48,
+    "re-anchored to FC position -0.15 0.18"
+   ],
+   [
+    15.38,
+    "re-anchored to FC position -0.11 -0.29"
+   ],
+   [
+    17.83,
+    "re-anchored to FC position 0.21 -0.04"
+   ],
+   [
+    19.21,
+    "re-anchored to FC position 0.29 0.03"
+   ],
+   [
+    20.74,
+    "re-anchored to FC position 0.15 0.15"
+   ],
+   [
+    21.81,
+    "re-anchored to FC position 0.22 0.29"
+   ],
+   [
+    23.03,
+    "re-anchored to FC position 0.43 0.48"
+   ],
+   [
+    24.18,
+    "re-anchored to FC position 0.51 0.55"
+   ],
+   [
+    25.81,
+    "re-anchored to FC position 0.34 0.24"
+   ],
+   [
+    27.51,
+    "re-anchored to FC position 0.25 -0.30"
+   ],
+   [
+    31.11,
+    "re-anchored to FC position 0.59 -0.40"
+   ]
+  ],
+  "notes_all_n": 28,
+  "onboard_modes": [
+   [
+    -10.79,
+    "ALT_HOLD"
+   ],
+   [
+    -0.02,
+    "LOITER"
+   ]
+  ],
+  "fc_modes": [
+   [
+    -26.58,
+    "0"
+   ],
+   [
+    -15.1,
+    "ALT_HOLD"
+   ],
+   [
+    0.02,
+    "LOITER"
+   ]
+  ],
+  "fix_gap_max_s": 6.28,
+  "fix_gap_at_s": 18.92,
+  "fix_gaps_over_1s": [
+   [
+    1.0,
+    1.3
+   ],
+   [
+    4.8,
+    1.3
+   ],
+   [
+    6.2,
+    1.3
+   ],
+   [
+    8.7,
+    1.5
+   ],
+   [
+    12.8,
+    3.8
+   ],
+   [
+    17.5,
+    1.4
+   ],
+   [
+    18.9,
+    6.3
+   ],
+   [
+    25.5,
+    1.5
+   ],
+   [
+    27.2,
+    1.5
+   ],
+   [
+    30.7,
+    1.4
+   ]
+  ],
+  "engaged_note_at": -0.02,
+  "kf_events": [
+   [
+    -8.84,
+    "kf",
+    "3.01",
+    ""
+   ],
+   [
+    -8.52,
+    "home",
+    "3.01",
+    "3.01"
+   ],
+   [
+    -7.54,
+    "kf",
+    "",
+    "3.01"
+   ],
+   [
+    -7.46,
+    "kf",
+    "3.48",
+    ""
+   ],
+   [
+    -7.06,
+    "home",
+    "3.48",
+    "3.48"
+   ],
+   [
+    -6.04,
+    "kf",
+    "",
+    "3.48"
+   ],
+   [
+    -5.97,
+    "kf",
+    "3.94",
+    ""
+   ],
+   [
+    -4.82,
+    "kf",
+    "",
+    ""
+   ],
+   [
+    -4.74,
+    "kf",
+    "4.33",
+    ""
+   ],
+   [
+    -3.77,
+    "home",
+    "4.33",
+    "4.33"
+   ],
+   [
+    -3.04,
+    "kf",
+    "",
+    "4.33"
+   ],
+   [
+    -2.96,
+    "kf",
+    "4.70",
+    ""
+   ],
+   [
+    -2.87,
+    "home",
+    "4.70",
+    "4.70"
+   ],
+   [
+    -2.71,
+    "kf",
+    "4.70",
+    "4.70"
+   ],
+   [
+    -2.62,
+    "kf",
+    "4.70",
+    "4.70"
+   ],
+   [
+    -1.24,
+    "kf",
+    "",
+    "4.70"
+   ],
+   [
+    -1.16,
+    "kf",
+    "4.72",
+    ""
+   ],
+   [
+    -1.07,
+    "home",
+    "4.72",
+    "4.72"
+   ],
+   [
+    -0.92,
+    "kf",
+    "4.72",
+    "4.72"
+   ],
+   [
+    -0.84,
+    "kf",
+    "4.72",
+    "4.72"
+   ],
+   [
+    0.21,
+    "kf",
+    "4.73",
+    "4.72"
+   ],
+   [
+    0.31,
+    "kf",
+    "4.72",
+    "4.72"
+   ],
+   [
+    1.28,
+    "kf",
+    "",
+    "4.72"
+   ],
+   [
+    1.36,
+    "kf",
+    "4.73",
+    ""
+   ],
+   [
+    1.44,
+    "home",
+    "4.73",
+    "4.73"
+   ],
+   [
+    1.61,
+    "kf",
+    "4.73",
+    "4.73"
+   ],
+   [
+    1.69,
+    "kf",
+    "4.73",
+    "4.73"
+   ],
+   [
+    2.74,
+    "kf",
+    "4.73",
+    "4.73"
+   ],
+   [
+    2.83,
+    "kf",
+    "4.73",
+    "4.73"
+   ],
+   [
+    3.89,
+    "kf",
+    "4.73",
+    "4.73"
+   ],
+   [
+    3.98,
+    "kf",
+    "4.73",
+    "4.73"
+   ],
+   [
+    5.13,
+    "kf",
+    "",
+    "4.73"
+   ],
+   [
+    5.19,
+    "kf",
+    "4.74",
+    ""
+   ],
+   [
+    5.28,
+    "home",
+    "4.74",
+    "4.74"
+   ],
+   [
+    5.44,
+    "kf",
+    "4.74",
+    "4.74"
+   ],
+   [
+    5.53,
+    "kf",
+    "4.74",
+    "4.74"
+   ],
+   [
+    6.51,
+    "kf",
+    "",
+    "4.74"
+   ],
+   [
+    6.59,
+    "kf",
+    "4.73",
+    ""
+   ],
+   [
+    6.66,
+    "home",
+    "4.73",
+    "4.73"
+   ],
+   [
+    9.03,
+    "kf",
+    "",
+    "4.73"
+   ],
+   [
+    9.11,
+    "kf",
+    "4.72",
+    ""
+   ],
+   [
+    9.36,
+    "home",
+    "4.72",
+    "4.72"
+   ],
+   [
+    13.18,
+    "kf",
+    "",
+    "4.72"
+   ],
+   [
+    13.26,
+    "kf",
+    "4.71",
+    ""
+   ],
+   [
+    13.34,
+    "home",
+    "4.71",
+    "4.71"
+   ],
+   [
+    14.48,
+    "kf",
+    "",
+    "4.71"
+   ],
+   [
+    14.56,
+    "kf",
+    "4.72",
+    ""
+   ],
+   [
+    14.64,
+    "home",
+    "4.72",
+    "4.72"
+   ],
+   [
+    15.38,
+    "kf",
+    "",
+    "4.72"
+   ],
+   [
+    15.46,
+    "kf",
+    "4.71",
+    ""
+   ],
+   [
+    15.71,
+    "home",
+    "4.71",
+    "4.71"
+   ],
+   [
+    17.83,
+    "kf",
+    "",
+    "4.71"
+   ],
+   [
+    17.91,
+    "kf",
+    "4.70",
+    ""
+   ],
+   [
+    17.98,
+    "home",
+    "4.70",
+    "4.70"
+   ],
+   [
+    18.14,
+    "kf",
+    "4.71",
+    "4.70"
+   ],
+   [
+    18.23,
+    "kf",
+    "4.70",
+    "4.70"
+   ],
+   [
+    19.21,
+    "kf",
+    "",
+    "4.70"
+   ],
+   [
+    19.28,
+    "kf",
+    "4.69",
+    ""
+   ],
+   [
+    19.44,
+    "home",
+    "4.69",
+    "4.69"
+   ],
+   [
+    19.69,
+    "kf",
+    "4.71",
+    "4.69"
+   ],
+   [
+    20.74,
+    "kf",
+    "",
+    "4.69"
+   ],
+   [
+    20.83,
+    "kf",
+    "4.74",
+    ""
+   ],
+   [
+    20.91,
+    "home",
+    "4.74",
+    "4.74"
+   ],
+   [
+    21.81,
+    "kf",
+    "",
+    "4.74"
+   ],
+   [
+    21.89,
+    "kf",
+    "4.72",
+    ""
+   ],
+   [
+    21.98,
+    "home",
+    "4.72",
+    "4.72"
+   ],
+   [
+    23.03,
+    "kf",
+    "",
+    "4.72"
+   ],
+   [
+    23.11,
+    "kf",
+    "4.73",
+    ""
+   ],
+   [
+    23.19,
+    "home",
+    "4.73",
+    "4.73"
+   ],
+   [
+    24.18,
+    "kf",
+    "",
+    "4.73"
+   ],
+   [
+    24.28,
+    "kf",
+    "4.73",
+    ""
+   ],
+   [
+    24.34,
+    "home",
+    "4.73",
+    "4.73"
+   ],
+   [
+    25.81,
+    "kf",
+    "",
+    "4.73"
+   ],
+   [
+    25.89,
+    "kf",
+    "4.73",
+    ""
+   ],
+   [
+    25.98,
+    "home",
+    "4.73",
+    "4.73"
+   ],
+   [
+    27.51,
+    "kf",
+    "",
+    "4.73"
+   ],
+   [
+    27.61,
+    "kf",
+    "4.72",
+    ""
+   ],
+   [
+    27.93,
+    "home",
+    "4.72",
+    "4.72"
+   ],
+   [
+    31.11,
+    "kf",
+    "",
+    "4.72"
+   ],
+   [
+    31.19,
+    "kf",
+    "4.73",
+    ""
+   ],
+   [
+    31.26,
+    "home",
+    "4.73",
+    "4.73"
+   ],
+   [
+    31.43,
+    "kf",
+    "4.73",
+    "4.73"
+   ],
+   [
+    31.51,
+    "kf",
+    "4.73",
+    "4.73"
+   ],
+   [
+    32.58,
+    "kf",
+    "4.72",
+    "4.73"
+   ],
+   [
+    32.66,
+    "kf",
+    "4.73",
+    "4.73"
+   ],
+   [
+    33.71,
+    "kf",
+    "4.73",
+    "4.73"
+   ],
+   [
+    33.79,
+    "kf",
+    "4.73",
+    "4.73"
+   ],
+   [
+    34.86,
+    "kf",
+    "4.73",
+    "4.73"
+   ],
+   [
+    34.94,
+    "kf",
+    "4.73",
+    "4.73"
+   ],
+   [
+    35.98,
+    "kf",
+    "4.73",
+    "4.73"
+   ],
+   [
+    36.08,
+    "kf",
+    "4.73",
+    "4.73"
+   ],
+   [
+    37.14,
+    "kf",
+    "4.74",
+    "4.73"
+   ],
+   [
+    37.23,
+    "kf",
+    "4.73",
+    "4.73"
+   ],
+   [
+    38.29,
+    "kf",
+    "4.73",
+    "4.73"
+   ],
+   [
+    39.36,
+    "kf",
+    "4.73",
+    "4.73"
+   ],
+   [
+    40.43,
+    "kf",
+    "4.73",
+    "4.73"
+   ],
+   [
+    41.48,
+    "kf",
+    "4.73",
+    "4.73"
+   ],
+   [
+    42.54,
+    "kf",
+    "4.73",
+    "4.73"
+   ],
+   [
+    43.59,
+    "kf",
+    "4.73",
+    "4.73"
+   ],
+   [
+    44.66,
+    "kf",
+    "4.73",
+    "4.73"
+   ],
+   [
+    45.73,
+    "kf",
+    "4.73",
+    "4.73"
+   ],
+   [
+    46.79,
+    "kf",
+    "4.73",
+    "4.73"
+   ],
+   [
+    47.84,
+    "kf",
+    "4.73",
+    "4.73"
+   ],
+   [
+    48.91,
+    "kf",
+    "4.73",
+    "4.73"
+   ],
+   [
+    49.98,
+    "kf",
+    "4.73",
+    "4.73"
+   ],
+   [
+    51.03,
+    "kf",
+    "4.73",
+    "4.73"
+   ],
+   [
+    52.09,
+    "kf",
+    "4.73",
+    "4.73"
+   ],
+   [
+    53.24,
+    "kf",
+    "4.73",
+    "4.73"
+   ],
+   [
+    54.31,
+    "kf",
+    "4.73",
+    "4.73"
+   ],
+   [
+    55.38,
+    "kf",
+    "4.73",
+    "4.73"
+   ],
+   [
+    56.43,
+    "kf",
+    "4.73",
+    "4.73"
+   ],
+   [
+    57.48,
+    "kf",
+    "4.73",
+    "4.73"
+   ],
+   [
+    58.49,
+    "kf",
+    "4.73",
+    "4.73"
+   ],
+   [
+    59.56,
+    "kf",
+    "4.73",
+    "4.73"
+   ]
+  ],
+  "fresh_kf_served_at": null,
+  "kf_changes_in_hold": 78,
+  "home_changes_in_hold": 16,
+  "home_h_at_switch": "4.72",
+  "fc_texts_hold": [],
+  "ferr_rms_10s": 0.12249421815493079,
+  "ferr_max_10s": 0.227815810676553,
+  "ferr_rms_60s": 0.7507253407735139,
+  "ferr_max_60s": 0.9361466513711391,
+  "ferr_step": 0.11469315105579797,
+  "variant": "apb",
+  "wind": "w20g40",
+  "ap_text_tail": [
+   [
+    0.0,
+    "Barometer 1 calibration complete"
+   ],
+   [
+    0.0,
+    "Barometer 2 calibration complete"
+   ],
+   [
+    0.0,
+    "ArduPilot Ready"
+   ],
+   [
+    0.0,
+    "AHRS: DCM active"
+   ],
+   [
+    0.0,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    0.0,
+    "No ap_message for mavlink id (331)"
+   ],
+   [
+    0.0,
+    "No ap_message for mavlink id (290)"
+   ],
+   [
+    0.0,
+    "No ap_message for mavlink id (291)"
+   ],
+   [
+    0.0,
+    "No ap_message for mavlink id (231)"
+   ],
+   [
+    0.0,
+    "No ap_message for mavlink id (141)"
+   ],
+   [
+    0.0,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    0.0,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    0.0,
+    "AHRS: EKF3 active"
+   ],
+   [
+    0.0,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    0.0,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    0.0,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    0.0,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    0.0,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    0.0,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    0.0,
+    "Arming motors"
+   ],
+   [
+    0.0,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    0.0,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    0.0,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    0.0,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    0.0,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    0.0,
+    "EKF3 IMU0 is using external nav data"
+   ],
+   [
+    0.0,
+    "EKF3 IMU0 initial pos NED = 0.0,-0.0,-4.7 (m)"
+   ],
+   [
+    0.0,
+    "EKF3 IMU1 is using external nav data"
+   ],
+   [
+    0.0,
+    "EKF3 IMU1 initial pos NED = 0.0,-0.0,-4.7 (m)"
+   ]
+  ],
+  "settings_file_hold_cfg": {
+   "repeat_diff": 0.01,
+   "h_min": 2.0
+  },
+  "settings_file_min_height_m": 3.0,
+  "h_mean": 4.7294982672536126,
+  "h_min": 4.670005798339844,
+  "h_max": 4.780006408691406,
+  "h_at_switch": 4.730003356933594,
+  "first_sent_t": 24.4353,
+  "first_sent_height": "4.7020",
+  "first_sent_rel_switch": -2.14,
+  "why_not_sent_hold": {
+   "whole picture: halves disagree": 131,
+   "init": 16,
+   "good fix 1 of 10": 16,
+   "good fix 2 of 10": 16,
+   "good fix 3 of 10": 16,
+   "good fix 4 of 10": 16,
+   "good fix 5 of 10": 14,
+   "good fix 6 of 10": 13,
+   "good fix 7 of 10": 13,
+   "good fix 8 of 10": 11,
+   "good fix 9 of 10": 11,
+   "waiting for image motion that proves the picture is live": 8
+  },
+  "height_blocked_rows": 114,
+  "height_blocked_last": [
+   "17.7187",
+   "height 3.0 m under 3 m"
+  ],
+  "log_summary": "log  s  sent/s  %sent  proc p50  p95  max  age p50  p95  gap s  ok  deg  lost  switch (before, after, gap s)  recover s\n/home/paul/Videos/vio-hold-attempt/apsim/runs/lowap_apb_5m_w20g40_s1_onboard.csv  70.8  6.6  48.6  80.8  81.4  82.4  128  137  6.28  593  170  21  (8,11,1.30)  -",
+  "hold_cfg": {
+   "h_min": 2.0
+  }
+ },
+ "lowap_apb_10m_w20g40_s1": {
+  "case": "lowap_apb_10m_w20g40_s1",
+  "rms": 0.9761705374737661,
+  "p95": 1.5458817637802218,
+  "max": 1.6336283940487275,
+  "end": 0.8567699735475014,
+  "pct_frames_fix": 16.782439566546262,
+  "fix_rate_hz": 10.065830929244372,
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 5, 0.0 s after the Loiter request started"
+   ]
+  ],
+  "hold_s_flown": 60.0,
+  "climb_s": 13.7,
+  "age_ms_p50": 128.0,
+  "drift_m_per_min": 0.9733706680962957,
+  "proc_ms_mean": 80.67323369565217,
+  "handover_ms_p50": 5.413753337052185,
+  "handover_ms_p95": 9.182853399033775,
+  "reanchors": 4,
+  "hold_why": {
+   "whole picture: halves disagree": 56,
+   "whole picture and points disagree": 30,
+   "init": 4,
+   "good fix 1 of 10": 4,
+   "good fix 2 of 10": 4,
+   "good fix 3 of 10": 4,
+   "good fix 4 of 10": 4,
+   "good fix 5 of 10": 4
+  },
+  "onboard_exit": 0,
+  "frac_ok": 0.7961956521739131,
+  "onboard": [
+   [
+    7.1,
+    "connected",
+    "ardupilot, clock ready True, ATTITUDE 100 Hz"
+   ],
+   [
+    86.21,
+    "done",
+    "stopped after 1 start(s); frame age when taken p50 10 ms, p95 22 ms; SCALED_IMU 0 Hz, 0 rows kept"
+   ]
+  ],
+  "height": 10.0,
+  "seed": 1,
+  "settings": {
+   "min_height_m": 3.0
+  },
+  "video": "JUSTICE_D",
+  "wall_s": 87,
+  "load_start": [
+   5.87744140625,
+   3.9423828125,
+   3.94580078125
+  ],
+  "load_end": [
+   5.14306640625,
+   4.15869140625,
+   4.0224609375
+  ],
+  "jobs_start": {
+   "other_sitl": 0,
+   "px4_sim": false
+  },
+  "jobs_end": {
+   "other_sitl": 0,
+   "px4_sim": false
+  },
+  "option": "min_height_m 3, h_min 2",
+  "texts_all": [
+   [
+    -25.8,
+    "Barometer 1 calibration complete"
+   ],
+   [
+    -25.8,
+    "Barometer 2 calibration complete"
+   ],
+   [
+    -23.35,
+    "ArduPilot Ready"
+   ],
+   [
+    -23.35,
+    "AHRS: DCM active"
+   ],
+   [
+    -23.05,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    -21.73,
+    "No ap_message for mavlink id (331)"
+   ],
+   [
+    -21.67,
+    "No ap_message for mavlink id (290)"
+   ],
+   [
+    -21.66,
+    "No ap_message for mavlink id (291)"
+   ],
+   [
+    -21.62,
+    "No ap_message for mavlink id (231)"
+   ],
+   [
+    -21.61,
+    "No ap_message for mavlink id (141)"
+   ],
+   [
+    -21.35,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    -21.35,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    -21.34,
+    "AHRS: EKF3 active"
+   ],
+   [
+    -19.96,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    -19.96,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    -19.86,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -19.86,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -14.52,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -14.06,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    -14.06,
+    "Arming motors"
+   ],
+   [
+    -13.73,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -10.4,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -10.4,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -9.07,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -9.06,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -1.75,
+    "EKF3 IMU0 is using external nav data"
+   ],
+   [
+    -1.75,
+    "EKF3 IMU0 initial pos NED = -0.3,0.1,-9.8 (m)"
+   ],
+   [
+    -1.75,
+    "EKF3 IMU1 is using external nav data"
+   ],
+   [
+    -1.75,
+    "EKF3 IMU1 initial pos NED = -0.3,0.1,-9.8 (m)"
+   ]
+  ],
+  "rms_10s": 0.43802501904363683,
+  "max_10s": 0.7237781993618072,
+  "rms_10_60": 1.0511543312826344,
+  "max_10_60": 1.6336283940487275,
+  "notes": [
+   [
+    -10.25,
+    "FC mode ALT_HOLD"
+   ],
+   [
+    -9.06,
+    "re-anchored to last position (no FC position) 0.00 0.00"
+   ],
+   [
+    -8.33,
+    "re-anchored to last position (no FC position) 0.00 0.01"
+   ],
+   [
+    -6.96,
+    "re-anchored to last position (no FC position) -0.02 0.01"
+   ],
+   [
+    -5.81,
+    "re-anchored to last position (no FC position) -0.11 0.02"
+   ],
+   [
+    -4.68,
+    "re-anchored to last position (no FC position) -0.19 0.03"
+   ],
+   [
+    -4.1,
+    "re-anchored to last position (no FC position) -0.19 0.03"
+   ],
+   [
+    -2.8,
+    "re-anchored to last position (no FC position) -0.26 0.03"
+   ],
+   [
+    -1.26,
+    "re-anchored to FC position -0.39 0.06"
+   ],
+   [
+    -0.03,
+    "engaged: FC mode LOITER"
+   ],
+   [
+    0.62,
+    "re-anchored to FC position -0.50 0.14"
+   ],
+   [
+    8.27,
+    "re-anchored to FC position -0.54 0.40"
+   ],
+   [
+    39.1,
+    "re-anchored to FC position -0.80 -0.21"
+   ],
+   [
+    45.55,
+    "re-anchored to FC position -0.53 0.07"
+   ]
+  ],
+  "notes_all_n": 20,
+  "onboard_modes": [
+   [
+    -10.25,
+    "ALT_HOLD"
+   ],
+   [
+    -0.03,
+    "LOITER"
+   ]
+  ],
+  "fc_modes": [
+   [
+    -25.8,
+    "0"
+   ],
+   [
+    -14.56,
+    "ALT_HOLD"
+   ],
+   [
+    0.01,
+    "LOITER"
+   ]
+  ],
+  "fix_gap_max_s": 1.38,
+  "fix_gap_at_s": 7.91,
+  "fix_gaps_over_1s": [
+   [
+    0.3,
+    1.4
+   ],
+   [
+    7.9,
+    1.4
+   ],
+   [
+    38.8,
+    1.3
+   ],
+   [
+    45.3,
+    1.3
+   ]
+  ],
+  "engaged_note_at": -0.03,
+  "kf_events": [
+   [
+    -9.06,
+    "kf",
+    "3.08",
+    ""
+   ],
+   [
+    -9.0,
+    "home",
+    "3.08",
+    "3.08"
+   ],
+   [
+    -8.83,
+    "kf",
+    "3.94",
+    "3.08"
+   ],
+   [
+    -8.75,
+    "kf",
+    "3.08",
+    "3.08"
+   ],
+   [
+    -8.33,
+    "kf",
+    "",
+    "3.08"
+   ],
+   [
+    -8.25,
+    "kf",
+    "6.34",
+    ""
+   ],
+   [
+    -8.01,
+    "home",
+    "6.34",
+    "6.34"
+   ],
+   [
+    -6.96,
+    "kf",
+    "",
+    "6.34"
+   ],
+   [
+    -6.86,
+    "kf",
+    "8.68",
+    ""
+   ],
+   [
+    -6.8,
+    "home",
+    "8.68",
+    "8.68"
+   ],
+   [
+    -6.63,
+    "kf",
+    "8.73",
+    "8.68"
+   ],
+   [
+    -6.55,
+    "kf",
+    "8.68",
+    "8.68"
+   ],
+   [
+    -5.81,
+    "kf",
+    "",
+    "8.68"
+   ],
+   [
+    -5.73,
+    "kf",
+    "8.97",
+    ""
+   ],
+   [
+    -5.33,
+    "home",
+    "8.97",
+    "8.97"
+   ],
+   [
+    -4.68,
+    "kf",
+    "",
+    "8.97"
+   ],
+   [
+    -4.6,
+    "kf",
+    "9.36",
+    ""
+   ],
+   [
+    -4.1,
+    "kf",
+    "",
+    ""
+   ],
+   [
+    -4.03,
+    "kf",
+    "9.56",
+    ""
+   ],
+   [
+    -3.61,
+    "home",
+    "9.56",
+    "9.56"
+   ],
+   [
+    -2.8,
+    "kf",
+    "",
+    "9.56"
+   ],
+   [
+    -2.71,
+    "kf",
+    "9.76",
+    ""
+   ],
+   [
+    -2.65,
+    "home",
+    "9.76",
+    "9.76"
+   ],
+   [
+    -2.48,
+    "kf",
+    "9.76",
+    "9.76"
+   ],
+   [
+    -2.4,
+    "kf",
+    "9.76",
+    "9.76"
+   ],
+   [
+    -1.26,
+    "kf",
+    "",
+    "9.76"
+   ],
+   [
+    -1.18,
+    "kf",
+    "9.78",
+    ""
+   ],
+   [
+    -1.1,
+    "home",
+    "9.78",
+    "9.78"
+   ],
+   [
+    -0.93,
+    "kf",
+    "9.79",
+    "9.78"
+   ],
+   [
+    -0.85,
+    "kf",
+    "9.78",
+    "9.78"
+   ],
+   [
+    0.62,
+    "kf",
+    "",
+    "9.78"
+   ],
+   [
+    0.7,
+    "kf",
+    "9.81",
+    ""
+   ],
+   [
+    0.77,
+    "home",
+    "9.81",
+    "9.81"
+   ],
+   [
+    0.94,
+    "kf",
+    "9.81",
+    "9.81"
+   ],
+   [
+    1.02,
+    "kf",
+    "9.81",
+    "9.81"
+   ],
+   [
+    2.4,
+    "kf",
+    "9.81",
+    "9.81"
+   ],
+   [
+    3.54,
+    "kf",
+    "9.82",
+    "9.81"
+   ],
+   [
+    4.6,
+    "kf",
+    "9.80",
+    "9.81"
+   ],
+   [
+    5.65,
+    "kf",
+    "9.82",
+    "9.81"
+   ],
+   [
+    6.72,
+    "kf",
+    "9.80",
+    "9.81"
+   ],
+   [
+    7.79,
+    "kf",
+    "9.82",
+    "9.81"
+   ],
+   [
+    8.27,
+    "kf",
+    "",
+    "9.81"
+   ],
+   [
+    8.35,
+    "kf",
+    "9.80",
+    ""
+   ],
+   [
+    8.44,
+    "home",
+    "9.80",
+    "9.80"
+   ],
+   [
+    8.84,
+    "kf",
+    "9.80",
+    "9.80"
+   ],
+   [
+    8.92,
+    "kf",
+    "9.80",
+    "9.80"
+   ],
+   [
+    9.99,
+    "kf",
+    "9.78",
+    "9.80"
+   ],
+   [
+    10.05,
+    "kf",
+    "9.80",
+    "9.80"
+   ],
+   [
+    11.19,
+    "kf",
+    "9.80",
+    "9.80"
+   ],
+   [
+    11.3,
+    "kf",
+    "9.80",
+    "9.80"
+   ],
+   [
+    12.37,
+    "kf",
+    "9.78",
+    "9.80"
+   ],
+   [
+    12.45,
+    "kf",
+    "9.80",
+    "9.80"
+   ],
+   [
+    13.5,
+    "kf",
+    "9.80",
+    "9.80"
+   ],
+   [
+    14.65,
+    "kf",
+    "9.80",
+    "9.80"
+   ],
+   [
+    15.69,
+    "kf",
+    "9.78",
+    "9.80"
+   ],
+   [
+    15.79,
+    "kf",
+    "9.80",
+    "9.80"
+   ],
+   [
+    17.09,
+    "kf",
+    "9.78",
+    "9.80"
+   ],
+   [
+    18.14,
+    "kf",
+    "9.81",
+    "9.80"
+   ],
+   [
+    19.2,
+    "kf",
+    "9.81",
+    "9.80"
+   ],
+   [
+    20.25,
+    "kf",
+    "9.81",
+    "9.80"
+   ],
+   [
+    21.32,
+    "kf",
+    "9.82",
+    "9.80"
+   ],
+   [
+    31.94,
+    "kf",
+    "9.81",
+    "9.80"
+   ],
+   [
+    39.1,
+    "kf",
+    "",
+    "9.80"
+   ],
+   [
+    39.19,
+    "kf",
+    "9.80",
+    ""
+   ],
+   [
+    39.27,
+    "home",
+    "9.80",
+    "9.80"
+   ],
+   [
+    39.44,
+    "kf",
+    "9.81",
+    "9.80"
+   ],
+   [
+    39.5,
+    "kf",
+    "9.80",
+    "9.80"
+   ],
+   [
+    40.57,
+    "kf",
+    "9.82",
+    "9.80"
+   ],
+   [
+    41.64,
+    "kf",
+    "9.80",
+    "9.80"
+   ],
+   [
+    42.7,
+    "kf",
+    "9.82",
+    "9.80"
+   ],
+   [
+    42.79,
+    "kf",
+    "9.80",
+    "9.80"
+   ],
+   [
+    43.84,
+    "kf",
+    "9.81",
+    "9.80"
+   ],
+   [
+    43.92,
+    "kf",
+    "9.80",
+    "9.80"
+   ],
+   [
+    44.97,
+    "kf",
+    "9.81",
+    "9.80"
+   ],
+   [
+    45.05,
+    "kf",
+    "9.80",
+    "9.80"
+   ],
+   [
+    45.55,
+    "kf",
+    "",
+    "9.80"
+   ],
+   [
+    45.64,
+    "kf",
+    "9.82",
+    ""
+   ],
+   [
+    45.7,
+    "home",
+    "9.82",
+    "9.82"
+   ],
+   [
+    45.87,
+    "kf",
+    "9.82",
+    "9.82"
+   ],
+   [
+    45.95,
+    "kf",
+    "9.82",
+    "9.82"
+   ],
+   [
+    47.02,
+    "kf",
+    "9.82",
+    "9.82"
+   ],
+   [
+    47.09,
+    "kf",
+    "9.82",
+    "9.82"
+   ],
+   [
+    48.15,
+    "kf",
+    "9.81",
+    "9.82"
+   ],
+   [
+    48.24,
+    "kf",
+    "9.82",
+    "9.82"
+   ],
+   [
+    49.29,
+    "kf",
+    "9.81",
+    "9.82"
+   ],
+   [
+    49.37,
+    "kf",
+    "9.82",
+    "9.82"
+   ],
+   [
+    50.44,
+    "kf",
+    "9.81",
+    "9.82"
+   ],
+   [
+    50.5,
+    "kf",
+    "9.82",
+    "9.82"
+   ],
+   [
+    51.57,
+    "kf",
+    "9.82",
+    "9.82"
+   ],
+   [
+    51.65,
+    "kf",
+    "9.82",
+    "9.82"
+   ],
+   [
+    52.7,
+    "kf",
+    "9.80",
+    "9.82"
+   ],
+   [
+    54.82,
+    "kf",
+    "9.81",
+    "9.82"
+   ],
+   [
+    54.9,
+    "kf",
+    "9.82",
+    "9.82"
+   ],
+   [
+    55.97,
+    "kf",
+    "9.81",
+    "9.82"
+   ],
+   [
+    56.05,
+    "kf",
+    "9.82",
+    "9.82"
+   ],
+   [
+    57.1,
+    "kf",
+    "9.82",
+    "9.82"
+   ],
+   [
+    57.19,
+    "kf",
+    "9.82",
+    "9.82"
+   ],
+   [
+    58.24,
+    "kf",
+    "9.80",
+    "9.82"
+   ],
+   [
+    58.32,
+    "kf",
+    "9.82",
+    "9.82"
+   ],
+   [
+    59.39,
+    "kf",
+    "9.81",
+    "9.82"
+   ],
+   [
+    59.49,
+    "kf",
+    "9.82",
+    "9.82"
+   ]
+  ],
+  "fresh_kf_served_at": null,
+  "kf_changes_in_hold": 67,
+  "home_changes_in_hold": 4,
+  "home_h_at_switch": "9.78",
+  "fc_texts_hold": [],
+  "ferr_rms_10s": 0.46241342812953545,
+  "ferr_max_10s": 0.6871884177131796,
+  "ferr_rms_60s": 1.0012646903961668,
+  "ferr_max_60s": 1.33216614411983,
+  "ferr_step": 0.6987862330332005,
+  "variant": "apb",
+  "wind": "w20g40",
+  "ap_text_tail": [
+   [
+    0.0,
+    "Barometer 1 calibration complete"
+   ],
+   [
+    0.0,
+    "Barometer 2 calibration complete"
+   ],
+   [
+    0.0,
+    "ArduPilot Ready"
+   ],
+   [
+    0.0,
+    "AHRS: DCM active"
+   ],
+   [
+    0.0,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    0.0,
+    "No ap_message for mavlink id (331)"
+   ],
+   [
+    0.0,
+    "No ap_message for mavlink id (290)"
+   ],
+   [
+    0.0,
+    "No ap_message for mavlink id (291)"
+   ],
+   [
+    0.0,
+    "No ap_message for mavlink id (231)"
+   ],
+   [
+    0.0,
+    "No ap_message for mavlink id (141)"
+   ],
+   [
+    0.0,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    0.0,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    0.0,
+    "AHRS: EKF3 active"
+   ],
+   [
+    0.0,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    0.0,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    0.0,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    0.0,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    0.0,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    0.0,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    0.0,
+    "Arming motors"
+   ],
+   [
+    0.0,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    0.0,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    0.0,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    0.0,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    0.0,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    0.0,
+    "EKF3 IMU0 is using external nav data"
+   ],
+   [
+    0.0,
+    "EKF3 IMU0 initial pos NED = -0.3,0.1,-9.8 (m)"
+   ],
+   [
+    0.0,
+    "EKF3 IMU1 is using external nav data"
+   ],
+   [
+    0.0,
+    "EKF3 IMU1 initial pos NED = -0.3,0.1,-9.8 (m)"
+   ]
+  ],
+  "settings_file_hold_cfg": {
+   "repeat_diff": 0.01,
+   "h_min": 2.0
+  },
+  "settings_file_min_height_m": 3.0,
+  "h_mean": 9.814527561109163,
+  "h_min": 9.75,
+  "h_max": 9.860000610351562,
+  "h_at_switch": 9.830001831054688,
+  "first_sent_t": 23.902,
+  "first_sent_height": "9.7700",
+  "first_sent_rel_switch": -1.9,
+  "why_not_sent_hold": {
+   "whole picture: halves disagree": 56,
+   "init": 4,
+   "good fix 1 of 10": 4,
+   "good fix 2 of 10": 4,
+   "good fix 3 of 10": 4,
+   "good fix 4 of 10": 4,
+   "good fix 5 of 10": 4,
+   "good fix 6 of 10": 4,
+   "good fix 7 of 10": 4,
+   "good fix 8 of 10": 4,
+   "good fix 9 of 10": 4,
+   "whole picture and points disagree": 30,
+   "16 consistent points": 3,
+   "15 consistent points": 1,
+   "17 consistent points": 1,
+   "13 consistent points": 1
+  },
+  "height_blocked_rows": 70,
+  "height_blocked_last": [
+   "16.7187",
+   "height 3.0 m under 3 m"
+  ],
+  "log_summary": "log  s  sent/s  %sent  proc p50  p95  max  age p50  p95  gap s  ok  deg  lost  switch (before, after, gap s)  recover s\n/home/paul/Videos/vio-hold-attempt/apsim/runs/lowap_apb_10m_w20g40_s1_onboard.csv  70.2  8.7  66.7  80.6  81.3  82.1  128  137  1.38  639  171  11  (7,8,1.37)  -",
+  "hold_cfg": {
+   "h_min": 2.0
+  }
+ },
+ "lowap_truth_5m_w20g40_s1": {
+  "case": "lowap_truth_5m_w20g40_s1",
+  "rms": 0.3527932830461707,
+  "p95": 0.6133234488566716,
+  "max": 0.8371648986860349,
+  "end": 0.39868778260884513,
+  "pct_frames_fix": null,
+  "fix_rate_hz": 19.456080758050305,
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 5, 0.0 s after the Loiter request started"
+   ]
+  ],
+  "hold_s_flown": 60.0,
+  "climb_s": 13.6,
+  "age_ms_p50": null,
+  "drift_m_per_min": 0.24223368616282892,
+  "proc_ms_mean": null,
+  "handover_ms_p50": null,
+  "handover_ms_p95": null,
+  "reanchors": null,
+  "hold_why": null,
+  "onboard_exit": null,
+  "frac_ok": null,
+  "onboard": null,
+  "height": 5.0,
+  "seed": 1,
+  "settings": {
+   "min_height_m": 3.0
+  },
+  "video": "JUSTICE_D",
+  "wall_s": 31,
+  "load_start": [
+   5.14306640625,
+   4.15869140625,
+   4.0224609375
+  ],
+  "load_end": [
+   3.79443359375,
+   3.92041015625,
+   3.9462890625
+  ],
+  "jobs_start": {
+   "other_sitl": 0,
+   "px4_sim": false
+  },
+  "jobs_end": {
+   "other_sitl": 0,
+   "px4_sim": false
+  },
+  "option": "min_height_m 3, h_min 2",
+  "texts_all": [
+   [
+    -30.73,
+    "Barometer 1 calibration complete"
+   ],
+   [
+    -30.73,
+    "Barometer 2 calibration complete"
+   ],
+   [
+    -28.28,
+    "ArduPilot Ready"
+   ],
+   [
+    -28.28,
+    "AHRS: DCM active"
+   ],
+   [
+    -27.98,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    -26.28,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    -26.28,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    -26.28,
+    "AHRS: EKF3 active"
+   ],
+   [
+    -24.96,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    -24.96,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    -24.87,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -24.87,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -15.04,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -15.04,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -14.99,
+    "EKF3 IMU0 is using external nav data"
+   ],
+   [
+    -14.99,
+    "EKF3 IMU0 initial pos NED = -0.0,-0.0,-0.0 (m)"
+   ],
+   [
+    -14.99,
+    "EKF3 IMU1 is using external nav data"
+   ],
+   [
+    -14.99,
+    "EKF3 IMU1 initial pos NED = -0.0,-0.0,-0.0 (m)"
+   ],
+   [
+    -14.98,
+    "Field Elevation Set: 70m"
+   ],
+   [
+    -14.96,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -14.52,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    -14.52,
+    "Arming motors"
+   ],
+   [
+    -13.52,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -9.17,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -9.17,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ]
+  ],
+  "rms_10s": 0.36712828761296734,
+  "max_10s": 0.6133234488566716,
+  "rms_10_60": 0.3498462338889829,
+  "max_10_60": 0.8371648986860349,
+  "notes": [],
+  "notes_all_n": 0,
+  "onboard_modes": [],
+  "fc_modes": [
+   [
+    -30.73,
+    "0"
+   ],
+   [
+    -14.98,
+    "ALT_HOLD"
+   ],
+   [
+    0.02,
+    "LOITER"
+   ]
+  ],
+  "fix_gap_max_s": null,
+  "fix_gap_at_s": null,
+  "fix_gaps_over_1s": null,
+  "engaged_note_at": null,
+  "fc_texts_hold": [],
+  "metrics_error": "ValueError: operands could not be broadcast together with shapes (0,) (0,2) ",
+  "variant": "truth",
+  "wind": "w20g40",
+  "ap_text_tail": [
+   [
+    0.0,
+    "Barometer 1 calibration complete"
+   ],
+   [
+    0.0,
+    "Barometer 2 calibration complete"
+   ],
+   [
+    0.0,
+    "ArduPilot Ready"
+   ],
+   [
+    0.0,
+    "AHRS: DCM active"
+   ],
+   [
+    0.0,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    0.0,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    0.0,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    0.0,
+    "AHRS: EKF3 active"
+   ],
+   [
+    0.0,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    0.0,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    0.0,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    0.0,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    0.0,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    0.0,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    0.0,
+    "EKF3 IMU0 is using external nav data"
+   ],
+   [
+    0.0,
+    "EKF3 IMU0 initial pos NED = -0.0,-0.0,-0.0 (m)"
+   ],
+   [
+    0.0,
+    "EKF3 IMU1 is using external nav data"
+   ],
+   [
+    0.0,
+    "EKF3 IMU1 initial pos NED = -0.0,-0.0,-0.0 (m)"
+   ],
+   [
+    0.0,
+    "Field Elevation Set: 70m"
+   ],
+   [
+    0.0,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    0.0,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    0.0,
+    "Arming motors"
+   ],
+   [
+    0.0,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    0.0,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    0.0,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ]
+  ],
+  "settings_file_hold_cfg": {
+   "repeat_diff": 0.01,
+   "h_min": 2.0
+  },
+  "settings_file_min_height_m": 3.0,
+  "h_mean": 4.703777162095446,
+  "h_min": 4.640007019042969,
+  "h_max": 4.760002136230469,
+  "h_at_switch": 4.730003356933594,
+  "log_summary": null,
+  "hold_cfg": {
+   "h_min": 2.0
+  }
+ },
+ "lowap_truth_10m_w20g40_s1": {
+  "case": "lowap_truth_10m_w20g40_s1",
+  "rms": 0.34369932248142765,
+  "p95": 0.594863097626352,
+  "max": 0.8362037499857543,
+  "end": 0.38261818607816367,
+  "pct_frames_fix": null,
+  "fix_rate_hz": 19.360988740173497,
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 5, 0.0 s after the Loiter request started"
+   ]
+  ],
+  "hold_s_flown": 60.0,
+  "climb_s": 12.6,
+  "age_ms_p50": null,
+  "drift_m_per_min": 0.23507812501513983,
+  "proc_ms_mean": null,
+  "handover_ms_p50": null,
+  "handover_ms_p95": null,
+  "reanchors": null,
+  "hold_why": null,
+  "onboard_exit": null,
+  "frac_ok": null,
+  "onboard": null,
+  "height": 10.0,
+  "seed": 1,
+  "settings": {
+   "min_height_m": 3.0
+  },
+  "video": "JUSTICE_D",
+  "wall_s": 31,
+  "load_start": [
+   3.79443359375,
+   3.92041015625,
+   3.9462890625
+  ],
+  "load_end": [
+   2.36669921875,
+   3.54833984375,
+   3.81982421875
+  ],
+  "jobs_start": {
+   "other_sitl": 0,
+   "px4_sim": false
+  },
+  "jobs_end": {
+   "other_sitl": 0,
+   "px4_sim": false
+  },
+  "option": "min_height_m 3, h_min 2",
+  "texts_all": [
+   [
+    -29.77,
+    "Barometer 1 calibration complete"
+   ],
+   [
+    -29.77,
+    "Barometer 2 calibration complete"
+   ],
+   [
+    -27.32,
+    "ArduPilot Ready"
+   ],
+   [
+    -27.32,
+    "AHRS: DCM active"
+   ],
+   [
+    -27.03,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    -25.32,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    -25.32,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    -25.32,
+    "AHRS: EKF3 active"
+   ],
+   [
+    -24.0,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    -24.0,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    -23.91,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -23.91,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -14.11,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -14.11,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -14.07,
+    "EKF3 IMU0 is using external nav data"
+   ],
+   [
+    -14.07,
+    "EKF3 IMU0 initial pos NED = -0.0,-0.0,-0.0 (m)"
+   ],
+   [
+    -14.06,
+    "EKF3 IMU1 is using external nav data"
+   ],
+   [
+    -14.06,
+    "EKF3 IMU1 initial pos NED = -0.0,-0.0,-0.0 (m)"
+   ],
+   [
+    -14.02,
+    "Field Elevation Set: 70m"
+   ],
+   [
+    -13.98,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -13.6,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    -13.6,
+    "Arming motors"
+   ],
+   [
+    -12.52,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -8.62,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -8.62,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ]
+  ],
+  "rms_10s": 0.33900873336364173,
+  "max_10s": 0.5700096180104621,
+  "rms_10_60": 0.344623234609835,
+  "max_10_60": 0.8362037499857543,
+  "notes": [],
+  "notes_all_n": 0,
+  "onboard_modes": [],
+  "fc_modes": [
+   [
+    -29.77,
+    "0"
+   ],
+   [
+    -14.1,
+    "ALT_HOLD"
+   ],
+   [
+    0.05,
+    "LOITER"
+   ]
+  ],
+  "fix_gap_max_s": null,
+  "fix_gap_at_s": null,
+  "fix_gaps_over_1s": null,
+  "engaged_note_at": null,
+  "fc_texts_hold": [],
+  "metrics_error": "ValueError: operands could not be broadcast together with shapes (0,) (0,2) ",
+  "variant": "truth",
+  "wind": "w20g40",
+  "ap_text_tail": [
+   [
+    0.0,
+    "Barometer 1 calibration complete"
+   ],
+   [
+    0.0,
+    "Barometer 2 calibration complete"
+   ],
+   [
+    0.0,
+    "ArduPilot Ready"
+   ],
+   [
+    0.0,
+    "AHRS: DCM active"
+   ],
+   [
+    0.0,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    0.0,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    0.0,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    0.0,
+    "AHRS: EKF3 active"
+   ],
+   [
+    0.0,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    0.0,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    0.0,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    0.0,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    0.0,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    0.0,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    0.0,
+    "EKF3 IMU0 is using external nav data"
+   ],
+   [
+    0.0,
+    "EKF3 IMU0 initial pos NED = -0.0,-0.0,-0.0 (m)"
+   ],
+   [
+    0.0,
+    "EKF3 IMU1 is using external nav data"
+   ],
+   [
+    0.0,
+    "EKF3 IMU1 initial pos NED = -0.0,-0.0,-0.0 (m)"
+   ],
+   [
+    0.0,
+    "Field Elevation Set: 70m"
+   ],
+   [
+    0.0,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    0.0,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    0.0,
+    "Arming motors"
+   ],
+   [
+    0.0,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    0.0,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    0.0,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ]
+  ],
+  "settings_file_hold_cfg": {
+   "repeat_diff": 0.01,
+   "h_min": 2.0
+  },
+  "settings_file_min_height_m": 3.0,
+  "h_mean": 9.772464281412148,
+  "h_min": 9.700004577636719,
+  "h_max": 9.830001831054688,
+  "h_at_switch": 9.82000732421875,
+  "log_summary": null,
+  "hold_cfg": {
+   "h_min": 2.0
+  }
+ },
+ "lowap_apb_5m_w20g40_s2": {
+  "case": "lowap_apb_5m_w20g40_s2",
+  "rms": 0.4350659543139007,
+  "p95": 0.8193250620602325,
+  "max": 1.04370476000889,
+  "end": 0.5245939818767011,
+  "pct_frames_fix": 14.051652318800333,
+  "fix_rate_hz": 8.432491427486452,
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 5, 0.0 s after the Loiter request started"
+   ]
+  ],
+  "hold_s_flown": 60.0,
+  "climb_s": 14.2,
+  "age_ms_p50": 127.6,
+  "drift_m_per_min": 0.1075904124293765,
+  "proc_ms_mean": 80.6710597826087,
+  "handover_ms_p50": 5.468721668876242,
+  "handover_ms_p95": 9.359371331811417,
+  "reanchors": 14,
+  "hold_why": {
+   "whole picture: halves disagree": 125,
+   "init": 14,
+   "good fix 1 of 10": 14,
+   "good fix 2 of 10": 13,
+   "good fix 3 of 10": 11,
+   "good fix 4 of 10": 10,
+   "good fix 5 of 10": 9,
+   "good fix 6 of 10": 8
+  },
+  "onboard_exit": 0,
+  "frac_ok": 0.7540760869565217,
+  "onboard": [
+   [
+    7.01,
+    "connected",
+    "ardupilot, clock ready True, ATTITUDE 100 Hz"
+   ],
+   [
+    86.76,
+    "done",
+    "stopped after 1 start(s); frame age when taken p50 10 ms, p95 21 ms; SCALED_IMU 0 Hz, 0 rows kept"
+   ]
+  ],
+  "height": 5.0,
+  "seed": 2,
+  "settings": {
+   "min_height_m": 3.0
+  },
+  "video": "JUSTICE_D",
+  "wall_s": 88,
+  "load_start": [
+   2.36669921875,
+   3.54833984375,
+   3.81982421875
+  ],
+  "load_end": [
+   6.4384765625,
+   4.70068359375,
+   4.2099609375
+  ],
+  "jobs_start": {
+   "other_sitl": 0,
+   "px4_sim": false
+  },
+  "jobs_end": {
+   "other_sitl": 0,
+   "px4_sim": false
+  },
+  "option": "min_height_m 3, h_min 2",
+  "texts_all": [
+   [
+    -26.36,
+    "Barometer 1 calibration complete"
+   ],
+   [
+    -26.36,
+    "Barometer 2 calibration complete"
+   ],
+   [
+    -23.9,
+    "ArduPilot Ready"
+   ],
+   [
+    -23.9,
+    "AHRS: DCM active"
+   ],
+   [
+    -23.61,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    -22.27,
+    "No ap_message for mavlink id (331)"
+   ],
+   [
+    -22.21,
+    "No ap_message for mavlink id (290)"
+   ],
+   [
+    -22.2,
+    "No ap_message for mavlink id (291)"
+   ],
+   [
+    -22.16,
+    "No ap_message for mavlink id (231)"
+   ],
+   [
+    -22.15,
+    "No ap_message for mavlink id (141)"
+   ],
+   [
+    -21.9,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    -21.9,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    -21.9,
+    "AHRS: EKF3 active"
+   ],
+   [
+    -20.52,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    -20.52,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    -20.42,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -20.42,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -15.1,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -14.63,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    -14.63,
+    "Arming motors"
+   ],
+   [
+    -14.16,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -10.97,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -10.97,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -9.23,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -9.22,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -5.23,
+    "EKF3 IMU0 is using external nav data"
+   ],
+   [
+    -5.23,
+    "EKF3 IMU0 initial pos NED = 0.0,-0.0,-4.1 (m)"
+   ],
+   [
+    -5.21,
+    "EKF3 IMU1 is using external nav data"
+   ],
+   [
+    -5.21,
+    "EKF3 IMU1 initial pos NED = 0.0,-0.0,-4.1 (m)"
+   ]
+  ],
+  "rms_10s": 0.5167589363848694,
+  "max_10s": 0.8226383497761168,
+  "rms_10_60": 0.4168046781767908,
+  "max_10_60": 1.04370476000889,
+  "notes": [
+   [
+    -10.82,
+    "FC mode ALT_HOLD"
+   ],
+   [
+    -8.87,
+    "re-anchored to last position (no FC position) 0.00 0.00"
+   ],
+   [
+    -7.57,
+    "re-anchored to last position (no FC position) 0.00 0.00"
+   ],
+   [
+    -6.27,
+    "re-anchored to last position (no FC position) 0.02 -0.01"
+   ],
+   [
+    -4.89,
+    "re-anchored to FC position 0.09 -0.01"
+   ],
+   [
+    -3.19,
+    "re-anchored to FC position 0.38 0.07"
+   ],
+   [
+    -1.32,
+    "re-anchored to FC position 0.44 0.10"
+   ],
+   [
+    -0.02,
+    "engaged: FC mode LOITER"
+   ],
+   [
+    1.45,
+    "re-anchored to FC position 0.57 0.26"
+   ],
+   [
+    5.03,
+    "re-anchored to FC position 0.54 0.62"
+   ],
+   [
+    8.81,
+    "re-anchored to FC position 0.37 0.57"
+   ],
+   [
+    9.86,
+    "re-anchored to FC position 0.47 0.22"
+   ],
+   [
+    11.65,
+    "re-anchored to FC position 0.49 -0.15"
+   ],
+   [
+    34.4,
+    "re-anchored to FC position 0.42 0.80"
+   ],
+   [
+    37.08,
+    "re-anchored to FC position 0.46 0.49"
+   ],
+   [
+    37.9,
+    "re-anchored to FC position 0.59 0.03"
+   ],
+   [
+    45.9,
+    "re-anchored to FC position 0.51 0.08"
+   ],
+   [
+    56.03,
+    "re-anchored to FC position 0.34 1.11"
+   ],
+   [
+    57.41,
+    "re-anchored to FC position 0.26 0.74"
+   ],
+   [
+    58.06,
+    "re-anchored to FC position 0.29 0.38"
+   ],
+   [
+    58.78,
+    "re-anchored to FC position 0.36 0.01"
+   ],
+   [
+    59.45,
+    "re-anchored to FC position 0.43 -0.20"
+   ]
+  ],
+  "notes_all_n": 27,
+  "onboard_modes": [
+   [
+    -10.82,
+    "ALT_HOLD"
+   ],
+   [
+    -0.02,
+    "LOITER"
+   ]
+  ],
+  "fc_modes": [
+   [
+    -26.36,
+    "0"
+   ],
+   [
+    -15.12,
+    "ALT_HOLD"
+   ],
+   [
+    0.01,
+    "LOITER"
+   ]
+  ],
+  "fix_gap_max_s": 2.87,
+  "fix_gap_at_s": 57.13,
+  "fix_gaps_over_1s": [
+   [
+    1.2,
+    1.3
+   ],
+   [
+    4.7,
+    1.3
+   ],
+   [
+    8.5,
+    2.8
+   ],
+   [
+    11.3,
+    1.4
+   ],
+   [
+    34.1,
+    1.3
+   ],
+   [
+    36.7,
+    2.2
+   ],
+   [
+    45.6,
+    1.3
+   ],
+   [
+    55.7,
+    1.4
+   ],
+   [
+    57.1,
+    2.9
+   ]
+  ],
+  "engaged_note_at": -0.02,
+  "kf_events": [
+   [
+    -8.87,
+    "kf",
+    "3.00",
+    ""
+   ],
+   [
+    -8.39,
+    "home",
+    "3.00",
+    "3.00"
+   ],
+   [
+    -7.57,
+    "kf",
+    "",
+    "3.00"
+   ],
+   [
+    -7.49,
+    "kf",
+    "3.50",
+    ""
+   ],
+   [
+    -7.0,
+    "home",
+    "3.50",
+    "3.50"
+   ],
+   [
+    -6.27,
+    "kf",
+    "",
+    "3.50"
+   ],
+   [
+    -6.2,
+    "kf",
+    "3.90",
+    ""
+   ],
+   [
+    -6.12,
+    "home",
+    "3.90",
+    "3.90"
+   ],
+   [
+    -5.95,
+    "kf",
+    "3.96",
+    "3.90"
+   ],
+   [
+    -5.87,
+    "kf",
+    "3.90",
+    "3.90"
+   ],
+   [
+    -4.89,
+    "kf",
+    "",
+    "3.90"
+   ],
+   [
+    -4.8,
+    "kf",
+    "4.31",
+    ""
+   ],
+   [
+    -3.99,
+    "home",
+    "4.31",
+    "4.31"
+   ],
+   [
+    -3.19,
+    "kf",
+    "",
+    "4.31"
+   ],
+   [
+    -3.1,
+    "kf",
+    "4.68",
+    ""
+   ],
+   [
+    -3.02,
+    "home",
+    "4.68",
+    "4.68"
+   ],
+   [
+    -2.85,
+    "kf",
+    "4.69",
+    "4.68"
+   ],
+   [
+    -2.77,
+    "kf",
+    "4.68",
+    "4.68"
+   ],
+   [
+    -1.32,
+    "kf",
+    "",
+    "4.68"
+   ],
+   [
+    -1.24,
+    "kf",
+    "4.71",
+    ""
+   ],
+   [
+    -1.15,
+    "home",
+    "4.71",
+    "4.71"
+   ],
+   [
+    -0.99,
+    "kf",
+    "4.71",
+    "4.71"
+   ],
+   [
+    -0.9,
+    "kf",
+    "4.71",
+    "4.71"
+   ],
+   [
+    0.15,
+    "kf",
+    "4.72",
+    "4.71"
+   ],
+   [
+    0.23,
+    "kf",
+    "4.71",
+    "4.71"
+   ],
+   [
+    1.45,
+    "kf",
+    "",
+    "4.71"
+   ],
+   [
+    1.55,
+    "kf",
+    "4.72",
+    ""
+   ],
+   [
+    1.61,
+    "home",
+    "4.72",
+    "4.72"
+   ],
+   [
+    1.78,
+    "kf",
+    "4.72",
+    "4.72"
+   ],
+   [
+    1.86,
+    "kf",
+    "4.72",
+    "4.72"
+   ],
+   [
+    2.91,
+    "kf",
+    "4.72",
+    "4.72"
+   ],
+   [
+    3.0,
+    "kf",
+    "4.72",
+    "4.72"
+   ],
+   [
+    4.05,
+    "kf",
+    "4.71",
+    "4.72"
+   ],
+   [
+    4.13,
+    "kf",
+    "4.72",
+    "4.72"
+   ],
+   [
+    5.03,
+    "kf",
+    "",
+    "4.72"
+   ],
+   [
+    5.1,
+    "kf",
+    "4.72",
+    ""
+   ],
+   [
+    5.18,
+    "home",
+    "4.72",
+    "4.72"
+   ],
+   [
+    5.35,
+    "kf",
+    "4.72",
+    "4.72"
+   ],
+   [
+    5.43,
+    "kf",
+    "4.72",
+    "4.72"
+   ],
+   [
+    6.45,
+    "kf",
+    "4.70",
+    "4.72"
+   ],
+   [
+    6.53,
+    "kf",
+    "4.72",
+    "4.72"
+   ],
+   [
+    7.58,
+    "kf",
+    "4.70",
+    "4.72"
+   ],
+   [
+    7.66,
+    "kf",
+    "4.72",
+    "4.72"
+   ],
+   [
+    8.81,
+    "kf",
+    "",
+    "4.72"
+   ],
+   [
+    8.88,
+    "kf",
+    "4.72",
+    ""
+   ],
+   [
+    8.96,
+    "home",
+    "4.72",
+    "4.72"
+   ],
+   [
+    9.86,
+    "kf",
+    "",
+    "4.72"
+   ],
+   [
+    9.95,
+    "kf",
+    "4.70",
+    ""
+   ],
+   [
+    10.01,
+    "home",
+    "4.70",
+    "4.70"
+   ],
+   [
+    10.18,
+    "kf",
+    "4.69",
+    "4.70"
+   ],
+   [
+    10.26,
+    "kf",
+    "4.70",
+    "4.70"
+   ],
+   [
+    11.65,
+    "kf",
+    "",
+    "4.70"
+   ],
+   [
+    11.73,
+    "kf",
+    "4.69",
+    ""
+   ],
+   [
+    11.81,
+    "home",
+    "4.69",
+    "4.69"
+   ],
+   [
+    11.98,
+    "kf",
+    "4.70",
+    "4.69"
+   ],
+   [
+    12.06,
+    "kf",
+    "4.69",
+    "4.69"
+   ],
+   [
+    13.11,
+    "kf",
+    "4.72",
+    "4.69"
+   ],
+   [
+    13.2,
+    "kf",
+    "4.69",
+    "4.69"
+   ],
+   [
+    14.26,
+    "kf",
+    "4.73",
+    "4.69"
+   ],
+   [
+    14.35,
+    "kf",
+    "4.69",
+    "4.69"
+   ],
+   [
+    15.48,
+    "kf",
+    "4.71",
+    "4.69"
+   ],
+   [
+    15.56,
+    "kf",
+    "4.69",
+    "4.69"
+   ],
+   [
+    16.61,
+    "kf",
+    "4.71",
+    "4.69"
+   ],
+   [
+    17.76,
+    "kf",
+    "4.69",
+    "4.69"
+   ],
+   [
+    18.81,
+    "kf",
+    "4.72",
+    "4.69"
+   ],
+   [
+    18.9,
+    "kf",
+    "4.69",
+    "4.69"
+   ],
+   [
+    19.95,
+    "kf",
+    "4.70",
+    "4.69"
+   ],
+   [
+    20.03,
+    "kf",
+    "4.69",
+    "4.69"
+   ],
+   [
+    21.1,
+    "kf",
+    "4.74",
+    "4.69"
+   ],
+   [
+    21.18,
+    "kf",
+    "4.69",
+    "4.69"
+   ],
+   [
+    22.23,
+    "kf",
+    "4.70",
+    "4.69"
+   ],
+   [
+    22.31,
+    "kf",
+    "4.69",
+    "4.69"
+   ],
+   [
+    23.36,
+    "kf",
+    "4.70",
+    "4.69"
+   ],
+   [
+    23.45,
+    "kf",
+    "4.69",
+    "4.69"
+   ],
+   [
+    24.51,
+    "kf",
+    "4.72",
+    "4.69"
+   ],
+   [
+    24.58,
+    "kf",
+    "4.69",
+    "4.69"
+   ],
+   [
+    25.65,
+    "kf",
+    "4.71",
+    "4.69"
+   ],
+   [
+    25.73,
+    "kf",
+    "4.69",
+    "4.69"
+   ],
+   [
+    26.75,
+    "kf",
+    "4.70",
+    "4.69"
+   ],
+   [
+    26.81,
+    "kf",
+    "4.69",
+    "4.69"
+   ],
+   [
+    27.88,
+    "kf",
+    "4.72",
+    "4.69"
+   ],
+   [
+    27.96,
+    "kf",
+    "4.69",
+    "4.69"
+   ],
+   [
+    29.01,
+    "kf",
+    "4.72",
+    "4.69"
+   ],
+   [
+    29.1,
+    "kf",
+    "4.69",
+    "4.69"
+   ],
+   [
+    30.25,
+    "kf",
+    "4.71",
+    "4.69"
+   ],
+   [
+    31.3,
+    "kf",
+    "4.71",
+    "4.69"
+   ],
+   [
+    32.35,
+    "kf",
+    "4.69",
+    "4.69"
+   ],
+   [
+    33.41,
+    "kf",
+    "4.71",
+    "4.69"
+   ],
+   [
+    33.5,
+    "kf",
+    "4.69",
+    "4.69"
+   ],
+   [
+    34.4,
+    "kf",
+    "",
+    "4.69"
+   ],
+   [
+    34.48,
+    "kf",
+    "4.72",
+    ""
+   ],
+   [
+    34.56,
+    "home",
+    "4.72",
+    "4.72"
+   ],
+   [
+    37.08,
+    "kf",
+    "",
+    "4.72"
+   ],
+   [
+    37.15,
+    "kf",
+    "4.72",
+    ""
+   ],
+   [
+    37.23,
+    "home",
+    "4.72",
+    "4.72"
+   ],
+   [
+    37.9,
+    "kf",
+    "",
+    "4.72"
+   ],
+   [
+    37.96,
+    "kf",
+    "4.70",
+    ""
+   ],
+   [
+    38.05,
+    "home",
+    "4.70",
+    "4.70"
+   ],
+   [
+    38.21,
+    "kf",
+    "4.71",
+    "4.70"
+   ],
+   [
+    39.26,
+    "kf",
+    "4.71",
+    "4.70"
+   ],
+   [
+    40.33,
+    "kf",
+    "4.72",
+    "4.70"
+   ],
+   [
+    41.38,
+    "kf",
+    "4.71",
+    "4.70"
+   ],
+   [
+    42.4,
+    "kf",
+    "4.72",
+    "4.70"
+   ],
+   [
+    42.48,
+    "kf",
+    "4.70",
+    "4.70"
+   ],
+   [
+    43.53,
+    "kf",
+    "4.72",
+    "4.70"
+   ],
+   [
+    43.61,
+    "kf",
+    "4.70",
+    "4.70"
+   ],
+   [
+    44.68,
+    "kf",
+    "4.72",
+    "4.70"
+   ],
+   [
+    44.75,
+    "kf",
+    "4.70",
+    "4.70"
+   ],
+   [
+    45.9,
+    "kf",
+    "",
+    "4.70"
+   ],
+   [
+    45.98,
+    "kf",
+    "4.71",
+    ""
+   ],
+   [
+    46.06,
+    "home",
+    "4.71",
+    "4.71"
+   ],
+   [
+    46.23,
+    "kf",
+    "4.72",
+    "4.71"
+   ],
+   [
+    46.3,
+    "kf",
+    "4.71",
+    "4.71"
+   ],
+   [
+    47.4,
+    "kf",
+    "4.71",
+    "4.71"
+   ],
+   [
+    47.48,
+    "kf",
+    "4.71",
+    "4.71"
+   ],
+   [
+    48.53,
+    "kf",
+    "4.72",
+    "4.71"
+   ],
+   [
+    48.61,
+    "kf",
+    "4.71",
+    "4.71"
+   ],
+   [
+    49.68,
+    "kf",
+    "4.71",
+    "4.71"
+   ],
+   [
+    49.76,
+    "kf",
+    "4.71",
+    "4.71"
+   ],
+   [
+    50.81,
+    "kf",
+    "4.71",
+    "4.71"
+   ],
+   [
+    50.9,
+    "kf",
+    "4.71",
+    "4.71"
+   ],
+   [
+    51.96,
+    "kf",
+    "4.74",
+    "4.71"
+   ],
+   [
+    52.03,
+    "kf",
+    "4.71",
+    "4.71"
+   ],
+   [
+    53.1,
+    "kf",
+    "4.72",
+    "4.71"
+   ],
+   [
+    53.18,
+    "kf",
+    "4.71",
+    "4.71"
+   ],
+   [
+    54.23,
+    "kf",
+    "4.72",
+    "4.71"
+   ],
+   [
+    54.31,
+    "kf",
+    "4.71",
+    "4.71"
+   ],
+   [
+    55.38,
+    "kf",
+    "4.73",
+    "4.71"
+   ],
+   [
+    56.03,
+    "kf",
+    "",
+    "4.71"
+   ],
+   [
+    56.11,
+    "kf",
+    "4.73",
+    ""
+   ],
+   [
+    56.26,
+    "home",
+    "4.73",
+    "4.73"
+   ],
+   [
+    57.41,
+    "kf",
+    "",
+    "4.73"
+   ],
+   [
+    57.5,
+    "kf",
+    "4.72",
+    ""
+   ],
+   [
+    57.58,
+    "home",
+    "4.72",
+    "4.72"
+   ],
+   [
+    58.06,
+    "kf",
+    "",
+    "4.72"
+   ],
+   [
+    58.15,
+    "kf",
+    "4.70",
+    ""
+   ],
+   [
+    58.21,
+    "home",
+    "4.70",
+    "4.70"
+   ],
+   [
+    58.78,
+    "kf",
+    "",
+    "4.70"
+   ],
+   [
+    58.88,
+    "kf",
+    "4.71",
+    ""
+   ],
+   [
+    59.03,
+    "home",
+    "4.71",
+    "4.71"
+   ],
+   [
+    59.45,
+    "kf",
+    "",
+    "4.71"
+   ],
+   [
+    59.51,
+    "kf",
+    "4.71",
+    ""
+   ],
+   [
+    59.6,
+    "home",
+    "4.71",
+    "4.71"
+   ],
+   [
+    59.76,
+    "kf",
+    "4.72",
+    "4.71"
+   ],
+   [
+    59.85,
+    "kf",
+    "4.71",
+    "4.71"
+   ]
+  ],
+  "fresh_kf_served_at": null,
+  "kf_changes_in_hold": 108,
+  "home_changes_in_hold": 14,
+  "home_h_at_switch": "4.71",
+  "fc_texts_hold": [],
+  "ferr_rms_10s": 0.1443336380086132,
+  "ferr_max_10s": 0.2047588017598988,
+  "ferr_rms_60s": 0.09068874973986127,
+  "ferr_max_60s": 0.2047588017598988,
+  "ferr_step": 0.28184257873735186,
+  "variant": "apb",
+  "wind": "w20g40",
+  "ap_text_tail": [
+   [
+    0.0,
+    "Barometer 1 calibration complete"
+   ],
+   [
+    0.0,
+    "Barometer 2 calibration complete"
+   ],
+   [
+    0.0,
+    "ArduPilot Ready"
+   ],
+   [
+    0.0,
+    "AHRS: DCM active"
+   ],
+   [
+    0.0,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    0.0,
+    "No ap_message for mavlink id (331)"
+   ],
+   [
+    0.0,
+    "No ap_message for mavlink id (290)"
+   ],
+   [
+    0.0,
+    "No ap_message for mavlink id (291)"
+   ],
+   [
+    0.0,
+    "No ap_message for mavlink id (231)"
+   ],
+   [
+    0.0,
+    "No ap_message for mavlink id (141)"
+   ],
+   [
+    0.0,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    0.0,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    0.0,
+    "AHRS: EKF3 active"
+   ],
+   [
+    0.0,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    0.0,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    0.0,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    0.0,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    0.0,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    0.0,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    0.0,
+    "Arming motors"
+   ],
+   [
+    0.0,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    0.0,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    0.0,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    0.0,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    0.0,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    0.0,
+    "EKF3 IMU0 is using external nav data"
+   ],
+   [
+    0.0,
+    "EKF3 IMU0 initial pos NED = 0.0,-0.0,-4.1 (m)"
+   ],
+   [
+    0.0,
+    "EKF3 IMU1 is using external nav data"
+   ],
+   [
+    0.0,
+    "EKF3 IMU1 initial pos NED = 0.0,-0.0,-4.1 (m)"
+   ]
+  ],
+  "settings_file_hold_cfg": {
+   "repeat_diff": 0.01,
+   "h_min": 2.0
+  },
+  "settings_file_min_height_m": 3.0,
+  "h_mean": 4.722952492467767,
+  "h_min": 4.680000305175781,
+  "h_max": 4.760002136230469,
+  "h_at_switch": 4.7400054931640625,
+  "first_sent_t": 20.9687,
+  "first_sent_height": "4.1442",
+  "first_sent_rel_switch": -5.39,
+  "why_not_sent_hold": {
+   "whole picture: halves disagree": 125,
+   "init": 14,
+   "good fix 1 of 10": 14,
+   "good fix 2 of 10": 13,
+   "good fix 3 of 10": 11,
+   "good fix 4 of 10": 10,
+   "good fix 5 of 10": 9,
+   "good fix 6 of 10": 8,
+   "good fix 7 of 10": 8,
+   "good fix 8 of 10": 8,
+   "good fix 9 of 10": 8,
+   "waiting for image motion that proves the picture is live": 2
+  },
+  "height_blocked_rows": 116,
+  "height_blocked_last": [
+   "17.4687",
+   "height 3.0 m under 3 m"
+  ],
+  "log_summary": "log  s  sent/s  %sent  proc p50  p95  max  age p50  p95  gap s  ok  deg  lost  switch (before, after, gap s)  recover s\n/home/paul/Videos/vio-hold-attempt/apsim/runs/lowap_apb_5m_w20g40_s2_onboard.csv  70.8  7.3  54.1  80.6  81.3  82.7  128  136  3.02  609  177  19  (7,13,1.38)  -",
+  "hold_cfg": {
+   "h_min": 2.0
+  }
+ },
+ "lowap_apb_10m_w20g40_s2": {
+  "case": "lowap_apb_10m_w20g40_s2",
+  "rms": 0.9298643907802431,
+  "p95": 1.206140964886206,
+  "max": 1.275753890538312,
+  "end": 1.275753890538312,
+  "pct_frames_fix": 16.532370102806336,
+  "fix_rate_hz": 9.915839228389443,
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 5, 0.0 s after the Loiter request started"
+   ]
+  ],
+  "hold_s_flown": 60.0,
+  "climb_s": 13.8,
+  "age_ms_p50": 128.2,
+  "drift_m_per_min": 0.7442168075153192,
+  "proc_ms_mean": 80.70067842605157,
+  "handover_ms_p50": 5.393772004026687,
+  "handover_ms_p95": 9.164467197479098,
+  "reanchors": 6,
+  "hold_why": {
+   "whole picture: halves disagree": 38,
+   "whole picture and points disagree": 38,
+   "waiting for image motion that proves the picture is live": 10,
+   "init": 6,
+   "good fix 1 of 10": 6,
+   "good fix 2 of 10": 6,
+   "good fix 3 of 10": 6,
+   "good fix 4 of 10": 6
+  },
+  "onboard_exit": 0,
+  "frac_ok": 0.8751696065128901,
+  "onboard": [
+   [
+    7.11,
+    "connected",
+    "ardupilot, clock ready True, ATTITUDE 101 Hz"
+   ],
+   [
+    86.29,
+    "done",
+    "stopped after 1 start(s); frame age when taken p50 10 ms, p95 22 ms; SCALED_IMU 0 Hz, 0 rows kept"
+   ]
+  ],
+  "height": 10.0,
+  "seed": 2,
+  "settings": {
+   "min_height_m": 3.0
+  },
+  "video": "JUSTICE_D",
+  "wall_s": 87,
+  "load_start": [
+   6.4384765625,
+   4.70068359375,
+   4.2099609375
+  ],
+  "load_end": [
+   5.89990234375,
+   4.95166015625,
+   4.34130859375
+  ],
+  "jobs_start": {
+   "other_sitl": 0,
+   "px4_sim": false
+  },
+  "jobs_end": {
+   "other_sitl": 0,
+   "px4_sim": false
+  },
+  "option": "min_height_m 3, h_min 2",
+  "texts_all": [
+   [
+    -25.88,
+    "Barometer 1 calibration complete"
+   ],
+   [
+    -25.88,
+    "Barometer 2 calibration complete"
+   ],
+   [
+    -23.43,
+    "ArduPilot Ready"
+   ],
+   [
+    -23.43,
+    "AHRS: DCM active"
+   ],
+   [
+    -23.13,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    -21.8,
+    "No ap_message for mavlink id (331)"
+   ],
+   [
+    -21.74,
+    "No ap_message for mavlink id (290)"
+   ],
+   [
+    -21.73,
+    "No ap_message for mavlink id (291)"
+   ],
+   [
+    -21.69,
+    "No ap_message for mavlink id (231)"
+   ],
+   [
+    -21.68,
+    "No ap_message for mavlink id (141)"
+   ],
+   [
+    -21.43,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    -21.43,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    -21.42,
+    "AHRS: EKF3 active"
+   ],
+   [
+    -20.04,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    -20.04,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    -19.94,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -19.94,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -14.64,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -14.18,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    -14.18,
+    "Arming motors"
+   ],
+   [
+    -13.73,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -10.51,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -10.51,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -9.15,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -9.14,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -8.09,
+    "EKF3 IMU0 is using external nav data"
+   ],
+   [
+    -8.09,
+    "EKF3 IMU0 initial pos NED = -0.0,0.0,-6.8 (m)"
+   ],
+   [
+    -8.08,
+    "EKF3 IMU1 is using external nav data"
+   ],
+   [
+    -8.08,
+    "EKF3 IMU1 initial pos NED = -0.0,0.0,-6.8 (m)"
+   ]
+  ],
+  "rms_10s": 0.7674475968616622,
+  "max_10s": 1.1250625277417787,
+  "rms_10_60": 0.9590329855956609,
+  "max_10_60": 1.275753890538312,
+  "notes": [
+   [
+    -10.38,
+    "FC mode ALT_HOLD"
+   ],
+   [
+    -9.13,
+    "re-anchored to last position (no FC position) 0.00 0.00"
+   ],
+   [
+    -7.03,
+    "re-anchored to FC position -0.02 -0.00"
+   ],
+   [
+    -5.96,
+    "re-anchored to FC position -0.00 -0.05"
+   ],
+   [
+    -5.56,
+    "re-anchored to FC position 0.00 -0.07"
+   ],
+   [
+    -4.34,
+    "re-anchored to FC position 0.01 -0.10"
+   ],
+   [
+    -3.19,
+    "re-anchored to FC position 0.00 -0.12"
+   ],
+   [
+    -1.49,
+    "re-anchored to FC position -0.15 -0.09"
+   ],
+   [
+    -0.03,
+    "engaged: FC mode LOITER"
+   ],
+   [
+    0.06,
+    "re-anchored to FC position -0.21 -0.02"
+   ],
+   [
+    1.92,
+    "re-anchored to FC position -0.27 0.01"
+   ],
+   [
+    4.46,
+    "re-anchored to FC position -0.13 0.42"
+   ],
+   [
+    17.67,
+    "re-anchored to FC position -0.26 -0.05"
+   ],
+   [
+    52.62,
+    "re-anchored to FC position -0.21 0.13"
+   ],
+   [
+    56.94,
+    "re-anchored to FC position -0.45 0.66"
+   ]
+  ],
+  "notes_all_n": 21,
+  "onboard_modes": [
+   [
+    -10.38,
+    "ALT_HOLD"
+   ],
+   [
+    -0.03,
+    "LOITER"
+   ]
+  ],
+  "fc_modes": [
+   [
+    -25.88,
+    "0"
+   ],
+   [
+    -14.68,
+    "ALT_HOLD"
+   ],
+   [
+    0.02,
+    "LOITER"
+   ]
+  ],
+  "fix_gap_max_s": 2.95,
+  "fix_gap_at_s": 0.0,
+  "fix_gaps_over_1s": [
+   [
+    0.0,
+    3.0
+   ],
+   [
+    4.1,
+    1.4
+   ],
+   [
+    17.4,
+    1.3
+   ],
+   [
+    52.3,
+    1.3
+   ],
+   [
+    56.7,
+    1.3
+   ]
+  ],
+  "engaged_note_at": -0.03,
+  "kf_events": [
+   [
+    -9.13,
+    "kf",
+    "3.30",
+    ""
+   ],
+   [
+    -9.06,
+    "home",
+    "3.30",
+    "3.30"
+   ],
+   [
+    -8.81,
+    "kf",
+    "4.58",
+    "3.30"
+   ],
+   [
+    -7.76,
+    "kf",
+    "7.81",
+    "3.30"
+   ],
+   [
+    -7.03,
+    "kf",
+    "",
+    "3.30"
+   ],
+   [
+    -6.94,
+    "kf",
+    "8.62",
+    ""
+   ],
+   [
+    -6.86,
+    "home",
+    "8.62",
+    "8.62"
+   ],
+   [
+    -6.69,
+    "kf",
+    "8.64",
+    "8.62"
+   ],
+   [
+    -6.63,
+    "kf",
+    "8.62",
+    "8.62"
+   ],
+   [
+    -5.96,
+    "kf",
+    "",
+    "8.62"
+   ],
+   [
+    -5.89,
+    "kf",
+    "8.79",
+    ""
+   ],
+   [
+    -5.56,
+    "kf",
+    "",
+    ""
+   ],
+   [
+    -5.48,
+    "kf",
+    "8.93",
+    ""
+   ],
+   [
+    -5.31,
+    "home",
+    "8.93",
+    "8.93"
+   ],
+   [
+    -5.24,
+    "kf",
+    "9.04",
+    "8.93"
+   ],
+   [
+    -5.16,
+    "kf",
+    "8.93",
+    "8.93"
+   ],
+   [
+    -4.34,
+    "kf",
+    "",
+    "8.93"
+   ],
+   [
+    -4.26,
+    "kf",
+    "9.39",
+    ""
+   ],
+   [
+    -4.18,
+    "home",
+    "9.39",
+    "9.39"
+   ],
+   [
+    -4.01,
+    "kf",
+    "9.49",
+    "9.39"
+   ],
+   [
+    -3.94,
+    "kf",
+    "9.39",
+    "9.39"
+   ],
+   [
+    -3.19,
+    "kf",
+    "",
+    "9.39"
+   ],
+   [
+    -3.13,
+    "kf",
+    "9.65",
+    ""
+   ],
+   [
+    -3.04,
+    "home",
+    "9.65",
+    "9.65"
+   ],
+   [
+    -2.88,
+    "kf",
+    "9.66",
+    "9.65"
+   ],
+   [
+    -2.79,
+    "kf",
+    "9.65",
+    "9.65"
+   ],
+   [
+    -1.49,
+    "kf",
+    "",
+    "9.65"
+   ],
+   [
+    -1.41,
+    "kf",
+    "9.65",
+    ""
+   ],
+   [
+    -1.34,
+    "home",
+    "9.65",
+    "9.65"
+   ],
+   [
+    -1.16,
+    "kf",
+    "9.65",
+    "9.65"
+   ],
+   [
+    -1.09,
+    "kf",
+    "9.65",
+    "9.65"
+   ],
+   [
+    0.06,
+    "kf",
+    "",
+    "9.65"
+   ],
+   [
+    0.14,
+    "kf",
+    "9.65",
+    ""
+   ],
+   [
+    1.02,
+    "home",
+    "9.65",
+    "9.65"
+   ],
+   [
+    1.92,
+    "kf",
+    "",
+    "9.65"
+   ],
+   [
+    2.01,
+    "kf",
+    "9.64",
+    ""
+   ],
+   [
+    2.09,
+    "home",
+    "9.64",
+    "9.64"
+   ],
+   [
+    2.26,
+    "kf",
+    "9.63",
+    "9.64"
+   ],
+   [
+    2.34,
+    "kf",
+    "9.64",
+    "9.64"
+   ],
+   [
+    3.39,
+    "kf",
+    "9.62",
+    "9.64"
+   ],
+   [
+    3.47,
+    "kf",
+    "9.64",
+    "9.64"
+   ],
+   [
+    4.46,
+    "kf",
+    "",
+    "9.64"
+   ],
+   [
+    4.54,
+    "kf",
+    "9.61",
+    ""
+   ],
+   [
+    4.62,
+    "home",
+    "9.61",
+    "9.61"
+   ],
+   [
+    4.77,
+    "kf",
+    "9.61",
+    "9.61"
+   ],
+   [
+    4.86,
+    "kf",
+    "9.61",
+    "9.61"
+   ],
+   [
+    5.92,
+    "kf",
+    "9.63",
+    "9.61"
+   ],
+   [
+    6.01,
+    "kf",
+    "9.61",
+    "9.61"
+   ],
+   [
+    7.06,
+    "kf",
+    "9.63",
+    "9.61"
+   ],
+   [
+    7.14,
+    "kf",
+    "9.61",
+    "9.61"
+   ],
+   [
+    8.19,
+    "kf",
+    "9.61",
+    "9.61"
+   ],
+   [
+    8.27,
+    "kf",
+    "9.61",
+    "9.61"
+   ],
+   [
+    9.34,
+    "kf",
+    "9.61",
+    "9.61"
+   ],
+   [
+    13.61,
+    "kf",
+    "9.61",
+    "9.61"
+   ],
+   [
+    14.66,
+    "kf",
+    "9.65",
+    "9.61"
+   ],
+   [
+    14.74,
+    "kf",
+    "9.61",
+    "9.61"
+   ],
+   [
+    15.87,
+    "kf",
+    "9.63",
+    "9.61"
+   ],
+   [
+    15.96,
+    "kf",
+    "9.61",
+    "9.61"
+   ],
+   [
+    17.01,
+    "kf",
+    "9.63",
+    "9.61"
+   ],
+   [
+    17.09,
+    "kf",
+    "9.61",
+    "9.61"
+   ],
+   [
+    17.67,
+    "kf",
+    "",
+    "9.61"
+   ],
+   [
+    17.76,
+    "kf",
+    "9.64",
+    ""
+   ],
+   [
+    17.82,
+    "home",
+    "9.64",
+    "9.64"
+   ],
+   [
+    17.99,
+    "kf",
+    "9.63",
+    "9.64"
+   ],
+   [
+    18.07,
+    "kf",
+    "9.64",
+    "9.64"
+   ],
+   [
+    19.14,
+    "kf",
+    "9.65",
+    "9.64"
+   ],
+   [
+    19.22,
+    "kf",
+    "9.64",
+    "9.64"
+   ],
+   [
+    20.27,
+    "kf",
+    "9.64",
+    "9.64"
+   ],
+   [
+    20.36,
+    "kf",
+    "9.64",
+    "9.64"
+   ],
+   [
+    21.41,
+    "kf",
+    "9.65",
+    "9.64"
+   ],
+   [
+    21.51,
+    "kf",
+    "9.64",
+    "9.64"
+   ],
+   [
+    22.56,
+    "kf",
+    "9.65",
+    "9.64"
+   ],
+   [
+    22.64,
+    "kf",
+    "9.64",
+    "9.64"
+   ],
+   [
+    23.69,
+    "kf",
+    "9.64",
+    "9.64"
+   ],
+   [
+    23.77,
+    "kf",
+    "9.64",
+    "9.64"
+   ],
+   [
+    24.84,
+    "kf",
+    "9.63",
+    "9.64"
+   ],
+   [
+    24.92,
+    "kf",
+    "9.64",
+    "9.64"
+   ],
+   [
+    25.97,
+    "kf",
+    "9.65",
+    "9.64"
+   ],
+   [
+    26.06,
+    "kf",
+    "9.64",
+    "9.64"
+   ],
+   [
+    27.12,
+    "kf",
+    "9.63",
+    "9.64"
+   ],
+   [
+    27.19,
+    "kf",
+    "9.64",
+    "9.64"
+   ],
+   [
+    28.26,
+    "kf",
+    "9.64",
+    "9.64"
+   ],
+   [
+    28.34,
+    "kf",
+    "9.64",
+    "9.64"
+   ],
+   [
+    29.39,
+    "kf",
+    "9.64",
+    "9.64"
+   ],
+   [
+    29.47,
+    "kf",
+    "9.64",
+    "9.64"
+   ],
+   [
+    30.52,
+    "kf",
+    "9.64",
+    "9.64"
+   ],
+   [
+    30.61,
+    "kf",
+    "9.64",
+    "9.64"
+   ],
+   [
+    31.67,
+    "kf",
+    "9.64",
+    "9.64"
+   ],
+   [
+    31.76,
+    "kf",
+    "9.64",
+    "9.64"
+   ],
+   [
+    32.81,
+    "kf",
+    "9.65",
+    "9.64"
+   ],
+   [
+    32.89,
+    "kf",
+    "9.64",
+    "9.64"
+   ],
+   [
+    33.96,
+    "kf",
+    "9.64",
+    "9.64"
+   ],
+   [
+    34.02,
+    "kf",
+    "9.64",
+    "9.64"
+   ],
+   [
+    35.09,
+    "kf",
+    "9.64",
+    "9.64"
+   ],
+   [
+    35.17,
+    "kf",
+    "9.64",
+    "9.64"
+   ],
+   [
+    36.24,
+    "kf",
+    "9.64",
+    "9.64"
+   ],
+   [
+    36.32,
+    "kf",
+    "9.64",
+    "9.64"
+   ],
+   [
+    37.37,
+    "kf",
+    "9.64",
+    "9.64"
+   ],
+   [
+    37.46,
+    "kf",
+    "9.64",
+    "9.64"
+   ],
+   [
+    38.51,
+    "kf",
+    "9.64",
+    "9.64"
+   ],
+   [
+    38.61,
+    "kf",
+    "9.64",
+    "9.64"
+   ],
+   [
+    39.66,
+    "kf",
+    "9.65",
+    "9.64"
+   ],
+   [
+    39.74,
+    "kf",
+    "9.64",
+    "9.64"
+   ],
+   [
+    40.79,
+    "kf",
+    "9.64",
+    "9.64"
+   ],
+   [
+    40.87,
+    "kf",
+    "9.64",
+    "9.64"
+   ],
+   [
+    41.94,
+    "kf",
+    "9.65",
+    "9.64"
+   ],
+   [
+    42.01,
+    "kf",
+    "9.64",
+    "9.64"
+   ],
+   [
+    43.09,
+    "kf",
+    "9.65",
+    "9.64"
+   ],
+   [
+    43.17,
+    "kf",
+    "9.64",
+    "9.64"
+   ],
+   [
+    44.24,
+    "kf",
+    "9.64",
+    "9.64"
+   ],
+   [
+    44.31,
+    "kf",
+    "9.64",
+    "9.64"
+   ],
+   [
+    45.37,
+    "kf",
+    "9.65",
+    "9.64"
+   ],
+   [
+    45.46,
+    "kf",
+    "9.64",
+    "9.64"
+   ],
+   [
+    46.51,
+    "kf",
+    "9.64",
+    "9.64"
+   ],
+   [
+    46.59,
+    "kf",
+    "9.64",
+    "9.64"
+   ],
+   [
+    47.66,
+    "kf",
+    "9.65",
+    "9.64"
+   ],
+   [
+    47.74,
+    "kf",
+    "9.64",
+    "9.64"
+   ],
+   [
+    48.87,
+    "kf",
+    "9.65",
+    "9.64"
+   ],
+   [
+    48.96,
+    "kf",
+    "9.64",
+    "9.64"
+   ],
+   [
+    50.17,
+    "kf",
+    "9.64",
+    "9.64"
+   ],
+   [
+    50.26,
+    "kf",
+    "9.64",
+    "9.64"
+   ],
+   [
+    51.31,
+    "kf",
+    "9.64",
+    "9.64"
+   ],
+   [
+    51.39,
+    "kf",
+    "9.64",
+    "9.64"
+   ],
+   [
+    52.62,
+    "kf",
+    "",
+    "9.64"
+   ],
+   [
+    52.71,
+    "kf",
+    "9.65",
+    ""
+   ],
+   [
+    52.77,
+    "home",
+    "9.65",
+    "9.65"
+   ],
+   [
+    52.94,
+    "kf",
+    "9.65",
+    "9.65"
+   ],
+   [
+    53.02,
+    "kf",
+    "9.65",
+    "9.65"
+   ],
+   [
+    54.07,
+    "kf",
+    "9.65",
+    "9.65"
+   ],
+   [
+    54.16,
+    "kf",
+    "9.65",
+    "9.65"
+   ],
+   [
+    55.22,
+    "kf",
+    "9.66",
+    "9.65"
+   ],
+   [
+    55.31,
+    "kf",
+    "9.65",
+    "9.65"
+   ],
+   [
+    56.37,
+    "kf",
+    "9.65",
+    "9.65"
+   ],
+   [
+    56.46,
+    "kf",
+    "9.65",
+    "9.65"
+   ],
+   [
+    56.94,
+    "kf",
+    "",
+    "9.65"
+   ],
+   [
+    57.01,
+    "kf",
+    "9.64",
+    ""
+   ],
+   [
+    57.09,
+    "home",
+    "9.64",
+    "9.64"
+   ],
+   [
+    58.96,
+    "kf",
+    "9.64",
+    "9.64"
+   ],
+   [
+    59.97,
+    "kf",
+    "9.64",
+    "9.64"
+   ]
+  ],
+  "fresh_kf_served_at": null,
+  "kf_changes_in_hold": 102,
+  "home_changes_in_hold": 6,
+  "home_h_at_switch": "9.65",
+  "fc_texts_hold": [],
+  "ferr_rms_10s": 0.7337929527624868,
+  "ferr_max_10s": 0.7923627026661305,
+  "ferr_rms_60s": 0.9593794698463751,
+  "ferr_max_60s": 1.2475924411340689,
+  "ferr_step": null,
+  "variant": "apb",
+  "wind": "w20g40",
+  "ap_text_tail": [
+   [
+    0.0,
+    "Barometer 1 calibration complete"
+   ],
+   [
+    0.0,
+    "Barometer 2 calibration complete"
+   ],
+   [
+    0.0,
+    "ArduPilot Ready"
+   ],
+   [
+    0.0,
+    "AHRS: DCM active"
+   ],
+   [
+    0.0,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    0.0,
+    "No ap_message for mavlink id (331)"
+   ],
+   [
+    0.0,
+    "No ap_message for mavlink id (290)"
+   ],
+   [
+    0.0,
+    "No ap_message for mavlink id (291)"
+   ],
+   [
+    0.0,
+    "No ap_message for mavlink id (231)"
+   ],
+   [
+    0.0,
+    "No ap_message for mavlink id (141)"
+   ],
+   [
+    0.0,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    0.0,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    0.0,
+    "AHRS: EKF3 active"
+   ],
+   [
+    0.0,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    0.0,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    0.0,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    0.0,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    0.0,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    0.0,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    0.0,
+    "Arming motors"
+   ],
+   [
+    0.0,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    0.0,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    0.0,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    0.0,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    0.0,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    0.0,
+    "EKF3 IMU0 is using external nav data"
+   ],
+   [
+    0.0,
+    "EKF3 IMU0 initial pos NED = -0.0,0.0,-6.8 (m)"
+   ],
+   [
+    0.0,
+    "EKF3 IMU1 is using external nav data"
+   ],
+   [
+    0.0,
+    "EKF3 IMU1 initial pos NED = -0.0,0.0,-6.8 (m)"
+   ]
+  ],
+  "settings_file_hold_cfg": {
+   "repeat_diff": 0.01,
+   "h_min": 2.0
+  },
+  "settings_file_min_height_m": 3.0,
+  "h_mean": 9.636140367346018,
+  "h_min": 9.550003051757812,
+  "h_max": 9.680000305175781,
+  "h_at_switch": 9.660003662109375,
+  "first_sent_t": 17.6353,
+  "first_sent_height": "6.7692",
+  "first_sent_rel_switch": -8.24,
+  "why_not_sent_hold": {
+   "whole picture: halves disagree": 38,
+   "init": 6,
+   "waiting for image motion that proves the picture is live": 10,
+   "good fix 1 of 10": 6,
+   "good fix 2 of 10": 6,
+   "good fix 3 of 10": 6,
+   "good fix 4 of 10": 6,
+   "good fix 5 of 10": 6,
+   "good fix 6 of 10": 5,
+   "good fix 7 of 10": 5,
+   "good fix 8 of 10": 5,
+   "good fix 9 of 10": 5,
+   "whole picture and points disagree": 38
+  },
+  "height_blocked_rows": 73,
+  "height_blocked_last": [
+   "16.7353",
+   "height 3.0 m under 3 m"
+  ],
+  "log_summary": "log  s  sent/s  %sent  proc p50  p95  max  age p50  p95  gap s  ok  deg  lost  switch (before, after, gap s)  recover s\n/home/paul/Videos/vio-hold-attempt/apsim/runs/lowap_apb_10m_w20g40_s2_onboard.csv  70.4  8.7  66.1  80.6  81.2  83.1  128  136  5.20  709  102  12  (4,0,2.33)  -",
+  "hold_cfg": {
+   "h_min": 2.0
+  }
+ },
+ "lowap_apb_5m_calm_s1": {
+  "case": "lowap_apb_5m_calm_s1",
+  "rms": 0.12604802259920725,
+  "p95": 0.1586698967599838,
+  "max": 0.17246815566350276,
+  "end": 0.13416098002805527,
+  "pct_frames_fix": 19.055555555555557,
+  "fix_rate_hz": 11.433139993791226,
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 5, 0.0 s after the Loiter request started"
+   ]
+  ],
+  "hold_s_flown": 60.0,
+  "climb_s": 14.2,
+  "age_ms_p50": 127.75,
+  "drift_m_per_min": 0.12895676498897324,
+  "proc_ms_mean": 80.67191316146541,
+  "handover_ms_p50": 5.397409166107536,
+  "handover_ms_p95": 9.09840424756112,
+  "reanchors": 2,
+  "hold_why": {
+   "whole picture: halves disagree": 29,
+   "init": 2,
+   "good fix 1 of 10": 2,
+   "good fix 2 of 10": 2,
+   "good fix 3 of 10": 2,
+   "good fix 4 of 10": 2,
+   "good fix 5 of 10": 2,
+   "good fix 6 of 10": 2
+  },
+  "onboard_exit": 0,
+  "frac_ok": 0.9552238805970149,
+  "onboard": [
+   [
+    7.02,
+    "connected",
+    "ardupilot, clock ready True, ATTITUDE 100 Hz"
+   ],
+   [
+    86.77,
+    "done",
+    "stopped after 1 start(s); frame age when taken p50 9 ms, p95 22 ms; SCALED_IMU 0 Hz, 0 rows kept"
+   ]
+  ],
+  "height": 5.0,
+  "seed": 1,
+  "settings": {
+   "min_height_m": 3.0
+  },
+  "video": "JUSTICE_D",
+  "wall_s": 88,
+  "load_start": [
+   5.89990234375,
+   4.95166015625,
+   4.34130859375
+  ],
+  "load_end": [
+   6.6416015625,
+   5.22265625,
+   4.47607421875
+  ],
+  "jobs_start": {
+   "other_sitl": 0,
+   "px4_sim": false
+  },
+  "jobs_end": {
+   "other_sitl": 0,
+   "px4_sim": false
+  },
+  "option": "min_height_m 3, h_min 2",
+  "texts_all": [
+   [
+    -26.36,
+    "Barometer 1 calibration complete"
+   ],
+   [
+    -26.36,
+    "Barometer 2 calibration complete"
+   ],
+   [
+    -23.9,
+    "ArduPilot Ready"
+   ],
+   [
+    -23.9,
+    "AHRS: DCM active"
+   ],
+   [
+    -23.61,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    -22.27,
+    "No ap_message for mavlink id (331)"
+   ],
+   [
+    -22.2,
+    "No ap_message for mavlink id (290)"
+   ],
+   [
+    -22.2,
+    "No ap_message for mavlink id (291)"
+   ],
+   [
+    -22.16,
+    "No ap_message for mavlink id (231)"
+   ],
+   [
+    -22.14,
+    "No ap_message for mavlink id (141)"
+   ],
+   [
+    -21.9,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    -21.9,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    -21.9,
+    "AHRS: EKF3 active"
+   ],
+   [
+    -20.52,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    -20.52,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    -20.42,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -20.42,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    -15.12,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    -14.65,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    -14.65,
+    "Arming motors"
+   ],
+   [
+    -14.2,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    -10.98,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    -10.98,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    -9.23,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -9.22,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    -5.41,
+    "EKF3 IMU1 is using external nav data"
+   ],
+   [
+    -5.41,
+    "EKF3 IMU1 initial pos NED = 0.0,0.0,-4.1 (m)"
+   ],
+   [
+    -5.41,
+    "EKF3 IMU0 is using external nav data"
+   ],
+   [
+    -5.41,
+    "EKF3 IMU0 initial pos NED = 0.0,0.0,-4.1 (m)"
+   ]
+  ],
+  "rms_10s": 0.1080978092049081,
+  "max_10s": 0.14851776752861187,
+  "rms_10_60": 0.1293347302307495,
+  "max_10_60": 0.17246815566350276,
+  "notes": [
+   [
+    -10.84,
+    "FC mode ALT_HOLD"
+   ],
+   [
+    -8.89,
+    "re-anchored to last position (no FC position) 0.00 0.00"
+   ],
+   [
+    -6.45,
+    "re-anchored to last position (no FC position) 0.01 0.01"
+   ],
+   [
+    -5.07,
+    "re-anchored to FC position 0.04 0.01"
+   ],
+   [
+    -3.85,
+    "re-anchored to FC position 0.04 0.05"
+   ],
+   [
+    -2.79,
+    "re-anchored to FC position 0.02 0.11"
+   ],
+   [
+    -0.84,
+    "re-anchored to FC position 0.09 0.17"
+   ],
+   [
+    -0.04,
+    "engaged: FC mode LOITER"
+   ],
+   [
+    5.26,
+    "re-anchored to FC position 0.18 0.22"
+   ],
+   [
+    21.23,
+    "re-anchored to FC position 0.18 0.23"
+   ]
+  ],
+  "notes_all_n": 16,
+  "onboard_modes": [
+   [
+    -10.84,
+    "ALT_HOLD"
+   ],
+   [
+    -0.04,
+    "LOITER"
+   ]
+  ],
+  "fc_modes": [
+   [
+    -26.36,
+    "0"
+   ],
+   [
+    -15.15,
+    "ALT_HOLD"
+   ],
+   [
+    0.0,
+    "LOITER"
+   ]
+  ],
+  "fix_gap_max_s": 1.31,
+  "fix_gap_at_s": 20.94,
+  "fix_gaps_over_1s": [
+   [
+    5.0,
+    1.3
+   ],
+   [
+    20.9,
+    1.3
+   ]
+  ],
+  "engaged_note_at": -0.04,
+  "kf_events": [
+   [
+    -8.89,
+    "kf",
+    "3.01",
+    ""
+   ],
+   [
+    -8.65,
+    "kf",
+    "",
+    ""
+   ],
+   [
+    -8.57,
+    "kf",
+    "3.17",
+    ""
+   ],
+   [
+    -7.67,
+    "kf",
+    "",
+    ""
+   ],
+   [
+    -7.59,
+    "kf",
+    "3.47",
+    ""
+   ],
+   [
+    -7.1,
+    "home",
+    "3.47",
+    "3.47"
+   ],
+   [
+    -6.45,
+    "kf",
+    "",
+    "3.47"
+   ],
+   [
+    -6.37,
+    "kf",
+    "3.84",
+    ""
+   ],
+   [
+    -6.29,
+    "home",
+    "3.84",
+    "3.84"
+   ],
+   [
+    -6.14,
+    "kf",
+    "3.91",
+    "3.84"
+   ],
+   [
+    -6.04,
+    "kf",
+    "3.84",
+    "3.84"
+   ],
+   [
+    -5.07,
+    "kf",
+    "",
+    "3.84"
+   ],
+   [
+    -4.99,
+    "kf",
+    "4.26",
+    ""
+   ],
+   [
+    -3.85,
+    "kf",
+    "",
+    ""
+   ],
+   [
+    -3.77,
+    "kf",
+    "4.60",
+    ""
+   ],
+   [
+    -2.79,
+    "kf",
+    "",
+    ""
+   ],
+   [
+    -2.7,
+    "kf",
+    "4.69",
+    ""
+   ],
+   [
+    -2.64,
+    "home",
+    "4.69",
+    "4.69"
+   ],
+   [
+    -2.47,
+    "kf",
+    "4.69",
+    "4.69"
+   ],
+   [
+    -2.39,
+    "kf",
+    "4.69",
+    "4.69"
+   ],
+   [
+    -1.34,
+    "kf",
+    "4.71",
+    "4.69"
+   ],
+   [
+    -1.25,
+    "kf",
+    "4.69",
+    "4.69"
+   ],
+   [
+    -0.84,
+    "kf",
+    "",
+    "4.69"
+   ],
+   [
+    -0.75,
+    "kf",
+    "4.72",
+    ""
+   ],
+   [
+    -0.69,
+    "home",
+    "4.72",
+    "4.72"
+   ],
+   [
+    -0.52,
+    "kf",
+    "4.72",
+    "4.72"
+   ],
+   [
+    -0.44,
+    "kf",
+    "4.72",
+    "4.72"
+   ],
+   [
+    0.61,
+    "kf",
+    "4.72",
+    "4.72"
+   ],
+   [
+    0.7,
+    "kf",
+    "4.72",
+    "4.72"
+   ],
+   [
+    1.85,
+    "kf",
+    "4.72",
+    "4.72"
+   ],
+   [
+    2.9,
+    "kf",
+    "4.72",
+    "4.72"
+   ],
+   [
+    3.96,
+    "kf",
+    "4.72",
+    "4.72"
+   ],
+   [
+    5.26,
+    "kf",
+    "",
+    "4.72"
+   ],
+   [
+    5.35,
+    "kf",
+    "4.72",
+    ""
+   ],
+   [
+    5.43,
+    "home",
+    "4.72",
+    "4.72"
+   ],
+   [
+    5.6,
+    "kf",
+    "4.72",
+    "4.72"
+   ],
+   [
+    5.66,
+    "kf",
+    "4.72",
+    "4.72"
+   ],
+   [
+    6.73,
+    "kf",
+    "4.71",
+    "4.72"
+   ],
+   [
+    6.81,
+    "kf",
+    "4.72",
+    "4.72"
+   ],
+   [
+    7.86,
+    "kf",
+    "4.71",
+    "4.72"
+   ],
+   [
+    7.95,
+    "kf",
+    "4.72",
+    "4.72"
+   ],
+   [
+    9.01,
+    "kf",
+    "4.71",
+    "4.72"
+   ],
+   [
+    9.08,
+    "kf",
+    "4.72",
+    "4.72"
+   ],
+   [
+    10.15,
+    "kf",
+    "4.70",
+    "4.72"
+   ],
+   [
+    10.23,
+    "kf",
+    "4.72",
+    "4.72"
+   ],
+   [
+    11.28,
+    "kf",
+    "4.70",
+    "4.72"
+   ],
+   [
+    11.38,
+    "kf",
+    "4.72",
+    "4.72"
+   ],
+   [
+    12.43,
+    "kf",
+    "4.71",
+    "4.72"
+   ],
+   [
+    12.51,
+    "kf",
+    "4.72",
+    "4.72"
+   ],
+   [
+    13.56,
+    "kf",
+    "4.71",
+    "4.72"
+   ],
+   [
+    13.65,
+    "kf",
+    "4.72",
+    "4.72"
+   ],
+   [
+    14.71,
+    "kf",
+    "4.71",
+    "4.72"
+   ],
+   [
+    14.78,
+    "kf",
+    "4.72",
+    "4.72"
+   ],
+   [
+    15.85,
+    "kf",
+    "4.71",
+    "4.72"
+   ],
+   [
+    16.91,
+    "kf",
+    "4.72",
+    "4.72"
+   ],
+   [
+    17.96,
+    "kf",
+    "4.71",
+    "4.72"
+   ],
+   [
+    18.05,
+    "kf",
+    "4.72",
+    "4.72"
+   ],
+   [
+    19.1,
+    "kf",
+    "4.71",
+    "4.72"
+   ],
+   [
+    20.16,
+    "kf",
+    "4.72",
+    "4.72"
+   ],
+   [
+    21.23,
+    "kf",
+    "",
+    "4.72"
+   ],
+   [
+    21.3,
+    "kf",
+    "4.71",
+    ""
+   ],
+   [
+    21.38,
+    "home",
+    "4.71",
+    "4.71"
+   ],
+   [
+    21.55,
+    "kf",
+    "4.71",
+    "4.71"
+   ],
+   [
+    21.63,
+    "kf",
+    "4.71",
+    "4.71"
+   ],
+   [
+    22.7,
+    "kf",
+    "4.71",
+    "4.71"
+   ],
+   [
+    22.78,
+    "kf",
+    "4.71",
+    "4.71"
+   ],
+   [
+    23.83,
+    "kf",
+    "4.71",
+    "4.71"
+   ],
+   [
+    23.91,
+    "kf",
+    "4.71",
+    "4.71"
+   ],
+   [
+    25.0,
+    "kf",
+    "4.71",
+    "4.71"
+   ],
+   [
+    25.08,
+    "kf",
+    "4.71",
+    "4.71"
+   ],
+   [
+    26.15,
+    "kf",
+    "4.71",
+    "4.71"
+   ],
+   [
+    26.23,
+    "kf",
+    "4.71",
+    "4.71"
+   ],
+   [
+    27.28,
+    "kf",
+    "4.71",
+    "4.71"
+   ],
+   [
+    27.36,
+    "kf",
+    "4.71",
+    "4.71"
+   ],
+   [
+    28.41,
+    "kf",
+    "4.71",
+    "4.71"
+   ],
+   [
+    28.5,
+    "kf",
+    "4.71",
+    "4.71"
+   ],
+   [
+    29.56,
+    "kf",
+    "4.71",
+    "4.71"
+   ],
+   [
+    29.63,
+    "kf",
+    "4.71",
+    "4.71"
+   ],
+   [
+    30.7,
+    "kf",
+    "4.71",
+    "4.71"
+   ],
+   [
+    30.78,
+    "kf",
+    "4.71",
+    "4.71"
+   ],
+   [
+    31.83,
+    "kf",
+    "4.71",
+    "4.71"
+   ],
+   [
+    31.91,
+    "kf",
+    "4.71",
+    "4.71"
+   ],
+   [
+    32.98,
+    "kf",
+    "4.71",
+    "4.71"
+   ],
+   [
+    33.06,
+    "kf",
+    "4.71",
+    "4.71"
+   ],
+   [
+    34.11,
+    "kf",
+    "4.71",
+    "4.71"
+   ],
+   [
+    34.2,
+    "kf",
+    "4.71",
+    "4.71"
+   ],
+   [
+    35.25,
+    "kf",
+    "4.71",
+    "4.71"
+   ],
+   [
+    35.33,
+    "kf",
+    "4.71",
+    "4.71"
+   ],
+   [
+    36.4,
+    "kf",
+    "4.71",
+    "4.71"
+   ],
+   [
+    36.48,
+    "kf",
+    "4.71",
+    "4.71"
+   ],
+   [
+    37.53,
+    "kf",
+    "4.71",
+    "4.71"
+   ],
+   [
+    37.61,
+    "kf",
+    "4.71",
+    "4.71"
+   ],
+   [
+    38.68,
+    "kf",
+    "4.71",
+    "4.71"
+   ],
+   [
+    38.75,
+    "kf",
+    "4.71",
+    "4.71"
+   ],
+   [
+    39.81,
+    "kf",
+    "4.71",
+    "4.71"
+   ],
+   [
+    39.9,
+    "kf",
+    "4.71",
+    "4.71"
+   ],
+   [
+    40.95,
+    "kf",
+    "4.71",
+    "4.71"
+   ],
+   [
+    41.03,
+    "kf",
+    "4.71",
+    "4.71"
+   ],
+   [
+    42.1,
+    "kf",
+    "4.71",
+    "4.71"
+   ],
+   [
+    42.18,
+    "kf",
+    "4.71",
+    "4.71"
+   ],
+   [
+    43.23,
+    "kf",
+    "4.71",
+    "4.71"
+   ],
+   [
+    43.31,
+    "kf",
+    "4.71",
+    "4.71"
+   ],
+   [
+    44.38,
+    "kf",
+    "4.71",
+    "4.71"
+   ],
+   [
+    44.45,
+    "kf",
+    "4.71",
+    "4.71"
+   ],
+   [
+    45.51,
+    "kf",
+    "4.71",
+    "4.71"
+   ],
+   [
+    45.6,
+    "kf",
+    "4.71",
+    "4.71"
+   ],
+   [
+    46.65,
+    "kf",
+    "4.71",
+    "4.71"
+   ],
+   [
+    46.73,
+    "kf",
+    "4.71",
+    "4.71"
+   ],
+   [
+    47.78,
+    "kf",
+    "4.71",
+    "4.71"
+   ],
+   [
+    47.86,
+    "kf",
+    "4.71",
+    "4.71"
+   ],
+   [
+    48.91,
+    "kf",
+    "4.71",
+    "4.71"
+   ],
+   [
+    49.0,
+    "kf",
+    "4.71",
+    "4.71"
+   ],
+   [
+    50.06,
+    "kf",
+    "4.72",
+    "4.71"
+   ],
+   [
+    50.15,
+    "kf",
+    "4.71",
+    "4.71"
+   ],
+   [
+    51.2,
+    "kf",
+    "4.71",
+    "4.71"
+   ],
+   [
+    51.28,
+    "kf",
+    "4.71",
+    "4.71"
+   ],
+   [
+    52.35,
+    "kf",
+    "4.71",
+    "4.71"
+   ],
+   [
+    52.43,
+    "kf",
+    "4.71",
+    "4.71"
+   ],
+   [
+    53.48,
+    "kf",
+    "4.71",
+    "4.71"
+   ],
+   [
+    53.56,
+    "kf",
+    "4.71",
+    "4.71"
+   ],
+   [
+    54.61,
+    "kf",
+    "4.72",
+    "4.71"
+   ],
+   [
+    54.7,
+    "kf",
+    "4.71",
+    "4.71"
+   ],
+   [
+    55.76,
+    "kf",
+    "4.71",
+    "4.71"
+   ],
+   [
+    55.85,
+    "kf",
+    "4.71",
+    "4.71"
+   ],
+   [
+    56.9,
+    "kf",
+    "4.71",
+    "4.71"
+   ],
+   [
+    56.98,
+    "kf",
+    "4.71",
+    "4.71"
+   ],
+   [
+    58.0,
+    "kf",
+    "4.71",
+    "4.71"
+   ],
+   [
+    58.06,
+    "kf",
+    "4.71",
+    "4.71"
+   ],
+   [
+    59.13,
+    "kf",
+    "4.71",
+    "4.71"
+   ],
+   [
+    59.2,
+    "kf",
+    "4.71",
+    "4.71"
+   ]
+  ],
+  "fresh_kf_served_at": null,
+  "kf_changes_in_hold": 101,
+  "home_changes_in_hold": 2,
+  "home_h_at_switch": "4.72",
+  "fc_texts_hold": [],
+  "variant": "apb",
+  "wind": "calm",
+  "ap_text_tail": [
+   [
+    0.0,
+    "Barometer 1 calibration complete"
+   ],
+   [
+    0.0,
+    "Barometer 2 calibration complete"
+   ],
+   [
+    0.0,
+    "ArduPilot Ready"
+   ],
+   [
+    0.0,
+    "AHRS: DCM active"
+   ],
+   [
+    0.0,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    0.0,
+    "No ap_message for mavlink id (331)"
+   ],
+   [
+    0.0,
+    "No ap_message for mavlink id (290)"
+   ],
+   [
+    0.0,
+    "No ap_message for mavlink id (291)"
+   ],
+   [
+    0.0,
+    "No ap_message for mavlink id (231)"
+   ],
+   [
+    0.0,
+    "No ap_message for mavlink id (141)"
+   ],
+   [
+    0.0,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    0.0,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    0.0,
+    "AHRS: EKF3 active"
+   ],
+   [
+    0.0,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    0.0,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    0.0,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    0.0,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    0.0,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    0.0,
+    "Warning: Arming Checks Disabled"
+   ],
+   [
+    0.0,
+    "Arming motors"
+   ],
+   [
+    0.0,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    0.0,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    0.0,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    0.0,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    0.0,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    0.0,
+    "EKF3 IMU1 is using external nav data"
+   ],
+   [
+    0.0,
+    "EKF3 IMU1 initial pos NED = 0.0,0.0,-4.1 (m)"
+   ],
+   [
+    0.0,
+    "EKF3 IMU0 is using external nav data"
+   ],
+   [
+    0.0,
+    "EKF3 IMU0 initial pos NED = 0.0,0.0,-4.1 (m)"
+   ]
+  ],
+  "settings_file_hold_cfg": {
+   "repeat_diff": 0.01,
+   "h_min": 2.0
+  },
+  "settings_file_min_height_m": 3.0,
+  "h_mean": 4.71243678906765,
+  "h_min": 4.700004577636719,
+  "h_max": 4.7400054931640625,
+  "h_at_switch": 4.730003356933594,
+  "first_sent_t": 20.7853,
+  "first_sent_height": "4.0910",
+  "first_sent_rel_switch": -5.57,
+  "why_not_sent_hold": {
+   "whole picture: halves disagree": 29,
+   "init": 2,
+   "good fix 1 of 10": 2,
+   "good fix 2 of 10": 2,
+   "good fix 3 of 10": 2,
+   "good fix 4 of 10": 2,
+   "good fix 5 of 10": 2,
+   "good fix 6 of 10": 2,
+   "good fix 7 of 10": 2,
+   "good fix 8 of 10": 2,
+   "good fix 9 of 10": 2,
+   "waiting for image motion that proves the picture is live": 2
+  },
+  "height_blocked_rows": 117,
+  "height_blocked_last": [
+   "17.4520",
+   "height 3.0 m under 3 m"
+  ],
+  "log_summary": "log  s  sent/s  %sent  proc p50  p95  max  age p50  p95  gap s  ok  deg  lost  switch (before, after, gap s)  recover s\n/home/paul/Videos/vio-hold-attempt/apsim/runs/lowap_apb_5m_calm_s1_onboard.csv  70.8  9.8  72.2  80.6  81.3  82.4  128  137  3.57  744  45  7  (8,20,1.30)  -",
+  "hold_cfg": {
+   "h_min": 2.0
+  }
+ }
+}

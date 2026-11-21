@@ -1,0 +1,18 @@
+test_basics: rc=0 ALL PASS in 21 s
+test_digital: rc=0 ALL PASS in 16 s
+test_robust: rc=0 ALL PASS in 50 s
+test_fc_link: rc=0 ALL PASS in 21 s
+test_run: rc=0 ALL PASS in 28 s (files in /tmp/tmpvv8j8493)
+test_bench: rc=0 ALL PASS in 17 s
+test_calib: rc=0 ALL PASS in 102 s
+test_lens_d: rc=124   PASS equisolid r = 2 f sin(theta / 2), f 302.4 x 290.2 px, edges at 62.9 and 36.9 deg as TRUE; against best-fit equidistant fx 302.37 fy 290.19: fx error +0.07 %, fy error +0.11 % (limit 2.0 %), k1 -0.0412. Delay 44 ms, readout +9 ms, top right. 14 s
+test_lens_store: rc=0 ALL PASS in 4 s
+test_live: rc=1 1 FAIL in 111 s
+test_replay_chunks: rc=0 ALL PASS
+test_wind_assist: rc=0 ALL PASS
+test_ap_sitl: rc=0 ALL PASS
+test_event: rc=0 ALL PASS in 40 s
+test_gnss: rc=0 ALL PASS in 33 s
+test_att_yaw: rc=0 ALL PASS
+test_ground_tools: rc=0 ALL PASSED
+sim_test.timing_test: rc=0 timing_test PASSED

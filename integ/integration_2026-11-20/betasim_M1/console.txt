@@ -1,0 +1,6 @@
+start 04:36:20 load 1.30 1.52 2.34
+g0_s1: 60 s held, RMS 3.63 m, max 6.29 m, end 4.55 m (north -3.26, east -3.17); alt 4.0-5.5 m; POS HOLD on all samples True
+g0_s2: 60 s held, RMS 3.94 m, max 7.99 m, end 7.95 m (north -7.34, east -3.05); alt 4.0-5.3 m; POS HOLD on all samples True
+g0.2_s1: 60 s held, RMS 1.19 m, max 2.31 m, end 2.24 m (north +2.02, east -0.95); alt 3.8-5.3 m; POS HOLD on all samples True
+g0.2_s2: 60 s held, RMS 1.18 m, max 2.25 m, end 1.85 m (north -1.07, east -1.50); alt 4.1-5.5 m; POS HOLD on all samples True
+end 04:41:39 load 1.45 1.45 2.07

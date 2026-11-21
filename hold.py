@@ -69,6 +69,15 @@ def load_lens(path, name, w, h, field=None):
     raise ValueError(f"lens '{name}': unknown projection {p['projection']!r}")
 
 
+def same_aspect(profile_size, w, h, tol=0.01):
+    """True when a w x h picture has the width / height ratio of a profile's image_size (within tol).
+
+    A digital picture reduced by an integer factor keeps the ratio. An analog field (360x288 from a
+    960x720 profile) does not, and load_lens still serves it, so load_lens does not call this.
+    """
+    return abs((w / h) / (profile_size[0] / profile_size[1]) - 1) <= tol
+
+
 def rot_z(a):
     c, s = math.cos(a), math.sin(a)
     return np.array([[c, -s, 0], [s, c, 0], [0, 0, 1.]])
@@ -281,6 +290,20 @@ class Hold:
                               # pictures sent 26 / 75 (moving / perfectly still hover) before and after.
     STILL_PX = 0.3            # px; a point that moves less while the attitude predicts motion is static (overlay)
     LIVE_S = 1.0              # s; send only within this time after the last proof that the picture is live. assumed
+    LIVE_MOVE_PX = 0.5        # px; "moved" proof: the corner points that LK measured in this frame (each passed the LK,
+                              # back-check, mask and NCC tests; on the whole-picture path its own corner check) moved this
+                              # much (median point: shift, turn, scale or rolling-shutter wobble) since the last "moved"
+                              # proof or the reference frame. Only measured points: on the whole-picture path every point
+                              # moves by one estimated shift plus the attitude prediction, and on a static overlay under a
+                              # turning attitude that model error gave false proofs (integ/gap/results/live). Noise-only
+                              # points fail the NCC test. 0.5 px is one LK noise floor (FIT_FLOOR_PX); a frozen picture with
+                              # fresh noise moves its measured points 0.02 px (digital) or 0.08 px (analog) at most
+                              # (integ/gap). It keeps the reference frame, so the still proof and the frozen test work as
+                              # before. Why: in a hover by hand the still proof ends after 0.3 px of attitude motion and
+                              # MOVE_PX needs 0.47 m of drift at 100 m, so fixes stopped for seconds before the switch.
+    LIVE_MOVED_S = 0.5        # s; a "moved" proof shows that one frame was live, so it lasts only this long: the age of a
+                              # frozen fix that the safety requirement accepts (tests_apb/test_live.py, freeze with fresh
+                              # noise). A moving live picture gives a new proof on most frames (integ/gap)
     FIT_FLOOR_PX = 0.5        # px; floor of the per-axis residual sigma in the fit. assumed: LK noise
     OUT_STRIKES = 3           # a keyframe point that is a fit outlier in this many frames in a row is dropped
     # Variance model (E4, review/estimator/honest.py), per axis.
@@ -312,11 +335,60 @@ class Hold:
     DENSE_YAW = math.radians(20)  # a whole-picture keyframe is replaced after this yaw change: the path does not
                                   # measure rotation, so an FC yaw error turns into a position error. assumed: as the
                                   # ~15 deg revisit limit of the corner path
+    # Brightness gate: > 0 = no unforced keyframe change (and no keyframe asked by request_keyframe) until the
+    # mean picture brightness stayed within KF_BRIGHT grey for KF_BRIGHT_S. The Justice D has auto exposure (WDR)
+    # and switches from colour to black and white at night (Justice D datasheet v1.0); a keyframe taken while the
+    # exposure still moves is assumed to match the next frames worse. 0 = off. assumed: not measured on the camera.
+    KF_BRIGHT = 0.0               # grey
+    KF_BRIGHT_S = 0.5             # s
+    # > 0: after more than GAP_JUMP_S s with no picture (a video outage), the break-up test has no previous frame
+    # to compare, so its jump cue counts as unknown for that one frame (the level cue still counts). Off (0): the
+    # brightness change of the whole gap looks like a jump, the first frame after the gap is "broken up", Hold is
+    # lost at once (t_good is older than LOST_S) and Pipe re-anchors. ArduCopter SITL, 3 s drop at 60 m
+    # (apsim/runs/rec_60m_s1_onboard.csv): "band brightness z 13", two re-anchors, the fix error shifted 0.3-0.6 m.
+    GAP_JUMP_S = 0.0              # s
 
     ROW_NORM = False              # divide each picture row by its (smoothed) mean grey before tracking: removes the moving
                                   # bands of mains-lamp flicker on a rolling shutter (indoors). Off by default: tested only
                                   # on the indoor floors (integ/indoor/diag_flicker_people.txt); the picture checks
                                   # (repeat, break-up) still see the raw picture
+    # DENSE_LOCAL: the low-height fix of the whole-picture path (integ/lowh/proposed.patch, integ/kfmap/README.txt).
+    # True: J (px per m of drone move) is taken at the last fix with a central step of 1 % of the height, and the
+    # halves gap is measured in px of each half's own texture. False: J at the keyframe with a 1 m forward step, gap
+    # at the picture centre's scale (the code before 2026-11-21).
+    DENSE_LOCAL = False
+    # DENSE_TURN: the whole-picture path also solves the turn about the vertical (yaw) in its Lucas-Kanade step, so a yaw
+    # error of the attitude feed is measured (fit yaw) instead of read as a drone move (integ/diag10: at 10 m most fixes
+    # come from this path, and the feed's yaw error gave most of the 1 m fix error). Port of the 'yaw' variant of
+    # integ/diag10/make_variants.py (hold_py.py, with Jc = P[0, 2:6]). False: the code before (integ/kfmap/README.txt).
+    DENSE_TURN = False
+    # DENSE_NADIR_DEG > 0: the whole-picture path uses only keyframe pixels whose ray is within this angle of straight
+    # down (at the keyframe's attitude); 'keyframe out of view' then compares with the keyframe's own usable share. Why:
+    # on a tilted drone the fisheye sees ground up to 75 deg off nadir on one side, where a ground metre is a few px and
+    # the cubic map is extrapolated (integ/lowh 2c, integ/diag10 'nadir'). 0 = off (the code before); 55 = diag10 pyn55.
+    DENSE_NADIR_DEG = 0.0
+    # KF_MAP: a keyframe map and relocalization (integ/kfmap/README.txt). True: reanchor() keeps the keyframes of the
+    # chain that ends (home, older ones, the last one) as a stored map with their anchor positions (at most MAP_KEEP).
+    # While Hold sends fixes on a new chain, every RELOC_EVERY s it tries one stored keyframe with the re-find of the
+    # 'lost' path (deep track, then ORB): the stored home, or the newest stored keyframe when the home was taken at
+    # another height (the climb). A try passes when the fit is 'ok' (points, inlier share, spread), its yaw and scale
+    # are near 1 and 0 (RELOC_YAW, RELOC_SCALE), and the step between the map position and this fix is under
+    # max(RELOC_STEP_M, RELOC_STEP_H x h). RELOC_N passes in a row whose steps agree to RELOC_AGREE_M + RELOC_AGREE_H x h
+    # switch Hold to the stored keyframe; the step is then ramped to zero at RELOC_RATE m/s (the fix does not jump),
+    # with the ramp's size added to the variance. Each try is logged (reloc_log, note). False: no map (as before).
+    KF_MAP = False
+    MAP_KEEP = 6                  # stored keyframes, the stored home included. assumed
+    RELOC_EVERY = 0.5             # s between two tries. assumed
+    RELOC_N = 3                   # passing tries in a row. assumed
+    RELOC_AGREE_M = 0.15          # m; the steps of these tries agree to this + RELOC_AGREE_H x h. assumed
+    RELOC_AGREE_H = 0.02
+    RELOC_STEP_M = 1.0            # m; largest step accepted: max(RELOC_STEP_M, RELOC_STEP_H x h). The EKF refused a 20 m
+    RELOC_STEP_H = 0.2            # step for 7 s (apsim/safety_results.txt case d); the ramp never sends a step. assumed
+    RELOC_RATE = 0.3              # m/s; speed of the ramp. assumed
+    RELOC_YAW = math.radians(3.0)  # largest fit yaw of a passing try (rad). assumed
+    RELOC_SCALE = 0.05            # largest |fit scale - 1| of a passing try. assumed
+    RELOC_HGT = 0.15              # a stored keyframe is tried only within this share of its height. assumed (the fit
+                                  # refuses a scale change over 0.2)
 
     def __init__(self, K, D, R_bc, readout_s, mask=None, **cfg):
         """mask: uint8 H x W, 0 = not ground (OSD text, drone parts). cfg: tuning overrides by keyword."""
@@ -337,6 +409,12 @@ class Hold:
         self.sig2 = self.SIG_TH ** 2  # per-frame attitude error seen in the fix jitter (rad^2)
         self.lost, self.t_good = False, None
         self._dm = {}                 # ground mask at the whole-picture size, by shape
+        self.bright = []              # (tref, mean grey) of recent good pictures, for KF_BRIGHT
+        self.t_pic = None             # tref of the last picture that _picture saw, for GAP_JUMP_S
+        # KF_MAP state (unused when KF_MAP is False): stored keyframes and their home, whether the current chain is in
+        # the map's frame, passing tries in a row, the ramp offset (m, None = none), the log of tries, this frame's note
+        self.map, self.map_home, self.in_map, self.reloc_run, self.reloc_log = [], None, True, [], []
+        self.ramp, self.t_ramp, self.t_reloc, self.n_reloc, self.note = None, None, -math.inf, 0, None
         self.reanchor(np.zeros(2))
 
     def reanchor(self, pos, var=None):
@@ -344,11 +422,131 @@ class Hold:
 
         var: the uncertainty of pos, as the trace of its 2x2 covariance (m^2, like Est.var) or a 2x2 array.
         Forgets every keyframe; the first keyframe made after this becomes the home keyframe.
+        KF_MAP: the keyframes of the chain that ends are kept as a stored map first (_store_map).
         """
+        if self.KF_MAP:
+            self._store_map()
         self.pos, self.t, self.kf, self.home, self.last, self.kfs = np.asarray(pos, float).copy(), None, None, None, None, []
         self.carried = 0.0 if var is None else float(np.trace(var) if np.ndim(var) == 2 else var) / 2
         self.var_axis, self.t_fix = self.carried, None
-        self.t_live, self.t_switch, self.t_home = -math.inf, -math.inf, -math.inf
+        self.t_live, self.t_switch, self.t_home, self.t_moved = -math.inf, -math.inf, -math.inf, -math.inf
+        self.kf_wanted = False        # the first keyframe of a new anchor is the home keyframe anyway
+
+    def request_keyframe(self):
+        """Take a new keyframe at the next good frame that turns slower than KF_RATE (and passes the KF_BRIGHT
+        gate), and make it the home keyframe. For the pilot's switch: the pilot steadies the aircraft, then engages
+        the hold (Stage 1 package, rev 1.3, page 2), so the hold measures against a picture of the hold point. The
+        change keeps the position continuous, as every keyframe change does: no re-anchor, no wait for liveness."""
+        self.kf_wanted = True
+
+    def _bright_settled(self, tref):
+        """True when the picture brightness stayed within KF_BRIGHT grey for the last KF_BRIGHT_S (or the gate is off)."""
+        if self.KF_BRIGHT <= 0:
+            return True
+        w = [b for t, b in self.bright if t >= tref - self.KF_BRIGHT_S]
+        covered = self.bright and self.bright[0][0] <= tref - 0.9 * self.KF_BRIGHT_S
+        return bool(covered and w) and max(w) - min(w) <= self.KF_BRIGHT
+
+    # ---- keyframe map (KF_MAP) ----
+    def _store_map(self):
+        """KF_MAP, called by reanchor(): when the chain that ends is in the map's frame (the first chain, or a chain
+        that relocalized), its keyframes join the map with their anchor positions. A chain that started at a
+        re-anchor and never relocalized is in another frame: its keyframes are dropped, as before. Except when no stored
+        keyframe can be tried at the height of that chain's newest keyframe (a map made in the climb): that chain then
+        replaces the map."""
+        new = getattr(self, "last", None) or getattr(self, "kf", None)
+        if not self.in_map and new is not None and not new["pending"] and \
+                not any(abs(m["h"] / new["h"] - 1) <= self.RELOC_HGT for m in self.map):
+            self.map, self.map_home, self.in_map = [], None, True
+        if self.in_map and hasattr(self, "kfs"):          # (no chain yet at the first reanchor of __init__)
+            ks = []
+            for k in [self.home] + self.kfs + [self.last, self.kf]:
+                if k is not None and not k["pending"] and all(k is not x for x in ks):
+                    ks.append(k)
+            self.map = [m for m in self.map if all(m is not k for k in ks)] + ks
+            if self.home is not None and not self.home["pending"]:
+                self.map_home = self.home
+            rest = [m for m in self.map if m is not self.map_home]
+            rest = rest[-(self.MAP_KEEP - 1):] if self.MAP_KEEP > 1 else []
+            self.map = ([self.map_home] if self.map_home is not None and self.MAP_KEEP > 0 else []) + rest
+        self.in_map = not self.map
+        self.reloc_run, self.ramp, self.t_reloc = [], None, -math.inf
+
+    def _reloc_log(self, row):
+        self.reloc_log = self.reloc_log[-1999:] + [row]
+        self.note = (f"reloc {'ACCEPTED' if row['accepted'] else 'pass' if row['ok'] else 'refused'}: "
+                     f"step {row['step']} m, n {row['n']}" + (f", {row['why']}" if row["why"] else ""))
+
+    def _reloc(self, img, t0, att, hgt, tref, h, pos_now):
+        """KF_MAP: one try of a stored keyframe on this frame, which gave a good fix (pos_now) on the current chain.
+        Accepts after RELOC_N passing tries in a row (see KF_MAP). Returns True when Hold switched to the map."""
+        self.t_reloc = tref
+        row = dict(t=round(float(tref), 3), kf_t=None, kf_h=None, ok=False, accepted=False, step=None, n=None,
+                   phi_deg=None, scale=None, why=None)
+        cand = [k for k in self.map if abs(k["h"] / h - 1) <= self.RELOC_HGT]
+        k0 = self.map_home if any(self.map_home is k for k in cand) else (cand[-1] if cand else None)
+        if k0 is None:
+            self.reloc_run, row["why"] = [], f"no stored keyframe within {self.RELOC_HGT:.0%} of {h:.1f} m"
+            self._reloc_log(row)
+            return False
+        row.update(kf_t=round(float(k0["chain"]["t"]), 3), kf_h=round(k0["h"], 2), home=k0 is self.map_home)
+        k = dict(k0, alive=k0["alive"].copy(), out=k0["out"].copy())    # a try does not change the stored keyframe
+        rr = self._track(k, img, t0, att, hgt, tref, deep=True)          # the re-find of the 'lost' path
+        # (ORB start only for a corner keyframe: _track gives a whole-picture keyframe no start, so a second call there
+        # would repeat the first at the cost of two ORB passes)
+        if not (isinstance(rr, dict) and rr["n"] >= 2 * self.MIN_PTS) and not k["dense"]:
+            start = self._orb_guess(k, img)
+            rr = self._track(k, img, t0, att, hgt, tref, deep=True, start=start) if start is not None else rr
+        for key in ("dz", "orb"):                                         # caches of the keyframe's own picture
+            if key in k and key not in k0:
+                k0[key] = k[key]
+        lim = max(self.RELOC_STEP_M, self.RELOC_STEP_H * h)
+        if isinstance(rr, str):
+            why = rr
+        else:
+            spread = math.sqrt(np.trace(rr["res_cov"]))
+            step = np.asarray(pos_now, float) - rr["pos"]
+            row.update(n=rr["n"], step=round(float(np.linalg.norm(step)), 3), phi_deg=round(math.degrees(rr["phi"]), 2),
+                       scale=round(float(rr["s"]), 4), dense=rr["dvar"] is not None, pos=[round(float(x), 3) for x in rr["pos"]])
+            why = (f"{rr['n']} points (need {2 * self.MIN_PTS})" if rr["n"] < 2 * self.MIN_PTS else
+                   f"inlier share {rr['frac']:.2f}" if rr["frac"] < 0.6 else
+                   f"spread {spread:.2f} m" if spread >= 0.02 * h + 0.2 else
+                   f"yaw {math.degrees(rr['phi']):.1f} deg" if abs(rr["phi"]) > self.RELOC_YAW else
+                   f"scale {rr['s']:.3f}" if abs(rr["s"] - 1) > self.RELOC_SCALE else
+                   f"step over {lim:.2f} m" if np.linalg.norm(step) >= lim else None)
+        if why is not None:
+            self.reloc_run, row["why"] = [], why
+            self._reloc_log(row)
+            return False
+        self.reloc_run = (self.reloc_run + [step])[-self.RELOC_N:]
+        row["ok"] = True
+        if len(self.reloc_run) < self.RELOC_N:
+            row["why"] = f"pass {len(self.reloc_run)} of {self.RELOC_N}"
+            self._reloc_log(row)
+            return False
+        st = np.array(self.reloc_run)
+        dev = float(np.linalg.norm(st - st.mean(0), axis=1).max())
+        tol = self.RELOC_AGREE_M + self.RELOC_AGREE_H * h
+        row["agree_m"] = round(dev, 3)
+        if dev > tol:
+            self.reloc_run = self.reloc_run[1:]
+            row["why"] = f"tries disagree ({dev:.2f} m over {tol:.2f} m)"
+            self._reloc_log(row)
+            return False
+        # Accepted: the stored keyframe (with the try's point state) becomes the current one; the map's home stays the
+        # home; the keyframes of the new chain (another frame) are dropped. The output keeps the current position and
+        # moves to the map's frame at RELOC_RATE (process: self.ramp).
+        k0["alive"], k0["out"] = k["alive"], k["out"]
+        k0["ref"] = dict(t=tref, px=rr["p2"], pred=rr["pred"], seen=rr["meas"])
+        self.home = self.map_home if self.map_home is not None else k0
+        others = [m for m in self.map if m is not self.home and m is not k0]
+        self.kfs = others[-self.N_KF:] if self.N_KF > 0 else []
+        self.kf, self.t_switch, self.last = k0, tref, None
+        self.ramp, self.t_ramp = np.asarray(pos_now, float) - rr["pos"], tref
+        self.in_map, self.reloc_run, self.n_reloc = True, [], self.n_reloc + 1
+        row["accepted"] = True
+        self._reloc_log(row)
+        return True
 
     # ---- geometry ----
     def _undistort(self, px):
@@ -388,8 +586,10 @@ class Hold:
         return v / (np.linalg.norm(v, axis=1, keepdims=True) + 1e-6)
 
     # ---- picture and input checks ----
-    def _picture(self, img):
+    def _picture(self, img, tref=None):
         """Why this picture cannot be used (repeated or broken up), else None (E2, H4, real video)."""
+        gap = self.GAP_JUMP_S > 0 and tref is not None and self.t_pic is not None and tref - self.t_pic > self.GAP_JUMP_S
+        self.t_pic = tref if tref is not None else self.t_pic
         last, self.last_img = self.last_img, img
         if last is not None and last.shape == img.shape and \
                 cv2.norm(img, last, cv2.NORM_L1) < self.REPEAT_DIFF * img.size:
@@ -402,7 +602,7 @@ class Hold:
         hb = img.shape[0] // 8 * 8
         imp = cv2.absdiff(img, cv2.medianBlur(img, 3))[:hb] > 25
         x = np.r_[imp.reshape(8, -1).mean(1).max(), img[:hb].reshape(8, -1).mean(1)]
-        dx = np.abs(x - self.recent[-1]) if self.recent else np.zeros_like(x)
+        dx = np.abs(x - self.recent[-1]) if self.recent and not gap else np.zeros_like(x)
         self.recent = self.recent[-(self.BREAK_K - 1):] + [x]
         if len(self.cues) >= 10:
             h = np.array(self.cues)
@@ -473,11 +673,25 @@ class Hold:
         px, G, t, h, virt = px[ok], pos + g[ok], t[ok], h[ok], virt[ok]
         pred = self._project(np.c_[G - pos, h], attitude_R(att, t))
         a = att.array()
-        return dict(img=img, px=px, G=G, pos=np.array(pos, float), alive=np.ones(len(px), bool), out=np.zeros(len(px), int),
-                    pat=self._patches(img, px), n0=len(px), h=float(np.mean(h)), acc=acc, chain=chain,
-                    pending=pending, n_first=None, var=2 * (acc + chain["carried"]), virt=virt,
-                    dense=(~virt).sum() < self.MIN_PTS, ref=dict(t=tref, px=px.astype(float), pred=pred),
-                    yaw=float(np.interp(tref, a[:, 0], unwrapped_yaw(att, a))))
+        k = dict(img=img, px=px, G=G, pos=np.array(pos, float), alive=np.ones(len(px), bool), out=np.zeros(len(px), int),
+                 pat=self._patches(img, px), n0=len(px), h=float(np.mean(h)), acc=acc, chain=chain,
+                 pending=pending, n_first=None, var=2 * (acc + chain["carried"]), virt=virt,
+                 dense=(~virt).sum() < self.MIN_PTS, ref=dict(t=tref, px=px.astype(float), pred=pred),
+                 yaw=float(np.interp(tref, a[:, 0], unwrapped_yaw(att, a))))
+        if self.DENSE_NADIR_DEG > 0:
+            k["nadir"] = self._nadir(img, t0, att)
+        return k
+
+    def _nadir(self, img, t0, att):
+        """DENSE_NADIR_DEG: pixels of the whole-picture size whose ray is within DENSE_NADIR_DEG of straight down (bool),
+        at this frame's attitude (integ/diag10 'nadir')."""
+        s = self.DENSE_SCALE
+        hs, ws = round(img.shape[0] * s), round(img.shape[1] * s)
+        ys, xs = np.mgrid[0:hs, 0:ws].astype(np.float64)
+        q = np.c_[xs.ravel(), ys.ravel()] / s
+        f = np.c_[self._undistort(q), np.ones(len(q))] @ self.R_bc.T
+        b = np.einsum("nij,nj->ni", attitude_R(att, t0 + q[:, 1] / img.shape[0] * self.readout), f)
+        return (b[:, 2] > math.cos(math.radians(self.DENSE_NADIR_DEG)) * np.linalg.norm(b, axis=1)).reshape(hs, ws)
 
     def _activate(self, kf, tref):
         old = self.kf
@@ -537,7 +751,7 @@ class Hold:
         """
         if "dz" not in kf:
             a = self._small(kf["img"])
-            v = np.isfinite(a)
+            v = np.isfinite(a) & kf["nadir"] if "nadir" in kf else np.isfinite(a)
             a[~v] = float(a[v].mean())
             ys, xs = np.mgrid[0:a.shape[0], 0:a.shape[1]].astype(np.float32)
             kf["dz"] = dict(a=a, v=v, gx=cv2.Sobel(a, cv2.CV_32F, 1, 0, ksize=3, scale=0.125),
@@ -547,22 +761,35 @@ class Hold:
         z, s = kf["dz"], self.DENSE_SCALE
         # A homography cannot follow the fisheye: the map from keyframe to current pixels, and its change per
         # metre of drone move, are cubics in x, y fitted to every point (rolling-shutter shear included).
-        P = np.linalg.lstsq(_cubic(kf["px"][idx], img.shape), np.c_[guess - kf["px"][idx], J.reshape(-1, 4)], rcond=None)[0]
-        M = (z["B"] @ P).astype(np.float32).reshape(z["a"].shape + (6,)) * s
-        base, JN, JE = z["xy"] + M[..., :2], M[..., [2, 4]], M[..., [3, 5]]     # small px; small px per m
-        Jc = P[0, 2:].reshape(2, 2)                      # full px per m at the picture centre (columns N, E)
+        JY = Jy = None
+        if self.DENSE_TURN:   # the map gets two more columns: px per rad of turn about the vertical (integ/diag10 'yaw')
+            Jy = self._Jy if getattr(self, "_Jy", None) is not None else np.zeros((len(idx), 2))
+            P = np.linalg.lstsq(_cubic(kf["px"][idx], img.shape), np.c_[guess - kf["px"][idx], J.reshape(-1, 4), Jy], rcond=None)[0]
+            M = (z["B"] @ P).astype(np.float32).reshape(z["a"].shape + (8,)) * s
+            base, JN, JE = z["xy"] + M[..., :2], M[..., [2, 4]], M[..., [3, 5]]     # small px; small px per m
+            JY = M[..., 6:8]                                                          # small px per rad of yaw
+            Jc = P[0, 2:6].reshape(2, 2)                 # full px per m at the picture centre (columns N, E)
+        else:
+            P = np.linalg.lstsq(_cubic(kf["px"][idx], img.shape), np.c_[guess - kf["px"][idx], J.reshape(-1, 4)], rcond=None)[0]
+            M = (z["B"] @ P).astype(np.float32).reshape(z["a"].shape + (6,)) * s
+            base, JN, JE = z["xy"] + M[..., :2], M[..., [2, 4]], M[..., [3, 5]]     # small px; small px per m
+            Jc = P[0, 2:].reshape(2, 2)                  # full px per m at the picture centre (columns N, E)
         if abs(np.linalg.det(Jc)) < 1e-9:
             return "whole picture: no map"
         jN = z["gx"] * JN[..., 0] + z["gy"] * JN[..., 1]   # grey per m of drone move north (keyframe gradients)
         jE = z["gx"] * JE[..., 0] + z["gy"] * JE[..., 1]
+        if self.DENSE_TURN:
+            jY = z["gx"] * JY[..., 0] + z["gy"] * JY[..., 1]   # grey per rad of yaw
         b = self._small(img)
 
-        def warp(dl):     # warp(dl)(x) = current(map(x) + J(x) dl), NaN outside the picture and on the mask
+        def warp(dl):     # warp(dl)(x) = current(map(x) + J(x) dl[:2] [+ Jy(x) dl[2]]), NaN outside the picture and on the mask
             m = base + JN * np.float32(dl[0]) + JE * np.float32(dl[1])
+            if JY is not None:
+                m = m + JY * np.float32(dl[2] if len(dl) > 2 else 0.0)
             w = cv2.remap(b, m[..., 0], m[..., 1], cv2.INTER_LINEAR, borderMode=cv2.BORDER_CONSTANT, borderValue=float("nan"))
             return w, np.isfinite(w) & z["v"]
         w, v = warp((0.0, 0.0))
-        if v.mean() < 0.5:
+        if (v.sum() < 0.5 * z["v"].sum()) if self.DENSE_NADIR_DEG > 0 else (v.mean() < 0.5):
             return "whole picture: keyframe out of view"
         w = np.where(v, w - float(w[v].mean()), 0.0).astype(np.float32)
         # Zero mean first: the window times the mean grey is the same in both pictures and makes a false peak at
@@ -572,30 +799,62 @@ class Hold:
         if not resp >= self.DENSE_RESP:
             return f"whole picture: weak peak ({resp:.2f})"
         dl0 = np.linalg.solve(s * Jc, np.array(d))       # the shift at the centre, as a drone move
-        half, ds, cov = z["a"].shape[0] // 2, [], []
+        if self.DENSE_TURN:
+            dl0 = np.r_[dl0, 0.0]                        # no turn to start
+        half, ds, cov, P = z["a"].shape[0] // 2, [], [], 0.0
+        dys = []
         for rows in (slice(0, half), slice(half, None)):
             dl = dl0.copy()
             for _ in range(2):           # Lucas-Kanade on the whole half, in metres of drone move
                 w, v = warp(dl)
                 v = v[rows]
+                if self.DENSE_TURN:      # move and turn in one LK step (integ/diag10 'yaw')
+                    e, j1, j2, j3 = (w[rows] - z["a"][rows])[v], jN[rows][v], jE[rows][v], jY[rows][v]
+                    A3 = np.array([[j1 @ j1, j1 @ j2, j1 @ j3], [j1 @ j2, j2 @ j2, j2 @ j3], [j1 @ j3, j2 @ j3, j3 @ j3]], float)
+                    A = A3[:2, :2]
+                    if len(e) < 100 or np.linalg.eigvalsh(A)[0] < 1e-6 * len(e):
+                        return "whole picture: too flat"
+                    if np.linalg.eigvalsh(A3)[0] > 1e-9:    # the turn is measurable (texture off the turn axis)
+                        dl = dl - np.linalg.solve(A3, [j1 @ e, j2 @ e, j3 @ e])
+                    else:
+                        dl = dl - np.r_[np.linalg.solve(A, [j1 @ e, j2 @ e]), 0.0]
+                    continue
                 e, j1, j2 = (w[rows] - z["a"][rows])[v], jN[rows][v], jE[rows][v]
                 A = np.array([[j1 @ j1, j1 @ j2], [j1 @ j2, j2 @ j2]], float)
                 if len(e) < 100 or np.linalg.eigvalsh(A)[0] < 1e-6 * len(e):
                     return "whole picture: too flat"
                 dl = dl - np.linalg.solve(A, [j1 @ e, j2 @ e])
+            if self.DENSE_TURN:
+                dys.append(dl[2])
+                dl = dl[:2]
             ds.append(dl)
             cov.append(float(e @ e) / len(e) * np.linalg.inv(A))
-        gap = float(np.linalg.norm(Jc @ (ds[0] - ds[1])))
+            if self.DENSE_LOCAL:
+                P = P + np.linalg.inv(A) * float(np.sum(z["gx"][rows][v] ** 2 + z["gy"][rows][v] ** 2)) / 2   # m^2 per px^2
+        if self.DENSE_LOCAL:
+            # The gap in px of each half's own texture, not at the picture centre's scale (equal when J is the same
+            # everywhere). A fisheye moves its edge less per metre, so a picture shift of 1-3 px (camera vibration the FC
+            # does not see) in texture near the edge read as 4-8 px at the centre's scale (5 m, coarse ground; integ/lowh).
+            dd = ds[0] - ds[1]
+            gap = math.sqrt(2 * float(dd @ np.linalg.solve(P, dd))) / s
+        else:
+            gap = float(np.linalg.norm(Jc @ (ds[0] - ds[1])))
         self.dq[1] = gap
         if gap > self.DENSE_AGREE_PX:
             return f"whole picture: halves disagree ({gap:.1f} px)"
         dl = (ds[0] + ds[1]) / 2
+        if self.DENSE_TURN:
+            dl = np.r_[dl, (dys[0] + dys[1]) / 2]
         w, v = warp(dl)
         rho = float(np.corrcoef(w[v], z["a"][v])[0, 1]) if v.sum() > 100 else 0.0
         self.dq[2] = rho
         if not rho >= self.DENSE_NCC:
             return f"no ground (whole picture match quality {rho:.2f})"
-        p2 = guess + J @ dl
+        if self.DENSE_TURN:
+            p2 = guess + J @ dl[:2] + Jy * dl[2]
+            self.dyaw = float(dl[2])                     # the turn the picture measured (rad), for logs
+        else:
+            p2 = guess + J @ dl
         lk = np.isfinite(p_lk[:, 0])
         if lk.sum() >= 3:
             off = float(np.linalg.norm(_med(p_lk[lk] - p2[lk])))
@@ -665,9 +924,23 @@ class Hold:
                 p_lk[k[np.einsum("ij,ij->i", self._patches(img, p2[k]), kf["pat"][idx[k]]) < self.NCC_MIN]] = np.nan
             if kf["dense"]:                              # a corner LK lost is not tracked again (compute)
                 kf["alive"][idx[sel & np.isnan(p_lk[:, 0])]] = False
-            v = np.c_[kf["G"][idx] - kf["pos"], ht]       # px per m of drone move north and east, per point
-            J = np.stack([self._project(v - [1.0, 0, 0], Rt) - pred, self._project(v - [0, 1.0, 0], Rt) - pred], -1)
+            if self.DENSE_LOCAL:
+                # px per m of drone move north and east, per point: taken where the drone is now (the last fix, self.pos,
+                # in the keyframe's frame: without a KF_MAP ramp), with a central step of 1 % of the height, not at the
+                # keyframe with a 1 m forward step (integ/lowh)
+                at = self.pos if self.ramp is None else self.pos - self.ramp
+                v, e = np.c_[kf["G"][idx] - at, ht], 0.01 * ht[:, None]
+                J = np.stack([self._project(v - e * [1.0, 0, 0], Rt) - self._project(v + e * [1.0, 0, 0], Rt),
+                              self._project(v - e * [0, 1.0, 0], Rt) - self._project(v + e * [0, 1.0, 0], Rt)], -1) / (2 * e[:, :, None])
+            else:
+                v = np.c_[kf["G"][idx] - kf["pos"], ht]       # px per m of drone move north and east, per point
+                J = np.stack([self._project(v - [1.0, 0, 0], Rt) - pred, self._project(v - [0, 1.0, 0], Rt) - pred], -1)
+            if self.DENSE_TURN:  # px per rad of turn about the vertical through the drone, per point (central step 1e-3 rad)
+                c_, s_ = math.cos(1e-3), math.sin(1e-3)
+                Rz = np.array([[c_, -s_, 0.0], [s_, c_, 0.0], [0.0, 0.0, 1.0]])
+                self._Jy = (self._project(v @ Rz.T, Rt) - self._project(v @ Rz, Rt)) / 2e-3
             r = self._dense(kf, img, idx, guess, J, p_lk)
+            self._Jy = None
             if isinstance(r, str):
                 return r
             p2, dvar = r
@@ -686,6 +959,7 @@ class Hold:
             ok &= ncc >= self.NCC_MIN
             if ok.sum() < self.MIN_PTS:
                 return f"{ok.sum()} points match"
+        meas = p_lk if dense else np.where(ok[:, None], p2, np.nan)   # positions LK measured (NaN: not measured)
 
         # Motion against attitude since the reference frame. dd: image motion the attitude and height
         # predict, dm: measured motion. lim: what drift and attitude noise can explain.
@@ -717,6 +991,11 @@ class Hold:
                 live = "move"
             elif mm < self.LIVE_STILL_PIC_PX and np.percentile(np.linalg.norm(dd[com], axis=1), 90) < self.LIVE_STILL_PX:
                 live = "still"
+            sn = ref["seen"][idx] if "seen" in ref else rp              # measured positions at the last "moved" proof
+            cs = com & np.isfinite(meas[:, 0]) & np.isfinite(sn[:, 0])
+            if not live and cs.sum() >= self.MIN_PTS // 2 and \
+                    float(_med(np.linalg.norm(meas[cs] - sn[cs], axis=1))) > self.LIVE_MOVE_PX:
+                live = "moved"
         if ok.sum() < self.MIN_PTS:
             return f"{ok.sum()} points left"
 
@@ -737,9 +1016,11 @@ class Hold:
         mb = bi.mean(0)
         full, predf, every = np.full((len(kf["px"]), 2), np.nan), np.full((len(kf["px"]), 2), np.nan), kf["px"].copy()
         full[idx[ok]], predf[idx], every[idx] = p2[ok], pred, p2
+        measf = np.full((len(kf["px"]), 2), np.nan)
+        measf[idx] = meas
         return dict(n=n, frac=n / len(gi), pos=C, s=sc, phi=phi, res_cov=np.cov(res[inl].T), h=hm, every=every,
                     lever=float(mb @ mb / max(np.sum((bi - mb) ** 2), 1e-9)), p2=full, pred=predf, live=live,
-                    dvar=dvar if dense else None)
+                    dvar=dvar if dense else None, meas=measf)
 
     # ---- main ----
     def _fail(self, tref, why, lost=False):
@@ -751,9 +1032,9 @@ class Hold:
             self.lost = True
             if self.kf is not None:
                 self.last = self.kf
-            self.kf, self.t, self.t_live = None, None, -math.inf   # E7: no stale time after a loss
+            self.kf, self.t, self.t_live, self.t_moved = None, None, -math.inf, -math.inf   # E7: no stale time after a loss
         if why == "picture frozen" or why.startswith("image motion"):
-            self.t_live = -math.inf                       # prove the picture is live before sending again
+            self.t_live = self.t_moved = -math.inf        # prove the picture is live before sending again
         return Est(tref, self.pos.copy(), None, 0, "lost" if self.lost else "degraded", False, why)
 
     def process(self, img, t0, att, hgt):
@@ -763,8 +1044,9 @@ class Hold:
         hgt: Series of (t, height above the ground in m). Returns Est; send only when var is not None.
         """
         self.frames += 1
+        self.note = None              # KF_MAP: this frame's relocalization note, for the run log
         tref = t0 + self.readout / 2
-        why = self._picture(img) or self._check_inputs(t0, att, hgt)
+        why = self._picture(img, tref) or self._check_inputs(t0, att, hgt)
         if self.ROW_NORM:   # flicker is one gain per row (rolling shutter); the smoothing keeps the scene's row detail.
             # After the picture checks: on the normalized picture the break-up test let 5 of 90 broken frames through
             # (tests/bad_pictures.py with HOLD_CFG row_norm). Known limit: with strong moving bands, after a frozen
@@ -775,6 +1057,8 @@ class Hold:
             img = np.clip(img * (float(r.mean()) / np.maximum(r, 1.0))[:, None] + 0.5, 0, 255).astype(np.uint8)
         if why:
             return self._fail(tref, why)
+        if self.KF_BRIGHT > 0:
+            self.bright = [x for x in self.bright if x[0] > tref - 2 * self.KF_BRIGHT_S] + [(tref, float(img[::8, ::8].mean()))]
         h = float(hgt.at(tref))
         if not h >= self.H_MIN:
             return self._fail(tref, f"height {h:.1f} m below {self.H_MIN:g} m", lost=True)
@@ -813,25 +1097,36 @@ class Hold:
             if isinstance(r, str):
                 return self._fail(tref, r)
         if switched or r["live"] == "move" or r.get("mode"):   # the motion test of the next frames starts from this frame
-            kf["ref"] = dict(t=tref, px=r["p2"], pred=r["pred"])
-        if r["live"]:
+            kf["ref"] = dict(t=tref, px=r["p2"], pred=r["pred"], seen=r["meas"])
+        if r["live"] == "moved":                                # the next "moved" proof needs new motion
+            kf["ref"]["seen"], self.t_moved, kf["pending"] = r["meas"], tref, False
+        elif r["live"]:
             self.t_live, kf["pending"] = tref, False
         self.t_good = tref
         self.prev_px = r["every"].reshape(-1, 1, 2).astype(np.float32)   # one per keyframe point, as in version 1
         pos, n = r["pos"], r["n"]
-        if kf["pending"] or tref - self.t_live > self.LIVE_S:
+        if kf["pending"] or (tref - self.t_live > self.LIVE_S and tref - self.t_moved > self.LIVE_MOVED_S):
             return Est(tref, pos.copy(), None, n, "init" if kf["pending"] else "degraded", False,
                        "waiting for image motion that proves the picture is live")
         if self.home is None:
             self.home = kf
+        # KF_MAP ramp after a relocalization: this fix is in the map's frame; the output adds the ramp offset, which
+        # shrinks at RELOC_RATE (dt capped at LOST_S, so a gap does not give a step). pc: this fix as the last output saw it.
+        rp0, out = self.ramp, pos
+        pc = pos if rp0 is None else pos + rp0
         if self.t is not None and not switched and tref - self.t < self.LOST_S and \
-                np.linalg.norm(pos - self.pos) > 1.0 + 0.05 * h:
+                np.linalg.norm(pc - self.pos) > 1.0 + 0.05 * h:
             return self._fail(tref, "jump")
+        if rp0 is not None:
+            m = float(np.linalg.norm(rp0))
+            m2 = m - self.RELOC_RATE * min(max(tref - self.t_ramp, 0.0), self.LOST_S)
+            self.ramp, self.t_ramp = (rp0 * (m2 / m) if m2 > 0 else None), tref
+            out = pos if self.ramp is None else pos + self.ramp
 
         # Honest covariance (E4, E10, G3, H13): per-axis terms common to both axes, plus the fit's own
         # scatter and its yaw/scale lever on the centroid of the points.
         if self.t is not None and not switched and tref - self.t < 0.25:
-            d = pos - self.pos    # fix jitter: the per-frame attitude error the camera really sees
+            d = pc - self.pos     # fix jitter: the per-frame attitude error the camera really sees
             self.sig2 = 0.98 * self.sig2 + 0.02 * float(d @ d) / (4 * h * h)
         sig2 = max(self.SIG_TH ** 2, self.sig2)
         ch = kf["chain"]
@@ -842,6 +1137,8 @@ class Hold:
                + 2 * (self.SIG_BIAS * h) ** 2 * (1 - math.exp(-(tref - ch["t"]) / self.TAU_BIAS))
                + 0.5 * (2 * h * self.BETA_UNC * math.sin(dpsi / 2)) ** 2   # mount error x yaw change
                + 0.5 * (self.HGT_ERR / h * np.linalg.norm(pos - kf["pos"])) ** 2)   # baro offset x move
+        if self.ramp is not None:     # KF_MAP: the output is off the map's frame by the ramp
+            iso = iso + float(self.ramp @ self.ramp)
         loc = (self.N_EFF * (r["res_cov"] / n + np.trace(r["res_cov"]) / 2 * r["lever"] * np.eye(2)) if r["dvar"] is None
                else r["dvar"] * np.eye(2))           # whole-picture path: one shift, its own variance
         spread = math.sqrt(np.trace(r["res_cov"]))
@@ -850,9 +1147,9 @@ class Hold:
         if state == "degraded":
             cov = cov * self.DEGRADED_K
         recovered, self.lost = self.lost, False
-        self.pos, self.t, self.t_fix, self.var_axis = pos.copy(), tref, tref, float(np.trace(cov)) / 2
+        self.pos, self.t, self.t_fix, self.var_axis = out.copy(), tref, tref, float(np.trace(cov)) / 2
         kf["n_first"] = kf["n_first"] or n
-        est = Est(tref, pos.copy(), float(np.trace(cov)), n, state, recovered, None, cov, r["phi"],
+        est = Est(tref, out.copy(), float(np.trace(cov)), n, state, recovered, None, cov, r["phi"],
                   r["s"] * r["h"] / kf["h"])
 
         # Keyframe rule (E6, KfRuleHold): change when the points run low, or (at most once per KF_GAP,
@@ -860,8 +1157,24 @@ class Hold:
         # older keyframe first; a new one inherits this fix's error plus the fit's scatter.
         # n < 0.8 n_first too: a keyframe that starts with few points (prairie at 100 m: 28) is not replaced on
         # every frame; that churn cost 2 deep tracks and a new keyframe per frame and doubled the frame time.
-        if (n < self.MIN_PTS + 10 and n < self.KF_LOW * kf["n_first"]) or (n < 0.5 * kf["n_first"] and tref - self.t_switch > self.KF_GAP
-                                     and self.rate < self.KF_RATE) or (kf["dense"] and abs(yaw - kf["yaw"]) > self.DENSE_YAW):
+        # A keyframe asked by request_keyframe (the pilot's switch) is new, not an older one, and becomes home.
+        if self.kf_wanted and self.rate < self.KF_RATE and self._bright_settled(tref):
+            # KF_MAP: during a ramp the new home takes the sent position (out), so the hold point is where the pilot
+            # switched; the older keyframes (the map's frame) are then dropped. Without a ramp out is pos.
+            k = self._make_kf(img, t0, att, hgt, tref, out, kf["acc"] + np.trace(loc) / 2, ch, False)
+            if k is not None:
+                old_home = self.home
+                self._activate(k, tref)
+                if old_home is not None and old_home is not k and self.N_KF > 0:
+                    self.kfs = (self.kfs + [old_home])[-self.N_KF:]      # the old home stays for revisits
+                self.home, self.kf_wanted = k, False
+                if self.KF_MAP:       # the pilot's switch sets the hold point: the old map is not the reference now
+                    if self.ramp is not None:
+                        self.ramp, self.kfs = None, []
+                    self.map, self.map_home, self.in_map, self.reloc_run = [], None, True, []
+        elif (n < self.MIN_PTS + 10 and n < self.KF_LOW * kf["n_first"]) or (n < 0.5 * kf["n_first"] and tref - self.t_switch > self.KF_GAP
+                                     and self.rate < self.KF_RATE and self._bright_settled(tref)) \
+                or (kf["dense"] and abs(yaw - kf["yaw"]) > self.DENSE_YAW):
             # shortcut: an older keyframe is not warped by the yaw change before LK, so revisits fail after
             # about 15 deg of yaw; warp its picture if the hold must survive yaw turns (E6).
             for k in [k for k in [self.home] + self.kfs[::-1] if k is not None and k is not kf][:2]:
@@ -874,4 +1187,6 @@ class Hold:
                 k = self._make_kf(img, t0, att, hgt, tref, pos, kf["acc"] + np.trace(loc) / 2, ch, False)
                 if k is not None:
                     self._activate(k, tref)
+        if self.KF_MAP and self.map and not self.in_map and state == "ok" and tref - self.t_reloc >= self.RELOC_EVERY:
+            self._reloc(img, t0, att, hgt, tref, h, out)
         return est

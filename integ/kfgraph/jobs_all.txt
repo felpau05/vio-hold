@@ -1,0 +1,66 @@
+STEP 1 smoke
+--split tuning --ground ottawa2019fall --height 10 --seed 1 --seconds 20 --reanchor last --tag _smoke --ver snap=integ/kfgraph/hold_snapshot.py --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+STEP 1 done
+STEP 2 tuning
+--split tuning --ground ottawa2019fall --height 10 --seed 1 --reanchor last --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+--split tuning --ground ottawa2019fall --height 10 --seed 2 --reanchor last --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+--split tuning --ground ottawa2019fall --height 5 --seed 1 --reanchor last --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+--split tuning --ground ottawa2019fall --height 5 --seed 2 --reanchor last --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+--split tuning --ground ottawa2019fall --height 20 --seed 1 --reanchor last --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+--split tuning --ground ottawa2019fall --height 20 --seed 2 --reanchor last --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+STEP 2 done
+STEP 3 validation 10 m (re-anchor at last fix, then at truth)
+--split validation --ground ottawa2022 --height 10 --seed 11 --reanchor last --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}' --ver snap=integ/kfgraph/hold_snapshot.py
+--split validation --ground ottawa2022 --height 10 --seed 12 --reanchor last --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+--split validation --ground ottawa2022 --height 10 --seed 13 --reanchor last --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+--split validation --ground farmland --height 10 --seed 11 --reanchor last --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+--split validation --ground farmland --height 10 --seed 12 --reanchor last --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+--split validation --ground farmland --height 10 --seed 13 --reanchor last --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+--split validation --ground ottawa2022 --height 10 --seed 11 --reanchor truth --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+--split validation --ground ottawa2022 --height 10 --seed 12 --reanchor truth --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+--split validation --ground ottawa2022 --height 10 --seed 13 --reanchor truth --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+--split validation --ground farmland --height 10 --seed 11 --reanchor truth --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+--split validation --ground farmland --height 10 --seed 12 --reanchor truth --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+--split validation --ground farmland --height 10 --seed 13 --reanchor truth --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+STEP 3 done
+STEP 4 validation 5 and 20 m
+--split validation --ground ottawa2022 --height 5 --seed 11 --reanchor last --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}' --ver snap=integ/kfgraph/hold_snapshot.py
+--split validation --ground ottawa2022 --height 5 --seed 12 --reanchor last --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+--split validation --ground ottawa2022 --height 5 --seed 13 --reanchor last --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+--split validation --ground farmland --height 5 --seed 11 --reanchor last --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+--split validation --ground farmland --height 5 --seed 12 --reanchor last --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+--split validation --ground farmland --height 5 --seed 13 --reanchor last --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+--split validation --ground ottawa2022 --height 20 --seed 11 --reanchor last --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}' --ver snap=integ/kfgraph/hold_snapshot.py
+--split validation --ground ottawa2022 --height 20 --seed 12 --reanchor last --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+--split validation --ground ottawa2022 --height 20 --seed 13 --reanchor last --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+--split validation --ground farmland --height 20 --seed 11 --reanchor last --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+--split validation --ground farmland --height 20 --seed 12 --reanchor last --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+--split validation --ground farmland --height 20 --seed 13 --reanchor last --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+--split validation --ground ottawa2022 --height 5 --seed 11 --reanchor truth --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+--split validation --ground ottawa2022 --height 5 --seed 12 --reanchor truth --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+--split validation --ground ottawa2022 --height 5 --seed 13 --reanchor truth --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+--split validation --ground farmland --height 5 --seed 11 --reanchor truth --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+--split validation --ground farmland --height 5 --seed 12 --reanchor truth --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+--split validation --ground farmland --height 5 --seed 13 --reanchor truth --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+--split validation --ground ottawa2022 --height 20 --seed 11 --reanchor truth --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+--split validation --ground ottawa2022 --height 20 --seed 12 --reanchor truth --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+--split validation --ground ottawa2022 --height 20 --seed 13 --reanchor truth --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+--split validation --ground farmland --height 20 --seed 11 --reanchor truth --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+--split validation --ground farmland --height 20 --seed 12 --reanchor truth --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+--split validation --ground farmland --height 20 --seed 13 --reanchor truth --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+STEP 4 done
+STEP 5 bad pictures
+RAW ~/.venvs/vio/bin/python integ/kfgraph/bad_graph.py off on
+--split validation --ground ottawa2022 --height 5 --seed 11 --seconds 30 --bad frozen_bottom --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+--split validation --ground ottawa2022 --height 5 --seed 12 --seconds 30 --bad frozen_bottom --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+--split validation --ground ottawa2022 --height 5 --seed 13 --seconds 30 --bad frozen_bottom --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+--split validation --ground ottawa2022 --height 5 --seed 11 --seconds 30 --bad frozen_top --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+--split validation --ground ottawa2022 --height 5 --seed 12 --seconds 30 --bad frozen_top --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+--split validation --ground ottawa2022 --height 5 --seed 13 --seconds 30 --bad frozen_top --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+--split validation --ground ottawa2022 --height 5 --seed 11 --seconds 30 --bad overlay_half --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+--split validation --ground ottawa2022 --height 5 --seed 12 --seconds 30 --bad overlay_half --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+--split validation --ground ottawa2022 --height 5 --seed 13 --seconds 30 --bad overlay_half --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+--split validation --ground ottawa2022 --height 5 --seed 11 --seconds 30 --bad overlay_flat --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+--split validation --ground ottawa2022 --height 5 --seed 12 --seconds 30 --bad overlay_flat --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+--split validation --ground ottawa2022 --height 5 --seed 13 --seconds 30 --bad overlay_flat --ver off=integ/kfgraph/hold_graph.py --ver on=integ/kfgraph/hold_graph.py@'{"kf_graph":true}'
+STEP 5 done

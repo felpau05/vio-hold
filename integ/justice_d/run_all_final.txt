@@ -1,0 +1,15 @@
+test_basics: rc=0 ALL PASS in 20 s
+test_digital: rc=0 ALL PASS in 16 s
+test_fc_link: rc=0 ALL PASS in 20 s
+test_run: rc=0 ALL PASS in 28 s (files in /tmp/tmpty6tnbc3)
+test_bench: rc=0 ALL PASS in 17 s
+test_calib: rc=0 ALL PASS in 59 s
+test_lens_d: rc=0 ALL PASS in 129 s
+test_replay_chunks: rc=0 ALL PASS
+test_wind_assist: rc=0 ALL PASS
+test_ap_sitl: rc=0 ALL PASS
+sim_test.timing_test: rc=0 timing_test PASSED
+
+real	5m6.890s
+user	5m15.859s
+sys	0m54.251s

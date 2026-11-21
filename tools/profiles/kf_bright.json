@@ -1,0 +1,6 @@
+{
+ "_why": {
+  "_note": "No unforced keyframe change (and no keyframe from fresh_kf) until the picture brightness stayed within 2 grey for 0.5 s. For auto exposure and the Justice D's day/night switch (Justice D datasheet v1.0: WDR, Day/Night Shift Auto). Forced changes (points run out) still happen. Not measured on the real camera. Tests: tests_apb/test_event.py E6. Apply it without this overlay to switch it off."
+ },
+ "hold_cfg": {"kf_bright": 2.0}
+}

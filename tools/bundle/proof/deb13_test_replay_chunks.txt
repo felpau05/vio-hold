@@ -1,0 +1,5 @@
+$ qpy tests_apb/test_replay_chunks.py (cwd: the bundle's vio folder plus the test files; root file system py312; qemu CPU cortex-a53)
+PASS the whole recording gives fixes: {'frames': 150, 'sent': 113, 'init': 1, 'ok': 123, 'degraded': 8}
+PASS 3 chunks give the same 150 log rows as the whole recording ({'frames': 150, 'sent': 113, 'init': 1, 'ok': 123, 'degraded': 8})
+ALL PASS
+exit code 0

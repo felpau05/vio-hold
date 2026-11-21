@@ -1,0 +1,5 @@
+run_regression start 03:19:16 load 2.81
+run_regression end 03:20:57 rc=0 load 10.68
+run_all start 03:22:37 load 2.68
+run_all end 03:31:04 rc=0 load 3.32
+lock removed 03:31:04

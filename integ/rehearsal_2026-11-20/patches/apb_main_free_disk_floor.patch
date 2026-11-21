@@ -1,0 +1,12 @@
+--- a/apb_main.py
++++ b/apb_main.py
+@@ -906,7 +906,8 @@
+     if s["record_hz"] > 0:
+         rate = min(rate, s["record_hz"])
+     mbs = shape[0] * shape[1] * rate / 1e6
+-    need = s["min_free_gb"] * mbs / (360 * 288 * 25 / 1e6)
++    # never less than the level where Raw stops (Raw does not scale min_free_gb): under 1 at 10 Hz (no_sd profile)
++    need = max(s["min_free_gb"] * mbs / (360 * 288 * 25 / 1e6), s["min_free_gb"])
+     line(free >= need, f"free disk {free:.1f} GB at {where} (need {need:.1f} GB: raw recording takes {mbs:.1f} MB/s "
+          f"at {shape[1]}x{shape[0]}, {rate:.0f} Hz)" + ("" if free >= need else
+          ". Set log_dir to a bigger disk (SD card: /sdcard/logs), or delete old logs."))

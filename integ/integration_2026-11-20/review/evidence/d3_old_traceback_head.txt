@@ -1,0 +1,14 @@
+Point the camera at a scene more than 50 m away (drone on its side). Turn the drone by hand, +-15 to 20 deg about all three axes, about once every 2 s.
+Traceback (most recent call last):
+  File "<review>/mut/old/apb_main.py", line 1158, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "<review>/mut/old/apb_main.py", line 1154, in main
+    return modes[args.mode](s, args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<review>/mut/old/apb_main.py", line 964, in mode_calib
+    pw, ph = calib.profile(lens_path, s["lens_name"])["image_size"]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<review>/mut/old/calib.py", line 342, in profile
+    p = next((m for m in json.load(open(path))["models"] if m["name"] == name), None)
+                         ^^^^^^^^^^^^^^^^^^^^^

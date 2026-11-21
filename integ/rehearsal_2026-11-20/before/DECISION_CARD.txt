@@ -1,0 +1,147 @@
+DECISION CARD: what you see, the most likely cause, what to change
+Read the log first: ~/.venvs/vio/bin/python tools/plot_log.py logs/run_*.csv (one PNG in about 1 s).
+After each change: run tools/deploy.sh, then python3 apb_main.py check on the board.
+PX4 names are on the left of "/", ArduCopter 4.6 names are on the right.
+Safety first: if the drone moves away, select Altitude mode (AltHold) at once.
+
+1  SEE    The drone swings or flies away right after Position mode (Loiter) starts.
+   CAUSE  The picture is turned or mirrored (FINDINGS G1, H3). Or att_source is not "gyro" (fly-away).
+   DO     Select Altitude mode. Land. Run python3 apb_main.py calib (EVENT_DAY step 4). Do the bench test (step 6).
+          Run python3 tools/use_profile.py show. att_source must not appear in the list of changed values.
+2  SEE    The drone flies circles around the hold point ("toilet bowl").
+   CAUSE  The picture is turned 90 deg (G1). The PX4 VIO docs name the camera direction (papers_control.md S13).
+   DO     Select Altitude mode. Land. Run calib (EVENT_DAY step 4). Do the bench test (step 6).
+3  SEE    Positions stop over plain ground: grass, snow, a plain floor.
+   CAUSE  Too few points (Hold MIN_PTS 20), or the capture check refuses a flat picture (no_signal_mad). Digital camera: it refuses a flat picture with a median under 64 grey (BLACK_GREY), also with OSD text.
+   DO     Read the reasons panel in plot_log. Ask the pilot for a test position over textured ground.
+          Do not put tarps, lamps or marks on the ground. The rules do not permit them in a scored flight.
+          Do not lower hold_cfg min_pts. No test shows that it is safe (E1).
+4  SEE    Positions stop in a still hover ("waiting for image motion that proves the picture is live").
+   CAUSE  The liveness check needs picture motion (hold_cfg move_px 1.5 px, live_s 1.0 s).
+   DO     Wait 3 s (the sim accepted a still start after 2.7 s). If it stays, give a small roll input.
+5  SEE    The hold is good low but poor high.
+   CAUSE  Every tilt, timing and lens error grows with the height (H1, G2, E5). Calm air: the autopilot's tilt error.
+   DO     Record 60 s high (100 m or higher) with --raw. Run ~/.venvs/vio/bin/python tools/replay_tune.py logs/raw_*.npz.
+          Below 100 m, merge no replay_tune patch: at 30 m it set a wrong delay, readout and focal together (EIGHT_HOURS hour 5).
+          Fly lower for goal B.
+6  SEE    The picture is mirrored or turned (nose down does not move the picture toward its top edge).
+   CAUSE  top and mirror in settings.json are wrong for this camera mount.
+   DO     Run python3 apb_main.py calib. Do not edit top or mirror by hand. Do the bench test (step 6).
+7  SEE    The fix age is 150 ms or more (check line, or the ms panel in plot_log).
+   CAUSE  Video delay plus processing time. The governor "powersave" slows the CPU (board_check.sh).
+   DO     PX4: put EKF2_DELAY_MAX = fix age + 100 in params_px4 (EVENT_DAY step 2). Run check --set-params. Reboot.
+          ArduPilot: set VISO_DELAY_MS in params_ardupilot to the fix age (0 to 250).
+8  SEE    The autopilot refuses Position mode (Loiter).
+   CAUSE  No fixes yet, or a parameter or the origin is missing (H2, EVENT_DAY step 7).
+   DO     Run python3 apb_main.py check. Every param line must show PASS. Fix FAIL with check --set-params.
+          ArduPilot: set origin_lat_lon_alt in settings.json (the field's lat, lon, alt). PX4: wait 60 s after run.
+          Climb above min_height_m first (indoor profile: 1 m, outdoor: 3 m). The program sends nothing lower.
+9  SEE    Steady drift in one direction.
+   CAUSE  Fixes stopped and the wind carries the drone (see 3 and 4). Or a yaw turn after the start (E5, H8).
+   DO     Read fixes per second in plot_log. Do not yaw during the hold. Run calib again to measure tilt_deg.
+          Only the camera view sits off the target in wind? That is the lean into the wind, not drift.
+          Wind and a slow return: raise MPC_XY_VEL_I_ACC (PX4, 0.4). PSC_VELXY_I is at its 4.6 maximum (1.0).
+          Test a gain change in SITL first.
+10 SEE    The hold wobbles back and forth.
+   CAUSE  The delay that the autopilot uses differs from the fix age (px4_vision.md section 3), or the gain is high.
+   DO     Set EKF2_EV_DELAY / VISO_DELAY_MS to the fix age. Then lower MPC_XY_P (0.95) / PSC_POSXY_P (1.0).
+          Test a gain change in SITL first (papers_control.md S12).
+11 SEE    Fewer than 10 fixes per second (plot_log panel 3, line min_send_hz).
+   CAUSE  The CPU is too slow, or frames are refused (reasons panel).
+   DO     Set the governor to performance (board_check.sh prints the command). Try hold_cfg fb_every 3 (H6).
+12 SEE    Many frames refused with "image motion does not match the attitude".
+   CAUSE  Wrong video delay, readout, lens scale or camera direction.
+   DO     Run replay_tune on the last recording. In the sim it found 40 ms delay errors and a wrong readout sign.
+          It can miss a delay that is 20 ms too short. Run calib again if it changes video_delay_s by over 10 ms.
+13 SEE    "attitude late", "attitude stale" or ATTITUDE under 100 Hz in check.
+   CAUSE  Other streams fill the link (H5).
+   DO     PX4: add px4 to the apply line (MAV_0_RATE 23040). Run check --set-params. Stop ULog streaming.
+          ArduPilot: set the SRn_ rates of the APB port to 0 (EVENT_DAY step 7).
+14 SEE    Indoors: frames refused with "height ... m under 15 m".
+   CAUSE  The outdoor minimum height is active.
+   DO     python3 tools/use_profile.py apply indoor goal_b <px4 or ardupilot>. Then tools/deploy.sh.
+15 SEE    The trial is after dark, and the calibration was made in daylight.
+   CAUSE  The exposure is longer at night. It moves the video delay (H11, +8 ms in the sim).
+   DO     Run calib in the night light (EVENT_DAY step 4). Apply outdoor_night. Do the bench test (step 6).
+
+Rows 16 to 24: Justice D (digital camera) messages. PX4/ArduPilot names do not apply. Text in quotes comes from the code.
+16 SEE    check: "video: cannot open the camera at <video_device or video_pipeline>".
+   CAUSE  OpenCV cannot open the camera: the cable, video_device, or the V4L2 backend.
+   DO     Check the camera cable and video_device (CSI 1 is /dev/video2). Run sh tools/board_check.sh.
+          Set video_pipeline in settings.json. If that fails, set video_command (EVENT_DAY step 2).
+17 SEE    check: "video rate <n> fps (setting video_fps 60)" shows FAIL.
+   CAUSE  The camera rate is not within 10 % of video_fps.
+   DO     Set video_fps to the camera's rate. With video_command, check video_command and pixel_format.
+18 SEE    "cannot read pixel format '<x>' as grey" or "cannot cut the video_command output into frames".
+   CAUSE  pixel_format is not a format that the program reads.
+   DO     Set pixel_format to YUYV, UYVY, NV12 or GREY. Use the format that board_check.sh lists for /dev/video2.
+19 SEE    check: "video_command stopped with exit code <n>" or "video_command gave no frame in 2 s".
+   CAUSE  The command fails, or it does not write raw frames of video_size to its standard output.
+   DO     Read the error above the line. Check video_command and pixel_format in settings.json.
+20 SEE    check: "lens profile '<name>' is <w>x<h>, the picture <w>x<h>" shows FAIL.
+   CAUSE  The lens profile and the picture have different shapes.
+   DO     Set lens_name to a 16:9 profile. Or run python3 tools/use_profile.py apply <profile names> justice_d.
+21 SEE    calib: "FAIL k1 not found" or "FAIL calibration".
+   CAUSE  The drone turned too little, or the tracked points did not reach far enough from the optical axis.
+   DO     Read the reason in the line. Turn the drone more about all three axes. Run calib again (EVENT_DAY step 4).
+22 SEE    run refuses to start: "capture is '<x>' but the calibration was made with '<y>'. Run calib again."
+   CAUSE  The camera or the capture settings changed after the calibration.
+   DO     Run python3 apb_main.py calib (EVENT_DAY step 4). Start run again.
+23 SEE    check: "free disk <n> GB at <path>" shows FAIL.
+   CAUSE  A raw recording takes about 14 MB each second at 60 Hz. The 4 GB eMMC is too small.
+   DO     Set log_dir to /sdcard/logs in settings.json. Or delete old logs.
+24 SEE    board_check.sh: "board temperature <n> C: the board stops at 95 C" shows FAIL.
+   CAUSE  The board is hot. It stops at 95 C.
+   DO     Cool the board before the flight. Run sh tools/board_check.sh again.
+
+Rows 25 to 33: more Justice D messages. Text in quotes comes from the code.
+25 SEE    check: "frame stamps from <x>: intervals differ from their median by <n> ms (p95, limit 12 ms for a hold at 40 m)" shows FAIL.
+   CAUSE  The frame stamps jitter, or the camera lost frames. A stamp error moves the fix.
+   DO     Use driver stamps: video_device, no video_command. Stop other programs on the board. Run check again.
+26 SEE    check: "frame stamps from <x>: <n> intervals in 2 s, too few to measure (need 10)".
+   CAUSE  The camera gave too few frames in 2 s.
+   DO     Make the camera give frames (rows 16 to 19). Run check again.
+27 SEE    run: "FAIL no camera frame for 2 s: the camera stopped. The program opens it again."
+   CAUSE  The camera gave no frame for 2 s. The program closes the camera and opens it again.
+   DO     If this repeats, check the camera cable, and video_device or video_command in settings.json.
+28 SEE    run: "the raw recorder stopped: the disk at <path> has <n> GB free, less than min_free_gb <n>. The hold continues."
+   CAUSE  The free space is under min_free_gb. The raw recording stops. The hold goes on.
+   DO     Delete old logs before the next flight. Check that log_dir is /sdcard/logs (row 23).
+29 SEE    run: "log write failed: <error>. The hold continues without a log."
+   CAUSE  The log file cannot be written. The fixes go on.
+   DO     Free disk space at the log folder before the next flight.
+30 SEE    calib: "FAIL calibration: the picture is <w>x<h>, but lens profile '<name>' is <w>x<h>."
+   CAUSE  The lens profile and the picture have different shapes.
+   DO     Set lens_name to a Justice D profile. Run calib again.
+31 SEE    calib: "FAIL calibration: the lens fit ended at the edge of its search range".
+   CAUSE  The lens is outside the search range, or the recording is poor.
+   DO     Record again. If it fails again, measure the lens with a checkerboard (EVENT_DAY, laptop procedure).
+32 SEE    calib: "FAIL focal scale is outside 0.98-1.02: the lens measured with a target does not fit this recording."
+   CAUSE  lens_measured (target) does not match this camera or this picture.
+   DO     Measure the lens again with tools/lens_calib.py --settings. Or set lens_measured to null. Then run calib.
+33 SEE    check or run: "lens_measured (<by>) is for <w>x<h> pictures, but the picture is <w>x<h>."
+   CAUSE  lens_measured is from a picture of another shape.
+   DO     Set lens_measured to null in settings.json. Run calib. Or measure the lens again.
+
+Rows 34 to 38: the pilot's switch, the light and the recovery demonstration. Text in quotes comes from the code.
+34 SEE    The drone jumps or swings when the pilot moves the switch to Position mode.
+   CAUSE  The fixes stopped near the switch, or the hold point moved at the switch.
+   DO     Find the note "engaged: FC mode ..." in the run log. Read the rows near it: sent, why and the mode column.
+          Do not use the fresh_kf profile until apsim/engage_results.txt shows that it helps.
+35 SEE    At dusk or at night the run log shows "black or flat picture (lens covered?)" while the lens is clear.
+   CAUSE  The ground texture is very faint. The picture check refuses a picture with a texture spread under
+          no_signal_mad (2 grey at 1/8 size). Hold could use some of these pictures (a synthetic test only).
+   DO     Fly over ground with more contrast, or fly lower. Do not lower no_signal_mad: a covered lens with
+          OSD text then gives false fixes (tests_apb/test_robust.py D7).
+36 SEE    The hold gets worse when the light changes (sun to cloud, dusk, the camera's switch to black and white).
+   CAUSE  A keyframe taken while the camera's exposure moves matches later frames worse (assumed, not measured).
+   DO     Add the kf_bright profile (EVENT_DAY, optional new hold options). Fly the same test again. Compare the logs.
+37 SEE    The run log shows "recovery test: video dropped" in a flight that is not the recovery demonstration.
+   CAUSE  The recovery_demo profile is still on, or the file outage_now is in log_dir.
+   DO     Apply your profile names again without recovery_demo. Copy the settings (deploy.sh). Delete outage_now.
+38 SEE    At 5 m: many "re-anchored" notes and "whole picture: halves disagree", gaps of several seconds without a fix.
+   CAUSE  The whole-picture path fails its halves check (limit 4 px). ArduCopter SITL at 5 m: up to 16 re-anchors per
+          minute, gaps up to 6.3 s (apsim/low_ap_results.txt). In SITL, Hold ran almost only on that path at 5-10 m
+          (48 points = its 8 x 6 grid; halves gap median 4.3-5.1 px): the sim photo has almost no corners at that
+          height. Real ground has more texture, but grass that moves in the propeller wash can also cause it.
+   DO     Fly the hold at 10 m or higher when the level allows it. Check fixes per second in plot_log.

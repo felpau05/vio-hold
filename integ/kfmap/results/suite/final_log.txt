@@ -1,0 +1,7 @@
+run_regression start 04:49:51 load 2.88
+run_regression end 04:52:25 rc=0 load 9.20
+run_all start 04:53:45 load 2.61
+run_all end 05:05:33 rc=0 load 2.50
+suite done 05:05:33
+test_live py+(b) start 05:05:33 load 2.50
+test_live py+(b) end 05:07:02 rc=1 load 3.35
