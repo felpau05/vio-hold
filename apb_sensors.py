@@ -276,6 +276,19 @@ def open_imu(hz=200):
     return g, a
 
 
+def stop_on_signals():
+    """Ctrl+C (SIGINT) and SIGTERM both raise KeyboardInterrupt in the main thread, so the program stops through its
+    finally blocks and puts the sensors back. Needed because a program started in the background from a
+    non-interactive shell (ssh '... &') inherits SIGINT ignored, and Python then installs no Ctrl+C handler:
+    'pkill -INT' did nothing on the APB (2026-11-21). Stop with: pkill -TERM -f "[a]pb_live.py"."""
+    import signal
+
+    def h(sig, frame):
+        raise KeyboardInterrupt
+    signal.signal(signal.SIGINT, h)
+    signal.signal(signal.SIGTERM, h)
+
+
 def pa_to_m(dp_pa, p_pa=101325.0, t_c=20.0):
     """Height change for a pressure change (hydrostatic, small changes): dh = -dp * R T / (g M p)."""
     return -dp_pa * 287.05 * (t_c + 273.15) / (9.80665 * p_pa)

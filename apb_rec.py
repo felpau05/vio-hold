@@ -36,6 +36,7 @@ def main():
     ap.add_argument("--imu-hz", type=int, default=200)
     ap.add_argument("--min-free-mb", type=float, default=300)
     a = ap.parse_args()
+    A.stop_on_signals()
     os.makedirs(a.out, exist_ok=True)
     base = os.path.join(a.out, f"{a.label}_{time.strftime('%H%M%S')}")
 
