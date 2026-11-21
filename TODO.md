@@ -14,14 +14,17 @@ Legend: **[you]** needs hands on the drone · **[code]** software · **[ask]** o
 Goal: carry the drone (props off, battery in, laptop unplugged) and see the live position on the laptop.
 A walk can also just be **recorded** now and replayed later, so calibration can follow the walk if needed.
 
-- [ ] **[you] Desk checks, 1 min:** cover the lens 3 s (E1 detection on the real sensor); slide the drone
+- [x] **[you] Desk checks, 1 min:** cover the lens 3 s (E1 detection on the real sensor); slide the drone
       10 cm forward and back (which image edge is the front); hold it still 5 s at the end.
-- [ ] **[code] Live mode on the APB:** camera + APB IMU + barometer → `Pipe` → position, live at 30 fps
+      Done: top = rear; a hand over the lens is bright and blurry, not dark: now caught by a detail check.
+- [x] **[code] Live mode on the APB:** camera + APB IMU + barometer → `Pipe` → position, live at 30 fps
       (`apb_est` inputs, `v4l2_mmap` frames). Check that the A53 keeps up (process time per frame).
-- [ ] **[code] Live display:** web page served by the APB (`http://192.168.75.1:8080`), large READY / NOT READY,
+      Done: `apb_live.py` (`--rec LABEL` also records). 13-16 fps with the estimator (LK forward+backward
+      is most of it); camera and recording at 30 fps.
+- [x] **[code] Live display:** web page served by the APB (`http://192.168.75.1:8080`), large READY / NOT READY,
       forward / right (m), distance from zero, height change, **Zero here** button. Refresh about 5 Hz.
 - [ ] **[code] Mask** for the drone parts visible at the left and right edges of the picture.
-- [ ] **[code] Front direction** (`top`, `mirror`) from the slide check.
+- [x] **[code] Front direction** (`top`, `mirror`) from the slide check.
 - [ ] **[you] Battery check:** the APB keeps running with the USB cable unplugged (C needs it).
 - [ ] **[you] Distance marks:** tape or floor tiles with known spacing, a tape measure. Ask the organizers for tape.
 - [ ] **[you + code] First walk session** (start each on the floor 5 s, then lift to about 1 m):
