@@ -10,7 +10,7 @@ cp apsim/runs/rehearsal_2026-11-20_sitl.log "$T/old_sitl.log" 2>/dev/null
 $PY -c "import settings as S; s = S.load('/nonexistent'); s['video_device'] = '/nonexistent'; s['log_dir'] = '$T/a'; S.save(s, '$T/a.json'); s['log_dir'] = '$T/b'; S.save(s, '$T/b.json')"
 sh $R/sitl_ap.sh start wipe; sleep 8
 echo "--- save (factory values)";             $PY tools/fc_params.py save --settings $T/a.json
-echo "--- save again (must refuse)";          $PY tools/fc_params.py save --settings $T/a.json; echo "exit $?"
+echo "--- save again (must keep the first file and show PASS)";          $PY tools/fc_params.py save --settings $T/a.json; echo "exit $?"
 echo "--- check --set-params (our values)";   $PY apb_main.py check --set-params --settings $T/a.json | grep -E "param "
 sh $R/sitl_ap.sh stop; sleep 2; sh $R/sitl_ap.sh start; sleep 8          # reboot, parameters kept
 echo "--- restore";                           $PY tools/fc_params.py restore --settings $T/a.json; echo "exit $?"

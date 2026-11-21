@@ -434,8 +434,9 @@ Pass: The last line shows "ALL RESTORED".
 4. Tell the crew: "The parameters have their values of this morning again." Show them fc_params_before.json.
 If a line shows FAIL: tell the crew which parameter differs. They set it in the ground station.
 If the file is missing: give the crew the "param" lines of the first check of the day (they show the old values).
-(Tested on an ArduCopter simulator flight controller: it saved 8 values, step 1 item 3 changed 6 of them, and the
-tool wrote all of them back: integ/integration_2026-11-21/fc_params_sitl.txt. It has not run on a real flight controller.)
+(Tested on an ArduCopter simulator flight controller: it saved 14 values, step 1 item 3 changed 6 of them, a second
+save kept the first file, and the tool wrote all of them back: integ/integration_2026-11-21/fc_params_sitl.txt. It has
+not run on a real flight controller.)
 
 
 OPTIONAL. RECOVERY DEMONSTRATION (bonus route "demonstrated recovery", Stage 1 package)

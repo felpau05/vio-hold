@@ -24,15 +24,15 @@ tools/bundle/vio-bundle-aarch64.tar.gz (not in git: "sh tools/bundle/build.sh" m
 The Python program is vio-bundle/python/bin/python3.12. There is no "python3" name: the bundle has no
 symbolic links, so a FAT card can hold it.
 
-Facts of the bundle built on 2026-11-21 at 06:50:
-  .tar.gz size          113,850,660 bytes (109 MiB)
+Facts of the bundle built on 2026-11-21 at 07:06:
+  .tar.gz size          113,848,696 bytes (109 MiB)
   after extraction      358.6 MB in 5571 files (one more than before: tools/fc_params.py). 366 MB on a Linux disk. Up to 800 MB on an exFAT card.
-  sha256                9f852ebf0a1075a1fd58c154949648e04e60f66cd592e80e61b8489c50b3a3b1
+  sha256                bbbaf507301660e727e900e26e9c84d6f1a4262adb75f2b6699a6a2e9463d77e
   lowest glibc          2.27 (numpy). python3.12 and OpenCV need 2.17 only. Details: proof/glibc_and_libs.txt
   from the board        glibc (libc, libm, libdl, libpthread, librt, libutil, ld-linux-aarch64.so.1), and
                         libstdc++.so.6, libgcc_s.so.1, libz.so.1 (or the copies in syslibs)
 A new build has another sha256, because the files get new dates.
-This build holds the program files of 2026-11-21 06:50 (the same md5 as the project files, checked for apb_main.py,
+This build holds the program files of 2026-11-21 07:06 (the same md5 as the project files, checked for apb_main.py,
 fc_link.py, settings.py, hold.py, EVENT_DAY.txt, DECISION_CARD.txt and the two tools). After a later code change,
 build again: sh tools/bundle/build.sh (no internet needed). Python and its packages stay the same.
 The proof files in proof/ are from the build of 2026-11-20. The emulated ARM test was not run again on this build.
