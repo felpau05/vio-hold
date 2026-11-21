@@ -354,6 +354,7 @@ def main():
     ap.add_argument("--height", type=float, help="desk tests only: fixed lens height (m), no barometer")
     ap.add_argument("--rec", metavar="LABEL", help="also record every frame for replay (about 15 MB/s)")
     a = ap.parse_args()
+    A.stop_on_signals()
     run(S.load(), a.port, a.fps, a.seconds, fixed_height=a.height, rec_label=a.rec)
     return 0
 
