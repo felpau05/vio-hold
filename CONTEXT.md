@@ -1,4 +1,47 @@
-# CONTEXT.md: where the project stands (updated 2026-11-19)
+# CONTEXT.md: where the project stands (updated 2026-11-21, Stage 2, first day on the hardware)
+
+Written so a new person (or a new Claude session) can pick up without the chat. Branch: **`stage2-bench`**.
+Read `TODO.md` (what is left, by points) and `HARDWARE_BRINGUP.md` (measured facts) next.
+
+## Stage 2 in short (package: https://github.com/Haxerus/redteam-grand-final, clone not in this repo)
+
+- Scoring 100 + 20 bonus. **Bench A-E = 70 points**, judge carries the drone at about 1 m, props off, our laptop shows
+  the live estimate; up to 3 judged sessions, 2 tries per item, passed items banked. **Flight G = 20** (levels 10/20/35/50/75 m,
+  30 s within 3 m / 2 m, scored from the FC log by `hold_judge.py`), allowed only after D and E are banked, 2 flights.
+  F = 10 at the presentation. Bonuses +5 each: Betaflight hold, GNSS-free start, timing/rolling-shutter evidence, recovery.
+- FC: **Betaflight 2025.12.5 installed; we chose Betaflight** (no flashing risk, +5). Commands: `MSP_SET_RAW_RC` at ~50 Hz,
+  used while CH10 (TL2) is high (MSP OVERRIDE + ANGLE). **No command timeout**: send safe values (roll/pitch/yaw 1500,
+  hold-height throttle) continuously from start-up, never minimum values. ArduCopter 4.7.2 is optional (we do not use it).
+- No GNSS while engaged; GPS stays connected for the judges. Team dev testing: walk the drone by hand first, then fly.
+
+## Done today (commits 89b3d64 .. on stage2-bench)
+
+- Hardware measured (`HARDWARE_BRINGUP.md`): Python 3.12 + numpy 1.26 on the board, OpenCV 4.11 put in `/data/vio/pylib`;
+  Justice D 1920x1080@60 on `/dev/video2` with monotonic end-of-frame stamps; never change its size (crops the sensor);
+  uncached buffers (12 ms per copy); IMU buffered at 200 Hz; barometer 4x/8 Hz; FC identity and mode switches over MSP.
+- APB-only path: `v4l2_mmap.py`, `apb_sensors.py`, `apb_rec.py`, `apb_est.py` (attitude filter, barometer height, replay),
+  `apb_live.py` (live position + web page :8080 + `--rec`), `tools/apb_ctl.sh` (start/stop/status). Tests: `tests_apb/test_apb_est.py`.
+- Desk checks: `top = rear`; covered lens detected (fine-detail check); live page works.
+- From `origin/stage1-justice-d` (Paul's pre-Stage-2 branch, taken file by file, never merge it whole): `tools/lens_calib.py`
+  (fixed; OpenCV 4 only, venv `~/.venvs/vio4`), `msp_link.py` framing, `betasim/`, talk material.
+
+## Open, in order (details in TODO.md)
+
+1. **Lens calibration** (checkerboard, `tools/lens_calib.py`): distances scale with it; the nominal profile is probably ~40 % off.
+2. First walk session with tape marks (B1/B2/B3/cover), recorded for replay.
+3. MSP command link for C, D, E; auto-start (E2); then the flight controller for G.
+4. Speed: the estimator runs at 13-16 fixes/s on the A53 (LK forward+backward dominates).
+
+## Pitfalls found today
+
+- `pkill -INT` does nothing on programs started in the background over ssh (SIGINT inherited ignored): use `apb_ctl.sh stop`.
+- A `pkill -f` name pattern can match the ssh shell running it.
+- `tools/lens_calib.py` gives a wrong lens under OpenCV 5: use `~/.venvs/vio4`.
+
+---
+
+# Before Stage 2 (2026-11-19 notes, kept for reference; facts above win)
+
 
 Written at the end of a working session so a new person (or a new Claude session) can pick up without the chat.
 Branch: `spec-justice-d` (4 commits on top of `main`; pushed to origin 2026-11-20; no pull request opened yet). Source of truth for the rules:

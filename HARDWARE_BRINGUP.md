@@ -1,22 +1,23 @@
 # Hardware bring-up: first session on the M2-AI / APB
 
-Nothing in this repo has run on the real APB or the real Justice D yet. This list turns the unknowns in
-`SPEC.md` into measured facts. Write every result in the "Result" column; those lines are your evidence for areas A and C.
-Follow the event crew's procedures: bench work and flights go through them (spec, Q6, Q7).
+First session on the event aircraft: **2026-11-21**. Results below are measured on the real APB, Justice D and FC.
+Stage 2 changed the plan: the FC runs **Betaflight 2025.12.5** (MSP), and our solution uses the APB's own camera,
+IMU and barometer (`apb_live.py`), not the FC over MAVLink. Rows that only apply to the old MAVLink path say so.
+Follow the event crew's procedures: bench work and flights go through them.
 
-| # | Do | Pass / what to record | Result |
+| # | Do | Pass / what to record | Result (2026-11-21) |
 |---|---|---|---|
-| 1 | SSH in (OEM manual). `sh tools/board_check.sh` | Python 3, numpy, OpenCV (with V4L2 and GStreamer), pymavlink present. If not: tools/wheels/README.txt. Record versions. | |
-| 2 | `ls /dev/video*`, `v4l2-ctl --list-devices`, `v4l2-ctl -d /dev/videoN --all` | Which device is the Justice D (repo guess: /dev/video2). Record pixel formats, sizes, frame rates. | |
-| 3 | `python3 apb_main.py check` | "Justice D delivers ~60 frames/s", picture 1280x720, stamps from "driver". If it cannot open: try a GStreamer pipeline and put it in `video_pipeline` (settings.json), e.g. `v4l2src device=/dev/video2 ! video/x-raw,width=1280,height=720,framerate=60/1 ! videoconvert ! video/x-raw,format=GRAY8 ! appsink drop=true max-buffers=2` (an example: check the real caps with the commands in row 2). | |
-| 4 | Record frames: `python3 apb_main.py run --raw` (hover or hand-carry) | Raw .npz files in logs/ for replay on the laptop. Keep them; they are the first real Justice D data (HOLD-OUT rules: DATA_SPLITS.md). | |
-| 5 | Frame time stamps | Do stamps come from the driver ("driver") or from read time ("read")? Frame interval jitter (ms). | |
-| 6 | `python3 apb_main.py calib` twice (EVENT_DAY step 4) | `video_delay_s` and `readout_s` (sign too), `focal_scale`, mount tilt. Two runs agree within 3 ms. | |
-| 7 | Lens: real calibration of the Justice D (board only on a tripod in the development area, never on the aircraft) | Replace the nominal profile "Justice D nominal (spec FOV, uncalibrated)" in justice_lens_profiles.json. Record RMS reprojection error and whether the lens is really equidistant. | |
-| 8 | `python3 apb_main.py timing` and `check` | Hold.process median and p95 (ms) at video_scale 0.5 and 1.0 on the A53. Fixes per second. CPU load of the other aircraft services at the same time (spec area C). Laptop numbers: SPEC.md. | |
-| 9 | `python3 apb_main.py bench --height 1.5` (EVENT_DAY step 6) | Forward/right moves within 0.10 m. | |
-| 10 | IMU and baro | Which IMU and baro the FC reports; attitude rate over MAVLink; baro noise at rest. Is there a rangefinder? (SPEC.md open item 4.) | |
-| 11 | Firmware | Which firmware is installed, and which MAVLink port/rate the event gives (check shows it). | |
-| 12 | Vibration | Gyro and frame noise with motors on, props off and on (crew's procedure). | |
+| 1 | SSH in: `ssh root@192.168.75.1` (USB-C, USB Ethernet, no password). Python and packages | Python 3, numpy, OpenCV | Orqa Yocto scarthgap, kernel 6.6.52, 4x A53, 3.9 GB. **Python 3.12.12, numpy 1.26.4, no OpenCV, no pip, no pymavlink.** glibc 2.39. OpenCV **4.11.0.86** (the last release for numpy 1.x) unpacked to `/data/vio/pylib` (no system change); import 0.7 s. `/` has 130 MB free: everything of ours lives in `/data/vio` (2 GB). |
+| 2 | Which device is the Justice D | Formats, sizes, rates | `/dev/video2` = ISI0 <- MIPI CSI2.0 <- `dummy_csi2_sensor` (organizer boot script `/data/rth/rth-event-setup.sh` sets 1920x1080 UYVY). Formats NV12, YUYV, RGB and more; **1920x1080 at 60.00 fps**. `/dev/video3` = Justice A through the ADV7180 (forward, analog): did not stream (passthrough to the VTx). **Setting `/dev/video2` to another size propagates to the sensor and crops the picture** (960x540 gave the top-left quarter). Restore: `v4l2-ctl -d /dev/v4l-subdev2 --set-subdev-fmt pad=0,width=1920,height=1080,code=0x2006` or reboot. |
+| 3 | Capture path | Frames/s, picture | OpenCV capture is not used (it sets the size). `v4l2_mmap.py` reads NV12 by mmap, the Y plane is the grey picture. **The driver buffers are uncached: a 1920x1080 copy costs ~12 ms**, so frames are kept at 30 fps (others handed back without a copy, 0.03 ms) and halved to 960x540 (1.2 ms). |
+| 4 | Recording | Raw files for replay | `apb_rec.py` (or `apb_live.py --rec LABEL`): 10 s chunks, 15 MB/s, `/data/vio/rec`. Copy to the laptop at ~30 MB/s. Replay: `apb_est.py replay`. |
+| 5 | Frame time stamps | Clock, jitter | Driver stamps, **CLOCK_MONOTONIC, end of frame** (`ts-monotonic, ts-src-eof`), 16.666 ms apart, no jitter seen. |
+| 6 | Camera calibration (`calib`: delay, readout, mount) | Two runs agree within 3 ms | **Open.** `calib` still expects the FC attitude stream; adapt it to `apb_rec` recordings. |
+| 7 | Lens | Real profile | **Open, top risk.** The fisheye image circle is visible at the left and right edges at 1920x1080, so the field of view is much wider than the datasheet's 114 deg (written for 1280x720): focal probably ~300 px at 960 px width, not the nominal 482. Tool ready: `tools/lens_calib.py` (checkerboard, OpenCV 4: `~/.venvs/vio4`). Two drone parts are visible at mid-left and mid-right of the picture: mask them. |
+| 8 | Speed on the A53 | Process time | Per frame at 960x540: track 150 points (LK) 6.3 ms, new corners 52 ms, ORB 500 68 ms, whole-picture shift 12.6 ms. `apb_live.py`: 13 ms per frame without the estimator, **~60 ms with it (13-16 fixes/s)**; LK forward + backward is most of it. Board at 56-64 deg C. |
+| 9 | Bench / desk check | Direction, cover | Desk slide: **the picture is rotated 180 deg from the drone: `top = "rear"`, `mirror = false`** (both cameras are at the nose). A hand over the lens is bright and blurry, not dark: caught by the fine-detail check (hand 1.3-1.7, sliding 4.9 at worst, normal 16-19; threshold 3). Live page works from the laptop. |
+| 10 | IMU and baro | Devices, rates, noise | IIO: `dps310`, `icm42605-gyro`, `icm42605-accel`. **Gyro/accel buffered at 200 Hz with monotonic stamps** (timestamp clock defaults to `realtime`). Axes are big-endian, the timestamp little-endian. Stamps are right only if both buffers start at the old rate and the rate is changed afterwards (`apb_sensors.open_imu`). Gyro offset ~0.5 deg/s (one-at-a-time sysfs reads showed ~17 deg/s: do not use them). Accel at rest (-0.10, +0.12, -9.94): z down. Barometer default 1 Hz, 1x = 20 cm noise; 4x at 8 Hz = ~6-9 cm per reading. **Room air wanders ~0.2 m** (the FC barometer sees the same, correlation 0.77). The APB barometer **froze for over a minute twice**. No rangefinder, no magnetometer. |
+| 11 | Firmware | FC identity and link | **Betaflight 25.12.5**, board APB by ORQA, STM32H743, MSP API 1.47, build Jul 16 2026. MSP v1 at 115200 on `/dev/ttymxc2` answers. Modes: ARM on CH5 1800-2100; ANGLE on CH9 and CH10; box id 50 (MSP OVERRIDE) on CH10 1800-2100. Sensors: gyro, acc, baro, GPS. Receiver: ImmersionRC Ghost (GHST). No radio signal at the first check (885 / 1500 = no-signal values). `MSP_RC` reads back roll, pitch, yaw, throttle: confirm the `MSP_SET_RAW_RC` order on the Receiver tab before commanding. |
+| 12 | Vibration | Motors on | **Open** (needs the crew). |
 
 When a value changes a setting, add a line to the tuning log in `DATA_SPLITS.md` (what, which data, by whom, when).
