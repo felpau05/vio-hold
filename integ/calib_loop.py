@@ -39,6 +39,13 @@ import sitl                # noqa: E402
 PORT, FPS, EXP = 14690, 25.0, 0.004
 TRUE = dict(top="rear", mirror=True, tilt=(1.0, -1.5), twist=1.0, delay=0.070, readout=-0.018, focal=0.95)
 OUT = os.path.join(PROJ, "integ", "calib_loop.txt")
+# VIO_SIM_CAMERA=justice_d: the Stage 1 camera (640x360 as Hold gets it, 114 deg, 30 fps reach Hold, white noise 2.0),
+# a wrong focal (0.93: the +-7 % the V and D FOV figures leave open), readout +16 ms. Lens and timings are ASSUMED.
+JD = os.environ.get("VIO_SIM_CAMERA") == "justice_d"
+if JD:
+    FPS = 30.0
+    TRUE = dict(top="rear", mirror=True, tilt=(1.0, -1.5), twist=1.0, delay=0.060, readout=0.016, focal=0.93)
+    OUT = os.path.join(PROJ, "integ", "calib_loop_justice_d.txt")
 
 
 def qa(axis, ang):
@@ -57,7 +64,7 @@ def main():
         return p[:, 0], p[:, 1], h_fn(t), q
 
     lens = S.DEFAULTS["lens_name"]       # the true lens = the profile; only its focal length is off
-    c = dict(sitl.DEFAULTS, true_lens=lens, focal_scale=TRUE["focal"], cam_top=TRUE["top"], cam_mirror=TRUE["mirror"],
+    c = dict(sitl.DEFAULTS, **{k: v for k, v in (sitl.JUSTICE_D if JD else {}).items() if k not in ("true_lens", "readout_s")}, true_lens=lens, focal_scale=TRUE["focal"], cam_top=TRUE["top"], cam_mirror=TRUE["mirror"],
              cam_tilt=TRUE["tilt"], cam_twist=TRUE["twist"], readout_s=TRUE["readout"], exposure_s=EXP, vib_deg=0.0, seed=5)
     cam = C.Camera(c, C.photo_ground("ottawa2019fall"))
     ro = TRUE["readout"]
@@ -109,11 +116,12 @@ def main():
                 ("calib exit code 0 and calibrated = true", rc == 0 and w["calibrated"], f"rc {rc}, calibrated {w['calibrated']}"),
                 ("picture top = rear", w["top"] == TRUE["top"], w["top"]),
                 ("mirrored", w["mirror"] is TRUE["mirror"], w["mirror"]),
-                ("video delay 70 ms (within 5 ms)", abs(w["video_delay_s"] - TRUE["delay"]) < 0.005,
+                (f"video delay {(TRUE['delay'] + max(ro, 0)) * 1e3:.0f} ms (within 5 ms; stamp minus row 0, so + readout when it is positive)",
+                 abs(w["video_delay_s"] - (TRUE["delay"] + max(ro, 0))) < 0.005,
                  f"{w['video_delay_s'] * 1e3:.1f} ms"),
-                ("readout -18 ms (within 4.5 ms, sign right)", abs(w["readout_s"] - ro) < 0.0045,
+                (f"readout {ro * 1e3:+.0f} ms (within 4.5 ms, sign right)", abs(w["readout_s"] - ro) < 0.0045,
                  f"{w['readout_s'] * 1e3:+.1f} ms"),
-                ("focal scale 0.95 (within 0.01)", abs(w["focal_scale"] - TRUE["focal"]) < 0.01, f"{w['focal_scale']:.4f}"),
+                (f"focal scale {TRUE['focal']} (within 0.01)", abs(w["focal_scale"] - TRUE["focal"]) < 0.01, f"{w['focal_scale']:.4f}"),
                 ("mount (top, mirror, tilt, twist) as one matrix within 0.5 deg of camera.py's", ang < 0.5,
                  f"{ang:.2f} deg; found tilt {np.round(w['tilt_deg'], 2).tolist()} twist {w['twist_deg']:+.2f} "
                  f"(camera.py: tilt {list(TRUE['tilt'])} twist {TRUE['twist']:+.1f} as a physical turn)"),

@@ -3523,6 +3523,7 @@
    "SIM_WIND_SPD": 0,
    "SIM_WIND_TURB": 0,
    "SIM_WIND_DIR": 270.0,
+   "SERIAL1_BAUD": 115,
    "VISO_TYPE": 1,
    "EK3_SRC1_POSXY": 6,
    "EK3_SRC1_VELXY": 0,
@@ -3530,67 +3531,67 @@
    "EK3_SRC1_VELZ": 0,
    "EK3_SRC1_YAW": 1,
    "GPS1_TYPE": 0,
-   "VISO_DELAY_MS": 100
+   "VISO_DELAY_MS": 140
   },
   "link_bps": 11520,
   "truth_q_check_deg": 0.0,
   "climb_s": 32.4,
-  "ekf_yaw_minus_true_deg": 0.19,
+  "ekf_yaw_minus_true_deg": 6.04,
   "onboard": [
    [
-    7.04,
+    7.03,
     "connected",
     "ardupilot, clock ready True, ATTITUDE 100 Hz"
    ],
    [
-    104.82,
+    104.9,
     "done",
-    "stopped after 1 start(s); frame age when taken p50 34 ms, p95 57 ms; SCALED_IMU 0 Hz, 0 rows kept"
+    "stopped after 1 start(s); frame age when taken p50 37 ms, p95 60 ms; SCALED_IMU 0 Hz, 0 rows kept"
    ]
   ],
   "params_fail": [],
   "onboard_exit": 0,
-  "clock_err_ms_mean": 4.228935987568209,
-  "clock_err_ms_absmax": 4.348027514737396,
-  "handover_ms_p50": 20.58130849999884,
-  "handover_ms_p95": 28.52146975005212,
+  "clock_err_ms_mean": 4.494090502889313,
+  "clock_err_ms_absmax": 4.680350271726752,
+  "handover_ms_p50": 22.514532000059262,
+  "handover_ms_p95": 30.010066349927907,
   "frames": 1500,
-  "processed": 707,
-  "fixes": 707,
-  "fix_rate_hz": 11.782541344680748,
-  "pct_frames_fix": 47.13333333333333,
+  "processed": 718,
+  "fixes": 718,
+  "fix_rate_hz": 11.965870959381908,
+  "pct_frames_fix": 47.86666666666667,
   "frac_init": 0.0,
   "frac_ok": 1.0,
   "frac_degraded": 0.0,
   "frac_lost": 0.0,
-  "proc_ms_mean": 82.86280056577087,
-  "age_ms_p50": 167.4,
-  "age_ms_p95": 241.71999999999997,
+  "proc_ms_mean": 81.67938718662953,
+  "age_ms_p50": 176.55,
+  "age_ms_p95": 195.61499999999998,
   "hold_why": {},
   "reanchors": 0,
-  "rms": 0.4451237279638651,
-  "p95": 0.6237183154536502,
-  "max": 0.7145286684241424,
-  "end": 0.5090301658957469,
-  "drift_m_per_min": 0.854476744824338,
-  "roll_rms_deg": 6.988094170433781,
-  "pitch_rms_deg": 3.2574650183347202,
-  "tilt_mean_deg": 12.521250040603958,
-  "judge_rms": 26.768191690882606,
-  "judge_p95": 48.32845861567234,
-  "judge_max": 57.40274015428136,
-  "judge_jitter_rms": 14.597003679831394,
-  "height_mean": 99.59666461765846,
-  "seconds": 60.00403302800007,
+  "rms": 0.617004628359272,
+  "p95": 0.9221305859912126,
+  "max": 0.9861364603163861,
+  "end": 0.7847110992145471,
+  "drift_m_per_min": 1.43413595757325,
+  "roll_rms_deg": 6.785781142826225,
+  "pitch_rms_deg": 3.378544625473642,
+  "tilt_mean_deg": 12.626619813750908,
+  "judge_rms": 26.448361423700312,
+  "judge_p95": 47.343906222426,
+  "judge_max": 57.5242137817667,
+  "judge_jitter_rms": 14.398147281128761,
+  "height_mean": 99.64523020888008,
+  "seconds": 60.003989883999886,
   "link": {
    "down": {
-    "bytes_per_s": 5406,
+    "bytes_per_s": 5407,
     "sent": {
-     "30": 10082,
-     "33": 1008,
-     "32": 851,
+     "30": 10095,
+     "33": 1009,
+     "32": 852,
      "22": 619,
-     "0": 208,
+     "0": 209,
      "253": 24,
      "77": 16,
      "111": 10,
@@ -3600,9 +3601,9 @@
     "dropped": {}
    },
    "up": {
-    "bytes_per_s": 744,
+    "bytes_per_s": 787,
     "sent": {
-     "102": 922,
+     "102": 979,
      "0": 101,
      "76": 15,
      "111": 10,
@@ -3710,19 +3711,11 @@
    ],
    [
     0.0,
-    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
-   ],
-   [
-    0.0,
     "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
    ],
    [
     0.0,
-    "EKF3 IMU0 is using external nav data"
-   ],
-   [
-    0.0,
-    "EKF3 IMU0 initial pos NED = -0.0,0.0,-18.8 (m)"
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
    ],
    [
     0.0,
@@ -3730,7 +3723,15 @@
    ],
    [
     0.0,
-    "EKF3 IMU1 initial pos NED = -0.0,0.0,-18.8 (m)"
+    "EKF3 IMU1 initial pos NED = -0.0,-0.0,-18.9 (m)"
+   ],
+   [
+    0.0,
+    "EKF3 IMU0 is using external nav data"
+   ],
+   [
+    0.0,
+    "EKF3 IMU0 initial pos NED = -0.0,-0.0,-18.9 (m)"
    ]
   ],
   "hold_s_flown": 60.0

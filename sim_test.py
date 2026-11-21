@@ -18,15 +18,29 @@ import numpy as np
 from hold import Hold, Series, load_lens, euler_R, R_BC_NADIR
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-W, H, FPS = 360, 240, 30.0        # one analog field, width halved: what apb_main feeds Hold
-READOUT, LATENCY = 0.016, 0.060   # true row readout time and capture latency in the sim
+# Camera of the simulation. VIO_SIM_CAMERA=justice_d: the Stage 1 spec camera (SPEC.md), as Hold gets it after
+# video_scale 0.5: 640 x 360, 114 deg HFOV, whole frame, readout 14 ms (assumed, not measured). VIO_SIM_FOCAL_ERR
+# scales the TRUE focal length against the one Hold is told (a lens that is not what the profile says).
+CAMERA = os.environ.get("VIO_SIM_CAMERA", "analog")
+FOCAL_ERR = float(os.environ.get("VIO_SIM_FOCAL_ERR", "1.0"))
+if CAMERA == "justice_d":
+    W, H, FPS = 640, 360, 30.0    # FPS = frames per second that reach Hold (the sensor makes 60; the APB will not keep up)
+    READOUT, LATENCY = 0.014, 0.050
+    LENS = "Justice D nominal (spec FOV, uncalibrated)"
+else:
+    W, H, FPS = 360, 240, 30.0    # one analog field, width halved: what apb_main feeds Hold
+    READOUT, LATENCY = 0.016, 0.060   # true row readout time and capture latency in the sim
+    LENS = "Round 1 independent k2"
 ATT_BIAS = np.radians([0.5, -0.3, 1.0])
 ATT_NOISE, ATT_LAG, FRAME_T_ERR = math.radians(0.1), 0.003, 0.002
 rng = np.random.default_rng(1)
-K, D = load_lens(os.path.join(HERE, "justice_lens_profiles.json"), "Round 1 independent k2", W, H)
+K, D = load_lens(os.path.join(HERE, "justice_lens_profiles.json"), LENS, W, H)    # what Hold is told
+K_TRUE = K.copy()
+K_TRUE[0, 0] *= FOCAL_ERR
+K_TRUE[1, 1] *= FOCAL_ERR                                                          # what the camera really has
 
 uv = np.stack(np.meshgrid(np.arange(W), np.arange(H)), -1).reshape(-1, 1, 2).astype(np.float64)
-RAYS_B = np.c_[cv2.fisheye.undistortPoints(uv, K, D).reshape(-1, 2), np.ones(W * H)] @ R_BC_NADIR.T
+RAYS_B = np.c_[cv2.fisheye.undistortPoints(uv, K_TRUE, D).reshape(-1, 2), np.ones(W * H)] @ R_BC_NADIR.T
 RAYS_B = RAYS_B.reshape(H, W, 3)
 
 

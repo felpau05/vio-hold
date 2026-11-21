@@ -74,7 +74,7 @@
    "confidence": "high"
   },
   {
-   "claim": "Local position declared invalid after EKF2_NOAID_TOUT of dead reckoning (default 5 s, min 0.5, max 10 s); the timeline of about 4.4 s after the last sample is derived from code, not tested",
+   "claim": "Local position declared invalid after EKF2_NOAID_TOUT of dead reckoning (default 5 s, min 0.5, max 10 s); my timeline of about 4.4 s after the last sample is derived from code, not tested",
    "value": "about 4.4 s (derived)",
    "source_url": "https://github.com/PX4/PX4-Autopilot/blob/release/1.16/src/modules/ekf2/EKF/ekf_helper.cpp",
    "confidence": "low"
@@ -149,7 +149,7 @@
  "unknowns": [
   "Orqa M2-AI firmware (PX4 or other), version, serial port, baud rate, MAVLink mode, and whether EKF2 external vision is enabled",
   "Official typical magnetometer yaw error for PX4 (only forum anecdotes)",
-  "Real time from vision stop to invalid position on the Orqa build (the ~4.4 s is derived from code, not run in SITL)",
+  "Real time from vision stop to invalid position on the Orqa build (my ~4.4 s is derived from code, not run in SITL)",
   "Whether Position mode on v1.14/v1.15 needs a global position (docs prose says yes, v1.16 requirement list says local relaxed only)",
   "Position error growth during 0.5 s, 2 s, 10 s of dead reckoning",
   "Whether PX4 flow fusion works at 100 m with no range finder",

@@ -1,6 +1,6 @@
 # Prior art for camera-based position hold at 50-300 m (downward, rolling shutter, no GNSS)
 
-Date of research: 2026-11-15. Method: web search plus page fetch plus `gh` licence checks. Statements come from the cited source unless marked "INFERENCE" (low confidence). Items that were not found are in section 10.
+Date of research: 2026-11-15. Method: web search plus page fetch plus `gh` licence checks. Statements come from the cited source unless marked "INFERENCE" (low confidence). Items that I could not find are in section 10.
 
 Depth note: several sources were fetched only as search summaries or abstracts (large PDFs failed to load). Those items are marked "(abstract/summary only)". No paper full text was checked for numbers except where stated.
 
@@ -65,7 +65,7 @@ Conclusion (INFERENCE, low confidence): for low texture, whole-image methods (ph
   - Online in a VIO filter: OpenVINS self-calibration estimates readout time; observable under fully excited 6-axis motion. https://arxiv.org/abs/2201.09170 (abstract only). Hovering is a weak excitation, so INFERENCE: do not expect to learn readout in hover.
   - Offline continuous-time: https://arxiv.org/abs/2108.07200 (Kalibr fork https://github.com/JzHuai0108/kalibr). Needs a calibration target and IMU.
   - A turning fan or hand-shake sweep: no source found. (A hand shake against gyro is the CRISP/Karpenko method.)
-- Analog caveat (INFERENCE): the sensor readout time is not the video line time. Check where the "rolling" happens. For a CVBS camera, scan-out may follow the 15.6 kHz line time of the video standard, but found no source.
+- Analog caveat (INFERENCE): the sensor readout time is not the video line time. Check where the "rolling" happens. For a CVBS camera, scan-out may follow the 15.6 kHz line time of the video standard, but I found no source.
 
 ## 4. Vibration ("jello")
 
@@ -86,7 +86,7 @@ Conclusion (INFERENCE, low confidence): for low texture, whole-image methods (ph
 ## 6. Attitude limit
 
 - No source with roll/pitch accuracy for PX4 or ArduPilot EKF in hover. Searches gave only forum anecdotes (EKF3 roll/pitch drifting by about 10 degrees in one case where hover was fine; suspected accel bias or yaw error), and non-PX4 papers (RMSE roll 0.5-1.2 deg, pitch 1.5-3 deg for complementary filters). https://discuss.ardupilot.org/t/ahrs2-ekf2-ekf3-attitude-and-altitude-estimation/36001 ; https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11280949/ (summary)
-- The `h * e` relation is the user's own and the search did not find a source for it. 0.5 degrees = 8.7 mrad gives 0.87 m at 100 m, 2.6 m at 300 m (arithmetic, not sourced). This agrees with the sim errors of 0.4-1.3 m only if the sim attitude is near-perfect; the sim shares the geometry so it hides attitude error.
+- The `h * e` relation is the user's own and my search did not find a source for it. 0.5 degrees = 8.7 mrad gives 0.87 m at 100 m, 2.6 m at 300 m (arithmetic, not sourced). This agrees with the sim errors of 0.4-1.3 m only if the sim attitude is near-perfect; the sim shares the geometry so it hides attitude error.
 - Beating the limit with the camera: Zhao et al. (JIRS 2015) estimate velocity, attitude and IMU biases jointly from flow plus homography. https://shiyuzhao.westlake.edu.cn/13-2015JIRS.pdf (summary only). A homography between keyframe and current frame contains the relative rotation plus the plane normal; INFERENCE: the horizon is not needed, because for a flat ground the plane normal gives gravity direction as seen from the camera. That is the same information as tilt, but only relative to the ground plane (not gravity). Tilt from the ground plane equals the true tilt only when the ground is level. No source quantifies this for 100+ m.
 
 ## 7. Height from image scale

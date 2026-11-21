@@ -1,7 +1,7 @@
 # GitHub search: autopilot side of GNSS-free hold, and Orqa public code
 
-Date: 2026-11-16. Method: `gh api`, `gh search`, Docker Hub API. Files were read. Nothing was run or built.
-Labels: "seen" = read in a file or on a page (URL given). "inference" = the reasoning.
+Date: 2026-11-16. Method: `gh api`, `gh search`, Docker Hub API. I read files. I did not run or build anything.
+Labels: "seen" = I read it in a file or on a page (URL given). "inference" = my reasoning.
 
 ## 1. Orqa public code
 
@@ -27,7 +27,7 @@ Seen: all 8 are forks or configs. There is no APB SDK, no DTK repo, no companion
    - `libraries/AP_Compass/AP_Compass_IIS2MDC.cpp/.h` (new compass driver; hwdef sets `AP_COMPASS_IIS2MDC_ENABLED 1`).
    - URL: https://github.com/orqafpv/ardupilot/blob/mil-mavl/libraries/AP_HAL_ChibiOS/hwdef/ORQAAPB/hwdef.dat
 2. PX4, branch `develop_APB-initial`. 3 Orqa commits (2025-02-28, 2025-03-21, 2025-04-09) on a PX4 main of 2025-02-14. Board folder `boards/orqa/h743-APB/`. Newest and last Orqa PX4 work is April 2025. ArduPilot APB work is July 2026. Inference: the APB target moved to ArduPilot. The MRM2-10 page says all four stacks are supported, so this is not proof of the event firmware.
-3. Betaflight and iNav forks have H7 QuadCore and F7/F405/F722 targets. Found no APB file in them. Betaflight branch `PBAS` (Aug-Sep 2025) adds an MSP/GHST waypoint parse, `GPS_set_home_position()` mid-flight and a disabled RESCUE_DESCENT phase. It has nothing about vision.
+3. Betaflight and iNav forks have H7 QuadCore and F7/F405/F722 targets. I found no APB file in them. Betaflight branch `PBAS` (Aug-Sep 2025) adds an MSP/GHST waypoint parse, `GPS_set_home_position()` mid-flight and a disabled RESCUE_DESCENT phase. It has nothing about vision.
 
 ### ArduPilot ORQAAPB hwdef (seen, hwdef.dat)
 - MCU STM32H743, `APJ_BOARD_ID AP_HW_ORQAAPB`. IMUs: `IMU Invensensev3 SPI:imu1 ROTATION_YAW_180 #2-10AI` and `SPI:imu2 ROTATION_YAW_90 #2-10AI`. The comment "2-10AI" names the MRM2-10AI.
@@ -81,7 +81,7 @@ Nothing public from Orqa mentions vision, `EXTERNAL VISION`, camera device names
 
 ### Our program vs these (fc_link.py, seen)
 1. Time stamp. T265 stamps host wall-clock at arrival and does no sync. We stamp capture time on the companion clock and answer TIMESYNC. For ArduPilot this does not matter (it uses the jitter filter). For PX4 sync matters (px4_vision.md section 3). No conflict.
-2. Heartbeat. T265 sends a companion heartbeat every loop. Found no `heartbeat_send` in our `*.py`. Effect unknown (inference: cheap to add at 1 Hz).
+2. Heartbeat. T265 sends a companion heartbeat every loop. I found no `heartbeat_send` in our `*.py`. Effect unknown (inference: cheap to add at 1 Hz).
 3. `SET_HOME_POSITION`. T265 sends it; we send only `SET_GPS_GLOBAL_ORIGIN`. ArduPilot wiki says "Set Home Here, Set EKF Origin Here" in Mission Planner. Add and test in SITL (inference).
 4. `reset_counter`. T265 starts at 1 and raises it on a jump. We keep 0. Fine while the frame stays continuous.
 5. Covariance. T265 fills the diagonal with scalar cov. We fill [0],[1],[6]. ArduPilot reads only [0],[6],[11] as a sum and floors with `VISO_POS_M_NSE` (0.2 m by default), so a small covariance cannot get below 0.2 m unless the parameter is lowered. PX4: `EKF2_EVP_NOISE` is the floor (px4_vision.md).
@@ -94,9 +94,9 @@ Nothing public from Orqa mentions vision, `EXTERNAL VISION`, camera device names
 Images (Docker Hub API, seen):
 - `ardupilot/ardupilot-dev-base` (official, org ardupilot): tag `edge` 2026-08-07, 374 MB compressed, amd64. `ardupilot-dev-chibios` 535 MB compressed. These are BUILD images, not SITL images: you build ArduCopter inside them (seen: Dockerfile of CacheFail below does `FROM ardupilot/ardupilot-dev-base`).
 - `radarku/ardupilot-sitl`: Apache-2.0, last push 2025-07-26, 1.5 GB compressed, default tag Copter-4.0.3 (README). Old.
-- `orthuk/ardupilot-sitl` (repo uxduck/ardupilot-sitl-docker): no licence shown, 2026-10-24, README says Ubuntu 3.9 GB, Debian 3.65 GB; Tracker-4.5.7 version stated; the Hub tag seen is arm64 only (2024).
+- `orthuk/ardupilot-sitl` (repo uxduck/ardupilot-sitl-docker): no licence shown, 2026-10-24, README says Ubuntu 3.9 GB, Debian 3.65 GB; Tracker-4.5.7 version stated; the Hub tag I saw is arm64 only (2024).
 - Smallest: https://github.com/CacheFail/ardupilot-sitl-slim . No licence in the repo (ideas only), 2 stars, last push 2026-03-26. README: "ArduPilot SITL (Copter 4.5.7) ... reduced to 613MB". Multi-stage Dockerfile (seen in full): builder `FROM ardupilot/ardupilot-dev-base`, `git clone --depth 1 --branch Copter-4.5.7`, `./waf configure --board sitl && ./waf copter`, `strip`; final `python:3.11-slim-bookworm` + `pip install pymavlink MAVProxy future pexpect`; copy the binary + `Tools/autotest/*.py`, `pysim/`, `default_params/`, `ArduCopter/`; `touch /ardupilot/WAF_FINISHED`; CMD `sim_vehicle.py --vehicle ArduCopter --frame quad -I0 --custom-location=... --speedup 1 --no-rebuild --out=udp:host.docker.internal:14550`.
-  No GPU needed (SITL is plain physics). It was not built. Disk: this laptop has 38 GB free (df).
+  No GPU needed (SITL is plain physics). I did not build it. Disk: this laptop has 38 GB free (df).
 
 Command sequence (mark per step):
 1. (from source: CacheFail Dockerfile) Write your own two-stage Dockerfile like the one above. Pin a tag you choose (Copter-4.6.0 matches the Orqa branch; the tag exists as a ref: the Orqa branch is built on it). `docker build -t ac-sitl .`
@@ -104,11 +104,11 @@ Command sequence (mark per step):
 3. (from source: arducopter.py VisionPosition) Set params: `GPS1_TYPE 0`, `VISO_TYPE 1`, `EK3_SRC1_POSXY 6`, `EK3_SRC1_VELXY 0` (we send no velocity; the autotest sets 6 because its Vicon sim sends velocity), `EK3_SRC1_POSZ 1` (baro; wiki T265 page), `EK3_SRC1_VELZ 0` or the autotest value 6. Reboot SITL.
 4. (from source: autotest) Send `system_time`, then the EKF origin (`SET_GPS_GLOBAL_ORIGIN`). Then stream VISION_POSITION_ESTIMATE at 30 Hz from our program.
 5. (from source: SITL.cpp) Wind: `SIM_WIND_SPD` (m/s), `SIM_WIND_DIR` (deg, direction wind comes from, default 180), `SIM_WIND_TURB` (m/s random variation). Also seen: `SIM_WIND_DIR_Z`, `SIM_WIND_T`, `SIM_WIND_TC`.
-6. GPS off. DOC IS STALE: the wiki (https://github.com/ArduPilot/ardupilot_wiki/blob/master/dev/source/docs/SITL_simulation_parameters.rst) says `SIM_GPS_DISABLE 1`. In source `libraries/SITL/SITL.cpp` has the comment "1 was GPS_DISABLE": the old name is gone. The new name is `SIM_GPS1_ENABLE` (SIM_GPS.cpp: `AP_GROUPINFO_FLAGS("ENABLE", 1, GPSParms, enabled, 0 ...)`, group prefix "GPS1_"). Not verified how the default is set to 1 for a normal run. Safe way (from autotest): `GPS1_TYPE 0` on the autopilot side.
+6. GPS off. DOC IS STALE: the wiki (https://github.com/ArduPilot/ardupilot_wiki/blob/master/dev/source/docs/SITL_simulation_parameters.rst) says `SIM_GPS_DISABLE 1`. In source `libraries/SITL/SITL.cpp` has the comment "1 was GPS_DISABLE": the old name is gone. The new name is `SIM_GPS1_ENABLE` (SIM_GPS.cpp: `AP_GROUPINFO_FLAGS("ENABLE", 1, GPSParms, enabled, 0 ...)`, group prefix "GPS1_"). I did not verify how the default is set to 1 for a normal run. Safe way (from autotest): `GPS1_TYPE 0` on the autopilot side.
 7. Test pass check: EKF flags via `EKF_STATUS_REPORT`, position via `LOCAL_POSITION_NED`/`GLOBAL_POSITION_INT`. Use Loiter (autotest uses LOITER then takeoff).
 Forum-sourced steps: none used.
 
-The smallest tested way (the answer to 3b is in the summary): no pre-built tested SITL image with ExternalNav exists that was found. The only tested ExternalNav + GPS-off sequence is the ArduPilot autotest `VisionPosition` (CI-run). Alternative with no build: our existing PX4 SIH container (`px4io/px4-sitl:latest`, 180 MB local) tests PX4 only.
+The smallest tested way (my answer to 3b is in the summary): no pre-built tested SITL image with ExternalNav exists that I found. The only tested ExternalNav + GPS-off sequence is the ArduPilot autotest `VisionPosition` (CI-run). Alternative with no build: our existing PX4 SIH container (`px4io/px4-sitl:latest`, 180 MB local) tests PX4 only.
 
 ## 4. Precision loiter and precision landing
 
@@ -136,13 +136,13 @@ https://github.com/PX4/PX4-Autopilot/blob/main/docs/en/advanced_features/preclan
   - `src/main/msp/msp.c`: `MSP_SET_RAW_GPS` reads: fix u8, numSat u8, lat u32 (1e7 deg), lon u32, alt u16 (m), groundSpeed u16 (cm/s). `MSP2_SENSOR_GPS` also handled (instance, week, msTOW, fix, sats, hAcc, vAcc, sAcc (cm), pdop, lon, lat, alt cm, vel N/E/D, course cdeg, true yaw, date/time). Both set `GPS_update |= GPS_MSP_UPDATE`.
   - `src/main/io/gps.c`: `case GPS_MSP:` accepts data; CLI table `gps_provider` = "NMEA, UBLOX, MSP, VIRTUAL" (settings.c).
   - Position hold exists on master: `src/main/flight/pos_hold_multirotor.c`, `position_estimator.c`; CLI `poshold_position_source` = AUTO / GPS_ONLY / OPTICALFLOW_ONLY; `poshold_opticalflow_quality_min`, `poshold_opticalflow_max_range`. Last change to the file 2026-11-02. Position hold needs `positionEstimatorIsValidXY()`. GPS accuracy fields (hAcc, sAcc) scale the estimator noise (position_estimator.c comments).
-  - MSP2 id `MSP2_SENSOR_OPTICALFLOW 0x300B` is defined in msp_protocol_v2_betaflight.h. Did not find the handler. Unverified.
+  - MSP2 id `MSP2_SENSOR_OPTICALFLOW 0x300B` is defined in msp_protocol_v2_betaflight.h. I did not find the handler. Unverified.
   - Feature is new (position hold in Betaflight is recent); released firmware on the drone may be older. Orqa fork `orqa-betaflight_2026.6-maintenance` exists (branch name only; not read for pos hold).
 - iNav (GPL-3.0, 4.3k stars, pushed 2026-11-15, default branch maintenance-10.x):
   - `src/main/msp/msp_protocol_v2_sensor.h` ids: `MSP2_SENSOR_RANGEFINDER 0x1F01`, `MSP2_SENSOR_OPTIC_FLOW 0x1F02`, `MSP2_SENSOR_GPS 0x1F03`, COMPASS 0x1F04, BAROMETER 0x1F05, AIRSPEED, HEADTRACKER. Structs in `msp_protocol_v2_sensor_msg.h` (GPS: fields above; opflow: `uint8 quality 0-255, int32 motionX, int32 motionY`; rangefinder: quality, `int32 distanceMm`).
   - `src/main/io/opflow_msp.c` (`USE_OPFLOW_MSP`) consumes the opflow message. Position hold with flow and baro is therefore possible in principle (inference).
   - SITL: `docs/SITL/SITL.md`, `docs/development/Building SITL.md` (cmake -DSITL=ON). Sensors are "FAKE" fed by RealFlight or X-Plane. No built-in multirotor physics. We would have to write a simulator bridge (inference).
-- Betaflight SITL: `src/platform/SIMULATOR` exists. Third-party bridges: demvlad/BF-SITL-X-Plane-Bridge (4 stars). Did not evaluate them.
+- Betaflight SITL: `src/platform/SIMULATOR` exists. Third-party bridges: demvlad/BF-SITL-X-Plane-Bridge (4 stars). I did not evaluate them.
 - Projects found (all weak):
   - gamolin8v/drone-vio-bridge: MIT, 0 stars, 1 commit made 2026-11-15, pure Python, "ArduPilot, iNav (MSP GPS), Betaflight (RC override)". `src/bridges/msp_bridge.py` builds `MSP_SET_RAW_GPS` (code packs 16 bytes with a course field; Betaflight source reads 14 bytes). The file also has a duplicated `struct.pack`. Looks untested on hardware. SKIP, use only as a pointer.
   - tudelft/indiflight: GPL-3.0, 68 stars, pushed 2026-11-13. Betaflight 4.4.2 fork with INDI controller, `USE_POS_CTL`, `USE_VEL_CTL`, UART link for offboard position (`USE_GPS_PI`). Research code, "extremely experimental". Needs our own flashing. BORROW as an idea for the offboard-position link.
@@ -156,7 +156,7 @@ https://github.com/PX4/PX4-Autopilot/blob/main/docs/en/advanced_features/preclan
   - https://github.com/NXP-Robotics/GitBook-NavQPlus (CC0-1.0, 2025-06-04, 9 stars): `navqplus-user-guide/running-mavlink-via-t1-ethernet.md` (fixed IP 10.0.0.3 vs FMUK66 10.0.0.2, netplan/connman) and `user-contributed-content/ros2/microdds.md` (micro-XRCE-DDS agent). Link is T1 Ethernet or DDS, not UART MAVLink at 230400. Different from the APB.
   - rudislabs/NavQPlus-Resources (Apache-2.0), rudislabs/navqplus-images (Apache-2.0, 2024): image/resource lists only.
   - The Orqa PX4 board files list module `UXRCE_DDS_CLIENT` (default.px4board). Inference only.
-- mavlink-router: https://github.com/mavlink-router/mavlink-router (Apache-2.0, 625 stars, 2026-10-23). `examples/config.sample` seen: `[General]` section with `TcpServerPort`, `DeDuplicationPeriod`, `MavlinkDialect`. Not read the `[UartEndpoint]` block (the endpoint names `UartEndpoint`/`UdpEndpoint` come from the project's usual config; unverified here). Alternative: bluenviron/mavp2p (257 stars, 2026-11-03, not opened).
+- mavlink-router: https://github.com/mavlink-router/mavlink-router (Apache-2.0, 625 stars, 2026-10-23). `examples/config.sample` seen: `[General]` section with `TcpServerPort`, `DeDuplicationPeriod`, `MavlinkDialect`. I did not read the `[UartEndpoint]` block (the endpoint names `UartEndpoint`/`UdpEndpoint` come from the project's usual config; unverified here). Alternative: bluenviron/mavp2p (257 stars, 2026-11-03, not opened).
 
 ## Table of 11 most useful sources
 
@@ -176,7 +176,7 @@ https://github.com/PX4/PX4-Autopilot/blob/main/docs/en/advanced_features/preclan
 
 Not recommended: gamolin8v/drone-vio-bridge (MIT, 1 commit, 0 stars, unverified), DroneWuKong/Orqa_H7_PX4_Ports (no licence, ideas only), DroneWuKong/Prismo-Calibration (NOASSERTION, ideas only).
 
-## What was searched and not found
+## What I searched and did not find
 - Any Orqa repo with APB SDK, DTK, companion examples, camera or vision code, or documentation.
 - An Orqa EKF2 external-vision default or any `VISO_*` default in the Orqa branches.
 - Evidence of which firmware the event drone runs.

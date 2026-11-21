@@ -89,10 +89,6 @@ def main(settings_path, conn, stop, log_path, opts, status_q, clk):
                 faulthandler.dump_traceback_later(3.0, file=fault)   # C-level timer: works with the GIL held
             return item
         src = capture.CallableSource(newest, s)
-        if s["camera"] == "digital":
-            # Simulator part: the drone's DigitalSource judges pictures with the digital checks (capture.judge);
-            # CallableSource always takes the analog _Judge, whose repeat_mad of 1 grey refuses fresh low-noise frames.
-            src.judge = capture.judge(s)
         fc = apb_main.open_fc(s)
         say("connected", f"{fc.firmware}, clock ready {fc.clock.ready()}, ATTITUDE {fc.rate('ATTITUDE', 1.0):.0f} Hz")
 

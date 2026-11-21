@@ -1,4 +1,4 @@
-== Paper supplied by the team, 2026-11-16 ==
+== Paper sent by Paul, 2026-11-16 ==
 LRPL-VIO: A Lightweight and Robust Visual-Inertial Odometry with Point and Line Features
 Sensors 2024, 24(4), 1322. Nankai University. https://pmc.ncbi.nlm.nih.gov/articles/PMC10892506/
 Read in full.

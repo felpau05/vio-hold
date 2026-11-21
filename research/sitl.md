@@ -4,17 +4,17 @@ Date of research: 2026-11-15. Local PX4 clone: `main`, `v1.18.0-beta1-1575-gc4b8
 
 Tags used for each item: **[docs]** from official docs, **[src]** from source code, **[forum]** from a forum or issue,
 **[tested]** run on this laptop on 2026-11-15 (Docker 29, no GPU, `--network host`, pymavlink 2.4.50 in a scratch venv).
-Anything marked "inference" is the reasoning, not a source statement.
+Anything marked "inference" is my reasoning, not a source statement.
 
 ## 0. Answer in short
 
 1. Use **SIH** (item a). It is the smallest and the only one with a documented wind parameter. Run it from the ready image `px4io/px4-sitl` (53 MB download, 6 MB of RAM while running). **[tested]**
 2. SIH gives true pose, real PX4 EKF2 and controllers, simulated IMU, baro and mag noise, GNSS you can turn off, and wind you can change in flight with PARAM_SET. **[tested]**
 3. The wind is only a velocity in the first-order drag term. It has no gust model, no turbulence, no vertical wind and no wind torque. You build gusts in your Python script by changing `SIH_WIND_N` and `SIH_WIND_E` over time. **[src][tested]**
-4. Gazebo Harmonic runs headless in Docker with no GPU (150 MB RAM, about 0.6 CPU core). **[tested]** But its truth stream through PX4 is only about 50 Hz, and the wind changes only by editing the world SDF. A runtime wind topic had no visible effect in the test. **[tested]**
+4. Gazebo Harmonic runs headless in Docker with no GPU (150 MB RAM, about 0.6 CPU core). **[tested]** But its truth stream through PX4 is only about 50 Hz, and the wind changes only by editing the world SDF. A runtime wind topic had no visible effect in my test. **[tested]**
 5. jMAVSim is gone from PX4 `main` (removed 2026-09-26). Gazebo Classic is community-supported and Ubuntu 22.04 only. Neither is a good choice.
 6. Control from the host with **pymavlink**, not MAVSDK-Python. On PyPI the name `mavsdk` now means a different package (v4 native binding). The gRPC package is `mavsdk-grpc`. You need raw MAVLink anyway (ground truth, vision messages). **[docs][tested]**
-7. Ground truth at 200 Hz or more: `HIL_STATE_QUATERNION` through `MAV_CMD_SET_MESSAGE_INTERVAL`. At the default 250 Hz sim step measured 185 to 200 messages per second (about 25 percent of steps are skipped). At `IMU_INTEG_RATE=400` measured about 297 per sim second. **[tested]**
+7. Ground truth at 200 Hz or more: `HIL_STATE_QUATERNION` through `MAV_CMD_SET_MESSAGE_INTERVAL`. At the default 250 Hz sim step I measured 185 to 200 messages per second (about 25 percent of steps are skipped). At `IMU_INTEG_RATE=400` I measured about 297 per sim second. **[tested]**
 
 ## 1. Comparison for this job
 
@@ -22,7 +22,7 @@ Anything marked "inference" is the reasoning, not a source statement.
 |---|---|---|---|---|
 | Install size | Image `px4io/px4-sitl`: 51 MB compressed, 53 MB content, 180 MB on disk. `.deb` about 10 MB. [docs][tested] | Image `px4io/px4-sitl-gazebo`: 667 to 688 MB compressed, 730 MB content, 3.1 GB on disk. `.deb` about 30 MB plus Gazebo packages. [docs][tested] | Gazebo 11 apt packages (`gazebo libgazebo11 libgazebo-dev`), old `px4-dev-simulation-jammy` image is 1.35 GB compressed (2024). [docs] | Java plus a jar. [docs] |
 | Headless in Docker, no GPU | Yes. It has no renderer at all. [docs][tested] | Yes. `HEADLESS=1` starts `gz sim -r -s` (server only). Started in about 30 s, no EGL error, 153 MB RAM. [src][tested] | `HEADLESS=1` supported. [docs] Not tested. | `HEADLESS=1` supported in v1.17 docs. [docs] Not tested. |
-| Wind and gusts | `SIH_WIND_N`, `SIH_WIND_E` (m/s), changeable in flight. No gust model. [docs][src][tested] | World SDF `<wind>` plus `WindEffects` system. `windy` world works on x500. Runtime topic did not work in the test. [src][tested][forum] | `libgazebo_wind_plugin.so` in the world file. Has gust start, duration, mean, variance. [docs] | Keyboard keys in the GUI only (README). Not usable headless. [docs] |
+| Wind and gusts | `SIH_WIND_N`, `SIH_WIND_E` (m/s), changeable in flight. No gust model. [docs][src][tested] | World SDF `<wind>` plus `WindEffects` system. `windy` world works on x500. Runtime topic did not work in my test. [src][tested][forum] | `libgazebo_wind_plugin.so` in the world file. Has gust start, duration, mean, variance. [docs] | Keyboard keys in the GUI only (README). Not usable headless. [docs] |
 | Ground truth | uORB `*_groundtruth`, MAVLink `HIL_STATE_QUATERNION`. [src][tested] | gz topic `/world/<w>/pose/info` (about 50 to 60 Hz), same `HIL_STATE_QUATERNION` path. [src][tested] | Same MAVLink path. Simulator feeds `HIL_STATE_QUATERNION` into PX4. [src] | Same idea. [src] |
 | Change mass, size, thrust, drag | `SIH_*` parameters, set at runtime or with `PX4_PARAM_*` env vars. [src][tested] | Edit model SDF (`x500_base/model.sdf`, motor plugin constants), restart. [src] | Edit model SDF. | Edit Java source or parameters. |
 | Known problems | Only quad is "stable". Linear thrust and drag models. Sensor noise is small (see section 2). No wind turbulence. [docs][src] | Pose truth is slow. Wind effect on x500 not documented. Forum users report "no wind". Velocity and angular rate in truth are finite differences. [forum][src] | Downgraded to community support, not maintained by core team. Ubuntu 22.04 only. [docs] | Removed from PX4 `main` by commit `a23449cbe` on 2026-09-26. Still in v1.17. [src] |
@@ -54,12 +54,12 @@ Force model for the quad **[src]** (`sih.cpp`, `generate_force_and_torques`):
 
 Match the controller to the vehicle:
 - The docs say the `SIH_*` and `CA_*` parameters must describe the same vehicle. **[docs]**
-- With a linear thrust model, hover motor signal is `mass*9.81/(4*SIH_T_MAX)`. With the defaults this is 0.49. Set `MPC_THR_HOVER` to this value. This is the derivation from the source, not a documented rule.
+- With a linear thrust model, hover motor signal is `mass*9.81/(4*SIH_T_MAX)`. With the defaults this is 0.49. Set `MPC_THR_HOVER` to this value. This is my derivation from the source, not a documented rule.
 
 Wind **[src][tested]**:
 - Version: added to SIH in **v1.18** (PR #26467, merged 2026-03-05, release note "Add option to set wind velocity"). v1.17.0 has no `SIH_WIND_*` parameters (checked in the v1.17.0 tag). The v1.18.0-beta1 and v1.18.0-rc1 tags have them. The local clone has them.
 - Sign: "wind from north". The code sets `v_apparent = v_ground + v_wind`, so `SIH_WIND_N=5` pushes the drone to the south. Measured: with Position mode and truth fed back, a step to `SIH_WIND_N=5` gave a peak excursion of -1.88 m (N), then recovery to about 0 within 12 s. Setting it back to 0 gave an excursion of +2.37 m.
-- Wind can change during flight. `Sih::parameters_updated()` re-reads `SIH_WIND_N` and `SIH_WIND_E` whenever a `parameter_update` arrives. The docs say the same: "The parameters can also be changed during flight to simulate changing wind". They were changed with MAVLink `PARAM_SET` during flight.
+- Wind can change during flight. `Sih::parameters_updated()` re-reads `SIH_WIND_N` and `SIH_WIND_E` whenever a `parameter_update` arrives. The docs say the same: "The parameters can also be changed during flight to simulate changing wind". I changed them with MAVLink `PARAM_SET` during flight.
 - Wind only enters the drag force. There is no vertical wind, no turbulence model, no wind torque. Gusts are what your script makes them (for example a sum of steps or a filtered random process written to `SIH_WIND_N/E` at 5 to 20 Hz).
 - Force at hover for a given wind is `KDV * wind` (first-order). With default KDV=1.0 and mass 1 kg, 5 m/s wind equals 5 N, about 27 degrees of tilt. Choose `SIH_KDV` to match the drag you want.
 - Alternative: `px4-param set SIH_WIND_E 2` inside the container also worked. **[tested]**
@@ -82,14 +82,14 @@ Headless **[docs][src][tested]**:
 Wind in the world SDF **[src]**:
 - The `windy` world (`PX4-gazebo-models/worlds/windy.sdf`) contains `<wind><linear_velocity>5 2 0</linear_velocity></wind>` (ENU, x = east, y = north). Select it with `PX4_GZ_WORLD=windy` or `make px4_sitl gz_x500_windy`.
 - PX4 loads `gz-sim-wind-effects-system` and `gz-sim-apply-link-wrench-system` in `gz_bridge/server.config`.
-- `WindEffects` applies a force `mass * k * (wind_velocity - link_velocity)` to each link that has wind enabled. In the test x500 was affected, although the x500 SDF has no `enable_wind` text (so the default seems to be "on" for these links; did not find out why).
-- Mean and gust controls of `WindEffects` (from the system header in gz-sim8): `<horizontal><magnitude><time_for_rise>`, `<sin><amplitude_percent>`, `<sin><period>`, `<noise>`; `<horizontal><direction>...`; `<vertical><time_for_rise>`, `<vertical><noise>`; `<force_approximation_scaling_factor>`. Put these inside a `WindEffects` plugin element in the world SDF. PX4's `server.config` loads the system with no children, so you must either add the plugin element in your own world file or edit `server.config`. Not tested the gust elements.
+- `WindEffects` applies a force `mass * k * (wind_velocity - link_velocity)` to each link that has wind enabled. In my test x500 was affected, although the x500 SDF has no `enable_wind` text (so the default seems to be "on" for these links; I did not find out why).
+- Mean and gust controls of `WindEffects` (from the system header in gz-sim8): `<horizontal><magnitude><time_for_rise>`, `<sin><amplitude_percent>`, `<sin><period>`, `<noise>`; `<horizontal><direction>...`; `<vertical><time_for_rise>`, `<vertical><noise>`; `<force_approximation_scaling_factor>`. Put these inside a `WindEffects` plugin element in the world SDF. PX4's `server.config` loads the system with no children, so you must either add the plugin element in your own world file or edit `server.config`. I did not test the gust elements.
 
-What was tested **[tested]**:
+What I tested **[tested]**:
 - Control run, default world, Altitude mode, no wind: after 12 s the drone had moved 0.1 m.
 - Windy world, same script: the drone drifted to N=8.5 m, E=21.8 m in 14 s (ratio 2.56, wind ratio is 5/2), then to about 5 m/s speed. Position mode with truth-fed vision held the drone still with 1.5 deg roll and 3.4 deg pitch.
-- Runtime wind topic: `gz topic -t /world/windy/wind -m gz.msgs.Wind -p 'linear_velocity:{x:0,y:10,z:0} enable_wind:true'` gave no visible change in 20 s. The forum reports the same ("publishing to wind_info changed the topic values but the vehicle did not respond") [forum]. Did not find the cause.
-- Runtime force instead: `gz topic -t /world/default/wrench/persistent -m gz.msgs.EntityWrench -p 'entity: {name: "x500_0", type: MODEL}, wrench: {force: {x: 3, y: 0, z: 0}}'` moved the drone east at once (velocity 2.4 m/s after 3 s, 7.7 m/s after 9 s in Altitude mode). The `ApplyLinkWrench` system is in PX4's `server.config`. The `.../wrench/clear` message did not stop it (wrong syntax, not investigated). Sending another persistent wrench with zero force may replace it (untested).
+- Runtime wind topic: `gz topic -t /world/windy/wind -m gz.msgs.Wind -p 'linear_velocity:{x:0,y:10,z:0} enable_wind:true'` gave no visible change in 20 s. The forum reports the same ("publishing to wind_info changed the topic values but the vehicle did not respond") [forum]. I did not find the cause.
+- Runtime force instead: `gz topic -t /world/default/wrench/persistent -m gz.msgs.EntityWrench -p 'entity: {name: "x500_0", type: MODEL}, wrench: {force: {x: 3, y: 0, z: 0}}'` moved the drone east at once (velocity 2.4 m/s after 3 s, 7.7 m/s after 9 s in Altitude mode). The `ApplyLinkWrench` system is in PX4's `server.config`. My `.../wrench/clear` message did not stop it (wrong syntax, not investigated). Sending another persistent wrench with zero force may replace it (untested).
 
 Other: forum threads say wind support for Harmonic multicopters is incomplete ("new Gz sim does not support simulating wind", answered 2025-12-03; PR #26018 merged 2025-12-01 added an airspeed plugin with wind effects for planes). [forum]
 
@@ -99,7 +99,7 @@ GNSS off, any simulator **[src][docs]**:
 - `SYS_HAS_GPS=0` (reboot required): the sensors module does not start the GPS pipeline at all. Airframe `4021_gz_x500_flow` uses `SYS_HAS_GPS 0`, `SIM_GPS_USED 0`, `EKF2_GPS_CTRL 0` together ("Disabling Sim GPS").
 - `EKF2_GPS_CTRL=0` (bitmask: 1 lon/lat, 2 altitude, 4 velocity, 8 dual antenna; default 7).
 - `SIM_GPS_USED=0`: `sensor_gps_sim` then reports `fix_type = 0`. With 4 or more it reports a 3D fix.
-- SIH only: `SENS_EN_GPSSIM=0` (reboot required) stops the simulated GPS driver. Read this in `px4-rc.sihsim`, Not tested it.
+- SIH only: `SENS_EN_GPSSIM=0` (reboot required) stops the simulated GPS driver. I read this in `px4-rc.sihsim`, I did not test it.
 - Gazebo: the GNSS comes from the `navsat` sensor in the model. `SYS_HAS_GPS=0` hides it from PX4.
 - Height reference: `EKF2_HGT_REF=0` (barometer). Default is 1 (GPS).
 - `COM_ARM_WO_GPS`: default 1 (allow arming without GNSS with a warning, for modes that need position). `SYS_HAS_GPS=0` removes the check completely.
@@ -114,13 +114,13 @@ What each mode needs (`mode_requirements.cpp`) **[src]**:
 - Takeoff (auto), Hold/Loiter, Mission: need local and global position for multicopters. Do not use them without GNSS.
 
 Measured sequence in SIH with GNSS off **[tested]** (`PX4_PARAM_SYS_HAS_GPS=0 PX4_PARAM_SIM_GPS_USED=0 PX4_PARAM_EKF2_GPS_CTRL=0 PX4_PARAM_EKF2_HGT_REF=0`):
-1. Send `MANUAL_CONTROL` at 25 Hz all the time (SITL default `COM_RC_IN_MODE=1`, MAVLink only). If the stream stops for a few seconds PX4 lands the drone (seen when a blocking `docker exec` paused the loop).
+1. Send `MANUAL_CONTROL` at 25 Hz all the time (SITL default `COM_RC_IN_MODE=1`, MAVLink only). If the stream stops for a few seconds PX4 lands the drone (I saw this when a blocking `docker exec` paused my loop).
 2. `MAV_CMD_DO_SET_MODE` to Altitude (main mode 2). Accepted.
 3. `MAV_CMD_COMPONENT_ARM_DISARM` param1=1. Accepted with no GNSS and no vision. In SIH no GCS heartbeat was needed.
 4. `MANUAL_CONTROL` z=900 for 10 s gave +10.4 m. z=500 holds. (z is 0 to 1000, 500 is centre.)
 5. Set `EKF2_EV_CTRL=1`, stream `VISION_POSITION_ESTIMATE` at 30 Hz, then switch to Position mode (main mode 3). Accepted, held position, and followed wind steps.
 
-In Gazebo (x500, no GNSS) **[tested]**: arming was refused with "Preflight Fail: No connection to the GCS" until the script sent GCS heartbeats (`MAV_TYPE_GCS`, 1 Hz). After that, arm in Altitude mode worked and the climb worked.
+In Gazebo (x500, no GNSS) **[tested]**: arming was refused with "Preflight Fail: No connection to the GCS" until my script sent GCS heartbeats (`MAV_TYPE_GCS`, 1 Hz). After that, arm in Altitude mode worked and the climb worked.
 
 The test above fed true position back as the vision message. It only checks the plumbing. It is not a test of your estimator.
 
@@ -130,7 +130,7 @@ Facts **[src]**:
 - SIH publishes `vehicle_attitude_groundtruth`, `vehicle_angular_velocity_groundtruth`, `vehicle_local_position_groundtruth`, `vehicle_global_position_groundtruth` on every sim step (250 Hz at defaults).
 - There is no MAVLink stream called `GROUND_TRUTH`. Use `HIL_STATE_QUATERNION` (id 115). Its fields are `time_usec` (PX4 clock, taken from the attitude truth timestamp), attitude quaternion, body rates, `lat`, `lon` (1e-7 deg), `alt` (mm), `vx, vy, vz` (cm/s), `xacc, yacc, zacc`. There is no local x, y in it.
 - The MAVLink `LOCAL_POSITION_NED` stream is the estimate, not the truth.
-- Convert lat, lon to metres with the SIH origin `SIH_LOC_LAT0`, `SIH_LOC_LON0`, `SIH_LOC_H0`. Resolution is about 1.1 cm in lat (1e-7 deg), 1 mm in altitude. Use a local-tangent conversion. R=6371000 m and a cosine factor. Error from this approximation is small near the origin but not zero. For exact values use `px4-listener vehicle_local_position_groundtruth` which gives x, y, z directly.
+- Convert lat, lon to metres with the SIH origin `SIH_LOC_LAT0`, `SIH_LOC_LON0`, `SIH_LOC_H0`. Resolution is about 1.1 cm in lat (1e-7 deg), 1 mm in altitude. Use a local-tangent conversion. I used R=6371000 m and a cosine factor. Error from this approximation is small near the origin but not zero. For exact values use `px4-listener vehicle_local_position_groundtruth` which gives x, y, z directly.
 - Default SIH has `HIL_STATE_QUATERNION` at 25 Hz on UDP 19450/19410 only (the display link). Other links have it off. [src: `px4-rc.mavlink`]
 
 Commands **[tested]**:
@@ -139,7 +139,7 @@ Commands **[tested]**:
   m.mav.command_long_send(sysid, compid, 511, 0, 115, 4000, 0,0,0,0,0)  # MAV_CMD_SET_MESSAGE_INTERVAL, msg 115, 4000 us
   ```
   The stream goes to the link that sent the command.
-- PX4 shell: `mavlink stream -r 200 -s HIL_STATE_QUATERNION -u 14580` (the `-u` is the local port of the link, 14580 for the onboard link). In the image: `docker exec px4t /opt/px4/bin/px4-mavlink stream -u 14580 -s HIL_STATE_QUATERNION -r 200`. The command ran with no error. Did not check the resulting rate.
+- PX4 shell: `mavlink stream -r 200 -s HIL_STATE_QUATERNION -u 14580` (the `-u` is the local port of the link, 14580 for the onboard link). In the image: `docker exec px4t /opt/px4/bin/px4-mavlink stream -u 14580 -s HIL_STATE_QUATERNION -r 200`. The command ran with no error. I did not check the resulting rate.
 - uORB, one sample: `docker exec px4t /opt/px4/bin/px4-listener vehicle_local_position_groundtruth -n 1` (works, gives x, y, z, vx, vy, vz, heading, `ref_lat`, `ref_lon`). The image has `px4-<module>` client programs in `/opt/px4/bin`.
 
 Measured rate **[tested]**:
@@ -156,7 +156,7 @@ Reasons:
 
 Advice for the rolling-shutter renderer: take the SIH truth at 300 to 400 Hz, keep `time_usec`, and interpolate the pose (slerp for attitude) at each row time. Do not assume a fixed step.
 
-Logging: the default SITL ulog stores groundtruth topics with an interval limit (10 to 100 ms in `logged_topics.cpp`). Do not use it for 200 Hz truth. [src] Not tested a full-rate log profile.
+Logging: the default SITL ulog stores groundtruth topics with an interval limit (10 to 100 ms in `logged_topics.cpp`). Do not use it for 200 Hz truth. [src] I did not test a full-rate log profile.
 
 ## 6. Docker
 
@@ -188,10 +188,10 @@ docker run -d --name px4sih --network host \
   px4io/px4-sitl:latest -d
 ```
 
-- The trailing `-d` is required. It is the PX4 option "daemon mode, don't start pxh shell". Without it, a container started with `docker run -d` and no TTY loops on `pxh>` and writes about 4 MB of log per second to Docker (seen: 183 MB in 45 s and 100 percent CPU). Same for the Gazebo image. **[tested]** Use `-it` and no `-d` for an interactive shell instead.
+- The trailing `-d` is required. It is the PX4 option "daemon mode, don't start pxh shell". Without it, a container started with `docker run -d` and no TTY loops on `pxh>` and writes about 4 MB of log per second to Docker (I saw 183 MB in 45 s and 100 percent CPU). Same for the Gazebo image. **[tested]** Use `-it` and no `-d` for an interactive shell instead.
 - `--network host` (Linux only) is the simplest. PX4 sends to `127.0.0.1:14540` and `127.0.0.1:14550` and listens on 14580 and 18570. Bridge networking with `-p 14540:14540/udp` does not carry the PX4-to-host direction, because PX4 sends to the container's own localhost. (Inference from `px4-rc.mavlink`. The doc says to use `--network host` on Linux or `--add-host=host.docker.internal:host-gateway`, which makes the entrypoint rewrite the target address.) **[docs]**
 - Ports (from `px4-rc.mavlink` and docs): PX4 sends to 14550 (GCS) and 14540 (offboard API); PX4 listens on 18570 (GCS link), 14580 (offboard link); 19410 and 19450 are the SIH display link; 8888 is DDS.
-- On the host: `mavutil.mavlink_connection('udpin:0.0.0.0:14540')` then `wait_heartbeat()`. Target system 1, component 0 as measured.
+- On the host: `mavutil.mavlink_connection('udpin:0.0.0.0:14540')` then `wait_heartbeat()`. Target system 1, component 0 as I measured.
 - Logs on host: add `-v $PWD/px4-logs:/root/.local/share/px4/rootfs/fs/log` (from the Dockerfile comment).
 
 Change the vehicle (SIH), for example a 2 kg drone with 4 propellers of 12 N max:
@@ -221,7 +221,7 @@ docker run -d --name px4src --network host --user "$(id -u):$(id -g)" \
   -e HEADLESS=1 -e PX4_SIM_MODEL=sihsim_quadx \
   px4io/px4-dev:v1.18.0-rc1 ./bin/px4 -d ./etc
 ```
-- This sequence follows `Tools/docker_run.sh` (docs: `test_and_ci/docker.md`) and `Tools/simulation/sitl_multiple_run.sh` (`px4 -i <n> -d <build>/etc`). Not run: the build here. Build time and extra dependencies for the main branch were not measured. The docs say `px4_sitl` (not `_sih`) also builds Gazebo libraries, so use `px4_sitl_sih`.
+- This sequence follows `Tools/docker_run.sh` (docs: `test_and_ci/docker.md`) and `Tools/simulation/sitl_multiple_run.sh` (`px4 -i <n> -d <build>/etc`). I did **not** run the build here. Build time and extra dependencies for the main branch were not measured. The docs say `px4_sitl` (not `_sih`) also builds Gazebo libraries, so use `px4_sitl_sih`.
 - `HEADLESS=1` has no effect on SIH. SIH never opens a window. It matters only for Gazebo.
 - The `px4-dev` image is 1.9 GB compressed and has a home-directory `ccache` mount in `docker_run.sh` for repeat builds.
 - If `make px4_sitl_sih` in the container fails on a missing tool, run `Tools/setup/ubuntu.sh --no-sim-tools` as in the Dockerfile. (Untested.)
@@ -241,7 +241,7 @@ Needs GCS heartbeats from your script to arm. Inside the image the `gz` command 
 
 Facts **[src][docs]**:
 - `PX4_SIM_SPEED_FACTOR` is read in `Sih::lockstep_loop()`. The sim step is `1e6 / min(IMU_GYRO_RATEMAX, IMU_INTEG_RATE)` microseconds, limited to 500..5000 us. At defaults (`IMU_GYRO_RATEMAX` 400, `px4-rc.simulator` sets `IMU_INTEG_RATE` 250) this is 250 Hz (4000 us). The sim sets the PX4 clock (`px4_clock_settime`) every step. The real-time wait is `sim_interval / speed_factor`.
-- `rcS` multiplies `COM_DL_LOSS_T` (x10), `COM_RC_LOSS_T`, `COM_OF_LOSS_T`, `COM_DISARM_PRFLT` by the speed factor, so the link-loss timers stay in wall time. Seen: `COM_DL_LOSS_T set to 50` at factor 5.
+- `rcS` multiplies `COM_DL_LOSS_T` (x10), `COM_RC_LOSS_T`, `COM_OF_LOSS_T`, `COM_DISARM_PRFLT` by the speed factor, so the link-loss timers stay in wall time. I saw `COM_DL_LOSS_T set to 50` at factor 5.
 - Lockstep waits only for PX4's own components (`px4_lockstep_wait_for_components`) and for new actuator outputs. It does **not** wait for UDP messages from your program. (Inference from reading the code.)
 - Gazebo: `px4-rc.gzsim` calls the `set_physics` service with `real_time_factor` and `max_step_size`. `GZBridge::clockCallback` sets the PX4 clock on each sim step.
 
@@ -259,7 +259,7 @@ Time base for your program **[src]**:
 
 Use **pymavlink**. Reasons:
 1. MAVSDK-Python changed names. README **[docs]**: the gRPC wrapper is now `mavsdk-grpc` (import `mavsdk_grpc`). On PyPI, `mavsdk` is now a different native binding (version 4.2.0, 2026-11-12) with a different API. Old tutorials will break. The gRPC version starts a `mavsdk_server` process.
-2. You need raw messages in any case: `HIL_STATE_QUATERNION` for truth, `VISION_POSITION_ESTIMATE` or `ODOMETRY` for your estimator, `MANUAL_CONTROL`, `PARAM_SET` for wind. MAVSDK has no plugin for reading `HIL_STATE_QUATERNION`. (Inference from the plugin list known. Did not check MAVSDK v4.)
+2. You need raw messages in any case: `HIL_STATE_QUATERNION` for truth, `VISION_POSITION_ESTIMATE` or `ODOMETRY` for your estimator, `MANUAL_CONTROL`, `PARAM_SET` for wind. MAVSDK has no plugin for reading `HIL_STATE_QUATERNION`. (Inference from the plugin list I know. I did not check MAVSDK v4.)
 3. pymavlink 2.4.50 (2026-09-24) installs as one 7 MB wheel, no server process. **[tested]**
 
 Working pattern **[tested]**:
@@ -297,7 +297,7 @@ Gotchas **[tested]**:
 - `set_mode_px4(mode, custom_mode, custom_sub_mode)` needs all three arguments even when `mode` is a name.
 - Keep sending `MANUAL_CONTROL` without gaps. A long blocking call stops the stream and PX4 lands the drone.
 - Read the mode from `HEARTBEAT.custom_mode`: Altitude is `0x20000`, Position `0x30000`.
-- MAVSDK 4 `mocap`/odometry plugins exist in the older gRPC wrapper. Not tested either.
+- MAVSDK 4 `mocap`/odometry plugins exist in the older gRPC wrapper. I did not test either.
 
 ## 9. Sources
 
@@ -351,4 +351,4 @@ Python:
 
 ## 10. Cleanup note
 
-`px4io/px4-sitl:latest` was pulled and `px4io/px4-sitl-gazebo:latest` (3.3 GB on disk together) and created a scratch venv with pymavlink in a scratch folder. All test containers are removed. Not edited any existing file.
+I pulled `px4io/px4-sitl:latest` and `px4io/px4-sitl-gazebo:latest` (3.3 GB on disk together) and created a scratch venv with pymavlink in the session scratchpad. All test containers are removed. I did not edit any existing file.

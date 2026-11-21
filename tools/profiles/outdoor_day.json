@@ -1,10 +1,6 @@
 {
  "_why": {
-  "min_height_m": "3 m (was 15, the H9 example value, which sends nothing below 15 m). PX4 SITL, Justice D, w20g40, 60 s holds, min_height_m 3 and h_min 2 (px4sim/low_outage_results.txt): 5 m RMS 0.54 and 0.51 m, 10 m 0.75 and 0.65 m (2 seeds each), perfect position 0.46-0.47 m (1 seed); calm 5 m 0.11 m, 10 m 0.12 m (1 seed). Limits: the sim height is within 0.15 m, a real baro is not (assumed about 1 m, Hold.HGT_ERR); the sim ground photo is 9-19 times coarser than the camera at 5-10 m; the 5 m seed 1 run started on the code before 2026-11-19 03:10. ArduCopter SITL (apsim/low_ap_results.txt, same settings, 2 seeds): held 60 s in 6 of 6 wind runs, no FC warning, but 5 m RMS 0.85 and 0.44 m with up to 16 re-anchors per minute ('whole picture: halves disagree') and gaps up to 6.3 s without a fix; 10 m RMS 0.98 and 0.93 m, gaps 3 s or less; perfect position 0.34-0.35 m (1 seed). Prefer 10 m to 5 m when the level allows it.",
-  "hold_cfg.h_min": "2 m: Hold's own floor (default 5 m) blocked a 5 m hold (mean flown height 4.6 m). Tested with min_height_m 3."
+  "min_height_m": "H9 example value. EVENT_DAY step 7 climbs to 20 m before Position mode. Every sim and SITL run used it."
  },
- "min_height_m": 3.0,
- "hold_cfg": {
-  "h_min": 2.0
- }
+ "min_height_m": 15.0
 }

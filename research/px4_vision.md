@@ -1,8 +1,8 @@
 # PX4 (and ArduPilot) position hold from an external horizontal position, GNSS off
 
-Date of research: 2026-11-15. Method: read PX4 source and docs on GitHub (`gh api`), the MAVLink XML, ArduPilot source and docs. No code was run.
+Date of research: 2026-11-15. Method: read PX4 source and docs on GitHub (`gh api`), the MAVLink XML, ArduPilot source and docs. I did not run any code.
 
-Confidence labels: "source" = a file says it. "derived" = computed from source code lines (medium confidence). "inference" = the reasoning (low confidence).
+Confidence labels: "source" = a file says it. "derived" = I computed it from source code lines (medium confidence). "inference" = my reasoning (low confidence).
 
 Branch note. Parameter files were read on `release/1.16`, `release/1.15`, `release/1.14`, `release/1.13` and `main`. The code walk-through (receiver, EKF, commander) used `release/1.16`. The v1.14 and v1.15 code may differ in detail. The Orqa firmware version is unknown (see Unknowns).
 
@@ -10,7 +10,7 @@ Branch note. Parameter files were read on `release/1.16`, `release/1.15`, `relea
 
 ## 1. PX4 EKF2: parameters for horizontal-only external vision, baro height, no GNSS
 
-### Recommended set for v1.14, v1.15, v1.16 (source for each name and default; the combination is the choice)
+### Recommended set for v1.14, v1.15, v1.16 (source for each name and default; the combination is my choice)
 
 | Parameter | Value | Why | Default (1.14 / 1.15 / 1.16) |
 |---|---|---|---|
@@ -102,7 +102,7 @@ https://github.com/PX4/PX4-Autopilot/blob/release/1.16/src/modules/ekf2/EKF2.cpp
 - On a change, with no GNSS, the EKF resets its horizontal position state to the new measurement (hard jump, no gate). It also resets the EV-to-EKF attitude filter.
 - Use: increment it when our keyframe changes and the position frame jumps. If we keep the frame continuous, do not increment it.
 
-### Recommendation (the choice)
+### Recommendation (my choice)
 
 - Use VISION_POSITION_ESTIMATE if we send only position. It is simple, always NED, and smaller on the wire: payload 117 bytes, MAVLink v2 frame 129 bytes (payload + 12; trailing zero bytes can be cut by v2, but NaN is not zero). ODOMETRY is 233 bytes payload, 245 bytes frame. At 30 Hz that is about 3.9 kB/s versus 7.4 kB/s (derived from the XML field sizes).
 - Use ODOMETRY only if we later send velocity (optical-flow fallback, section 5). Then use `frame_id = LOCAL_NED`, `child_frame_id = LOCAL_NED`, `estimator_type = 2 (VISION)`.
@@ -159,7 +159,7 @@ Files: https://github.com/PX4/PX4-Autopilot/blob/release/1.16/src/modules/ekf2/E
 |---|---|
 | 0 to about 0.4 s | Nothing yet. The EKF runs on IMU and baro. Position is still reported valid. |
 | about 0.4 s (2 x `EV_MAX_INTERVAL`) | Log "vision data stopped". EV position fusion is switched off (`stopEvPosFusion`). The EKF is now in inertial dead reckoning. No correction. |
-| 0.5 s | As above. Position still valid. The position error grows with IMU error. There is no number for the growth. |
+| 0.5 s | As above. Position still valid. The position error grows with IMU error. I have no number for the growth. |
 | 2 s | Same. Position still valid. When samples return and start conditions pass, the EKF restarts fusion and RESETS its position to the new measurement (a jump back to the anchor). |
 | about 4.4 s (derived: EV drop at 0.4 s, plus `EKF2_NOAID_TOUT` 5 s minus a 1 s offset in the code) | Horizontal dead-reckon time exceeded. `xy_valid` goes false. The EKF begins "fake position" fusion at the last known position with noise `EKF2_NOAID_NOISE` = 10 m (weak). Local position is invalid. |
 | 10 s | Position control has been unavailable for about 5 s. Vision restart (after 1 s probation, see below) brings it back. |
@@ -169,7 +169,7 @@ The 4.4 s figure is an estimate. It depends on `EKF2_NOAID_TOUT` (0.5 to 10 s) a
 ### Mode and failsafe (source: commander code and docs)
 
 - Mode requirements (v1.16 `ModeUtil/mode_requirements.cpp`): Position mode (POSCTL) needs `local_alt` and `local_position_relaxed` (position valid, accuracy ignored). Hold (AUTO_LOITER), Mission, RTL, Takeoff, Orbit need `local_position`, and some also `global_position` (Hold and Mission both set `mode_req_global_position`). Offboard needs only attitude, angular velocity and the offboard signal.
-- Without GNSS the EKF has no global origin. Docs: use `SET_GPS_GLOBAL_ORIGIN` to set the EKF origin; "EKF will then provide a global position estimate based on origin and local frame position" (docs `external_position_estimation.md`, section "Enabling Auto Modes with a Local Position"). So Hold mode needs this message. Position mode docs prose says "Global position estimate is required", but the auto-generated requirement list in the same page says only local position (relaxed). Not tested which is true on the Orqa build.
+- Without GNSS the EKF has no global origin. Docs: use `SET_GPS_GLOBAL_ORIGIN` to set the EKF origin; "EKF will then provide a global position estimate based on origin and local frame position" (docs `external_position_estimation.md`, section "Enabling Auto Modes with a Local Position"). So Hold mode needs this message. Position mode docs prose says "Global position estimate is required", but the auto-generated requirement list in the same page says only local position (relaxed). I did not test which is true on the Orqa build.
 - Validity logic (`estimatorCheck.cpp`): the local position is "invalid" if `xy_valid` is false, or the data is older than 1 s, or `eph` is above the threshold. For the hysteresis: once valid, the threshold for invalid is 2.5 x `COM_POS_FS_EPH`. After it fails, it needs 1 s without failure before it is valid again.
 - `COM_POS_FS_EPH`: default 5 m, -1 disables. `COM_VEL_FS_EVH`: default 1 m/s.
 - Fallback for POSCTL (`failsafe.cpp`, `checkModeFallback`): `COM_POSCTL_NAVL = 0` -> Altitude mode (then Stabilized if altitude is also lost). `= 1` -> Land, then Descend. Docs (`config/safety.md`): "Multicopters flying in a position-dependent manual mode, such as Position mode, will switch to Altitude mode if a height estimate is available".
@@ -207,14 +207,14 @@ Sources: `mavlink_receiver.cpp` `handle_message_optical_flow_rad`; `VehicleOptic
 
 ## 6. Heading and frame alignment
 
-- With no GNSS, heading comes from the magnetometer (`EKF2_MAG_TYPE`, default Automatic: heading fusion on ground, 3-axis in flight). The docs have no typical yaw error figure. Found no official number. Anecdotal forum report: about 5 degrees against dual-antenna GNSS heading with only the magnetometer, 2 degrees after a mag yaw rotation fix (https://discuss.px4.io/t/high-mag-accuracy-possible/48146, from a web search summary; low confidence, anecdotal).
+- With no GNSS, heading comes from the magnetometer (`EKF2_MAG_TYPE`, default Automatic: heading fusion on ground, 3-axis in flight). The docs have no typical yaw error figure. I found no official number. Anecdotal forum report: about 5 degrees against dual-antenna GNSS heading with only the magnetometer, 2 degrees after a mag yaw rotation fix (https://discuss.px4.io/t/high-mag-accuracy-possible/48146, from a web search summary; low confidence, anecdotal).
 - Docs name the symptom of a heading mismatch: "toilet-bowling" when VIO frames do not match (https://github.com/PX4/PX4-Autopilot/blob/main/docs/en/computer_vision/visual_inertial_odometry.md). ArduPilot docs say the same about missing yaw alignment (VIO page, below).
 - Code for the frames (`ev_pos_control.cpp`):
   - `LOCAL_FRAME_NED` (VISION_POSITION_ESTIMATE, or ODOMETRY with `LOCAL_NED`): used directly, and ONLY when the EKF yaw is aligned (`yaw_align`). Otherwise the sample is not fused. The measurement is assumed to be in the true north-east frame that the EKF uses.
   - `LOCAL_FRAME_FRD` with `EKF2_EV_CTRL` yaw bit (bit 3): EKF uses the EV frame as is, and heading is relative to the EV frame ("if yaw data is used the heading is with respect to the external vision frame; otherwise the heading is relative to North").
   - `LOCAL_FRAME_FRD` without the yaw bit: the EKF rotates the EV position into its own frame using a filtered difference between the EV quaternion and the EKF quaternion (`_ev_q_error_filt`). This needs a valid EV quaternion.
 - Effect of a yaw error (derived and inference): the EKF integrates the IMU into north/east using its own yaw. If the position measurement is in a frame rotated by a different yaw, the velocity and position states disagree, which gives circling errors (toilet-bowl). In our design the measurement is built from the flight controller's own attitude and heading, so EV and EKF share the same yaw by construction (inference, low). Then a mag error mainly rotates the frame, and the hold target (the anchor, offset 0) stays fixed. Remaining danger: a yaw CHANGE of the EKF in flight (mag reset, "Emergency yaw reset") while our estimator keeps old keyframe geometry.
-- Better to use PX4's "EV frame alignment"? Our EV has no independent yaw (its yaw is the FC's yaw), so fusing it with the yaw bit adds nothing, and sending `LOCAL_FRD` without the yaw bit just makes PX4 compute a rotation of about identity. Recommendation: send NED, keep the yaw bit off, and keep our tracker using the FC's current yaw each frame (the choice, low confidence; test in SITL with a yaw offset).
+- Better to use PX4's "EV frame alignment"? Our EV has no independent yaw (its yaw is the FC's yaw), so fusing it with the yaw bit adds nothing, and sending `LOCAL_FRD` without the yaw bit just makes PX4 compute a rotation of about identity. Recommendation: send NED, keep the yaw bit off, and keep our tracker using the FC's current yaw each frame (my choice, low confidence; test in SITL with a yaw offset).
 - The unit of our position frame: NED, x north, y east. A mistake in this convention is hidden in the simulator (the team notes say the simulator shares geometry with the estimator). Test it against a real PX4 SITL (see Recommendations).
 
 ---
@@ -239,7 +239,7 @@ Sources: `mavlink_receiver.cpp` `handle_message_optical_flow_rad`; `VehicleOptic
 - Control law in code: `vel_sp = (pos_sp - pos) * MPC_XY_P`; then `acc_sp = (vel_sp - vel) * MPC_XY_VEL_P_ACC + integral - D term`; then thrust vector tilt, limited to the tilt limit.
 - Noise path (derived, simple model): a position error `e` gives a velocity setpoint `0.95 e` m/s, an acceleration setpoint of about `1.8 x 0.95 e` m/s^2 if the velocity estimate lags, and a tilt of about `a/g`. Example: 0.1 m of position noise gives about 0.17 m/s^2, or about 1 degree of tilt; 1 m of noise gives about 10 degrees. These are rough, because the EKF filters the noise first and the controller reads the EKF velocity, not the raw measurement.
 - The EKF acts as the filter: a larger `EKF2_EVP_NOISE` (or larger reported variance) lowers the Kalman gain and smooths jitter but raises the lag. The velocity used by the position controller is an EKF state, so noise in our position reaches the controller through the position-to-velocity gain of the filter (inference).
-- PX4 docs on noisy external position: Found no passage that gives advice beyond (1) the noise parameters `EKF2_EVP_NOISE`, `EKF2_EV_NOISE_MD` and (2) tuning `EKF2_EV_DELAY` from innovations. For LPE (old) the docs say reduce `LPE_VIS_XY` to track tightly. Did not find a statement about MPC gains for noisy external position. The levers that exist: raise `EKF2_EVP_NOISE`, send an honest covariance, reduce `MPC_XY_P` and `MPC_XY_VEL_P_ACC`, set `MPC_VEL_LP`, and raise `MPC_VELD_LP` filtering (the choice).
+- PX4 docs on noisy external position: I found no passage that gives advice beyond (1) the noise parameters `EKF2_EVP_NOISE`, `EKF2_EV_NOISE_MD` and (2) tuning `EKF2_EV_DELAY` from innovations. For LPE (old) the docs say reduce `LPE_VIS_XY` to track tightly. I did not find a statement about MPC gains for noisy external position. The levers that exist: raise `EKF2_EVP_NOISE`, send an honest covariance, reduce `MPC_XY_P` and `MPC_XY_VEL_P_ACC`, set `MPC_VEL_LP`, and raise `MPC_VELD_LP` filtering (my choice).
 
 ---
 
@@ -257,7 +257,7 @@ Sources: https://ardupilot.org/copter/docs/common-ekf-sources.html , https://ard
 - Rate in the T265 script: 30 Hz for VISION_POSITION_ESTIMATE, 1 Hz for the confidence message. Docs: send at a fixed rate "so as to not flood the Autopilot".
 - Failsafe: `FS_EKF_ACTION` (0 report only, 1 Land if the mode needs position, 2 AltHold if the mode needs position, 3 Land from all modes), `FS_EKF_THRESH` (0 disabled, 0.6 strict, 0.8 default, 1.0 relaxed). `EK3_NOAID_M_NSE` default 10 m exists. How long ArduPilot keeps a position after the stream stops: not checked (unknown).
 - Reboot note in the T265 doc: "Reboot the autopilot if external navigation data is lost."
-- Stream rates in ArduPilot: `SRn_*` stream parameters and `MAV_CMD_SET_MESSAGE_INTERVAL` (handled in `GCS_Common.cpp`). Did not map messages to stream groups (unknown).
+- Stream rates in ArduPilot: `SRn_*` stream parameters and `MAV_CMD_SET_MESSAGE_INTERVAL` (handled in `GCS_Common.cpp`). I did not map messages to stream groups (unknown).
 
 ---
 
@@ -302,7 +302,7 @@ Fields (MAVLink XML):
 | ODOMETRY | 233 | 245 | 30 Hz | 7,350 (companion to FC) |
 | OPTICAL_FLOW_RAD | 44 | 56 | 30 Hz | 1,680 |
 
-Example plan (the choice): FC to companion: ATTITUDE 100 Hz + ALTITUDE 10 Hz + TIMESYNC 10 Hz + HEARTBEAT = about 4.8 kB/s, which is about 42% of the PX4 send budget (11.5 kB/s) and 21% of the raw line rate. Companion to FC: VISION_POSITION_ESTIMATE 30 Hz + TIMESYNC replies + heartbeat = about 4.3 kB/s, 19% of the raw line rate. All other streams must be switched off (`MAV_CMD_SET_MESSAGE_INTERVAL` with -1), or `MAV_n_MODE` set to a minimal profile. v2 frames with trailing zero bytes get shorter, so these are upper bounds.
+Example plan (my choice): FC to companion: ATTITUDE 100 Hz + ALTITUDE 10 Hz + TIMESYNC 10 Hz + HEARTBEAT = about 4.8 kB/s, which is about 42% of the PX4 send budget (11.5 kB/s) and 21% of the raw line rate. Companion to FC: VISION_POSITION_ESTIMATE 30 Hz + TIMESYNC replies + heartbeat = about 4.3 kB/s, 19% of the raw line rate. All other streams must be switched off (`MAV_CMD_SET_MESSAGE_INTERVAL` with -1), or `MAV_n_MODE` set to a minimal profile. v2 frames with trailing zero bytes get shorter, so these are upper bounds.
 - If we need 200 Hz attitude for rolling shutter, ATTITUDE needs 8 kB/s, which is 70% of the PX4 budget. Use `HIGHRES_IMU`'s gyro at 50 Hz plus ATTITUDE at 100 Hz, and interpolate (inference).
 
 ---
@@ -311,7 +311,7 @@ Example plan (the choice): FC to companion: ATTITUDE 100 Hz + ALTITUDE 10 Hz + T
 
 1. The Orqa M2-AI firmware: PX4 or something else, which version, whether it has EKF2 external vision enabled, which serial port and baud rate, and whether the MAVLink instance is in Onboard mode. Not found in this research.
 2. An official typical yaw error of the PX4 magnetometer. Only anecdotal forum values.
-3. The exact time from "vision stops" to "position invalid" on a real build. The 4.4 s figure is derived from reading the code and not run in SITL.
+3. The exact time from "vision stops" to "position invalid" on a real build. My 4.4 s figure is derived from reading the code and not run in SITL.
 4. Whether Position mode on v1.14 and v1.15 needs a global position (docs prose says yes; v1.16 requirement list says local relaxed only). Hold mode needs global position in v1.16 code, so use `SET_GPS_GLOBAL_ORIGIN`.
 5. How much position error grows during 0.5 s, 2 s, 10 s of dead reckoning with a real IMU. No number.
 6. Whether PX4 optical-flow fusion works at 100 m height with no range finder. Code suggests possible start through terrain estimate; not tested; noise default too large to matter.

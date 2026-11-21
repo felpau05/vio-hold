@@ -181,7 +181,7 @@ def make_texture(n=4096, seed=7, water_half=None):
 
 
 class Renderer:
-    """Rolling-shutter nadir camera over a flat textured ground (own model end to end)."""
+    """Rolling-shutter nadir camera over a flat textured ground (my own model end to end)."""
 
     def __init__(self, K, D, R_bc, W, H, tex, span_m, noise=3.0, seed=11):
         self.W, self.H, self.tex, self.m = W, H, tex, tex.shape[0] / span_m

@@ -76,4 +76,4 @@ hold point (RMS); jitter: its RMS about its own mean (the judge-view wander with
 tilt). % fix: fixes sent per rendered PAL frame; fix Hz: fixes sent per second; age: capture to send.
 apb = the onboard program (apb_main run) with a 10x slower CPU; truth = the true position as the fix.
 gps = PX4's own GNSS position hold (simulated GNSS on, no vision); none = no position source.
-b_imu / b_gyro = apb with att_source imu / gyro (run set B, seeds 11-13: validation set).
+b_imu / b_gyro = apb with att_source imu / gyro (builder B, seeds 11-13: validation set).

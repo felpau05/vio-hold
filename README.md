@@ -1,45 +1,46 @@
 # VIO position hold
 
 Hold a drone in place with no GPS. A downward camera watches the ground. Our program turns the
-picture motion, plus the tilt from the flight controller (FC), into a position. It sends that
-position to the autopilot (ArduPilot or PX4) over MAVLink, and the autopilot holds it.
+picture motion, plus the tilt from an IMU, into a position.
 
-Target: the Contested Battlefield Aerial Operations challenge. The aircraft is the Orqa M2-AI (MRM2-10AI).
-The program runs on its APB (Auto Pilot Board, an i.MX8M Plus computer next to the FC) and reads
-the downward camera, the Orqa Justice D. The Justice D is digital (MIPI CSI, 1280 x 720, 60 fps, rolling shutter).
-The forward camera is the analog Justice A. The code also reads an analog camera (setting `camera`).
-The event pilots fly the aircraft. The pilot starts our position hold with a switch. Team members do not fly.
-The scored hold uses no GNSS. The rules do not permit marks on the ground, added cameras or added sensors.
-No part has run on the real board.
+Target: the Contested Battlefield Aerial Operations challenge (Grand Final), on the Orqa M2-AI. The program runs
+on its APB (Auto Pilot Board, an i.MX8M Plus computer next to the FC) and reads the downward **Justice D**
+(digital MIPI CSI, 1920x1080 at 60 fps on the event aircraft, strong fisheye).
+
+**Stage 2 (2026-11-21):** the FC runs Betaflight 2025.12.5, commanded over MSP (`MSP_SET_RAW_RC` while CH10 is
+on). The Stage 2 path uses only the APB's camera, IMU and barometer: `apb_live.py`. What is done and what is left:
+`TODO.md`. Measured hardware facts: `HARDWARE_BRINGUP.md`. Rules: the Stage 1 package (rev 1.3) and the Stage 2
+participant package; `SPEC.md` lists the Stage 1 rules. The older MAVLink path (ArduPilot / PX4,
+`apb_main.py run`) and the simulators stay for reference.
 
 ## Folders
 
 | Path | What it is |
 |---|---|
+| `SPEC.md` | The challenge rules (from the PDF), how the repo follows them, what is still open |
+| `HARDWARE_BRINGUP.md` | First session on the APB and the Justice D: what to measure and write down |
+| `EVIDENCE.md` | Evidence log, who-wrote-what and presentation outline for the judges |
+| `ORGANIZER_QUESTIONS.md` | Open questions to send to the organizers |
 | `hold.py` | The estimator: picture + tilt + height in, position out |
+| `apb_live.py` | **Stage 2 live program on the APB**: camera + APB IMU + barometer -> position; web page on :8080; `--rec` records |
+| `apb_est.py` | APB attitude filter, barometer height, replay of APB recordings (`apb_est.py replay rec/x_*.npz`) |
+| `apb_sensors.py`, `v4l2_mmap.py`, `apb_rec.py` | APB IMU/barometer (IIO), Justice D capture (V4L2 mmap, 1920x1080 only), recorder |
+| `tools/apb_ctl.sh` | On the board: `sh /data/vio/apb_ctl.sh start [--rec LABEL] / stop / status` |
+| `tools/lens_calib.py` | Checkerboard fisheye calibration (run with OpenCV 4: `~/.venvs/vio4`) |
+| `msp_link.py`, `betasim/` | MSP framing (to reuse for `MSP_SET_RAW_RC`); Betaflight SITL closed loop (from the stage1-justice-d branch) |
+| `TODO.md` | Everything left before the presentation, by points |
 | `apb_main.py` | The onboard program: camera, FC link, Hold, sends positions. Modes: `run`, `check`, `mask`, `calib`, `bench`, `replay`, `delay`, `timing` |
 | `fc_link.py`, `capture.py`, `calib.py`, `settings.py` | FC link (MAVLink), camera input, camera calibration, settings |
-| `settings.json`, `tools/profiles/` | Settings; ready profiles (indoor, outdoor day/night, goal A/B, ArduPilot, PX4, `justice_d`) |
-| `tools/profiles/justice_d.json` | Overlay for the Justice D: `camera`, `video_size`, `video_fps`, `video_reduce`, `record_hz` and start values |
-| `tools/lens_calib.py` | Lens calibration with a checkerboard, for the development area only |
-| `integ/justice_d/` | Justice D simulation results: `summary.txt` and the scripts behind it |
+| `settings.json`, `tools/profiles/` | Settings; ready profiles (indoor, outdoor day/night, goal A/B, ArduPilot, PX4) |
 | `sim_ground.py`, `fetch_ground.py` | Open-loop simulator on real aerial photos (estimator only, no drone physics) |
-| `msp_link.py`, `betasim/` | Betaflight route: MSP link (rangefinder and optical-flow messages) and its Betaflight simulator tests. Proven in the simulator only |
-| `EVIDENCE.md`, `CONTRIBUTION.md`, `PRESENTATION.md` | For the judges: proof by area A to G, our contribution and licences (area F), talk outline |
-| `evidence/`, `talk/` | Copies of git-ignored proof files (same relative path), and the talk figures with `talk/make_figures.py` and `talk/captions.txt` |
 | `px4sim/` | Closed loop: PX4 flies in a simulator, and its only horizontal position comes from us |
 | `apsim/` | Closed loop with ArduCopter 4.6 (Orqa's branch) |
 | `tests/`, `tests_apb/` | Tests and regression runs |
 | `integ/` | Experiments and their results (the code comments cite these files) |
 | `review/` | Review findings (IDs like E4, G2, H1 in the code) and the scripts behind them |
 | `research/` | Notes: hardware, prior work, papers, simulators |
-| `tools/` | Event-day tools: deploy, board check, log plot, replay tuning, profiles, lens calibration |
-| `START_HERE.md` | One page for the team: first steps at the event, block diagram, how to use, test results, map of this repository |
+| `tools/` | Event-day tools: deploy, board check, log plot, replay tuning, profiles |
 | `EVENT_DAY.txt`, `EIGHT_HOURS.txt`, `DECISION_CARD.txt` | Event-day checklist, 8-hour plan, "if X then change Y" card |
-| `PILOT_SAFETY.txt`, `integ/pilot_safety/` | For the pilot: how to take over, what the aircraft does in each failure, and the bench demonstration with propellers off. The evidence and the parameter list for the crew |
-| `ORGANIZER_QUESTIONS.md`, `HARDWARE_BRINGUP.md` | Questions for the first contact with the pilot and the organizers. The record sheet for the first session on the real hardware |
-| `tools/fc_params.py` | Saves the aircraft's own flight controller parameters before our change, and puts them back |
-| `tools/profiles/gnss_*.json`, `integ/gnss_ladder/` | GNSS levels for the day: none (default), before the hold only, fallback, velocity. Simulator results |
 | `DATA_SPLITS.md` | Which data is for tuning and which is for testing. Read it before you tune a number |
 
 ## Setup (Linux)
@@ -52,7 +53,9 @@ python3 -m venv ~/.venvs/vio
 ~/.venvs/vio/bin/python fetch_ground.py ground     # aerial photos for the simulators (once)
 ```
 
-Closed-loop simulators need Docker.
+Closed-loop simulators need Docker (Docker Desktop must be running). The simulators render the old analog camera by
+default; add `camera=justice_d` (closed loop) or `VIO_SIM_CAMERA=justice_d` (open loop) for the simulated Justice D.
+Its noise, readout and delay are assumed, not measured (see `SPEC.md`). Old result tables are analog.
 
 - PX4: `px4sim/sitl.py` pulls the `px4io/px4-sitl` image by itself.
 - ArduPilot: clone and build Orqa's branch once, inside `apsim/`:
@@ -66,6 +69,17 @@ docker run --rm -u $(id -u):$(id -g) -e HOME=/tmp -v $PWD:/ardupilot -w /ardupil
 
 ## Run
 
+On the APB (copy the files to `/data/vio`; OpenCV is in `/data/vio/pylib`):
+
+```sh
+ssh root@192.168.75.1 sh /data/vio/apb_ctl.sh start             # live position, page http://192.168.75.1:8080
+ssh root@192.168.75.1 sh /data/vio/apb_ctl.sh start --rec walk1 # same, and record for replay
+ssh root@192.168.75.1 sh /data/vio/apb_ctl.sh stop
+~/.venvs/vio/bin/python apb_est.py replay 'rec/walk1_*.npz'     # replay a recording on the laptop
+```
+
+On the laptop:
+
 ```sh
 sh tests_apb/run_all.sh                                        # all onboard-program tests
 ~/.venvs/vio/bin/python sim_ground.py --heights 50,100         # open loop on aerial photos
@@ -73,8 +87,7 @@ sh tests_apb/run_all.sh                                        # all onboard-pro
 ~/.venvs/vio/bin/python px4sim/sitl.py apb 100 w20g40          # PX4 closed loop
 ```
 
-Latest result tables: `apsim/results.txt`, `px4sim/results.txt`, `integ/summary.txt`, `integ/justice_d/summary.txt`.
-`apsim/summary.txt` is an old summary. Use `apsim/results.txt`.
+Latest result tables: `apsim/summary.txt`, `px4sim/results.txt`, `integ/summary.txt`.
 
 ## Working together
 

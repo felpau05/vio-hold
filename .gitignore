@@ -21,6 +21,3 @@ logs/
 *.lock
 tests_apb/out_*.txt
 tools/deploy.env
-
-# Case B bundle and its CPython download (tools/bundle/build.sh makes them again)
-tools/bundle/*.tar.gz

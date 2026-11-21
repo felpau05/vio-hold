@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Critical finding: the camera mount is a hard-coded guess, and a wrong guess makes a fly-away.
 
-Closed loop with full images: an own renderer draws each frame for the TRUE mount, Hold (with the
+Closed loop with full images: my own renderer draws each frame for the TRUE mount, Hold (with the
 code's mount, image top toward the nose) estimates the position, and a simple position controller
 tilts the drone to hold the anchor. Only the true mount changes between runs.
 

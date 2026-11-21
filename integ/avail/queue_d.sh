@@ -1,5 +1,5 @@
 #!/bin/sh
-# B hold-out closed-loop runs: final code and settings, HOLD-OUT sites and seeds; nothing tuned on them
+# builder B hold-out closed-loop runs: final code and settings, HOLD-OUT sites and seeds; nothing tuned on them
 cd "$(dirname "$0")/../.." || exit 1
 P=$HOME/.venvs/vio/bin/python
 run() { lab=$1; shift; timeout 290 $P px4sim/sitl.py "$@" label=$lab > integ/avail/cl_$lab.txt 2>&1; echo "$lab rc=$? $(date +%T)" >> integ/avail/queue_d_log.txt; }

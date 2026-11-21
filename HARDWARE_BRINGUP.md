@@ -1,28 +1,23 @@
-# Bring-up record: first session on the M2-AI and the APB
+# Hardware bring-up: first session on the M2-AI / APB
 
-Nothing in this repository has run on the real board, camera or flight controller. This sheet turns each unknown into a measured fact. Write every result in the last column, with the time and the log file. These lines are the evidence for judging areas A (sensor data) and C (onboard execution).
+First session on the event aircraft: **2026-11-21**. Results below are measured on the real APB, Justice D and FC.
+Stage 2 changed the plan: the FC runs **Betaflight 2025.12.5** (MSP), and our solution uses the APB's own camera,
+IMU and barometer (`apb_live.py`), not the FC over MAVLink. Rows that only apply to the old MAVLink path say so.
+Follow the event crew's procedures: bench work and flights go through them.
 
-Where a number can be measured twice, measure it twice and write both values: a result that repeats is worth more than one good value.
-
-The idea of this sheet and rows 2, 4, 10 and 13 come from Aydan's `HARDWARE_BRINGUP.md` (branch `origin/spec-justice-d`). The commands are the ones of this branch (`EVENT_DAY.txt`).
-
-| # | What to record | How | Result (value, time, file) |
+| # | Do | Pass / what to record | Result (2026-11-21) |
 |---|---|---|---|
-| 1 | Python, numpy and OpenCV versions on the board. Case A or case B. | `sh tools/board_check.sh` (EVENT_DAY step 0A) | |
-| 2 | Which device is the Justice D. Its pixel formats, sizes and frame rates. | `v4l2-ctl --list-devices`, then `v4l2-ctl -d /dev/video2 --all` | |
-| 3 | Frames per second and picture size that the program gets. | `python3 apb_main.py check` (step 2), the video lines | |
-| 4 | Where the frame time stamps come from (driver or read time), and their jitter in ms. | the same `check`, the stamp line | |
-| 5 | Flight controller firmware and version. The route and baud rate that answered. | `check`, the "firmware" line (step 1) | |
-| 6 | The aircraft's own parameter values before our change. | `python3 tools/fc_params.py save` (step 1, item 2b) | |
-| 7 | ATTITUDE rate in Hz, fix age in ms, time sync. | `check` (step 2) | |
-| 8 | Gaps in the attitude stream: the count of "attitude stale" rows in a 60 s run on the ground. | start with `tools/deploy.sh`, wait 60 s, stop, pull, `tools/plot_log.py` | |
-| 9 | Hold time for each frame on the board (median and 95th percentile, ms) and fixes per second. The same with the pilot video on. | `check`, the "Hold.process" line | |
-| 10 | Which IMU and barometer the flight controller reports. Barometer noise at rest. Is a rangefinder fitted? | ground station, and question 5 of `ORGANIZER_QUESTIONS.md` | |
-| 11 | Board temperature at rest and after a 3 minute run. | `cat /sys/class/thermal/thermal_zone0/temp` (millidegrees C) | |
-| 12 | Calibration: video delay, readout time with its sign, measured lens, mount tilt. Two runs that agree within 3 ms. | `python3 apb_main.py calib`, twice (step 4) | |
-| 13 | Vibration: gyro noise and picture noise with the motors on, propellers off and on. | the crew's procedure, then the run log | |
-| 14 | Bench: 1.00 m carried forward reads how much. Tilt 15 degrees changes it by how much. A hand on the lens stops the fixes after how long. | `python3 apb_main.py bench --height 1.5` (step 6) | |
-| 15 | The flight mode that each switch position gives. | step 6B | |
-| 16 | The takeover demonstration for the pilot: each bench step B0 to B7 and its result. | EVENT_DAY step 6C (the page for the pilot is `PILOT_SAFETY.txt`) | |
+| 1 | SSH in: `ssh root@192.168.75.1` (USB-C, USB Ethernet, no password). Python and packages | Python 3, numpy, OpenCV | Orqa Yocto scarthgap, kernel 6.6.52, 4x A53, 3.9 GB. **Python 3.12.12, numpy 1.26.4, no OpenCV, no pip, no pymavlink.** glibc 2.39. OpenCV **4.11.0.86** (the last release for numpy 1.x) unpacked to `/data/vio/pylib` (no system change); import 0.7 s. `/` has 130 MB free: everything of ours lives in `/data/vio` (2 GB). |
+| 2 | Which device is the Justice D | Formats, sizes, rates | `/dev/video2` = ISI0 <- MIPI CSI2.0 <- `dummy_csi2_sensor` (organizer boot script `/data/rth/rth-event-setup.sh` sets 1920x1080 UYVY). Formats NV12, YUYV, RGB and more; **1920x1080 at 60.00 fps**. `/dev/video3` = Justice A through the ADV7180 (forward, analog): did not stream (passthrough to the VTx). **Setting `/dev/video2` to another size propagates to the sensor and crops the picture** (960x540 gave the top-left quarter). Restore: `v4l2-ctl -d /dev/v4l-subdev2 --set-subdev-fmt pad=0,width=1920,height=1080,code=0x2006` or reboot. |
+| 3 | Capture path | Frames/s, picture | OpenCV capture is not used (it sets the size). `v4l2_mmap.py` reads NV12 by mmap, the Y plane is the grey picture. **The driver buffers are uncached: a 1920x1080 copy costs ~12 ms**, so frames are kept at 30 fps (others handed back without a copy, 0.03 ms) and halved to 960x540 (1.2 ms). |
+| 4 | Recording | Raw files for replay | `apb_rec.py` (or `apb_live.py --rec LABEL`): 10 s chunks, 15 MB/s, `/data/vio/rec`. Copy to the laptop at ~30 MB/s. Replay: `apb_est.py replay`. |
+| 5 | Frame time stamps | Clock, jitter | Driver stamps, **CLOCK_MONOTONIC, end of frame** (`ts-monotonic, ts-src-eof`), 16.666 ms apart, no jitter seen. |
+| 6 | Camera calibration (`calib`: delay, readout, mount) | Two runs agree within 3 ms | **Open.** `calib` still expects the FC attitude stream; adapt it to `apb_rec` recordings. |
+| 7 | Lens | Real profile | **Done (checkerboard, 10x7 inner corners, A4 25 mm, 101 views):** at 960x540 **fx 413.2, fy 413.8, cx 468.6, cy 270.6**, k1 -0.0769 k2 +0.0257 k3 -0.0120 k4 +0.0019 (equidistant fisheye). RMS 0.125 px on 81 fit views, **0.167 px on 20 held-out views**, corners to 72 deg off axis. Profile "Justice D 1080p board 2026-11-21", now in settings.json. The nominal (482 px) was 17 % high: distances would have read ~14 % short. Coverage gap at the far left and top-left (the radial model extrapolates); an extra round there would confirm. Two drone parts at mid-left/right: mask them. |
+| 8 | Speed on the A53 | Process time | Per frame at 960x540: track 150 points (LK) 6.3 ms, new corners 52 ms, ORB 500 68 ms, whole-picture shift 12.6 ms. `apb_live.py`: 13 ms per frame without the estimator, **~60 ms with it (13-16 fixes/s)**; LK forward + backward is most of it. Board at 56-64 deg C. |
+| 9 | Bench / desk check | Direction, cover | Desk slide: **the picture is rotated 180 deg from the drone: `top = "rear"`, `mirror = false`** (both cameras are at the nose). A hand over the lens is bright and blurry, not dark: caught by the fine-detail check (hand 1.3-1.7, sliding 4.9 at worst, normal 16-19; threshold 3). Live page works from the laptop. |
+| 10 | IMU and baro | Devices, rates, noise | IIO: `dps310`, `icm42605-gyro`, `icm42605-accel`. **Gyro/accel buffered at 200 Hz with monotonic stamps** (timestamp clock defaults to `realtime`). Axes are big-endian, the timestamp little-endian. Stamps are right only if both buffers start at the old rate and the rate is changed afterwards (`apb_sensors.open_imu`). Gyro offset ~0.5 deg/s (one-at-a-time sysfs reads showed ~17 deg/s: do not use them). Accel at rest (-0.10, +0.12, -9.94): z down. Barometer default 1 Hz, 1x = 20 cm noise; 4x at 8 Hz = ~6-9 cm per reading. **Room air wanders ~0.2 m** (the FC barometer sees the same, correlation 0.77). The APB barometer **froze for over a minute twice**. No rangefinder, no magnetometer. |
+| 11 | Firmware | FC identity and link | **Betaflight 25.12.5**, board APB by ORQA, STM32H743, MSP API 1.47, build Jul 16 2026. MSP v1 at 115200 on `/dev/ttymxc2` answers. Modes: ARM on CH5 1800-2100; ANGLE on CH9 and CH10; box id 50 (MSP OVERRIDE) on CH10 1800-2100. Sensors: gyro, acc, baro, GPS. Receiver: ImmersionRC Ghost (GHST). No radio signal at the first check (885 / 1500 = no-signal values). `MSP_RC` reads back roll, pitch, yaw, throttle: confirm the `MSP_SET_RAW_RC` order on the Receiver tab before commanding. |
+| 12 | Vibration | Motors on | **Open** (needs the crew). |
 
-When a value changes a setting, add a line to the tuning log in `DATA_SPLITS.md` (what, which data, who, when).
+When a value changes a setting, add a line to the tuning log in `DATA_SPLITS.md` (what, which data, by whom, when).

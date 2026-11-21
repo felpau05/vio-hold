@@ -1,0 +1,36 @@
+A) fixed ground contrast, 10 s
+ h(m)  contrast  noise  fixes sent  lost   RMS(m)  worst(m)  false-fix  inliers  kf changes
+  100    100%      5      100%      0%     0.27     0.69     0.0%       91       0
+  100    100%     10      100%      0%     0.29     0.72     0.0%       78       0
+  100     50%      5      100%      0%     0.29     0.71     0.0%       77       0
+  100     50%     10      100%      0%     0.33     0.75     0.0%       53       2
+  100     25%      5      100%      0%     0.33     0.76     0.0%       54       0
+  100     25%     10      100%      0%     0.32     0.74     0.0%       47      18
+  100     10%      5      100%      0%     0.32     0.74     0.0%       47      18
+  100     10%     10      100%      0%     0.39     0.93     0.0%       47      18
+  100      5%      5      100%      0%     0.39     1.00     0.0%       47      18
+  100      5%     10       99%      0%     0.71     2.13     0.3%       48      18
+  200    100%      5      100%      0%     0.54     1.32     0.0%       98       0
+  200    100%     10      100%      0%     0.55     1.27     0.0%       96       0
+  200     50%      5      100%      0%     0.54     1.27     0.0%       98       0
+  200     50%     10      100%      0%     0.64     1.41     0.0%       55       2
+  200     25%      5      100%      0%     0.61     1.42     0.0%       54       0
+  200     25%     10      100%      0%     0.81     1.64     0.0%       48      18
+  200     10%      5      100%      0%     0.83     1.67     0.0%       48      18
+  200     10%     10      100%      0%     1.03     1.87     0.0%       48      18
+  200      5%      5      100%      0%     1.03     1.89     0.0%       48      18
+  200      5%     10       99%      0%     1.57     4.00     0.7%       48      18
+
+B) contrast fades 100 % -> 0 % over 15 s. Last 2 s of fixes before the hold stops:
+ h(m)  noise  stops at t(s) (contrast)  RMS at c>50%  mean err  max err  mean sent sigma/axis  false-fix  confident-wrong(>1 m)  inliers  kf changes  fixes sent after c=0
+  100     5     14.44 (  4%)             0.30       0.83     1.73        0.76              0.0%           0               48       86        0
+  100    10     14.51 (  3%)             0.34       1.22     1.80        0.89              0.0%           0               48       87        0
+  200     5     14.88 (  1%)             0.57       1.84     4.48        1.31              0.0%           0               48       76        0
+  200    10     14.74 (  2%)             0.62       1.80     4.51        1.12              5.0%           3               48       78        0
+
+C) 5 s blackout to analog static at 100 m, caller re-anchors after 'lost' (sim_test behaviour)
+ static std  frames in dark  keyframes made on static  fixes sent in dark  'ok' fixes  max err(m)  median sent sigma/axis(m)  false-fix
+      3         135               68                     0             0         nan           nan                nan%
+      5         135               68                     0             0         nan           nan                nan%
+     10         135               68                     0             0         nan           nan                nan%
+     30         135               68                     0             0         nan           nan                nan%

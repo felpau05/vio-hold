@@ -1,5 +1,5 @@
 #!/bin/sh
-# B closed-loop queue 2 (one run at a time, nothing else running)
+# builder B closed-loop queue 2 (one run at a time, nothing else running)
 cd "$(dirname "$0")/../.." || exit 1
 P=$HOME/.venvs/vio/bin/python
 run() { lab=$1; shift; timeout 290 $P px4sim/sitl.py "$@" label=$lab > integ/avail/cl_$lab.txt 2>&1; echo "$lab rc=$? $(date +%T)" >> integ/avail/queue_c_log.txt; }

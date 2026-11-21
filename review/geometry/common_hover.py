@@ -1,4 +1,4 @@
-"""Shared open-loop hover runner for the review scripts (own renderer, project Hold)."""
+"""Shared open-loop hover runner for the review scripts (my own renderer, project Hold)."""
 import math
 import os
 import sys
@@ -13,7 +13,7 @@ s = np.sin
 
 
 def hover_path(h0, wobble_deg=1.0, yaw_amp_deg=0.0, still=False):
-    """Small drift and a tilt wobble like a windy hover (own numbers, similar size to sim_test)."""
+    """Small drift and a tilt wobble like a windy hover (my own numbers, similar size to sim_test)."""
     if still:
         pos = lambda t: np.zeros((len(t), 2))
     else:

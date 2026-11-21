@@ -11,7 +11,7 @@ Every fifth usable view is held out: the fit does not use it, and its error show
 fits views it has not seen. The tool refuses a result when fewer than MIN_VIEWS views are usable or
 when the corners reach less than MIN_COVER_DEG from the optical axis (then k1-k4 rest on the
 picture centre only). The square size does not change the lens, so the board uses square = 1.
-Run: ~/.venvs/vio/bin/python tools/lens_calib.py <folder | video | rec.npz> --name "Justice D board 2026-11-18" [--board 9x6]
+Run (OpenCV 4, e.g. a venv with opencv-python-headless==4.11.0.86 numpy==1.26.4): python tools/lens_calib.py <folder | video | rec.npz | "rec/board_*.npz"> --name "Justice D board 2026-11-21" [--board 9x6]
      ~/.venvs/vio/bin/python tools/lens_calib.py <folder | video | rec.npz> --settings settings.json
 """
 import argparse
@@ -31,6 +31,7 @@ import settings as S             # noqa: E402
 MIN_VIEWS = 10
 MIN_COVER_DEG = 40.0          # assumed: k1-k4 need corners this far off axis (the picture corner is 60-75 deg)
 HOLD_OUT = 5                  # every fifth usable view is held out
+MAX_DROP = 5                  # badly conditioned views the fit may drop
 PICTURES = (".png", ".jpg", ".jpeg", ".bmp", ".tif", ".tiff")
 
 
@@ -39,8 +40,8 @@ def pictures(src, step):
     if os.path.isdir(src):
         imgs = [cv2.imread(f, cv2.IMREAD_GRAYSCALE) for f in sorted(glob.glob(os.path.join(src, "*")))
                 if f.lower().endswith(PICTURES)]
-    elif src.endswith(".npz"):
-        imgs = list(np.load(src)["imgs"])
+    elif ".npz" in src:          # one .npz, or a glob of apb_rec.py chunks ("rec/board_*.npz"); every step-th frame
+        imgs = [g for p in sorted(glob.glob(src)) for g in np.load(p)["imgs"][::step]]
     else:
         cap, imgs, i = cv2.VideoCapture(src), [], 0
         while True:
@@ -60,8 +61,13 @@ def main(argv=None, say=print):
     ap.add_argument("--settings", help="write the lens into this settings file as lens_measured (by target), not into the lens file")
     ap.add_argument("--board", default="9x6", help="inner corners across x down (default 9x6)")
     ap.add_argument("--lens-file", default=os.path.join(PROJ, "justice_lens_profiles.json"))
-    ap.add_argument("--step", type=int, default=15, help="video only: use every n-th frame (default 15)")
+    ap.add_argument("--step", type=int, default=15, help="video or .npz: use every n-th frame (default 15)")
     a = ap.parse_args(argv)
+    if int(cv2.__version__.split('.')[0]) >= 5:
+        say(f"FAIL OpenCV {cv2.__version__}: run this with OpenCV 4 (the board's 4.11). On synthetic views of a known lens,"
+            " 4.11 recovered focal and centre within 0.5 %; 5.0 kept the centre fixed and fit with 9.5 px error"
+            " (the fisheye flag numbers differ). The tool wrote no profile.")
+        return 1
     if bool(a.name) == bool(a.settings):
         ap.error("give --name (a profile in the lens file) or --settings (lens_measured in a settings file), not both")
     board = tuple(int(x) for x in a.board.lower().split("x"))
@@ -84,14 +90,33 @@ def main(argv=None, say=print):
     obj = np.c_[np.mgrid[0:board[0], 0:board[1]].T.reshape(-1, 2), np.zeros(board[0] * board[1])].reshape(1, -1, 3)
     test = [c for i, c in enumerate(found) if i % HOLD_OUT == HOLD_OUT - 1]
     fit = [c for i, c in enumerate(found) if i % HOLD_OUT != HOLD_OUT - 1]
-    try:
-        _, K, D, rvs, tvs = cv2.fisheye.calibrate([obj] * len(fit), fit, (w, h), np.zeros((3, 3)), np.zeros(4),
-                                                 flags=cv2.CALIB_RECOMPUTE_EXTRINSIC | cv2.CALIB_FIX_SKEW,
-                                                 criteria=(cv2.TERM_CRITERIA_COUNT + cv2.TERM_CRITERIA_EPS, 200, 1e-12))
-    except cv2.error as e:
-        say(f"FAIL the fit did not converge ({str(e).strip().splitlines()[-1]}). Record views with the board at "
-            "several angles and distances. The tool wrote no profile.")
-        return 1
+    # Start from a guess, not zeros: from a zero K, OpenCV's InitExtrinsics asserted on synthetic views of a
+    # known lens (2026-11-21). A view that still breaks the fit is dropped (CALIB_CHECK_COND names it) and the
+    # fit runs again, at most MAX_DROP times.
+    f0 = w / 3.0
+    # cv2.fisheye flag values (fixed in OpenCV's fisheye.hpp; OpenCV 4 and 5 expose them under different names):
+    # USE_INTRINSIC_GUESS 1, RECOMPUTE_EXTRINSIC 2, CHECK_COND 4, FIX_SKEW 8
+    flags = 1 | 2 | 4 | 8
+    crit = (cv2.TERM_CRITERIA_COUNT + cv2.TERM_CRITERIA_EPS, 200, 1e-12)
+    dropped = 0
+    while True:
+        try:
+            _, K, D, rvs, tvs = cv2.fisheye.calibrate([obj] * len(fit), fit, (w, h),
+                                                     np.array([[f0, 0, w / 2], [0, f0, h / 2], [0, 0, 1.0]]),
+                                                     np.zeros(4), flags=flags, criteria=crit)
+            break
+        except cv2.error as e:
+            msg = str(e).strip().splitlines()[-1]
+            bad = [int(x) for x in __import__("re").findall(r"input array (\d+)", msg)]
+            if bad and dropped < MAX_DROP and len(fit) > MIN_VIEWS:
+                fit.pop(bad[0])
+                dropped += 1
+                continue
+            say(f"FAIL the fit did not converge ({msg}). Record views with the board at "
+                "several angles and distances. The tool wrote no profile.")
+            return 1
+    if dropped:
+        say(f"INFO {dropped} badly conditioned view(s) dropped from the fit")
     D = D.ravel()
 
     def err2(c, rv, tv):

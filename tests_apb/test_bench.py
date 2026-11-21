@@ -36,7 +36,8 @@ def main():
                              "--seconds", "60"])
     cv2.imwrite(os.path.join(d, "mask.png"), np.full((sim_test.H, sim_test.W), 255, np.uint8))
     s = dict(S.load("/nonexistent"), fc_device=f"udpin:127.0.0.1:{PORT}", msp_device="/nonexistent", calibrated=True,
-             video_delay_s=LAT, readout_s=sim_test.READOUT, field="frame", log_dir=d, mask_file=os.path.join(d, "mask.png"))
+             video_delay_s=LAT, readout_s=sim_test.READOUT, field="frame", log_dir=d,
+             video_kind="analog", lens_name="Round 1 independent k2", mask_file=os.path.join(d, "mask.png"))
     s["calib_capture"] = capture.capture_mode(s, {}, (sim_test.H, sim_test.W))
     src = capture.CallableSource(SimCamera(t_start, "bench", 12.0), s)
     apb_main.open_video = lambda s: src
