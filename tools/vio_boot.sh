@@ -54,11 +54,70 @@ md5s() {
     echo "(compare with md5sum on the laptop)"
 }
 
+py_check() {
+    # The modules that apb_live.py imports at start (module level, followed through local files) must exist,
+    # and settings.load() must accept settings.json. Executes no local module except settings (and what it imports).
+    # Catches: a copied settings.py or apb_main.py that imports gnss_rule with no gnss_rule.py on the board,
+    # and a settings.json that settings.py refuses (for example params_ardupilot GPS1_TYPE 0 under the GNSS rule).
+    (cd "$D" && PYTHONPATH="$D/pylib" "${PY:-python3}" - <<'PYEOF'
+import ast, importlib.util, os, sys
+sys.path.insert(0, os.getcwd())
+
+def top_imports(path):
+    """Module-level imports. Skip 'if __name__ == ...' blocks and try-blocks that catch ImportError (optional)."""
+    out = []
+    def walk(body):
+        for n in body:
+            if isinstance(n, ast.Import):
+                out.extend(a.name.split(".")[0] for a in n.names)
+            elif isinstance(n, ast.ImportFrom) and n.module and not n.level:
+                out.append(n.module.split(".")[0])
+            elif isinstance(n, ast.If):
+                if "__name__" in ast.dump(n.test):
+                    continue
+                walk(n.body); walk(n.orelse)
+            elif isinstance(n, ast.Try):
+                optional = any("ImportError" in ast.dump(h) or "ModuleNotFoundError" in ast.dump(h) or h.type is None
+                               for h in n.handlers)
+                if not optional:
+                    walk(n.body)
+    walk(ast.parse(open(path).read()).body)
+    return out
+
+seen, todo, missing = set(), ["apb_live", "msp_rc"], []
+while todo:
+    m = todo.pop()
+    if m in seen:
+        continue
+    seen.add(m)
+    if importlib.util.find_spec(m) is None:
+        missing.append(m)
+        continue
+    if os.path.exists(m + ".py"):
+        todo.extend(top_imports(m + ".py"))
+bad = False
+if missing:
+    print("FAIL Python modules not found on the board: " + " ".join(sorted(missing))
+          + ". Copy them (for example gnss_rule.py with a merged settings.py or apb_main.py).")
+    bad = True
+try:
+    import settings as S
+    S.load()
+    print("PASS settings.py loads settings.json")
+except Exception as ex:
+    print(f"FAIL settings.load(): {type(ex).__name__}: {ex}")
+    bad = True
+sys.exit(1 if bad else 0)
+PYEOF
+    )
+}
+
 check_files() {
     bad=0
     for f in $NEED; do
         [ -f "$D/$f" ] || { echo "FAIL $D/$f is missing. Copy it from the laptop."; bad=1; }
     done
+    py_check || bad=1
     for w in $(cur_args); do
         case $w in
         --*) grep -q -- "\"$w\"" "$D/apb_live.py" 2>/dev/null \

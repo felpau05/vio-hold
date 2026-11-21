@@ -78,14 +78,19 @@ Write the answers here, with the name of the organizer:
 
 The program changes often. A pass counts only for the code that the board ran.
 Run these commands on laptop 1, in the vio-hold-stage2-bench folder.
-1. Copy the program files together. An older apb_live.py does not know --rc. Then the program stops at start.
-   Do not copy settings.json. The board keeps its own copy.
-     scp apb_live.py apb_lift.py msp_rc.py msp_link.py apb_est.py apb_main.py apb_sensors.py calib.py \
-         capture.py fc_link.py hold.py settings.py v4l2_mmap.py root@192.168.75.1:/data/vio/
+1. Copy the three program files together. An older apb_live.py does not know --rc. Then the program stops at start.
+   Do not copy settings.json. The board keeps its own copy. The other modules are already on the board.
+     scp apb_live.py apb_lift.py msp_rc.py root@192.168.75.1:/data/vio/
      scp tools/apb_ctl.sh tools/vio_boot.sh tools/vio-live.service root@192.168.75.1:/data/vio/
      ssh root@192.168.75.1 sync
+   Copy a different module only when its owner tells you to.
+   Since the gnss-rule merge (GitHub stage2-bench 534bb31), settings.py and apb_main.py import gnss_rule.
+   If you copy one of them from a pulled folder, also copy gnss_rule.py. Then the board settings.json must
+   pass the GNSS rule: params_ardupilot with GPS1_TYPE 1, AHRS_GPS_USE 0, EK3_GSF_RUN_MASK 0 and
+   EK3_GSF_USE_MASK 0, or no params_ardupilot key. Step 2 finds each of these problems.
 2. Run: ssh root@192.168.75.1 sh /data/vio/vio_boot.sh check
-   Pass: the last line shows "PASS files and start arguments".
+   Pass: "PASS settings.py loads settings.json" and, on the last line, "PASS files and start arguments".
+   (The check also finds a module that apb_live.py imports and that is not on the board.)
    Pass: the md5 values are the same as on the laptop: md5sum apb_live.py apb_lift.py msp_rc.py
 3. Write the three md5 values in the record sheet (section 10).
 4. Do not change these files until the judged session. If a value changes, start the count of passes again.
