@@ -35,6 +35,17 @@ A walk can also just be **recorded** now and replayed later, so calibration can 
 
 ## 2. Distances right (before any judged session)
 
+**First walk result (walk_h2):** READY 75 % after the digital-camera settings, but distances far short (F 1.00 m ->
+0.46, R 1.50 m -> 0.17). Causes found: Hold freezes the position during its lost/re-anchor gaps (raw flow kept the
+motion: ~0.84 / ~0.72 m); height unknown (barometer unusable indoors); legs and ceiling-light reflections move with
+the drone. Next, in order:
+- [ ] **[code] Bridge Hold's gaps** with frame-to-frame floor tracking instead of holding the last position.
+- [ ] **[code] Height from the accelerometer during the lift** (still before and after: zero-velocity at both ends)
+      plus the picture scale; replaces the barometer for the bench.
+- [ ] **[code] Prefer floor points** (they move most under translation; reflections and legs move less).
+- [ ] **[you] Second walk** with the height held at a known value (e.g. camera at the 1.0 m wall tape, checked at each
+      pause), and one run on a more textured floor, to separate scene from estimator.
+
 - [x] **[you] Lens calibration recording:** checkerboard (10x7 squares) on a screen or paper, 40 s of views across
       the whole picture with `apb_rec.py`, then `~/.venvs/vio4/bin/python tools/lens_calib.py "rec/board_*.npz" --step 5 --name ...`.
       Tool checked on synthetic views of a known lens (focal within 0.4 %). Ceiling rotation stays for the IMU axes and timing.
