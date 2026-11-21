@@ -351,3 +351,23 @@ Tests (tests.txt):
   tests_apb/test_fc_link.py   ALL PASS in 20 s
   The full tests_apb/run_all.sh was not run (as asked). It has one new line for test_gnss.py.
   check against a live SITL FC was not run. G9 covers the check lines with a stand-in FC.
+
+
+7. ADDED 2026-11-21 07:15 TO 07:35: THE LEVELS TOGETHER WITH THE PROFILE low_height
+Why: the low-height A/B of integ/kfmap ran only with gnss_mode none. A GNSS level with low_height was not tested.
+How: apsim/gnss_matrix.py, label suffix _lh (att_source gyro_fcyaw, hold_cfg dense_local and dense_turn on top of
+the level). The same site, wind, seeds and measures as section 2. The laptop was on mains power.
+level     h m seed   rms   max stepSet2 set2 at stepSw  herr stepSet1 set1 at maxAft1  run file (apsim/runs/)
+none       10    1  0.44  0.87        -       -   0.00  0.18        -       -       -  gn_none_10m_s1_lh.*
+none       10    2  0.41  0.90        -       -   0.00  0.10        -       -       -  gn_none_10m_s2_lh.*
+setup      10    1  0.42  0.79     0.11    -4.9   0.01  0.04        -       -       -  gn_setup_10m_s1_lh.*
+setup      10    2  0.38  0.84     0.09    -3.5   0.01  0.04        -       -       -  gn_setup_10m_s2_lh.*
+setup       5    1  0.42  0.83     0.02    -5.6   0.01  0.06        -       -       -  gn_setup_5m_s1_lh.*
+setup       5    2  0.40  0.74     0.03    -5.5   0.01  0.05        -       -       -  gn_setup_5m_s2_lh.*
+fallback   10    1  0.76  1.55     0.11    -5.3   0.01  0.03     0.32    13.0    1.55  gn_fallback_10m_s1_lh.*
+What the rows show: gnss_setup with low_height holds as well as no GNSS with low_height (inside the spread between
+runs). The change to set 2 came before the switch in each run. The fallback worked as in section 2 e: video dropped
+at 10.0 s, "GNSS FALLBACK" at 12.9 s, FC ACCEPTED at 13.0 s, EKF step 0.32 m, largest distance 1.55 m.
+Not tested: 30 m and higher with low_height and a GNSS level (low_height is not for those heights), more than 2
+seeds, a GNSS error in the hold with low_height.
+

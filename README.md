@@ -34,6 +34,7 @@ No part has run on the real board.
 | `review/` | Review findings (IDs like E4, G2, H1 in the code) and the scripts behind them |
 | `research/` | Notes: hardware, prior work, papers, simulators |
 | `tools/` | Event-day tools: deploy, board check, log plot, replay tuning, profiles, lens calibration |
+| `START_HERE.md` | One page for the team: first steps at the event, block diagram, how to use, test results, map of this repository |
 | `EVENT_DAY.txt`, `EIGHT_HOURS.txt`, `DECISION_CARD.txt` | Event-day checklist, 8-hour plan, "if X then change Y" card |
 | `PILOT_SAFETY.txt`, `integ/pilot_safety/` | For the pilot: how to take over, what the aircraft does in each failure, and the bench demonstration with propellers off. The evidence and the parameter list for the crew |
 | `ORGANIZER_QUESTIONS.md`, `HARDWARE_BRINGUP.md` | Questions for the first contact with the pilot and the organizers. The record sheet for the first session on the real hardware |

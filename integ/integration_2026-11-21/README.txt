@@ -67,7 +67,7 @@ SECOND PART OF THE NIGHT (03:15 to 08:15): REVIEW, LOW HEIGHT, FORWARD CAMERA, F
 Five sessions worked on this folder. Session 1f (this record) led and owned the documents, the flight program files
 and the bundle. Session 0a owned hold.py and the simulators. Sessions 16, 2f and 32 checked status, rules and sources.
 
-COMMIT 8939114 (03:25): the tested state of the first part, with the hold.py of the 02:08 bundle. Not pushed.
+COMMIT 8939114 (03:20): the tested state of the first part, with the hold.py of the 02:08 bundle. Not pushed.
 
 DOCUMENT REVIEW (an independent reader, 21 findings, all corrected)
 The worst ones: the parameter save of EVENT_DAY step 1 item 2b failed on a second pass (tools/fc_params.py now
@@ -109,7 +109,8 @@ sh tests_apb/run_all.sh on the final files: 06:30:52 to 06:43:45 (run_all_final.
 Session 0a's regression with the options off (04:49, on battery too): the same result for each ID.
 Bundle: built at 06:50, 113,850,660 bytes, 5571 files, sha256 9f852ebf0a10...; its program files have the same md5
 as the project files. The bundle of 02:08 is kept as tools/bundle/vio-bundle-aarch64_tested_0208.tar.gz.
-Commits on stage1-justice-d, not pushed: 8939114 (03:25), bf23797 (06:50), and one last small commit.
+Commits on stage1-justice-d, not pushed: 8939114 (03:20), bf23797 (06:49), 821ac29 (06:51), ed7aa7d (07:06), and
+the last one after the GNSS runs of 07:20 (git log shows it).
 NOT DONE at the end: tools/fc_params.py against the simulator after its last change; test_lens_d on mains power.
 
 AFTER THE CHARGER WAS CONNECTED (07:01)
@@ -120,4 +121,10 @@ AFTER THE CHARGER WAS CONNECTED (07:01)
   wrote them back, and the values after a restart equal the saved values.
 - The bundle was built again after the last change to EVENT_DAY.txt (see tools/bundle/README.txt for its facts).
 The two NOT DONE lines above are now done.
+
+LAST ADDITIONS (07:15 to 08:00, on mains power)
+- GNSS levels together with low_height: 7 SITL runs (integ/gnss_ladder/README.txt section 7). gnss_setup holds as
+  well as no GNSS. apsim/gnss_matrix.py has the label suffix _lh.
+- START_HERE.md: one page for the team (first steps, block diagram, how to use, results, map of the repository).
+- DECISION_CARD row 45 has the result. The bundle was built again, because DECISION_CARD.txt is in it.
 
