@@ -3,6 +3,7 @@
 downscale, flat-picture judge without the analog "marks" exemption, capture mode string.
 Run: ~/.venvs/vio/bin/python tests_apb/test_justice_d.py
 """
+import json
 import math
 import os
 import sys
@@ -27,8 +28,10 @@ def check(ok, text):
 s = S.load("/nonexistent")
 check(s["video_kind"] == "csi" and s["field"] == "frame" and s["video_size"] == [1280, 720] and s["video_fps"] == 60.0,
       "defaults describe the Justice D (csi, whole frame, 1280x720, 60 fps)")
-check(S.load(S.PATH)["lens_name"] == s["lens_name"] == "Justice D nominal (spec FOV, uncalibrated)",
-      "settings.json and defaults use the Justice D lens")
+_names = {m["name"] for m in json.load(open(os.path.join(os.path.dirname(HERE), s["lens_file"])))["models"]}
+_lj = S.load(S.PATH)["lens_name"]
+check(s["lens_name"] == "Justice D nominal (spec FOV, uncalibrated)" and _lj.startswith("Justice D") and _lj in _names,
+      f"defaults use the nominal Justice D lens; settings.json a Justice D profile in the lens file ({_lj})")
 
 # lens at the scaled picture (640 x 360): the same field of view as the 1280 x 720 profile
 K, D = apb_main.lens(s, (360, 640))
