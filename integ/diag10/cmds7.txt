@@ -1,0 +1,10 @@
+~/.venvs/vio/bin/python integ/diag10/replay.py --flight lowap_apb_10m_w20g40_s1 --ground ottawa2019fall --seed 1 --reanchor last --att gyro --att_lead 60 --diag true_height --hold base=integ/diag10/hold_base.py
+~/.venvs/vio/bin/python integ/diag10/replay.py --flight lowap_apb_10m_w20g40_s1 --ground ottawa2019fall --seed 1 --reanchor last --att gyro --att_lead 60 --diag vib0 --hold base=integ/diag10/hold_base.py
+~/.venvs/vio/bin/python integ/diag10/replay.py --flight lowap_apb_10m_w20g40_s1 --ground ottawa2019fall --seed 1 --reanchor last --att gyro --att_lead 60 --diag exact_lens --hold base=integ/diag10/hold_base.py
+~/.venvs/vio/bin/python integ/diag10/replay.py --flight lowap_apb_10m_w20g40_s1 --ground ottawa2019fall --seed 1 --reanchor last --att gyro --att_lead 60 --diag gs --hold base=integ/diag10/hold_base.py
+~/.venvs/vio/bin/python integ/diag10/replay.py --flight lowap_apb_10m_w20g40_s1 --ground ottawa2019fall --seed 1 --reanchor last --att fc --att_lead 60 --diag true_att --hold base=integ/diag10/hold_base.py
+~/.venvs/vio/bin/python integ/diag10/replay.py --flight lowap_apb_10m_w20g40_s2 --ground ottawa2019fall --seed 2 --reanchor last --att gyro --att_lead 60 --diag true_height --hold base=integ/diag10/hold_base.py
+~/.venvs/vio/bin/python integ/diag10/replay.py --flight lowap_apb_10m_w20g40_s2 --ground ottawa2019fall --seed 2 --reanchor last --att gyro --att_lead 60 --diag vib0 --hold base=integ/diag10/hold_base.py
+~/.venvs/vio/bin/python integ/diag10/replay.py --flight lowap_apb_10m_w20g40_s2 --ground ottawa2019fall --seed 2 --reanchor last --att gyro --att_lead 60 --diag exact_lens --hold base=integ/diag10/hold_base.py
+~/.venvs/vio/bin/python integ/diag10/replay.py --flight lowap_apb_10m_w20g40_s2 --ground ottawa2019fall --seed 2 --reanchor last --att gyro --att_lead 60 --diag gs --hold base=integ/diag10/hold_base.py
+~/.venvs/vio/bin/python integ/diag10/replay.py --flight lowap_apb_10m_w20g40_s2 --ground ottawa2019fall --seed 2 --reanchor last --att fc --att_lead 60 --diag true_att --hold base=integ/diag10/hold_base.py

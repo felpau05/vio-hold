@@ -1,0 +1,8 @@
+gps_s1         RMS 3.13 m  max 6.56 m  speed RMS 1.31 m/s  north error main period 19.7 s  samples 282, 60 s
+gps_s2         RMS 3.44 m  max 6.27 m  speed RMS 1.06 m/s  north error main period 29.7 s  samples 283, 60 s
+z_g0_s1        RMS 1.61 m  max 3.51 m  speed RMS 0.73 m/s  north error main period 20.3 s  samples 277, 60 s
+z_g0_s2        RMS 1.71 m  max 3.65 m  speed RMS 0.64 m/s  north error main period 29.8 s  samples 277, 60 s
+z_g0.2_s1      RMS 1.26 m  max 2.78 m  speed RMS 0.71 m/s  north error main period 20.2 s  samples 276, 60 s
+z_g0.2_s2      RMS 1.10 m  max 2.58 m  speed RMS 0.63 m/s  north error main period 30.4 s  samples 276, 60 s
+g0_s1          RMS 3.88 m  max 6.54 m  speed RMS 0.65 m/s  north error main period 60.7 s  samples 276, 60 s
+g0.2_s1        RMS 1.11 m  max 2.13 m  speed RMS 0.69 m/s  north error main period 30.0 s  samples 273, 60 s

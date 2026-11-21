@@ -1,0 +1,75 @@
+run name                                 var    h_m  wind    outage  rms_m  max_m  %fix   fixHz  load1/5/15 start   events
+lowout_apb_jd_5m_w20g40_s1               apb       5  w20g40  -      0.541  1.08   18.3   10.9   3.1/4.1/2.4        -
+lowout_apb_jd_5m_w20g40_s2               apb       5  w20g40  -      0.508  1.14   22.9   13.7   3.6/5.4/3.7        -
+lowout_apb_jd_10m_w20g40_s1              apb      10  w20g40  -      0.749  1.45   19.9   11.7   3.7/6.6/4.8        -
+lowout_apb_jd_10m_w20g40_s2              apb      10  w20g40  -      0.646  1.45   13.4   7.98   3.9/6.4/5.2        -
+lowout_apb_jd_60m_w20g40_out3s_s1        apb      60  w20g40  20+3s  0.788  1.95   23.4   13.1   3.5/5.8/5.3        -
+lowout_apb_jd_60m_w20g40_out3s_s2        apb      60  w20g40  20+3s  0.78   1.71   24.3   13.8   4.0/6.3/5.8        -
+lowout_truth_jd_5m_w20g40_s1             truth     5  w20g40  -      0.464  0.955  -      20     3.5/5.8/5.8        -
+lowout_truth_jd_10m_w20g40_s1            truth    10  w20g40  -      0.468  1.04   -      20     3.6/5.5/5.7        -
+lowout_apb_jd_5m_calm_s1                 apb       5  calm    -      0.114  0.189  22.8   13.6   3.8/5.2/5.6        -
+lowout_apb_jd_10m_calm_s1                apb      10  calm    -      0.12   0.269  18     10.8   6.5/6.4/6.3        -
+lowout_apb_jd_100m_w20g40_out3s_s1       apb     100  w20g40  20+3s  0.968  1.75   26.3   15     2.9/6.5/6.7        -
+
+lowout_apb_jd_60m_w20g40_out3s_s1 outage (20 s to 23 s after the hold start):
+  dist_at_outage_start: 0.42164879352353796
+  dist_at_outage_end: 1.3466149501737623
+  move_during_outage: 0.9490481806219438
+  max_dist_before: 0.8982218213052704
+  max_dist_during: 1.3466149501737623
+  max_dist_10s_after: 1.946915087826696
+  max_dist_rest: 1.3100188895695368
+  last_fix_before: 20.20820000000001
+  first_frame_after: 23.028000000000006
+  first_fix_after: 24.054300000000012
+  first_fix_after_file: lowout_apb_jd_60m_w20g40_out3s_s1_onboard_2.csv
+  s_to_first_fix_after_outage_end: 1.054300000000012
+  no_fix_gap_s: 3.8461000000000034
+  dist_at_first_fix: 1.8675453836619433
+  restart_lines: [[-41.99, 'run', 'FAIL no usable video frame in 10 s. Check the camera and video_device.'], [22.19, 'run', 'FAIL no camera frame for 2 s: the camera stopped. The program opens it again. If this repeats, check the camera cable and video_device or video_command in settings.json.']]
+  first_rows_after: [[23.028, 'lowout_apb_jd_60m_w20g40_out3s_s1_onboard_2.csv', 'init', 'init', 'engaged: FC mode POSCTL; re-anchored to FC position 2.64 -0.22'], [23.228, 'lowout_apb_jd_60m_w20g40_out3s_s1_onboard_2.csv', 'ok', 'good fix 1 of 10', ''], [23.378, 'lowout_apb_jd_60m_w20g40_out3s_s1_onboard_2.csv', 'ok', 'good fix 2 of 10', '']]
+  reanchor_rows: []
+
+lowout_apb_jd_60m_w20g40_out3s_s2 outage (20 s to 23 s after the hold start):
+  dist_at_outage_start: 0.23981613414805517
+  dist_at_outage_end: 0.5869664911869017
+  move_during_outage: 0.4101016078065605
+  max_dist_before: 1.7129668458207743
+  max_dist_during: 0.5869664911869017
+  max_dist_10s_after: 1.101625040858236
+  max_dist_rest: 1.3966671879388353
+  last_fix_before: 20.1472
+  first_frame_after: 23.0287
+  first_fix_after: 23.968099999999996
+  first_fix_after_file: lowout_apb_jd_60m_w20g40_out3s_s2_onboard_2.csv
+  s_to_first_fix_after_outage_end: 0.9680999999999962
+  no_fix_gap_s: 3.8208999999999946
+  dist_at_first_fix: 0.36196331347745364
+  restart_lines: [[-41.98, 'run', 'FAIL no usable video frame in 10 s. Check the camera and video_device.'], [22.12, 'run', 'FAIL no camera frame for 2 s: the camera stopped. The program opens it again. If this repeats, check the camera cable and video_device or video_command in settings.json.']]
+  first_rows_after: [[23.029, 'lowout_apb_jd_60m_w20g40_out3s_s2_onboard_2.csv', 'init', 'init', 'engaged: FC mode POSCTL; re-anchored to FC position 4.37 -1.89'], [23.195, 'lowout_apb_jd_60m_w20g40_out3s_s2_onboard_2.csv', 'ok', 'good fix 1 of 10', ''], [23.245, 'lowout_apb_jd_60m_w20g40_out3s_s2_onboard_2.csv', 'ok', 'good fix 2 of 10', '']]
+  reanchor_rows: []
+
+lowout_apb_jd_100m_w20g40_out3s_s1 outage (20 s to 23 s after the hold start):
+  dist_at_outage_start: 0.4543052516001254
+  dist_at_outage_end: 0.9006221840711747
+  move_during_outage: 1.029506317716316
+  max_dist_before: 1.7529514855670456
+  max_dist_during: 0.9006221840711747
+  max_dist_10s_after: 1.3496192710346195
+  max_dist_rest: 1.6424887059834818
+  last_fix_before: 20.094200000000008
+  first_frame_after: 23.020000000000003
+  first_fix_after: 23.786200000000004
+  first_fix_after_file: lowout_apb_jd_100m_w20g40_out3s_s1_onboard_2.csv
+  s_to_first_fix_after_outage_end: 0.7862000000000045
+  no_fix_gap_s: 3.6919999999999966
+  dist_at_first_fix: 1.0201339501011981
+  restart_lines: [[-41.95, 'run', 'FAIL no usable video frame in 10 s. Check the camera and video_device.'], [22.07, 'run', 'FAIL no camera frame for 2 s: the camera stopped. The program opens it again. If this repeats, check the camera cable and video_device or video_command in settings.json.']]
+  first_rows_after: [[23.02, 'lowout_apb_jd_100m_w20g40_out3s_s1_onboard_2.csv', 'init', 'init', 'engaged: FC mode POSCTL; re-anchored to FC position 9.95 6.80'], [23.203, 'lowout_apb_jd_100m_w20g40_out3s_s1_onboard_2.csv', 'ok', 'good fix 1 of 10', ''], [23.287, 'lowout_apb_jd_100m_w20g40_out3s_s1_onboard_2.csv', 'ok', 'good fix 2 of 10', '']]
+  reanchor_rows: []
+
+rms/max: true horizontal distance from the hold point over the 60 s hold (sitl.score). % fix: fixes
+sent per rendered frame (60 fps). apb: onboard program, Justice D 1280x720 at 60 fps given to Hold as
+640x360, cpu_factor 10. Low-height apb runs: settings min_height_m 3, hold_cfg h_min 2. Outage runs:
+settings.py defaults (min_height_m 15). truth: the true position as the fix, Justice D timing.
+Ground: ottawa2019fall photo, 0.293 m per pixel.

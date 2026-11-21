@@ -1,0 +1,14 @@
+04:02:17 driver 197050 stopped after the start of the 10th run (10 m cases done after it)
+04:03:44 10th run ended; SITL instance 1 stopped; py picture tests start
+04:06:46 py picture tests done; 5 m cases start
+04:07:11 round 2 driver ended
+04:08:15 5 m s1 base ended; SITL stopped; copy apb_main.py = the lead's file with turn_problems (md5 70a646ba); round 3 starts
+04:48:57 round 3 driver ended
+04:49:01 final suite starts (copy final, hold.py d78329d3)
+05:07:02 final suite done; round 4 starts
+05:46:30 round 4 driver ended
+05:46:33 round 5 starts (extra seeds: 30 m s2, 5 m farmland s11/s12, 20 m s1, 60 m s3; none after 06:45)
+06:12:35 round 5 driver ended
+06:12:55 round 6 starts (5 m py+(b)+hover15 s1/s2, VALIDATION farmland 10 m s13, ottawa2022 5 m s13; none after 06:45)
+06:28:28 round 6 driver ended
+06:29:46 cleanup: drivers and scripts stopped, SITL instance 1 stopped, containers ap_sim_kfab and ap_sim_kf_suite removed, SITL_ACTIVE deleted

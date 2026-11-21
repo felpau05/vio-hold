@@ -1,0 +1,73 @@
+BENCH PROCEDURE: CAN THE BOARD READ THE FORWARD CAMERA, AND DOES THE READ DISTURB THE OTHER VIDEO?
+Event day. Propellers off. Written 2026-11-21. Not done yet on the real aircraft.
+
+WHY THIS TEST
+The forward camera (Justice A) is the pilot's flight camera. The pilot sees its picture in the goggles.
+The board's CSI-2 input is shared between a digital camera and an analog decoder chip.
+A device-tree tool (orqa_dt_switcher) and a restart select which one the board reads.
+Our checklist forbids orqa_dt_switcher today.
+A blocking analog read can delay the digital capture. This procedure measures it.
+This procedure finds out three things:
+  1. Can the board read the forward camera with the device tree that is on the board now?
+  2. Does that read disturb the nadir camera (Justice D) capture of our program?
+  3. Does that read disturb the pilot's video?
+
+CONDITIONS BEFORE YOU START
+- The pilot agrees to this test. The forward camera is the pilot's camera. If the pilot does not agree, do not do this test.
+- The crew lead agrees to this test.
+- The propellers are off the aircraft.
+- The pilot holds the goggles and looks at the picture during the test.
+- Nobody runs orqa_dt_switcher. Nobody restarts the board with another device tree.
+- Nobody disconnects or splits a cable of the pilot's camera.
+
+STOP RULES
+- If a step needs orqa_dt_switcher, a device-tree change, or a cable change, stop. Record "not readable today".
+- If the pilot reports any change in the goggles picture, stop fwd_rec at once (Ctrl+C). Record FAIL.
+- If the nadir camera stops, stop fwd_rec at once. Record FAIL.
+
+PART A. FIND THE DEVICES (read only, no change)
+A1. Ask the pilot to look at the goggles picture for 30 s. Record what the pilot sees (brightness, lines, OSD).
+A2. On the board, list the video devices:
+      v4l2-ctl --list-devices
+      ls -l /dev/video*
+A3. For each device, record the driver, the input name, the standard and the picture size:
+      v4l2-ctl -d /dev/videoN --all
+A4. Find the nadir camera device. It is the device in video_device of settings.json.
+A5. Find an analog decoder device. It reports a standard (PAL or NTSC) and a size of 720x576 or 720x480.
+PASS RULE A: an analog decoder device exists now, AND the nadir camera device also exists now.
+If PASS RULE A is not true, stop. Record "forward camera not readable without a device-tree change". Do not do part B.
+
+PART B. READ TEST (only when PASS RULE A is true)
+B1. Start the program in bench mode for 60 s. This is the baseline. It writes logs/run_*.csv:
+      ~/.venvs/vio/bin/python apb_main.py bench --height 1.5
+B2. Stop the bench run after 60 s. Keep its run log as BASELINE.
+B3. Start the bench run again. Keep this run log as WITH_FWD.
+B4. In a second terminal, start the forward recorder for 60 s. Use the analog decoder device from A5:
+      nice -n 10 ~/.venvs/vio/bin/python tools/fwd_rec.py --device /dev/videoN --hz 5 --seconds 60
+B5. While B4 starts and stops, ask the pilot to look at the goggles. The decoder can reset when a device opens.
+B6. Wait until fwd_rec prints "stopped (time is up)". Stop the bench run.
+B7. Start fwd_rec again with no time limit. After 20 s, push Ctrl+C. Record the last line that it prints.
+B8. Start fwd_rec again for 10 s. This shows that the device is free after Ctrl+C.
+B9. Compare the nadir frame times of BASELINE and WITH_FWD (column t of the run log):
+      ~/.venvs/vio/bin/python -c "import csv,sys,numpy as n
+      for p in sys.argv[1:]:
+       t=n.array([float(r['t']) for r in csv.DictReader(open(p)) if r['t']]);d=n.diff(t)*1e3
+       print(p,len(t)/(t[-1]-t[0]),'fps, gap p50',n.median(d),'p99',n.percentile(d,99),'max',d.max(),'ms')" BASELINE.csv WITH_FWD.csv
+B10. Open one forward picture and look at it:
+      ~/.venvs/vio/bin/python -c "import numpy as n,cv2,glob;d=n.load(sorted(glob.glob('logs/fwd_*.npz'))[-1]);cv2.imwrite('/tmp/fwd.png',d['imgs'][0])"
+
+PASS RULES FOR PART B (all must be true)
+B-FWD   fwd_rec kept 285 to 315 pictures in 60 s (5 each second). It dropped 0 chunks. The picture shows the
+        scene, not a black or flat screen.
+B-NADIR The nadir frame rate of WITH_FWD is within 2 % of BASELINE. The largest gap between nadir frames is not
+        more than the BASELINE largest gap plus one frame time (17 ms at 60 fps). The run log has no "no frame" rows.
+B-PILOT The pilot says that the goggles picture did not change at any time: no flicker, no loss of the picture,
+        no change of brightness, no lines. This includes the start and the stop of fwd_rec.
+B-STOP  After Ctrl+C, fwd_rec prints "stopped (Ctrl+C)", the last chunk file exists, and step B8 works.
+B-CPU   fwd_rec uses less than 15 % of one core (read it in top during B4).
+
+RECORD
+Record each PASS or FAIL, the devices from A3 and the numbers from B9 on the bring-up record sheet.
+If any rule fails, do not run fwd_rec near a flight today.
+If all rules pass, and the pilot and the crew lead agree, fwd_rec can record during a normal flight.
+After the flight, run tools/fwd_check.py on the recording. That is a check only. It does not change the hold.

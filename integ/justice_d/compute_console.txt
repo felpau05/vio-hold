@@ -1,0 +1,5 @@
+Hold.process 320x180: median 2.73 ms, p95 2.83 ms over 395 frames
+Hold.process 640x360: median 3.22 ms, p95 3.37 ms over 395 frames
+Hold.process 1280x720: median 4.99 ms, p95 5.23 ms over 395 frames
+capture.luma + INTER_AREA 1280x720 YUYV -> 640x360: median 0.279 ms, p95 0.283 ms
+wrote /home/paul/Videos/vio-hold-attempt/integ/justice_d/compute_20261118_225729.json CPU Intel(R) Core(TM) 7 240H

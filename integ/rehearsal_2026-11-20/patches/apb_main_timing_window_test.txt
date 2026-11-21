@@ -1,0 +1,4 @@
+== reh_jd_wig_60m_s31, patched timing with the run log and all chunks
+PASS video delay 38 ms (was 70), readout +23 ms (was +14), residual 0.85 deg, 24 deg/s
+== reh_jd_wig_100m_s31, patched timing with the run log and all chunks
+PASS video delay 36 ms (was 70), readout +11 ms (was +14), residual 0.54 deg, 23 deg/s

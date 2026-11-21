@@ -1,0 +1,9 @@
+PASS LOITER: no position target is sent
+PASS GUIDED entry: the first target is the hold point (10.00 -4.00)
+PASS GUIDED: the target moves upwind (west) of the hold point: 10.00 -4.27 -50.0 (hold 10.00 -4.00 -50)
+PASS GUIDED: the target keeps the heading at GUIDED entry
+PASS no fix for 0.6 s: LOITER is sent (wind assist off (no fix): LOITER)
+PASS after a fault: no new target until GUIDED is selected again
+PASS GUIDED selected again: targets again
+PASS a fix 4 m from the FC position: LOITER
+ALL PASS

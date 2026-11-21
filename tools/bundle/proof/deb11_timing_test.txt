@@ -1,0 +1,4 @@
+$ qpy -c import sim_test; sim_test.timing_test(); print('timing_test PASSED') (cwd: the bundle's vio folder plus the test files; root file system py310; qemu CPU cortex-a53)
+timing sweep found latency 56 ms (expected 57), readout 16 ms (true 16)
+timing_test PASSED
+exit code 0

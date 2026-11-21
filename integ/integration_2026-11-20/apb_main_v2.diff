@@ -1,0 +1,231 @@
+--- a/apb_main.py
++++ b/apb_main.py
+@@ -8,7 +8,8 @@
+   apb_main.py run   [--raw]          the hold: send the fix to the flight controller
+   apb_main.py replay FILE...         a raw recording through the same pipeline (for tuning)
+   apb_main.py delay LOG.csv...       VISO_DELAY_MS from the fix ages of a flight
+-  apb_main.py timing RAW.npz...      video delay and readout from an in-flight stick wiggle (raw chunks)
++  apb_main.py timing RUN.csv RAW.npz...  video delay and readout from the in-flight stick wiggle: the raw frames of
++                                     the 15 s in the air before the pilot's switch to position hold in the run log
+ 
+ Every check prints one line: PASS or FAIL, and what to do. run refuses to start when a check fails.
+ Safety rule: send nothing when in doubt (stale inputs, bad picture, low height, too few good frames).
+@@ -16,8 +17,10 @@
+ import argparse
+ import csv
+ import glob
++import json
+ import math
+ import os
++import re
+ import shutil
+ import sys
+ import threading
+@@ -787,10 +790,13 @@
+     if fc is not None:
+         import fc_link
+         time.sleep(2.0)
+-        r_att, r_pos = fc.rate("ATTITUDE"), fc.rate("LOCAL_POSITION_NED")
++        # ArduPilot sends LOCAL_POSITION_NED only once it has a position (from our fixes): its height stream is
++        # GLOBAL_POSITION_INT (fc_link._read), so that is the one to measure on the ground.
++        hkind = "GLOBAL_POSITION_INT" if fc.firmware == "ardupilot" else "LOCAL_POSITION_NED"
++        r_att, r_pos = fc.rate("ATTITUDE"), fc.rate(hkind)
+         line(r_att >= s["min_att_hz"], f"ATTITUDE {r_att:.0f} Hz (asked {s['att_hz']}, need {s['min_att_hz']})"
+              + ("" if r_att >= s["min_att_hz"] else ". Turn off other streams (MAV_0_RATE 23040) and stop ULog streaming."))
+-        line(r_pos >= 0.5 * s["hgt_hz"], f"LOCAL_POSITION_NED {r_pos:.0f} Hz (asked {s['hgt_hz']})"
++        line(r_pos >= 0.5 * s["hgt_hz"], f"{hkind} {r_pos:.0f} Hz (asked {s['hgt_hz']})"
+              + ("" if r_pos >= 0.5 * s["hgt_hz"] else ". The FC sends no height: check the baro and the EKF."))
+         line(fc.clock.ready(), "FC clock offset fitted" if fc.clock.ready() else "FC clock offset not fitted: attitude too sparse.")
+         if fc.firmware == "px4":
+@@ -869,7 +875,7 @@
+                  ". Their shapes differ. Set lens_name to a 16:9 profile, or apply the justice_d profile with "
+                  "tools/use_profile.py."))
+         except (ValueError, OSError) as e:
+-            line(False, f"lens: {e}")
++            line(False, f"lens file {s['lens_file']}: {e}")
+     if s.get("lens_measured"):      # run refuses a measured lens of another shape (lens raises)
+         import calib
+         m = s["lens_measured"]
+@@ -906,10 +912,16 @@
+     if s["record_hz"] > 0:
+         rate = min(rate, s["record_hz"])
+     mbs = shape[0] * shape[1] * rate / 1e6
+-    need = s["min_free_gb"] * mbs / (360 * 288 * 25 / 1e6)
+-    line(free >= need, f"free disk {free:.1f} GB at {where} (need {need:.1f} GB: raw recording takes {mbs:.1f} MB/s "
+-         f"at {shape[1]}x{shape[0]}, {rate:.0f} Hz)" + ("" if free >= need else
+-         ". Set log_dir to a bigger disk (SD card: /sdcard/logs), or delete old logs."))
++    # Never under min_free_gb: Raw stops recording under it, unscaled (no_sd, 10 Hz: the scaled value is 0.44 GB).
++    need = max(s["min_free_gb"] * mbs / (360 * 288 * 25 / 1e6), s["min_free_gb"])
++    rec_min = max(free - s["min_free_gb"], 0.0) * 1e3 / mbs / 60      # raw recording until Raw stops
++    line(free >= need, f"free disk {free:.2f} GB at {where} (need {need:.2f} GB: raw recording takes {mbs:.1f} MB/s "
++         f"at {shape[1]}x{shape[0]}, {rate:.0f} Hz), {rec_min:.0f} min of raw recording before the recorder stops"
++         + ("" if free >= need else ". Set log_dir to a bigger disk (SD card: /sdcard/logs), or delete old logs."))
++    if free >= need and rec_min < 10:
++        say(f"WARN free disk: {rec_min:.0f} min of raw recording before the recorder stops at min_free_gb "
++            f"{s['min_free_gb']:g} GB (under 10 min). run records from its start, also on the ground. Delete old "
++            "logs, or set log_dir to an SD card.")
+     say(f"{'ALL PASS' if fails == 0 else f'{fails} FAIL'}")
+     return fails
+ 
+@@ -1021,15 +1033,125 @@
+     return 0
+ 
+ 
++# timing: the mode names (run log, mode column) that hold a position. fc_mode gives them; POS_HOLD: the Betaflight option.
++HOLD_MODES = AP_HOLD | {"POSCTL", "AUTO_LOITER", "POS_HOLD"}
++# timing: the 8 s of the window with the most turning must turn this many times faster (RMS) than the rest, else the
++# window holds no wiggle. assumed: set on the same 4 rehearsal flights it was checked on, no hold-out data (wiggle
++# windows as flown 4.4 to 8.7; windows that passed calib's checks with a wrong value 1.0 to 1.8; review/evidence/
++# contrast.txt). Set high on purpose: a wrong FAIL keeps the ground calibration, a wrong PASS writes a wrong delay.
++WIGGLE_RATIO = 4.0
++
++
++def gap_s(t, lo, hi):
++    """The longest time (s) in [lo, hi] with no value of t."""
++    t = np.sort(t[(t >= lo) & (t <= hi)])
++    return float(np.diff(np.r_[lo, t, hi]).max())
++
++
++def wiggle_rates(att, lo, hi):
++    """(RMS turn rate of the 8 s with the most turning, RMS turn rate of the rest), deg/s, of the FC attitude rows
++    (t, roll, pitch, yaw rad) in [lo, hi], on a 0.1 s grid. None when the rows cover under 10 s of it."""
++    tt = np.arange(max(lo, att[0, 0]), min(hi, att[-1, 0]), 0.1)
++    if len(tt) < 100:
++        return None
++    ang = np.array([np.interp(tt, att[:, 0], c) for c in (att[:, 1], att[:, 2], np.unwrap(att[:, 3]))]).T
++    e = np.sum((np.diff(ang, axis=0) / 0.1) ** 2, axis=1)
++    c = np.convolve(e, np.ones(80), "valid")
++    i = int(np.argmax(c))
++    return math.degrees(math.sqrt(c[i] / 80)), math.degrees(math.sqrt(np.r_[e[:i], e[i + 80:]].mean()))
++
++
+ def mode_timing(s, args, say=print):
+-    """Video delay and readout from the raw chunks of an in-flight wiggle (EVENT_DAY step 7): calib.py's own
+-    search with the calibrated picture orientation, in the flight's own light. apsim, 100 m, start 40 ms
+-    wrong: found 64.0 ms against a true 60.4 ms (integ/control/wiggle_*.txt)."""
++    """Video delay and readout from the in-flight wiggle (EVENT_DAY step 7): calib.py's own search with the
++    calibrated picture orientation, in the flight's own light. apsim, 100 m, start 40 ms wrong: found 64.0 ms
++    against a true 60.4 ms (integ/control/wiggle_*.txt). It uses only the raw frames from 16 s to 1 s before the
++    first "engaged" note of the run log with 15 s in the air in no hold mode before it, and only when those 15 s hold
++    a wiggle (item 8b): on the chunks of a hold in gusts it passed with 12 ms against a true 40 ms
++    (integ/rehearsal_2026-11-20, D1; integ/integration_2026-11-20/review, B1 and B2)."""
+     import calib
+-    d = [np.load(f) for f in sorted(args.files)]
++    keep_ground = " Settings not changed. Keep the delay and readout of the ground calibration, or fly the wiggle again."
++    logs, raws = [f for f in args.files if f.endswith(".csv")], sorted(f for f in args.files if f.endswith(".npz"))
++    if len(logs) != 1 or not raws:
++        say("FAIL give one run log and the raw files of the same run: apb_main.py timing <log_dir>/run_<stamp>.csv "
++            "<log_dir>/raw_<stamp>_*.npz")
++        return 1
++    # Raw and Log take their stamps (to 1 s) at the same start of run_live: the names of one run differ by 1 s at most.
++    st = [re.search(r"_(\d{8}_\d{6})", os.path.basename(f)) for f in logs + raws]
++    st = [time.mktime(time.strptime(m[1], "%Y%m%d_%H%M%S")) for m in st if m]
++    if len(st) == 1 + len(raws) and max(abs(x - st[0]) for x in st) > 1:
++        say(f"FAIL the raw files are not from the run of {logs[0]}: their names have another start time. Give "
++            "raw_<stamp>_*.npz with the stamp of the run log.")
++        return 1
++    t, sw, rows = math.nan, [], []
++    with open(logs[0]) as f:
++        for row in csv.DictReader(f):
++            t = float(row["t"]) if row["t"] else t       # a row with no frame has no t: use the last frame's
++            if row["t"]:
++                rows.append((t, row.get("mode") or "", float(row["height"]) if row.get("height") else math.nan))
++            if (row["note"] or "").startswith("engaged"):
++                sw.append(t)
++    if not sw:
++        say(f"FAIL no 'engaged' note in {logs[0]}: no switch to position hold, so the wiggle is not known."
++            + keep_ground)
++        return 1
++    lt = np.array([r[0] for r in rows])
++    held = np.array([r[1] in HOLD_MODES for r in rows], bool)
++    lh = np.array([r[2] for r in rows])
++
++    # The wiggle's switch: the first "engaged" note with 15 s in the air in no hold mode before it. A switch test on
++    # the ground, or the FC already in a hold mode when the program starts, writes an earlier note.
++    def why_not(x):
++        w = (lt >= x - 16.0) & (lt <= x - 1.0)
++        if math.isnan(x) or gap_s(lt, x - 16.0, x - 1.0) > 1.0:
++            return "the run log covers only part of the 15 s before it (the program started later, or the camera stopped)"
++        if held[w].any():
++            return "position hold in the 15 s before it"
++        if (lh[w] < s["min_height_m"]).any():          # no height (empty) is not checked
++            return f"under min_height_m {s['min_height_m']:g} m in the 15 s before it (on the ground)"
++        return None
++    why = [why_not(x) for x in sw]
++    sw0 = next((x for x, y in zip(sw, why) if y is None), None)
++    skipped = "; ".join(f"switch at t {x:.1f} s: {y}" for x, y in zip(sw, why) if y)
++    if sw0 is None:
++        say(f"FAIL no switch to position hold after 15 s in the air in Altitude mode ({skipped})." + keep_ground)
++        return 1
++    d = [np.load(f) for f in raws]
++    tg = [x["t_grab"] for x in d]
++    # Each raw frame is in the run log at t = t_grab - video_delay_s (capture: Frame.t0). Raw files of another run
++    # (the frame clock starts again at each boot) do not match. Rehearsal flights: 0.03 ms at most
++    # (review/evidence/clock_check.txt).
++    a, ls = np.concatenate(tg), np.sort(lt)
++    b = a - s["video_delay_s"]
++    j = np.clip(np.searchsorted(ls, b), 1, len(ls) - 1)
++    miss = int(np.sum(np.minimum(abs(ls[j] - b), abs(ls[j - 1] - b)) > 0.001))
++    if miss:
++        say(f"FAIL {miss} of {len(a)} raw frames have no row in {logs[0]} at t_grab - video_delay_s "
++            f"({s['video_delay_s'] * 1e3:.0f} ms): the raw files are from another run, or video_delay_s changed since "
++            "this flight (timing writes it: run timing once for each flight)." + keep_ground)
++        return 1
++    # shortcut: the window compares t_grab with the log's t, so it is video_delay_s early (small against its 1 s
++    # margin); kept so that the flown values stay the same. Use b (the log's t) for a new flight table.
++    g = gap_s(a, sw0 - 16.0, sw0 - 1.0)
++    if g > 1.0:
++        say(f"FAIL the raw files miss {g:.1f} s of the 15 s before the switch at t {sw0:.1f} s: a raw chunk was "
++            "dropped or is not given, or the recorder stopped (free disk)." + keep_ground)
++        return 1
++    keep = [(x >= sw0 - 16.0) & (x <= sw0 - 1.0) for x in tg]
+     att = np.concatenate([x["att"] for x in d])
+-    rec = dict(imgs=np.concatenate([x["imgs"] for x in d]), t_grab=np.concatenate([x["t_grab"] for x in d]),
++    rec = dict(imgs=np.concatenate([x["imgs"][k] for x, k in zip(d, keep) if k.any()]),    # only the window in memory
++               t_grab=np.concatenate([x[k] for x, k in zip(tg, keep)]),
+                att=att[np.unique(att[:, 0], return_index=True)[1]], K=d[0]["K"], D=d[0]["D"])
++    say(f"INFO {len(rec['t_grab'])} frames from 16 s to 1 s before the switch at t {sw0:.1f} s"
++        + (f" (switch {sw.index(sw0) + 1} of {len(sw)}; not used: {skipped})" if skipped else
++           f" (the first of {len(sw)} switches)" if len(sw) > 1 else ""))
++    w = wiggle_rates(rec["att"], sw0 - 16.0, sw0 - 1.0)
++    if w is None or w[0] <= WIGGLE_RATIO * w[1]:          # <=: a window with no turning at all is no wiggle
++        say(f"FAIL no wiggle in the 15 s before the switch at t {sw0:.1f} s: " + (
++            "the FC attitude covers under 10 s of it." if w is None else
++            f"its 8 s with the most turning turn {w[0]:.0f} deg/s RMS, the rest {w[1]:.1f} deg/s (need "
++            f"{WIGGLE_RATIO:g} times). The switch came more than 8 s after the wiggle, or there was no wiggle.")
++            + keep_ground)
++        return 1
+     r = calib.Rec(rec, load_mask(s, rec["imgs"].shape[1:3]))
+     if r.rate_dps < s["calib_min_rate_dps"] or len(r.ia) < 1000:
+         say(f"FAIL the recording turned {r.rate_dps:.0f} deg/s RMS with {len(r.ia)} matches; need "
+@@ -1117,7 +1239,8 @@
+ def main(argv=None):
+     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+     p.add_argument("mode", choices=["check", "mask", "calib", "bench", "run", "replay", "delay", "timing"])
+-    p.add_argument("files", nargs="*", help="replay: raw recording .npz files; delay: run log .csv files")
++    p.add_argument("files", nargs="*", help="replay: raw recording .npz files; delay: run log .csv files; "
++                                            "timing: one run log .csv and the raw .npz files of that run")
+     p.add_argument("--settings", default=S.PATH)
+     p.add_argument("--set-params", action="store_true", help="check: write wrong FC parameters")
+     p.add_argument("--rec", help="mask/calib: use this recording instead of recording now")
+@@ -1148,10 +1271,16 @@
+         path, counts = replay(s, files)
+         print(f"replay: {counts}; log {path}")
+         return 0
+-    if args.mode == "timing":
+-        return mode_timing(s, args)
+-    modes = {"check": mode_check, "mask": mode_mask, "calib": mode_calib, "bench": mode_bench, "run": mode_run}
+-    return modes[args.mode](s, args)
++    if args.mode == "run":
++        return mode_run(s, args)
++    tools = {"check": mode_check, "mask": mode_mask, "calib": mode_calib, "bench": mode_bench, "timing": mode_timing}
++    try:
++        return tools[args.mode](s, args)
++    except (RuntimeError, ValueError) as e:     # no FC, no frames, "will not start", a bad mask: one FAIL line
++        if isinstance(e, json.JSONDecodeError):  # after settings.json, the lens file is the only JSON these tools read
++            e = f"the lens file {S.here(s['lens_file'])} is damaged: {e}"
++        print(f"FAIL {e}")
++        return 1
+ 
+ 
+ if __name__ == "__main__":

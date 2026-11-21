@@ -1,0 +1,4 @@
+06:30:52
+load at the start: average: 2.04, 4.79, 5.26
+06:43:45
+load at the end: average: 2.55, 2.78, 3.74

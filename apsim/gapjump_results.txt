@@ -1,0 +1,112 @@
+run name            h m  option               seed  rms m  max m rms10s  % fix fix Hz  kf at  load ferr60 ferr10  events (s after the switch)
+eng_60m_off_s1       60  fresh_kf false          1   0.48   1.13   0.47   20.3   12.2      -   7.4   0.25   0.15  -21.41s FC mode ALT_HOLD; -17.59s re-anchored to last position (no FC position) 0.00 0.00; -0.03s engaged: FC mode LOITER
+eng_60m_off_s2       60  fresh_kf false          2   0.58   1.16   0.73   20.3   12.2      -   5.4   0.28   0.25  -21.45s FC mode ALT_HOLD; -17.65s re-anchored to last position (no FC position) 0.00 0.00; -15.12s re-anchored to FC position 0.05 0.08; -0.02s engaged: FC mode LOITER
+rec_60m_gj_s1        60  outage + gap_jump 0.5    1   0.61   1.02   0.46   19.1   11.4      -   1.2   0.55   0.16  -21.28s FC mode ALT_HOLD; -17.48s re-anchored to last position (no FC position) 0.00 0.00; 0.02s engaged: FC mode LOITER; 20.09s recovery test: video dropped for 3 s; 23.11s recovery test: video back
+rec_60m_gj_s2        60  outage + gap_jump 0.5    2   0.58   1.24   0.55   19.2   11.5      -   2.7   0.45   0.11  -21.47s FC mode ALT_HOLD; -17.67s re-anchored to last position (no FC position) 0.00 0.00; -15.54s re-anchored to FC position 0.04 0.02; 0.03s engaged: FC mode LOITER; 20.04s recovery test: video dropped for 3 s; 23.06s recovery test: video back
+rec_60m_gj_s3        60  outage + gap_jump 0.5    3   0.50   1.25   0.46   19.2   11.5      -   6.9   0.22   0.25  -21.5s FC mode ALT_HOLD; -17.68s re-anchored to last position (no FC position) 0.00 0.00; -0.02s engaged: FC mode LOITER; 20.03s recovery test: video dropped for 3 s; 23.05s recovery test: video back
+rec_60m_s1           60  outage 3 s at 20 s      1   0.74   1.30   0.72   19.0   11.4      -   4.1   0.50   0.45  -21.41s FC mode ALT_HOLD; -17.59s re-anchored to last position (no FC position) 0.00 0.00; -0.01s engaged: FC mode LOITER; 20.04s recovery test: video dropped for 3 s; 23.04s recovery test: video back; re-anchored to FC position -0.15 1.36; 23.12s re-anchored to FC position -0.14 1.38
+rec_60m_s2           60  outage 3 s at 20 s      2   0.78   1.70   0.32   19.0   11.4      -   6.5   0.52   0.13  -21.51s FC mode ALT_HOLD; -17.71s re-anchored to last position (no FC position) 0.00 0.00; -0.04s engaged: FC mode LOITER; 20.03s recovery test: video dropped for 3 s; 23.03s recovery test: video back; re-anchored to FC position 0.35 -0.86; 23.13s re-anchored to FC position 0.35 -0.88
+rec_60m_s3           60  outage 3 s at 20 s      3   0.53   1.05   0.66   19.4   11.5      -   2.8   0.27   0.30  -21.59s FC mode ALT_HOLD; -17.79s re-anchored to last position (no FC position) 0.00 0.00; -15.93s re-anchored to FC position 0.07 0.06; 0.04s engaged: FC mode LOITER; 20.11s recovery test: video dropped for 3 s; 23.14s recovery test: video back
+
+Recovery (s and m; times after the switch; drift = true distance from the hold point; d start/end: at the
+drop and at video back; move in: displacement during the drop; back->fix: video back to the first sent
+fix; shift: change of the mean fix error, 5 s before the drop against 1-7 s after video back):
+run name            drop at  back at  d start    d end   max in  move in  max 10s  rms 10sback->fix  max all  max bef    shift
+rec_60m_gj_s1         20.09    23.11     0.37     0.76     0.76     0.75     1.02     0.81     0.86     1.02     0.82     0.14
+rec_60m_gj_s2         20.04    23.06     0.31     0.47     0.47     0.26     1.03     0.68     0.86     1.24     0.94     0.29
+rec_60m_gj_s3         20.03    23.05     0.69     0.61     0.69     0.12     0.92     0.46     0.87     1.25     0.75     0.16
+rec_60m_s1            20.04    23.04     0.64     0.49     0.65     0.78     1.10     0.76     1.12     1.30     1.30     0.33
+rec_60m_s2            20.03    23.03     0.45     0.27     0.45     0.17     1.38     1.05     1.12     1.70     0.83     0.59
+rec_60m_s3            20.11    23.14     0.42     0.31     0.42     0.24     1.03     0.53     0.87     1.05     1.04     0.16
+Same windows in the run without the drop (same height and seed, fresh_kf false): rms / max m
+run name          reference              during drop      10 s after     0 s to drop      whole hold
+rec_60m_gj_s1     (this run)             0.45 / 0.76     0.81 / 1.02     0.43 / 0.82     0.61 / 1.02
+                  eng_60m_off_s1         0.25 / 0.45     0.74 / 1.13     0.48 / 0.83     0.48 / 1.13
+rec_60m_gj_s2     (this run)             0.31 / 0.47     0.68 / 1.03     0.47 / 0.94     0.58 / 1.24
+                  eng_60m_off_s2         0.38 / 0.43     0.56 / 0.77     0.59 / 1.16     0.58 / 1.16
+rec_60m_s1        (this run)             0.56 / 0.65     0.76 / 1.10     0.79 / 1.30     0.74 / 1.30
+                  eng_60m_off_s1         0.25 / 0.42     0.73 / 1.13     0.48 / 0.83     0.48 / 1.13
+rec_60m_s2        (this run)             0.35 / 0.45     1.05 / 1.38     0.42 / 0.83     0.78 / 1.70
+                  eng_60m_off_s2         0.38 / 0.43     0.56 / 0.77     0.59 / 1.16     0.58 / 1.16
+
+apsim/engage_matrix.py. ArduCopter 4.6 SITL, variant apb (onboard program, board model fixed 80 ms per
+Hold.process), video JUSTICE_D, ground ottawa2019fall (tuning site), w20g40, 60 s hold, SITL instance 1.
+rms/max: true horizontal distance from the hold point over the hold (sitl.score). rms10s: over the first
+10 s after the switch. % fix: fixes sent per rendered frame (60 fps). kf at: time after the switch when
+Hold served the fresh-keyframe request (<label>_kf.csv). load: 1-minute load at the start (16 cores).
+ferr60/ferr10: RMS of the sent-fix error against the truth, relative to the error at the switch, over
+the hold / its first 10 s (fix_err: the part of the estimator error that moves the drone).
+Events: sitl_ap events, run-log notes (no VISO_DELAY_MS advice), FC mode changes, FC texts.
+
+Per run: hold_cfg from runs/<label>_settings.json; re-anchors after video back (run-log notes);
+the first 10 onboard-log rows from 'video back' (t after the switch, state, sent, why | note):
+rec_60m_gj_s1: hold_cfg {'repeat_diff': 0.01, 'gap_jump_s': 0.5}; re-anchors after video back 0; back->fix 0.857 s; shift 0.14 m
+     23.11 ok        0 good fix 1 of 10 | recovery test: video back
+     23.19 ok        0 good fix 2 of 10
+     23.27 ok        0 good fix 3 of 10
+     23.36 ok        0 good fix 4 of 10
+     23.44 ok        0 good fix 5 of 10
+     23.52 ok        0 good fix 6 of 10
+     23.59 ok        0 good fix 7 of 10
+     23.67 ok        0 good fix 8 of 10
+     23.76 ok        0 good fix 9 of 10
+     23.84 ok        1 
+rec_60m_gj_s2: hold_cfg {'repeat_diff': 0.01, 'gap_jump_s': 0.5}; re-anchors after video back 0; back->fix 0.856 s; shift 0.29 m
+     23.06 ok        0 good fix 1 of 10 | recovery test: video back
+     23.14 ok        0 good fix 2 of 10
+     23.23 ok        0 good fix 3 of 10
+     23.29 ok        0 good fix 4 of 10
+     23.38 ok        0 good fix 5 of 10
+     23.46 ok        0 good fix 6 of 10
+     23.54 ok        0 good fix 7 of 10
+     23.63 ok        0 good fix 8 of 10
+     23.71 ok        0 good fix 9 of 10
+     23.79 ok        1 
+rec_60m_gj_s3: hold_cfg {'repeat_diff': 0.01, 'gap_jump_s': 0.5}; re-anchors after video back 0; back->fix 0.867 s; shift 0.16 m
+     23.05 ok        0 good fix 1 of 10 | recovery test: video back
+     23.13 ok        0 good fix 2 of 10
+     23.22 ok        0 good fix 3 of 10
+     23.30 ok        0 good fix 4 of 10
+     23.38 ok        0 good fix 5 of 10
+     23.45 ok        0 good fix 6 of 10
+     23.55 ok        0 good fix 7 of 10
+     23.62 ok        0 good fix 8 of 10
+     23.70 ok        0 good fix 9 of 10
+     23.80 ok        1 
+rec_60m_s1: hold_cfg {'repeat_diff': 0.01}; re-anchors after video back 2; back->fix 1.125 s; shift 0.33 m
+     23.04 lost      0 picture broken up (impulse z 2, band brightness z 13) | recovery test: video back; re-anchored to FC position -0.15 1.36
+     23.12 lost      0 picture just after a broken-up one | re-anchored to FC position -0.14 1.38
+     23.21 init      0 init
+     23.29 ok        0 good fix 1 of 10
+     23.37 ok        0 good fix 2 of 10
+     23.46 ok        0 good fix 3 of 10
+     23.54 ok        0 good fix 4 of 10
+     23.62 ok        0 good fix 5 of 10
+     23.71 ok        0 good fix 6 of 10
+     23.79 ok        0 good fix 7 of 10
+rec_60m_s2: hold_cfg {'repeat_diff': 0.01}; re-anchors after video back 2; back->fix 1.124 s; shift 0.59 m
+     23.03 lost      0 picture broken up (impulse z 1, band brightness z 8) | recovery test: video back; re-anchored to FC position 0.35 -0.86
+     23.13 lost      0 picture just after a broken-up one | re-anchored to FC position 0.35 -0.88
+     23.21 init      0 init
+     23.29 ok        0 good fix 1 of 10
+     23.38 ok        0 good fix 2 of 10
+     23.44 ok        0 good fix 3 of 10
+     23.53 ok        0 good fix 4 of 10
+     23.63 ok        0 good fix 5 of 10
+     23.69 ok        0 good fix 6 of 10
+     23.78 ok        0 good fix 7 of 10
+rec_60m_s3: hold_cfg {'repeat_diff': 0.01}; re-anchors after video back 0; back->fix 0.868 s; shift 0.16 m
+     23.14 ok        0 good fix 1 of 10 | recovery test: video back
+     23.22 ok        0 good fix 2 of 10
+     23.31 ok        0 good fix 3 of 10
+     23.39 ok        0 good fix 4 of 10
+     23.47 ok        0 good fix 5 of 10
+     23.56 ok        0 good fix 6 of 10
+     23.62 ok        0 good fix 7 of 10
+     23.69 ok        0 good fix 8 of 10
+     23.77 ok        0 good fix 9 of 10
+     23.86 ok        1 
+
+Shift with no drop (same windows: 5 s before 20 s against 24-30 s after the switch):
+eng_60m_off_s1: shift 0.34 m
+eng_60m_off_s2: shift 0.21 m

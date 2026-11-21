@@ -1,0 +1,16 @@
+test_basics: rc=0 ALL PASS in 20 s
+test_digital: rc=0 ALL PASS in 14 s
+test_robust: rc=0 ALL PASS in 35 s
+test_fc_link: rc=0 ALL PASS in 20 s
+test_run: rc=0 ALL PASS in 28 s (files in /tmp/tmpobfnium7)
+test_bench: rc=0 ALL PASS in 17 s
+test_calib: rc=0 ALL PASS in 59 s
+test_lens_d: rc=0 0 FAIL, 1 KNOWN LIMIT (not a pass) in 168 s
+test_lens_store: rc=0 ALL PASS in 2 s
+test_live: rc=1 1 FAIL in 52 s
+test_replay_chunks: rc=0 ALL PASS
+test_wind_assist: rc=0 ALL PASS
+test_ap_sitl: rc=0 ALL PASS
+test_event: rc=0 ALL PASS in 27 s
+test_ground_tools: rc=0 ALL PASSED
+sim_test.timing_test: rc=0 timing_test PASSED

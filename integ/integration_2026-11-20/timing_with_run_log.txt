@@ -1,0 +1,22 @@
+Corrected usage of EVENT_DAY step 7 item 15: apb_main.py timing <run log> <all raw chunks of the flight>.
+Flights: integ/rehearsal_2026-11-20 section 2 B (ArduCopter SITL, Justice D, w20g40, seed 31, one flight per height).
+Each on a fresh copy of the flight's settings (video_delay_s 70 ms). Truth: delay 40 ms, readout +14 ms.
+== reh_jd_wig_10m_s31 (load 1 min 1.66)
+INFO 184 frames from 16 s to 1 s before the switch at t 37.3 s
+PASS video delay 40 ms (was 70), readout +15 ms (was +14), residual 0.48 deg, 23 deg/s
+PASS settings written. Start run again, then set VISO_DELAY_MS from 'apb_main.py delay' after the hover.
+exit 0
+== reh_jd_wig_30m_s31 (load 1 min 1.66)
+INFO 185 frames from 16 s to 1 s before the switch at t 42.0 s
+FAIL delay 40 ms, residual 1.23 deg (orientation front fits 1.24 deg). Settings not changed. Run calib on the ground.
+exit 1
+== reh_jd_wig_60m_s31 (load 1 min 1.68)
+INFO 182 frames from 16 s to 1 s before the switch at t 48.8 s
+PASS video delay 38 ms (was 70), readout +23 ms (was +14), residual 0.85 deg, 24 deg/s
+PASS settings written. Start run again, then set VISO_DELAY_MS from 'apb_main.py delay' after the hover.
+exit 0
+== reh_jd_wig_100m_s31 (load 1 min 1.68)
+INFO 183 frames from 16 s to 1 s before the switch at t 56.7 s
+PASS video delay 36 ms (was 70), readout +11 ms (was +14), residual 0.54 deg, 23 deg/s
+PASS settings written. Start run again, then set VISO_DELAY_MS from 'apb_main.py delay' after the hover.
+exit 0

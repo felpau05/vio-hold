@@ -1,0 +1,6 @@
+$ qpy PROJ/tools/bundle/proof/hold_check.py (cwd: the bundle's vio folder; root file system py312; qemu CPU cortex-a53)
+frames 120, fixes 119, states ['init', 'ok']
+error against the truth: rms 0.1880 m, max 0.3467 m
+error of the last 5 fixes (m): 0.27624 0.15883 0.13249 0.29281 0.14534
+PASS
+exit code 0

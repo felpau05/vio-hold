@@ -1,0 +1,8 @@
+SAME defaults (PAL): 6 frames 360x288, break-up, centre ray, pixel_of
+SAME {'video': 'NTSC'}: 6 frames 360x240, break-up, centre ray, pixel_of
+SAME {'flicker_hz': 100.0}: 6 frames 360x288, break-up, centre ray, pixel_of
+SAME {'props': True}: 6 frames 360x288, break-up, centre ray, pixel_of
+SAME {'people': 2, 'ground': 'floor_tiles'}: 6 frames 360x288, break-up, centre ray, pixel_of
+SAME {'vib_deg': 0.0, 'readout_s': -0.018}: 6 frames 360x288, break-up, centre ray, pixel_of
+SAME {'exposure_s': 0.02, 'noise': 10, 'ground': 'night_lights'}: 6 frames 360x288, break-up, centre ray, pixel_of
+ALL SAME

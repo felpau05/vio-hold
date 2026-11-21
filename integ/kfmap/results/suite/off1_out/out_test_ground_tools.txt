@@ -1,0 +1,37 @@
+A. timing: the wiggle window of the right switch, from the run's own frames
+  PASS switch on the frame of t_grab 125.05 s (log t 124.98): calib gets the 150 recorded frames of t_grab 109.0 to 123.9 s (got 150, 109.00 to 123.90)
+  PASS the 'engaged' note on a row with no frame (no t): the last frame's t is the switch
+  PASS B1: a switch test 0.5 s after the start: the flight's switch is used; INFO names the other (['INFO 150 frames from 16 s to 1 s before the switch at t 125.0 s (switch 2 of 2; not used: switch at t 100.4 s: the run log covers only part of the 15 s before it (the program started later, or the camera stopped))'])
+  PASS B1: a switch test 11 s after takeoff (its 15 s reach the ground): the next switch is used (['INFO 150 frames from 16 s to 1 s before the switch at t 135.0 s (switch 2 of 2; not used: switch at t 114.9 s: under min_height_m 3 m in the 15 s before it (on the ground))'])
+  PASS B1: a switch test in the air 7 s before the switch: FAIL with both reasons (FAIL no switch to position hold after 15 s in the air in Altitude mode (switch at t 117.9 s: under min_height_m 3 m in the 15 s before it (on the grou)
+  PASS B1: two good switches: the first one (the later one has no wiggle)
+  PASS raw files and no run log: FAIL, settings not changed (FAIL give one run log and the raw files of the same run: apb_main.py timing <log_dir>/run_<stamp>.csv <log_dir>/raw_<stamp>_*.npz)
+  PASS a run log with no 'engaged' note: FAIL (FAIL no 'engaged' note in /tmp/tmpzfe51dl1/tmp2bxyy6ow/run_20261120_100000.csv: no switch to position hold, so the wiggle is not known. Settings not c)
+  PASS S2: raw frames of another run of this boot (t + 400 s): FAIL (FAIL 600 of 600 raw frames have no row in /tmp/tmpzfe51dl1/tmp9zgpq9z3/run_20261120_100000.csv at t_grab - video_delay_s (70 ms): the raw files are fr)
+  PASS S2: raw frames of a run before a reboot, same times + 13 ms, same name stamp: FAIL (FAIL 600 of 600 raw frames have no row in /tmp/tmpzfe51dl1/tmpuutt_y_o/run_20261120_100000.csv at t_grab - video_delay_s (70 ms): the raw files are fr)
+  PASS raw file names 2 s after the log's: FAIL (FAIL the raw files are not from the run of /tmp/tmpzfe51dl1/tmphwpwx6cx/run_20261120_100000.csv: their names have another start time. Give raw_<stamp>)
+  PASS raw file names 1 s after the log's (a second boundary between Log and Raw): accepted
+  PASS chunk 001 (110 to 120 s) not given: FAIL (FAIL the raw files miss 10.1 s of the 15 s before the switch at t 125.0 s: a raw chunk was dropped or is not given, or the recorder stopped (free disk)
+  PASS B2: turning all the time (a hold in gusts), no wiggle: FAIL (FAIL no wiggle in the 15 s before the switch at t 125.0 s: its 8 s with the most turning turn 6 deg/s RMS, the)
+  PASS B2: the switch 15 s after the wiggle, turning in gusts: FAIL (FAIL no wiggle in the 15 s before the switch at t 135.0 s: its 8 s with the most turning turn 14 deg/s RMS, th)
+  PASS B2: the wiggle 5 s before the switch, turning in gusts (3.3 deg/s RMS): accepted
+  PASS B2: no turning at all: FAIL (FAIL no wiggle in the 15 s before the switch at t 125.0 s: its 8 s with the most turning turn 0 deg/s RMS, the)
+  PASS PASS path: calib finds 41 ms / +17 ms: video_delay_s 0.041, readout_s 0.017
+  PASS the wiggle window turned 12 deg/s RMS (under calib_min_rate_dps 20): FAIL, settings not changed
+B. D2 check: the height stream of each firmware
+  PASS ardupilot, on the ground with GPS off (ardupilot sends GLOBAL_POSITION_INT only): ['PASS GLOBAL_POSITION_INT 10 Hz (asked 10)']
+  PASS px4, on the ground with GPS off (px4 sends LOCAL_POSITION_NED only): ['PASS LOCAL_POSITION_NED 10 Hz (asked 10)']
+  PASS fc_link asks ArduPilot for GLOBAL_POSITION_INT at hgt_hz (100000.0 us, want 100000)
+C. D3 bench, mask, calib: one FAIL line
+  PASS bench, no FC: exit 1, ''FAIL no MAVLink heartbeat on udpin:127.0.0.1:14599 in 5 s (test)''
+  PASS mask, no FC: exit 1, ''FAIL no MAVLink heartbeat on udpin:127.0.0.1:14599 in 5 s (test)''
+  PASS calib, no FC: exit 1, ''FAIL no MAVLink heartbeat on udpin:127.0.0.1:14599 in 5 s (test)''
+  PASS bench, a program error (KeyError): the error goes on with its traceback (KeyError('video_size'))
+  PASS calib, a mask of another size (ValueError): '"FAIL mask is 10x10 but the picture is 360x288. Run 'apb_main.py mask' again."'
+  PASS calib, a damaged lens file: the FAIL line names it (''FAIL the lens file /tmp/tmpzfe51dl1/lens_cut.json is damaged: Unterminated string starting at: line 13 column 7 (char 29'')
+D. D4 free disk (Justice D, no_sd): check, the recorder, the minutes
+  PASS 0.3 GB free (min_free_gb 0.5): 'FAIL free disk 0.30 GB at /tmp/tmpzfe51dl1 (need 0.50 GB: raw recording takes 2.3 MB/s at 640x360, 10 Hz), 0 m', recorder off
+  PASS 0.47 GB free (min_free_gb 0.5): 'FAIL free disk 0.47 GB at /tmp/tmpzfe51dl1 (need 0.50 GB: raw recording takes 2.3 MB/s at 640x360, 10 Hz), 0 m', recorder off
+  PASS 0.6 GB free (min_free_gb 0.5): 'PASS free disk 0.60 GB at /tmp/tmpzfe51dl1 (need 0.50 GB: raw recording takes 2.3 MB/s at 640x360, 10 Hz), 1 m', recorder records, WARN free disk: 1 min of raw recording before the recorder s
+  PASS 3.0 GB free (min_free_gb 0.5): 'PASS free disk 3.00 GB at /tmp/tmpzfe51dl1 (need 0.50 GB: raw recording takes 2.3 MB/s at 640x360, 10 Hz), 18 ', recorder records
+ALL PASSED

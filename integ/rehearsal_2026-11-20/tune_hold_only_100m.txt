@@ -1,0 +1,8 @@
+recording: 6 file(s), 619 frames; settings <scratch>/t100.json; 6 jobs
+  -> 0.0279 (gain 187%; fix 88.7 against 87.1 %)
+  -> keep 0.014 (gain 0.0% is under 3%)
+  -> keep 1.0 (gain 3.0% is under 3%)
+  -> 120 (gain 10%; fix 88.7 against 88.7 %)
+  -> keep default (gain 0.0% is under 3%)
+changed: {"video_delay_s": 0.0279, "hold_cfg": {"max_pts": 120}}
+log of the final settings: integ/rehearsal_2026-11-20/runs/reh_jd_wig_100m_s31_tune_hold/best.csv; done in 18 s

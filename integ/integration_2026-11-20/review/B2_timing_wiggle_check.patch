@@ -1,0 +1,29 @@
+--- a/apb_main.py
++++ b/apb_main.py
+@@ -1096,6 +1096,26 @@
+         + ("" if len(sw) == 1 else f" (the first of {len(sw)} switches in the log)" if sw0 == sw[0] else
+            f" (switch {sw.index(sw0) + 1} of {len(sw)} in the log; not used: " + "; ".join(
+                f"t {x:.1f} s, {y}" for x, y in zip(sw, why) if y) + ")"))
++    # The window must hold the wiggle (item 8b: still, 8 s of rocking, settle): its 8 s with the most turning turn
++    # at least 3 times faster (RMS) than the rest of the window. Turning all the time (a pilot holding position in
++    # gusts, a hold) passed calib's checks with wrong values. assumed: 3, set on the 4 rehearsal flights (no
++    # hold-out data): flown wiggle windows 4.4 to 8.7, windows with no wiggle 1.0 to 1.5.
++    a = rec["att"]
++    tt = np.arange(max(sw0 - 16.0, a[0, 0]), min(sw0 - 1.0, a[-1, 0]), 0.1)
++    if len(tt) < 100:
++        say(f"FAIL the FC attitude of the raw files covers {len(tt) / 10:.0f} s of the 15 s before the switch at t "
++            f"{sw0:.1f} s (need 10 s). Settings not changed. Keep the delay and readout of the ground calibration.")
++        return 1
++    ang = np.c_[[np.interp(tt, a[:, 0], c) for c in (a[:, 1], a[:, 2], np.unwrap(a[:, 3]))]].T
++    e = np.sum((np.diff(ang, axis=0) / 0.1) ** 2, axis=1)
++    c = np.convolve(e, np.ones(80), "valid")
++    i = int(np.argmax(c))
++    r_in, r_out = math.degrees(math.sqrt(c[i] / 80)), math.degrees(math.sqrt(np.r_[e[:i], e[i + 80:]].mean()))
++    if r_in < 3.0 * r_out:
++        say(f"FAIL no wiggle found in the 15 s before the switch at t {sw0:.1f} s: its 8 s with the most turning "
++            f"turn {r_in:.0f} deg/s RMS, the rest {r_out:.0f} deg/s (need 3 times). Settings not changed. Keep the "
++            "delay and readout of the ground calibration.")
++        return 1
+     r = calib.Rec(rec, load_mask(s, rec["imgs"].shape[1:3]))
+     if r.rate_dps < s["calib_min_rate_dps"] or len(r.ia) < 1000:
+         say(f"FAIL the recording turned {r.rate_dps:.0f} deg/s RMS with {len(r.ia)} matches; need "

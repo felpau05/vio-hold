@@ -1,0 +1,29 @@
+lowout_apb_jd_5m_w20g40_s1
+  longest gap between sent fixes in the hold: 2.14 s (from 22.69 s); gaps over 1 s: 8
+lowout_apb_jd_5m_w20g40_s2
+  longest gap between sent fixes in the hold: 1.24 s (from 18.10 s); gaps over 1 s: 3
+lowout_apb_jd_10m_w20g40_s1
+  longest gap between sent fixes in the hold: 2.15 s (from 27.82 s); gaps over 1 s: 8
+lowout_apb_jd_10m_w20g40_s2
+  longest gap between sent fixes in the hold: 2.08 s (from 38.31 s); gaps over 1 s: 6
+lowout_apb_jd_60m_w20g40_out3s_s1
+  longest gap between sent fixes in the hold: 3.85 s (from 20.21 s); gaps over 1 s: 1
+  PX4 position error at the outage start 0.58 m, at the re-anchor (23.03 s) 0.29 m; change 0.50 m
+  mean true position 0-20 s from the hold point: N -0.22 E +0.28 m (0.36 m)
+  mean true position 33-60 s from the hold point: N +0.53 E +0.30 m (0.61 m)
+lowout_apb_jd_60m_w20g40_out3s_s2
+  longest gap between sent fixes in the hold: 3.82 s (from 20.15 s); gaps over 1 s: 1
+  PX4 position error at the outage start 2.57 m, at the re-anchor (23.03 s) 2.67 m; change 0.20 m
+  mean true position 0-20 s from the hold point: N -0.08 E +0.39 m (0.39 m)
+  mean true position 33-60 s from the hold point: N +0.57 E +0.35 m (0.67 m)
+lowout_truth_jd_5m_w20g40_s1
+lowout_truth_jd_10m_w20g40_s1
+lowout_apb_jd_5m_calm_s1
+  longest gap between sent fixes in the hold: 1.20 s (from 18.23 s); gaps over 1 s: 2
+lowout_apb_jd_10m_calm_s1
+  longest gap between sent fixes in the hold: 1.08 s (from 14.08 s); gaps over 1 s: 1
+lowout_apb_jd_100m_w20g40_out3s_s1
+  longest gap between sent fixes in the hold: 3.69 s (from 20.09 s); gaps over 1 s: 1
+  PX4 position error at the outage start 1.66 m, at the re-anchor (23.02 s) 1.64 m; change 0.13 m
+  mean true position 0-20 s from the hold point: N -0.25 E +0.71 m (0.75 m)
+  mean true position 33-60 s from the hold point: N -0.60 E -0.31 m (0.68 m)

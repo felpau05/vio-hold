@@ -1,0 +1,69 @@
+Same input, two machines: this x86_64 laptop (native, Python 3.12 venv) and the bundle on emulated aarch64
+(qemu-user, CPU cortex-a53, Debian 11 root file system, glibc 2.31).
+
+== hold_check.py, native:
+frames 120, fixes 119, states ['init', 'ok']
+error against the truth: rms 0.1880 m, max 0.3467 m
+error of the last 5 fixes (m): 0.27624 0.15883 0.13249 0.29281 0.14534
+PASS
+== hold_check.py, emulated: see deb11_hold.txt and deb13_hold.txt (the same four lines)
+
+$ python apb_main.py replay (x86_64 laptop, native)
+replay: {'frames': 245, 'sent': 170, 'init': 5, 'ok': 199, 'degraded': 27, 'lost': 14}; log WORK/native_copy/vio-bundle/vio/logs/replay_20261120_034922.csv
+$ python apb_main.py timing (x86_64 laptop, native)
+PASS video delay 60 ms (was 60), readout +23 ms (was +16), residual 0.66 deg, 21 deg/s
+PASS settings written. Start run again, then set VISO_DELAY_MS from 'apb_main.py delay' after the hover.
+== emulated: see deb11_replay.txt and deb11_timing.txt (the same lines)
+
+== replay logs, row by row (245 rows): largest difference per column
+rows 245 native, 245 emulated
+  t: 0
+  state: 0
+  n: 0
+  north: 0.0001
+  east: 0.0001
+  var: 0
+  sent: 0
+  why: 0
+  proc_ms: not compared (a processing time; emulated time is not the board speed)
+  age_ms: 0
+  height: 0
+  note: 0
+  mode: 0
+
+== tests_apb/test_lens_d.py on the same program files: x86_64 native (left, <) and emulated aarch64 (right, >)
+Hold, replay and timing above are identical. The lens fit is not: optical-flow tracking finds a few other
+points (4203 against 4213 residuals), so the fit moves a little. Every check passes on both, except the last
+T6 case, a KNOWN LIMIT on x86_64 (fy error +1.08 %, limit 1.0 %) and a PASS on aarch64 (+0.82 %).
+8,11c8,11
+<   PASS from 'Justice D full sensor (assumed)': fx error +0.32 %, fy error +0.26 % (limit 1.0 %), k1 -0.0371. Delay 44 ms, readout +9 ms, top right.
+<   PASS from 'Justice D crop (assumed)': fx error +0.32 %, fy error +0.26 % (limit 1.0 %), k1 -0.0371. Delay 44 ms, readout +9 ms, top right.
+<   PASS from 'Justice D anamorphic (assumed)': fx error +0.32 %, fy error +0.26 % (limit 1.0 %), k1 -0.0371. Delay 44 ms, readout +9 ms, top right.
+---
+>   PASS from 'Justice D full sensor (assumed)': fx error +0.33 %, fy error +0.12 % (limit 1.0 %), k1 -0.0361. Delay 46 ms, readout +16 ms, top right.
+>   PASS from 'Justice D crop (assumed)': fx error +0.33 %, fy error +0.12 % (limit 1.0 %), k1 -0.0361. Delay 46 ms, readout +16 ms, top right.
+>   PASS from 'Justice D anamorphic (assumed)': fx error +0.33 %, fy error +0.12 % (limit 1.0 %), k1 -0.0361. Delay 46 ms, readout +16 ms, top right.
+14c14
+<   PASS fx error +0.099 %, fy error +0.142 %, cx 323.93 (true 324.0), cy 175.88 (true 176.0), k1 -0.0269 k2 -0.0245 (true -0.03 -0.004)
+---
+>   PASS fx error +0.116 %, fy error +0.156 %, cx 323.90 (true 324.0), cy 175.87 (true 176.0), k1 -0.0270 k2 -0.0240 (true -0.03 -0.004)
+16,23c16,23
+<   PASS rc 0, lens_measured fx error +0.099 %, fy error +0.142 %, by target, lens file unchanged True
+<   PASS target lens x 1.0: rc 0, lens_measured unchanged True, focal scale 0.9997 (want 1.0000), FAIL line [].
+<   PASS target lens x 1.05: rc 0, lens_measured unchanged True, focal scale 0.9517 (want 0.9524), FAIL line ['FAIL focal scale is outside 0.98-1.02: the lens measured with a target does not fit this re
+<   PASS rc 1, edge FAIL line True, lens_measured None, calibrated False. Last line: FAIL calibration: the lens fit ended at the edge of its search range: fx / (w / 2) 1.693 (range 0.60 to 1.48), fy / f
+<   PASS hidden lens near 'Justice D full sensor (assumed)' (fx 230.5 fy 241.2 cx 320.7 cy 173.8 k1 -0.0426 k2 +0.0086): fx error -0.27 %, fy error -0.32 % (limit 1.0 %), k1 -0.0296. Delay 42 ms, readou
+<   PASS hidden lens near 'Justice D anamorphic (assumed)' (fx 312.0 fy 254.2 cx 315.8 cy 175.7 k1 -0.0325 k2 -0.0054): fx error +0.06 %, fy error +0.13 % (limit 1.0 %), k1 -0.0383. Delay 44 ms, readout
+<   PASS equisolid r = 2 f sin(theta / 2), f 302.4 x 290.2 px, edges at 62.9 and 36.9 deg as TRUE; against best-fit equidistant fx 302.37 fy 290.19: fx error +0.07 %, fy error +0.11 % (limit 2.0 %), k1 
+<   KNOWN LIMIT true lens of C, scene at 60 m, camera moves 0.19 m north, 0.24 m east, 0.03 m down peak to peak, in phase with the turn: fx error +0.86 %, fy error +1.08 % (limit 1.0 %), k1 -0.0374. Del
+---
+>   PASS rc 0, lens_measured fx error +0.116 %, fy error +0.156 %, by target, lens file unchanged True
+>   PASS target lens x 1.0: rc 0, lens_measured unchanged True, focal scale 0.9995 (want 1.0000), FAIL line [].
+>   PASS target lens x 1.05: rc 0, lens_measured unchanged True, focal scale 0.9516 (want 0.9524), FAIL line ['FAIL focal scale is outside 0.98-1.02: the lens measured with a target does not fit this re
+>   PASS rc 1, edge FAIL line True, lens_measured None, calibrated False. Last line: FAIL calibration: the lens fit ended at the edge of its search range: fx / (w / 2) 1.694 (range 0.60 to 1.48), fy / f
+>   PASS hidden lens near 'Justice D full sensor (assumed)' (fx 230.5 fy 241.2 cx 320.7 cy 173.8 k1 -0.0426 k2 +0.0086): fx error -0.28 %, fy error -0.29 % (limit 1.0 %), k1 -0.0297. Delay 42 ms, readou
+>   PASS hidden lens near 'Justice D anamorphic (assumed)' (fx 312.0 fy 254.2 cx 315.8 cy 175.7 k1 -0.0325 k2 -0.0054): fx error +0.15 %, fy error +0.14 % (limit 1.0 %), k1 -0.0394. Delay 44 ms, readout
+>   PASS equisolid r = 2 f sin(theta / 2), f 302.4 x 290.2 px, edges at 62.9 and 36.9 deg as TRUE; against best-fit equidistant fx 302.37 fy 290.19: fx error +0.18 %, fy error +0.13 % (limit 2.0 %), k1 
+>   PASS true lens of C, scene at 60 m, camera moves 0.19 m north, 0.24 m east, 0.03 m down peak to peak, in phase with the turn: fx error +0.75 %, fy error +0.82 % (limit 1.0 %), k1 -0.0366. Delay 44 m
+native: 0 FAIL, 1 KNOWN LIMIT (not a pass) in 346 s
+emulated: ALL PASS in 4461 s

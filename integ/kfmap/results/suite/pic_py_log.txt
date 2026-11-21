@@ -1,0 +1,5 @@
+bad_pictures dense_localdense_turn start 04:04:54 load 2.72
+bad_pictures dense_localdense_turn end 04:05:12 rc=0 load 4.81
+test_live dense_localdense_turn start 04:05:52 load 2.77
+test_live dense_localdense_turn end 04:06:46 rc=1 load 2.75
+lock removed 04:06:46

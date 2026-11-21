@@ -1,0 +1,4 @@
+FAIL <project>/tools/profiles/betaflight.json: unknown key 'msp_lock_gain'. Fix the spelling or remove it.
+apply exit 1
+FAIL <project>/tools/profiles/betaflight.json: unknown key 'msp_lock_gain'. Fix the spelling or remove it.
+show exit 0

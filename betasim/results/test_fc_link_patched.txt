@@ -1,0 +1,23 @@
+A. PX4 fake, clock offset 80 ms, arrival jitter 0-20 ms
+  PASS firmware detected: px4 
+  PASS streams: before ATTITUDE 16 Hz, HIGHRES_IMU 39, LOCAL_POSITION_NED 1; after ATTITUDE 100 Hz, HIGHRES_IMU 0, LOCAL_POSITION_NED 10 (ack 0)
+  PASS clock mapping error over the last 3 s: +1.11 .. +1.15 ms (limit 3 ms; the injected jitter averages 10 ms)
+  PASS attitude in the companion clock matches the truth: worst 0.025 deg (rotation up to 30 deg/s, so 1 ms = 0.03 deg)
+  PASS attitude rows carry rates (7 columns); height 2.00 m (true 2.00)
+  PASS FC local position for re-anchor: [0.49415135 0.36498553]
+  PASS parameter check on PX4 v1.15 defaults: FAIL for ['EKF2_DELAY_MAX', 'EKF2_EV_CTRL', 'EKF2_GPS_CTRL', 'EKF2_HGT_REF', 'EKF2_RNG_CTRL']; e.g. 'FAIL param EKF2_EV_CTRL = 15; need 1. Run 'apb_main.py check --set-params', then reboot the FC.'
+  PASS --set-params: 9/9 pass; e.g. 'PASS param EKF2_EV_CTRL: wrote 1, reads 1. Reboot the flight controller.'
+  PASS parameters read back right after the write
+  PASS TIMESYNC: our requests answered (10, RTT p90 0.7 ms); PX4 requests answered by us (79)
+  PASS VISION_POSITION_ESTIMATE fields: {"kind": "vpe", "t_arr": 59969.441974354, "usec": 59969361277, "x": 1.5, "y": -2.0, "z": -2.0, "roll": NaN, "pitch": NaN, "yaw": NaN, "covariance": [0.30000001192092896, 0.05000000074505806, 0.0, 0.0, 0.0, 0.0, 0.20000000298023224, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], "reset_counter": 0, "sysid": 1, "compid": 197, "angles_nan": [true, true, true]}
+  PASS version-1 Est (no cov): covariance[0], [6] = var/2 = 0.25
+B. ArduPilot fake
+  PASS firmware detected: ardupilot 
+  PASS ArduPilot parameter check (GPS1_TYPE read as GPS_TYPE): FAIL for ['EK3_SRC1_POSXY', 'EK3_SRC1_VELXY', 'EK3_SRC1_VELZ', 'GPS_TYPE', 'VISO_DELAY_MS', 'VISO_TYPE']
+  PASS SET_GPS_GLOBAL_ORIGIN: [{'kind': 'origin', 't_arr': 59976.696778163, 'lat': 454000000, 'lon': -757000000, 'alt': 60000}]
+  PASS ArduPilot fix carries the FC attitude: (-0.03757680207490921, -0.12333393841981888, 0.5171602964401245)
+C. firmware without external vision
+  PASS generic MAVLink autopilot: the flight controller says MAVLink autopilot type 0 (iNav or Betaflight telemetry?). This firmware has no external-vision input; not supported yet.
+  PASS no heartbeat, Betaflight answers MSP on a serial port: MspLink (2.0 s)
+  PASS nothing answers: no MAVLink heartbeat on udpin:127.0.0.1:14656 in 2 s and no MSP answer on /nonexistent. Check the cable, the baud rate and that mavlink-router runs.
+ALL PASS in 20 s

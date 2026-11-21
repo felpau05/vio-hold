@@ -1,0 +1,3921 @@
+[
+ {
+  "label": "lowap_apb_10m_w20g40_s11_base_farmland",
+  "version": "base",
+  "ground": "farmland",
+  "load_start": 2.80078125,
+  "load_end": 8.21337890625,
+  "hold_s": 60.0,
+  "hold_cfg": {
+   "repeat_diff": 0.01,
+   "h_min": 2.0
+  },
+  "att_source": "gyro (default)",
+  "yaw_err_at_switch": -0.6895519600926312,
+  "extnav_to_switch": 8.77,
+  "extnav_all": [
+   -8.77,
+   -8.77
+  ],
+  "align_t": -9.87,
+  "align_step": -12.836243950046196,
+  "fc_modes": [
+   [
+    -27.41,
+    "0"
+   ],
+   [
+    -15.42,
+    "ALT_HOLD"
+   ],
+   [
+    0.0,
+    "LOITER"
+   ]
+  ],
+  "fc_texts_hold": [],
+  "reanchors_runner": 5,
+  "rms30": 0.323122791462632,
+  "max30": 0.6667912181980726,
+  "gap30": 1.8906999999999985,
+  "gap_at30": 3.1469202859980867,
+  "fix_hz30": 9.766666666666667,
+  "ferr30": null,
+  "ferr_max30": null,
+  "nbad30": -1,
+  "nsent30": 295,
+  "fabs_max30": 0.41465293346555027,
+  "nbad_abs30": 0,
+  "yaw_chg30": 4.323453022656669,
+  "reanchors30": 2,
+  "rms60": 0.3862585816529459,
+  "max60": 0.8030787008604268,
+  "gap60": 1.8906999999999985,
+  "gap_at60": 3.1469202859980867,
+  "fix_hz60": 9.633333333333333,
+  "ferr60": null,
+  "ferr_max60": null,
+  "nbad60": -1,
+  "nsent60": 580,
+  "fabs_max60": 0.6456529634338593,
+  "nbad_abs60": 33,
+  "yaw_chg60": 5.13680425185125,
+  "reanchors60": 5,
+  "gate_load": 2.80078125
+ },
+ {
+  "label": "lowap_apb_10m_w20g40_s11_base_ottawa2022",
+  "version": "base",
+  "ground": "ottawa2022",
+  "load_start": 2.78515625,
+  "load_end": 5.943359375,
+  "hold_s": 60.0,
+  "hold_cfg": {
+   "repeat_diff": 0.01,
+   "h_min": 2.0
+  },
+  "att_source": "gyro (default)",
+  "yaw_err_at_switch": -0.6829571906085263,
+  "extnav_to_switch": 4.37,
+  "extnav_all": [
+   -4.37,
+   -4.37
+  ],
+  "align_t": -8.98,
+  "align_step": -12.780517634137176,
+  "fc_modes": [
+   [
+    -25.72,
+    "0"
+   ],
+   [
+    -14.49,
+    "ALT_HOLD"
+   ],
+   [
+    0.01,
+    "LOITER"
+   ]
+  ],
+  "fc_texts_hold": [],
+  "reanchors_runner": 7,
+  "rms30": 0.7421319543028873,
+  "max30": 1.254191247029949,
+  "gap30": 1.380000000000002,
+  "gap_at30": 0.16333737399997722,
+  "fix_hz30": 8.7,
+  "ferr30": 0.8587856098354265,
+  "ferr_max30": 1.1928343271729016,
+  "nbad30": 226,
+  "nsent30": 263,
+  "fabs_max30": 1.8870960525257032,
+  "nbad_abs30": 263,
+  "yaw_chg30": 1.5972753125175787,
+  "reanchors30": 5,
+  "rms60": 1.0744323551361867,
+  "max60": 1.6530721467379503,
+  "gap60": 1.3818000000000055,
+  "gap_at60": 50.36863737399998,
+  "fix_hz60": 9.033333333333333,
+  "ferr60": 1.1360015393041571,
+  "ferr_max60": 1.5157568704123912,
+  "nbad60": 507,
+  "nsent60": 544,
+  "fabs_max60": 2.211410381072327,
+  "nbad_abs60": 544,
+  "yaw_chg60": 1.769938556797827,
+  "reanchors60": 7,
+  "gate_load": 2.78515625
+ },
+ {
+  "label": "lowap_apb_10m_w20g40_s11_pyb_farmland",
+  "version": "pyb",
+  "ground": "farmland",
+  "load_start": 2.814453125,
+  "load_end": 11.78466796875,
+  "hold_s": 60.0,
+  "hold_cfg": {
+   "repeat_diff": 0.01,
+   "h_min": 2.0,
+   "dense_local": true,
+   "dense_turn": true
+  },
+  "att_source": "gyro_fcyaw",
+  "yaw_err_at_switch": -0.519979627724716,
+  "extnav_to_switch": 9.15,
+  "extnav_all": [
+   -9.15,
+   -9.15
+  ],
+  "align_t": -10.23,
+  "align_step": -12.831951879380776,
+  "fc_modes": [
+   [
+    -27.87,
+    "0"
+   ],
+   [
+    -15.74,
+    "ALT_HOLD"
+   ],
+   [
+    0.0,
+    "LOITER"
+   ]
+  ],
+  "fc_texts_hold": [],
+  "reanchors_runner": 2,
+  "rms30": 0.3338270027229817,
+  "max30": 0.7734381002684647,
+  "gap30": 1.3188999999999993,
+  "gap_at30": 19.64574231199889,
+  "fix_hz30": 10.4,
+  "ferr30": 0.05792815530665829,
+  "ferr_max30": 0.1220245054115772,
+  "nbad30": 0,
+  "nsent30": 312,
+  "fabs_max30": 0.21523376114947262,
+  "nbad_abs30": 0,
+  "yaw_chg30": 2.3830200103670682,
+  "reanchors30": 1,
+  "rms60": 0.37692870715829807,
+  "max60": 0.7734381002684647,
+  "gap60": 1.3954000000000093,
+  "gap_at60": 41.66704231199889,
+  "fix_hz60": 10.816666666666666,
+  "ferr60": 0.06300979553220307,
+  "ferr_max60": 0.13887746847183968,
+  "nbad60": 0,
+  "nsent60": 649,
+  "fabs_max60": 0.23586353126428292,
+  "nbad_abs60": 0,
+  "yaw_chg60": 2.3830200103670682,
+  "reanchors60": 2,
+  "gate_load": 2.814453125
+ },
+ {
+  "label": "lowap_apb_10m_w20g40_s11_pyb_ottawa2022",
+  "version": "pyb",
+  "ground": "ottawa2022",
+  "load_start": 2.90087890625,
+  "load_end": 4.68994140625,
+  "hold_s": 60.0,
+  "hold_cfg": {
+   "repeat_diff": 0.01,
+   "h_min": 2.0,
+   "dense_local": true,
+   "dense_turn": true
+  },
+  "att_source": "gyro_fcyaw",
+  "yaw_err_at_switch": -0.6382717646382897,
+  "extnav_to_switch": 5.69,
+  "extnav_all": [
+   -5.69,
+   -5.69
+  ],
+  "align_t": -8.8,
+  "align_step": -12.779602363430513,
+  "fc_modes": [
+   [
+    -25.54,
+    "0"
+   ],
+   [
+    -14.34,
+    "ALT_HOLD"
+   ],
+   [
+    0.01,
+    "LOITER"
+   ]
+  ],
+  "fc_texts_hold": [],
+  "reanchors_runner": 6,
+  "rms30": 0.33565272384531164,
+  "max30": 0.7073651790861832,
+  "gap30": 2.1177000000000064,
+  "gap_at30": 11.213874734000713,
+  "fix_hz30": 8.2,
+  "ferr30": 0.07809212389604385,
+  "ferr_max30": 0.21390653796255835,
+  "nbad30": 0,
+  "nsent30": 246,
+  "fabs_max30": 0.37333746566110004,
+  "nbad_abs30": 0,
+  "yaw_chg30": 0.705848869062981,
+  "reanchors30": 5,
+  "rms60": 0.3682547952668869,
+  "max60": 0.7554752302467299,
+  "gap60": 2.1177000000000064,
+  "gap_at60": 11.213874734000713,
+  "fix_hz60": 9.433333333333334,
+  "ferr60": 0.145885246010171,
+  "ferr_max60": 0.2787526416747951,
+  "nbad60": 0,
+  "nsent60": 567,
+  "fabs_max60": 0.4272004426499192,
+  "nbad_abs60": 0,
+  "yaw_chg60": 1.1372463302821374,
+  "reanchors60": 6,
+  "gate_load": 2.90087890625
+ },
+ {
+  "label": "lowap_apb_10m_w20g40_s12_base_farmland",
+  "version": "base",
+  "ground": "farmland",
+  "load_start": 2.90478515625,
+  "load_end": 10.4091796875,
+  "hold_s": 60.0,
+  "hold_cfg": {
+   "repeat_diff": 0.01,
+   "h_min": 2.0
+  },
+  "att_source": "gyro (default)",
+  "yaw_err_at_switch": -0.858138508889399,
+  "extnav_to_switch": 6.46,
+  "extnav_all": [
+   -6.46,
+   -6.45
+  ],
+  "align_t": -8.77,
+  "align_step": -12.836780237286677,
+  "fc_modes": [
+   [
+    -26.31,
+    "0"
+   ],
+   [
+    -14.33,
+    "ALT_HOLD"
+   ],
+   [
+    0.01,
+    "LOITER"
+   ]
+  ],
+  "fc_texts_hold": [],
+  "reanchors_runner": 2,
+  "rms30": 0.3338477940811471,
+  "max30": 0.8377280059042771,
+  "gap30": 1.3114000000000012,
+  "gap_at30": 1.2942055949992892,
+  "fix_hz30": 9.9,
+  "ferr30": 0.16987138827467646,
+  "ferr_max30": 0.2692335517181968,
+  "nbad30": 0,
+  "nsent30": 297,
+  "fabs_max30": 0.34547951212039696,
+  "nbad_abs30": 0,
+  "yaw_chg30": 3.899308243301872,
+  "reanchors30": 1,
+  "rms60": 0.3674266649026895,
+  "max60": 0.8624757880926516,
+  "gap60": 1.3114000000000012,
+  "gap_at60": 1.2942055949992892,
+  "fix_hz60": 10.383333333333333,
+  "ferr60": 0.21111549270961563,
+  "ferr_max60": 0.3768428204123355,
+  "nbad60": 0,
+  "nsent60": 621,
+  "fabs_max60": 0.44739476092300323,
+  "nbad_abs60": 0,
+  "yaw_chg60": 3.899308243301872,
+  "reanchors60": 2,
+  "gate_load": 2.90478515625
+ },
+ {
+  "label": "lowap_apb_10m_w20g40_s12_base_ottawa2022",
+  "version": "base",
+  "ground": "ottawa2022",
+  "load_start": 2.88037109375,
+  "load_end": 4.00439453125,
+  "hold_s": 60.0,
+  "hold_cfg": {
+   "repeat_diff": 0.01,
+   "h_min": 2.0
+  },
+  "att_source": "gyro (default)",
+  "yaw_err_at_switch": -0.634012012440572,
+  "extnav_to_switch": 4.09,
+  "extnav_all": [
+   -4.09,
+   -4.09
+  ],
+  "align_t": -8.81,
+  "align_step": -12.780868220295433,
+  "fc_modes": [
+   [
+    -25.54,
+    "0"
+   ],
+   [
+    -14.32,
+    "ALT_HOLD"
+   ],
+   [
+    0.01,
+    "LOITER"
+   ]
+  ],
+  "fc_texts_hold": [],
+  "reanchors_runner": 4,
+  "rms30": 0.6509990469123932,
+  "max30": 1.1116169818400246,
+  "gap30": 1.3038999999999987,
+  "gap_at30": 16.22904971200067,
+  "fix_hz30": 9.7,
+  "ferr30": 0.6363668395085741,
+  "ferr_max30": 0.9129850501591197,
+  "nbad30": 207,
+  "nsent30": 289,
+  "fabs_max30": 1.6160901196512922,
+  "nbad_abs30": 289,
+  "yaw_chg30": 3.2454511969729003,
+  "reanchors30": 3,
+  "rms60": 0.8880618917362972,
+  "max60": 1.3749491905350115,
+  "gap60": 1.378699999999995,
+  "gap_at60": 56.97714971200067,
+  "fix_hz60": 10.3,
+  "ferr60": 0.8810026355719058,
+  "ferr_max60": 1.20246970084711,
+  "nbad60": 536,
+  "nsent60": 618,
+  "fabs_max60": 1.9077978099884976,
+  "nbad_abs60": 618,
+  "yaw_chg60": 3.2454511969729003,
+  "reanchors60": 4,
+  "gate_load": 2.88037109375
+ },
+ {
+  "label": "lowap_apb_10m_w20g40_s12_pyb_farmland",
+  "version": "pyb",
+  "ground": "farmland",
+  "load_start": 2.90087890625,
+  "load_end": 3.9853515625,
+  "hold_s": 60.0,
+  "hold_cfg": {
+   "repeat_diff": 0.01,
+   "h_min": 2.0,
+   "dense_local": true,
+   "dense_turn": true
+  },
+  "att_source": "gyro_fcyaw",
+  "yaw_err_at_switch": -1.0363268943820403,
+  "extnav_to_switch": 8.56,
+  "extnav_all": [
+   -8.56,
+   -8.55
+  ],
+  "align_t": -9.7,
+  "align_step": -12.831925835345771,
+  "fc_modes": [
+   [
+    -27.34,
+    "0"
+   ],
+   [
+    -15.24,
+    "ALT_HOLD"
+   ],
+   [
+    0.0,
+    "LOITER"
+   ]
+  ],
+  "fc_texts_hold": [],
+  "reanchors_runner": 1,
+  "rms30": 0.25254075313234087,
+  "max30": 0.5131684465497173,
+  "gap30": 0.16289999999999338,
+  "gap_at30": 17.05525469699934,
+  "fix_hz30": 12.166666666666666,
+  "ferr30": 0.02732021315212318,
+  "ferr_max30": 0.06021125936189974,
+  "nbad30": 0,
+  "nsent30": 365,
+  "fabs_max30": 0.06627444879123323,
+  "nbad_abs30": 0,
+  "yaw_chg30": 0.9729961884595488,
+  "reanchors30": 0,
+  "rms60": 0.2824852319617364,
+  "max60": 0.8035523903744557,
+  "gap60": 1.4691000000000045,
+  "gap_at60": 58.169154696999335,
+  "fix_hz60": 11.916666666666666,
+  "ferr60": 0.03323705160653218,
+  "ferr_max60": 0.145365796373786,
+  "nbad60": 0,
+  "nsent60": 716,
+  "fabs_max60": 0.11450998241595613,
+  "nbad_abs60": 0,
+  "yaw_chg60": 0.9729961884595488,
+  "reanchors60": 1,
+  "gate_load": 2.90087890625
+ },
+ {
+  "label": "lowap_apb_10m_w20g40_s12_pyb_ottawa2022",
+  "version": "pyb",
+  "ground": "ottawa2022",
+  "load_start": 2.86669921875,
+  "load_end": 8.80859375,
+  "hold_s": 60.0,
+  "hold_cfg": {
+   "repeat_diff": 0.01,
+   "h_min": 2.0,
+   "dense_local": true,
+   "dense_turn": true
+  },
+  "att_source": "gyro_fcyaw",
+  "yaw_err_at_switch": -0.800255271239247,
+  "extnav_to_switch": 7.45,
+  "extnav_all": [
+   -7.45,
+   -7.44
+  ],
+  "align_t": -8.89,
+  "align_step": -12.78171991285906,
+  "fc_modes": [
+   [
+    -25.63,
+    "0"
+   ],
+   [
+    -14.41,
+    "ALT_HOLD"
+   ],
+   [
+    0.0,
+    "LOITER"
+   ]
+  ],
+  "fc_texts_hold": [],
+  "reanchors_runner": 0,
+  "rms30": 0.2661126452210684,
+  "max30": 0.5761372328901085,
+  "gap30": 0.24670000000000059,
+  "gap_at30": 22.221655701001453,
+  "fix_hz30": 9.166666666666666,
+  "ferr30": 0.06184301257779988,
+  "ferr_max30": 0.14166671301160683,
+  "nbad30": 0,
+  "nsent30": 275,
+  "fabs_max30": 0.12312569708546582,
+  "nbad_abs30": 0,
+  "yaw_chg30": 1.5699986864897482,
+  "reanchors30": 0,
+  "rms60": 0.2900026536075544,
+  "max60": 0.7079384261163307,
+  "gap60": 0.4076000000000022,
+  "gap_at60": 57.69995570100146,
+  "fix_hz60": 9.516666666666667,
+  "ferr60": 0.05403903463862759,
+  "ferr_max60": 0.14166671301160683,
+  "nbad60": 0,
+  "nsent60": 572,
+  "fabs_max60": 0.14886404969492822,
+  "nbad_abs60": 0,
+  "yaw_chg60": 1.5699986864897482,
+  "reanchors60": 0,
+  "gate_load": 2.86669921875
+ },
+ {
+  "label": "lowap_apb_10m_w20g40_s13_base_farmland",
+  "version": "base",
+  "ground": "farmland",
+  "load_start": 4.3447265625,
+  "load_end": 9.15673828125,
+  "hold_s": 60.0,
+  "hold_cfg": {
+   "repeat_diff": 0.01,
+   "h_min": 2.0
+  },
+  "att_source": "gyro (default)",
+  "yaw_err_at_switch": -0.6807335017278,
+  "extnav_to_switch": 8.83,
+  "extnav_all": [
+   -8.83,
+   -8.82
+  ],
+  "align_t": -9.86,
+  "align_step": -12.833112390411499,
+  "fc_modes": [
+   [
+    -27.5,
+    "0"
+   ],
+   [
+    -15.41,
+    "ALT_HOLD"
+   ],
+   [
+    0.02,
+    "LOITER"
+   ]
+  ],
+  "fc_texts_hold": [],
+  "reanchors_runner": 7,
+  "rms30": 0.5511722303239033,
+  "max30": 1.2441856826852835,
+  "gap30": 3.6193000000000026,
+  "gap_at30": 15.689130665002466,
+  "fix_hz30": 8.433333333333334,
+  "ferr30": 0.23033418439907202,
+  "ferr_max30": 0.4227529644488585,
+  "nbad30": 0,
+  "nsent30": 255,
+  "fabs_max30": 0.5382712072390806,
+  "nbad_abs30": 8,
+  "yaw_chg30": 5.894841288521597,
+  "reanchors30": 6,
+  "rms60": 0.6352088529616817,
+  "max60": 1.2441856826852835,
+  "gap60": 3.6193000000000026,
+  "gap_at60": 15.689130665002466,
+  "fix_hz60": 9.466666666666667,
+  "ferr60": 0.4087230313369401,
+  "ferr_max60": 0.6236017592315105,
+  "nbad60": 178,
+  "nsent60": 570,
+  "fabs_max60": 0.6355879836183187,
+  "nbad_abs60": 309,
+  "yaw_chg60": 5.894841288521597,
+  "reanchors60": 7,
+  "gate_load": 2.98193359375
+ },
+ {
+  "label": "lowap_apb_10m_w20g40_s13_base_ottawa2022",
+  "version": "base",
+  "ground": "ottawa2022",
+  "load_start": 2.94970703125,
+  "load_end": 10.1611328125,
+  "hold_s": 60.0,
+  "hold_cfg": {
+   "repeat_diff": 0.01,
+   "h_min": 2.0
+  },
+  "att_source": "gyro (default)",
+  "yaw_err_at_switch": -0.4642326730672901,
+  "extnav_to_switch": 3.98,
+  "extnav_all": [
+   -3.98,
+   -3.97
+  ],
+  "align_t": -9.04,
+  "align_step": -12.730060253276804,
+  "fc_modes": [
+   [
+    -27.38,
+    "0"
+   ],
+   [
+    -14.59,
+    "ALT_HOLD"
+   ],
+   [
+    0.0,
+    "LOITER"
+   ]
+  ],
+  "fc_texts_hold": [],
+  "reanchors_runner": 7,
+  "rms30": 0.9364972081017515,
+  "max30": 1.4822694408227925,
+  "gap30": 1.8075999999999972,
+  "gap_at30": 28.168852242997097,
+  "fix_hz30": 8.0,
+  "ferr30": 0.9651921852750579,
+  "ferr_max30": 1.3120633208280874,
+  "nbad30": 205,
+  "nsent30": 240,
+  "fabs_max30": 1.9429056872141959,
+  "nbad_abs30": 240,
+  "yaw_chg30": 2.117103313246816,
+  "reanchors30": 5,
+  "rms60": 1.265810361903357,
+  "max60": 1.7681479912157363,
+  "gap60": 1.8075999999999972,
+  "gap_at60": 28.168852242997097,
+  "fix_hz60": 9.1,
+  "ferr60": 1.3402301737862277,
+  "ferr_max60": 1.7096626484667734,
+  "nbad60": 513,
+  "nsent60": 548,
+  "fabs_max60": 2.3412923268396706,
+  "nbad_abs60": 548,
+  "yaw_chg60": 2.2483312571179273,
+  "reanchors60": 7,
+  "gate_load": 2.94970703125
+ },
+ {
+  "label": "lowap_apb_10m_w20g40_s13_pyb_farmland",
+  "version": "pyb",
+  "ground": "farmland",
+  "load_start": 2.92919921875,
+  "load_end": 8.25,
+  "hold_s": 60.0,
+  "hold_cfg": {
+   "repeat_diff": 0.01,
+   "h_min": 2.0,
+   "dense_local": true,
+   "dense_turn": true
+  },
+  "att_source": "gyro_fcyaw",
+  "yaw_err_at_switch": -0.9449108552138193,
+  "extnav_to_switch": 8.93,
+  "extnav_all": [
+   -8.93,
+   -8.93
+  ],
+  "align_t": -10.03,
+  "align_step": -12.832676389185462,
+  "fc_modes": [
+   [
+    -27.67,
+    "0"
+   ],
+   [
+    -15.61,
+    "ALT_HOLD"
+   ],
+   [
+    0.01,
+    "LOITER"
+   ]
+  ],
+  "fc_texts_hold": [],
+  "reanchors_runner": 1,
+  "rms30": 0.46000639354001954,
+  "max30": 1.033598006569071,
+  "gap30": 1.3192000000000021,
+  "gap_at30": 26.41096054099756,
+  "fix_hz30": 10.866666666666667,
+  "ferr30": 0.07837289983808003,
+  "ferr_max30": 0.28160280469079274,
+  "nbad30": 0,
+  "nsent30": 326,
+  "fabs_max30": 0.26873472106534735,
+  "nbad_abs30": 0,
+  "yaw_chg30": 2.573383574991169,
+  "reanchors30": 1,
+  "rms60": 0.43280947470726205,
+  "max60": 1.033598006569071,
+  "gap60": 1.3192000000000021,
+  "gap_at60": 26.41096054099756,
+  "fix_hz60": 11.283333333333333,
+  "ferr60": 0.07240558393258432,
+  "ferr_max60": 0.28160280469079274,
+  "nbad60": 0,
+  "nsent60": 678,
+  "fabs_max60": 0.2847839809721822,
+  "nbad_abs60": 0,
+  "yaw_chg60": 2.573383574991169,
+  "reanchors60": 1,
+  "gate_load": 2.92919921875
+ },
+ {
+  "label": "lowap_apb_10m_w20g40_s13_pyb_ottawa2022",
+  "version": "pyb",
+  "ground": "ottawa2022",
+  "load_start": 2.80810546875,
+  "load_end": 7.1845703125,
+  "hold_s": 60.0,
+  "hold_cfg": {
+   "repeat_diff": 0.01,
+   "h_min": 2.0,
+   "dense_local": true,
+   "dense_turn": true
+  },
+  "att_source": "gyro_fcyaw",
+  "yaw_err_at_switch": -0.5359622019631405,
+  "extnav_to_switch": 8.05,
+  "extnav_all": [
+   -8.05,
+   -8.05
+  ],
+  "align_t": -9.38,
+  "align_step": -12.727887042829192,
+  "fc_modes": [
+   [
+    -27.71,
+    "0"
+   ],
+   [
+    -14.9,
+    "ALT_HOLD"
+   ],
+   [
+    0.0,
+    "LOITER"
+   ]
+  ],
+  "fc_texts_hold": [],
+  "reanchors_runner": 0,
+  "rms30": 0.5020434150496192,
+  "max30": 1.1007629839103903,
+  "gap30": 0.24909999999999854,
+  "gap_at30": 28.796322560000412,
+  "fix_hz30": 10.5,
+  "ferr30": 0.0934070607958527,
+  "ferr_max30": 0.23454414190799838,
+  "nbad30": 0,
+  "nsent30": 315,
+  "fabs_max30": 0.30068467034052404,
+  "nbad_abs30": 0,
+  "yaw_chg30": 2.5080993662158204,
+  "reanchors30": 0,
+  "rms60": 0.4533860019689936,
+  "max60": 1.1007629839103903,
+  "gap60": 0.24909999999999854,
+  "gap_at60": 28.796322560000412,
+  "fix_hz60": 10.866666666666667,
+  "ferr60": 0.07794681376569552,
+  "ferr_max60": 0.23454414190799838,
+  "nbad60": 0,
+  "nsent60": 652,
+  "fabs_max60": 0.30068467034052404,
+  "nbad_abs60": 0,
+  "yaw_chg60": 2.5080993662158204,
+  "reanchors60": 0,
+  "gate_load": 2.80810546875
+ },
+ {
+  "label": "lowap_apb_10m_w20g40_s1_b",
+  "version": "b",
+  "ground": "ottawa2019fall",
+  "load_start": 2.97509765625,
+  "load_end": 7.25390625,
+  "hold_s": 60.0,
+  "hold_cfg": {
+   "repeat_diff": 0.01,
+   "h_min": 2.0
+  },
+  "att_source": "gyro_fcyaw",
+  "yaw_err_at_switch": -2.0653677880300285,
+  "extnav_to_switch": 6.0,
+  "extnav_all": [
+   -6.0,
+   -5.99
+  ],
+  "align_t": -8.93,
+  "align_step": -12.193562555271514,
+  "fc_modes": [
+   [
+    -25.76,
+    "0"
+   ],
+   [
+    -14.48,
+    "ALT_HOLD"
+   ],
+   [
+    0.02,
+    "LOITER"
+   ]
+  ],
+  "fc_texts_hold": [],
+  "reanchors_runner": 9,
+  "rms30": 0.5742036396373268,
+  "max30": 1.2555601406354167,
+  "gap30": 1.5443999999999978,
+  "gap_at30": 13.938080034999679,
+  "fix_hz30": 8.2,
+  "ferr30": 0.31322895363680775,
+  "ferr_max30": 0.6785042260787535,
+  "nbad30": 17,
+  "nsent30": 244,
+  "fabs_max30": 0.94393187569741,
+  "nbad_abs30": 90,
+  "yaw_chg30": 4.149731814022719,
+  "reanchors30": 6,
+  "rms60": 0.8387752358042389,
+  "max60": 1.4866260506329345,
+  "gap60": 1.5460999999999956,
+  "gap_at60": 33.02308003499968,
+  "fix_hz60": 8.533333333333333,
+  "ferr60": 0.6986798685140329,
+  "ferr_max60": 1.0398240105273218,
+  "nbad60": 284,
+  "nsent60": 511,
+  "fabs_max60": 1.3121906530501424,
+  "nbad_abs60": 357,
+  "yaw_chg60": 4.149731814022719,
+  "reanchors60": 9,
+  "gate_load": 2.97509765625
+ },
+ {
+  "label": "lowap_apb_10m_w20g40_s1_base",
+  "version": "base",
+  "ground": "ottawa2019fall",
+  "load_start": 2.9619140625,
+  "load_end": 4.51806640625,
+  "hold_s": 60.0,
+  "hold_cfg": {
+   "repeat_diff": 0.01,
+   "h_min": 2.0
+  },
+  "att_source": "gyro (default)",
+  "yaw_err_at_switch": -1.9601477956796967,
+  "extnav_to_switch": 2.8,
+  "extnav_all": [
+   -2.8,
+   -2.8
+  ],
+  "align_t": -9.15,
+  "align_step": -12.19161903297767,
+  "fc_modes": [
+   [
+    -25.98,
+    "0"
+   ],
+   [
+    -14.64,
+    "ALT_HOLD"
+   ],
+   [
+    0.01,
+    "LOITER"
+   ]
+  ],
+  "fc_texts_hold": [],
+  "reanchors_runner": 3,
+  "rms30": 0.7871695902713791,
+  "max30": 1.3873479039625056,
+  "gap30": 1.306599999999996,
+  "gap_at30": 19.185473349998983,
+  "fix_hz30": 9.5,
+  "ferr30": 0.7746028275172182,
+  "ferr_max30": 1.1739022227750995,
+  "nbad30": 209,
+  "nsent30": 285,
+  "fabs_max30": 1.919994583010165,
+  "nbad_abs30": 285,
+  "yaw_chg30": 1.8249023299251788,
+  "reanchors30": 2,
+  "rms60": 0.9930864021529546,
+  "max60": 1.5765910985799105,
+  "gap60": 1.306599999999996,
+  "gap_at60": 19.185473349998983,
+  "fix_hz60": 10.533333333333333,
+  "ferr60": 1.0397417460957479,
+  "ferr_max60": 1.3111995924500957,
+  "nbad60": 556,
+  "nsent60": 632,
+  "fabs_max60": 2.056948960697742,
+  "nbad_abs60": 632,
+  "yaw_chg60": 1.8646327202686486,
+  "reanchors60": 3,
+  "gate_load": 2.9619140625
+ },
+ {
+  "label": "lowap_apb_10m_w20g40_s1_h15",
+  "version": "h15",
+  "ground": "ottawa2019fall",
+  "load_start": 2.78271484375,
+  "load_end": 7.17626953125,
+  "hold_s": 60.0,
+  "hold_cfg": {
+   "repeat_diff": 0.01,
+   "h_min": 2.0
+  },
+  "att_source": "gyro (default)",
+  "yaw_err_at_switch": -0.23740687386432757,
+  "extnav_to_switch": 13.46,
+  "extnav_all": [
+   -13.46,
+   -13.46
+  ],
+  "align_t": -19.91,
+  "align_step": -12.200509081177882,
+  "fc_modes": [
+   [
+    -36.64,
+    "0"
+   ],
+   [
+    -25.39,
+    "ALT_HOLD"
+   ],
+   [
+    0.0,
+    "LOITER"
+   ]
+  ],
+  "fc_texts_hold": [],
+  "reanchors_runner": 4,
+  "rms30": 0.5089811807844529,
+  "max30": 1.0031853814929221,
+  "gap30": 1.4625999999999983,
+  "gap_at30": 14.959477098001177,
+  "fix_hz30": 9.166666666666666,
+  "ferr30": 0.3299601550990174,
+  "ferr_max30": 0.5858895658508874,
+  "nbad30": 22,
+  "nsent30": 277,
+  "fabs_max30": 1.8997495212392088,
+  "nbad_abs30": 277,
+  "yaw_chg30": 1.282213894376576,
+  "reanchors30": 2,
+  "rms60": 0.6206538389779822,
+  "max60": 1.015509813088481,
+  "gap60": 2.1295000000000073,
+  "gap_at60": 31.65657709800118,
+  "fix_hz60": 9.85,
+  "ferr60": 0.5358879596476402,
+  "ferr_max60": 0.7923261869569698,
+  "nbad60": 339,
+  "nsent60": 594,
+  "fabs_max60": 2.10546225852489,
+  "nbad_abs60": 594,
+  "yaw_chg60": 1.282213894376576,
+  "reanchors60": 4,
+  "gate_load": 2.78271484375
+ },
+ {
+  "label": "lowap_apb_10m_w20g40_s1_py",
+  "version": "py",
+  "ground": "ottawa2019fall",
+  "load_start": 2.857421875,
+  "load_end": 4.83642578125,
+  "hold_s": 60.0,
+  "hold_cfg": {
+   "repeat_diff": 0.01,
+   "h_min": 2.0,
+   "dense_local": true,
+   "dense_turn": true
+  },
+  "att_source": "gyro (default)",
+  "yaw_err_at_switch": -1.958568737123818,
+  "extnav_to_switch": 7.12,
+  "extnav_all": [
+   -7.12,
+   -7.12
+  ],
+  "align_t": -8.9,
+  "align_step": -12.194248865130339,
+  "fc_modes": [
+   [
+    -25.73,
+    "0"
+   ],
+   [
+    -14.43,
+    "ALT_HOLD"
+   ],
+   [
+    0.01,
+    "LOITER"
+   ]
+  ],
+  "fc_texts_hold": [],
+  "reanchors_runner": 0,
+  "rms30": 0.4320951126410293,
+  "max30": 0.8488203192517302,
+  "gap30": 0.24569999999999936,
+  "gap_at30": 15.543963795999067,
+  "fix_hz30": 11.833333333333334,
+  "ferr30": 0.07638084323648198,
+  "ferr_max30": 0.17820827236176484,
+  "nbad30": 0,
+  "nsent30": 355,
+  "fabs_max30": 0.17236229529831287,
+  "nbad_abs30": 0,
+  "yaw_chg30": 8.715188114993664,
+  "reanchors30": 0,
+  "rms60": 0.3921175692552437,
+  "max60": 0.8488203192517302,
+  "gap60": 0.40579999999999217,
+  "gap_at60": 53.50816379599907,
+  "fix_hz60": 11.616666666666667,
+  "ferr60": 0.11528698816437664,
+  "ferr_max60": 0.2109923233578451,
+  "nbad60": 0,
+  "nsent60": 698,
+  "fabs_max60": 0.2645789137081753,
+  "nbad_abs60": 0,
+  "yaw_chg60": 8.715188114993664,
+  "reanchors60": 0,
+  "gate_load": 2.857421875
+ },
+ {
+  "label": "lowap_apb_10m_w20g40_s1_pyb",
+  "version": "pyb",
+  "ground": "ottawa2019fall",
+  "load_start": 2.9853515625,
+  "load_end": 4.59375,
+  "hold_s": 60.0,
+  "hold_cfg": {
+   "repeat_diff": 0.01,
+   "h_min": 2.0,
+   "dense_local": true,
+   "dense_turn": true
+  },
+  "att_source": "gyro_fcyaw",
+  "yaw_err_at_switch": -2.131881349211599,
+  "extnav_to_switch": 5.96,
+  "extnav_all": [
+   -5.96,
+   -5.96
+  ],
+  "align_t": -8.92,
+  "align_step": -12.170032896828848,
+  "fc_modes": [
+   [
+    -25.76,
+    "0"
+   ],
+   [
+    -14.47,
+    "ALT_HOLD"
+   ],
+   [
+    0.02,
+    "LOITER"
+   ]
+  ],
+  "fc_texts_hold": [],
+  "reanchors_runner": 2,
+  "rms30": 0.41575947015070275,
+  "max30": 0.8362732575899389,
+  "gap30": 0.4057999999999993,
+  "gap_at30": 17.008354310000247,
+  "fix_hz30": 11.033333333333333,
+  "ferr30": 0.11160149719282313,
+  "ferr_max30": 0.2030720659425284,
+  "nbad30": 0,
+  "nsent30": 331,
+  "fabs_max30": 0.33198254684552664,
+  "nbad_abs30": 0,
+  "yaw_chg30": 2.179187814751989,
+  "reanchors30": 0,
+  "rms60": 0.39513251237502584,
+  "max60": 0.8362732575899389,
+  "gap60": 1.7096000000000018,
+  "gap_at60": 32.491954310000246,
+  "fix_hz60": 10.933333333333334,
+  "ferr60": 0.14697209546507095,
+  "ferr_max60": 0.25185689895878893,
+  "nbad60": 0,
+  "nsent60": 657,
+  "fabs_max60": 0.46142923202928,
+  "nbad_abs60": 0,
+  "yaw_chg60": 2.179187814751989,
+  "reanchors60": 2,
+  "gate_load": 2.9853515625
+ },
+ {
+  "label": "lowap_apb_10m_w20g40_s1_pybh15",
+  "version": "pybh15",
+  "ground": "ottawa2019fall",
+  "load_start": 2.54150390625,
+  "load_end": 10.044921875,
+  "hold_s": 60.0,
+  "hold_cfg": {
+   "repeat_diff": 0.01,
+   "h_min": 2.0,
+   "dense_local": true,
+   "dense_turn": true
+  },
+  "att_source": "gyro_fcyaw",
+  "yaw_err_at_switch": -0.5094991048728086,
+  "extnav_to_switch": 19.5,
+  "extnav_all": [
+   -19.5,
+   -19.49
+  ],
+  "align_t": -20.71,
+  "align_step": -12.208964534140957,
+  "fc_modes": [
+   [
+    -39.05,
+    "0"
+   ],
+   [
+    -26.27,
+    "ALT_HOLD"
+   ],
+   [
+    0.02,
+    "LOITER"
+   ]
+  ],
+  "fc_texts_hold": [],
+  "reanchors_runner": 0,
+  "rms30": 0.415255522904949,
+  "max30": 0.8911641866883764,
+  "gap30": 0.12189999999999479,
+  "gap_at30": 4.600451322002747,
+  "fix_hz30": 12.066666666666666,
+  "ferr30": 0.04552387448800024,
+  "ferr_max30": 0.13915288351755645,
+  "nbad30": 0,
+  "nsent30": 362,
+  "fabs_max30": 0.15773157889752826,
+  "nbad_abs30": 0,
+  "yaw_chg30": 1.302418224471249,
+  "reanchors30": 0,
+  "rms60": 0.3626241980460332,
+  "max60": 0.8911641866883764,
+  "gap60": 0.12189999999999479,
+  "gap_at60": 4.600451322002747,
+  "fix_hz60": 12.1,
+  "ferr60": 0.0475951288375916,
+  "ferr_max60": 0.13915288351755645,
+  "nbad60": 0,
+  "nsent60": 726,
+  "fabs_max60": 0.18358830233548282,
+  "nbad_abs60": 0,
+  "yaw_chg60": 1.302418224471249,
+  "reanchors60": 0,
+  "gate_load": 2.54150390625
+ },
+ {
+  "label": "lowap_apb_10m_w20g40_s2_b",
+  "version": "b",
+  "ground": "ottawa2019fall",
+  "load_start": 2.8427734375,
+  "load_end": 6.556640625,
+  "hold_s": 60.0,
+  "hold_cfg": {
+   "repeat_diff": 0.01,
+   "h_min": 2.0
+  },
+  "att_source": "gyro_fcyaw",
+  "yaw_err_at_switch": -2.106332574376773,
+  "extnav_to_switch": 6.09,
+  "extnav_all": [
+   -6.09,
+   -6.08
+  ],
+  "align_t": -9.02,
+  "align_step": -12.200515872578961,
+  "fc_modes": [
+   [
+    -25.75,
+    "0"
+   ],
+   [
+    -14.54,
+    "ALT_HOLD"
+   ],
+   [
+    0.0,
+    "LOITER"
+   ]
+  ],
+  "fc_texts_hold": [],
+  "reanchors_runner": 6,
+  "rms30": 0.4164858371430829,
+  "max30": 0.900625847768291,
+  "gap30": 1.3835000000000015,
+  "gap_at30": 17.218960633000226,
+  "fix_hz30": 9.166666666666666,
+  "ferr30": 0.16454682923556055,
+  "ferr_max30": 0.3617400795777249,
+  "nbad30": 0,
+  "nsent30": 273,
+  "fabs_max30": 0.5425794158454276,
+  "nbad_abs30": 3,
+  "yaw_chg30": 2.7951212328867783,
+  "reanchors30": 4,
+  "rms60": 0.5077097350629141,
+  "max60": 0.978639406561203,
+  "gap60": 1.473399999999998,
+  "gap_at60": 41.69496063300024,
+  "fix_hz60": 9.633333333333333,
+  "ferr60": 0.24746252525365361,
+  "ferr_max60": 0.6482791910235057,
+  "nbad60": 22,
+  "nsent60": 578,
+  "fabs_max60": 0.9364808544374911,
+  "nbad_abs60": 164,
+  "yaw_chg60": 2.7951212328867783,
+  "reanchors60": 6,
+  "gate_load": 2.8427734375
+ },
+ {
+  "label": "lowap_apb_10m_w20g40_s2_base",
+  "version": "base",
+  "ground": "ottawa2019fall",
+  "load_start": 2.8505859375,
+  "load_end": 2.92626953125,
+  "hold_s": 60.0,
+  "hold_cfg": {
+   "repeat_diff": 0.01,
+   "h_min": 2.0
+  },
+  "att_source": "gyro (default)",
+  "yaw_err_at_switch": -2.106661036459868,
+  "extnav_to_switch": 3.41,
+  "extnav_all": [
+   -3.41,
+   -3.41
+  ],
+  "align_t": -9.22,
+  "align_step": -12.199994193622599,
+  "fc_modes": [
+   [
+    -25.95,
+    "0"
+   ],
+   [
+    -14.72,
+    "ALT_HOLD"
+   ],
+   [
+    0.01,
+    "LOITER"
+   ]
+  ],
+  "fc_texts_hold": [],
+  "reanchors_runner": 1,
+  "rms30": 0.7108160834170891,
+  "max30": 1.1200564074610377,
+  "gap30": 1.3829999999999991,
+  "gap_at30": 15.093073018000673,
+  "fix_hz30": 9.866666666666667,
+  "ferr30": 0.7336391969849037,
+  "ferr_max30": 1.0511453676718334,
+  "nbad30": 202,
+  "nsent30": 296,
+  "fabs_max30": 1.9972758675421078,
+  "nbad_abs30": 296,
+  "yaw_chg30": 2.164384720288921,
+  "reanchors30": 1,
+  "rms60": 0.8558914657307567,
+  "max60": 1.404026539591967,
+  "gap60": 1.3829999999999991,
+  "gap_at60": 15.093073018000673,
+  "fix_hz60": 10.433333333333334,
+  "ferr60": 0.9119585869771454,
+  "ferr_max60": 1.1193737302762221,
+  "nbad60": 533,
+  "nsent60": 627,
+  "fabs_max60": 2.0660332623147744,
+  "nbad_abs60": 627,
+  "yaw_chg60": 2.164384720288921,
+  "reanchors60": 1,
+  "gate_load": 2.8505859375
+ },
+ {
+  "label": "lowap_apb_10m_w20g40_s2_h15",
+  "version": "h15",
+  "ground": "ottawa2019fall",
+  "load_start": 2.81201171875,
+  "load_end": 4.69287109375,
+  "hold_s": 60.0,
+  "hold_cfg": {
+   "repeat_diff": 0.01,
+   "h_min": 2.0
+  },
+  "att_source": "gyro (default)",
+  "yaw_err_at_switch": -0.20941525285912446,
+  "extnav_to_switch": 19.46,
+  "extnav_all": [
+   -19.46,
+   -19.46
+  ],
+  "align_t": -20.67,
+  "align_step": -12.181321499289668,
+  "fc_modes": [
+   [
+    -37.41,
+    "0"
+   ],
+   [
+    -26.18,
+    "ALT_HOLD"
+   ],
+   [
+    0.0,
+    "LOITER"
+   ]
+  ],
+  "fc_texts_hold": [],
+  "reanchors_runner": 2,
+  "rms30": 0.41426041939218106,
+  "max30": 0.7895826004378541,
+  "gap30": 1.381600000000006,
+  "gap_at30": 2.3415516079988077,
+  "fix_hz30": 10.433333333333334,
+  "ferr30": 0.26397118569244366,
+  "ferr_max30": 0.4854149813628566,
+  "nbad30": 0,
+  "nsent30": 314,
+  "fabs_max30": 1.5095996880129372,
+  "nbad_abs30": 314,
+  "yaw_chg30": 1.667878338158766,
+  "reanchors30": 2,
+  "rms60": 0.5004349583100411,
+  "max60": 1.0032574323483652,
+  "gap60": 1.381600000000006,
+  "gap_at60": 2.3415516079988077,
+  "fix_hz60": 11.183333333333334,
+  "ferr60": 0.3750994990825463,
+  "ferr_max60": 0.5032987630534689,
+  "nbad60": 1,
+  "nsent60": 672,
+  "fabs_max60": 1.5324395754797406,
+  "nbad_abs60": 672,
+  "yaw_chg60": 1.667878338158766,
+  "reanchors60": 2,
+  "gate_load": 2.81201171875
+ },
+ {
+  "label": "lowap_apb_10m_w20g40_s2_py",
+  "version": "py",
+  "ground": "ottawa2019fall",
+  "load_start": 2.92626953125,
+  "load_end": 4.05517578125,
+  "hold_s": 60.0,
+  "hold_cfg": {
+   "repeat_diff": 0.01,
+   "h_min": 2.0,
+   "dense_local": true,
+   "dense_turn": true
+  },
+  "att_source": "gyro (default)",
+  "yaw_err_at_switch": -1.7962304271400398,
+  "extnav_to_switch": 7.46,
+  "extnav_all": [
+   -7.46,
+   -7.45
+  ],
+  "align_t": -8.93,
+  "align_step": -12.199634711007436,
+  "fc_modes": [
+   [
+    -25.66,
+    "0"
+   ],
+   [
+    -14.46,
+    "ALT_HOLD"
+   ],
+   [
+    0.01,
+    "LOITER"
+   ]
+  ],
+  "fc_texts_hold": [],
+  "reanchors_runner": 1,
+  "rms30": 0.3550220105779104,
+  "max30": 0.7688632153642085,
+  "gap30": 0.4065999999999974,
+  "gap_at30": 22.746757713000186,
+  "fix_hz30": 11.033333333333333,
+  "ferr30": 0.099997009004421,
+  "ferr_max30": 0.23086606229625167,
+  "nbad30": 0,
+  "nsent30": 331,
+  "fabs_max30": 0.29480371554503987,
+  "nbad_abs30": 0,
+  "yaw_chg30": 11.711685389468773,
+  "reanchors30": 0,
+  "rms60": 0.40003239949241665,
+  "max60": 0.9134833882530152,
+  "gap60": 1.380100000000013,
+  "gap_at60": 38.89925771300018,
+  "fix_hz60": 11.033333333333333,
+  "ferr60": 0.10844109636537838,
+  "ferr_max60": 0.23086606229625167,
+  "nbad60": 0,
+  "nsent60": 662,
+  "fabs_max60": 0.29480371554503987,
+  "nbad_abs60": 0,
+  "yaw_chg60": 11.711685389468773,
+  "reanchors60": 1,
+  "gate_load": 2.92626953125
+ },
+ {
+  "label": "lowap_apb_10m_w20g40_s2_pyb",
+  "version": "pyb",
+  "ground": "ottawa2019fall",
+  "load_start": 2.888671875,
+  "load_end": 7.58837890625,
+  "hold_s": 60.0,
+  "hold_cfg": {
+   "repeat_diff": 0.01,
+   "h_min": 2.0,
+   "dense_local": true,
+   "dense_turn": true
+  },
+  "att_source": "gyro_fcyaw",
+  "yaw_err_at_switch": -1.9784338436948412,
+  "extnav_to_switch": 7.57,
+  "extnav_all": [
+   -7.57,
+   -7.56
+  ],
+  "align_t": -9.19,
+  "align_step": -12.176171773512838,
+  "fc_modes": [
+   [
+    -25.93,
+    "0"
+   ],
+   [
+    -14.69,
+    "ALT_HOLD"
+   ],
+   [
+    0.02,
+    "LOITER"
+   ]
+  ],
+  "fc_texts_hold": [],
+  "reanchors_runner": 1,
+  "rms30": 0.3330276485212913,
+  "max30": 0.7390652303939433,
+  "gap30": 0.16270000000000095,
+  "gap_at30": 19.748978223000652,
+  "fix_hz30": 12.133333333333333,
+  "ferr30": 0.038206208789790905,
+  "ferr_max30": 0.0937906231272269,
+  "nbad30": 0,
+  "nsent30": 363,
+  "fabs_max30": 0.11636458695079904,
+  "nbad_abs30": 0,
+  "yaw_chg30": 1.6491843242747541,
+  "reanchors30": 0,
+  "rms60": 0.3761456888739893,
+  "max60": 0.7473717492747864,
+  "gap60": 1.3083000000000098,
+  "gap_at60": 55.70007822300065,
+  "fix_hz60": 11.616666666666667,
+  "ferr60": 0.06682087122461634,
+  "ferr_max60": 0.25632353948651704,
+  "nbad60": 0,
+  "nsent60": 696,
+  "fabs_max60": 0.27034604201954054,
+  "nbad_abs60": 0,
+  "yaw_chg60": 1.6491843242747541,
+  "reanchors60": 1,
+  "gate_load": 2.888671875
+ },
+ {
+  "label": "lowap_apb_10m_w20g40_s2_pybh15",
+  "version": "pybh15",
+  "ground": "ottawa2019fall",
+  "load_start": 2.86376953125,
+  "load_end": 8.52099609375,
+  "hold_s": 60.0,
+  "hold_cfg": {
+   "repeat_diff": 0.01,
+   "h_min": 2.0,
+   "dense_local": true,
+   "dense_turn": true
+  },
+  "att_source": "gyro_fcyaw",
+  "yaw_err_at_switch": -0.3337440969495152,
+  "extnav_to_switch": 19.94,
+  "extnav_all": [
+   -19.94,
+   -19.93
+  ],
+  "align_t": -20.96,
+  "align_step": -12.246655646429474,
+  "fc_modes": [
+   [
+    -39.39,
+    "0"
+   ],
+   [
+    -26.52,
+    "ALT_HOLD"
+   ],
+   [
+    0.02,
+    "LOITER"
+   ]
+  ],
+  "fc_texts_hold": [],
+  "reanchors_runner": 0,
+  "rms30": 0.3485608734983283,
+  "max30": 0.7188561505307799,
+  "gap30": 0.16599999999999326,
+  "gap_at30": 25.597421575999906,
+  "fix_hz30": 12.066666666666666,
+  "ferr30": 0.06048036678884403,
+  "ferr_max30": 0.13560258131791322,
+  "nbad30": 0,
+  "nsent30": 361,
+  "fabs_max30": 0.28162818145685786,
+  "nbad_abs30": 0,
+  "yaw_chg30": 4.394434884560838,
+  "reanchors30": 0,
+  "rms60": 0.3974139337530304,
+  "max60": 0.9563848247379536,
+  "gap60": 0.16599999999999326,
+  "gap_at60": 25.597421575999906,
+  "fix_hz60": 12.05,
+  "ferr60": 0.07046083909804399,
+  "ferr_max60": 0.16631093339273084,
+  "nbad60": 0,
+  "nsent60": 723,
+  "fabs_max60": 0.30031073085825394,
+  "nbad_abs60": 0,
+  "yaw_chg60": 4.394434884560838,
+  "reanchors60": 0,
+  "gate_load": 2.86376953125
+ },
+ {
+  "label": "lowap_apb_10m_w20g40_s3_base",
+  "version": "base",
+  "ground": "ottawa2019fall",
+  "load_start": 2.79833984375,
+  "load_end": 10.6201171875,
+  "hold_s": 60.0,
+  "hold_cfg": {
+   "repeat_diff": 0.01,
+   "h_min": 2.0
+  },
+  "att_source": "gyro (default)",
+  "yaw_err_at_switch": -1.616237707357531,
+  "extnav_to_switch": 4.73,
+  "extnav_all": [
+   -4.73,
+   -4.72
+  ],
+  "align_t": -9.21,
+  "align_step": -12.242827551705142,
+  "fc_modes": [
+   [
+    -27.64,
+    "0"
+   ],
+   [
+    -14.78,
+    "ALT_HOLD"
+   ],
+   [
+    0.0,
+    "LOITER"
+   ]
+  ],
+  "fc_texts_hold": [],
+  "reanchors_runner": 4,
+  "rms30": 0.6190295048528268,
+  "max30": 1.09797781151982,
+  "gap30": 1.3142000000000031,
+  "gap_at30": 9.119572946998137,
+  "fix_hz30": 11.133333333333333,
+  "ferr30": 0.6334907561685538,
+  "ferr_max30": 0.8204396622268572,
+  "nbad30": 256,
+  "nsent30": 334,
+  "fabs_max30": 1.4603977928503313,
+  "nbad_abs30": 334,
+  "yaw_chg30": 3.0399218014302223,
+  "reanchors30": 1,
+  "rms60": 0.7983157996833679,
+  "max60": 1.5108397572464647,
+  "gap60": 1.6456000000000017,
+  "gap_at60": 55.90537294699814,
+  "fix_hz60": 9.833333333333334,
+  "ferr60": 0.7665718774554974,
+  "ferr_max60": 1.0513927803385754,
+  "nbad60": 512,
+  "nsent60": 590,
+  "fabs_max60": 1.6895308175957964,
+  "nbad_abs60": 590,
+  "yaw_chg60": 3.0629516631863645,
+  "reanchors60": 4,
+  "gate_load": 2.79833984375
+ },
+ {
+  "label": "lowap_apb_10m_w20g40_s3_pyb",
+  "version": "pyb",
+  "ground": "ottawa2019fall",
+  "load_start": 2.93701171875,
+  "load_end": 7.25439453125,
+  "hold_s": 60.0,
+  "hold_cfg": {
+   "repeat_diff": 0.01,
+   "h_min": 2.0,
+   "dense_local": true,
+   "dense_turn": true
+  },
+  "att_source": "gyro_fcyaw",
+  "yaw_err_at_switch": -1.6326713529464858,
+  "extnav_to_switch": 8.16,
+  "extnav_all": [
+   -8.16,
+   -8.15
+  ],
+  "align_t": -9.61,
+  "align_step": -12.203231485199185,
+  "fc_modes": [
+   [
+    -28.05,
+    "0"
+   ],
+   [
+    -15.14,
+    "ALT_HOLD"
+   ],
+   [
+    0.01,
+    "LOITER"
+   ]
+  ],
+  "fc_texts_hold": [],
+  "reanchors_runner": 0,
+  "rms30": 0.3075373133502031,
+  "max30": 0.6237183154536503,
+  "gap30": 0.096700000000002,
+  "gap_at30": 20.422398707999818,
+  "fix_hz30": 12.1,
+  "ferr30": 0.041144794217482676,
+  "ferr_max30": 0.10045329744647626,
+  "nbad30": 0,
+  "nsent30": 363,
+  "fabs_max30": 0.16133696332828548,
+  "nbad_abs30": 0,
+  "yaw_chg30": 1.9517577657685954,
+  "reanchors30": 0,
+  "rms60": 0.3825963316020619,
+  "max60": 1.1254704763736918,
+  "gap60": 0.2469999999999999,
+  "gap_at60": 58.31739870799982,
+  "fix_hz60": 11.85,
+  "ferr60": 0.04381428417722765,
+  "ferr_max60": 0.10515359429548779,
+  "nbad60": 0,
+  "nsent60": 711,
+  "fabs_max60": 0.19245218357467805,
+  "nbad_abs60": 0,
+  "yaw_chg60": 2.163473032734279,
+  "reanchors60": 0,
+  "gate_load": 2.93701171875
+ },
+ {
+  "label": "lowap_apb_20m_w20g40_s1_base",
+  "version": "base",
+  "ground": "ottawa2019fall",
+  "load_start": 2.982421875,
+  "load_end": 10.466796875,
+  "hold_s": 60.0,
+  "hold_cfg": {
+   "repeat_diff": 0.01,
+   "h_min": 2.0
+  },
+  "att_source": "gyro (default)",
+  "yaw_err_at_switch": -2.0437624908831866,
+  "extnav_to_switch": 7.6,
+  "extnav_all": [
+   -7.6,
+   -7.6
+  ],
+  "align_t": -11.28,
+  "align_step": -12.204252038887946,
+  "fc_modes": [
+   [
+    -29.72,
+    "0"
+   ],
+   [
+    -16.82,
+    "ALT_HOLD"
+   ],
+   [
+    0.02,
+    "LOITER"
+   ]
+  ],
+  "fc_texts_hold": [],
+  "reanchors_runner": 0,
+  "rms30": 0.38316446017823474,
+  "max30": 0.7988683874806182,
+  "gap30": 0.25049999999999883,
+  "gap_at30": 21.801941981001026,
+  "fix_hz30": 11.866666666666667,
+  "ferr30": 0.08596990387595278,
+  "ferr_max30": 0.18866837578214726,
+  "nbad30": 0,
+  "nsent30": 356,
+  "fabs_max30": 0.3226388456962809,
+  "nbad_abs30": 0,
+  "yaw_chg30": 3.2008950221062866,
+  "reanchors30": 0,
+  "rms60": 0.3704636830931111,
+  "max60": 0.7988683874806182,
+  "gap60": 0.25049999999999883,
+  "gap_at60": 21.801941981001026,
+  "fix_hz60": 11.916666666666666,
+  "ferr60": 0.10909500596111475,
+  "ferr_max60": 0.24498542884923302,
+  "nbad60": 0,
+  "nsent60": 716,
+  "fabs_max60": 0.43292955819337664,
+  "nbad_abs60": 0,
+  "yaw_chg60": 3.2008950221062866,
+  "reanchors60": 0,
+  "gate_load": 2.982421875
+ },
+ {
+  "label": "lowap_apb_20m_w20g40_s1_pyb",
+  "version": "pyb",
+  "ground": "ottawa2019fall",
+  "load_start": 2.79931640625,
+  "load_end": 7.2900390625,
+  "hold_s": 60.0,
+  "hold_cfg": {
+   "repeat_diff": 0.01,
+   "h_min": 2.0,
+   "dense_local": true,
+   "dense_turn": true
+  },
+  "att_source": "gyro_fcyaw",
+  "yaw_err_at_switch": -0.9417126090589382,
+  "extnav_to_switch": 10.84,
+  "extnav_all": [
+   -10.84,
+   -10.83
+  ],
+  "align_t": -12.09,
+  "align_step": -12.206846749994066,
+  "fc_modes": [
+   [
+    -30.53,
+    "0"
+   ],
+   [
+    -17.64,
+    "ALT_HOLD"
+   ],
+   [
+    0.01,
+    "LOITER"
+   ]
+  ],
+  "fc_texts_hold": [],
+  "reanchors_runner": 0,
+  "rms30": 0.43616394014614496,
+  "max30": 0.7683762605101134,
+  "gap30": 0.12180000000000746,
+  "gap_at30": 19.007846103998805,
+  "fix_hz30": 11.9,
+  "ferr30": 0.11626228838877321,
+  "ferr_max30": 0.2621867798430246,
+  "nbad30": 0,
+  "nsent30": 357,
+  "fabs_max30": 0.4719792003056568,
+  "nbad_abs30": 0,
+  "yaw_chg30": 1.3666502163124519,
+  "reanchors30": 0,
+  "rms60": 0.4244068676729636,
+  "max60": 0.7683762605101134,
+  "gap60": 0.12180000000000746,
+  "gap_at60": 19.007846103998805,
+  "fix_hz60": 11.933333333333334,
+  "ferr60": 0.19828718490823632,
+  "ferr_max60": 0.3981088908744416,
+  "nbad60": 0,
+  "nsent60": 716,
+  "fabs_max60": 0.47924760306671477,
+  "nbad_abs60": 0,
+  "yaw_chg60": 1.3666502163124519,
+  "reanchors60": 0,
+  "gate_load": 2.79931640625
+ },
+ {
+  "label": "lowap_apb_30m_w20g40_s1_base",
+  "version": "base",
+  "ground": "ottawa2019fall",
+  "load_start": 2.9873046875,
+  "load_end": 6.46923828125,
+  "hold_s": 60.0,
+  "hold_cfg": {
+   "repeat_diff": 0.01,
+   "h_min": 2.0
+  },
+  "att_source": "gyro (default)",
+  "yaw_err_at_switch": -0.2913164001616601,
+  "extnav_to_switch": 10.06,
+  "extnav_all": [
+   -10.06,
+   -10.06
+  ],
+  "align_t": -14.48,
+  "align_step": -12.219349698545006,
+  "fc_modes": [
+   [
+    -33.01,
+    "0"
+   ],
+   [
+    -20.03,
+    "ALT_HOLD"
+   ],
+   [
+    0.01,
+    "LOITER"
+   ]
+  ],
+  "fc_texts_hold": [],
+  "reanchors_runner": 0,
+  "rms30": 0.4516428852708424,
+  "max30": 0.7988683877759762,
+  "gap30": 0.12209999999999832,
+  "gap_at30": 0.9802722349972783,
+  "fix_hz30": 11.966666666666667,
+  "ferr30": 0.12159596618095746,
+  "ferr_max30": 0.3231356437672929,
+  "nbad30": 0,
+  "nsent30": 359,
+  "fabs_max30": 0.40780643291925556,
+  "nbad_abs30": 0,
+  "yaw_chg30": 3.2221643114593896,
+  "reanchors30": 0,
+  "rms60": 0.4226618220998999,
+  "max60": 0.7988683877759762,
+  "gap60": 0.12209999999999832,
+  "gap_at60": 0.9802722349972783,
+  "fix_hz60": 11.983333333333333,
+  "ferr60": 0.145221363917407,
+  "ferr_max60": 0.3231356437672929,
+  "nbad60": 0,
+  "nsent60": 719,
+  "fabs_max60": 0.6238314860612516,
+  "nbad_abs60": 68,
+  "yaw_chg60": 3.2221643114593896,
+  "reanchors60": 0,
+  "gate_load": 2.9873046875
+ },
+ {
+  "label": "lowap_apb_30m_w20g40_s1_pyb",
+  "version": "pyb",
+  "ground": "ottawa2019fall",
+  "load_start": 2.98583984375,
+  "load_end": 7.0703125,
+  "hold_s": 60.0,
+  "hold_cfg": {
+   "repeat_diff": 0.01,
+   "h_min": 2.0,
+   "dense_local": true,
+   "dense_turn": true
+  },
+  "att_source": "gyro_fcyaw",
+  "yaw_err_at_switch": 0.5579812966356508,
+  "extnav_to_switch": 11.96,
+  "extnav_all": [
+   -11.96,
+   -11.96
+  ],
+  "align_t": -13.38,
+  "align_step": -12.258494259717414,
+  "fc_modes": [
+   [
+    -31.8,
+    "0"
+   ],
+   [
+    -18.93,
+    "ALT_HOLD"
+   ],
+   [
+    0.02,
+    "LOITER"
+   ]
+  ],
+  "fc_texts_hold": [],
+  "reanchors_runner": 0,
+  "rms30": 0.4193389044575682,
+  "max30": 0.7266530693733393,
+  "gap30": 0.0923000000000016,
+  "gap_at30": 17.683296965000515,
+  "fix_hz30": 11.966666666666667,
+  "ferr30": 0.09241506795048342,
+  "ferr_max30": 0.2350868129100364,
+  "nbad30": 0,
+  "nsent30": 360,
+  "fabs_max30": 0.7373679958746752,
+  "nbad_abs30": 257,
+  "yaw_chg30": 2.3315455299611294,
+  "reanchors30": 0,
+  "rms60": 0.4054660809395652,
+  "max60": 0.7266530693733393,
+  "gap60": 0.12480000000000757,
+  "gap_at60": 52.80559696500052,
+  "fix_hz60": 11.95,
+  "ferr60": 0.12985331843921022,
+  "ferr_max60": 0.3111879077550696,
+  "nbad60": 0,
+  "nsent60": 718,
+  "fabs_max60": 0.7373679958746752,
+  "nbad_abs60": 497,
+  "yaw_chg60": 2.4281777938026536,
+  "reanchors60": 0,
+  "gate_load": 2.98583984375
+ },
+ {
+  "label": "lowap_apb_30m_w20g40_s2_base",
+  "version": "base",
+  "ground": "ottawa2019fall",
+  "load_start": 2.92236328125,
+  "load_end": 4.53955078125,
+  "hold_s": 60.0,
+  "hold_cfg": {
+   "repeat_diff": 0.01,
+   "h_min": 2.0
+  },
+  "att_source": "gyro (default)",
+  "yaw_err_at_switch": 0.2405230816047048,
+  "extnav_to_switch": 10.5,
+  "extnav_all": [
+   -10.5,
+   -10.5
+  ],
+  "align_t": -14.1,
+  "align_step": -12.18550621896216,
+  "fc_modes": [
+   [
+    -32.64,
+    "0"
+   ],
+   [
+    -19.67,
+    "ALT_HOLD"
+   ],
+   [
+    0.01,
+    "LOITER"
+   ]
+  ],
+  "fc_texts_hold": [],
+  "reanchors_runner": 0,
+  "rms30": 0.40433797567489815,
+  "max30": 0.7700683666112921,
+  "gap30": 0.10750000000000526,
+  "gap_at30": 18.399533757997496,
+  "fix_hz30": 11.933333333333334,
+  "ferr30": 0.0996390777086111,
+  "ferr_max30": 0.20546475525651708,
+  "nbad30": 0,
+  "nsent30": 357,
+  "fabs_max30": 0.6890847175831297,
+  "nbad_abs30": 248,
+  "yaw_chg30": 2.639273142478101,
+  "reanchors30": 0,
+  "rms60": 0.44076770674369353,
+  "max60": 0.9606234334199003,
+  "gap60": 0.11300000000000665,
+  "gap_at60": 37.012133757997496,
+  "fix_hz60": 11.95,
+  "ferr60": 0.13494651068423247,
+  "ferr_max60": 0.31580426457654615,
+  "nbad60": 0,
+  "nsent60": 716,
+  "fabs_max60": 0.6890847175831297,
+  "nbad_abs60": 495,
+  "yaw_chg60": 2.639273142478101,
+  "reanchors60": 0,
+  "gate_load": 2.92236328125
+ },
+ {
+  "label": "lowap_apb_30m_w20g40_s2_pyb",
+  "version": "pyb",
+  "ground": "ottawa2019fall",
+  "load_start": 2.84375,
+  "load_end": 6.80078125,
+  "hold_s": 60.0,
+  "hold_cfg": {
+   "repeat_diff": 0.01,
+   "h_min": 2.0,
+   "dense_local": true,
+   "dense_turn": true
+  },
+  "att_source": "gyro_fcyaw",
+  "yaw_err_at_switch": -0.5792740827611819,
+  "extnav_to_switch": 11.28,
+  "extnav_all": [
+   -11.28,
+   -11.28
+  ],
+  "align_t": -13.52,
+  "align_step": -12.242986725201437,
+  "fc_modes": [
+   [
+    -31.95,
+    "0"
+   ],
+   [
+    -19.1,
+    "ALT_HOLD"
+   ],
+   [
+    0.01,
+    "LOITER"
+   ]
+  ],
+  "fc_texts_hold": [],
+  "reanchors_runner": 0,
+  "rms30": 0.3979199526331393,
+  "max30": 0.7828868571240147,
+  "gap30": 0.1072000000000024,
+  "gap_at30": 19.513505537998327,
+  "fix_hz30": 11.966666666666667,
+  "ferr30": 0.1274731619441276,
+  "ferr_max30": 0.32521941329367177,
+  "nbad30": 0,
+  "nsent30": 359,
+  "fabs_max30": 0.6538403483656147,
+  "nbad_abs30": 70,
+  "yaw_chg30": 1.8935171786369458,
+  "reanchors30": 0,
+  "rms60": 0.4709954681917977,
+  "max60": 1.1517060960723242,
+  "gap60": 0.1072000000000024,
+  "gap_at60": 19.513505537998327,
+  "fix_hz60": 11.966666666666667,
+  "ferr60": 0.21487664486380023,
+  "ferr_max60": 0.48496101975680606,
+  "nbad60": 0,
+  "nsent60": 718,
+  "fabs_max60": 0.7253504251987231,
+  "nbad_abs60": 341,
+  "yaw_chg60": 1.8935171786369458,
+  "reanchors60": 0,
+  "gate_load": 2.91748046875
+ },
+ {
+  "label": "lowap_apb_5m_w20g40_s11_base_farmland",
+  "version": "base",
+  "ground": "farmland",
+  "load_start": 3.9326171875,
+  "load_end": 7.64892578125,
+  "hold_s": 60.0,
+  "hold_cfg": {
+   "repeat_diff": 0.01,
+   "h_min": 2.0
+  },
+  "att_source": "gyro (default)",
+  "yaw_err_at_switch": -1.3801192363360804,
+  "extnav_to_switch": 7.53,
+  "extnav_all": [
+   -7.53,
+   -7.52
+  ],
+  "align_t": -9.16,
+  "align_step": -12.928267001879327,
+  "fc_modes": [
+   [
+    -27.2,
+    "0"
+   ],
+   [
+    -15.05,
+    "ALT_HOLD"
+   ],
+   [
+    0.01,
+    "LOITER"
+   ],
+   [
+    60.26,
+    "9"
+   ]
+  ],
+  "fc_texts_hold": [
+   [
+    60.14,
+    "EKF3 lane switch 1"
+   ],
+   [
+    60.15,
+    "EKF primary changed:1"
+   ],
+   [
+    60.25,
+    "EKF variance"
+   ],
+   [
+    60.25,
+    "EKF Failsafe: changed to LAND Mode"
+   ]
+  ],
+  "reanchors_runner": 26,
+  "rms30": 0.5533482712233854,
+  "max30": 1.5841391848040614,
+  "gap30": 3.118199999999998,
+  "gap_at30": 24.874627517001198,
+  "fix_hz30": 8.133333333333333,
+  "ferr30": 0.260325097822439,
+  "ferr_max30": 0.8549112633218138,
+  "nbad30": 19,
+  "nsent30": 242,
+  "fabs_max30": 1.2275054355144506,
+  "nbad_abs30": 110,
+  "yaw_chg30": 2.408104095944523,
+  "reanchors30": 8,
+  "rms60": 1.5496320808847006,
+  "max60": 3.828575580730897,
+  "gap60": 7.687572482998803,
+  "gap_at60": 52.3124275170012,
+  "fix_hz60": 6.416666666666667,
+  "ferr60": 1.263236957217511,
+  "ferr_max60": 2.124599434173407,
+  "nbad60": 160,
+  "nsent60": 383,
+  "fabs_max60": 2.523908837992341,
+  "nbad_abs60": 251,
+  "yaw_chg60": 2.9814958381416536,
+  "reanchors60": 26,
+  "gate_load": 2.8818359375
+ },
+ {
+  "label": "lowap_apb_5m_w20g40_s11_base_ottawa2022",
+  "version": "base",
+  "ground": "ottawa2022",
+  "load_start": 2.90576171875,
+  "load_end": 7.64501953125,
+  "hold_s": 60.0,
+  "hold_cfg": {
+   "repeat_diff": 0.01,
+   "h_min": 2.0
+  },
+  "att_source": "gyro (default)",
+  "yaw_err_at_switch": -0.8313693535536061,
+  "extnav_to_switch": 2.62,
+  "extnav_all": [
+   -2.62,
+   -2.62
+  ],
+  "align_t": -9.23,
+  "align_step": -12.817046127141724,
+  "fc_modes": [
+   [
+    -27.96,
+    "0"
+   ],
+   [
+    -15.16,
+    "ALT_HOLD"
+   ],
+   [
+    0.01,
+    "LOITER"
+   ]
+  ],
+  "fc_texts_hold": [],
+  "reanchors_runner": 16,
+  "rms30": 0.513652138486597,
+  "max30": 1.3260878789645274,
+  "gap30": 4.110100000000003,
+  "gap_at30": 24.866847188002904,
+  "fix_hz30": 7.7,
+  "ferr30": null,
+  "ferr_max30": null,
+  "nbad30": -1,
+  "nsent30": 231,
+  "fabs_max30": 1.1865112212058677,
+  "nbad_abs30": 194,
+  "yaw_chg30": 2.5617691496421626,
+  "reanchors30": 7,
+  "rms60": 0.7962505986336814,
+  "max60": 1.8045381502284243,
+  "gap60": 4.110100000000003,
+  "gap_at60": 24.866847188002904,
+  "fix_hz60": 7.05,
+  "ferr60": null,
+  "ferr_max60": null,
+  "nbad60": -1,
+  "nsent60": 423,
+  "fabs_max60": 1.6902336170116574,
+  "nbad_abs60": 386,
+  "yaw_chg60": 2.5617691496421626,
+  "reanchors60": 16,
+  "gate_load": 2.90576171875
+ },
+ {
+  "label": "lowap_apb_5m_w20g40_s11_pyb_farmland",
+  "version": "pyb",
+  "ground": "farmland",
+  "load_start": 2.8486328125,
+  "load_end": 9.40283203125,
+  "hold_s": 60.0,
+  "hold_cfg": {
+   "repeat_diff": 0.01,
+   "h_min": 2.0,
+   "dense_local": true,
+   "dense_turn": true
+  },
+  "att_source": "gyro_fcyaw",
+  "yaw_err_at_switch": -1.437021806261771,
+  "extnav_to_switch": 7.73,
+  "extnav_all": [
+   -7.73,
+   -7.73
+  ],
+  "align_t": -9.12,
+  "align_step": -12.961805879985146,
+  "fc_modes": [
+   [
+    -27.15,
+    "0"
+   ],
+   [
+    -15.02,
+    "ALT_HOLD"
+   ],
+   [
+    0.01,
+    "LOITER"
+   ]
+  ],
+  "fc_texts_hold": [],
+  "reanchors_runner": 0,
+  "rms30": 0.31895767421247123,
+  "max30": 0.7222879549050967,
+  "gap30": 0.164399999999997,
+  "gap_at30": 22.69836692799939,
+  "fix_hz30": 12.066666666666666,
+  "ferr30": 0.02699836777110836,
+  "ferr_max30": 0.07370256389976947,
+  "nbad30": 0,
+  "nsent30": 363,
+  "fabs_max30": 0.14434274358453944,
+  "nbad_abs30": 0,
+  "yaw_chg30": 1.5490266616912178,
+  "reanchors30": 0,
+  "rms60": 0.36762760550464646,
+  "max60": 0.7733888611776311,
+  "gap60": 0.3271999999999977,
+  "gap_at60": 42.3046669279994,
+  "fix_hz60": 11.883333333333333,
+  "ferr60": 0.035232641568993826,
+  "ferr_max60": 0.08232543596998888,
+  "nbad60": 0,
+  "nsent60": 713,
+  "fabs_max60": 0.1755017577145576,
+  "nbad_abs60": 0,
+  "yaw_chg60": 1.5490266616912178,
+  "reanchors60": 0,
+  "gate_load": 2.83544921875
+ },
+ {
+  "label": "lowap_apb_5m_w20g40_s11_pyb_ottawa2022",
+  "version": "pyb",
+  "ground": "ottawa2022",
+  "load_start": 2.95947265625,
+  "load_end": 10.783203125,
+  "hold_s": 60.0,
+  "hold_cfg": {
+   "repeat_diff": 0.01,
+   "h_min": 2.0,
+   "dense_local": true,
+   "dense_turn": true
+  },
+  "att_source": "gyro_fcyaw",
+  "yaw_err_at_switch": -1.066149481178534,
+  "extnav_to_switch": 7.5,
+  "extnav_all": [
+   -7.5,
+   -7.49
+  ],
+  "align_t": -9.13,
+  "align_step": -12.84619790731772,
+  "fc_modes": [
+   [
+    -27.96,
+    "0"
+   ],
+   [
+    -15.1,
+    "ALT_HOLD"
+   ],
+   [
+    0.0,
+    "LOITER"
+   ]
+  ],
+  "fc_texts_hold": [],
+  "reanchors_runner": 5,
+  "rms30": 0.33398252840949316,
+  "max30": 0.7575082951984402,
+  "gap30": 1.3961999999999968,
+  "gap_at30": 25.50762639500124,
+  "fix_hz30": 9.2,
+  "ferr30": 0.04849101278905512,
+  "ferr_max30": 0.11126469688171804,
+  "nbad30": 0,
+  "nsent30": 278,
+  "fabs_max30": 0.16545581909502546,
+  "nbad_abs30": 0,
+  "yaw_chg30": 1.293348501572611,
+  "reanchors30": 1,
+  "rms60": 0.4319896351950588,
+  "max60": 0.855121829799542,
+  "gap60": 1.3980000000000032,
+  "gap_at60": 46.35852639500124,
+  "fix_hz60": 9.5,
+  "ferr60": 0.15715375259157133,
+  "ferr_max60": 0.3960977465025268,
+  "nbad60": 0,
+  "nsent60": 570,
+  "fabs_max60": 0.44636055205075403,
+  "nbad_abs60": 0,
+  "yaw_chg60": 2.6570899092716322,
+  "reanchors60": 5,
+  "gate_load": 2.95947265625
+ },
+ {
+  "label": "lowap_apb_5m_w20g40_s12_base_farmland",
+  "version": "base",
+  "ground": "farmland",
+  "load_start": 2.99658203125,
+  "load_end": 8.14794921875,
+  "hold_s": 60.0,
+  "hold_cfg": {
+   "repeat_diff": 0.01,
+   "h_min": 2.0
+  },
+  "att_source": "gyro (default)",
+  "yaw_err_at_switch": -1.5055355340062118,
+  "extnav_to_switch": 7.28,
+  "extnav_all": [
+   -7.28,
+   -7.27
+  ],
+  "align_t": -9.14,
+  "align_step": -12.965611903962586,
+  "fc_modes": [
+   [
+    -27.07,
+    "0"
+   ],
+   [
+    -15.07,
+    "ALT_HOLD"
+   ],
+   [
+    0.0,
+    "LOITER"
+   ]
+  ],
+  "fc_texts_hold": [],
+  "reanchors_runner": 9,
+  "rms30": 0.4113667193304449,
+  "max30": 0.8305013949958611,
+  "gap30": 3.035999999999998,
+  "gap_at30": 19.13300729299932,
+  "fix_hz30": 8.6,
+  "ferr30": 0.2354727268100603,
+  "ferr_max30": 0.4661281573614255,
+  "nbad30": 0,
+  "nsent30": 258,
+  "fabs_max30": 0.7899956765323527,
+  "nbad_abs30": 258,
+  "yaw_chg30": 2.542653610339336,
+  "reanchors30": 5,
+  "rms60": 0.5980379817447474,
+  "max60": 1.2905952312480429,
+  "gap60": 3.035999999999998,
+  "gap_at60": 19.13300729299932,
+  "fix_hz60": 8.75,
+  "ferr60": 0.4647288462888059,
+  "ferr_max60": 0.8535618951442313,
+  "nbad60": 219,
+  "nsent60": 525,
+  "fabs_max60": 0.931583569466845,
+  "nbad_abs60": 525,
+  "yaw_chg60": 2.542653610339336,
+  "reanchors60": 9,
+  "gate_load": 2.99658203125
+ },
+ {
+  "label": "lowap_apb_5m_w20g40_s12_base_ottawa2022",
+  "version": "base",
+  "ground": "ottawa2022",
+  "load_start": 2.95263671875,
+  "load_end": 6.1142578125,
+  "hold_s": 60.0,
+  "hold_cfg": {
+   "repeat_diff": 0.01,
+   "h_min": 2.0
+  },
+  "att_source": "gyro (default)",
+  "yaw_err_at_switch": -1.1148233377541896,
+  "extnav_to_switch": 1.68,
+  "extnav_all": [
+   -1.68,
+   -1.68
+  ],
+  "align_t": -9.16,
+  "align_step": -12.895505854276298,
+  "fc_modes": [
+   [
+    -26.3,
+    "0"
+   ],
+   [
+    -15.08,
+    "ALT_HOLD"
+   ],
+   [
+    0.01,
+    "LOITER"
+   ]
+  ],
+  "fc_texts_hold": [],
+  "reanchors_runner": 16,
+  "rms30": 0.5720551542827202,
+  "max30": 1.0463887223713024,
+  "gap30": 2.2789,
+  "gap_at30": 19.216474721999024,
+  "fix_hz30": 7.166666666666667,
+  "ferr30": 0.5085904552903792,
+  "ferr_max30": 0.740942110838813,
+  "nbad30": 105,
+  "nsent30": 215,
+  "fabs_max30": 0.9916151315358338,
+  "nbad_abs30": 183,
+  "yaw_chg30": 1.6289551665679038,
+  "reanchors30": 7,
+  "rms60": 0.7578220754761458,
+  "max60": 1.2389300074060492,
+  "gap60": 2.777000000000001,
+  "gap_at60": 47.27527472199902,
+  "fix_hz60": 6.766666666666667,
+  "ferr60": 0.6553031741890842,
+  "ferr_max60": 0.9766502535130421,
+  "nbad60": 296,
+  "nsent60": 406,
+  "fabs_max60": 1.2330990173359926,
+  "nbad_abs60": 374,
+  "yaw_chg60": 1.6289551665679038,
+  "reanchors60": 16,
+  "gate_load": 2.95263671875
+ },
+ {
+  "label": "lowap_apb_5m_w20g40_s12_pyb_farmland",
+  "version": "pyb",
+  "ground": "farmland",
+  "load_start": 2.83984375,
+  "load_end": 8.41259765625,
+  "hold_s": 60.0,
+  "hold_cfg": {
+   "repeat_diff": 0.01,
+   "h_min": 2.0,
+   "dense_local": true,
+   "dense_turn": true
+  },
+  "att_source": "gyro_fcyaw",
+  "yaw_err_at_switch": -1.430941082310891,
+  "extnav_to_switch": 7.74,
+  "extnav_all": [
+   -7.74,
+   -7.74
+  ],
+  "align_t": -9.11,
+  "align_step": -12.95447919781401,
+  "fc_modes": [
+   [
+    -27.15,
+    "0"
+   ],
+   [
+    -15.03,
+    "ALT_HOLD"
+   ],
+   [
+    0.01,
+    "LOITER"
+   ]
+  ],
+  "fc_texts_hold": [],
+  "reanchors_runner": 1,
+  "rms30": 0.2680117210503574,
+  "max30": 0.6133638987449793,
+  "gap30": 0.32969999999999544,
+  "gap_at30": 16.737814300999084,
+  "fix_hz30": 12.0,
+  "ferr30": 0.02739855571358865,
+  "ferr_max30": 0.08250356114650273,
+  "nbad30": 0,
+  "nsent30": 360,
+  "fabs_max30": 0.12048511270931536,
+  "nbad_abs30": 0,
+  "yaw_chg30": 1.2582363633150107,
+  "reanchors30": 0,
+  "rms60": 0.2960342755924275,
+  "max60": 0.7988683874806182,
+  "gap60": 1.3988999999999976,
+  "gap_at60": 47.385514300999084,
+  "fix_hz60": 11.766666666666667,
+  "ferr60": 0.069537748658302,
+  "ferr_max60": 0.4431506178103472,
+  "nbad60": 0,
+  "nsent60": 706,
+  "fabs_max60": 0.42179970495184693,
+  "nbad_abs60": 0,
+  "yaw_chg60": 1.2582363633150107,
+  "reanchors60": 1,
+  "gate_load": 2.83984375
+ },
+ {
+  "label": "lowap_apb_5m_w20g40_s12_pyb_ottawa2022",
+  "version": "pyb",
+  "ground": "ottawa2022",
+  "load_start": 2.8232421875,
+  "load_end": 8.4208984375,
+  "hold_s": 60.0,
+  "hold_cfg": {
+   "repeat_diff": 0.01,
+   "h_min": 2.0,
+   "dense_local": true,
+   "dense_turn": true
+  },
+  "att_source": "gyro_fcyaw",
+  "yaw_err_at_switch": -1.1097040538548386,
+  "extnav_to_switch": 7.61,
+  "extnav_all": [
+   -7.61,
+   -7.6
+  ],
+  "align_t": -9.08,
+  "align_step": -12.896067455634665,
+  "fc_modes": [
+   [
+    -26.22,
+    "0"
+   ],
+   [
+    -14.99,
+    "ALT_HOLD"
+   ],
+   [
+    0.02,
+    "LOITER"
+   ]
+  ],
+  "fc_texts_hold": [],
+  "reanchors_runner": 5,
+  "rms30": 0.28345280123014777,
+  "max30": 0.6165907133159123,
+  "gap30": 1.4055,
+  "gap_at30": 19.32795136799771,
+  "fix_hz30": 10.4,
+  "ferr30": 0.051603962775725695,
+  "ferr_max30": 0.09823366244786287,
+  "nbad30": 0,
+  "nsent30": 313,
+  "fabs_max30": 0.13551354405518787,
+  "nbad_abs30": 0,
+  "yaw_chg30": 1.6011031431971845,
+  "reanchors30": 1,
+  "rms60": 0.3066585494105113,
+  "max60": 0.7189276854826855,
+  "gap60": 1.8950999999999922,
+  "gap_at60": 46.552751367997715,
+  "fix_hz60": 9.816666666666666,
+  "ferr60": 0.07093491485980748,
+  "ferr_max60": 0.19902771257777657,
+  "nbad60": 0,
+  "nsent60": 590,
+  "fabs_max60": 0.17900408832126977,
+  "nbad_abs60": 0,
+  "yaw_chg60": 1.6073439853460987,
+  "reanchors60": 5,
+  "gate_load": 2.8232421875
+ },
+ {
+  "label": "lowap_apb_5m_w20g40_s13_base_ottawa2022",
+  "version": "base",
+  "ground": "ottawa2022",
+  "load_start": 2.99267578125,
+  "load_end": 7.0126953125,
+  "hold_s": 60.0,
+  "hold_cfg": {
+   "repeat_diff": 0.01,
+   "h_min": 2.0
+  },
+  "att_source": "gyro (default)",
+  "yaw_err_at_switch": -0.8385674984581394,
+  "extnav_to_switch": 1.71,
+  "extnav_all": [
+   -1.71,
+   -1.71
+  ],
+  "align_t": -9.22,
+  "align_step": -12.818998333361288,
+  "fc_modes": [
+   [
+    -27.95,
+    "0"
+   ],
+   [
+    -15.16,
+    "ALT_HOLD"
+   ],
+   [
+    0.0,
+    "LOITER"
+   ]
+  ],
+  "fc_texts_hold": [],
+  "reanchors_runner": 14,
+  "rms30": 0.7590921378938102,
+  "max30": 1.2812440302454349,
+  "gap30": 4.1934999999999985,
+  "gap_at30": 15.974206327997452,
+  "fix_hz30": 6.366666666666666,
+  "ferr30": 0.6805363432133948,
+  "ferr_max30": 0.9194220409611097,
+  "nbad30": 136,
+  "nsent30": 191,
+  "fabs_max30": 1.0894348739327429,
+  "nbad_abs30": 157,
+  "yaw_chg30": 1.4667818670241215,
+  "reanchors30": 10,
+  "rms60": 0.9404381672369638,
+  "max60": 1.3948791026836194,
+  "gap60": 4.1934999999999985,
+  "gap_at60": 15.974206327997452,
+  "fix_hz60": 7.166666666666667,
+  "ferr60": 0.9044081968296184,
+  "ferr_max60": 1.161352200431509,
+  "nbad60": 376,
+  "nsent60": 431,
+  "fabs_max60": 1.3782055947749872,
+  "nbad_abs60": 397,
+  "yaw_chg60": 1.4667818670241215,
+  "reanchors60": 14,
+  "gate_load": 2.99267578125
+ },
+ {
+  "label": "lowap_apb_5m_w20g40_s13_pyb_ottawa2022",
+  "version": "pyb",
+  "ground": "ottawa2022",
+  "load_start": 2.798828125,
+  "load_end": 11.6396484375,
+  "hold_s": 60.0,
+  "hold_cfg": {
+   "repeat_diff": 0.01,
+   "h_min": 2.0,
+   "dense_local": true,
+   "dense_turn": true
+  },
+  "att_source": "gyro_fcyaw",
+  "yaw_err_at_switch": -0.8580893429949336,
+  "extnav_to_switch": 7.69,
+  "extnav_all": [
+   -7.69,
+   -7.69
+  ],
+  "align_t": -9.12,
+  "align_step": -12.814860148463874,
+  "fc_modes": [
+   [
+    -27.95,
+    "0"
+   ],
+   [
+    -15.06,
+    "ALT_HOLD"
+   ],
+   [
+    0.01,
+    "LOITER"
+   ]
+  ],
+  "fc_texts_hold": [],
+  "reanchors_runner": 6,
+  "rms30": 0.469124872962646,
+  "max30": 0.9739050777584606,
+  "gap30": 1.3961000000000006,
+  "gap_at30": 26.257622655999395,
+  "fix_hz30": 8.966666666666667,
+  "ferr30": 0.09785535053616283,
+  "ferr_max30": 0.20993334761701196,
+  "nbad30": 0,
+  "nsent30": 268,
+  "fabs_max30": 0.22373908910834445,
+  "nbad_abs30": 0,
+  "yaw_chg30": 1.1964697790118932,
+  "reanchors30": 5,
+  "rms60": 0.44458909964690807,
+  "max60": 0.9739050777584606,
+  "gap60": 1.4015000000000057,
+  "gap_at60": 56.648822655999396,
+  "fix_hz60": 10.233333333333333,
+  "ferr60": 0.08059032067747045,
+  "ferr_max60": 0.20993334761701196,
+  "nbad60": 0,
+  "nsent60": 614,
+  "fabs_max60": 0.22373908910834445,
+  "nbad_abs60": 0,
+  "yaw_chg60": 1.1964697790118932,
+  "reanchors60": 6,
+  "gate_load": 2.798828125
+ },
+ {
+  "label": "lowap_apb_5m_w20g40_s1_b",
+  "version": "b",
+  "ground": "ottawa2019fall",
+  "load_start": 2.8173828125,
+  "load_end": 6.65771484375,
+  "hold_s": 60.0,
+  "hold_cfg": {
+   "repeat_diff": 0.01,
+   "h_min": 2.0
+  },
+  "att_source": "gyro_fcyaw",
+  "yaw_err_at_switch": -2.644986253773185,
+  "extnav_to_switch": 6.28,
+  "extnav_all": [
+   -6.28,
+   -6.27
+  ],
+  "align_t": -9.19,
+  "align_step": -10.475752995976872,
+  "fc_modes": [
+   [
+    -26.33,
+    "0"
+   ],
+   [
+    -15.13,
+    "ALT_HOLD"
+   ],
+   [
+    0.0,
+    "LOITER"
+   ]
+  ],
+  "fc_texts_hold": [],
+  "reanchors_runner": 18,
+  "rms30": 0.46793146949802694,
+  "max30": 1.0052391030769716,
+  "gap30": 4.713699999999996,
+  "gap_at30": 19.68356032300078,
+  "fix_hz30": 6.333333333333333,
+  "ferr30": 0.18421116543226293,
+  "ferr_max30": 0.5037659968501013,
+  "nbad30": 1,
+  "nsent30": 189,
+  "fabs_max30": 0.4809624304869116,
+  "nbad_abs30": 0,
+  "yaw_chg30": 1.7382083446777612,
+  "reanchors30": 15,
+  "rms60": 0.4680362743495598,
+  "max60": 1.0052391030769716,
+  "gap60": 4.713699999999996,
+  "gap_at60": 19.68356032300078,
+  "fix_hz60": 7.966666666666667,
+  "ferr60": 0.32073596174084823,
+  "ferr_max60": 0.5037659968501013,
+  "nbad60": 1,
+  "nsent60": 479,
+  "fabs_max60": 0.4809624304869116,
+  "nbad_abs60": 0,
+  "yaw_chg60": 1.7382083446777612,
+  "reanchors60": 18,
+  "gate_load": 2.8173828125
+ },
+ {
+  "label": "lowap_apb_5m_w20g40_s1_base",
+  "version": "base",
+  "ground": "ottawa2019fall",
+  "load_start": 2.7529296875,
+  "load_end": 4.14501953125,
+  "hold_s": 60.0,
+  "hold_cfg": {
+   "repeat_diff": 0.01,
+   "h_min": 2.0
+  },
+  "att_source": "gyro (default)",
+  "yaw_err_at_switch": -2.746049572859558,
+  "extnav_to_switch": 1.28,
+  "extnav_all": [
+   -1.28,
+   -1.28
+  ],
+  "align_t": -9.21,
+  "align_step": -10.49407257472942,
+  "fc_modes": [
+   [
+    -26.35,
+    "0"
+   ],
+   [
+    -15.12,
+    "ALT_HOLD"
+   ],
+   [
+    0.0,
+    "LOITER"
+   ]
+  ],
+  "fc_texts_hold": [],
+  "reanchors_runner": 17,
+  "rms30": 0.7292274744470993,
+  "max30": 1.4522984042951788,
+  "gap30": 6.347000000000001,
+  "gap_at30": 18.157877937999572,
+  "fix_hz30": 4.366666666666666,
+  "ferr30": 0.4269741630154415,
+  "ferr_max30": 1.132727839456643,
+  "nbad30": 20,
+  "nsent30": 131,
+  "fabs_max30": 1.1774892745812042,
+  "nbad_abs30": 20,
+  "yaw_chg30": 1.6117116479856504,
+  "reanchors30": 14,
+  "rms60": 1.0208111249699843,
+  "max60": 1.6974388169373924,
+  "gap60": 6.347000000000001,
+  "gap_at60": 18.157877937999572,
+  "fix_hz60": 6.816666666666666,
+  "ferr60": 0.9989936754762038,
+  "ferr_max60": 1.286789816907574,
+  "nbad60": 300,
+  "nsent60": 411,
+  "fabs_max60": 1.3388999203328966,
+  "nbad_abs60": 300,
+  "yaw_chg60": 1.6117116479856504,
+  "reanchors60": 17,
+  "gate_load": 2.7529296875
+ },
+ {
+  "label": "lowap_apb_5m_w20g40_s1_h15",
+  "version": "h15",
+  "ground": "ottawa2019fall",
+  "load_start": 2.94580078125,
+  "load_end": 6.9052734375,
+  "hold_s": 60.0,
+  "hold_cfg": {
+   "repeat_diff": 0.01,
+   "h_min": 2.0
+  },
+  "att_source": "gyro (default)",
+  "yaw_err_at_switch": -1.1366807256261795,
+  "extnav_to_switch": 12.12,
+  "extnav_all": [
+   -12.12,
+   -12.11
+  ],
+  "align_t": -20.19,
+  "align_step": -10.49366155980322,
+  "fc_modes": [
+   [
+    -37.33,
+    "0"
+   ],
+   [
+    -26.1,
+    "ALT_HOLD"
+   ],
+   [
+    0.01,
+    "LOITER"
+   ]
+  ],
+  "fc_texts_hold": [],
+  "reanchors_runner": 15,
+  "rms30": 0.5522942500351883,
+  "max30": 1.1710494704910865,
+  "gap30": 3.657499999999997,
+  "gap_at30": 12.99837821800025,
+  "fix_hz30": 6.5,
+  "ferr30": 0.15942431740335555,
+  "ferr_max30": 0.4865177381801762,
+  "nbad30": 0,
+  "nsent30": 196,
+  "fabs_max30": 0.5246532989840352,
+  "nbad_abs30": 4,
+  "yaw_chg30": 0.6294733741691692,
+  "reanchors30": 11,
+  "rms60": 0.4925898087609158,
+  "max60": 1.1710494704910865,
+  "gap60": 3.657499999999997,
+  "gap_at60": 12.99837821800025,
+  "fix_hz60": 8.033333333333333,
+  "ferr60": 0.2075402804583081,
+  "ferr_max60": 0.4865177381801762,
+  "nbad60": 0,
+  "nsent60": 484,
+  "fabs_max60": 0.5246532989840352,
+  "nbad_abs60": 4,
+  "yaw_chg60": 1.282323535734179,
+  "reanchors60": 15,
+  "gate_load": 2.94580078125
+ },
+ {
+  "label": "lowap_apb_5m_w20g40_s1_pyb",
+  "version": "pyb",
+  "ground": "ottawa2019fall",
+  "load_start": 2.8408203125,
+  "load_end": 5.63818359375,
+  "hold_s": 60.0,
+  "hold_cfg": {
+   "repeat_diff": 0.01,
+   "h_min": 2.0,
+   "dense_local": true,
+   "dense_turn": true
+  },
+  "att_source": "gyro_fcyaw",
+  "yaw_err_at_switch": -2.3673790890975885,
+  "extnav_to_switch": 7.23,
+  "extnav_all": [
+   -7.23,
+   -7.22
+  ],
+  "align_t": -9.07,
+  "align_step": -10.490666237316265,
+  "fc_modes": [
+   [
+    -26.21,
+    "0"
+   ],
+   [
+    -15.01,
+    "ALT_HOLD"
+   ],
+   [
+    0.01,
+    "LOITER"
+   ]
+  ],
+  "fc_texts_hold": [],
+  "reanchors_runner": 2,
+  "rms30": 0.4118854401927415,
+  "max30": 0.8212007397189192,
+  "gap30": 1.3841999999999963,
+  "gap_at30": 14.65795732899879,
+  "fix_hz30": 10.8,
+  "ferr30": 0.03750290457104739,
+  "ferr_max30": 0.10028500722049785,
+  "nbad30": 0,
+  "nsent30": 325,
+  "fabs_max30": 0.13025735217940793,
+  "nbad_abs30": 0,
+  "yaw_chg30": 2.3574273886378387,
+  "reanchors30": 2,
+  "rms60": 0.3711688773439971,
+  "max60": 0.8212007397189192,
+  "gap60": 1.3841999999999963,
+  "gap_at60": 14.65795732899879,
+  "fix_hz60": 11.533333333333333,
+  "ferr60": 0.05104647249538584,
+  "ferr_max60": 0.10963312732033767,
+  "nbad60": 0,
+  "nsent60": 694,
+  "fabs_max60": 0.16237271401424413,
+  "nbad_abs60": 0,
+  "yaw_chg60": 2.3574273886378387,
+  "reanchors60": 2,
+  "gate_load": 2.8408203125
+ },
+ {
+  "label": "lowap_apb_5m_w20g40_s1_pybh15",
+  "version": "pybh15",
+  "ground": "ottawa2019fall",
+  "load_start": 2.927734375,
+  "load_end": 9.6201171875,
+  "hold_s": 60.0,
+  "hold_cfg": {
+   "repeat_diff": 0.01,
+   "h_min": 2.0,
+   "dense_local": true,
+   "dense_turn": true
+  },
+  "att_source": "gyro_fcyaw",
+  "yaw_err_at_switch": -0.5580601094576739,
+  "extnav_to_switch": 18.43,
+  "extnav_all": [
+   -18.43,
+   -18.43
+  ],
+  "align_t": -20.24,
+  "align_step": -11.054933481119004,
+  "fc_modes": [
+   [
+    -39.08,
+    "0"
+   ],
+   [
+    -26.12,
+    "ALT_HOLD"
+   ],
+   [
+    0.01,
+    "LOITER"
+   ]
+  ],
+  "fc_texts_hold": [],
+  "reanchors_runner": 3,
+  "rms30": 0.41516595571841663,
+  "max30": 0.7958650686290303,
+  "gap30": 1.3939999999999984,
+  "gap_at30": 12.014054576000161,
+  "fix_hz30": 11.066666666666666,
+  "ferr30": 0.06616786291917055,
+  "ferr_max30": 0.14323658661475644,
+  "nbad30": 0,
+  "nsent30": 332,
+  "fabs_max30": 0.17357127346242743,
+  "nbad_abs30": 0,
+  "yaw_chg30": 3.8081032047763466,
+  "reanchors30": 2,
+  "rms60": 0.38425362767585547,
+  "max60": 0.7958650686290303,
+  "gap60": 1.395300000000006,
+  "gap_at60": 30.517154576000163,
+  "fix_hz60": 11.266666666666667,
+  "ferr60": 0.08139186707381851,
+  "ferr_max60": 0.14683159565622556,
+  "nbad60": 0,
+  "nsent60": 676,
+  "fabs_max60": 0.1781863274229193,
+  "nbad_abs60": 0,
+  "yaw_chg60": 3.8081032047763466,
+  "reanchors60": 3,
+  "gate_load": 2.927734375
+ },
+ {
+  "label": "lowap_apb_5m_w20g40_s2_b",
+  "version": "b",
+  "ground": "ottawa2019fall",
+  "load_start": 2.81787109375,
+  "load_end": 5.63232421875,
+  "hold_s": 60.0,
+  "hold_cfg": {
+   "repeat_diff": 0.01,
+   "h_min": 2.0
+  },
+  "att_source": "gyro_fcyaw",
+  "yaw_err_at_switch": -2.358152935977348,
+  "extnav_to_switch": 7.6,
+  "extnav_all": [
+   -7.6,
+   -7.59
+  ],
+  "align_t": -9.07,
+  "align_step": -10.469977819902917,
+  "fc_modes": [
+   [
+    -26.21,
+    "0"
+   ],
+   [
+    -14.98,
+    "ALT_HOLD"
+   ],
+   [
+    0.01,
+    "LOITER"
+   ]
+  ],
+  "fc_texts_hold": [],
+  "reanchors_runner": 16,
+  "rms30": 0.3410325185788697,
+  "max30": 0.7884043646740602,
+  "gap30": 2.4429000000000016,
+  "gap_at30": 8.521576896999212,
+  "fix_hz30": 9.833333333333334,
+  "ferr30": 0.09321157032113889,
+  "ferr_max30": 0.14214996904156532,
+  "nbad30": 0,
+  "nsent30": 296,
+  "fabs_max30": 0.1084140390071873,
+  "nbad_abs30": 0,
+  "yaw_chg30": 1.2577849036461575,
+  "reanchors30": 4,
+  "rms60": 0.6435509085043514,
+  "max60": 1.6739050396288777,
+  "gap60": 4.191123103000791,
+  "gap_at60": 55.80887689699921,
+  "fix_hz60": 8.516666666666667,
+  "ferr60": 0.426021734982183,
+  "ferr_max60": 0.9570178054051895,
+  "nbad60": 166,
+  "nsent60": 510,
+  "fabs_max60": 0.9180493906869803,
+  "nbad_abs60": 166,
+  "yaw_chg60": 1.2577849036461575,
+  "reanchors60": 16,
+  "gate_load": 2.81787109375
+ },
+ {
+  "label": "lowap_apb_5m_w20g40_s2_base",
+  "version": "base",
+  "ground": "ottawa2019fall",
+  "load_start": 2.83203125,
+  "load_end": 5.42724609375,
+  "hold_s": 60.0,
+  "hold_cfg": {
+   "repeat_diff": 0.01,
+   "h_min": 2.0
+  },
+  "att_source": "gyro (default)",
+  "yaw_err_at_switch": -2.736507331287377,
+  "extnav_to_switch": 1.38,
+  "extnav_all": [
+   -1.38,
+   -1.36
+  ],
+  "align_t": -9.18,
+  "align_step": -10.493254330718853,
+  "fc_modes": [
+   [
+    -26.32,
+    "0"
+   ],
+   [
+    -15.09,
+    "ALT_HOLD"
+   ],
+   [
+    0.0,
+    "LOITER"
+   ]
+  ],
+  "fc_texts_hold": [],
+  "reanchors_runner": 21,
+  "rms30": 0.5523123791107352,
+  "max30": 0.8586479894320608,
+  "gap30": 3.0051000000000005,
+  "gap_at30": 8.529951533000057,
+  "fix_hz30": 8.033333333333333,
+  "ferr30": 0.38761756059419883,
+  "ferr_max30": 0.5762086501756529,
+  "nbad30": 90,
+  "nsent30": 242,
+  "fabs_max30": 0.667972701079379,
+  "nbad_abs30": 110,
+  "yaw_chg30": 1.5778742802320769,
+  "reanchors30": 8,
+  "rms60": 0.7126487138142971,
+  "max60": 1.2258245028678934,
+  "gap60": 5.037548466999944,
+  "gap_at60": 54.962451533000056,
+  "fix_hz60": 7.3,
+  "ferr60": 0.5456548957603958,
+  "ferr_max60": 0.7790188587086743,
+  "nbad60": 286,
+  "nsent60": 438,
+  "fabs_max60": 0.8643108363275499,
+  "nbad_abs60": 306,
+  "yaw_chg60": 1.5778742802320769,
+  "reanchors60": 21,
+  "gate_load": 2.83203125
+ },
+ {
+  "label": "lowap_apb_5m_w20g40_s2_h15",
+  "version": "h15",
+  "ground": "ottawa2019fall",
+  "load_start": 2.78173828125,
+  "load_end": 7.0625,
+  "hold_s": 60.0,
+  "hold_cfg": {
+   "repeat_diff": 0.01,
+   "h_min": 2.0
+  },
+  "att_source": "gyro (default)",
+  "yaw_err_at_switch": -1.142903495703272,
+  "extnav_to_switch": 12.06,
+  "extnav_all": [
+   -12.06,
+   -12.06
+  ],
+  "align_t": -20.17,
+  "align_step": -10.475005606208917,
+  "fc_modes": [
+   [
+    -37.31,
+    "0"
+   ],
+   [
+    -26.09,
+    "ALT_HOLD"
+   ],
+   [
+    0.01,
+    "LOITER"
+   ]
+  ],
+  "fc_texts_hold": [],
+  "reanchors_runner": 10,
+  "rms30": 0.402632739622563,
+  "max30": 0.7968326613191608,
+  "gap30": 1.5408000000000008,
+  "gap_at30": 11.346436247999357,
+  "fix_hz30": 8.633333333333333,
+  "ferr30": 0.20352190304225976,
+  "ferr_max30": 0.3410713916870712,
+  "nbad30": 0,
+  "nsent30": 259,
+  "fabs_max30": 0.4027995746128229,
+  "nbad_abs30": 0,
+  "yaw_chg30": 1.2872687570531893,
+  "reanchors30": 5,
+  "rms60": 0.5020996010202856,
+  "max60": 1.0521810553287987,
+  "gap60": 1.5463000000000022,
+  "gap_at60": 41.87143624799936,
+  "fix_hz60": 8.65,
+  "ferr60": 0.3601709318712729,
+  "ferr_max60": 0.5844469494830455,
+  "nbad60": 126,
+  "nsent60": 518,
+  "fabs_max60": 0.6416869079637385,
+  "nbad_abs60": 175,
+  "yaw_chg60": 1.8475101469048216,
+  "reanchors60": 10,
+  "gate_load": 2.78173828125
+ },
+ {
+  "label": "lowap_apb_5m_w20g40_s2_pyb",
+  "version": "pyb",
+  "ground": "ottawa2019fall",
+  "load_start": 2.95263671875,
+  "load_end": 6.70166015625,
+  "hold_s": 60.0,
+  "hold_cfg": {
+   "repeat_diff": 0.01,
+   "h_min": 2.0,
+   "dense_local": true,
+   "dense_turn": true
+  },
+  "att_source": "gyro_fcyaw",
+  "yaw_err_at_switch": -2.3298374424524826,
+  "extnav_to_switch": 7.41,
+  "extnav_all": [
+   -7.41,
+   -7.4
+  ],
+  "align_t": -9.11,
+  "align_step": -10.474251225183503,
+  "fc_modes": [
+   [
+    -26.25,
+    "0"
+   ],
+   [
+    -15.02,
+    "ALT_HOLD"
+   ],
+   [
+    0.0,
+    "LOITER"
+   ]
+  ],
+  "fc_texts_hold": [],
+  "reanchors_runner": 6,
+  "rms30": 0.3546050837052918,
+  "max30": 0.7784521927741552,
+  "gap30": 1.4636999999999958,
+  "gap_at30": 26.001563087999276,
+  "fix_hz30": 11.066666666666666,
+  "ferr30": 0.03783257222971308,
+  "ferr_max30": 0.08888158561653378,
+  "nbad30": 0,
+  "nsent30": 332,
+  "fabs_max30": 0.1248779618617213,
+  "nbad_abs30": 0,
+  "yaw_chg30": 1.6007362609030242,
+  "reanchors30": 2,
+  "rms60": 0.4184706391563601,
+  "max60": 1.0142775960195316,
+  "gap60": 1.4644000000000048,
+  "gap_at60": 55.57486308799927,
+  "fix_hz60": 10.666666666666666,
+  "ferr60": 0.06506349883342974,
+  "ferr_max60": 0.1510479956918767,
+  "nbad60": 0,
+  "nsent60": 639,
+  "fabs_max60": 0.18363511468513027,
+  "nbad_abs60": 0,
+  "yaw_chg60": 1.6445760832728271,
+  "reanchors60": 6,
+  "gate_load": 2.95263671875
+ },
+ {
+  "label": "lowap_apb_5m_w20g40_s2_pybh15",
+  "version": "pybh15",
+  "ground": "ottawa2019fall",
+  "load_start": 2.97265625,
+  "load_end": 8.744140625,
+  "hold_s": 60.0,
+  "hold_cfg": {
+   "repeat_diff": 0.01,
+   "h_min": 2.0,
+   "dense_local": true,
+   "dense_turn": true
+  },
+  "att_source": "gyro_fcyaw",
+  "yaw_err_at_switch": -0.8412398910758145,
+  "extnav_to_switch": 18.48,
+  "extnav_all": [
+   -18.48,
+   -18.48
+  ],
+  "align_t": -20.14,
+  "align_step": -10.692485644723748,
+  "fc_modes": [
+   [
+    -38.98,
+    "0"
+   ],
+   [
+    -26.08,
+    "ALT_HOLD"
+   ],
+   [
+    0.01,
+    "LOITER"
+   ]
+  ],
+  "fc_texts_hold": [],
+  "reanchors_runner": 4,
+  "rms30": 0.3457878073259494,
+  "max30": 0.7592202069817756,
+  "gap30": 1.3198000000000016,
+  "gap_at30": 5.9164580110015805,
+  "fix_hz30": 11.0,
+  "ferr30": 0.03940021022151362,
+  "ferr_max30": 0.11969160700892345,
+  "nbad30": 0,
+  "nsent30": 330,
+  "fabs_max30": 0.15214042131679534,
+  "nbad_abs30": 0,
+  "yaw_chg30": 0.6901621889570713,
+  "reanchors30": 2,
+  "rms60": 0.4075299933665527,
+  "max60": 0.9537680614703345,
+  "gap60": 1.3995000000000104,
+  "gap_at60": 54.08835801100158,
+  "fix_hz60": 10.983333333333333,
+  "ferr60": 0.0596670958984414,
+  "ferr_max60": 0.23832239467378913,
+  "nbad60": 0,
+  "nsent60": 659,
+  "fabs_max60": 0.22119504025603184,
+  "nbad_abs60": 0,
+  "yaw_chg60": 1.788527429237195,
+  "reanchors60": 4,
+  "gate_load": 2.97265625
+ },
+ {
+  "label": "lowap_apb_5m_w20g40_s3_base",
+  "version": "base",
+  "ground": "ottawa2019fall",
+  "load_start": 2.9326171875,
+  "load_end": 5.38818359375,
+  "hold_s": 60.0,
+  "hold_cfg": {
+   "repeat_diff": 0.01,
+   "h_min": 2.0
+  },
+  "att_source": "gyro (default)",
+  "yaw_err_at_switch": -2.0524875676084666,
+  "extnav_to_switch": 2.53,
+  "extnav_all": [
+   -2.53,
+   -2.52
+  ],
+  "align_t": -9.24,
+  "align_step": -11.075195603820747,
+  "fc_modes": [
+   [
+    -27.97,
+    "0"
+   ],
+   [
+    -15.13,
+    "ALT_HOLD"
+   ],
+   [
+    0.01,
+    "LOITER"
+   ]
+  ],
+  "fc_texts_hold": [],
+  "reanchors_runner": 18,
+  "rms30": 0.4088240226112163,
+  "max30": 0.7820371779599145,
+  "gap30": 2.623800000000001,
+  "gap_at30": 7.385626591000982,
+  "fix_hz30": 8.866666666666667,
+  "ferr30": 0.18733860903192398,
+  "ferr_max30": 0.2888465497969662,
+  "nbad30": 0,
+  "nsent30": 266,
+  "fabs_max30": 0.4393006154727793,
+  "nbad_abs30": 0,
+  "yaw_chg30": 2.5875914387755916,
+  "reanchors30": 5,
+  "rms60": 0.7416907915946528,
+  "max60": 1.9033526036311952,
+  "gap60": 3.5356999999999985,
+  "gap_at60": 35.08772659100099,
+  "fix_hz60": 6.916666666666667,
+  "ferr60": 0.5081560403097168,
+  "ferr_max60": 1.1321993285776888,
+  "nbad60": 126,
+  "nsent60": 417,
+  "fabs_max60": 1.2854852026854642,
+  "nbad_abs60": 135,
+  "yaw_chg60": 2.5875914387755916,
+  "reanchors60": 18,
+  "gate_load": 2.9326171875
+ },
+ {
+  "label": "lowap_apb_5m_w20g40_s3_pyb",
+  "version": "pyb",
+  "ground": "ottawa2019fall",
+  "load_start": 2.9228515625,
+  "load_end": 7.0986328125,
+  "hold_s": 60.0,
+  "hold_cfg": {
+   "repeat_diff": 0.01,
+   "h_min": 2.0,
+   "dense_local": true,
+   "dense_turn": true
+  },
+  "att_source": "gyro_fcyaw",
+  "yaw_err_at_switch": -1.95264908048948,
+  "extnav_to_switch": 7.41,
+  "extnav_all": [
+   -7.41,
+   -7.41
+  ],
+  "align_t": -9.25,
+  "align_step": -11.074355901205477,
+  "fc_modes": [
+   [
+    -27.98,
+    "0"
+   ],
+   [
+    -15.13,
+    "ALT_HOLD"
+   ],
+   [
+    0.02,
+    "LOITER"
+   ]
+  ],
+  "fc_texts_hold": [],
+  "reanchors_runner": 4,
+  "rms30": 0.32891702248370625,
+  "max30": 0.6633669257945537,
+  "gap30": 0.41110000000000113,
+  "gap_at30": 16.988355699000564,
+  "fix_hz30": 9.966666666666667,
+  "ferr30": 0.02654523485931368,
+  "ferr_max30": 0.05287071745648384,
+  "nbad30": 0,
+  "nsent30": 300,
+  "fabs_max30": 0.15654720815147125,
+  "nbad_abs30": 0,
+  "yaw_chg30": 1.3334968114465706,
+  "reanchors30": 0,
+  "rms60": 0.4051363629166818,
+  "max60": 1.1820144299295672,
+  "gap60": 1.4819999999999993,
+  "gap_at60": 32.64015569900056,
+  "fix_hz60": 9.733333333333333,
+  "ferr60": 0.0552831873981421,
+  "ferr_max60": 0.157433851578327,
+  "nbad60": 0,
+  "nsent60": 585,
+  "fabs_max60": 0.2397391421989617,
+  "nbad_abs60": 0,
+  "yaw_chg60": 1.4011151580077899,
+  "reanchors60": 4,
+  "gate_load": 2.9228515625
+ },
+ {
+  "label": "lowap_apb_60m_w20g40_s1_base",
+  "version": "base",
+  "ground": "ottawa2019fall",
+  "load_start": 2.767578125,
+  "load_end": 7.02392578125,
+  "hold_s": 60.0,
+  "hold_cfg": {
+   "repeat_diff": 0.01,
+   "h_min": 2.0
+  },
+  "att_source": "gyro (default)",
+  "yaw_err_at_switch": -0.5624834710584042,
+  "extnav_to_switch": 16.25,
+  "extnav_all": [
+   -16.25,
+   -16.25
+  ],
+  "align_t": -20.11,
+  "align_step": -12.20537265040065,
+  "fc_modes": [
+   [
+    -38.55,
+    "0"
+   ],
+   [
+    -25.62,
+    "ALT_HOLD"
+   ],
+   [
+    0.0,
+    "LOITER"
+   ]
+  ],
+  "fc_texts_hold": [],
+  "reanchors_runner": 0,
+  "rms30": 0.4890982318215145,
+  "max30": 0.9187749665009506,
+  "gap30": 0.09980000000000189,
+  "gap_at30": 19.659007736000746,
+  "fix_hz30": 11.966666666666667,
+  "ferr30": 0.22930131289165795,
+  "ferr_max30": 0.5490886608498136,
+  "nbad30": 2,
+  "nsent30": 359,
+  "fabs_max30": 0.9399269504298432,
+  "nbad_abs30": 313,
+  "yaw_chg30": 2.2347638867940303,
+  "reanchors30": 0,
+  "rms60": 0.5086403368814945,
+  "max60": 0.9187749665009506,
+  "gap60": 0.12350000000001415,
+  "gap_at60": 56.04010773600074,
+  "fix_hz60": 11.966666666666667,
+  "ferr60": 0.32122685720116234,
+  "ferr_max60": 0.5532958889129634,
+  "nbad60": 32,
+  "nsent60": 718,
+  "fabs_max60": 1.1824613795213057,
+  "nbad_abs60": 672,
+  "yaw_chg60": 2.2347638867940303,
+  "reanchors60": 0,
+  "gate_load": 2.767578125
+ },
+ {
+  "label": "lowap_apb_60m_w20g40_s1_pyb",
+  "version": "pyb",
+  "ground": "ottawa2019fall",
+  "load_start": 2.8408203125,
+  "load_end": 5.70751953125,
+  "hold_s": 60.0,
+  "hold_cfg": {
+   "repeat_diff": 0.01,
+   "h_min": 2.0,
+   "dense_local": true,
+   "dense_turn": true
+  },
+  "att_source": "gyro_fcyaw",
+  "yaw_err_at_switch": -7.112584688030315,
+  "extnav_to_switch": 18.3,
+  "extnav_all": [
+   -18.3,
+   -18.29
+  ],
+  "align_t": -19.93,
+  "align_step": -12.21830538640505,
+  "fc_modes": [
+   [
+    -38.46,
+    "0"
+   ],
+   [
+    -25.46,
+    "ALT_HOLD"
+   ],
+   [
+    0.0,
+    "LOITER"
+   ]
+  ],
+  "fc_texts_hold": [],
+  "reanchors_runner": 0,
+  "rms30": 0.5854008498544055,
+  "max30": 1.0373168277230955,
+  "gap30": 0.08910000000000196,
+  "gap_at30": 5.158914875999815,
+  "fix_hz30": 11.966666666666667,
+  "ferr30": 0.2504670424176148,
+  "ferr_max30": 0.5701811009091988,
+  "nbad30": 9,
+  "nsent30": 359,
+  "fabs_max30": 0.9441418514836345,
+  "nbad_abs30": 343,
+  "yaw_chg30": 5.5445356228962455,
+  "reanchors30": 0,
+  "rms60": 0.5210561372203526,
+  "max60": 1.0373168277230955,
+  "gap60": 0.08910000000000196,
+  "gap_at60": 5.158914875999815,
+  "fix_hz60": 11.966666666666667,
+  "ferr60": 0.3700428943337022,
+  "ferr_max60": 0.7302242075234564,
+  "nbad60": 127,
+  "nsent60": 718,
+  "fabs_max60": 1.182831477601807,
+  "nbad_abs60": 699,
+  "yaw_chg60": 5.5445356228962455,
+  "reanchors60": 0,
+  "gate_load": 2.8408203125
+ },
+ {
+  "label": "lowap_apb_60m_w20g40_s2_base",
+  "version": "base",
+  "ground": "ottawa2019fall",
+  "load_start": 2.83154296875,
+  "load_end": 6.10595703125,
+  "hold_s": 60.0,
+  "hold_cfg": {
+   "repeat_diff": 0.01,
+   "h_min": 2.0
+  },
+  "att_source": "gyro (default)",
+  "yaw_err_at_switch": -0.13828583285066373,
+  "extnav_to_switch": 16.52,
+  "extnav_all": [
+   -16.52,
+   -16.52
+  ],
+  "align_t": -20.07,
+  "align_step": -12.203604735587977,
+  "fc_modes": [
+   [
+    -38.51,
+    "0"
+   ],
+   [
+    -25.59,
+    "ALT_HOLD"
+   ],
+   [
+    0.0,
+    "LOITER"
+   ]
+  ],
+  "fc_texts_hold": [],
+  "reanchors_runner": 0,
+  "rms30": 0.40931088105695496,
+  "max30": 0.882701979144219,
+  "gap30": 0.08630000000000138,
+  "gap_at30": 10.878122012000752,
+  "fix_hz30": 12.0,
+  "ferr30": 0.1948560755420166,
+  "ferr_max30": 0.4199717422942139,
+  "nbad30": 0,
+  "nsent30": 361,
+  "fabs_max30": 0.9916012455625804,
+  "nbad_abs30": 314,
+  "yaw_chg30": 2.05649554117874,
+  "reanchors30": 0,
+  "rms60": 0.4569954392518011,
+  "max60": 1.0069368737230908,
+  "gap60": 0.08660000000001133,
+  "gap_at60": 50.86632201200075,
+  "fix_hz60": 12.0,
+  "ferr60": 0.2507910540529128,
+  "ferr_max60": 0.5247769181773612,
+  "nbad60": 5,
+  "nsent60": 721,
+  "fabs_max60": 1.1072540663944728,
+  "nbad_abs60": 656,
+  "yaw_chg60": 2.2605364282865668,
+  "reanchors60": 0,
+  "gate_load": 2.83154296875
+ },
+ {
+  "label": "lowap_apb_60m_w20g40_s2_pyb",
+  "version": "pyb",
+  "ground": "ottawa2019fall",
+  "load_start": 2.87890625,
+  "load_end": 3.93798828125,
+  "hold_s": 60.0,
+  "hold_cfg": {
+   "repeat_diff": 0.01,
+   "h_min": 2.0,
+   "dense_local": true,
+   "dense_turn": true
+  },
+  "att_source": "gyro_fcyaw",
+  "yaw_err_at_switch": -5.295938762889775,
+  "extnav_to_switch": 18.79,
+  "extnav_all": [
+   -18.79,
+   -18.79
+  ],
+  "align_t": -19.8,
+  "align_step": -12.202825904704143,
+  "fc_modes": [
+   [
+    -38.34,
+    "0"
+   ],
+   [
+    -25.37,
+    "ALT_HOLD"
+   ],
+   [
+    0.02,
+    "LOITER"
+   ]
+  ],
+  "fc_texts_hold": [],
+  "reanchors_runner": 0,
+  "rms30": 0.44008230100351015,
+  "max30": 0.8693034760806435,
+  "gap30": 0.12219999999999942,
+  "gap_at30": 20.060618380999582,
+  "fix_hz30": 11.966666666666667,
+  "ferr30": 0.3442645493291675,
+  "ferr_max30": 0.7273962700511833,
+  "nbad30": 40,
+  "nsent30": 359,
+  "fabs_max30": 2.4195619318458426,
+  "nbad_abs30": 359,
+  "yaw_chg30": 7.009548066236492,
+  "reanchors30": 0,
+  "rms60": 0.5503269027057162,
+  "max60": 1.2334278307807822,
+  "gap60": 0.12610000000000454,
+  "gap_at60": 30.107818380999582,
+  "fix_hz60": 11.966666666666667,
+  "ferr60": 0.6281801560477069,
+  "ferr_max60": 1.2061564993061469,
+  "nbad60": 397,
+  "nsent60": 718,
+  "fabs_max60": 2.4195619318458426,
+  "nbad_abs60": 718,
+  "yaw_chg60": 7.121405628937867,
+  "reanchors60": 0,
+  "gate_load": 2.87890625
+ },
+ {
+  "label": "lowap_apb_60m_w20g40_s3_base",
+  "version": "base",
+  "ground": "ottawa2019fall",
+  "load_start": 2.96142578125,
+  "load_end": 4.72802734375,
+  "hold_s": 60.0,
+  "hold_cfg": {
+   "repeat_diff": 0.01,
+   "h_min": 2.0
+  },
+  "att_source": "gyro (default)",
+  "yaw_err_at_switch": 0.5749626057574193,
+  "extnav_to_switch": 16.2,
+  "extnav_all": [
+   -16.2,
+   -16.19
+  ],
+  "align_t": -20.01,
+  "align_step": -12.219497361172783,
+  "fc_modes": [
+   [
+    -38.44,
+    "0"
+   ],
+   [
+    -25.57,
+    "ALT_HOLD"
+   ],
+   [
+    0.0,
+    "LOITER"
+   ]
+  ],
+  "fc_texts_hold": [],
+  "reanchors_runner": 0,
+  "rms30": 0.468507401755305,
+  "max30": 0.993524938470977,
+  "gap30": 0.08650000000000091,
+  "gap_at30": 17.01581821500114,
+  "fix_hz30": 11.966666666666667,
+  "ferr30": 0.2699133112606611,
+  "ferr_max30": 0.6603553302132406,
+  "nbad30": 12,
+  "nsent30": 359,
+  "fabs_max30": 0.795392179493883,
+  "nbad_abs30": 160,
+  "yaw_chg30": 4.7172918234522605,
+  "reanchors30": 0,
+  "rms60": 0.48559089762013213,
+  "max60": 1.2804392508242926,
+  "gap60": 0.09620000000001028,
+  "gap_at60": 51.23321821500114,
+  "fix_hz60": 11.966666666666667,
+  "ferr60": 0.23981111278492442,
+  "ferr_max60": 0.6603553302132406,
+  "nbad60": 13,
+  "nsent60": 719,
+  "fabs_max60": 0.9530541074734665,
+  "nbad_abs60": 386,
+  "yaw_chg60": 4.7172918234522605,
+  "reanchors60": 0,
+  "gate_load": 2.96142578125
+ },
+ {
+  "label": "lowap_apb_60m_w20g40_s3_pyb",
+  "version": "pyb",
+  "ground": "ottawa2019fall",
+  "load_start": 2.92138671875,
+  "load_end": 5.78076171875,
+  "hold_s": 60.0,
+  "hold_cfg": {
+   "repeat_diff": 0.01,
+   "h_min": 2.0,
+   "dense_local": true,
+   "dense_turn": true
+  },
+  "att_source": "gyro_fcyaw",
+  "yaw_err_at_switch": -3.4387356426868223,
+  "extnav_to_switch": 18.86,
+  "extnav_all": [
+   -18.86,
+   -18.84
+  ],
+  "align_t": -19.85,
+  "align_step": -12.571705943303886,
+  "fc_modes": [
+   [
+    -38.18,
+    "0"
+   ],
+   [
+    -25.33,
+    "ALT_HOLD"
+   ],
+   [
+    0.01,
+    "LOITER"
+   ]
+  ],
+  "fc_texts_hold": [],
+  "reanchors_runner": 0,
+  "rms30": 0.3948200510455112,
+  "max30": 0.8552698670104286,
+  "gap30": 0.093700000000009,
+  "gap_at30": 28.956601459999813,
+  "fix_hz30": 11.966666666666667,
+  "ferr30": 0.21482495783043076,
+  "ferr_max30": 0.49399995672842983,
+  "nbad30": 0,
+  "nsent30": 359,
+  "fabs_max30": 1.329678399622027,
+  "nbad_abs30": 359,
+  "yaw_chg30": 2.694151223407847,
+  "reanchors30": 0,
+  "rms60": 0.4648792149313997,
+  "max60": 1.2880559794190525,
+  "gap60": 0.11290000000000333,
+  "gap_at60": 52.91730145999981,
+  "fix_hz60": 11.95,
+  "ferr60": 0.2064422257595251,
+  "ferr_max60": 0.49399995672842983,
+  "nbad60": 0,
+  "nsent60": 717,
+  "fabs_max60": 1.334064955892223,
+  "nbad_abs60": 717,
+  "yaw_chg60": 2.9073587663052964,
+  "reanchors60": 0,
+  "gate_load": 2.92138671875
+ }
+]

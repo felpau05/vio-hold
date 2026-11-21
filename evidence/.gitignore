@@ -1,0 +1,6 @@
+# Evidence copies of files that the repository root .gitignore would hide (runs/, logs/).
+!runs/
+!logs/
+!*.txt
+!*.json
+!*.parm

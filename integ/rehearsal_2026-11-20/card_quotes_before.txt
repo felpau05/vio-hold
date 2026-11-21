@@ -1,0 +1,34 @@
+row  2 MISSING "toilet bowl"   not found: ['toilet bowl']
+row  4 OK      "waiting for image motion that proves the picture is live"
+row  7 OK      "powersave"
+row 12 OK      "image motion does not match the attitude"
+row 13 OK      "attitude late"
+row 13 OK      "attitude stale"
+row 14 MISSING "height ... m under 15 m"   not found: ['m under 15 m']
+row 16 MISSING "video: cannot open the camera at <video_device or video_pipeline>"   not found: ['video: cannot open the camera at']
+row 17 MISSING "video rate <n> fps (setting video_fps 60)"   not found: ['fps (setting video_fps 60)']
+row 18 OK      "cannot read pixel format '<x>' as grey"
+row 18 OK      "cannot cut the video_command output into frames"
+row 19 MISSING "video_command stopped with exit code <n>"   not found: ['video_command stopped with exit code']
+row 19 MISSING "video_command gave no frame in 2 s"   not found: ['video_command gave no frame in 2 s']
+row 20 OK      "lens profile '<name>' is <w>x<h>, the picture <w>x<h>"
+row 21 OK      "FAIL k1 not found"
+row 21 OK      "FAIL calibration"
+row 22 OK      "capture is '<x>' but the calibration was made with '<y>'. Run calib again."
+row 23 OK      "free disk <n> GB at <path>"
+row 24 OK      "board temperature <n> C: the board stops at 95 C"
+row 25 MISSING "frame stamps from <x>: intervals differ from their median by <n> ms (p95, limit 12 ms for a hold at 40 m)"   not found: [': intervals differ from their median by', 'ms (p95, limit 12 ms for a hold at 40 m)']
+row 26 OK      "frame stamps from <x>: <n> intervals in 2 s, too few to measure (need 10)"
+row 27 MISSING "FAIL no camera frame for 2 s: the camera stopped. The program opens it again."   not found: ['FAIL no camera frame for 2 s: the camera stopped. The program opens it again.']
+row 28 OK      "the raw recorder stopped: the disk at <path> has <n> GB free, less than min_free_gb <n>. The hold continues."
+row 29 OK      "log write failed: <error>. The hold continues without a log."
+row 30 MISSING "FAIL calibration: the picture is <w>x<h>, but lens profile '<name>' is <w>x<h>."   not found: ['FAIL calibration: the picture is']
+row 31 MISSING "FAIL calibration: the lens fit ended at the edge of its search range"   not found: ['FAIL calibration: the lens fit ended at the edge of its search range']
+row 32 MISSING "FAIL focal scale is outside 0.98-1.02: the lens measured with a target does not fit this recording."   not found: ['FAIL focal scale is outside 0.98-1.02: the lens measured with a target does not fit this recording.']
+row 33 OK      "lens_measured (<by>) is for <w>x<h> pictures, but the picture is <w>x<h>."
+row 34 OK      "engaged: FC mode ..."
+row 35 OK      "black or flat picture (lens covered?)"
+row 37 OK      "recovery test: video dropped"
+row 38 OK      "re-anchored"
+row 38 OK      "whole picture: halves disagree"
+11 quote(s) with a missing part

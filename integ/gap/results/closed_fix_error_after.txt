@@ -1,0 +1,8 @@
+gapfix_jd_apb_100m_w20g40_s11    fixes  732  fix error minus offset: RMS 0.261 m, worst 0.641 m, fix-to-fix jitter 0.066 m; offset [0.643, 1.468]; longest gap without a sent fix in [-10, +3] s of the hold start 0.12 s ending -1.64 s
+gapfix_jd_apb_100m_w20g40_s12    fixes  732  fix error minus offset: RMS 0.242 m, worst 0.653 m, fix-to-fix jitter 0.065 m; offset [0.724, 1.413]; longest gap without a sent fix in [-10, +3] s of the hold start 0.12 s ending -4.0 s
+gapfix_jd_apb_100m_w20g40_s13    fixes  730  fix error minus offset: RMS 0.308 m, worst 0.802 m, fix-to-fix jitter 0.064 m; offset [0.645, 1.3]; longest gap without a sent fix in [-10, +3] s of the hold start 0.13 s ending -1.24 s
+gapfix_jdcal_apb_100m_w20g40_s11 fixes  731  fix error minus offset: RMS 0.267 m, worst 0.674 m, fix-to-fix jitter 0.083 m; offset [-0.43, 0.946]; longest gap without a sent fix in [-10, +3] s of the hold start 0.1 s ending -8.05 s
+gapfix_jd_apb_100m_w20g40_s11 unsent in [-10,+3] s: {}
+gapfix_jd_apb_100m_w20g40_s12 unsent in [-10,+3] s: {}
+gapfix_jd_apb_100m_w20g40_s13 unsent in [-10,+3] s: {}
+gapfix_jdcal_apb_100m_w20g40_s11 unsent in [-10,+3] s: {}

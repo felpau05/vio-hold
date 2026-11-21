@@ -1,0 +1,10 @@
+raw_sim_000.npz: 250 frames, 0.0-10.0 s
+raw_sim_001.npz: 250 frames, 10.0-20.0 s
+settings.json: video_delay_s 0.0604, readout_s 0.0184, true focal scale 1.0
+raw_sim_000.npz: 250 frames, 0.0-10.0 s
+raw_sim_001.npz: 250 frames, 10.0-20.0 s
+settings.json: video_delay_s 0.0604, readout_s 0.0184, true focal scale 1.0
+settings.json: SAME
+raw_sim_000.npz: SAME (250 frames, keys ['imgs', 't_grab', 'att', 'hgt', 'lpos', 'K', 'D', 'truth_ne'])
+raw_sim_001.npz: SAME (250 frames, keys ['imgs', 't_grab', 'att', 'hgt', 'lpos', 'K', 'D', 'truth_ne'])
+RESULT: the default analog output is UNCHANGED

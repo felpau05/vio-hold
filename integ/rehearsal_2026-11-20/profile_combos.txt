@@ -1,0 +1,50 @@
+settings.json md5 before: be7b5bea6b6ccdefb43c0501425da7eb
+
+A. combinations on a fresh copy of settings.json
+  OK   outdoor_day goal_a px4 justice_d
+  OK   indoor goal_a px4 justice_d
+  OK   indoor goal_a ardupilot justice_d
+  OK   indoor goal_b px4 justice_d
+  OK   indoor goal_b ardupilot justice_d
+  OK   outdoor_day goal_a px4 justice_d
+  OK   outdoor_day goal_a ardupilot justice_d
+  OK   outdoor_day goal_b px4 justice_d
+  OK   outdoor_day goal_b ardupilot justice_d
+  OK   outdoor_night goal_a px4 justice_d
+  OK   outdoor_night goal_a ardupilot justice_d
+  OK   outdoor_night goal_b px4 justice_d
+  OK   outdoor_night goal_b ardupilot justice_d
+  OK   outdoor_day goal_b ardupilot justice_d recovery_demo
+  OK   outdoor_day goal_b ardupilot justice_d fresh_kf
+  OK   outdoor_day goal_b ardupilot justice_d kf_bright
+  OK   outdoor_day goal_b ardupilot justice_d gap_jump
+  OK   outdoor_day goal_b ardupilot justice_d drag_fusion
+  OK   outdoor_day goal_b ardupilot justice_d kf_bright gap_jump recovery_demo
+  OK   outdoor_day goal_b ardupilot justice_d no_sd
+  OK   outdoor_day goal_b px4 justice_d no_sd recovery_demo
+  21 combinations, 0 FAIL
+
+B. DECISION_CARD apply lines on a calibrated Justice D copy (before: outdoor_day goal_b ardupilot justice_d, calibrated)
+  OK   row 13 (as written: add px4 to the apply line): exit 0
+  FAIL row 14 (as written: indoor goal_b ardupilot): exit 0; camera -> analog, video_device -> /dev/video0; calibration values changed: video_delay_s 0.0423 -> 0.06, readout_s 0.0141 -> 0.016
+  OK   row 14 (corrected: + justice_d): exit 0
+  FAIL row 15 (as written: apply outdoor_night): exit 0; camera -> analog, video_device -> /dev/video0; calibration values changed: video_delay_s 0.0423 -> 0.06, readout_s 0.0141 -> 0.016
+  OK   row 15 (corrected: outdoor_night goal_b ardupilot justice_d): exit 0
+  OK   row 20 (apply <profile names> justice_d): exit 0
+  OK   row 36 (add kf_bright): exit 0
+  OK   row 37 (again without recovery_demo): exit 0
+
+C. keys that two profiles set to different values
+  hold_cfg.h_min: indoor 1.0, outdoor_day 2.0
+  min_height_m: indoor 1.0, outdoor_day 3.0
+  hold_cfg.h_min: indoor 1.0, outdoor_night 2.0
+  min_height_m: indoor 1.0, outdoor_night 3.0
+  record_hz: justice_d 30, no_sd 10
+  5 keys. Same key, same value (no conflict): cov_scale (goal_a, goal_b), send_speed (goal_a, goal_b), hold_cfg.h_min (outdoor_day, outdoor_night), min_height_m (outdoor_day, outdoor_night)
+
+D. no_sd (new): the order of the names, and the disk space that the check line 'free disk' needs
+  outdoor_day goal_b ardupilot justice_d no_sd: exit 0, record_hz 10, min_free_gb 0.5, log_dir logs; raw recording 2.3 MB/s; check needs 0.44 GB free; the recorder stops under 0.5 GB
+  outdoor_day goal_b ardupilot no_sd justice_d: exit 0, record_hz 30, min_free_gb 0.5, log_dir logs; raw recording 6.9 MB/s; check needs 1.33 GB free; the recorder stops under 0.5 GB
+  outdoor_day goal_b ardupilot justice_d: exit 0, record_hz 30, min_free_gb 2.0, log_dir logs; raw recording 6.9 MB/s; check needs 5.33 GB free; the recorder stops under 2.0 GB
+
+settings.json md5 after:  be7b5bea6b6ccdefb43c0501425da7eb

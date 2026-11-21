@@ -1,0 +1,6 @@
+{
+ "_why": {
+  "att_stale_s": "0.12 s (default 0.05). With the default, one gap of more than 50 ms in the flight controller's ATTITUDE stream stops the fixes and sets the count of good fixes back to 0 (apb_main.py live_gate and Pipe), so about 0.8 s pass before the next fix (10 good frames in a row). A real MAVLink link can have gaps of that size. Cost: inside a gap the attitude comes from older samples. On three simulator recordings, a 90 ms gap gave an attitude error of 0.04 to 0.06 deg at the 95th percentile and 0.16 deg at most: about 0.02 m on the ground at 30 m and up to 0.3 m at 100 m. Not tested in closed loop and not on the real link. Apply it only when the run log shows many 'attitude stale' rows (DECISION_CARD row 44). Apply your profile names again without att_gap to switch it off."
+ },
+ "att_stale_s": 0.12
+}

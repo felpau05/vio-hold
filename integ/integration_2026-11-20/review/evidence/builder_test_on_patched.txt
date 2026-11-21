@@ -1,0 +1,4 @@
+== patch author test on p1
+ALL PASSED
+== patch author test on p2
+ALL PASSED
