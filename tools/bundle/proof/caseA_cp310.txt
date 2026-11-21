@@ -1,0 +1,25 @@
+### qemu CPU cortex-a53. root file system: Debian 11.11, python3.10 from the image
+### 1. pip install with no index and no network (private network namespace: loopback only)
+pip 23.0.1 from WORK/roots/py310/usr/local/lib/python3.10/site-packages/pip (python 3.10)
+Looking in links: PROJ/tools/wheels/cp310
+Processing PROJ/tools/wheels/cp310/numpy-2.2.6-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl
+Processing PROJ/tools/wheels/cp310/opencv_python_headless-5.0.0.93-cp37-abi3-manylinux2014_aarch64.manylinux_2_17_aarch64.whl
+Processing PROJ/tools/wheels/cp310/pymavlink-2.4.50-cp310-cp310-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl
+Processing PROJ/tools/wheels/cp310/pyserial-3.5-py2.py3-none-any.whl
+Processing PROJ/tools/wheels/cp310/lxml-6.1.3-cp310-cp310-manylinux2014_aarch64.manylinux_2_17_aarch64.whl
+Processing PROJ/tools/wheels/cp310/fastcrc-0.5.0-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl
+Installing collected packages: pyserial, numpy, lxml, fastcrc, pymavlink, opencv-python-headless
+Successfully installed fastcrc-0.5.0 lxml-6.1.3 numpy-2.2.6 opencv-python-headless-5.0.0.93 pymavlink-2.4.50 pyserial-3.5
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+exit code 0
+### 2. imports, V4L2, the onboard modules
+Python 3.10.18 aarch64 C library glibc 2.31
+numpy 2.2.6 | cv2 5.0.0 | pymavlink 2.4.50 | cv2 V4L2: True
+PASS onboard modules import, settings.json loads
+exit code 0
+### 3. Hold.process on synthetic pictures (tools/bundle/proof/hold_check.py)
+frames 120, fixes 119, states ['init', 'ok']
+error against the truth: rms 0.1880 m, max 0.3467 m
+error of the last 5 fixes (m): 0.27624 0.15883 0.13249 0.29281 0.14534
+PASS
+exit code 0

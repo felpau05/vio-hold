@@ -1,0 +1,32 @@
+truth: lens 'sim Justice D near crop' {"projection": "equidistant_fisheye", "image_size": [1280, 720], "fx": 634.9, "fy": 645.1, "cx": 632.5, "cy": 367.5, "k1": -0.018, "k2": -0.002, "k3": 0.0, "k4": 0.0}
+truth: top left, mirror False, tilt [1.2, -1.8], twist 1.5, delay 58 ms, readout +10 ms; sim video_delay_s 46.0 ms
+start: lens 'Justice D full sensor (assumed)', top front, mirror False, tilt [0.0, 0.0], twist 0.0, delay 40 ms, readout +16 ms, camera digital [1280, 720]@60 reduce 2
+fake PX4: firmware px4, clock ready True, ATTITUDE 100 Hz
+recording: 361 frames 640x360 in 12 s (median frame gap 33.3 ms), 1220 attitude rows, mode 'digital ?x?@60 reduce=2 640x360'; frames handed over after their stamp: median 0.3 ms, p95 0.6 ms
+calib took 16 s, exit code 0
+  calib: PASS picture top = left (residual 0.05 deg; next best right mirrored 8.55 deg, 170x)
+  calib: INFO video delay 58 ms, readout +11 ms, lens at 640x360: fx 318.5 fy 323.3 k1 -0.0216, tilt roll +1.73 pitch -1.13 twist +1.57 deg
+  calib: INFO quality: residual 0.050 deg, tracked points reach 62 deg from the optical axis (picture corner 68 deg), turn rate about picture x 33, y 22, z 26 deg/s
+  calib: PASS lens profile 'Justice D calibrated 2026-11-18 23:01' added to /home/paul/Videos/vio-hold-attempt/integ/justice_d/calib_loop_d_lens_20261118_230048.json. lens_name points to it. focal_scale is 1.0.
+  calib: PASS settings written; calibrated = true
+found against true (lens at 1280x720):
+  fx               found  637.0552  true  634.9000 (+0.34 %)
+  fy               found  646.5644  true  645.1000 (+0.23 %)
+  k1               found   -0.0216  true   -0.0180 (-0.0036)
+  k2 (not fitted)  found    0.0000  true   -0.0020 (+0.0020)
+  cx (not fitted)  found  639.5000  true  632.5000 (+7.0000)
+  cy (not fitted)  found  359.5000  true  367.5000 (-8.0000)
+  video delay ms   found   58.0000  true   58.0000 (-0.0000)
+  readout ms       found   11.0000  true   10.0000 (+1.0000)
+  mount            found top left, mirror False, tilt [1.73, -1.13], twist +1.57; as one matrix 0.86 deg from camera.py's
+PASS calib exit code 0 and calibrated = true: rc 0, calibrated True
+PASS a new lens profile in the lens copy, selected: Justice D calibrated 2026-11-18 23:01, 12 profiles (before 11)
+PASS picture top = left, not mirrored: left False
+PASS fx within 1 %: 637.1
+PASS fy within 1 %: 646.6
+PASS k1 within 0.01: -0.0216
+PASS video delay within 5 ms: 58.0 ms
+PASS readout within 4.5 ms: +11.0 ms
+FAIL mount within 0.5 deg: 0.86 deg
+PASS with the calibrated settings run has no start problem: none
+1 FAIL

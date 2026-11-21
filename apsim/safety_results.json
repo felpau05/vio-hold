@@ -1,0 +1,2273 @@
+{
+ "arm_none_s1": {
+  "case": "arm_none_s1",
+  "rms": null,
+  "max": null,
+  "events": [
+   [
+    0,
+    "ERROR RuntimeError: ArduCopter did not arm: Arm: Throttle below failsafe; Arm: Gyros inconsistent; Arm: Radio failsafe on; PreArm: Throttle below failsafe; PreArm: Radio failsafe on"
+   ]
+  ],
+  "hold_s_flown": null,
+  "climb_s": null,
+  "pct_frames_fix": null,
+  "fix_rate_hz": null,
+  "ekf_yaw_minus_true_deg": null,
+  "onboard_exit": null,
+  "reanchors": null,
+  "ap_params": null,
+  "case_kind": "arm",
+  "height": 10.0,
+  "seed": 1,
+  "wall_s": 37,
+  "load_start": [
+   1.7900390625,
+   1.9169921875,
+   2.41748046875
+  ],
+  "load_end": [
+   3.3662109375,
+   2.3037109375,
+   2.52880859375
+  ],
+  "marks": {
+   "arm_log": [
+    {
+     "what": "default checks",
+     "mode": "ALT_HOLD",
+     "t": 12.72,
+     "armed": false,
+     "acks": [
+      [
+       0.0,
+       4
+      ]
+     ],
+     "texts": [
+      [
+       0.0,
+       "Arm: Throttle below failsafe"
+      ],
+      [
+       0.0,
+       "Arm: Accels inconsistent"
+      ],
+      [
+       0.0,
+       "Arm: Radio failsafe on"
+      ],
+      [
+       0.0,
+       "Arm: VisOdom: not healthy"
+      ]
+     ]
+    },
+    {
+     "what": "default checks",
+     "mode": "STABILIZE",
+     "t": 16.74,
+     "armed": false,
+     "acks": [
+      [
+       0.0,
+       4
+      ]
+     ],
+     "texts": [
+      [
+       0.0,
+       "Arm: Throttle below failsafe"
+      ],
+      [
+       0.0,
+       "Arm: Gyros inconsistent"
+      ],
+      [
+       0.0,
+       "Arm: Radio failsafe on"
+      ],
+      [
+       0.0,
+       "Arm: VisOdom: not healthy"
+      ]
+     ]
+    },
+    {
+     "what": "ARMING_CHECK 1835006 (vision check off)",
+     "mode": "ALT_HOLD",
+     "t": 22.76,
+     "armed": false,
+     "acks": [
+      [
+       0.0,
+       4
+      ]
+     ],
+     "texts": [
+      [
+       0.01,
+       "Arm: Throttle below failsafe"
+      ],
+      [
+       0.01,
+       "Arm: Gyros inconsistent"
+      ],
+      [
+       0.01,
+       "Arm: Radio failsafe on"
+      ]
+     ]
+    }
+   ],
+   "arm_fix": {
+    "ARMING_CHECK": 1835006,
+    "t": 19.74
+   }
+  },
+  "fc_texts_all": [
+   [
+    0.0,
+    "Barometer 1 calibration complete"
+   ],
+   [
+    0.0,
+    "Barometer 2 calibration complete"
+   ],
+   [
+    2.45,
+    "ArduPilot Ready"
+   ],
+   [
+    2.45,
+    "AHRS: DCM active"
+   ],
+   [
+    2.75,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    4.09,
+    "No ap_message for mavlink id (331)"
+   ],
+   [
+    4.16,
+    "No ap_message for mavlink id (290)"
+   ],
+   [
+    4.16,
+    "No ap_message for mavlink id (291)"
+   ],
+   [
+    4.21,
+    "No ap_message for mavlink id (231)"
+   ],
+   [
+    4.22,
+    "No ap_message for mavlink id (141)"
+   ],
+   [
+    4.45,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    4.45,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    4.46,
+    "AHRS: EKF3 active"
+   ],
+   [
+    5.84,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    5.84,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    5.94,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    5.94,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    11.27,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    12.72,
+    "Arm: Throttle below failsafe"
+   ],
+   [
+    12.72,
+    "Arm: Accels inconsistent"
+   ],
+   [
+    12.72,
+    "Arm: Radio failsafe on"
+   ],
+   [
+    12.72,
+    "Arm: VisOdom: not healthy"
+   ],
+   [
+    16.74,
+    "Arm: Throttle below failsafe"
+   ],
+   [
+    16.74,
+    "Arm: Gyros inconsistent"
+   ],
+   [
+    16.74,
+    "Arm: Radio failsafe on"
+   ],
+   [
+    16.74,
+    "Arm: VisOdom: not healthy"
+   ],
+   [
+    22.77,
+    "Arm: Throttle below failsafe"
+   ],
+   [
+    22.77,
+    "Arm: Gyros inconsistent"
+   ],
+   [
+    22.77,
+    "Arm: Radio failsafe on"
+   ],
+   [
+    30.45,
+    "PreArm: Throttle below failsafe"
+   ],
+   [
+    30.45,
+    "PreArm: Radio failsafe on"
+   ]
+  ],
+  "fc_modes": [
+   [
+    2.45,
+    "STABILIZE"
+   ],
+   [
+    11.22,
+    "ALT_HOLD"
+   ],
+   [
+    15.73,
+    "STABILIZE"
+   ],
+   [
+    21.75,
+    "ALT_HOLD"
+   ]
+  ],
+  "gps_in_use_s": null,
+  "acks_all": [
+   [
+    11.22,
+    176,
+    0
+   ],
+   [
+    11.72,
+    176,
+    0
+   ],
+   [
+    12.72,
+    400,
+    4
+   ],
+   [
+    15.72,
+    176,
+    0
+   ],
+   [
+    16.74,
+    400,
+    4
+   ],
+   [
+    21.75,
+    176,
+    0
+   ],
+   [
+    22.76,
+    400,
+    4
+   ]
+  ]
+ },
+ "arm_none_s2": {
+  "case": "arm_none_s2",
+  "rms": 1.0093409940486027,
+  "max": 1.5728713132493597,
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 5, 0.0 s after the Loiter request started"
+   ]
+  ],
+  "hold_s_flown": 30.0,
+  "climb_s": 13.1,
+  "pct_frames_fix": 15.38888888888889,
+  "fix_rate_hz": 9.233021814562814,
+  "ekf_yaw_minus_true_deg": 0.3,
+  "onboard_exit": 0,
+  "reanchors": 4,
+  "ap_params": {
+   "ARMING_CHECK": 1,
+   "PILOT_SPEED_UP": 500,
+   "SIM_WIND_T": 1,
+   "SIM_WIND_SPD": 0,
+   "SIM_WIND_TURB": 0,
+   "SIM_WIND_DIR": 270.0,
+   "SERIAL1_BAUD": 115,
+   "VISO_TYPE": 1,
+   "EK3_SRC1_POSXY": 6,
+   "EK3_SRC1_VELXY": 0,
+   "EK3_SRC1_POSZ": 1,
+   "EK3_SRC1_VELZ": 0,
+   "EK3_SRC1_YAW": 1,
+   "GPS1_TYPE": 0,
+   "VISO_DELAY_MS": 140
+  },
+  "case_kind": "arm",
+  "height": 10.0,
+  "seed": 2,
+  "wall_s": 94,
+  "load_start": [
+   1.8955078125,
+   2.05908203125,
+   2.43603515625
+  ],
+  "load_end": [
+   7.86279296875,
+   3.85693359375,
+   3.02783203125
+  ],
+  "marks": {
+   "arm_log": [
+    {
+     "what": "default checks",
+     "mode": "ALT_HOLD",
+     "t": 36.01,
+     "armed": false,
+     "acks": [
+      [
+       0.0,
+       4
+      ]
+     ],
+     "texts": [
+      [
+       0.0,
+       "Arm: VisOdom: not healthy"
+      ]
+     ]
+    },
+    {
+     "what": "default checks",
+     "mode": "STABILIZE",
+     "t": 40.02,
+     "armed": false,
+     "acks": [
+      [
+       0.0,
+       4
+      ]
+     ],
+     "texts": [
+      [
+       0.0,
+       "Arm: VisOdom: not healthy"
+      ]
+     ]
+    },
+    {
+     "what": "ARMING_CHECK 1835006 (vision check off)",
+     "mode": "ALT_HOLD",
+     "t": 46.03,
+     "armed": true,
+     "acks": [
+      [
+       0.0,
+       0
+      ]
+     ],
+     "texts": [
+      [
+       0.0,
+       "Arming motors"
+      ]
+     ]
+    }
+   ],
+   "harness": "throttle PWM 1000 before arming; first arm attempt at 35.0 s",
+   "arm_fix": {
+    "ARMING_CHECK": 1835006,
+    "t": 43.03
+   },
+   "t_engage": 62.096041320000495,
+   "hold_pt": [
+    1.1453077445821025,
+    -1.256643034736831
+   ]
+  },
+  "fc_texts_all": [
+   [
+    0.0,
+    "Barometer 1 calibration complete"
+   ],
+   [
+    0.0,
+    "Barometer 2 calibration complete"
+   ],
+   [
+    2.45,
+    "ArduPilot Ready"
+   ],
+   [
+    2.45,
+    "AHRS: DCM active"
+   ],
+   [
+    2.75,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    4.08,
+    "No ap_message for mavlink id (331)"
+   ],
+   [
+    4.15,
+    "No ap_message for mavlink id (290)"
+   ],
+   [
+    4.15,
+    "No ap_message for mavlink id (291)"
+   ],
+   [
+    4.19,
+    "No ap_message for mavlink id (231)"
+   ],
+   [
+    4.21,
+    "No ap_message for mavlink id (141)"
+   ],
+   [
+    4.45,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    4.45,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    4.46,
+    "AHRS: EKF3 active"
+   ],
+   [
+    5.84,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    5.84,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    5.94,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    5.94,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    11.27,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    11.81,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    30.45,
+    "PreArm: VisOdom: not healthy"
+   ],
+   [
+    36.01,
+    "Arm: VisOdom: not healthy"
+   ],
+   [
+    40.03,
+    "Arm: VisOdom: not healthy"
+   ],
+   [
+    46.03,
+    "Arming motors"
+   ],
+   [
+    50.38,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    50.38,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    51.73,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    51.73,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    52.96,
+    "EKF3 IMU0 is using external nav data"
+   ],
+   [
+    52.96,
+    "EKF3 IMU0 initial pos NED = 0.0,-0.0,-7.0 (m)"
+   ],
+   [
+    52.96,
+    "EKF3 IMU1 is using external nav data"
+   ],
+   [
+    52.96,
+    "EKF3 IMU1 initial pos NED = 0.0,-0.0,-7.0 (m)"
+   ]
+  ],
+  "fc_modes": [
+   [
+    2.45,
+    "STABILIZE"
+   ],
+   [
+    11.24,
+    "ALT_HOLD"
+   ],
+   [
+    39.02,
+    "STABILIZE"
+   ],
+   [
+    45.03,
+    "ALT_HOLD"
+   ],
+   [
+    62.1,
+    "LOITER"
+   ]
+  ],
+  "gps_in_use_s": null,
+  "acks_all": [
+   [
+    11.23,
+    176,
+    0
+   ],
+   [
+    35.0,
+    176,
+    0
+   ],
+   [
+    36.01,
+    400,
+    4
+   ],
+   [
+    39.01,
+    176,
+    0
+   ],
+   [
+    40.03,
+    400,
+    4
+   ],
+   [
+    45.03,
+    176,
+    0
+   ],
+   [
+    46.03,
+    400,
+    0
+   ],
+   [
+    49.03,
+    176,
+    0
+   ],
+   [
+    62.09,
+    176,
+    0
+   ]
+  ]
+ },
+ "arm_gnss_s1": {
+  "case": "arm_gnss_s1",
+  "rms": 0.4703894803496212,
+  "max": 0.9341988387529903,
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 5, 0.0 s after the Loiter request started"
+   ]
+  ],
+  "hold_s_flown": 30.0,
+  "climb_s": 12.0,
+  "pct_frames_fix": 19.58041958041958,
+  "fix_rate_hz": 11.199621468847415,
+  "ekf_yaw_minus_true_deg": -0.09,
+  "onboard_exit": 0,
+  "reanchors": 0,
+  "ap_params": {
+   "ARMING_CHECK": 1,
+   "PILOT_SPEED_UP": 500,
+   "SIM_WIND_T": 1,
+   "SIM_WIND_SPD": 0,
+   "SIM_WIND_TURB": 0,
+   "SIM_WIND_DIR": 270.0,
+   "SERIAL1_BAUD": 115,
+   "VISO_TYPE": 1,
+   "EK3_SRC1_POSXY": 3,
+   "EK3_SRC1_VELXY": 3,
+   "EK3_SRC1_POSZ": 1,
+   "EK3_SRC1_VELZ": 0,
+   "EK3_SRC1_YAW": 1,
+   "GPS1_TYPE": 1,
+   "VISO_DELAY_MS": 140,
+   "EK3_SRC2_POSXY": 6,
+   "EK3_SRC2_VELXY": 0,
+   "EK3_SRC2_POSZ": 1,
+   "EK3_SRC2_VELZ": 0,
+   "EK3_SRC2_YAW": 1,
+   "EK3_SRC_OPTIONS": 0
+  },
+  "case_kind": "arm",
+  "height": 10.0,
+  "seed": 1,
+  "wall_s": 102,
+  "load_start": [
+   2.62744140625,
+   3.126953125,
+   2.83642578125
+  ],
+  "load_end": [
+   6.2392578125,
+   4.10400390625,
+   3.20703125
+  ],
+  "marks": {
+   "arm_log": [
+    {
+     "what": "default checks",
+     "mode": "ALT_HOLD",
+     "t": 45.61,
+     "armed": false,
+     "acks": [
+      [
+       0.0,
+       4
+      ]
+     ],
+     "texts": [
+      [
+       0.01,
+       "Arm: VisOdom: not healthy"
+      ]
+     ]
+    },
+    {
+     "what": "default checks",
+     "mode": "STABILIZE",
+     "t": 49.63,
+     "armed": false,
+     "acks": [
+      [
+       0.0,
+       4
+      ]
+     ],
+     "texts": [
+      [
+       0.0,
+       "Arm: VisOdom: not healthy"
+      ]
+     ]
+    },
+    {
+     "what": "ARMING_CHECK 1835006 (vision check off)",
+     "mode": "ALT_HOLD",
+     "t": 55.65,
+     "armed": true,
+     "acks": [
+      [
+       0.0,
+       0
+      ]
+     ],
+     "texts": [
+      [
+       0.0,
+       "Arming motors"
+      ]
+     ]
+    }
+   ],
+   "harness": "throttle PWM 1000 before arming; first arm attempt at 44.6 s",
+   "arm_fix": {
+    "ARMING_CHECK": 1835006,
+    "t": 52.63
+   },
+   "t_engage": 70.68608535000052,
+   "hold_pt": [
+    0.8450814420205566,
+    -0.9366283494889418
+   ]
+  },
+  "fc_texts_all": [
+   [
+    0.0,
+    "Barometer 1 calibration complete"
+   ],
+   [
+    0.0,
+    "Barometer 2 calibration complete"
+   ],
+   [
+    2.45,
+    "ArduPilot Ready"
+   ],
+   [
+    2.45,
+    "AHRS: DCM active"
+   ],
+   [
+    2.75,
+    "RC7: SaveWaypoint LOW"
+   ],
+   [
+    4.45,
+    "EKF3 IMU0 initialised"
+   ],
+   [
+    4.45,
+    "EKF3 IMU1 initialised"
+   ],
+   [
+    4.46,
+    "AHRS: EKF3 active"
+   ],
+   [
+    5.84,
+    "EKF3 IMU0 tilt alignment complete"
+   ],
+   [
+    5.84,
+    "EKF3 IMU1 tilt alignment complete"
+   ],
+   [
+    5.94,
+    "EKF3 IMU0 MAG0 initial yaw alignment complete"
+   ],
+   [
+    5.94,
+    "EKF3 IMU1 MAG0 initial yaw alignment complete"
+   ],
+   [
+    7.1,
+    "No ap_message for mavlink id (331)"
+   ],
+   [
+    7.16,
+    "No ap_message for mavlink id (290)"
+   ],
+   [
+    7.17,
+    "No ap_message for mavlink id (291)"
+   ],
+   [
+    7.21,
+    "No ap_message for mavlink id (231)"
+   ],
+   [
+    7.22,
+    "No ap_message for mavlink id (141)"
+   ],
+   [
+    9.81,
+    "GPS 1: probing for u-blox at 230400 baud"
+   ],
+   [
+    9.83,
+    "GPS 1: detected u-blox"
+   ],
+   [
+    20.02,
+    "EKF3 IMU0 origin set"
+   ],
+   [
+    20.05,
+    "Field Elevation Set: 70m"
+   ],
+   [
+    20.21,
+    "EKF3 IMU1 origin set"
+   ],
+   [
+    30.45,
+    "PreArm: VisOdom: not healthy"
+   ],
+   [
+    41.62,
+    "EKF3 IMU0 is using GPS"
+   ],
+   [
+    41.62,
+    "EKF3 IMU1 is using GPS"
+   ],
+   [
+    42.13,
+    "Radio Failsafe - Disarming"
+   ],
+   [
+    42.65,
+    "Radio Failsafe Cleared"
+   ],
+   [
+    45.61,
+    "Arm: VisOdom: not healthy"
+   ],
+   [
+    49.63,
+    "Arm: VisOdom: not healthy"
+   ],
+   [
+    55.65,
+    "Arming motors"
+   ],
+   [
+    61.43,
+    "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+   ],
+   [
+    61.43,
+    "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+   ]
+  ],
+  "fc_modes": [
+   [
+    2.48,
+    "STABILIZE"
+   ],
+   [
+    42.1,
+    "ALT_HOLD"
+   ],
+   [
+    48.62,
+    "STABILIZE"
+   ],
+   [
+    54.64,
+    "ALT_HOLD"
+   ],
+   [
+    70.7,
+    "LOITER"
+   ]
+  ],
+  "gps_in_use_s": 42.1,
+  "acks_all": [
+   [
+    42.09,
+    176,
+    0
+   ],
+   [
+    44.6,
+    176,
+    0
+   ],
+   [
+    45.61,
+    400,
+    4
+   ],
+   [
+    48.61,
+    176,
+    0
+   ],
+   [
+    49.63,
+    400,
+    4
+   ],
+   [
+    54.64,
+    176,
+    0
+   ],
+   [
+    55.65,
+    400,
+    0
+   ],
+   [
+    58.66,
+    176,
+    0
+   ],
+   [
+    70.69,
+    176,
+    0
+   ]
+  ]
+ },
+ "saf_a_10m_s1": {
+  "case": "saf_a_10m_s1",
+  "rms": 22.01770849386577,
+  "max": 60.02523481623162,
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 5, 0.0 s after the Loiter request started"
+   ],
+   [
+    10.01,
+    "ArduCopter left Loiter (mode 2): EKF3 IMU1 initial pos NED = -0.3,0.1,-9.8 (m); EKF3 IMU0 is using external nav data; EKF3 IMU0 initial pos NED = -0.3,0.1,-9.8 (m)"
+   ],
+   [
+    23.79,
+    "FLY-AWAY: 60.0 m from the hold point; ALT_HOLD, vision stopped"
+   ]
+  ],
+  "hold_s_flown": 23.8,
+  "climb_s": 13.6,
+  "pct_frames_fix": 12.435233160621761,
+  "fix_rate_hz": 6.053194325408148,
+  "ekf_yaw_minus_true_deg": -1.67,
+  "onboard_exit": 0,
+  "reanchors": 25,
+  "ap_params": {
+   "ARMING_CHECK": 0,
+   "PILOT_SPEED_UP": 500,
+   "SIM_WIND_T": 1,
+   "SIM_WIND_SPD": 0,
+   "SIM_WIND_TURB": 0,
+   "SIM_WIND_DIR": 270.0,
+   "SERIAL1_BAUD": 115,
+   "VISO_TYPE": 1,
+   "EK3_SRC1_POSXY": 6,
+   "EK3_SRC1_VELXY": 0,
+   "EK3_SRC1_POSZ": 1,
+   "EK3_SRC1_VELZ": 0,
+   "EK3_SRC1_YAW": 1,
+   "GPS1_TYPE": 0,
+   "VISO_DELAY_MS": 140
+  },
+  "case_kind": "a",
+  "height": 10.0,
+  "seed": 1,
+  "wall_s": 53,
+  "load_start": [
+   2.6328125,
+   3.447265625,
+   3.03515625
+  ],
+  "load_end": [
+   3.091796875,
+   3.4345703125,
+   3.052734375
+  ],
+  "marks": {
+   "t_engage": 27.687047037000514,
+   "hold_pt": [
+    0.2668678238704203,
+    -0.19513090498503047
+   ],
+   "t_inject": 37.69108853999953,
+   "takeover": 37.69108853999953
+  },
+  "t_end_after_inject": 14.28,
+  "tilt_err_deg_before": 0.22,
+  "yaw_err_deg_before": 0.45,
+  "tilt_err_deg_inject_to_takeover": null,
+  "yaw_err_deg_inject_to_takeover": null,
+  "tilt_err_deg_after": 0.32,
+  "yaw_err_deg_after": 1.17,
+  "roll_err_deg_after": 0.32,
+  "pitch_err_deg_after": 0.14,
+  "dist_at_inject": 0.54,
+  "dist_max_after_inject": 63.37,
+  "dist_at_takeover": 0.54,
+  "dist_max_window": 35.9,
+  "speed_max_window_mps": 6.45,
+  "speed_at_takeover_mps": 0.06,
+  "height_at_takeover": 9.82,
+  "height_change_max_window": 0.05,
+  "height_change_end_window": -0.03,
+  "window_s": 10.0,
+  "ekf_err_change_max_to_takeover": null,
+  "ekf_err_change_max_all": 3.27,
+  "fc_modes": [
+   [
+    0.01,
+    "ALT_HOLD"
+   ]
+  ],
+  "fc_texts": [],
+  "pilot": [
+   [
+    0.0,
+    "ALT_HOLD"
+   ]
+  ],
+  "refused": []
+ },
+ "saf_b_10m_s1": {
+  "case": "saf_b_10m_s1",
+  "rms": 19.238999960431045,
+  "max": 60.029120616904606,
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 5, 0.0 s after the Loiter request started"
+   ],
+   [
+    17.17,
+    "ArduCopter left Loiter (mode 9): EKF primary changed:1; EKF variance; EKF Failsafe: changed to LAND Mode"
+   ],
+   [
+    27.37,
+    "FLY-AWAY: 60.0 m from the hold point; ALT_HOLD, vision stopped"
+   ]
+  ],
+  "hold_s_flown": 27.4,
+  "climb_s": 13.4,
+  "pct_frames_fix": 13.361462728551336,
+  "fix_rate_hz": 6.943157735712187,
+  "ekf_yaw_minus_true_deg": -1.66,
+  "onboard_exit": 0,
+  "reanchors": 11,
+  "ap_params": {
+   "ARMING_CHECK": 0,
+   "PILOT_SPEED_UP": 500,
+   "SIM_WIND_T": 1,
+   "SIM_WIND_SPD": 0,
+   "SIM_WIND_TURB": 0,
+   "SIM_WIND_DIR": 270.0,
+   "SERIAL1_BAUD": 115,
+   "VISO_TYPE": 1,
+   "EK3_SRC1_POSXY": 6,
+   "EK3_SRC1_VELXY": 0,
+   "EK3_SRC1_POSZ": 1,
+   "EK3_SRC1_VELZ": 0,
+   "EK3_SRC1_YAW": 1,
+   "GPS1_TYPE": 0,
+   "VISO_DELAY_MS": 140
+  },
+  "case_kind": "b",
+  "height": 10.0,
+  "seed": 1,
+  "wall_s": 56,
+  "load_start": [
+   2.50244140625,
+   3.2763671875,
+   3.0078125
+  ],
+  "load_end": [
+   6.33642578125,
+   4.1533203125,
+   3.31884765625
+  ],
+  "marks": {
+   "t_engage": 27.482043996000385,
+   "hold_pt": [
+    0.2668678238704203,
+    -0.18732566989778837
+   ],
+   "t_inject": 37.486137179999915,
+   "inject": {
+    "kind": "stop",
+    "t": 37.486137179999915
+   },
+   "fc_change": [
+    44.65205767499988,
+    "LAND"
+   ],
+   "takeover": 45.656088434000644
+  },
+  "t_end_after_inject": 17.86,
+  "tilt_err_deg_before": 0.24,
+  "yaw_err_deg_before": 0.42,
+  "tilt_err_deg_inject_to_takeover": 0.3,
+  "yaw_err_deg_inject_to_takeover": 1.02,
+  "tilt_err_deg_after": 0.35,
+  "yaw_err_deg_after": 1.01,
+  "roll_err_deg_after": 0.35,
+  "pitch_err_deg_after": 0.05,
+  "dist_at_inject": 0.45,
+  "dist_max_after_inject": 63.45,
+  "dist_at_takeover": 1.17,
+  "dist_max_window": 63.45,
+  "speed_max_window_mps": 7.6,
+  "speed_at_takeover_mps": 3.07,
+  "height_at_takeover": 9.77,
+  "height_change_max_window": 0.06,
+  "height_change_end_window": 0.02,
+  "window_s": 9.69,
+  "fc_change_after_s": 7.17,
+  "fc_change_mode": "LAND",
+  "dist_at_fc_change": 0.4,
+  "flown_until_fc_change": 0.72,
+  "ekf_err_change_max_to_takeover": 1.55,
+  "ekf_err_change_max_all": 3.83,
+  "fc_modes": [
+   [
+    7.17,
+    "LAND"
+   ],
+   [
+    8.17,
+    "ALT_HOLD"
+   ]
+  ],
+  "fc_texts": [
+   [
+    7.06,
+    "EKF3 lane switch 1"
+   ],
+   [
+    7.07,
+    "EKF primary changed:1"
+   ],
+   [
+    7.16,
+    "EKF variance"
+   ],
+   [
+    7.16,
+    "EKF Failsafe: changed to LAND Mode"
+   ],
+   [
+    14.26,
+    "EKF3 IMU1 stopped aiding"
+   ],
+   [
+    14.26,
+    "EKF3 IMU0 stopped aiding"
+   ]
+  ],
+  "pilot": [
+   [
+    8.17,
+    "ALT_HOLD"
+   ]
+  ],
+  "refused": []
+ },
+ "saf_c_10m_s1": {
+  "case": "saf_c_10m_s1",
+  "rms": 19.652261614749268,
+  "max": 60.01689756855342,
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 5, 0.0 s after the Loiter request started"
+   ],
+   [
+    17.38,
+    "ArduCopter left Loiter (mode 2): EKF3 IMU0 initial pos NED = -0.2,-0.0,-9.8 (m); EKF3 IMU1 is using external nav data; EKF3 IMU1 initial pos NED = -0.2,-0.0,-9.8 (m)"
+   ],
+   [
+    27.5,
+    "FLY-AWAY: 60.0 m from the hold point; ALT_HOLD, vision stopped"
+   ]
+  ],
+  "hold_s_flown": 27.5,
+  "climb_s": 13.4,
+  "pct_frames_fix": 7.227241139680333,
+  "fix_rate_hz": 3.7825007976330802,
+  "ekf_yaw_minus_true_deg": -1.67,
+  "onboard_exit": 0,
+  "reanchors": 18,
+  "ap_params": {
+   "ARMING_CHECK": 0,
+   "PILOT_SPEED_UP": 500,
+   "SIM_WIND_T": 1,
+   "SIM_WIND_SPD": 0,
+   "SIM_WIND_TURB": 0,
+   "SIM_WIND_DIR": 270.0,
+   "SERIAL1_BAUD": 115,
+   "VISO_TYPE": 1,
+   "EK3_SRC1_POSXY": 6,
+   "EK3_SRC1_VELXY": 0,
+   "EK3_SRC1_POSZ": 1,
+   "EK3_SRC1_VELZ": 0,
+   "EK3_SRC1_YAW": 1,
+   "GPS1_TYPE": 0,
+   "VISO_DELAY_MS": 140
+  },
+  "case_kind": "c",
+  "height": 10.0,
+  "seed": 1,
+  "wall_s": 57,
+  "load_start": [
+   2.8095703125,
+   3.53173828125,
+   3.1552734375
+  ],
+  "load_end": [
+   5.74560546875,
+   4.1904296875,
+   3.400390625
+  ],
+  "marks": {
+   "t_engage": 27.482067779000346,
+   "hold_pt": [
+    0.25574833144492715,
+    -0.19513090498503047
+   ],
+   "t_inject": 37.49104304399954,
+   "inject": {
+    "kind": "ramp",
+    "v": 1.0,
+    "dir": [
+     1.0,
+     0.0
+    ],
+    "t": 37.49104304399954
+   },
+   "pass_3m": 41.85608264500048,
+   "takeover": 44.8570616719999
+  },
+  "t_end_after_inject": 17.97,
+  "tilt_err_deg_before": 0.2,
+  "yaw_err_deg_before": 0.83,
+  "tilt_err_deg_inject_to_takeover": 1.62,
+  "yaw_err_deg_inject_to_takeover": 12.68,
+  "tilt_err_deg_after": 1.31,
+  "yaw_err_deg_after": 9.45,
+  "roll_err_deg_after": 0.66,
+  "pitch_err_deg_after": 1.18,
+  "dist_at_inject": 0.49,
+  "dist_max_after_inject": 63.41,
+  "dist_at_takeover": 7.11,
+  "dist_max_window": 59.16,
+  "speed_max_window_mps": 8.08,
+  "speed_at_takeover_mps": 1.0,
+  "height_at_takeover": 9.69,
+  "height_change_max_window": 0.14,
+  "height_change_end_window": 0.14,
+  "window_s": 10.0,
+  "pass_3m_after_s": 4.37,
+  "ekf_err_change_max_to_takeover": 6.98,
+  "ekf_err_change_max_all": 27.61,
+  "fc_modes": [
+   [
+    7.38,
+    "ALT_HOLD"
+   ]
+  ],
+  "fc_texts": [],
+  "pilot": [
+   [
+    7.37,
+    "ALT_HOLD"
+   ]
+  ],
+  "refused": []
+ },
+ "saf_d_10m_s1": {
+  "case": "saf_d_10m_s1",
+  "rms": 7.034024470964141,
+  "max": 24.99218354924403,
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 5, 0.0 s after the Loiter request started"
+   ],
+   [
+    35.01,
+    "ArduCopter left Loiter (mode 2): EKF3 IMU0 initial pos NED = -0.2,0.0,-9.7 (m); EKF3 lane switch 1; EKF primary changed:1"
+   ]
+  ],
+  "hold_s_flown": 45.0,
+  "climb_s": 13.6,
+  "pct_frames_fix": 17.126334519572953,
+  "fix_rate_hz": 8.554804598078679,
+  "ekf_yaw_minus_true_deg": -1.67,
+  "onboard_exit": 0,
+  "reanchors": 9,
+  "ap_params": {
+   "ARMING_CHECK": 0,
+   "PILOT_SPEED_UP": 500,
+   "SIM_WIND_T": 1,
+   "SIM_WIND_SPD": 0,
+   "SIM_WIND_TURB": 0,
+   "SIM_WIND_DIR": 270.0,
+   "SERIAL1_BAUD": 115,
+   "VISO_TYPE": 1,
+   "EK3_SRC1_POSXY": 6,
+   "EK3_SRC1_VELXY": 0,
+   "EK3_SRC1_POSZ": 1,
+   "EK3_SRC1_VELZ": 0,
+   "EK3_SRC1_YAW": 1,
+   "GPS1_TYPE": 0,
+   "VISO_DELAY_MS": 140
+  },
+  "case_kind": "d",
+  "height": 10.0,
+  "seed": 1,
+  "wall_s": 74,
+  "load_start": [
+   2.31982421875,
+   3.486328125,
+   3.20556640625
+  ],
+  "load_end": [
+   6.83203125,
+   4.76318359375,
+   3.6845703125
+  ],
+  "marks": {
+   "t_engage": 27.737145878000696,
+   "hold_pt": [
+    0.2668678238704203,
+    -0.19513090498503047
+   ],
+   "t_inject": 37.74109162599963,
+   "inject": {
+    "kind": "jump",
+    "step": [
+     0.0,
+     20.0
+    ],
+    "t": 37.74109162599963
+   },
+   "takeover": 62.741114290000056
+  },
+  "t_end_after_inject": 35.51,
+  "tilt_err_deg_before": 0.17,
+  "yaw_err_deg_before": 0.68,
+  "tilt_err_deg_inject_to_takeover": 0.16,
+  "yaw_err_deg_inject_to_takeover": 0.89,
+  "tilt_err_deg_after": 0.18,
+  "yaw_err_deg_after": 0.91,
+  "roll_err_deg_after": 0.13,
+  "pitch_err_deg_after": 0.17,
+  "dist_at_inject": 0.6,
+  "dist_max_after_inject": 25.89,
+  "dist_at_takeover": 1.33,
+  "dist_max_window": 24.99,
+  "speed_max_window_mps": 3.49,
+  "speed_at_takeover_mps": 0.33,
+  "height_at_takeover": 9.85,
+  "height_change_max_window": 0.04,
+  "height_change_end_window": -0.01,
+  "window_s": 10.0,
+  "ekf_err_change_max_to_takeover": 0.91,
+  "ekf_err_change_max_all": 1.39,
+  "fc_modes": [
+   [
+    25.01,
+    "ALT_HOLD"
+   ]
+  ],
+  "fc_texts": [
+   [
+    0.15,
+    "EKF3 lane switch 1"
+   ],
+   [
+    0.15,
+    "EKF primary changed:1"
+   ]
+  ],
+  "pilot": [
+   [
+    25.0,
+    "ALT_HOLD"
+   ]
+  ],
+  "refused": []
+ },
+ "saf_e_10m_s1": {
+  "case": "saf_e_10m_s1",
+  "rms": 20.083120777376333,
+  "max": 60.01345651843415,
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 5, 0.0 s after the Loiter request started"
+   ],
+   [
+    16.7,
+    "ArduCopter left Loiter (mode 0): EKF3 IMU1 initial pos NED = -0.2,0.1,-9.3 (m); EKF3 IMU0 is using external nav data; EKF3 IMU0 initial pos NED = -0.2,0.1,-9.3 (m)"
+   ],
+   [
+    25.65,
+    "FLY-AWAY: 60.0 m from the hold point; ALT_HOLD, vision stopped"
+   ]
+  ],
+  "hold_s_flown": 25.7,
+  "climb_s": 13.6,
+  "pct_frames_fix": 7.19640179910045,
+  "fix_rate_hz": 3.742101462100435,
+  "ekf_yaw_minus_true_deg": -1.68,
+  "onboard_exit": 0,
+  "reanchors": 16,
+  "ap_params": {
+   "ARMING_CHECK": 0,
+   "PILOT_SPEED_UP": 500,
+   "SIM_WIND_T": 1,
+   "SIM_WIND_SPD": 0,
+   "SIM_WIND_TURB": 0,
+   "SIM_WIND_DIR": 270.0,
+   "SERIAL1_BAUD": 115,
+   "VISO_TYPE": 1,
+   "EK3_SRC1_POSXY": 6,
+   "EK3_SRC1_VELXY": 0,
+   "EK3_SRC1_POSZ": 1,
+   "EK3_SRC1_VELZ": 0,
+   "EK3_SRC1_YAW": 1,
+   "GPS1_TYPE": 0,
+   "VISO_DELAY_MS": 140
+  },
+  "case_kind": "e",
+  "height": 10.0,
+  "seed": 1,
+  "wall_s": 55,
+  "load_start": [
+   2.931640625,
+   4.015625,
+   3.4931640625
+  ],
+  "load_end": [
+   6.91552734375,
+   4.7998046875,
+   3.78173828125
+  ],
+  "marks": {
+   "t_engage": 27.67705605899969,
+   "hold_pt": [
+    0.2668678238704203,
+    -0.19513090498503047
+   ],
+   "t_inject": 37.68105166900064,
+   "inject": {
+    "kind": "ramp",
+    "v": 1.0,
+    "dir": [
+     1.0,
+     0.0
+    ],
+    "t": 37.68105166900064
+   },
+   "pass_3m": 41.36618095799987,
+   "takeover": 44.36708017799974
+  },
+  "t_end_after_inject": 16.18,
+  "tilt_err_deg_before": 0.38,
+  "yaw_err_deg_before": 0.79,
+  "tilt_err_deg_inject_to_takeover": 1.45,
+  "yaw_err_deg_inject_to_takeover": 15.34,
+  "tilt_err_deg_after": 1.35,
+  "yaw_err_deg_after": 11.71,
+  "roll_err_deg_after": 0.63,
+  "pitch_err_deg_after": 1.2,
+  "dist_at_inject": 0.3,
+  "dist_max_after_inject": 63.95,
+  "dist_at_takeover": 7.54,
+  "dist_max_window": 63.95,
+  "speed_max_window_mps": 8.07,
+  "speed_at_takeover_mps": 1.52,
+  "height_at_takeover": 9.63,
+  "height_change_max_window": 0.42,
+  "height_change_end_window": 0.41,
+  "window_s": 9.49,
+  "pass_3m_after_s": 3.69,
+  "ekf_err_change_max_to_takeover": 7.06,
+  "ekf_err_change_max_all": 31.56,
+  "fc_modes": [
+   [
+    6.7,
+    "STABILIZE"
+   ],
+   [
+    15.66,
+    "ALT_HOLD"
+   ]
+  ],
+  "fc_texts": [],
+  "pilot": [
+   [
+    6.69,
+    "STABILIZE"
+   ],
+   [
+    15.66,
+    "ACRO"
+   ],
+   [
+    15.67,
+    "ALT_HOLD"
+   ]
+  ],
+  "refused": []
+ },
+ "saf_a_30m_s1": {
+  "case": "saf_a_30m_s1",
+  "rms": 22.092039248182157,
+  "max": 60.060530412295975,
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 5, 0.0 s after the Loiter request started"
+   ],
+   [
+    10.01,
+    "ArduCopter left Loiter (mode 2): EKF3 IMU0 initial pos NED = 0.1,0.1,-17.5 (m); EKF3 IMU1 is using external nav data; EKF3 IMU1 initial pos NED = 0.1,0.1,-17.5 (m)"
+   ],
+   [
+    23.83,
+    "FLY-AWAY: 60.1 m from the hold point; ALT_HOLD, vision stopped"
+   ]
+  ],
+  "hold_s_flown": 23.8,
+  "climb_s": 18.0,
+  "pct_frames_fix": 35.58052434456929,
+  "fix_rate_hz": 11.959803864137069,
+  "ekf_yaw_minus_true_deg": -1.04,
+  "onboard_exit": 0,
+  "reanchors": 0,
+  "ap_params": {
+   "ARMING_CHECK": 0,
+   "PILOT_SPEED_UP": 500,
+   "SIM_WIND_T": 1,
+   "SIM_WIND_SPD": 0,
+   "SIM_WIND_TURB": 0,
+   "SIM_WIND_DIR": 270.0,
+   "SERIAL1_BAUD": 115,
+   "VISO_TYPE": 1,
+   "EK3_SRC1_POSXY": 6,
+   "EK3_SRC1_VELXY": 0,
+   "EK3_SRC1_POSZ": 1,
+   "EK3_SRC1_VELZ": 0,
+   "EK3_SRC1_YAW": 1,
+   "GPS1_TYPE": 0,
+   "VISO_DELAY_MS": 140
+  },
+  "case_kind": "a",
+  "height": 30.0,
+  "seed": 1,
+  "wall_s": 58,
+  "load_start": [
+   2.7109375,
+   3.9697265625,
+   3.55810546875
+  ],
+  "load_end": [
+   4.8505859375,
+   4.3564453125,
+   3.71875
+  ],
+  "marks": {
+   "t_engage": 32.11706195600053,
+   "hold_pt": [
+    0.44477970621492613,
+    -0.17171519674430652
+   ],
+   "t_inject": 42.11707795799956,
+   "takeover": 42.11707795799956
+  },
+  "t_end_after_inject": 14.32,
+  "tilt_err_deg_before": 0.21,
+  "yaw_err_deg_before": 0.7,
+  "tilt_err_deg_inject_to_takeover": null,
+  "yaw_err_deg_inject_to_takeover": null,
+  "tilt_err_deg_after": 0.56,
+  "yaw_err_deg_after": 4.7,
+  "roll_err_deg_after": 0.2,
+  "pitch_err_deg_after": 0.56,
+  "dist_at_inject": 0.09,
+  "dist_max_after_inject": 63.31,
+  "dist_at_takeover": 0.09,
+  "dist_max_window": 35.95,
+  "speed_max_window_mps": 6.46,
+  "speed_at_takeover_mps": 0.16,
+  "height_at_takeover": 29.6,
+  "height_change_max_window": 0.05,
+  "height_change_end_window": 0.01,
+  "window_s": 10.0,
+  "ekf_err_change_max_to_takeover": null,
+  "ekf_err_change_max_all": 3.7,
+  "fc_modes": [
+   [
+    0.01,
+    "ALT_HOLD"
+   ]
+  ],
+  "fc_texts": [],
+  "pilot": [
+   [
+    0.0,
+    "ALT_HOLD"
+   ]
+  ],
+  "refused": []
+ },
+ "saf_b_30m_s1": {
+  "case": "saf_b_30m_s1",
+  "rms": 19.25307630695184,
+  "max": 60.01361775470185,
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 5, 0.0 s after the Loiter request started"
+   ],
+   [
+    17.93,
+    "ArduCopter left Loiter (mode 9): EKF3 lane switch 1; EKF primary changed:1; EKF variance"
+   ],
+   [
+    28.89,
+    "FLY-AWAY: 60.0 m from the hold point; ALT_HOLD, vision stopped"
+   ]
+  ],
+  "hold_s_flown": 28.9,
+  "climb_s": 18.7,
+  "pct_frames_fix": 36.507936507936506,
+  "fix_rate_hz": 11.941794058383852,
+  "ekf_yaw_minus_true_deg": -0.02,
+  "onboard_exit": 0,
+  "reanchors": 0,
+  "ap_params": {
+   "ARMING_CHECK": 0,
+   "PILOT_SPEED_UP": 500,
+   "SIM_WIND_T": 1,
+   "SIM_WIND_SPD": 0,
+   "SIM_WIND_TURB": 0,
+   "SIM_WIND_DIR": 270.0,
+   "SERIAL1_BAUD": 115,
+   "VISO_TYPE": 1,
+   "EK3_SRC1_POSXY": 6,
+   "EK3_SRC1_VELXY": 0,
+   "EK3_SRC1_POSZ": 1,
+   "EK3_SRC1_VELZ": 0,
+   "EK3_SRC1_YAW": 1,
+   "GPS1_TYPE": 0,
+   "VISO_DELAY_MS": 140
+  },
+  "case_kind": "b",
+  "height": 30.0,
+  "seed": 1,
+  "wall_s": 63,
+  "load_start": [
+   2.8564453125,
+   3.90283203125,
+   3.591796875
+  ],
+  "load_end": [
+   4.27978515625,
+   4.1220703125,
+   3.6884765625
+  ],
+  "marks": {
+   "t_engage": 32.821072656000155,
+   "hold_pt": [
+    0.25574833144492715,
+    -0.14049425143034205
+   ],
+   "t_inject": 42.82267620800019,
+   "inject": {
+    "kind": "stop",
+    "t": 42.82267620800019
+   },
+   "fc_change": [
+    50.75209029499961,
+    "LAND"
+   ],
+   "takeover": 51.756133386000016
+  },
+  "t_end_after_inject": 19.39,
+  "tilt_err_deg_before": 0.47,
+  "yaw_err_deg_before": 0.35,
+  "tilt_err_deg_inject_to_takeover": 0.7,
+  "yaw_err_deg_inject_to_takeover": 0.55,
+  "tilt_err_deg_after": 0.6,
+  "yaw_err_deg_after": 0.65,
+  "roll_err_deg_after": 0.58,
+  "pitch_err_deg_after": 0.17,
+  "dist_at_inject": 0.22,
+  "dist_max_after_inject": 63.13,
+  "dist_at_takeover": 1.35,
+  "dist_max_window": 60.3,
+  "speed_max_window_mps": 7.36,
+  "speed_at_takeover_mps": 2.49,
+  "height_at_takeover": 29.73,
+  "height_change_max_window": 0.07,
+  "height_change_end_window": 0.03,
+  "window_s": 10.0,
+  "fc_change_after_s": 7.93,
+  "fc_change_mode": "LAND",
+  "dist_at_fc_change": 1.88,
+  "flown_until_fc_change": 1.67,
+  "ekf_err_change_max_to_takeover": 3.0,
+  "ekf_err_change_max_all": 7.01,
+  "fc_modes": [
+   [
+    7.92,
+    "LAND"
+   ],
+   [
+    8.94,
+    "ALT_HOLD"
+   ]
+  ],
+  "fc_texts": [
+   [
+    7.82,
+    "EKF3 lane switch 1"
+   ],
+   [
+    7.83,
+    "EKF primary changed:1"
+   ],
+   [
+    7.92,
+    "EKF variance"
+   ],
+   [
+    7.92,
+    "EKF Failsafe: changed to LAND Mode"
+   ],
+   [
+    15.02,
+    "EKF3 IMU0 stopped aiding"
+   ],
+   [
+    15.03,
+    "EKF3 IMU1 stopped aiding"
+   ]
+  ],
+  "pilot": [
+   [
+    8.93,
+    "ALT_HOLD"
+   ]
+  ],
+  "refused": []
+ },
+ "saf_c_30m_s1": {
+  "case": "saf_c_30m_s1",
+  "rms": 20.064141683957622,
+  "max": 60.02002310181569,
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 5, 0.0 s after the Loiter request started"
+   ],
+   [
+    16.0,
+    "ArduCopter left Loiter (mode 2): EKF3 IMU1 initial pos NED = -0.1,0.1,-17.0 (m); EKF3 IMU0 is using external nav data; EKF3 IMU0 initial pos NED = -0.1,0.1,-17.0 (m)"
+   ],
+   [
+    26.21,
+    "FLY-AWAY: 60.0 m from the hold point; ALT_HOLD, vision stopped"
+   ]
+  ],
+  "hold_s_flown": 26.2,
+  "climb_s": 18.0,
+  "pct_frames_fix": 36.80473372781065,
+  "fix_rate_hz": 11.866177761391098,
+  "ekf_yaw_minus_true_deg": -0.92,
+  "onboard_exit": 0,
+  "reanchors": 0,
+  "ap_params": {
+   "ARMING_CHECK": 0,
+   "PILOT_SPEED_UP": 500,
+   "SIM_WIND_T": 1,
+   "SIM_WIND_SPD": 0,
+   "SIM_WIND_TURB": 0,
+   "SIM_WIND_DIR": 270.0,
+   "SERIAL1_BAUD": 115,
+   "VISO_TYPE": 1,
+   "EK3_SRC1_POSXY": 6,
+   "EK3_SRC1_VELXY": 0,
+   "EK3_SRC1_POSZ": 1,
+   "EK3_SRC1_VELZ": 0,
+   "EK3_SRC1_YAW": 1,
+   "GPS1_TYPE": 0,
+   "VISO_DELAY_MS": 140
+  },
+  "case_kind": "c",
+  "height": 30.0,
+  "seed": 1,
+  "wall_s": 60,
+  "load_start": [
+   2.3974609375,
+   3.6513671875,
+   3.546875
+  ],
+  "load_end": [
+   5.05419921875,
+   4.16455078125,
+   3.72802734375
+  ],
+  "marks": {
+   "t_engage": 32.1171087720002,
+   "hold_pt": [
+    0.37806275024732106,
+    0.0
+   ],
+   "t_inject": 42.117318451000564,
+   "inject": {
+    "kind": "ramp",
+    "v": 1.0,
+    "dir": [
+     1.0,
+     0.0
+    ],
+    "t": 42.117318451000564
+   },
+   "pass_3m": 45.11108961500044,
+   "takeover": 48.116125206999655
+  },
+  "t_end_after_inject": 16.73,
+  "tilt_err_deg_before": 0.45,
+  "yaw_err_deg_before": 0.68,
+  "tilt_err_deg_inject_to_takeover": 2.43,
+  "yaw_err_deg_inject_to_takeover": 19.99,
+  "tilt_err_deg_after": 1.3,
+  "yaw_err_deg_after": 9.83,
+  "roll_err_deg_after": 1.3,
+  "pitch_err_deg_after": 0.37,
+  "dist_at_inject": 0.14,
+  "dist_max_after_inject": 63.95,
+  "dist_at_takeover": 8.37,
+  "dist_max_window": 58.38,
+  "speed_max_window_mps": 8.23,
+  "speed_at_takeover_mps": 0.67,
+  "height_at_takeover": 29.17,
+  "height_change_max_window": 0.57,
+  "height_change_end_window": 0.57,
+  "window_s": 10.0,
+  "pass_3m_after_s": 2.99,
+  "ekf_err_change_max_to_takeover": 6.98,
+  "ekf_err_change_max_all": 20.69,
+  "fc_modes": [
+   [
+    6.0,
+    "ALT_HOLD"
+   ]
+  ],
+  "fc_texts": [],
+  "pilot": [
+   [
+    6.0,
+    "ALT_HOLD"
+   ]
+  ],
+  "refused": []
+ },
+ "saf_d_30m_s1": {
+  "case": "saf_d_30m_s1",
+  "rms": 6.320843102786677,
+  "max": 22.761173250876833,
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 5, 0.0 s after the Loiter request started"
+   ],
+   [
+    35.01,
+    "ArduCopter left Loiter (mode 2): EKF3 IMU1 initial pos NED = 0.1,0.1,-17.5 (m); EKF3 lane switch 1; EKF primary changed:1"
+   ]
+  ],
+  "hold_s_flown": 45.0,
+  "climb_s": 17.9,
+  "pct_frames_fix": 35.85434173669468,
+  "fix_rate_hz": 11.37551114550135,
+  "ekf_yaw_minus_true_deg": -0.88,
+  "onboard_exit": 0,
+  "reanchors": 3,
+  "ap_params": {
+   "ARMING_CHECK": 0,
+   "PILOT_SPEED_UP": 500,
+   "SIM_WIND_T": 1,
+   "SIM_WIND_SPD": 0,
+   "SIM_WIND_TURB": 0,
+   "SIM_WIND_DIR": 270.0,
+   "SERIAL1_BAUD": 115,
+   "VISO_TYPE": 1,
+   "EK3_SRC1_POSXY": 6,
+   "EK3_SRC1_VELXY": 0,
+   "EK3_SRC1_POSZ": 1,
+   "EK3_SRC1_VELZ": 0,
+   "EK3_SRC1_YAW": 1,
+   "GPS1_TYPE": 0,
+   "VISO_DELAY_MS": 140
+  },
+  "case_kind": "d",
+  "height": 30.0,
+  "seed": 1,
+  "wall_s": 79,
+  "load_start": [
+   2.8828125,
+   3.71826171875,
+   3.59521484375
+  ],
+  "load_end": [
+   5.34228515625,
+   4.3828125,
+   3.84375
+  ],
+  "marks": {
+   "t_engage": 31.962147799999467,
+   "hold_pt": [
+    0.500377169757038,
+    0.04683141846744632
+   ],
+   "t_inject": 41.96609847599995,
+   "inject": {
+    "kind": "jump",
+    "step": [
+     0.0,
+     20.0
+    ],
+    "raw": false,
+    "t": 41.96609847599995
+   },
+   "takeover": 66.97108161500046
+  },
+  "t_end_after_inject": 35.51,
+  "tilt_err_deg_before": 0.21,
+  "yaw_err_deg_before": 2.35,
+  "tilt_err_deg_inject_to_takeover": 0.64,
+  "yaw_err_deg_inject_to_takeover": 2.21,
+  "tilt_err_deg_after": 0.44,
+  "yaw_err_deg_after": 1.53,
+  "roll_err_deg_after": 0.34,
+  "pitch_err_deg_after": 0.28,
+  "dist_at_inject": 0.07,
+  "dist_max_after_inject": 23.59,
+  "dist_at_takeover": 1.85,
+  "dist_max_window": 22.75,
+  "speed_max_window_mps": 3.43,
+  "speed_at_takeover_mps": 0.26,
+  "height_at_takeover": 29.73,
+  "height_change_max_window": 0.12,
+  "height_change_end_window": -0.11,
+  "window_s": 10.0,
+  "ekf_err_change_max_to_takeover": 20.84,
+  "ekf_err_change_max_all": 20.84,
+  "fc_modes": [
+   [
+    25.01,
+    "ALT_HOLD"
+   ]
+  ],
+  "fc_texts": [
+   [
+    0.12,
+    "EKF3 lane switch 1"
+   ],
+   [
+    0.12,
+    "EKF primary changed:1"
+   ]
+  ],
+  "pilot": [
+   [
+    25.0,
+    "ALT_HOLD"
+   ]
+  ],
+  "refused": []
+ },
+ "saf_e_30m_s1": {
+  "case": "saf_e_30m_s1",
+  "rms": 20.280831852465113,
+  "max": 60.002103872277054,
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 5, 0.0 s after the Loiter request started"
+   ],
+   [
+    15.93,
+    "ArduCopter left Loiter (mode 0): EKF3 IMU1 initial pos NED = -0.1,0.1,-19.8 (m); EKF3 IMU0 is using external nav data; EKF3 IMU0 initial pos NED = -0.1,0.1,-19.8 (m)"
+   ],
+   [
+    24.78,
+    "FLY-AWAY: 60.0 m from the hold point; ALT_HOLD, vision stopped"
+   ]
+  ],
+  "hold_s_flown": 24.8,
+  "climb_s": 18.4,
+  "pct_frames_fix": 36.95380774032459,
+  "fix_rate_hz": 11.947484228595258,
+  "ekf_yaw_minus_true_deg": 1.61,
+  "onboard_exit": 0,
+  "reanchors": 0,
+  "ap_params": {
+   "ARMING_CHECK": 0,
+   "PILOT_SPEED_UP": 500,
+   "SIM_WIND_T": 1,
+   "SIM_WIND_SPD": 0,
+   "SIM_WIND_TURB": 0,
+   "SIM_WIND_DIR": 270.0,
+   "SERIAL1_BAUD": 115,
+   "VISO_TYPE": 1,
+   "EK3_SRC1_POSXY": 6,
+   "EK3_SRC1_VELXY": 0,
+   "EK3_SRC1_POSZ": 1,
+   "EK3_SRC1_VELZ": 0,
+   "EK3_SRC1_YAW": 1,
+   "GPS1_TYPE": 0,
+   "VISO_DELAY_MS": 140
+  },
+  "case_kind": "e",
+  "height": 30.0,
+  "seed": 1,
+  "wall_s": 59,
+  "load_start": [
+   2.818359375,
+   3.84814453125,
+   3.68505859375
+  ],
+  "load_end": [
+   4.75390625,
+   4.21240234375,
+   3.8193359375
+  ],
+  "marks": {
+   "t_engage": 32.47708931200046,
+   "hold_pt": [
+    0.33358477983802537,
+    -0.4917298829851949
+   ],
+   "t_inject": 42.47739960599952,
+   "inject": {
+    "kind": "ramp",
+    "v": 1.0,
+    "dir": [
+     1.0,
+     0.0
+    ],
+    "t": 42.47739960599952
+   },
+   "pass_3m": 45.39612867999976,
+   "takeover": 48.3971272770005
+  },
+  "t_end_after_inject": 15.27,
+  "tilt_err_deg_before": 0.59,
+  "yaw_err_deg_before": 0.51,
+  "tilt_err_deg_inject_to_takeover": 2.16,
+  "yaw_err_deg_inject_to_takeover": 19.15,
+  "tilt_err_deg_after": 1.32,
+  "yaw_err_deg_after": 4.83,
+  "roll_err_deg_after": 1.17,
+  "pitch_err_deg_after": 0.8,
+  "dist_at_inject": 0.11,
+  "dist_max_after_inject": 63.77,
+  "dist_at_takeover": 7.97,
+  "dist_max_window": 63.77,
+  "speed_max_window_mps": 8.08,
+  "speed_at_takeover_mps": 0.83,
+  "height_at_takeover": 29.42,
+  "height_change_max_window": 0.42,
+  "height_change_end_window": 0.4,
+  "window_s": 9.35,
+  "pass_3m_after_s": 2.92,
+  "ekf_err_change_max_to_takeover": 6.83,
+  "ekf_err_change_max_all": 18.42,
+  "fc_modes": [
+   [
+    5.92,
+    "STABILIZE"
+   ],
+   [
+    14.78,
+    "ALT_HOLD"
+   ],
+   [
+    14.79,
+    "ACRO"
+   ],
+   [
+    14.8,
+    "ALT_HOLD"
+   ]
+  ],
+  "fc_texts": [],
+  "pilot": [
+   [
+    5.92,
+    "STABILIZE"
+   ],
+   [
+    14.78,
+    "ACRO"
+   ],
+   [
+    14.79,
+    "ALT_HOLD"
+   ]
+  ],
+  "refused": []
+ },
+ "saf_f_10m_s1": {
+  "case": "saf_f_10m_s1",
+  "rms": 6.5126600065632,
+  "max": 23.49378391754343,
+  "events": [
+   [
+    0.0,
+    "hold starts, mode 5, 0.0 s after the Loiter request started"
+   ],
+   [
+    35.01,
+    "ArduCopter left Loiter (mode 2): EKF primary changed:1; EKF3 lane switch 0; EKF primary changed:0"
+   ]
+  ],
+  "hold_s_flown": 45.0,
+  "climb_s": 13.6,
+  "pct_frames_fix": 13.693850850414304,
+  "fix_rate_hz": 6.977155537216484,
+  "ekf_yaw_minus_true_deg": -1.67,
+  "onboard_exit": 0,
+  "reanchors": 10,
+  "ap_params": {
+   "ARMING_CHECK": 0,
+   "PILOT_SPEED_UP": 500,
+   "SIM_WIND_T": 1,
+   "SIM_WIND_SPD": 0,
+   "SIM_WIND_TURB": 0,
+   "SIM_WIND_DIR": 270.0,
+   "SERIAL1_BAUD": 115,
+   "VISO_TYPE": 1,
+   "EK3_SRC1_POSXY": 6,
+   "EK3_SRC1_VELXY": 0,
+   "EK3_SRC1_POSZ": 1,
+   "EK3_SRC1_VELZ": 0,
+   "EK3_SRC1_YAW": 1,
+   "GPS1_TYPE": 0,
+   "VISO_DELAY_MS": 140
+  },
+  "case_kind": "f",
+  "height": 10.0,
+  "seed": 1,
+  "wall_s": 74,
+  "load_start": [
+   2.9404296875,
+   3.80859375,
+   3.6982421875
+  ],
+  "load_end": [
+   7.9345703125,
+   5.0625,
+   4.13916015625
+  ],
+  "marks": {
+   "t_engage": 27.742084749999588,
+   "hold_pt": [
+    0.2668678238704203,
+    -0.18732566989778837
+   ],
+   "t_inject": 37.74605965400033,
+   "inject": {
+    "kind": "jump",
+    "step": [
+     0.0,
+     20.0
+    ],
+    "raw": true,
+    "t": 37.74605965400033
+   },
+   "takeover": 62.75104496700058
+  },
+  "t_end_after_inject": 35.5,
+  "tilt_err_deg_before": 0.23,
+  "yaw_err_deg_before": 0.67,
+  "tilt_err_deg_inject_to_takeover": 0.34,
+  "yaw_err_deg_inject_to_takeover": 0.9,
+  "tilt_err_deg_after": 0.32,
+  "yaw_err_deg_after": 0.91,
+  "roll_err_deg_after": 0.22,
+  "pitch_err_deg_after": 0.24,
+  "dist_at_inject": 0.49,
+  "dist_max_after_inject": 24.35,
+  "dist_at_takeover": 1.7,
+  "dist_max_window": 23.49,
+  "speed_max_window_mps": 3.44,
+  "speed_at_takeover_mps": 0.32,
+  "height_at_takeover": 9.82,
+  "height_change_max_window": 0.05,
+  "height_change_end_window": 0.0,
+  "window_s": 10.0,
+  "ekf_err_change_max_to_takeover": 40.92,
+  "ekf_err_change_max_all": 61.37,
+  "fc_modes": [
+   [
+    25.01,
+    "ALT_HOLD"
+   ]
+  ],
+  "fc_texts": [
+   [
+    0.1,
+    "EKF3 lane switch 1"
+   ],
+   [
+    0.1,
+    "EKF primary changed:1"
+   ],
+   [
+    16.69,
+    "EKF3 lane switch 0"
+   ],
+   [
+    16.69,
+    "EKF primary changed:0"
+   ],
+   [
+    27.46,
+    "EKF3 lane switch 1"
+   ],
+   [
+    27.46,
+    "EKF primary changed:1"
+   ]
+  ],
+  "pilot": [
+   [
+    25.0,
+    "ALT_HOLD"
+   ]
+  ],
+  "refused": []
+ }
+}

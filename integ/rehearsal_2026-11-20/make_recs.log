@@ -1,0 +1,33 @@
+== 10 m from px4sim/runs/lowout_apb_jd_10m_w20g40_s1.npz  03:24:10
+raw_sim_000.npz: 300 frames, 0.0-10.0 s
+raw_sim_001.npz: 300 frames, 10.0-20.0 s
+raw_sim_002.npz: 300 frames, 20.0-30.0 s
+raw_sim_003.npz: 300 frames, 30.0-40.0 s
+raw_sim_004.npz: 300 frames, 40.0-50.0 s
+raw_sim_005.npz: 300 frames, 50.0-60.0 s
+settings.json: video_delay_s 0.0400, readout_s 0.014, true focal scale 1.0
+== 30 m from px4sim/runs/apb_30m_w20g40.npz  03:24:32
+raw_sim_000.npz: 300 frames, 0.0-10.0 s
+raw_sim_001.npz: 300 frames, 10.0-20.0 s
+raw_sim_002.npz: 300 frames, 20.0-30.0 s
+raw_sim_003.npz: 300 frames, 30.0-40.0 s
+raw_sim_004.npz: 300 frames, 40.0-50.0 s
+raw_sim_005.npz: 300 frames, 50.0-60.0 s
+settings.json: video_delay_s 0.0400, readout_s 0.014, true focal scale 1.0
+== 60 m from px4sim/runs/apb_60m_w20g40.npz  03:24:53
+raw_sim_000.npz: 300 frames, 0.0-10.0 s
+raw_sim_001.npz: 300 frames, 10.0-20.0 s
+raw_sim_002.npz: 300 frames, 20.0-30.0 s
+raw_sim_003.npz: 300 frames, 30.0-40.0 s
+raw_sim_004.npz: 300 frames, 40.0-50.0 s
+raw_sim_005.npz: 300 frames, 50.0-60.0 s
+settings.json: video_delay_s 0.0400, readout_s 0.014, true focal scale 1.0
+== 100 m from px4sim/runs/apb_100m_w20g40.npz  03:25:12
+raw_sim_000.npz: 300 frames, 0.0-10.0 s
+raw_sim_001.npz: 300 frames, 10.0-20.0 s
+raw_sim_002.npz: 300 frames, 20.0-30.0 s
+raw_sim_003.npz: 300 frames, 30.0-40.0 s
+raw_sim_004.npz: 300 frames, 40.0-50.0 s
+raw_sim_005.npz: 300 frames, 50.0-60.0 s
+settings.json: video_delay_s 0.0400, readout_s 0.014, true focal scale 1.0
+done 03:25:31

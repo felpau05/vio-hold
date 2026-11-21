@@ -160,6 +160,69 @@
       "p1": -3.421483287926732e-05,
       "p2": -0.0003302303943470146,
       "radial_turnover_deg_through_80": 60.83
+    },
+    {
+      "name": "Justice D full sensor (assumed)",
+      "projection": "equidistant_fisheye",
+      "image_size": [
+        1280,
+        720
+      ],
+      "fx": 482.491,
+      "fy": 482.491,
+      "cx": 639.5,
+      "cy": 359.5,
+      "b2": 0.0,
+      "p1": 0.0,
+      "p2": 0.0,
+      "k1": 0.0,
+      "k2": 0.0,
+      "k3": 0.0,
+      "k4": 0.0,
+      "radial_turnover_deg_through_80": null,
+      "note": "assumed: datasheet 114 x 86 deg is the 4:3 analog picture, so f = 720 / rad(57) = 723.74 px/rad on a 1920x1080 sensor; whole sensor scaled by 2/3 (152 x 85.5 deg). Run apb_main.py calib to measure the lens."
+    },
+    {
+      "name": "Justice D crop (assumed)",
+      "projection": "equidistant_fisheye",
+      "image_size": [
+        1280,
+        720
+      ],
+      "fx": 643.321,
+      "fy": 643.321,
+      "cx": 639.5,
+      "cy": 359.5,
+      "b2": 0.0,
+      "p1": 0.0,
+      "p2": 0.0,
+      "k1": 0.0,
+      "k2": 0.0,
+      "k3": 0.0,
+      "k4": 0.0,
+      "radial_turnover_deg_through_80": null,
+      "note": "assumed: f = 723.74 px/rad on a 1920x1080 sensor (see full sensor); 1440x810 crop scaled by 8/9 (114 x 64.1 deg). Run apb_main.py calib to measure the lens."
+    },
+    {
+      "name": "Justice D anamorphic (assumed)",
+      "projection": "equidistant_fisheye",
+      "image_size": [
+        1280,
+        720
+      ],
+      "fx": 643.321,
+      "fy": 482.491,
+      "cx": 639.5,
+      "cy": 359.5,
+      "b2": 0.0,
+      "p1": 0.0,
+      "p2": 0.0,
+      "k1": 0.0,
+      "k2": 0.0,
+      "k3": 0.0,
+      "k4": 0.0,
+      "radial_turnover_deg_through_80": null,
+      "note": "assumed: f = 723.74 px/rad on a 1920x1080 sensor (see full sensor); 1440x1080 crop scaled by 8/9 across and 2/3 down (114 x 85.5 deg). Run apb_main.py calib to measure the lens."
     }
   ],
   "source_xml_sha256": "59b3baab7f577b60e400858974ecc7fac19cfcdfb23bc62b56402da671b2cf44"

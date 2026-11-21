@@ -1,0 +1,26 @@
+{
+ "_why": {
+  "_note": "GNSS only while the pilot flies by hand. EKF source set 1 = GNSS from power-on. When our fixes have flowed for gnss_ready_s (2 s), the program sends MAV_CMD_SET_EKF_SOURCE_SET 2: our position only, no GNSS in the hold. Run log: 'FC reply to EKF source set 2 (our position only): ACCEPTED' before 'engaged'. FC log: EV 86 before MODE 5. After apply: check --set-params, restart the FC (GPS1_TYPE), check again. Pilot: arm after 'EKF3 IMU0 is using GPS', hover steady 10 s before Loiter. ArduCopter 4.6 SITL (apsim/gnss_results.txt, Justice D, w20g40, tuning site, 30 s from the switch, RMS / max m): 30 m seed 1 0.45 / 0.81 (gnss_none 0.46 / 0.83), seed 2 0.43 / 0.84 (0.45 / 1.00); 10 m seed 2 0.42 / 0.71 (0.75 / 1.10); set 2 accepted 1.5 to 8.7 s before the switch; EKF step at the change 0.02 to 0.22 m (in AltHold); a 20 m GNSS error in the hold did not move the EKF position (span 0.72 m, 0.67 m without it). Limits: ideal SITL GNSS (no noise), 1 to 2 seeds, no hardware test, ArduPilot only (run refuses it on PX4). integ/gnss_ladder/README.txt.",
+  "gnss_mode": "setup: set 2 once fixes flow (apb_main.GnssLevel).",
+  "params_ardupilot.GPS1_TYPE": "1 = auto. Needs an FC restart (AP_GPS_Params.cpp 29).",
+  "params_ardupilot.EK3_SRC1_POSXY": "3 = GPS in set 1 (power-on set).",
+  "params_ardupilot.EK3_SRC2_POSXY": "6 = external nav (our fixes) in set 2. With 0 the EKF would have no position after the change.",
+  "params_ardupilot.EK3_SRC2_VELXY": "0: no velocity in set 2 (EKF3 fuses GPS velocity only with GPS position anyway, PosVelFusion.cpp 559-562).",
+  "params_ardupilot.EK3_SRC_OPTIONS": "0: no velocity of the inactive set is fused (FuseAllVelocities off)."
+ },
+ "gnss_mode": "setup",
+ "params_ardupilot": {
+  "GPS1_TYPE": 1,
+  "EK3_SRC1_POSXY": 3,
+  "EK3_SRC1_VELXY": 3,
+  "EK3_SRC1_POSZ": 1,
+  "EK3_SRC1_VELZ": 0,
+  "EK3_SRC1_YAW": 1,
+  "EK3_SRC2_POSXY": 6,
+  "EK3_SRC2_VELXY": 0,
+  "EK3_SRC2_POSZ": 1,
+  "EK3_SRC2_VELZ": 0,
+  "EK3_SRC2_YAW": 1,
+  "EK3_SRC_OPTIONS": 0
+ }
+}

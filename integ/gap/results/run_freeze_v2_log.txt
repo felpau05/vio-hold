@@ -1,0 +1,73 @@
+04:01:33 start JD breeze 100 m seed 11 (load 2.34)
+hh_JD_breeze_100m_ottawa2022_s11_frznoise_fix2: MOVE_PX 1.5, sent 76.7% of the hover, gap before switch {'5': 0.08, '10': 0.75, '20': 4.0}, longest hover gap 4.75 s, fix err RMS 0.175 m, why {'waiting for image motion that proves the picture is live': 56}, frozen {'frames': 72, 'sent': 16, 'sent_after_0_5s': 10, 'frames_after_0_5s': 66, 'last_sent_after_freeze_s': 1.25, 'max_err_sent_m': 0.871, 'mm_on_frozen': None, 'mp_on_frozen': None}
+04:01:39 done rc=0
+04:01:39 start JD breeze 100 m seed 12 (load 2.31)
+hh_JD_breeze_100m_ottawa2022_s12_frznoise_fix2: MOVE_PX 1.5, sent 72.9% of the hover, gap before switch {'5': 0.08, '10': 1.5, '20': 4.0}, longest hover gap 5.5 s, fix err RMS 0.171 m, why {'waiting for image motion that proves the picture is live': 65}, frozen {'frames': 72, 'sent': 7, 'sent_after_0_5s': 1, 'frames_after_0_5s': 66, 'last_sent_after_freeze_s': 0.5, 'max_err_sent_m': 0.582, 'mm_on_frozen': None, 'mp_on_frozen': None}
+04:01:44 done rc=0
+04:01:44 start JD breeze 100 m seed 13 (load 2.29)
+hh_JD_breeze_100m_ottawa2022_s13_frznoise_fix2: MOVE_PX 1.5, sent 75.0% of the hover, gap before switch {'5': 0.08, '10': 1.08, '20': 4.0}, longest hover gap 5.08 s, fix err RMS 0.235 m, why {'waiting for image motion that proves the picture is live': 60}, frozen {'frames': 72, 'sent': 12, 'sent_after_0_5s': 6, 'frames_after_0_5s': 66, 'last_sent_after_freeze_s': 0.92, 'max_err_sent_m': 0.262, 'mm_on_frozen': None, 'mp_on_frozen': None}
+04:01:50 done rc=0
+04:01:50 start JD breeze 20 m seed 11 (load 2.18)
+hh_JD_breeze_20m_ottawa2022_s11_frznoise_fix2: MOVE_PX 1.5, sent 76.7% of the hover, gap before switch {'5': 0.08, '10': 0.58, '20': 4.17}, longest hover gap 4.75 s, fix err RMS 0.073 m, why {'waiting for image motion that proves the picture is live': 54, 'picture broken up': 1, 'picture just after a broken-up one': 1}, frozen {'frames': 72, 'sent': 18, 'sent_after_0_5s': 12, 'frames_after_0_5s': 66, 'last_sent_after_freeze_s': 1.42, 'max_err_sent_m': 0.282, 'mm_on_frozen': None, 'mp_on_frozen': None}
+04:01:55 done rc=0
+04:01:56 start JD breeze 20 m seed 12 (load 2.09)
+hh_JD_breeze_20m_ottawa2022_s12_frznoise_fix2: MOVE_PX 1.5, sent 72.1% of the hover, gap before switch {'5': 0.08, '10': 1.5, '20': 4.17}, longest hover gap 5.67 s, fix err RMS 0.074 m, why {'waiting for image motion that proves the picture is live': 65, 'picture broken up': 1, 'picture just after a broken-up one': 1}, frozen {'frames': 72, 'sent': 7, 'sent_after_0_5s': 1, 'frames_after_0_5s': 66, 'last_sent_after_freeze_s': 0.5, 'max_err_sent_m': 0.093, 'mm_on_frozen': None, 'mp_on_frozen': None}
+04:02:02 done rc=0
+04:02:02 start JD breeze 20 m seed 13 (load 2.00)
+hh_JD_breeze_20m_ottawa2022_s13_frznoise_fix2: MOVE_PX 1.5, sent 75.8% of the hover, gap before switch {'5': 0.08, '10': 0.75, '20': 4.17}, longest hover gap 4.92 s, fix err RMS 0.134 m, why {'waiting for image motion that proves the picture is live': 56, 'picture broken up': 1, 'picture just after a broken-up one': 1}, frozen {'frames': 72, 'sent': 16, 'sent_after_0_5s': 10, 'frames_after_0_5s': 66, 'last_sent_after_freeze_s': 1.25, 'max_err_sent_m': 0.201, 'mm_on_frozen': None, 'mp_on_frozen': None}
+04:02:08 done rc=0
+04:02:38 start JD calm 100 m seed 11 (load 2.04)
+hh_JD_calm_100m_ottawa2022_s11_frznoise_fix2: MOVE_PX 1.5, sent 80.4% of the hover, gap before switch {'5': 0.08, '10': 0.58, '20': 3.5}, longest hover gap 3.5 s, fix err RMS 0.15 m, why {'waiting for image motion that proves the picture is live': 47}, frozen {'frames': 72, 'sent': 25, 'sent_after_0_5s': 19, 'frames_after_0_5s': 66, 'last_sent_after_freeze_s': 2.5, 'max_err_sent_m': 0.372, 'mm_on_frozen': None, 'mp_on_frozen': None}
+04:02:43 done rc=0
+04:02:43 start JD calm 100 m seed 12 (load 2.19)
+hh_JD_calm_100m_ottawa2022_s12_frznoise_fix2: MOVE_PX 1.5, sent 74.2% of the hover, gap before switch {'5': 0.08, '10': 1.25, '20': 4.0}, longest hover gap 5.25 s, fix err RMS 0.173 m, why {'waiting for image motion that proves the picture is live': 62}, frozen {'frames': 72, 'sent': 10, 'sent_after_0_5s': 4, 'frames_after_0_5s': 66, 'last_sent_after_freeze_s': 0.75, 'max_err_sent_m': 0.4, 'mm_on_frozen': None, 'mp_on_frozen': None}
+04:02:49 done rc=0
+04:02:49 start JD calm 100 m seed 13 (load 2.10)
+hh_JD_calm_100m_ottawa2022_s13_frznoise_fix2: MOVE_PX 1.5, sent 72.9% of the hover, gap before switch {'5': 0.08, '10': 1.5, '20': 4.0}, longest hover gap 5.5 s, fix err RMS 0.181 m, why {'waiting for image motion that proves the picture is live': 65}, frozen {'frames': 72, 'sent': 7, 'sent_after_0_5s': 1, 'frames_after_0_5s': 66, 'last_sent_after_freeze_s': 0.5, 'max_err_sent_m': 0.183, 'mm_on_frozen': None, 'mp_on_frozen': None}
+04:02:55 done rc=0
+04:02:55 start JD calm 20 m seed 11 (load 2.33)
+hh_JD_calm_20m_ottawa2022_s11_frznoise_fix2: MOVE_PX 1.5, sent 72.9% of the hover, gap before switch {'5': 0.08, '10': 1.5, '20': 4.0}, longest hover gap 5.5 s, fix err RMS 0.06 m, why {'waiting for image motion that proves the picture is live': 65}, frozen {'frames': 72, 'sent': 7, 'sent_after_0_5s': 1, 'frames_after_0_5s': 66, 'last_sent_after_freeze_s': 0.5, 'max_err_sent_m': 0.095, 'mm_on_frozen': None, 'mp_on_frozen': None}
+04:03:01 done rc=0
+04:03:01 start JD calm 20 m seed 12 (load 2.38)
+hh_JD_calm_20m_ottawa2022_s12_frznoise_fix2: MOVE_PX 1.5, sent 72.9% of the hover, gap before switch {'5': 0.08, '10': 1.5, '20': 4.0}, longest hover gap 5.5 s, fix err RMS 0.105 m, why {'waiting for image motion that proves the picture is live': 65}, frozen {'frames': 72, 'sent': 7, 'sent_after_0_5s': 1, 'frames_after_0_5s': 66, 'last_sent_after_freeze_s': 0.5, 'max_err_sent_m': 0.08, 'mm_on_frozen': None, 'mp_on_frozen': None}
+04:03:06 done rc=0
+04:03:06 start JD calm 20 m seed 13 (load 2.35)
+hh_JD_calm_20m_ottawa2022_s13_frznoise_fix2: MOVE_PX 1.5, sent 76.7% of the hover, gap before switch {'5': 0.08, '10': 0.75, '20': 4.0}, longest hover gap 4.75 s, fix err RMS 0.075 m, why {'waiting for image motion that proves the picture is live': 56}, frozen {'frames': 72, 'sent': 16, 'sent_after_0_5s': 10, 'frames_after_0_5s': 66, 'last_sent_after_freeze_s': 1.25, 'max_err_sent_m': 0.072, 'mm_on_frozen': None, 'mp_on_frozen': None}
+04:03:12 done rc=0
+04:03:12 start JD still 100 m seed 11 (load 2.14)
+hh_JD_still_100m_ottawa2022_s11_frznoise_fix2: MOVE_PX 1.5, sent 94.2% of the hover, gap before switch {'5': 0.08, '10': 0.08, '20': 0.92}, longest hover gap 0.92 s, fix err RMS 0.16 m, why {'waiting for image motion that proves the picture is live': 14}, frozen {'frames': 72, 'sent': 58, 'sent_after_0_5s': 52, 'frames_after_0_5s': 66, 'last_sent_after_freeze_s': 5.59, 'max_err_sent_m': 0.254, 'mm_on_frozen': None, 'mp_on_frozen': None}
+04:03:17 done rc=0
+04:03:17 start JD still 100 m seed 12 (load 2.13)
+hh_JD_still_100m_ottawa2022_s12_frznoise_fix2: MOVE_PX 1.5, sent 72.9% of the hover, gap before switch {'5': 0.08, '10': 1.5, '20': 4.0}, longest hover gap 5.5 s, fix err RMS 0.187 m, why {'waiting for image motion that proves the picture is live': 65}, frozen {'frames': 72, 'sent': 7, 'sent_after_0_5s': 1, 'frames_after_0_5s': 66, 'last_sent_after_freeze_s': 0.5, 'max_err_sent_m': 0.334, 'mm_on_frozen': None, 'mp_on_frozen': None}
+04:03:23 done rc=0
+04:03:23 start JD still 100 m seed 13 (load 2.20)
+hh_JD_still_100m_ottawa2022_s13_frznoise_fix2: MOVE_PX 1.5, sent 72.9% of the hover, gap before switch {'5': 0.08, '10': 1.5, '20': 4.0}, longest hover gap 5.5 s, fix err RMS 0.166 m, why {'waiting for image motion that proves the picture is live': 65}, frozen {'frames': 72, 'sent': 7, 'sent_after_0_5s': 1, 'frames_after_0_5s': 66, 'last_sent_after_freeze_s': 0.5, 'max_err_sent_m': 0.122, 'mm_on_frozen': None, 'mp_on_frozen': None}
+04:03:28 done rc=0
+04:03:28 start JD still 20 m seed 11 (load 2.35)
+hh_JD_still_20m_ottawa2022_s11_frznoise_fix2: MOVE_PX 1.5, sent 100.0% of the hover, gap before switch {'5': 0.08, '10': 0.08, '20': 0.08}, longest hover gap 0.08 s, fix err RMS 0.056 m, why {}, frozen {'frames': 72, 'sent': 72, 'sent_after_0_5s': 66, 'frames_after_0_5s': 66, 'last_sent_after_freeze_s': 5.92, 'max_err_sent_m': 0.087, 'mm_on_frozen': None, 'mp_on_frozen': None}
+04:03:34 done rc=0
+04:03:34 start JD still 20 m seed 12 (load 2.48)
+hh_JD_still_20m_ottawa2022_s12_frznoise_fix2: MOVE_PX 1.5, sent 75.4% of the hover, gap before switch {'5': 0.08, '10': 1.0, '20': 4.0}, longest hover gap 5.0 s, fix err RMS 0.065 m, why {'waiting for image motion that proves the picture is live': 59}, frozen {'frames': 72, 'sent': 13, 'sent_after_0_5s': 7, 'frames_after_0_5s': 66, 'last_sent_after_freeze_s': 1.0, 'max_err_sent_m': 0.102, 'mm_on_frozen': None, 'mp_on_frozen': None}
+04:03:40 done rc=0
+04:03:40 start JD still 20 m seed 13 (load 2.44)
+hh_JD_still_20m_ottawa2022_s13_frznoise_fix2: MOVE_PX 1.5, sent 88.3% of the hover, gap before switch {'5': 0.08, '10': 0.41, '20': 2.08}, longest hover gap 2.08 s, fix err RMS 0.048 m, why {'waiting for image motion that proves the picture is live': 28}, frozen {'frames': 72, 'sent': 44, 'sent_after_0_5s': 38, 'frames_after_0_5s': 66, 'last_sent_after_freeze_s': 3.92, 'max_err_sent_m': 0.088, 'mm_on_frozen': None, 'mp_on_frozen': None}
+04:03:45 done rc=0
+04:03:45 start PAL calm 100 m seed 11 (load 2.33)
+hh_PAL_calm_100m_ottawa2022_s11_frznoise_fix2: MOVE_PX 1.5, sent 84.8% of the hover, gap before switch {'5': 0.08, '10': 0.2, '20': 2.08}, longest hover gap 2.08 s, fix err RMS 0.166 m, why {'waiting for image motion that proves the picture is live': 38}, frozen {'frames': 75, 'sent': 37, 'sent_after_0_5s': 31, 'frames_after_0_5s': 69, 'last_sent_after_freeze_s': 3.96, 'max_err_sent_m': 0.451, 'mm_on_frozen': None, 'mp_on_frozen': None}
+04:03:48 done rc=0
+04:03:48 start PAL calm 100 m seed 12 (load 2.38)
+hh_PAL_calm_100m_ottawa2022_s12_frznoise_fix2: MOVE_PX 1.5, sent 72.8% of the hover, gap before switch {'5': 0.08, '10': 1.48, '20': 4.04}, longest hover gap 5.52 s, fix err RMS 0.181 m, why {'waiting for image motion that proves the picture is live': 68}, frozen {'frames': 75, 'sent': 7, 'sent_after_0_5s': 1, 'frames_after_0_5s': 69, 'last_sent_after_freeze_s': 0.52, 'max_err_sent_m': 0.291, 'mm_on_frozen': None, 'mp_on_frozen': None}
+04:03:50 done rc=0
+04:03:50 start PAL calm 100 m seed 13 (load 2.38)
+hh_PAL_calm_100m_ottawa2022_s13_frznoise_fix2: MOVE_PX 1.5, sent 72.8% of the hover, gap before switch {'5': 0.08, '10': 1.48, '20': 4.04}, longest hover gap 5.52 s, fix err RMS 0.156 m, why {'waiting for image motion that proves the picture is live': 68}, frozen {'frames': 75, 'sent': 7, 'sent_after_0_5s': 1, 'frames_after_0_5s': 69, 'last_sent_after_freeze_s': 0.52, 'max_err_sent_m': 0.219, 'mm_on_frozen': None, 'mp_on_frozen': None}
+04:03:53 done rc=0
+04:04:23 start PAL still 100 m seed 11 (load 1.86)
+hh_PAL_still_100m_ottawa2022_s11_frznoise_fix2: MOVE_PX 1.5, sent 100.0% of the hover, gap before switch {'5': 0.08, '10': 0.08, '20': 0.08}, longest hover gap 0.08 s, fix err RMS 0.15 m, why {}, frozen {'frames': 75, 'sent': 75, 'sent_after_0_5s': 69, 'frames_after_0_5s': 69, 'last_sent_after_freeze_s': 5.96, 'max_err_sent_m': 0.374, 'mm_on_frozen': None, 'mp_on_frozen': None}
+04:04:25 done rc=0
+04:04:25 start PAL still 100 m seed 12 (load 1.86)
+hh_PAL_still_100m_ottawa2022_s12_frznoise_fix2: MOVE_PX 1.5, sent 97.6% of the hover, gap before switch {'5': 0.08, '10': 0.08, '20': 0.56}, longest hover gap 0.56 s, fix err RMS 0.235 m, why {'waiting for image motion that proves the picture is live': 6}, frozen {'frames': 75, 'sent': 70, 'sent_after_0_5s': 64, 'frames_after_0_5s': 69, 'last_sent_after_freeze_s': 5.56, 'max_err_sent_m': 0.523, 'mm_on_frozen': None, 'mp_on_frozen': None}
+04:04:28 done rc=0
+04:04:28 start PAL still 100 m seed 13 (load 1.79)
+hh_PAL_still_100m_ottawa2022_s13_frznoise_fix2: MOVE_PX 1.5, sent 87.2% of the hover, gap before switch {'5': 0.08, '10': 0.6, '20': 1.36}, longest hover gap 1.36 s, fix err RMS 0.14 m, why {'waiting for image motion that proves the picture is live': 32}, frozen {'frames': 75, 'sent': 44, 'sent_after_0_5s': 38, 'frames_after_0_5s': 69, 'last_sent_after_freeze_s': 4.76, 'max_err_sent_m': 0.235, 'mm_on_frozen': None, 'mp_on_frozen': None}
+04:04:30 done rc=0
+summary written

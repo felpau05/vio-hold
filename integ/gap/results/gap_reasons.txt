@@ -1,0 +1,90 @@
+an_apb_100m_w20g40_s11: gap 1.48 s, from -6.65 to -5.17 s of the hold start (17 processed frames; climb_s 32.3, vib_deg 0.2, still_start False, wiggle_s 0.0)
+   reasons in the gap: {'waiting for image motion that proves the picture is live': 17}
+   states in the gap:  {'degraded': 17}
+   height in the gap: 98.61 to 99.06 m (min_height_m 15 for these runs); true horizontal span in the gap 0.41 m
+   all unsent rows in [-10, +3] s: {'waiting for image motion that proves the picture is live': 30}
+   hold-start events: ['hold starts, mode 5, 0.0 s after the Loiter request started']
+an_apb_20m_calm_s11: gap 0.76 s, from -2.26 to -1.50 s of the hold start (8 processed frames; climb_s 15.6, vib_deg 0.2, still_start False, wiggle_s 0.0)
+   reasons in the gap: {'waiting for image motion that proves the picture is live': 8}
+   states in the gap:  {'degraded': 8}
+   height in the gap: 19.66 to 19.66 m (min_height_m 15 for these runs); true horizontal span in the gap 0.08 m
+   all unsent rows in [-10, +3] s: {'waiting for image motion that proves the picture is live': 15, 'height 13.8 m under 15 m': 2, 'height 9.7 m under 15 m': 1, 'height 9.9 m under 15 m': 1, 'height 10.1 m under 15 m': 1, 'height 10.3 m under 15 m': 1, 'height 10.4 m under 15 m': 1, 'height 10.6 m under 15 m': 1, 'height 10.8 m under 15 m': 1, 'height 11.0 m under 15 m': 1, 'height 11.2 m under 15 m': 1, 'height 11.4 m under 15 m': 1, 'height 11.5 m under 15 m': 1, 'height 11.8 m under 15 m': 1, 'height 11.9 m under 15 m': 1, 'height 12.1 m under 15 m': 1, 'height 12.3 m under 15 m': 1, 'height 12.5 m under 15 m': 1, 'height 12.7 m under 15 m': 1, 'height 12.9 m under 15 m': 1, 'height 13.1 m under 15 m': 1, 'height 13.2 m under 15 m': 1, 'height 13.4 m under 15 m': 1, 'height 13.6 m under 15 m': 1, 'height 14.2 m under 15 m': 1, 'height 14.3 m under 15 m': 1, 'height 14.5 m under 15 m': 1, 'height 14.7 m under 15 m': 1, 'height 14.9 m under 15 m': 1, 'init': 1, 'good fix 1 of 10': 1, 'good fix 2 of 10': 1, 'good fix 3 of 10': 1, 'good fix 4 of 10': 1, 'good fix 5 of 10': 1, 'good fix 6 of 10': 1, 'good fix 7 of 10': 1, 'good fix 8 of 10': 1, 'good fix 9 of 10': 1}
+   hold-start events: ['hold starts, mode 5, 0.0 s after the Loiter request started']
+an_apb_50m_w20g40_s11: gap 1.40 s, from -6.46 to -5.06 s of the hold start (16 processed frames; climb_s 21.9, vib_deg 0.2, still_start False, wiggle_s 0.0)
+   reasons in the gap: {'waiting for image motion that proves the picture is live': 16}
+   states in the gap:  {'degraded': 16}
+   height in the gap: 48.75 to 49.17 m (min_height_m 15 for these runs); true horizontal span in the gap 0.28 m
+   all unsent rows in [-10, +3] s: {'waiting for image motion that proves the picture is live': 23}
+   hold-start events: ['hold starts, mode 5, 0.0 s after the Loiter request started']
+jd_apb_100m_w20g40_s11: gap 4.50 s, from -6.59 to -2.09 s of the hold start (54 processed frames; climb_s 32.9, vib_deg 0.2, still_start False, wiggle_s 0.0)
+   reasons in the gap: {'waiting for image motion that proves the picture is live': 54}
+   states in the gap:  {'degraded': 54}
+   height in the gap: 98.68 to 99.71 m (min_height_m 15 for these runs); true horizontal span in the gap 0.54 m
+   all unsent rows in [-10, +3] s: {'waiting for image motion that proves the picture is live': 56}
+   hold-start events: ['hold starts, mode 5, 0.0 s after the Loiter request started']
+jd_apb_100m_w20g40_s12: gap 1.72 s, from -4.45 to -2.73 s of the hold start (20 processed frames; climb_s 32.7, vib_deg 0.2, still_start False, wiggle_s 0.0)
+   reasons in the gap: {'waiting for image motion that proves the picture is live': 20}
+   states in the gap:  {'degraded': 20}
+   height in the gap: 99.40 to 99.72 m (min_height_m 15 for these runs); true horizontal span in the gap 0.17 m
+   all unsent rows in [-10, +3] s: {'waiting for image motion that proves the picture is live': 27}
+   hold-start events: ['hold starts, mode 5, 0.0 s after the Loiter request started']
+jd_apb_100m_w20g40_s13: gap 0.33 s, from -5.39 to -5.06 s of the hold start (3 processed frames; climb_s 32.8, vib_deg 0.2, still_start False, wiggle_s 0.0)
+   reasons in the gap: {'waiting for image motion that proves the picture is live': 3}
+   states in the gap:  {'degraded': 3}
+   height in the gap: 99.06 to 99.13 m (min_height_m 15 for these runs); true horizontal span in the gap 0.15 m
+   all unsent rows in [-10, +3] s: {'waiting for image motion that proves the picture is live': 5}
+   hold-start events: ['hold starts, mode 5, 0.0 s after the Loiter request started']
+jd_apb_20m_calm_s11: gap 2.37 s, from -2.19 to +0.18 s of the hold start (28 processed frames; climb_s 15.8, vib_deg 0.2, still_start False, wiggle_s 0.0)
+   reasons in the gap: {'waiting for image motion that proves the picture is live': 28}
+   states in the gap:  {'degraded': 28}
+   height in the gap: 19.63 to 19.64 m (min_height_m 15 for these runs); true horizontal span in the gap 0.10 m
+   all unsent rows in [-10, +3] s: {'waiting for image motion that proves the picture is live': 28, 'height 8.5 m under 15 m': 4, 'height 9.4 m under 15 m': 4, 'height 9.9 m under 15 m': 4, 'height 10.4 m under 15 m': 4, 'height 10.8 m under 15 m': 4, 'height 11.3 m under 15 m': 4, 'height 11.8 m under 15 m': 4, 'height 12.2 m under 15 m': 4, 'height 12.7 m under 15 m': 4, 'height 13.2 m under 15 m': 4, 'height 13.6 m under 15 m': 4, 'height 14.1 m under 15 m': 4, 'height 14.5 m under 15 m': 4, 'height 15.0 m under 15 m': 4, 'height 9.0 m under 15 m': 3, 'height 8.9 m under 15 m': 2, 'height 9.3 m under 15 m': 2, 'height 10.7 m under 15 m': 2, 'height 12.1 m under 15 m': 2, 'height 13.5 m under 15 m': 2, 'height 14.4 m under 15 m': 2, 'height 8.4 m under 15 m': 1, 'height 8.8 m under 15 m': 1, 'height 9.7 m under 15 m': 1, 'height 9.8 m under 15 m': 1, 'height 10.2 m under 15 m': 1, 'height 10.3 m under 15 m': 1, 'height 11.1 m under 15 m': 1, 'height 11.2 m under 15 m': 1, 'height 11.6 m under 15 m': 1, 'height 11.7 m under 15 m': 1, 'height 12.5 m under 15 m': 1, 'height 12.6 m under 15 m': 1, 'height 13.0 m under 15 m': 1, 'height 13.1 m under 15 m': 1, 'height 13.9 m under 15 m': 1, 'height 14.0 m under 15 m': 1, 'height 14.8 m under 15 m': 1, 'height 14.9 m under 15 m': 1, 'init': 1, 'good fix 1 of 10': 1, 'good fix 2 of 10': 1, 'good fix 3 of 10': 1, 'good fix 4 of 10': 1, 'good fix 5 of 10': 1, 'good fix 6 of 10': 1, 'good fix 7 of 10': 1, 'good fix 8 of 10': 1, 'good fix 9 of 10': 1}
+   hold-start events: ['hold starts, mode 5, 0.0 s after the Loiter request started']
+jd_apb_50m_w20g40_s11: gap 1.15 s, from -6.52 to -5.37 s of the hold start (13 processed frames; climb_s 22.7, vib_deg 0.2, still_start False, wiggle_s 0.0)
+   reasons in the gap: {'waiting for image motion that proves the picture is live': 13}
+   states in the gap:  {'degraded': 13}
+   height in the gap: 48.70 to 49.03 m (min_height_m 15 for these runs); true horizontal span in the gap 0.31 m
+   all unsent rows in [-10, +3] s: {'waiting for image motion that proves the picture is live': 17}
+   hold-start events: ['hold starts, mode 5, 0.0 s after the Loiter request started']
+jdcal2_apb_100m_w20g40_s11: gap 3.87 s, from -3.84 to +0.03 s of the hold start (46 processed frames; climb_s 32.8, vib_deg 0.2, still_start False, wiggle_s 0.0)
+   reasons in the gap: {'waiting for image motion that proves the picture is live': 46}
+   states in the gap:  {'degraded': 46}
+   height in the gap: 99.58 to 99.72 m (min_height_m 15 for these runs); true horizontal span in the gap 0.20 m
+   all unsent rows in [-10, +3] s: {'waiting for image motion that proves the picture is live': 59, 'picture broken up': 4, 'picture just after a broken-up one': 2}
+   hold-start events: ['hold starts, mode 5, 0.0 s after the Loiter request started']
+jdcal3_apb_100m_w20g40_s11: gap 3.68 s, from -6.28 to -2.60 s of the hold start (44 processed frames; climb_s 32.8, vib_deg 0.2, still_start False, wiggle_s 0.0)
+   reasons in the gap: {'waiting for image motion that proves the picture is live': 44}
+   states in the gap:  {'degraded': 44}
+   height in the gap: 98.76 to 99.70 m (min_height_m 15 for these runs); true horizontal span in the gap 0.23 m
+   all unsent rows in [-10, +3] s: {'waiting for image motion that proves the picture is live': 44}
+   hold-start events: ['hold starts, mode 5, 0.0 s after the Loiter request started']
+jdcal_apb_100m_w20g40_s11: gap 2.50 s, from -6.59 to -4.09 s of the hold start (29 processed frames; climb_s 32.9, vib_deg 0.2, still_start False, wiggle_s 0.0)
+   reasons in the gap: {'waiting for image motion that proves the picture is live': 29}
+   states in the gap:  {'degraded': 29}
+   height in the gap: 98.65 to 99.44 m (min_height_m 15 for these runs); true horizontal span in the gap 0.65 m
+   all unsent rows in [-10, +3] s: {'waiting for image motion that proves the picture is live': 29}
+   hold-start events: ['hold starts, mode 5, 0.0 s after the Loiter request started']
+jdfull_apb_100m_w20g40_s11: gap 0.90 s, from -1.62 to -0.72 s of the hold start (10 processed frames; climb_s 32.9, vib_deg 0.2, still_start False, wiggle_s 0.0)
+   reasons in the gap: {'waiting for image motion that proves the picture is live': 10}
+   states in the gap:  {'degraded': 10}
+   height in the gap: 99.68 to 99.69 m (min_height_m 15 for these runs); true horizontal span in the gap 0.24 m
+   all unsent rows in [-10, +3] s: {'waiting for image motion that proves the picture is live': 25}
+   hold-start events: ['hold starts, mode 5, 0.0 s after the Loiter request started']
+c_d140_100m_w20g40_s11: gap 1.68 s, from -7.55 to -5.87 s of the hold start (20 processed frames; climb_s 32.3, vib_deg 0.2, still_start False, wiggle_s 0.0)
+   reasons in the gap: {'waiting for image motion that proves the picture is live': 20}
+   states in the gap:  {'degraded': 20}
+   height in the gap: 98.07 to 98.84 m (min_height_m 15 for these runs); true horizontal span in the gap 0.09 m
+   all unsent rows in [-10, +3] s: {'waiting for image motion that proves the picture is live': 21}
+   hold-start events: ['hold starts, mode 5, 0.0 s after the Loiter request started']
+c_d140_100m_w20g40_s12: gap 5.28 s, from -7.26 to -1.98 s of the hold start (64 processed frames; climb_s 32.3, vib_deg 0.2, still_start False, wiggle_s 0.0)
+   reasons in the gap: {'waiting for image motion that proves the picture is live': 64}
+   states in the gap:  {'degraded': 64}
+   height in the gap: 98.37 to 99.71 m (min_height_m 15 for these runs); true horizontal span in the gap 1.18 m
+   all unsent rows in [-10, +3] s: {'waiting for image motion that proves the picture is live': 64}
+   hold-start events: ['hold starts, mode 5, 0.0 s after the Loiter request started']
+c_d140_100m_w20g40_s13: gap 2.88 s, from -6.53 to -3.65 s of the hold start (34 processed frames; climb_s 32.3, vib_deg 0.2, still_start False, wiggle_s 0.0)
+   reasons in the gap: {'waiting for image motion that proves the picture is live': 34}
+   states in the gap:  {'degraded': 34}
+   height in the gap: 98.65 to 99.56 m (min_height_m 15 for these runs); true horizontal span in the gap 0.24 m
+   all unsent rows in [-10, +3] s: {'waiting for image motion that proves the picture is live': 54}
+   hold-start events: ['hold starts, mode 5, 0.0 s after the Loiter request started']

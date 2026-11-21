@@ -1,0 +1,28 @@
+{
+ "_why": {
+  "_note": "Downward camera = Orqa Justice D (organizer). Digital MIPI CSI, 1280x720 progressive at 60 fps, rolling shutter, OSD text possible. Run mask and calib again after apply: run refuses a calibration from another capture mode.",
+  "camera": "Justice D datasheet: MIPI CSI output, not analog.",
+  "video_device": "APB manual: CSI 1 is /dev/video2, set for Orqa cameras.",
+  "video_standard": "a digital camera has no PAL or NTSC.",
+  "video_size": "APB manual: CSI 1 gives a fixed 1280x720@60.",
+  "video_fps": "APB manual: CSI 1 gives a fixed 1280x720@60.",
+  "video_reduce": "assumed: 640x360 keeps Hold fast enough on the A53 cores. check mode measures Hold.process at this size.",
+  "lens_name": "assumed: the whole sensor through the lens, no crop. Only calib's start: calib measures fx, fy and k1 and writes them to lens_measured, a calibration value that apply keeps. run uses lens_measured when it is set.",
+  "readout_s": "assumed: 16 ms, about one 60 fps frame time minus blanking. A starting value: calib measures it. Written only when the camera changes or the file is not calibrated.",
+  "video_delay_s": "assumed: 40 ms, CSI with no grabber and no analog encoder. A starting value: calib measures it. Written only when the camera changes or the file is not calibrated.",
+  "hold_cfg.repeat_diff": "assumed: Hold's own repeat limit is 1.0 grey for analog noise. Fresh digital frames of a still hover can differ by less, so only a nearly identical picture counts as a repeat (the digital capture refuses bit-identical buffers).",
+  "record_hz": "assumed: 30 pictures each second are enough for calib and mask (the sim calibrates at 30 Hz; the analog path gives 25 or 30 fields each second). A 30 s calib at 640x360 then holds 900 pictures, 207 MB, and a copy of the same size: 415 MB (830 MB at 60 Hz). Hold still gets each frame.",
+  "video_command": "Not set: use it when check shows that OpenCV cannot open the camera. assumed: the driver gives format=YUY2 (GStreamer's name for YUYV); the APB manual names no pixel format. tools/board_check.sh lists the driver's formats. For UYVY, NV12 or GRAY8, set pixel_format to UYVY, NV12 or GREY. Example, with pixel_format YUYV: gst-launch-1.0 -q v4l2src device=/dev/video2 ! video/x-raw,width=1280,height=720,format=YUY2 ! fdsink fd=1"
+ },
+ "camera": "digital",
+ "video_device": "/dev/video2",
+ "video_standard": "none",
+ "video_size": [1280, 720],
+ "video_fps": 60,
+ "video_reduce": 2,
+ "lens_name": "Justice D full sensor (assumed)",
+ "readout_s": 0.016,
+ "video_delay_s": 0.040,
+ "hold_cfg": {"repeat_diff": 0.01},
+ "record_hz": 30
+}

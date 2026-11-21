@@ -1,0 +1,348 @@
+Justice D measurements (simulation only). Built by integ/justice_d/summary.py from the run files named below.
+Validation seeds 11-13; no hold-out site or seed used.
+
+OPEN LOOP (integ/justice_d/open_loop.py): ground ottawa2022 (validation), flight = recorded ArduCopter SITL 100 m w20g40 of the same seed, height shifted; 55 s per run; error of every fix Hold lets through (m)
+camera   height variant              seed    Hz  % fix   RMS m  worst m  file
+JD_crop      20 main                   11    60  100.0   0.114    0.257  integ/justice_d/open/ol_JD_crop_20m_w20g40_s11.json
+JD_crop      20 main                   12    60   99.9   0.106    0.253  integ/justice_d/open/ol_JD_crop_20m_w20g40_s12.json
+JD_crop      20 main                   13    60   99.9   0.135    0.287  integ/justice_d/open/ol_JD_crop_20m_w20g40_s13.json
+JD_crop      20 main                  all              RMS median 0.114 worst 0.135; worst-error median 0.257 worst 0.287  (3 seeds)
+JD_full      20 main                   11    60   99.9   0.166    0.413  integ/justice_d/open/ol_JD_full_20m_w20g40_s11.json
+JD_full      20 main                   12    60  100.0   0.119    0.328  integ/justice_d/open/ol_JD_full_20m_w20g40_s12.json
+JD_full      20 main                   13    60  100.0   0.221    0.438  integ/justice_d/open/ol_JD_full_20m_w20g40_s13.json
+JD_full      20 main                  all              RMS median 0.166 worst 0.221; worst-error median 0.413 worst 0.438  (3 seeds)
+PAL          20 main                   11    25   99.9   0.140    0.248  integ/justice_d/open/ol_PAL_20m_w20g40_s11.json
+PAL          20 main                   12    25   99.9   0.093    0.264  integ/justice_d/open/ol_PAL_20m_w20g40_s12.json
+PAL          20 main                   13    25   99.9   0.118    0.235  integ/justice_d/open/ol_PAL_20m_w20g40_s13.json
+PAL          20 main                  all              RMS median 0.118 worst 0.140; worst-error median 0.248 worst 0.264  (3 seeds)
+JD_crop      50 main                   11    60  100.0   0.422    0.782  integ/justice_d/open/ol_JD_crop_50m_w20g40_s11.json
+JD_crop      50 main                   12    60  100.0   0.199    0.655  integ/justice_d/open/ol_JD_crop_50m_w20g40_s12.json
+JD_crop      50 main                   13    60  100.0   0.241    0.696  integ/justice_d/open/ol_JD_crop_50m_w20g40_s13.json
+JD_crop      50 main                  all              RMS median 0.241 worst 0.422; worst-error median 0.696 worst 0.782  (3 seeds)
+JD_full      50 main                   11    60  100.0   0.528    1.002  integ/justice_d/open/ol_JD_full_50m_w20g40_s11.json
+JD_full      50 main                   12    60  100.0   0.259    0.799  integ/justice_d/open/ol_JD_full_50m_w20g40_s12.json
+JD_full      50 main                   13    60  100.0   0.335    0.982  integ/justice_d/open/ol_JD_full_50m_w20g40_s13.json
+JD_full      50 main                  all              RMS median 0.335 worst 0.528; worst-error median 0.982 worst 1.002  (3 seeds)
+PAL          50 main                   11    25   99.9   0.325    0.575  integ/justice_d/open/ol_PAL_50m_w20g40_s11.json
+PAL          50 main                   12    25   99.9   0.285    0.697  integ/justice_d/open/ol_PAL_50m_w20g40_s12.json
+PAL          50 main                   13    25   99.9   0.217    0.418  integ/justice_d/open/ol_PAL_50m_w20g40_s13.json
+PAL          50 main                  all              RMS median 0.285 worst 0.325; worst-error median 0.575 worst 0.697  (3 seeds)
+JD_crop     100 main                   11    60  100.0   0.739    1.459  integ/justice_d/open/ol_JD_crop_100m_w20g40_s11.json
+JD_crop     100 main                   12    60  100.0   0.478    1.307  integ/justice_d/open/ol_JD_crop_100m_w20g40_s12.json
+JD_crop     100 main                   13    60  100.0   0.384    1.118  integ/justice_d/open/ol_JD_crop_100m_w20g40_s13.json
+JD_crop     100 main                  all              RMS median 0.478 worst 0.739; worst-error median 1.307 worst 1.459  (3 seeds)
+JD_crop     100 rate_10Hz              11    10   99.8   0.674    1.190  integ/justice_d/open/ol_JD_crop_100m_w20g40_s11.json
+JD_crop     100 rate_10Hz              12    10   99.8   0.495    1.274  integ/justice_d/open/ol_JD_crop_100m_w20g40_s12.json
+JD_crop     100 rate_10Hz              13    10   99.8   0.367    1.016  integ/justice_d/open/ol_JD_crop_100m_w20g40_s13.json
+JD_crop     100 rate_10Hz             all              RMS median 0.495 worst 0.674; worst-error median 1.190 worst 1.274  (3 seeds)
+JD_crop     100 rate_15Hz              11    15   99.9   0.732    1.350  integ/justice_d/open/ol_JD_crop_100m_w20g40_s11.json
+JD_crop     100 rate_15Hz              12    15   99.9   0.479    1.307  integ/justice_d/open/ol_JD_crop_100m_w20g40_s12.json
+JD_crop     100 rate_15Hz              13    15   99.9   0.382    1.097  integ/justice_d/open/ol_JD_crop_100m_w20g40_s13.json
+JD_crop     100 rate_15Hz             all              RMS median 0.479 worst 0.732; worst-error median 1.307 worst 1.350  (3 seeds)
+JD_crop     100 rate_30Hz              11    30   99.9   0.739    1.452  integ/justice_d/open/ol_JD_crop_100m_w20g40_s11.json
+JD_crop     100 rate_30Hz              12    30   99.9   0.475    1.294  integ/justice_d/open/ol_JD_crop_100m_w20g40_s12.json
+JD_crop     100 rate_30Hz              13    30   99.9   0.384    1.118  integ/justice_d/open/ol_JD_crop_100m_w20g40_s13.json
+JD_crop     100 rate_30Hz             all              RMS median 0.475 worst 0.739; worst-error median 1.294 worst 1.452  (3 seeds)
+JD_crop     100 readout_0              11    60  100.0   0.746    1.540  integ/justice_d/open/ol_JD_crop_100m_w20g40_s11.json
+JD_crop     100 readout_0              12    60  100.0   0.485    1.325  integ/justice_d/open/ol_JD_crop_100m_w20g40_s12.json
+JD_crop     100 readout_0              13    60  100.0   0.408    1.224  integ/justice_d/open/ol_JD_crop_100m_w20g40_s13.json
+JD_crop     100 readout_0             all              RMS median 0.485 worst 0.746; worst-error median 1.325 worst 1.540  (3 seeds)
+JD_crop     100 readout_wrong_sign     11    60  100.0   0.753    1.624  integ/justice_d/open/ol_JD_crop_100m_w20g40_s11.json
+JD_crop     100 readout_wrong_sign     12    60  100.0   0.499    1.379  integ/justice_d/open/ol_JD_crop_100m_w20g40_s12.json
+JD_crop     100 readout_wrong_sign     13    60  100.0   0.440    1.341  integ/justice_d/open/ol_JD_crop_100m_w20g40_s13.json
+JD_crop     100 readout_wrong_sign    all              RMS median 0.499 worst 0.753; worst-error median 1.379 worst 1.624  (3 seeds)
+JD_full     100 main                   11    60  100.0   0.710    1.451  integ/justice_d/open/ol_JD_full_100m_w20g40_s11.json
+JD_full     100 main                   12    60  100.0   0.534    1.429  integ/justice_d/open/ol_JD_full_100m_w20g40_s12.json
+JD_full     100 main                   13    60  100.0   0.451    1.383  integ/justice_d/open/ol_JD_full_100m_w20g40_s13.json
+JD_full     100 main                  all              RMS median 0.534 worst 0.710; worst-error median 1.429 worst 1.451  (3 seeds)
+JD_full     100 rate_10Hz              11    10   99.8   0.683    1.267  integ/justice_d/open/ol_JD_full_100m_w20g40_s11.json
+JD_full     100 rate_10Hz              12    10   99.8   0.585    1.418  integ/justice_d/open/ol_JD_full_100m_w20g40_s12.json
+JD_full     100 rate_10Hz              13    10   99.8   0.450    1.179  integ/justice_d/open/ol_JD_full_100m_w20g40_s13.json
+JD_full     100 rate_10Hz             all              RMS median 0.585 worst 0.683; worst-error median 1.267 worst 1.418  (3 seeds)
+JD_full     100 rate_15Hz              11    15   99.9   0.702    1.389  integ/justice_d/open/ol_JD_full_100m_w20g40_s11.json
+JD_full     100 rate_15Hz              12    15   99.9   0.533    1.427  integ/justice_d/open/ol_JD_full_100m_w20g40_s12.json
+JD_full     100 rate_15Hz              13    15   99.8   0.448    1.336  integ/justice_d/open/ol_JD_full_100m_w20g40_s13.json
+JD_full     100 rate_15Hz             all              RMS median 0.533 worst 0.702; worst-error median 1.389 worst 1.427  (3 seeds)
+JD_full     100 rate_30Hz              11    30   99.9   0.696    1.359  integ/justice_d/open/ol_JD_full_100m_w20g40_s11.json
+JD_full     100 rate_30Hz              12    30   99.9   0.525    1.429  integ/justice_d/open/ol_JD_full_100m_w20g40_s12.json
+JD_full     100 rate_30Hz              13    30   99.8   0.433    1.433  integ/justice_d/open/ol_JD_full_100m_w20g40_s13.json
+JD_full     100 rate_30Hz             all              RMS median 0.525 worst 0.696; worst-error median 1.429 worst 1.433  (3 seeds)
+JD_full     100 readout_0              11    60  100.0   0.709    1.461  integ/justice_d/open/ol_JD_full_100m_w20g40_s11.json
+JD_full     100 readout_0              12    60  100.0   0.542    1.468  integ/justice_d/open/ol_JD_full_100m_w20g40_s12.json
+JD_full     100 readout_0              13    60  100.0   0.518    1.434  integ/justice_d/open/ol_JD_full_100m_w20g40_s13.json
+JD_full     100 readout_0             all              RMS median 0.542 worst 0.709; worst-error median 1.461 worst 1.468  (3 seeds)
+JD_full     100 readout_wrong_sign     11    60  100.0   0.706    1.598  integ/justice_d/open/ol_JD_full_100m_w20g40_s11.json
+JD_full     100 readout_wrong_sign     12    60  100.0   0.566    1.522  integ/justice_d/open/ol_JD_full_100m_w20g40_s12.json
+JD_full     100 readout_wrong_sign     13    60  100.0   0.511    1.496  integ/justice_d/open/ol_JD_full_100m_w20g40_s13.json
+JD_full     100 readout_wrong_sign    all              RMS median 0.566 worst 0.706; worst-error median 1.522 worst 1.598  (3 seeds)
+PAL         100 main                   11    25   99.9   0.517    1.032  integ/justice_d/open/ol_PAL_100m_w20g40_s11.json
+PAL         100 main                   12    25   99.9   0.629    1.555  integ/justice_d/open/ol_PAL_100m_w20g40_s12.json
+PAL         100 main                   13    25   99.9   0.496    0.925  integ/justice_d/open/ol_PAL_100m_w20g40_s13.json
+PAL         100 main                  all              RMS median 0.517 worst 0.629; worst-error median 1.032 worst 1.555  (3 seeds)
+
+OPEN LOOP _centre (integ/justice_d/open_loop.py --diag): ground ottawa2022 (validation), flight = recorded ArduCopter SITL 100 m w20g40 of the same seed, height shifted; 55 s per run; error of every fix Hold lets through (m)
+camera   height variant              seed    Hz  % fix   RMS m  worst m  file
+JD_crop      50 att_true               11    60  100.0   0.188    0.409  integ/justice_d/open/ol_JD_crop_50m_w20g40_s11_centre.json
+JD_crop      50 att_true               12    60  100.0   0.243    0.505  integ/justice_d/open/ol_JD_crop_50m_w20g40_s12_centre.json
+JD_crop      50 att_true               13    60  100.0   0.192    0.476  integ/justice_d/open/ol_JD_crop_50m_w20g40_s13_centre.json
+JD_crop      50 att_true              all              RMS median 0.192 worst 0.243; worst-error median 0.476 worst 0.505  (3 seeds)
+JD_crop      50 att_true_lens_centre   11    60  100.0   0.182    0.394  integ/justice_d/open/ol_JD_crop_50m_w20g40_s11_centre.json
+JD_crop      50 att_true_lens_centre   12    60  100.0   0.212    0.448  integ/justice_d/open/ol_JD_crop_50m_w20g40_s12_centre.json
+JD_crop      50 att_true_lens_centre   13    60  100.0   0.198    0.478  integ/justice_d/open/ol_JD_crop_50m_w20g40_s13_centre.json
+JD_crop      50 att_true_lens_centre  all              RMS median 0.198 worst 0.212; worst-error median 0.448 worst 0.478  (3 seeds)
+JD_full      50 att_true               11    60  100.0   0.250    0.573  integ/justice_d/open/ol_JD_full_50m_w20g40_s11_centre.json
+JD_full      50 att_true               12    60  100.0   0.213    0.515  integ/justice_d/open/ol_JD_full_50m_w20g40_s12_centre.json
+JD_full      50 att_true               13    60  100.0   0.290    0.741  integ/justice_d/open/ol_JD_full_50m_w20g40_s13_centre.json
+JD_full      50 att_true              all              RMS median 0.250 worst 0.290; worst-error median 0.573 worst 0.741  (3 seeds)
+JD_full      50 att_true_lens_centre   11    60  100.0   0.256    0.570  integ/justice_d/open/ol_JD_full_50m_w20g40_s11_centre.json
+JD_full      50 att_true_lens_centre   12    60  100.0   0.248    0.596  integ/justice_d/open/ol_JD_full_50m_w20g40_s12_centre.json
+JD_full      50 att_true_lens_centre   13    60  100.0   0.278    0.682  integ/justice_d/open/ol_JD_full_50m_w20g40_s13_centre.json
+JD_full      50 att_true_lens_centre  all              RMS median 0.256 worst 0.278; worst-error median 0.596 worst 0.682  (3 seeds)
+JD_crop     100 att_true               11    60  100.0   0.283    0.692  integ/justice_d/open/ol_JD_crop_100m_w20g40_s11_centre.json
+JD_crop     100 att_true               12    60  100.0   0.361    0.682  integ/justice_d/open/ol_JD_crop_100m_w20g40_s12_centre.json
+JD_crop     100 att_true               13    60  100.0   0.331    0.791  integ/justice_d/open/ol_JD_crop_100m_w20g40_s13_centre.json
+JD_crop     100 att_true              all              RMS median 0.331 worst 0.361; worst-error median 0.692 worst 0.791  (3 seeds)
+JD_crop     100 att_true_lens_centre   11    60  100.0   0.273    0.672  integ/justice_d/open/ol_JD_crop_100m_w20g40_s11_centre.json
+JD_crop     100 att_true_lens_centre   12    60  100.0   0.302    0.596  integ/justice_d/open/ol_JD_crop_100m_w20g40_s12_centre.json
+JD_crop     100 att_true_lens_centre   13    60  100.0   0.351    0.840  integ/justice_d/open/ol_JD_crop_100m_w20g40_s13_centre.json
+JD_crop     100 att_true_lens_centre  all              RMS median 0.302 worst 0.351; worst-error median 0.672 worst 0.840  (3 seeds)
+JD_full     100 att_true               11    60  100.0   0.292    0.752  integ/justice_d/open/ol_JD_full_100m_w20g40_s11_centre.json
+JD_full     100 att_true               12    60  100.0   0.302    0.742  integ/justice_d/open/ol_JD_full_100m_w20g40_s12_centre.json
+JD_full     100 att_true               13    60  100.0   0.329    0.771  integ/justice_d/open/ol_JD_full_100m_w20g40_s13_centre.json
+JD_full     100 att_true              all              RMS median 0.302 worst 0.329; worst-error median 0.752 worst 0.771  (3 seeds)
+JD_full     100 att_true_lens_centre   11    60  100.0   0.278    0.693  integ/justice_d/open/ol_JD_full_100m_w20g40_s11_centre.json
+JD_full     100 att_true_lens_centre   12    60  100.0   0.352    0.687  integ/justice_d/open/ol_JD_full_100m_w20g40_s12_centre.json
+JD_full     100 att_true_lens_centre   13    60  100.0   0.296    0.681  integ/justice_d/open/ol_JD_full_100m_w20g40_s13_centre.json
+JD_full     100 att_true_lens_centre  all              RMS median 0.296 worst 0.352; worst-error median 0.687 worst 0.693  (3 seeds)
+
+OPEN LOOP _diag (integ/justice_d/open_loop.py --diag): ground ottawa2022 (validation), flight = recorded ArduCopter SITL 100 m w20g40 of the same seed, height shifted; 55 s per run; error of every fix Hold lets through (m)
+camera   height variant              seed    Hz  % fix   RMS m  worst m  file
+JD_crop      20 att_true               11    60  100.0   0.062    0.270  integ/justice_d/open/ol_JD_crop_20m_w20g40_s11_diag.json
+JD_crop      20 att_true               12    60   99.9   0.102    0.296  integ/justice_d/open/ol_JD_crop_20m_w20g40_s12_diag.json
+JD_crop      20 att_true               13    60  100.0   0.100    0.224  integ/justice_d/open/ol_JD_crop_20m_w20g40_s13_diag.json
+JD_crop      20 att_true              all              RMS median 0.100 worst 0.102; worst-error median 0.270 worst 0.296  (3 seeds)
+JD_crop      20 lens_exact             11    60  100.0   0.099    0.247  integ/justice_d/open/ol_JD_crop_20m_w20g40_s11_diag.json
+JD_crop      20 lens_exact             12    60  100.0   0.112    0.280  integ/justice_d/open/ol_JD_crop_20m_w20g40_s12_diag.json
+JD_crop      20 lens_exact             13    60  100.0   0.128    0.314  integ/justice_d/open/ol_JD_crop_20m_w20g40_s13_diag.json
+JD_crop      20 lens_exact            all              RMS median 0.112 worst 0.128; worst-error median 0.280 worst 0.314  (3 seeds)
+JD_crop      20 lens_exact_att_true    11    60  100.0   0.062    0.162  integ/justice_d/open/ol_JD_crop_20m_w20g40_s11_diag.json
+JD_crop      20 lens_exact_att_true    12    60  100.0   0.055    0.140  integ/justice_d/open/ol_JD_crop_20m_w20g40_s12_diag.json
+JD_crop      20 lens_exact_att_true    13    60   99.9   0.065    0.187  integ/justice_d/open/ol_JD_crop_20m_w20g40_s13_diag.json
+JD_crop      20 lens_exact_att_true   all              RMS median 0.062 worst 0.065; worst-error median 0.162 worst 0.187  (3 seeds)
+JD_crop      20 main                   11    60  100.0   0.114    0.257  integ/justice_d/open/ol_JD_crop_20m_w20g40_s11_diag.json
+JD_crop      20 main                   12    60   99.9   0.106    0.253  integ/justice_d/open/ol_JD_crop_20m_w20g40_s12_diag.json
+JD_crop      20 main                   13    60   99.9   0.135    0.287  integ/justice_d/open/ol_JD_crop_20m_w20g40_s13_diag.json
+JD_crop      20 main                  all              RMS median 0.114 worst 0.135; worst-error median 0.257 worst 0.287  (3 seeds)
+JD_full      20 att_true               11    60  100.0   0.101    0.243  integ/justice_d/open/ol_JD_full_20m_w20g40_s11_diag.json
+JD_full      20 att_true               12    60  100.0   0.142    0.263  integ/justice_d/open/ol_JD_full_20m_w20g40_s12_diag.json
+JD_full      20 att_true               13    60  100.0   0.110    0.298  integ/justice_d/open/ol_JD_full_20m_w20g40_s13_diag.json
+JD_full      20 att_true              all              RMS median 0.110 worst 0.142; worst-error median 0.263 worst 0.298  (3 seeds)
+JD_full      20 lens_exact             11    60   99.9   0.125    0.249  integ/justice_d/open/ol_JD_full_20m_w20g40_s11_diag.json
+JD_full      20 lens_exact             12    60  100.0   0.118    0.306  integ/justice_d/open/ol_JD_full_20m_w20g40_s12_diag.json
+JD_full      20 lens_exact             13    60  100.0   0.107    0.273  integ/justice_d/open/ol_JD_full_20m_w20g40_s13_diag.json
+JD_full      20 lens_exact            all              RMS median 0.118 worst 0.125; worst-error median 0.273 worst 0.306  (3 seeds)
+JD_full      20 lens_exact_att_true    11    60  100.0   0.065    0.146  integ/justice_d/open/ol_JD_full_20m_w20g40_s11_diag.json
+JD_full      20 lens_exact_att_true    12    60  100.0   0.064    0.132  integ/justice_d/open/ol_JD_full_20m_w20g40_s12_diag.json
+JD_full      20 lens_exact_att_true    13    60   99.5   0.070    0.162  integ/justice_d/open/ol_JD_full_20m_w20g40_s13_diag.json
+JD_full      20 lens_exact_att_true   all              RMS median 0.065 worst 0.070; worst-error median 0.146 worst 0.162  (3 seeds)
+JD_full      20 main                   11    60   99.9   0.166    0.413  integ/justice_d/open/ol_JD_full_20m_w20g40_s11_diag.json
+JD_full      20 main                   12    60  100.0   0.119    0.328  integ/justice_d/open/ol_JD_full_20m_w20g40_s12_diag.json
+JD_full      20 main                   13    60  100.0   0.221    0.438  integ/justice_d/open/ol_JD_full_20m_w20g40_s13_diag.json
+JD_full      20 main                  all              RMS median 0.166 worst 0.221; worst-error median 0.413 worst 0.438  (3 seeds)
+PAL          20 att_true               11    25   99.9   0.053    0.131  integ/justice_d/open/ol_PAL_20m_w20g40_s11_diag.json
+PAL          20 att_true               12    25   99.9   0.041    0.099  integ/justice_d/open/ol_PAL_20m_w20g40_s12_diag.json
+PAL          20 att_true               13    25   99.9   0.047    0.132  integ/justice_d/open/ol_PAL_20m_w20g40_s13_diag.json
+PAL          20 att_true              all              RMS median 0.047 worst 0.053; worst-error median 0.131 worst 0.132  (3 seeds)
+PAL          20 lens_exact             11    25   99.9   0.132    0.243  integ/justice_d/open/ol_PAL_20m_w20g40_s11_diag.json
+PAL          20 lens_exact             12    25   99.9   0.101    0.263  integ/justice_d/open/ol_PAL_20m_w20g40_s12_diag.json
+PAL          20 lens_exact             13    25   99.9   0.119    0.225  integ/justice_d/open/ol_PAL_20m_w20g40_s13_diag.json
+PAL          20 lens_exact            all              RMS median 0.119 worst 0.132; worst-error median 0.243 worst 0.263  (3 seeds)
+PAL          20 lens_exact_att_true    11    25   99.9   0.053    0.147  integ/justice_d/open/ol_PAL_20m_w20g40_s11_diag.json
+PAL          20 lens_exact_att_true    12    25   99.9   0.033    0.100  integ/justice_d/open/ol_PAL_20m_w20g40_s12_diag.json
+PAL          20 lens_exact_att_true    13    25   99.9   0.045    0.124  integ/justice_d/open/ol_PAL_20m_w20g40_s13_diag.json
+PAL          20 lens_exact_att_true   all              RMS median 0.045 worst 0.053; worst-error median 0.124 worst 0.147  (3 seeds)
+PAL          20 main                   11    25   99.9   0.140    0.248  integ/justice_d/open/ol_PAL_20m_w20g40_s11_diag.json
+PAL          20 main                   12    25   99.9   0.093    0.264  integ/justice_d/open/ol_PAL_20m_w20g40_s12_diag.json
+PAL          20 main                   13    25   99.9   0.118    0.235  integ/justice_d/open/ol_PAL_20m_w20g40_s13_diag.json
+PAL          20 main                  all              RMS median 0.118 worst 0.140; worst-error median 0.248 worst 0.264  (3 seeds)
+JD_crop      50 att_true               11    60  100.0   0.188    0.409  integ/justice_d/open/ol_JD_crop_50m_w20g40_s11_diag.json
+JD_crop      50 att_true               12    60  100.0   0.243    0.505  integ/justice_d/open/ol_JD_crop_50m_w20g40_s12_diag.json
+JD_crop      50 att_true               13    60  100.0   0.192    0.476  integ/justice_d/open/ol_JD_crop_50m_w20g40_s13_diag.json
+JD_crop      50 att_true              all              RMS median 0.192 worst 0.243; worst-error median 0.476 worst 0.505  (3 seeds)
+JD_crop      50 lens_exact             11    60  100.0   0.316    0.574  integ/justice_d/open/ol_JD_crop_50m_w20g40_s11_diag.json
+JD_crop      50 lens_exact             12    60  100.0   0.303    0.735  integ/justice_d/open/ol_JD_crop_50m_w20g40_s12_diag.json
+JD_crop      50 lens_exact             13    60  100.0   0.236    0.448  integ/justice_d/open/ol_JD_crop_50m_w20g40_s13_diag.json
+JD_crop      50 lens_exact            all              RMS median 0.303 worst 0.316; worst-error median 0.574 worst 0.735  (3 seeds)
+JD_crop      50 lens_exact_att_true    11    60  100.0   0.055    0.117  integ/justice_d/open/ol_JD_crop_50m_w20g40_s11_diag.json
+JD_crop      50 lens_exact_att_true    12    60  100.0   0.069    0.220  integ/justice_d/open/ol_JD_crop_50m_w20g40_s12_diag.json
+JD_crop      50 lens_exact_att_true    13    60  100.0   0.062    0.194  integ/justice_d/open/ol_JD_crop_50m_w20g40_s13_diag.json
+JD_crop      50 lens_exact_att_true   all              RMS median 0.062 worst 0.069; worst-error median 0.194 worst 0.220  (3 seeds)
+JD_crop      50 main                   11    60  100.0   0.422    0.782  integ/justice_d/open/ol_JD_crop_50m_w20g40_s11_diag.json
+JD_crop      50 main                   12    60  100.0   0.199    0.655  integ/justice_d/open/ol_JD_crop_50m_w20g40_s12_diag.json
+JD_crop      50 main                   13    60  100.0   0.241    0.696  integ/justice_d/open/ol_JD_crop_50m_w20g40_s13_diag.json
+JD_crop      50 main                  all              RMS median 0.241 worst 0.422; worst-error median 0.696 worst 0.782  (3 seeds)
+JD_full      50 att_true               11    60  100.0   0.250    0.573  integ/justice_d/open/ol_JD_full_50m_w20g40_s11_diag.json
+JD_full      50 att_true               12    60  100.0   0.213    0.515  integ/justice_d/open/ol_JD_full_50m_w20g40_s12_diag.json
+JD_full      50 att_true               13    60  100.0   0.290    0.741  integ/justice_d/open/ol_JD_full_50m_w20g40_s13_diag.json
+JD_full      50 att_true              all              RMS median 0.250 worst 0.290; worst-error median 0.573 worst 0.741  (3 seeds)
+JD_full      50 lens_exact             11    60  100.0   0.376    0.735  integ/justice_d/open/ol_JD_full_50m_w20g40_s11_diag.json
+JD_full      50 lens_exact             12    60  100.0   0.404    0.986  integ/justice_d/open/ol_JD_full_50m_w20g40_s12_diag.json
+JD_full      50 lens_exact             13    60  100.0   0.228    0.500  integ/justice_d/open/ol_JD_full_50m_w20g40_s13_diag.json
+JD_full      50 lens_exact            all              RMS median 0.376 worst 0.404; worst-error median 0.735 worst 0.986  (3 seeds)
+JD_full      50 lens_exact_att_true    11    60  100.0   0.066    0.277  integ/justice_d/open/ol_JD_full_50m_w20g40_s11_diag.json
+JD_full      50 lens_exact_att_true    12    60  100.0   0.061    0.163  integ/justice_d/open/ol_JD_full_50m_w20g40_s12_diag.json
+JD_full      50 lens_exact_att_true    13    60  100.0   0.056    0.154  integ/justice_d/open/ol_JD_full_50m_w20g40_s13_diag.json
+JD_full      50 lens_exact_att_true   all              RMS median 0.061 worst 0.066; worst-error median 0.163 worst 0.277  (3 seeds)
+JD_full      50 main                   11    60  100.0   0.528    1.002  integ/justice_d/open/ol_JD_full_50m_w20g40_s11_diag.json
+JD_full      50 main                   12    60  100.0   0.259    0.799  integ/justice_d/open/ol_JD_full_50m_w20g40_s12_diag.json
+JD_full      50 main                   13    60  100.0   0.335    0.982  integ/justice_d/open/ol_JD_full_50m_w20g40_s13_diag.json
+JD_full      50 main                  all              RMS median 0.335 worst 0.528; worst-error median 0.982 worst 1.002  (3 seeds)
+PAL          50 att_true               11    25   99.9   0.080    0.247  integ/justice_d/open/ol_PAL_50m_w20g40_s11_diag.json
+PAL          50 att_true               12    25   99.9   0.182    0.370  integ/justice_d/open/ol_PAL_50m_w20g40_s12_diag.json
+PAL          50 att_true               13    25   99.9   0.056    0.135  integ/justice_d/open/ol_PAL_50m_w20g40_s13_diag.json
+PAL          50 att_true              all              RMS median 0.080 worst 0.182; worst-error median 0.247 worst 0.370  (3 seeds)
+PAL          50 lens_exact             11    25   99.9   0.309    0.547  integ/justice_d/open/ol_PAL_50m_w20g40_s11_diag.json
+PAL          50 lens_exact             12    25   99.9   0.305    0.717  integ/justice_d/open/ol_PAL_50m_w20g40_s12_diag.json
+PAL          50 lens_exact             13    25   99.9   0.222    0.427  integ/justice_d/open/ol_PAL_50m_w20g40_s13_diag.json
+PAL          50 lens_exact            all              RMS median 0.305 worst 0.309; worst-error median 0.547 worst 0.717  (3 seeds)
+PAL          50 lens_exact_att_true    11    25   99.9   0.074    0.235  integ/justice_d/open/ol_PAL_50m_w20g40_s11_diag.json
+PAL          50 lens_exact_att_true    12    25   99.9   0.088    0.344  integ/justice_d/open/ol_PAL_50m_w20g40_s12_diag.json
+PAL          50 lens_exact_att_true    13    25   99.9   0.045    0.126  integ/justice_d/open/ol_PAL_50m_w20g40_s13_diag.json
+PAL          50 lens_exact_att_true   all              RMS median 0.074 worst 0.088; worst-error median 0.235 worst 0.344  (3 seeds)
+PAL          50 main                   11    25   99.9   0.325    0.575  integ/justice_d/open/ol_PAL_50m_w20g40_s11_diag.json
+PAL          50 main                   12    25   99.9   0.285    0.697  integ/justice_d/open/ol_PAL_50m_w20g40_s12_diag.json
+PAL          50 main                   13    25   99.9   0.217    0.418  integ/justice_d/open/ol_PAL_50m_w20g40_s13_diag.json
+PAL          50 main                  all              RMS median 0.285 worst 0.325; worst-error median 0.575 worst 0.697  (3 seeds)
+JD_crop     100 att_true               11    60  100.0   0.283    0.692  integ/justice_d/open/ol_JD_crop_100m_w20g40_s11_diag.json
+JD_crop     100 att_true               12    60  100.0   0.361    0.682  integ/justice_d/open/ol_JD_crop_100m_w20g40_s12_diag.json
+JD_crop     100 att_true               13    60  100.0   0.331    0.791  integ/justice_d/open/ol_JD_crop_100m_w20g40_s13_diag.json
+JD_crop     100 att_true              all              RMS median 0.331 worst 0.361; worst-error median 0.692 worst 0.791  (3 seeds)
+JD_crop     100 lens_exact             11    60  100.0   0.546    1.027  integ/justice_d/open/ol_JD_crop_100m_w20g40_s11_diag.json
+JD_crop     100 lens_exact             12    60  100.0   0.708    1.536  integ/justice_d/open/ol_JD_crop_100m_w20g40_s12_diag.json
+JD_crop     100 lens_exact             13    60  100.0   0.398    0.816  integ/justice_d/open/ol_JD_crop_100m_w20g40_s13_diag.json
+JD_crop     100 lens_exact            all              RMS median 0.546 worst 0.708; worst-error median 1.027 worst 1.536  (3 seeds)
+JD_crop     100 lens_exact_att_true    11    60  100.0   0.076    0.390  integ/justice_d/open/ol_JD_crop_100m_w20g40_s11_diag.json
+JD_crop     100 lens_exact_att_true    12    60  100.0   0.108    0.223  integ/justice_d/open/ol_JD_crop_100m_w20g40_s12_diag.json
+JD_crop     100 lens_exact_att_true    13    60  100.0   0.067    0.177  integ/justice_d/open/ol_JD_crop_100m_w20g40_s13_diag.json
+JD_crop     100 lens_exact_att_true   all              RMS median 0.076 worst 0.108; worst-error median 0.223 worst 0.390  (3 seeds)
+JD_crop     100 main                   11    60  100.0   0.739    1.459  integ/justice_d/open/ol_JD_crop_100m_w20g40_s11_diag.json
+JD_crop     100 main                   12    60  100.0   0.478    1.307  integ/justice_d/open/ol_JD_crop_100m_w20g40_s12_diag.json
+JD_crop     100 main                   13    60  100.0   0.384    1.118  integ/justice_d/open/ol_JD_crop_100m_w20g40_s13_diag.json
+JD_crop     100 main                  all              RMS median 0.478 worst 0.739; worst-error median 1.307 worst 1.459  (3 seeds)
+JD_full     100 att_true               11    60  100.0   0.292    0.752  integ/justice_d/open/ol_JD_full_100m_w20g40_s11_diag.json
+JD_full     100 att_true               12    60  100.0   0.302    0.742  integ/justice_d/open/ol_JD_full_100m_w20g40_s12_diag.json
+JD_full     100 att_true               13    60  100.0   0.329    0.771  integ/justice_d/open/ol_JD_full_100m_w20g40_s13_diag.json
+JD_full     100 att_true              all              RMS median 0.302 worst 0.329; worst-error median 0.752 worst 0.771  (3 seeds)
+JD_full     100 lens_exact             11    60  100.0   0.518    1.033  integ/justice_d/open/ol_JD_full_100m_w20g40_s11_diag.json
+JD_full     100 lens_exact             12    60  100.0   0.740    1.623  integ/justice_d/open/ol_JD_full_100m_w20g40_s12_diag.json
+JD_full     100 lens_exact             13    60  100.0   0.393    0.869  integ/justice_d/open/ol_JD_full_100m_w20g40_s13_diag.json
+JD_full     100 lens_exact            all              RMS median 0.518 worst 0.740; worst-error median 1.033 worst 1.623  (3 seeds)
+JD_full     100 lens_exact_att_true    11    60  100.0   0.159    0.313  integ/justice_d/open/ol_JD_full_100m_w20g40_s11_diag.json
+JD_full     100 lens_exact_att_true    12    60  100.0   0.195    0.598  integ/justice_d/open/ol_JD_full_100m_w20g40_s12_diag.json
+JD_full     100 lens_exact_att_true    13    60  100.0   0.161    0.348  integ/justice_d/open/ol_JD_full_100m_w20g40_s13_diag.json
+JD_full     100 lens_exact_att_true   all              RMS median 0.161 worst 0.195; worst-error median 0.348 worst 0.598  (3 seeds)
+JD_full     100 main                   11    60  100.0   0.710    1.451  integ/justice_d/open/ol_JD_full_100m_w20g40_s11_diag.json
+JD_full     100 main                   12    60  100.0   0.534    1.429  integ/justice_d/open/ol_JD_full_100m_w20g40_s12_diag.json
+JD_full     100 main                   13    60  100.0   0.451    1.383  integ/justice_d/open/ol_JD_full_100m_w20g40_s13_diag.json
+JD_full     100 main                  all              RMS median 0.534 worst 0.710; worst-error median 1.429 worst 1.451  (3 seeds)
+PAL         100 att_true               11    25   99.9   0.175    0.528  integ/justice_d/open/ol_PAL_100m_w20g40_s11_diag.json
+PAL         100 att_true               12    25   99.9   0.133    0.397  integ/justice_d/open/ol_PAL_100m_w20g40_s12_diag.json
+PAL         100 att_true               13    25   99.9   0.155    0.492  integ/justice_d/open/ol_PAL_100m_w20g40_s13_diag.json
+PAL         100 att_true              all              RMS median 0.155 worst 0.175; worst-error median 0.492 worst 0.528  (3 seeds)
+PAL         100 lens_exact             11    25   99.9   0.474    0.959  integ/justice_d/open/ol_PAL_100m_w20g40_s11_diag.json
+PAL         100 lens_exact             12    25   99.9   0.678    1.584  integ/justice_d/open/ol_PAL_100m_w20g40_s12_diag.json
+PAL         100 lens_exact             13    25   99.9   0.526    0.993  integ/justice_d/open/ol_PAL_100m_w20g40_s13_diag.json
+PAL         100 lens_exact            all              RMS median 0.526 worst 0.678; worst-error median 0.993 worst 1.584  (3 seeds)
+PAL         100 lens_exact_att_true    11    25   99.9   0.202    0.619  integ/justice_d/open/ol_PAL_100m_w20g40_s11_diag.json
+PAL         100 lens_exact_att_true    12    25   99.9   0.133    0.373  integ/justice_d/open/ol_PAL_100m_w20g40_s12_diag.json
+PAL         100 lens_exact_att_true    13    25   99.9   0.200    0.534  integ/justice_d/open/ol_PAL_100m_w20g40_s13_diag.json
+PAL         100 lens_exact_att_true   all              RMS median 0.200 worst 0.202; worst-error median 0.534 worst 0.619  (3 seeds)
+PAL         100 main                   11    25   99.9   0.517    1.032  integ/justice_d/open/ol_PAL_100m_w20g40_s11_diag.json
+PAL         100 main                   12    25   99.9   0.629    1.555  integ/justice_d/open/ol_PAL_100m_w20g40_s12_diag.json
+PAL         100 main                   13    25   99.9   0.496    0.925  integ/justice_d/open/ol_PAL_100m_w20g40_s13_diag.json
+PAL         100 main                  all              RMS median 0.517 worst 0.629; worst-error median 1.032 worst 1.555  (3 seeds)
+
+COMPUTE (integ/justice_d/compute_20261118_225729.json): Intel(R) Core(TM) 7 240H, cv2.setNumThreads(1); numpy single-threaded, load at start 6.99, 400 frames (first 5 not counted)
+  Hold.process 320x180   median   2.73 ms  p95   2.83 ms  ratio to 640x360 0.85
+  Hold.process 640x360   median   3.22 ms  p95   3.37 ms  ratio to 640x360 1.00
+  Hold.process 1280x720  median   4.99 ms  p95   5.23 ms  ratio to 640x360 1.55
+  capture.luma + INTER_AREA, one 1280x720 YUYV buffer: median 0.279 ms  p95 0.283 ms
+
+COMPUTE (integ/justice_d/compute_20261118_230038.json): Intel(R) Core(TM) 7 240H, cv2.setNumThreads(1); numpy single-threaded, load at start 1.76, 400 frames (first 5 not counted)
+  Hold.process 320x180   median   2.71 ms  p95   2.85 ms  ratio to 640x360 0.87
+  Hold.process 640x360   median   3.13 ms  p95   3.20 ms  ratio to 640x360 1.00
+  Hold.process 1280x720  median   4.57 ms  p95   4.73 ms  ratio to 640x360 1.46
+  capture.luma + INTER_AREA, one 1280x720 YUYV buffer: median 0.278 ms  p95 0.281 ms
+
+CALIBRATION IN THE LOOP (integ/justice_d/calib_loop_d_20261118_230048.txt):
+  recording: 361 frames 640x360 in 12 s (median frame gap 33.3 ms), 1220 attitude rows, mode 'digital ?x?@60 reduce=2 640x360'; frames handed over after their stamp: median 0.3 ms, p95 0.6 ms
+  calib took 16 s, exit code 0
+    calib: PASS picture top = left (residual 0.05 deg; next best right mirrored 8.55 deg, 170x)
+    calib: INFO video delay 58 ms, readout +11 ms, lens at 640x360: fx 318.5 fy 323.3 k1 -0.0216, tilt roll +1.73 pitch -1.13 twist +1.57 deg
+    calib: INFO quality: residual 0.050 deg, tracked points reach 62 deg from the optical axis (picture corner 68 deg), turn rate about picture x 33, y 22, z 26 deg/s
+    calib: PASS lens profile 'Justice D calibrated 2026-11-18 23:01' added to /home/paul/Videos/vio-hold-attempt/integ/justice_d/calib_loop_d_lens_20261118_230048.json. lens_name points to it. focal_scale is 1.0.
+    calib: PASS settings written; calibrated = true
+    fx               found  637.0552  true  634.9000 (+0.34 %)
+    fy               found  646.5644  true  645.1000 (+0.23 %)
+    k1               found   -0.0216  true   -0.0180 (-0.0036)
+    k2 (not fitted)  found    0.0000  true   -0.0020 (+0.0020)
+    cx (not fitted)  found  639.5000  true  632.5000 (+7.0000)
+    cy (not fitted)  found  359.5000  true  367.5000 (-8.0000)
+    video delay ms   found   58.0000  true   58.0000 (-0.0000)
+    readout ms       found   11.0000  true   10.0000 (+1.0000)
+    mount            found top left, mirror False, tilt [1.73, -1.13], twist +1.57; as one matrix 0.86 deg from camera.py's
+  PASS calib exit code 0 and calibrated = true: rc 0, calibrated True
+  PASS a new lens profile in the lens copy, selected: Justice D calibrated 2026-11-18 23:01, 12 profiles (before 11)
+  PASS picture top = left, not mirrored: left False
+  PASS fx within 1 %: 637.1
+  PASS fy within 1 %: 646.6
+  PASS k1 within 0.01: -0.0216
+  PASS video delay within 5 ms: 58.0 ms
+  PASS readout within 4.5 ms: +11.0 ms
+  FAIL mount within 0.5 deg: 0.86 deg
+  PASS with the calibrated settings run has no start problem: none
+  rays (lens + mount) against the truth within 55 deg of nadir (integ/justice_d/calib_loop_d_rays_20261118_230048.txt): calibrated median 0.211 max 0.426 deg; start settings median 50.941 deg
+
+CLOSED LOOP: ArduCopter 4.6 SITL, variant apb (onboard program in its own process), board model fixed 80 ms per Hold.process, ground ottawa2019fall (the ground of the existing analog runs), 60 s hold. Drift = true distance from the hold point (m).
+fix err = each sent fix against the truth, constant offset removed (fix_error.py -> fix_error.json); gap = longest time without a sent fix in [-10, +3] s of the hold start.
+case                                RMS m  max m fix Hz age ms frames  handover p50/p95 ms load start/end fix err RMS/worst gap s  file / events
+an_apb_100m_w20g40_s11              0.827  1.350   12.0    170   1500          16.5 / 19.7    0.93 / 1.43     0.243 / 0.778  1.48  integ/justice_d/closed/an_apb_100m_w20g40_s11.json 
+an_apb_20m_calm_s11                 0.099  0.179   11.0    169   1500          16.4 / 20.0     1.8 / 0.93     0.064 / 0.136  0.76  integ/justice_d/closed/an_apb_20m_calm_s11.json 
+an_apb_50m_w20g40_s11               0.340  0.760   12.0    170   1500          16.5 / 19.9     3.24 / 1.8      0.15 / 0.345   1.4  integ/justice_d/closed/an_apb_50m_w20g40_s11.json 
+jd_apb_100m_w20g40_s11              0.437  0.803   12.2    129   3580           6.5 / 12.4    0.86 / 3.65     0.269 / 0.632   4.5  integ/justice_d/closed/jd_apb_100m_w20g40_s11.json 
+jd_apb_100m_w20g40_s12              0.654  1.234   12.2    129   3566           6.4 / 12.6    2.29 / 5.33      0.28 / 0.908  1.72  integ/justice_d/closed/jd_apb_100m_w20g40_s12.json 
+jd_apb_100m_w20g40_s13              0.715  1.434   12.2    129   3576           6.4 / 12.5    3.39 / 4.89     0.249 / 0.703  0.33  integ/justice_d/closed/jd_apb_100m_w20g40_s13.json 
+jd_apb_20m_calm_s11                 0.159  0.255   12.2    129   3586           6.4 / 12.1     2.43 / 6.0     0.084 / 0.168  2.37  integ/justice_d/closed/jd_apb_20m_calm_s11.json 
+jd_apb_50m_w20g40_s11               0.622  1.391   12.2    129   3582           6.4 / 12.8    3.08 / 6.62     0.203 / 0.583  1.15  integ/justice_d/closed/jd_apb_50m_w20g40_s11.json 
+jdcal2_apb_100m_w20g40_s11          1.615  2.135   12.1    149   3599           6.9 / 13.7     2.66 / 6.3     0.254 / 0.866  3.87  integ/justice_d/closed/jdcal2_apb_100m_w20g40_s11.json 
+jdcal3_apb_100m_w20g40_s11          0.783  1.305   12.2    149   3598           6.7 / 13.2    0.99 / 4.93     0.319 / 0.768  3.68  integ/justice_d/closed/jdcal3_apb_100m_w20g40_s11.json 
+jdcal_apb_100m_w20g40_s11           0.661  1.109   12.1    157   1800            6.2 / 9.7    3.87 / 3.24     0.271 / 0.685   2.5  integ/justice_d/closed/jdcal_apb_100m_w20g40_s11.json 
+jdfull_apb_100m_w20g40_s11          1.101  2.148   12.2    129   3598           6.6 / 12.9    1.43 / 5.55     0.493 / 0.977   0.9  integ/justice_d/closed/jdfull_apb_100m_w20g40_s11.json 
+jd_apb_100m_w20g40 seeds 11-13     RMS median 0.654 worst 0.715; max median 1.234 worst 1.434
+jdcal* (T4 calibrated, all runs)   RMS median 0.783 worst 1.615; max median 1.305 worst 2.135  (jdcal: frames at 30 Hz, Frames bug, since fixed)
+c_d140_100m_w20g40_s11             (existing analog run) fix err RMS/worst 0.263 / 0.814, gap 1.68 s
+c_d140_100m_w20g40_s12             (existing analog run) fix err RMS/worst 0.34 / 0.995, gap 5.28 s
+c_d140_100m_w20g40_s13             (existing analog run) fix err RMS/worst 0.278 / 0.797, gap 2.88 s
+existing analog c_d140 seeds 11-13 RMS median 0.768 worst 0.874; max median 1.267 worst 1.315  (apsim/results.txt, PAL, same settings)
+
+ANALOG RENDER UNCHANGED (integ/justice_d/check_analog_same.txt): ALL SAME
+EXISTING ANALOG OPEN-LOOP CASE (integ/justice_d/check_replay_same.txt): SAME: every fix error agrees exactly
+    px4   attitude: fixes 548  error RMS 0.76 m  max 1.37 m  median sent sigma 0.48 m
+    gyro  attitude: fixes 548  error RMS 0.51 m  max 0.90 m  median sent sigma 0.49 m
+    true  attitude: fixes 548  error RMS 0.11 m  max 0.24 m  median sent sigma 0.49 m
+    px4   attitude: fixes 548  error RMS 0.76 m  max 1.37 m  median sent sigma 0.48 m
+    gyro  attitude: fixes 548  error RMS 0.51 m  max 0.90 m  median sent sigma 0.49 m
+    true  attitude: fixes 548  error RMS 0.11 m  max 0.24 m  median sent sigma 0.49 m
+
+sh tests_apb/run_all.sh at the end (integ/justice_d/run_all_final.txt):
+  test_basics: rc=0 ALL PASS in 20 s
+  test_digital: rc=0 ALL PASS in 16 s
+  test_fc_link: rc=0 ALL PASS in 20 s
+  test_run: rc=0 ALL PASS in 28 s (files in /tmp/tmpty6tnbc3)
+  test_bench: rc=0 ALL PASS in 17 s
+  test_calib: rc=0 ALL PASS in 59 s
+  test_lens_d: rc=0 ALL PASS in 129 s
+  test_replay_chunks: rc=0 ALL PASS
+  test_wind_assist: rc=0 ALL PASS
+  test_ap_sitl: rc=0 ALL PASS
+  sim_test.timing_test: rc=0 timing_test PASSED

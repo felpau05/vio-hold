@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Item 8 (and 3, 4): independent test of Hold._rays and of the keyframe/position solve.
 
-My own quaternion attitude, my own mount (from "image top toward the nose"), my own fisheye model
-and my own rolling-shutter projector put known ground points into pixels. Hold._rays then turns the
+Own quaternion attitude, own mount (from "image top toward the nose"), own fisheye model
+and own rolling-shutter projector put known ground points into pixels. Hold._rays then turns the
 pixels back into camera-to-ground offsets. Nothing from the project's geometry (euler_R,
 R_BC_NADIR, RAYS_B, render) is imported here; Hold uses its own euler_R internally (under test).
 
@@ -21,7 +21,7 @@ from hold import Hold      # noqa: E402
 deg = math.radians
 H0, T0, RO = 100.0, 1.0, 0.016
 K, D, H = I.K_FIELD, I.D_FIELD, I.H
-R_ME = I.mount((1, 0, 0))                      # my own mount for "image top toward the nose"
+R_ME = I.mount((1, 0, 0))                      # own mount for "image top toward the nose"
 
 
 def const(*v):

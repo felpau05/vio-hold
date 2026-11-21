@@ -35,7 +35,8 @@ DEFAULTS = {
     # imu_hz), never toward the FC's tilt (apb_main.ImuAtt). Link budget at 50 Hz: 36 B x 50 = 1.8 kB/s.
     "imu_hz": 50,
     # Lat (deg), lon (deg), alt (m AMSL) of the field. ArduPilot needs it (SET_GPS_GLOBAL_ORIGIN).
-    # Not known yet: read it from a phone map at the field.
+    # Not known yet: take it from a map before the day, not from a GNSS receiver at the field (EIGHT_HOURS hour 2:
+    # a start with no GNSS is a bonus route). A wrong value only moves the local frame.
     "origin_lat_lon_alt": None,
     # Needed flight-controller parameters (research/px4_vision.md section 1, finding H2).
     # assumed EKF2_EV_DELAY 0: we answer TIMESYNC and stamp the capture time (px4_vision.md section 3).
@@ -61,8 +62,27 @@ DEFAULTS = {
                          "EK3_SRC1_VELZ": 0, "EK3_SRC1_YAW": 1, "GPS1_TYPE": 0, "VISO_DELAY_MS": 140},
 
     # Video.
+    # "analog": PAL/NTSC fields from a grabber (capture.V4L2Source). "digital": a MIPI CSI camera such as the
+    # Orqa Justice D, whole progressive frames shrunk by video_reduce (capture.DigitalSource). field and
+    # video_standard apply to "analog" only.
+    "camera": "analog",
     "video_device": "/dev/video0",     # research/hardware.md: /dev/video0 = analog capture on the APB
-    "video_standard": "auto",          # "auto", "PAL" or "NTSC"; check mode compares it with the driver
+    "video_standard": "auto",          # "auto", "PAL", "NTSC" or "none" (digital); check mode compares it with the driver
+    # Digital camera only. APB manual: CSI 1 (/dev/video2) gives a fixed 1280x720 at 60 fps, no external controls.
+    "video_size": [1280, 720],
+    "video_fps": 60,                   # check mode passes when the measured rate is within 10 % of this
+    # FOURCC to ask the driver for (YUYV, UYVY, NV12, GREY); "" = keep the driver's. With video_pipeline: the
+    # appsink format. assumed: the APB manual names no pixel format; check mode prints the driver's.
+    "pixel_format": "",
+    "video_pipeline": "",              # GStreamer pipeline that ends in appsink; "" = open video_device with V4L2
+    # Shell command that writes raw frames (video_size in pixel_format) to its standard output; "" = not used. For a
+    # board where OpenCV cannot open the camera. It has priority over video_pipeline. Stamp: the read time.
+    # Example (assumed: the driver gives YUY2, GStreamer's name for YUYV; then set pixel_format to YUYV):
+    # gst-launch-1.0 -q v4l2src device=/dev/video2 ! video/x-raw,width=1280,height=720,format=YUY2 ! fdsink fd=1
+    "video_command": "",
+    # Hold gets the frame shrunk by this whole factor (cv2.INTER_AREA): 2 gives 640x360.
+    # assumed: Hold at 640x360 is fast enough on the A53 cores; check mode measures it.
+    "video_reduce": 2,
     # "top" or "bottom": one field per picture, width halved (H10; each field has one time stamp).
     # "frame": the woven frame; readout_s must then span both fields.
     "field": "top",
@@ -80,6 +100,13 @@ DEFAULTS = {
     "lens_file": "justice_lens_profiles.json",
     # assumed: the sim's lens (Justice A through a USB grabber, H7). calib.py measures focal_scale against it.
     "lens_name": "Round 1 independent k2",
+    # The measured lens, or null: then run uses the lens_name profile. It is calibration data, as the mount is:
+    # use_profile.py apply and deploy.sh keep it, and lens_name stays calib's start profile. calib writes it for
+    # the digital camera ("by": "hand turn"). tools/lens_calib.py --settings writes it from checkerboard views
+    # ("by": "target"); calib then fits only focal_scale against it. Equidistant fisheye (cv2.fisheye) for whole
+    # pictures: {"by", "image_size": [w, h], "fx", "fy", "cx", "cy", "k1", "k2", "k3", "k4", "note"}.
+    # To use the profile lens again, set it to null, then run calib.
+    "lens_measured": None,
     "focal_scale": 1.0,
     "readout_s": 0.016,                # assumed: about one field; negative = sensor reads bottom to top (G6)
     "video_delay_s": 0.060,            # assumed: the sim's value; t0 = frame stamp - video_delay_s (H1)
@@ -106,9 +133,33 @@ DEFAULTS = {
     "assist_slow_s": 2.0,              # assumed: about the time ArduCopter's integral term needs (stock gains)
     "assist_max_m": 1.5,               # assumed: largest target shift (about 3 m/s^2 with stock gains)
     "assist_kp_kv": 2.0,               # PSC_POSXY_P x PSC_VELXY_P of the FC (stock 1.0 x 2.0)
+    # Pilot handover (Stage 1 judging area D). run_live always follows the FC flight mode, writes it in the run
+    # log ("mode" column) and notes when the pilot's switch engages and releases position hold (apb_main.Engage).
+    # fresh_kf_at_engage: at the switch, Hold takes a new keyframe of the spot where the pilot steadied the
+    # aircraft and makes it the home keyframe (Hold.request_keyframe). Off until a closed-loop test shows it wins.
+    "fresh_kf_at_engage": False,
+    # Recovery demonstration (Stage 1 bonus route "demonstrated recovery"): the program drops the video for
+    # outage_test_s seconds, as a video outage does, and logs it. 0 = off. The drop starts when the file
+    # "outage_now" appears in log_dir (the program deletes it), or outage_after_s seconds after the switch
+    # engages position hold (0 = the file only). Profile: tools/profiles/recovery_demo.json.
+    "outage_test_s": 0.0,
+    "outage_after_s": 0.0,
+    # How much GNSS (ArduPilot only; apb_main.GnssLevel, integ/gnss_ladder/README.txt). "none": GNSS off from power-on
+    # (params_ardupilot as above). "setup": EKF source set 1 = GNSS while the pilot flies by hand; when our fixes have
+    # flowed for gnss_ready_s, the program selects source set 2 = our position only (MAV_CMD_SET_EKF_SOURCE_SET).
+    # "fallback": as setup, and in a hold with no fix for gnss_fallback_s the program selects set 1 (GNSS) again;
+    # that hold is then GNSS-aided. "velocity": as setup, set 2 also names GNSS velocity; ArduCopter 4.6 EKF3 does
+    # not fuse it while the position source is ours (AP_NavEKF3_PosVelFusion.cpp 559-562). Profiles: gnss_*.json.
+    "gnss_mode": "none",
+    "gnss_ready_s": 2.0,               # assumed: 2 s of fixes with no gap over 0.5 s before the change to set 2
+    "gnss_fallback_s": 3.0,            # assumed: as long as the longest normal fix gap at 10 m (3 s, apsim/low_ap_results)
     "mask_file": "",                   # PNG, 0 = not ground (OSD, airframe). Made by "apb_main.py mask".
     "log_dir": "logs",
     "raw_record": False,               # also save raw frames and FC data for replay
+    # The recorders (mask, calib, run --raw) keep at most this many frames each second, each with its own stamp;
+    # 0 = each frame. Hold still gets each frame. 60 fps at 640x360 fills 14 MB/s of RAM in calib.
+    "record_hz": 0,
+    # For 360x288 pictures at 25 Hz; check mode scales it to the real picture size and frame rate.
     "min_free_gb": 2.0,                # assumed: a 5 min raw recording of 360x288 fields at 25 Hz is about 0.8 GB
 
     # Calibration (calib.py).
@@ -121,14 +172,30 @@ DEFAULTS = {
     "calib_info": {},
 }
 
-CHOICES = {"video_standard": ("auto", "PAL", "NTSC"), "field": ("top", "bottom", "frame"),
-           "top": ("front", "right", "rear", "left"), "att_source": ("gyro", "fc", "imu")}
+CHOICES = {"video_standard": ("auto", "PAL", "NTSC", "none"), "field": ("top", "bottom", "frame"),
+           "top": ("front", "right", "rear", "left"), "att_source": ("gyro", "fc", "imu"), "camera": ("analog", "digital"),
+           "gnss_mode": ("none", "setup", "fallback", "velocity")}
+LENS_KEYS = ("fx", "fy", "cx", "cy", "k1", "k2", "k3", "k4")     # lens_measured's numbers
+
+
+def _lens_ok(v):
+    num = lambda x: isinstance(x, (int, float)) and not isinstance(x, bool)      # noqa: E731
+    size = v.get("image_size") if isinstance(v, dict) else None
+    return (isinstance(v, dict) and v.get("by") in ("hand turn", "target") and isinstance(size, list) and len(size) == 2
+            and all(num(x) and x > 0 for x in size) and all(num(v.get(k)) for k in LENS_KEYS) and v["fx"] > 0 and v["fy"] > 0)
 
 
 def _check(k, v):
     d = DEFAULTS[k]
     if k in CHOICES and v not in CHOICES[k]:
         return f"must be one of {', '.join(CHOICES[k])}"
+    if k == "lens_measured":
+        return None if v is None or _lens_ok(v) else ('must be null or {"by": "hand turn" or "target", "image_size": [w, h], '
+                                                      '"fx", "fy", "cx", "cy", "k1" to "k4"}. Run calib again, or set it to null')
+    if k == "video_reduce" and (not isinstance(v, int) or isinstance(v, bool) or v < 1):
+        return "must be a whole number, 1 or more"
+    if k == "pixel_format" and isinstance(v, str) and len(v) not in (0, 4):
+        return "must be empty or 4 characters (a FOURCC such as YUYV)"
     if d is None:
         ok = v is None or (isinstance(v, list) and len(v) == 3 and all(isinstance(x, (int, float)) for x in v))
         return None if ok else "must be null or [lat, lon, alt]"

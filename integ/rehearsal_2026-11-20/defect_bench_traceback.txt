@@ -1,0 +1,5 @@
+         ^^^^^^^^^^
+  File "<project>/apb_main.py", line 719, in open_fc
+    raise RuntimeError(why)
+RuntimeError: no MAVLink heartbeat on udpin:127.0.0.1:14599 in 5 s and no MSP answer on /dev/ttymxc2. Check the cable, the baud rate and that mavlink-router runs.
+exit code 0

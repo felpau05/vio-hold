@@ -1,0 +1,40 @@
+ArduCopter SITL instance 7 started (parameters wiped)
+--- save (factory values)
+INFO VISO_TYPE = 0.0
+INFO EK3_SRC1_POSXY = 3.0
+INFO EK3_SRC1_VELXY = 3.0
+INFO EK3_SRC1_POSZ = 1.0
+INFO EK3_SRC1_VELZ = 3.0
+INFO EK3_SRC1_YAW = 1.0
+INFO GPS1_TYPE = 1.0
+INFO VISO_DELAY_MS = 10.0
+PASS saved 8 of 8 parameters to /tmp/tmp.DHHbuxskaP/a/fc_params_before.json
+--- save again (must refuse)
+FAIL /tmp/tmp.DHHbuxskaP/a/fc_params_before.json exists. It holds the values of the first save. Keep it. To save again, rename it first.
+exit 1
+--- check --set-params (our values)
+[ WARN:0@8.170] global cap.cpp:212 open VIDEOIO(V4L2): backend is generally available but can't be used to capture by name
+PASS param VISO_TYPE: wrote 1, reads 1.0. Reboot the flight controller.
+PASS param EK3_SRC1_POSXY: wrote 6, reads 6.0. Reboot the flight controller.
+PASS param EK3_SRC1_VELXY: wrote 0, reads 0.0. Reboot the flight controller.
+PASS param EK3_SRC1_POSZ = 1.0
+PASS param EK3_SRC1_VELZ: wrote 0, reads 0.0. Reboot the flight controller.
+PASS param EK3_SRC1_YAW = 1.0
+PASS param GPS1_TYPE: wrote 0, reads 0.0. Reboot the flight controller.
+PASS param VISO_DELAY_MS: wrote 140, reads 140.0. Reboot the flight controller.
+ArduCopter SITL instance 7 started 
+--- restore
+PASS VISO_TYPE: wrote 0.0, reads 0.0.
+PASS EK3_SRC1_POSXY: wrote 3.0, reads 3.0.
+PASS EK3_SRC1_VELXY: wrote 3.0, reads 3.0.
+PASS EK3_SRC1_POSZ = 1.0 (already the saved value)
+PASS EK3_SRC1_VELZ: wrote 3.0, reads 3.0.
+PASS EK3_SRC1_YAW = 1.0 (already the saved value)
+PASS GPS1_TYPE: wrote 1.0, reads 1.0.
+PASS VISO_DELAY_MS: wrote 10.0, reads 10.0.
+ALL RESTORED. Reboot the flight controller.
+exit 0
+ArduCopter SITL instance 7 started 
+--- read again after the restore
+PASS saved 8 of 8 parameters to /tmp/tmp.DHHbuxskaP/b/fc_params_before.json
+PASS the values after the restore equal the saved values: {'VISO_TYPE': 0.0, 'EK3_SRC1_POSXY': 3.0, 'EK3_SRC1_VELXY': 3.0, 'EK3_SRC1_POSZ': 1.0, 'EK3_SRC1_VELZ': 3.0, 'EK3_SRC1_YAW': 1.0, 'GPS1_TYPE': 1.0, 'VISO_DELAY_MS': 10.0}

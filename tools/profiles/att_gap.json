@@ -1,0 +1,6 @@
+{
+ "_why": {
+  "att_stale_s": "0.12 s (default 0.05). With the default, one gap of more than 50 ms in the flight controller's ATTITUDE stream stops the fixes and sets the count of good fixes back to 0 (apb_main.py live_gate and Pipe), so about 0.8 s pass before the next fix (10 good frames in a row). Cost: inside a gap the attitude comes from older samples. Not measured, not tested in closed loop and not on the real link. Apply it only when the run log shows many 'attitude stale' rows (see the 'attitude stale' row of DECISION_CARD.txt). Apply your profile names again without att_gap to switch it off."
+ },
+ "att_stale_s": 0.12
+}

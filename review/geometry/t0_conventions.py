@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Items 1, 2, 5: compare the project's euler_R, R_BC_NADIR and load_lens with my own derivations.
+"""Items 1, 2, 5: compare the project's euler_R, R_BC_NADIR and load_lens with own derivations.
 
 Run:  ~/.venvs/vio/bin/python /home/paul/Videos/vio-hold-attempt/review/geometry/t0_conventions.py
 """
@@ -50,7 +50,7 @@ for yaw_deg in (0, 90):
     du, dv = pts[1] - pts[0]
     print(f"    level, yaw {yaw_deg:3d}, camera moves 1 m north at 10 m: ground point moves du={du:+.2f} px, dv={dv:+.2f} px")
 
-# 5. load_lens vs my scaling, and the pixel-extent property it must keep
+# 5. load_lens vs a separate scaling, and the pixel-extent property it must keep
 Kp, Dp = load_lens(I.LENS_JSON, "Round 1 independent k2", I.W, I.H)
 print(f"[5] load_lens K == my field_K: {np.allclose(Kp, K)} ; D equal: {np.allclose(Dp, D)}")
 print(f"    K field = fx {Kp[0,0]:.3f}  fy {Kp[1,1]:.3f}  cx {Kp[0,2]:.3f}  cy {Kp[1,2]:.3f}")
@@ -61,7 +61,7 @@ u_c, v_c = I.project_cam(ray, Kc, Dc)
 u_f, v_f = I.project_cam(ray, Kp, Dp)
 print(f"    same ray: calib (u+0.5)/960 = {(u_c + 0.5) / 960}, field (u+0.5)/360 = {(u_f + 0.5) / 360}")
 print(f"              calib (v+0.5)/720 = {(v_c + 0.5) / 720}, field (v+0.5)/240 = {(v_f + 0.5) / 240}")
-# My forward model vs OpenCV's fisheye forward model, then cv2.fisheye.undistortPoints round trip
+# Own forward model vs OpenCV's fisheye forward model, then cv2.fisheye.undistortPoints round trip
 th = np.radians(np.linspace(0, 60, 61))
 phi = np.radians(np.linspace(0, 350, 36))
 TH, PH = np.meshgrid(th, phi)

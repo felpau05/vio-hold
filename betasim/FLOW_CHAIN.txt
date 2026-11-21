@@ -1,0 +1,45 @@
+Betaflight: from our flow message to a position (orqa-betaflight, branch orqa-betaflight_2026.6-maintenance,
+commit 09ea1c692f). Read in source for this file; the words are ours. Paths are under src/main/.
+
+1. Arrival. msp/msp.c 3976-3982: 0x1F01 goes to mtRangefinderReceiveNewData, 0x1F02 to
+   mtOpticalflowReceiveNewData. The FC handles one MSP command per serial task run (msp/msp_serial.c 491-515);
+   the task runs at serial_update_rate_hz, default 100 (io/serial.c 376, fc/tasks.c 371 and 524).
+2. Rangefinder message. drivers/rangefinder/rangefinder_lidarmt.c 104-110: stores distanceMm and the arrival
+   time. 76-84: the rangefinder task reads it once, mm / 10 = cm; negative = out of range.
+   sensors/rangefinder.c 310-312: a median filter; 357-361: height = raw x cos(tilt), out of range when the tilt
+   is over half the 90 deg cone (rangefinder_lidarmt.h 27). 383-386: healthy for 500 ms after a reading.
+3. Flow message. rangefinder_lidarmt.c 162-192: dt = time since the previous flow message (valid 0-1 s);
+   rate (rad/s) = motion / 200 / dt (47, 179-180); quality = q x 100 / 255; the flow is refused (quality -1 or
+   -2) when the last rangefinder distance is under 80 mm or older than 5000 us x delayMs (MTF02P: 20 ms ->
+   100 ms; 57-61).
+4. Flow processing. sensors/opticalflow.c 169-231, once per new message: rotation and flip_x settings
+   (234-237); gyro: roll rate = gyro x, pitch rate = -gyro y (deg/s), taken from a ring of gyroSampleDelay = 7
+   entries filled once per message (rangefinder_lidarmt.c 153), so it is the sample of 6 messages earlier
+   (187-199); processed = rate - gyro (rad/s) (210-211); zero when the gyro is over 200 deg/s (214-219);
+   pt2 low-pass at opticalflow_lpf / 100 Hz (default 1 Hz) computed for a step of delayMs but applied per
+   message (153-158, 223). Healthy for 100 ms after the last message (252-254).
+5. Speed. flight/position_estimator.c 494-567, every run of the altitude task (100 Hz, flight/position.h 25),
+   while the FC is armed and XY fusion is on: needs flow healthy, height from the rangefinder 10 cm up to
+   min(rangefinder_max_range_cm, poshold_opticalflow_max_range) (96-111, 517-525), quality over
+   poshold_opticalflow_quality_min (330-343). left speed = processed x x height x cos(roll), forward =
+   processed y x height x cos(pitch) (544-551); east = fwd sin(yaw) - left cos(yaw), north = fwd cos(yaw) +
+   left sin(yaw) (554-558); a Kalman velocity update, R = 400 / quality-scale (cm/s)^2 (560-561, 85).
+   The same last flow is used again at each 100 Hz run until the next message or the 100 ms timeout.
+6. Position. Same file 609-611: Kalman predict with the accelerometer (earth frame) each run; position is the
+   Kalman integral of the velocity. XY valid for 2 s after the last XY update (94, 633-638). XY fusion starts
+   (estimate reset to 0) when armed and POS HOLD, or flow and rangefinder healthy (115-159, 264-287).
+7. Hold. flight/pos_hold_multirotor.c 66-121: hold runs while XY is valid; without it the autopilot angle is 0
+   and the sticks fly; when XY returns the hold re-anchors at the new estimate.
+
+Resolution: the motion fields are integers. One count = height / (200 x dt) m/s: 0.5 m/s at 5 m and 20 messages
+per second. msp_link rounds each message, so it sends 0 for any speed under 0.25 m/s at 5 m.
+betasim/patches/msp_link_count_carry.patch carries the remainder to the next message, so the FC's integrated flow
+stays within one count (0.025 m at 5 m) of ours. Unit-tested only (results/test_msp_link_carry.txt); not in the SITL.
+Height: the rangefinder also enters the vertical Kalman filter (position_estimator.c 458-492, R = 100 cm^2 against
+1500 for the barometer). Only altitude_source BARO_ONLY or GPS_ONLY removes it, and those stop the flow too
+(461-465, 512-515). Both range limits stop at 1000 cm (cli/settings.c 1186, 2005): see results/height_limit.txt.
+
+Axis note: the code comment says flow X measures rightward motion, but the formula in step 5 makes positive X a
+LEFT speed (yaw is compass, clockwise). msp_link.flow_motion follows the formula. SITL: the driver stage gave
+the rate we sent on both axes (betasim/results/proto.txt), and the closed loop held position on both axes
+(betasim/results/matrix.txt); a wrong sign on one axis would push the drone away along that axis.

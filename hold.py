@@ -69,6 +69,15 @@ def load_lens(path, name, w, h, field=None):
     raise ValueError(f"lens '{name}': unknown projection {p['projection']!r}")
 
 
+def same_aspect(profile_size, w, h, tol=0.01):
+    """True when a w x h picture has the width / height ratio of a profile's image_size (within tol).
+
+    A digital picture reduced by an integer factor keeps the ratio. An analog field (360x288 from a
+    960x720 profile) does not, and load_lens still serves it, so load_lens does not call this.
+    """
+    return abs((w / h) / (profile_size[0] / profile_size[1]) - 1) <= tol
+
+
 def rot_z(a):
     c, s = math.cos(a), math.sin(a)
     return np.array([[c, -s, 0], [s, c, 0], [0, 0, 1.]])
@@ -281,6 +290,20 @@ class Hold:
                               # pictures sent 26 / 75 (moving / perfectly still hover) before and after.
     STILL_PX = 0.3            # px; a point that moves less while the attitude predicts motion is static (overlay)
     LIVE_S = 1.0              # s; send only within this time after the last proof that the picture is live. assumed
+    LIVE_MOVE_PX = 0.5        # px; "moved" proof: the corner points that LK measured in this frame (each passed the LK,
+                              # back-check, mask and NCC tests; on the whole-picture path its own corner check) moved this
+                              # much (median point: shift, turn, scale or rolling-shutter wobble) since the last "moved"
+                              # proof or the reference frame. Only measured points: on the whole-picture path every point
+                              # moves by one estimated shift plus the attitude prediction, and on a static overlay under a
+                              # turning attitude that model error gave false proofs (integ/gap/results/live). Noise-only
+                              # points fail the NCC test. 0.5 px is one LK noise floor (FIT_FLOOR_PX); a frozen picture with
+                              # fresh noise moves its measured points 0.02 px (digital) or 0.08 px (analog) at most
+                              # (integ/gap). It keeps the reference frame, so the still proof and the frozen test work as
+                              # before. Why: in a hover by hand the still proof ends after 0.3 px of attitude motion and
+                              # MOVE_PX needs 0.47 m of drift at 100 m, so fixes stopped for seconds before the switch.
+    LIVE_MOVED_S = 0.5        # s; a "moved" proof shows that one frame was live, so it lasts only this long: the age of a
+                              # frozen fix that the safety requirement accepts (tests_apb/test_live.py, freeze with fresh
+                              # noise). A moving live picture gives a new proof on most frames (integ/gap)
     FIT_FLOOR_PX = 0.5        # px; floor of the per-axis residual sigma in the fit. assumed: LK noise
     OUT_STRIKES = 3           # a keyframe point that is a fit outlier in this many frames in a row is dropped
     # Variance model (E4, review/estimator/honest.py), per axis.
@@ -312,6 +335,18 @@ class Hold:
     DENSE_YAW = math.radians(20)  # a whole-picture keyframe is replaced after this yaw change: the path does not
                                   # measure rotation, so an FC yaw error turns into a position error. assumed: as the
                                   # ~15 deg revisit limit of the corner path
+    # Brightness gate: > 0 = no unforced keyframe change (and no keyframe asked by request_keyframe) until the
+    # mean picture brightness stayed within KF_BRIGHT grey for KF_BRIGHT_S. The Justice D has auto exposure (WDR)
+    # and switches from colour to black and white at night (Justice D datasheet v1.0); a keyframe taken while the
+    # exposure still moves is assumed to match the next frames worse. 0 = off. assumed: not measured on the camera.
+    KF_BRIGHT = 0.0               # grey
+    KF_BRIGHT_S = 0.5             # s
+    # > 0: after more than GAP_JUMP_S s with no picture (a video outage), the break-up test has no previous frame
+    # to compare, so its jump cue counts as unknown for that one frame (the level cue still counts). Off (0): the
+    # brightness change of the whole gap looks like a jump, the first frame after the gap is "broken up", Hold is
+    # lost at once (t_good is older than LOST_S) and Pipe re-anchors. ArduCopter SITL, 3 s drop at 60 m
+    # (apsim/runs/rec_60m_s1_onboard.csv): "band brightness z 13", two re-anchors, the fix error shifted 0.3-0.6 m.
+    GAP_JUMP_S = 0.0              # s
 
     ROW_NORM = False              # divide each picture row by its (smoothed) mean grey before tracking: removes the moving
                                   # bands of mains-lamp flicker on a rolling shutter (indoors). Off by default: tested only
@@ -337,6 +372,8 @@ class Hold:
         self.sig2 = self.SIG_TH ** 2  # per-frame attitude error seen in the fix jitter (rad^2)
         self.lost, self.t_good = False, None
         self._dm = {}                 # ground mask at the whole-picture size, by shape
+        self.bright = []              # (tref, mean grey) of recent good pictures, for KF_BRIGHT
+        self.t_pic = None             # tref of the last picture that _picture saw, for GAP_JUMP_S
         self.reanchor(np.zeros(2))
 
     def reanchor(self, pos, var=None):
@@ -348,7 +385,23 @@ class Hold:
         self.pos, self.t, self.kf, self.home, self.last, self.kfs = np.asarray(pos, float).copy(), None, None, None, None, []
         self.carried = 0.0 if var is None else float(np.trace(var) if np.ndim(var) == 2 else var) / 2
         self.var_axis, self.t_fix = self.carried, None
-        self.t_live, self.t_switch, self.t_home = -math.inf, -math.inf, -math.inf
+        self.t_live, self.t_switch, self.t_home, self.t_moved = -math.inf, -math.inf, -math.inf, -math.inf
+        self.kf_wanted = False        # the first keyframe of a new anchor is the home keyframe anyway
+
+    def request_keyframe(self):
+        """Take a new keyframe at the next good frame that turns slower than KF_RATE (and passes the KF_BRIGHT
+        gate), and make it the home keyframe. For the pilot's switch: the pilot steadies the aircraft, then engages
+        the hold (Stage 1 package, rev 1.3, page 2), so the hold measures against a picture of the hold point. The
+        change keeps the position continuous, as every keyframe change does: no re-anchor, no wait for liveness."""
+        self.kf_wanted = True
+
+    def _bright_settled(self, tref):
+        """True when the picture brightness stayed within KF_BRIGHT grey for the last KF_BRIGHT_S (or the gate is off)."""
+        if self.KF_BRIGHT <= 0:
+            return True
+        w = [b for t, b in self.bright if t >= tref - self.KF_BRIGHT_S]
+        covered = self.bright and self.bright[0][0] <= tref - 0.9 * self.KF_BRIGHT_S
+        return bool(covered and w) and max(w) - min(w) <= self.KF_BRIGHT
 
     # ---- geometry ----
     def _undistort(self, px):
@@ -388,8 +441,10 @@ class Hold:
         return v / (np.linalg.norm(v, axis=1, keepdims=True) + 1e-6)
 
     # ---- picture and input checks ----
-    def _picture(self, img):
+    def _picture(self, img, tref=None):
         """Why this picture cannot be used (repeated or broken up), else None (E2, H4, real video)."""
+        gap = self.GAP_JUMP_S > 0 and tref is not None and self.t_pic is not None and tref - self.t_pic > self.GAP_JUMP_S
+        self.t_pic = tref if tref is not None else self.t_pic
         last, self.last_img = self.last_img, img
         if last is not None and last.shape == img.shape and \
                 cv2.norm(img, last, cv2.NORM_L1) < self.REPEAT_DIFF * img.size:
@@ -402,7 +457,7 @@ class Hold:
         hb = img.shape[0] // 8 * 8
         imp = cv2.absdiff(img, cv2.medianBlur(img, 3))[:hb] > 25
         x = np.r_[imp.reshape(8, -1).mean(1).max(), img[:hb].reshape(8, -1).mean(1)]
-        dx = np.abs(x - self.recent[-1]) if self.recent else np.zeros_like(x)
+        dx = np.abs(x - self.recent[-1]) if self.recent and not gap else np.zeros_like(x)
         self.recent = self.recent[-(self.BREAK_K - 1):] + [x]
         if len(self.cues) >= 10:
             h = np.array(self.cues)
@@ -686,6 +741,7 @@ class Hold:
             ok &= ncc >= self.NCC_MIN
             if ok.sum() < self.MIN_PTS:
                 return f"{ok.sum()} points match"
+        meas = p_lk if dense else np.where(ok[:, None], p2, np.nan)   # positions LK measured (NaN: not measured)
 
         # Motion against attitude since the reference frame. dd: image motion the attitude and height
         # predict, dm: measured motion. lim: what drift and attitude noise can explain.
@@ -717,6 +773,11 @@ class Hold:
                 live = "move"
             elif mm < self.LIVE_STILL_PIC_PX and np.percentile(np.linalg.norm(dd[com], axis=1), 90) < self.LIVE_STILL_PX:
                 live = "still"
+            sn = ref["seen"][idx] if "seen" in ref else rp              # measured positions at the last "moved" proof
+            cs = com & np.isfinite(meas[:, 0]) & np.isfinite(sn[:, 0])
+            if not live and cs.sum() >= self.MIN_PTS // 2 and \
+                    float(_med(np.linalg.norm(meas[cs] - sn[cs], axis=1))) > self.LIVE_MOVE_PX:
+                live = "moved"
         if ok.sum() < self.MIN_PTS:
             return f"{ok.sum()} points left"
 
@@ -737,9 +798,11 @@ class Hold:
         mb = bi.mean(0)
         full, predf, every = np.full((len(kf["px"]), 2), np.nan), np.full((len(kf["px"]), 2), np.nan), kf["px"].copy()
         full[idx[ok]], predf[idx], every[idx] = p2[ok], pred, p2
+        measf = np.full((len(kf["px"]), 2), np.nan)
+        measf[idx] = meas
         return dict(n=n, frac=n / len(gi), pos=C, s=sc, phi=phi, res_cov=np.cov(res[inl].T), h=hm, every=every,
                     lever=float(mb @ mb / max(np.sum((bi - mb) ** 2), 1e-9)), p2=full, pred=predf, live=live,
-                    dvar=dvar if dense else None)
+                    dvar=dvar if dense else None, meas=measf)
 
     # ---- main ----
     def _fail(self, tref, why, lost=False):
@@ -751,9 +814,9 @@ class Hold:
             self.lost = True
             if self.kf is not None:
                 self.last = self.kf
-            self.kf, self.t, self.t_live = None, None, -math.inf   # E7: no stale time after a loss
+            self.kf, self.t, self.t_live, self.t_moved = None, None, -math.inf, -math.inf   # E7: no stale time after a loss
         if why == "picture frozen" or why.startswith("image motion"):
-            self.t_live = -math.inf                       # prove the picture is live before sending again
+            self.t_live = self.t_moved = -math.inf        # prove the picture is live before sending again
         return Est(tref, self.pos.copy(), None, 0, "lost" if self.lost else "degraded", False, why)
 
     def process(self, img, t0, att, hgt):
@@ -764,7 +827,7 @@ class Hold:
         """
         self.frames += 1
         tref = t0 + self.readout / 2
-        why = self._picture(img) or self._check_inputs(t0, att, hgt)
+        why = self._picture(img, tref) or self._check_inputs(t0, att, hgt)
         if self.ROW_NORM:   # flicker is one gain per row (rolling shutter); the smoothing keeps the scene's row detail.
             # After the picture checks: on the normalized picture the break-up test let 5 of 90 broken frames through
             # (tests/bad_pictures.py with HOLD_CFG row_norm). Known limit: with strong moving bands, after a frozen
@@ -775,6 +838,8 @@ class Hold:
             img = np.clip(img * (float(r.mean()) / np.maximum(r, 1.0))[:, None] + 0.5, 0, 255).astype(np.uint8)
         if why:
             return self._fail(tref, why)
+        if self.KF_BRIGHT > 0:
+            self.bright = [x for x in self.bright if x[0] > tref - 2 * self.KF_BRIGHT_S] + [(tref, float(img[::8, ::8].mean()))]
         h = float(hgt.at(tref))
         if not h >= self.H_MIN:
             return self._fail(tref, f"height {h:.1f} m below {self.H_MIN:g} m", lost=True)
@@ -813,13 +878,15 @@ class Hold:
             if isinstance(r, str):
                 return self._fail(tref, r)
         if switched or r["live"] == "move" or r.get("mode"):   # the motion test of the next frames starts from this frame
-            kf["ref"] = dict(t=tref, px=r["p2"], pred=r["pred"])
-        if r["live"]:
+            kf["ref"] = dict(t=tref, px=r["p2"], pred=r["pred"], seen=r["meas"])
+        if r["live"] == "moved":                                # the next "moved" proof needs new motion
+            kf["ref"]["seen"], self.t_moved, kf["pending"] = r["meas"], tref, False
+        elif r["live"]:
             self.t_live, kf["pending"] = tref, False
         self.t_good = tref
         self.prev_px = r["every"].reshape(-1, 1, 2).astype(np.float32)   # one per keyframe point, as in version 1
         pos, n = r["pos"], r["n"]
-        if kf["pending"] or tref - self.t_live > self.LIVE_S:
+        if kf["pending"] or (tref - self.t_live > self.LIVE_S and tref - self.t_moved > self.LIVE_MOVED_S):
             return Est(tref, pos.copy(), None, n, "init" if kf["pending"] else "degraded", False,
                        "waiting for image motion that proves the picture is live")
         if self.home is None:
@@ -860,8 +927,18 @@ class Hold:
         # older keyframe first; a new one inherits this fix's error plus the fit's scatter.
         # n < 0.8 n_first too: a keyframe that starts with few points (prairie at 100 m: 28) is not replaced on
         # every frame; that churn cost 2 deep tracks and a new keyframe per frame and doubled the frame time.
-        if (n < self.MIN_PTS + 10 and n < self.KF_LOW * kf["n_first"]) or (n < 0.5 * kf["n_first"] and tref - self.t_switch > self.KF_GAP
-                                     and self.rate < self.KF_RATE) or (kf["dense"] and abs(yaw - kf["yaw"]) > self.DENSE_YAW):
+        # A keyframe asked by request_keyframe (the pilot's switch) is new, not an older one, and becomes home.
+        if self.kf_wanted and self.rate < self.KF_RATE and self._bright_settled(tref):
+            k = self._make_kf(img, t0, att, hgt, tref, pos, kf["acc"] + np.trace(loc) / 2, ch, False)
+            if k is not None:
+                old_home = self.home
+                self._activate(k, tref)
+                if old_home is not None and old_home is not k and self.N_KF > 0:
+                    self.kfs = (self.kfs + [old_home])[-self.N_KF:]      # the old home stays for revisits
+                self.home, self.kf_wanted = k, False
+        elif (n < self.MIN_PTS + 10 and n < self.KF_LOW * kf["n_first"]) or (n < 0.5 * kf["n_first"] and tref - self.t_switch > self.KF_GAP
+                                     and self.rate < self.KF_RATE and self._bright_settled(tref)) \
+                or (kf["dense"] and abs(yaw - kf["yaw"]) > self.DENSE_YAW):
             # shortcut: an older keyframe is not warped by the yaw change before LK, so revisits fail after
             # about 15 deg of yaw; warp its picture if the hold must survive yaw turns (E6).
             for k in [k for k in [self.home] + self.kfs[::-1] if k is not None and k is not kf][:2]:

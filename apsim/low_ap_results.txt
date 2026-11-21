@@ -1,0 +1,170 @@
+run name                    rms m  max m  % fix fix Hz  gap s   at s h mean  h min  climb  load
+lowap_apb_10m_w20g40_s1      0.98   1.63   16.8   10.1   1.38    7.9   9.81   9.75   13.7   5.9
+lowap_apb_10m_w20g40_s2      0.93   1.28   16.5    9.9   2.95    0.0   9.64   9.55   13.8   6.4
+lowap_apb_5m_calm_s1         0.13   0.17   19.1   11.4   1.31   20.9   4.71   4.70   14.2   5.9
+lowap_apb_5m_w20g40_s1       0.85   1.65   12.7    7.6   6.28   18.9   4.73   4.67   14.5   1.4
+lowap_apb_5m_w20g40_s2       0.44   1.04   14.1    8.4   2.87   57.1   4.72   4.68   14.2   2.4
+lowap_truth_10m_w20g40_s1    0.34   0.84      -   19.4      -      -   9.77   9.70   12.6   3.8
+lowap_truth_5m_w20g40_s1     0.35   0.84      -   19.5      -      -   4.70   4.64   13.6   5.1
+
+Per run (times in s after the switch to LOITER):
+lowap_apb_10m_w20g40_s1:
+  events: [[0.0, 'hold starts, mode 5, 0.0 s after the Loiter request started']]
+  FC modes: [[-25.8, '0'], [-14.56, 'ALT_HOLD'], [0.01, 'LOITER']]
+  onboard modes: [[-10.25, 'ALT_HOLD'], [-0.03, 'LOITER']]
+  program notes: [[-10.25, 'FC mode ALT_HOLD'], [-9.06, 're-anchored to last position (no FC position) 0.00 0.00'], [-8.33, 're-anchored to last position (no FC position) 0.00 0.01'], [-6.96, 're-anchored to last position (no FC position) -0.02 0.01'], [-5.81, 're-anchored to last position (no FC position) -0.11 0.02'], [-4.68, 're-anchored to last position (no FC position) -0.19 0.03'], [-4.1, 're-anchored to last position (no FC position) -0.19 0.03'], [-2.8, 're-anchored to last position (no FC position) -0.26 0.03'], [-1.26, 're-anchored to FC position -0.39 0.06'], [-0.03, 'engaged: FC mode LOITER'], [0.62, 're-anchored to FC position -0.50 0.14'], [8.27, 're-anchored to FC position -0.54 0.40'], [39.1, 're-anchored to FC position -0.80 -0.21'], [45.55, 're-anchored to FC position -0.53 0.07']]
+  first sent fix: -1.9 s, at height 9.7700 m; rows blocked by height: 70 (last ['16.7187', 'height 3.0 m under 3 m']); not sent in hold: {'whole picture: halves disagree': 56, 'init': 4, 'good fix 1 of 10': 4, 'good fix 2 of 10': 4, 'good fix 3 of 10': 4, 'good fix 4 of 10': 4, 'good fix 5 of 10': 4, 'good fix 6 of 10': 4, 'good fix 7 of 10': 4, 'good fix 8 of 10': 4, 'good fix 9 of 10': 4, 'whole picture and points disagree': 30, '16 consistent points': 3, '15 consistent points': 1, '17 consistent points': 1, '13 consistent points': 1}; gaps over 1 s: [[0.3, 1.4], [7.9, 1.4], [38.8, 1.3], [45.3, 1.3]]
+  settings file: min_height_m 3.0, hold_cfg {'repeat_diff': 0.01, 'h_min': 2.0}
+  FC texts (from 15 s before the switch):
+      -14.52 Radio Failsafe - Disarming
+      -14.06 Warning: Arming Checks Disabled
+      -14.06 Arming motors
+      -13.73 Radio Failsafe Cleared
+      -10.40 EKF3 IMU0 origin set
+      -10.40 EKF3 IMU1 origin set
+       -9.07 EKF3 IMU1 MAG0 in-flight yaw alignment complete
+       -9.06 EKF3 IMU0 MAG0 in-flight yaw alignment complete
+       -1.75 EKF3 IMU0 is using external nav data
+       -1.75 EKF3 IMU0 initial pos NED = -0.3,0.1,-9.8 (m)
+       -1.75 EKF3 IMU1 is using external nav data
+       -1.75 EKF3 IMU1 initial pos NED = -0.3,0.1,-9.8 (m)
+  tools/log_summary.py on the onboard log (whole flight, ground to landing):
+    log  s  sent/s  %sent  proc p50  p95  max  age p50  p95  gap s  ok  deg  lost  switch (before, after, gap s)  recover s
+    /home/paul/Videos/vio-hold-attempt/apsim/runs/lowap_apb_10m_w20g40_s1_onboard.csv  70.2  8.7  66.7  80.6  81.3  82.1  128  137  1.38  639  171  11  (7,8,1.37)  -
+lowap_apb_10m_w20g40_s2:
+  events: [[0.0, 'hold starts, mode 5, 0.0 s after the Loiter request started']]
+  FC modes: [[-25.88, '0'], [-14.68, 'ALT_HOLD'], [0.02, 'LOITER']]
+  onboard modes: [[-10.38, 'ALT_HOLD'], [-0.03, 'LOITER']]
+  program notes: [[-10.38, 'FC mode ALT_HOLD'], [-9.13, 're-anchored to last position (no FC position) 0.00 0.00'], [-7.03, 're-anchored to FC position -0.02 -0.00'], [-5.96, 're-anchored to FC position -0.00 -0.05'], [-5.56, 're-anchored to FC position 0.00 -0.07'], [-4.34, 're-anchored to FC position 0.01 -0.10'], [-3.19, 're-anchored to FC position 0.00 -0.12'], [-1.49, 're-anchored to FC position -0.15 -0.09'], [-0.03, 'engaged: FC mode LOITER'], [0.06, 're-anchored to FC position -0.21 -0.02'], [1.92, 're-anchored to FC position -0.27 0.01'], [4.46, 're-anchored to FC position -0.13 0.42'], [17.67, 're-anchored to FC position -0.26 -0.05'], [52.62, 're-anchored to FC position -0.21 0.13'], [56.94, 're-anchored to FC position -0.45 0.66']]
+  first sent fix: -8.24 s, at height 6.7692 m; rows blocked by height: 73 (last ['16.7353', 'height 3.0 m under 3 m']); not sent in hold: {'whole picture: halves disagree': 38, 'init': 6, 'waiting for image motion that proves the picture is live': 10, 'good fix 1 of 10': 6, 'good fix 2 of 10': 6, 'good fix 3 of 10': 6, 'good fix 4 of 10': 6, 'good fix 5 of 10': 6, 'good fix 6 of 10': 5, 'good fix 7 of 10': 5, 'good fix 8 of 10': 5, 'good fix 9 of 10': 5, 'whole picture and points disagree': 38}; gaps over 1 s: [[0.0, 3.0], [4.1, 1.4], [17.4, 1.3], [52.3, 1.3], [56.7, 1.3]]
+  settings file: min_height_m 3.0, hold_cfg {'repeat_diff': 0.01, 'h_min': 2.0}
+  FC texts (from 15 s before the switch):
+      -14.64 Radio Failsafe - Disarming
+      -14.18 Warning: Arming Checks Disabled
+      -14.18 Arming motors
+      -13.73 Radio Failsafe Cleared
+      -10.51 EKF3 IMU0 origin set
+      -10.51 EKF3 IMU1 origin set
+       -9.15 EKF3 IMU1 MAG0 in-flight yaw alignment complete
+       -9.14 EKF3 IMU0 MAG0 in-flight yaw alignment complete
+       -8.09 EKF3 IMU0 is using external nav data
+       -8.09 EKF3 IMU0 initial pos NED = -0.0,0.0,-6.8 (m)
+       -8.08 EKF3 IMU1 is using external nav data
+       -8.08 EKF3 IMU1 initial pos NED = -0.0,0.0,-6.8 (m)
+  tools/log_summary.py on the onboard log (whole flight, ground to landing):
+    log  s  sent/s  %sent  proc p50  p95  max  age p50  p95  gap s  ok  deg  lost  switch (before, after, gap s)  recover s
+    /home/paul/Videos/vio-hold-attempt/apsim/runs/lowap_apb_10m_w20g40_s2_onboard.csv  70.4  8.7  66.1  80.6  81.2  83.1  128  136  5.20  709  102  12  (4,0,2.33)  -
+lowap_apb_5m_calm_s1:
+  events: [[0.0, 'hold starts, mode 5, 0.0 s after the Loiter request started']]
+  FC modes: [[-26.36, '0'], [-15.15, 'ALT_HOLD'], [0.0, 'LOITER']]
+  onboard modes: [[-10.84, 'ALT_HOLD'], [-0.04, 'LOITER']]
+  program notes: [[-10.84, 'FC mode ALT_HOLD'], [-8.89, 're-anchored to last position (no FC position) 0.00 0.00'], [-6.45, 're-anchored to last position (no FC position) 0.01 0.01'], [-5.07, 're-anchored to FC position 0.04 0.01'], [-3.85, 're-anchored to FC position 0.04 0.05'], [-2.79, 're-anchored to FC position 0.02 0.11'], [-0.84, 're-anchored to FC position 0.09 0.17'], [-0.04, 'engaged: FC mode LOITER'], [5.26, 're-anchored to FC position 0.18 0.22'], [21.23, 're-anchored to FC position 0.18 0.23']]
+  first sent fix: -5.57 s, at height 4.0910 m; rows blocked by height: 117 (last ['17.4520', 'height 3.0 m under 3 m']); not sent in hold: {'whole picture: halves disagree': 29, 'init': 2, 'good fix 1 of 10': 2, 'good fix 2 of 10': 2, 'good fix 3 of 10': 2, 'good fix 4 of 10': 2, 'good fix 5 of 10': 2, 'good fix 6 of 10': 2, 'good fix 7 of 10': 2, 'good fix 8 of 10': 2, 'good fix 9 of 10': 2, 'waiting for image motion that proves the picture is live': 2}; gaps over 1 s: [[5.0, 1.3], [20.9, 1.3]]
+  settings file: min_height_m 3.0, hold_cfg {'repeat_diff': 0.01, 'h_min': 2.0}
+  FC texts (from 15 s before the switch):
+      -14.65 Warning: Arming Checks Disabled
+      -14.65 Arming motors
+      -14.20 Radio Failsafe Cleared
+      -10.98 EKF3 IMU0 origin set
+      -10.98 EKF3 IMU1 origin set
+       -9.23 EKF3 IMU1 MAG0 in-flight yaw alignment complete
+       -9.22 EKF3 IMU0 MAG0 in-flight yaw alignment complete
+       -5.41 EKF3 IMU1 is using external nav data
+       -5.41 EKF3 IMU1 initial pos NED = 0.0,0.0,-4.1 (m)
+       -5.41 EKF3 IMU0 is using external nav data
+       -5.41 EKF3 IMU0 initial pos NED = 0.0,0.0,-4.1 (m)
+  tools/log_summary.py on the onboard log (whole flight, ground to landing):
+    log  s  sent/s  %sent  proc p50  p95  max  age p50  p95  gap s  ok  deg  lost  switch (before, after, gap s)  recover s
+    /home/paul/Videos/vio-hold-attempt/apsim/runs/lowap_apb_5m_calm_s1_onboard.csv  70.8  9.8  72.2  80.6  81.3  82.4  128  137  3.57  744  45  7  (8,20,1.30)  -
+lowap_apb_5m_w20g40_s1:
+  events: [[0.0, 'hold starts, mode 5, 0.0 s after the Loiter request started']]
+  FC modes: [[-26.58, '0'], [-15.1, 'ALT_HOLD'], [0.02, 'LOITER']]
+  onboard modes: [[-10.79, 'ALT_HOLD'], [-0.02, 'LOITER']]
+  program notes: [[-10.79, 'FC mode ALT_HOLD'], [-8.84, 're-anchored to last position (no FC position) 0.00 0.00'], [-7.54, 're-anchored to last position (no FC position) 0.01 0.01'], [-6.04, 're-anchored to last position (no FC position) 0.02 -0.01'], [-4.82, 're-anchored to last position (no FC position) 0.02 -0.01'], [-3.04, 're-anchored to last position (no FC position) 0.03 -0.03'], [-1.24, 're-anchored to FC position 0.10 -0.02'], [-0.02, 'engaged: FC mode LOITER'], [1.28, 're-anchored to FC position 0.23 0.11'], [5.13, 're-anchored to FC position 0.19 0.38'], [6.51, 're-anchored to FC position 0.29 0.55'], [9.03, 're-anchored to FC position 0.18 0.23'], [13.18, 're-anchored to FC position 0.06 0.70'], [14.48, 're-anchored to FC position -0.15 0.18'], [15.38, 're-anchored to FC position -0.11 -0.29'], [17.83, 're-anchored to FC position 0.21 -0.04'], [19.21, 're-anchored to FC position 0.29 0.03'], [20.74, 're-anchored to FC position 0.15 0.15'], [21.81, 're-anchored to FC position 0.22 0.29'], [23.03, 're-anchored to FC position 0.43 0.48'], [24.18, 're-anchored to FC position 0.51 0.55'], [25.81, 're-anchored to FC position 0.34 0.24'], [27.51, 're-anchored to FC position 0.25 -0.30'], [31.11, 're-anchored to FC position 0.59 -0.40']]
+  first sent fix: -2.14 s, at height 4.7020 m; rows blocked by height: 114 (last ['17.7187', 'height 3.0 m under 3 m']); not sent in hold: {'whole picture: halves disagree': 131, 'init': 16, 'good fix 1 of 10': 16, 'good fix 2 of 10': 16, 'good fix 3 of 10': 16, 'good fix 4 of 10': 16, 'good fix 5 of 10': 14, 'good fix 6 of 10': 13, 'good fix 7 of 10': 13, 'good fix 8 of 10': 11, 'good fix 9 of 10': 11, 'waiting for image motion that proves the picture is live': 8}; gaps over 1 s: [[1.0, 1.3], [4.8, 1.3], [6.2, 1.3], [8.7, 1.5], [12.8, 3.8], [17.5, 1.4], [18.9, 6.3], [25.5, 1.5], [27.2, 1.5], [30.7, 1.4]]
+  settings file: min_height_m 3.0, hold_cfg {'repeat_diff': 0.01, 'h_min': 2.0}
+  FC texts (from 15 s before the switch):
+      -14.61 Warning: Arming Checks Disabled
+      -14.61 Arming motors
+      -14.45 Radio Failsafe Cleared
+      -10.94 EKF3 IMU0 origin set
+      -10.94 EKF3 IMU1 origin set
+       -9.15 EKF3 IMU1 MAG0 in-flight yaw alignment complete
+       -9.14 EKF3 IMU0 MAG0 in-flight yaw alignment complete
+       -2.00 EKF3 IMU0 is using external nav data
+       -2.00 EKF3 IMU0 initial pos NED = 0.0,-0.0,-4.7 (m)
+       -1.98 EKF3 IMU1 is using external nav data
+       -1.98 EKF3 IMU1 initial pos NED = 0.0,-0.0,-4.7 (m)
+  tools/log_summary.py on the onboard log (whole flight, ground to landing):
+    log  s  sent/s  %sent  proc p50  p95  max  age p50  p95  gap s  ok  deg  lost  switch (before, after, gap s)  recover s
+    /home/paul/Videos/vio-hold-attempt/apsim/runs/lowap_apb_5m_w20g40_s1_onboard.csv  70.8  6.6  48.6  80.8  81.4  82.4  128  137  6.28  593  170  21  (8,11,1.30)  -
+lowap_apb_5m_w20g40_s2:
+  events: [[0.0, 'hold starts, mode 5, 0.0 s after the Loiter request started']]
+  FC modes: [[-26.36, '0'], [-15.12, 'ALT_HOLD'], [0.01, 'LOITER']]
+  onboard modes: [[-10.82, 'ALT_HOLD'], [-0.02, 'LOITER']]
+  program notes: [[-10.82, 'FC mode ALT_HOLD'], [-8.87, 're-anchored to last position (no FC position) 0.00 0.00'], [-7.57, 're-anchored to last position (no FC position) 0.00 0.00'], [-6.27, 're-anchored to last position (no FC position) 0.02 -0.01'], [-4.89, 're-anchored to FC position 0.09 -0.01'], [-3.19, 're-anchored to FC position 0.38 0.07'], [-1.32, 're-anchored to FC position 0.44 0.10'], [-0.02, 'engaged: FC mode LOITER'], [1.45, 're-anchored to FC position 0.57 0.26'], [5.03, 're-anchored to FC position 0.54 0.62'], [8.81, 're-anchored to FC position 0.37 0.57'], [9.86, 're-anchored to FC position 0.47 0.22'], [11.65, 're-anchored to FC position 0.49 -0.15'], [34.4, 're-anchored to FC position 0.42 0.80'], [37.08, 're-anchored to FC position 0.46 0.49'], [37.9, 're-anchored to FC position 0.59 0.03'], [45.9, 're-anchored to FC position 0.51 0.08'], [56.03, 're-anchored to FC position 0.34 1.11'], [57.41, 're-anchored to FC position 0.26 0.74'], [58.06, 're-anchored to FC position 0.29 0.38'], [58.78, 're-anchored to FC position 0.36 0.01'], [59.45, 're-anchored to FC position 0.43 -0.20']]
+  first sent fix: -5.39 s, at height 4.1442 m; rows blocked by height: 116 (last ['17.4687', 'height 3.0 m under 3 m']); not sent in hold: {'whole picture: halves disagree': 125, 'init': 14, 'good fix 1 of 10': 14, 'good fix 2 of 10': 13, 'good fix 3 of 10': 11, 'good fix 4 of 10': 10, 'good fix 5 of 10': 9, 'good fix 6 of 10': 8, 'good fix 7 of 10': 8, 'good fix 8 of 10': 8, 'good fix 9 of 10': 8, 'waiting for image motion that proves the picture is live': 2}; gaps over 1 s: [[1.2, 1.3], [4.7, 1.3], [8.5, 2.8], [11.3, 1.4], [34.1, 1.3], [36.7, 2.2], [45.6, 1.3], [55.7, 1.4], [57.1, 2.9]]
+  settings file: min_height_m 3.0, hold_cfg {'repeat_diff': 0.01, 'h_min': 2.0}
+  FC texts (from 15 s before the switch):
+      -14.63 Warning: Arming Checks Disabled
+      -14.63 Arming motors
+      -14.16 Radio Failsafe Cleared
+      -10.97 EKF3 IMU0 origin set
+      -10.97 EKF3 IMU1 origin set
+       -9.23 EKF3 IMU1 MAG0 in-flight yaw alignment complete
+       -9.22 EKF3 IMU0 MAG0 in-flight yaw alignment complete
+       -5.23 EKF3 IMU0 is using external nav data
+       -5.23 EKF3 IMU0 initial pos NED = 0.0,-0.0,-4.1 (m)
+       -5.21 EKF3 IMU1 is using external nav data
+       -5.21 EKF3 IMU1 initial pos NED = 0.0,-0.0,-4.1 (m)
+  tools/log_summary.py on the onboard log (whole flight, ground to landing):
+    log  s  sent/s  %sent  proc p50  p95  max  age p50  p95  gap s  ok  deg  lost  switch (before, after, gap s)  recover s
+    /home/paul/Videos/vio-hold-attempt/apsim/runs/lowap_apb_5m_w20g40_s2_onboard.csv  70.8  7.3  54.1  80.6  81.3  82.7  128  136  3.02  609  177  19  (7,13,1.38)  -
+lowap_truth_10m_w20g40_s1:
+  events: [[0.0, 'hold starts, mode 5, 0.0 s after the Loiter request started']]
+  FC modes: [[-29.77, '0'], [-14.1, 'ALT_HOLD'], [0.05, 'LOITER']]
+  onboard modes: []
+  program notes: []
+  first sent fix: None s, at height None m; rows blocked by height: None (last None); not sent in hold: None; gaps over 1 s: None
+  settings file: min_height_m 3.0, hold_cfg {'repeat_diff': 0.01, 'h_min': 2.0}
+  FC texts (from 15 s before the switch):
+      -14.11 EKF3 IMU0 origin set
+      -14.11 EKF3 IMU1 origin set
+      -14.07 EKF3 IMU0 is using external nav data
+      -14.07 EKF3 IMU0 initial pos NED = -0.0,-0.0,-0.0 (m)
+      -14.06 EKF3 IMU1 is using external nav data
+      -14.06 EKF3 IMU1 initial pos NED = -0.0,-0.0,-0.0 (m)
+      -14.02 Field Elevation Set: 70m
+      -13.98 Radio Failsafe - Disarming
+      -13.60 Warning: Arming Checks Disabled
+      -13.60 Arming motors
+      -12.52 Radio Failsafe Cleared
+       -8.62 EKF3 IMU1 MAG0 in-flight yaw alignment complete
+       -8.62 EKF3 IMU0 MAG0 in-flight yaw alignment complete
+lowap_truth_5m_w20g40_s1:
+  events: [[0.0, 'hold starts, mode 5, 0.0 s after the Loiter request started']]
+  FC modes: [[-30.73, '0'], [-14.98, 'ALT_HOLD'], [0.02, 'LOITER']]
+  onboard modes: []
+  program notes: []
+  first sent fix: None s, at height None m; rows blocked by height: None (last None); not sent in hold: None; gaps over 1 s: None
+  settings file: min_height_m 3.0, hold_cfg {'repeat_diff': 0.01, 'h_min': 2.0}
+  FC texts (from 15 s before the switch):
+      -14.99 EKF3 IMU0 is using external nav data
+      -14.99 EKF3 IMU0 initial pos NED = -0.0,-0.0,-0.0 (m)
+      -14.99 EKF3 IMU1 is using external nav data
+      -14.99 EKF3 IMU1 initial pos NED = -0.0,-0.0,-0.0 (m)
+      -14.98 Field Elevation Set: 70m
+      -14.96 Radio Failsafe - Disarming
+      -14.52 Warning: Arming Checks Disabled
+      -14.52 Arming motors
+      -13.52 Radio Failsafe Cleared
+       -9.17 EKF3 IMU0 MAG0 in-flight yaw alignment complete
+       -9.17 EKF3 IMU1 MAG0 in-flight yaw alignment complete
+
+apsim/low_ap_matrix.py. ArduCopter 4.6 SITL (instance 1), variant apb (onboard program, board model
+fixed 80 ms per Hold.process) or truth (true position as the fix, 25 Hz), video JUSTICE_D, ground
+ottawa2019fall, 60 s hold, settings min_height_m 3, hold_cfg h_min 2 (on top of justice_d.json).
+rms/max: true horizontal distance from the hold point over the hold. % fix: sent fixes per rendered frame
+(60 fps) in the hold. gap s / at s: longest time in the hold without a sent fix (from the switch to the
+end) and when it starts. h mean/min: true height above the start point in the hold. climb: s from
+the climb start to the end of the 4 s settle. load: 1-minute load at the start (16 cores).

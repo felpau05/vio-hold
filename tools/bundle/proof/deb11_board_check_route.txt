@@ -1,0 +1,38 @@
+$ PY=<bundle python3.12, emulated> sh tools/board_check.sh --route
+FAIL CPU architecture x86_64: the wheels are for aarch64 only.
+INFO CPU: 2 cores, part ?, max 5000000 kHz, governor powersave, board ?
+INFO governor powersave makes Hold slower. For the flight: echo performance > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+INFO C library: glibc 2.39 (case A with Python 3.11 or 3.12, and case B, need glibc 2.27 or newer; Python 3.10 needs 2.17)
+INFO Python programs on this board: python3 python3.12 
+INFO libstdc++, libgcc_s and libz are here (OpenCV and numpy need them)
+INFO free disk on /: 26G (ext4)
+INFO no /data
+INFO no /sdcard
+INFO no /usb
+FAIL neither case A (the CPU is x86_64) nor case B (the CPU is x86_64)
+PASS Python 3.12 (wheel folder cp312)
+INFO pip is here
+PASS numpy 2.5.5
+PASS cv2 5.0.0 with V4L2 video capture
+INFO cv2 5.0.0 has no GStreamer: keep video_pipeline empty (V4L2)
+PASS pymavlink 2.4.50 (MAVLink 2)
+INFO fc_device udpin:127.0.0.1:14540: pyserial not needed
+PASS apb_main.py imports and settings.json loads
+INFO video device /dev/video0 is there
+INFO mavlink-router does not run (needed when fc_device is udpin:...)
+INFO free disk here: 26G
+INFO /dev/video2 is missing
+INFO /dev/video3 is missing
+INFO no v4l2-ctl: the pixel formats are not shown. Read them in the video line of 'apb_main.py check'.
+INFO /dev/ttymxc2 is missing
+INFO no gpioset on this board: the route commands (gpioset -t0 -c gpiochip3 13=1; gpioset -t0 -c gpiochip3 0=0) cannot run.
+sh: 1: gpioset: not found
+sh: 1: gpioset: not found
+FAIL the route commands failed: gpioset -t0 -c gpiochip3 13=1; gpioset -t0 -c gpiochip3 0=0
+FAIL flight controller: no MAVLink heartbeat on udpin:127.0.0.1:14540 in 5 s and no MSP answer on /dev/ttymxc2. Check the cable, the baud rate and that mavlink-router runs.
+INFO no IIO devices: Linux cannot read the ICM42605 IMU or the DPS310 barometer. The program uses the flight controller's IMU.
+INFO board temperature 60 C (range 0 to 70 C, the board stops at 95 C)
+INFO clock 2026-11-20 04:00
+INFO no SD card at /sdcard: logs and raw recordings go to the 4 GB eMMC (/data keeps its files after an update).
+4 FAIL
+exit code 4

@@ -1,0 +1,22 @@
+{
+ "_why": {
+  "_note": "DEMONSTRATION ONLY, never a scored hold: the design is 'our position + GNSS velocity in the hold'. On ArduCopter 4.6 it does NOT do that: EKF3 fuses GPS velocity only while the position source is GPS (AP_NavEKF3_PosVelFusion.cpp 559-562), so set 2 (POSXY 6, VELXY 3) fuses no GNSS velocity. SITL agrees: the EKF velocity innovations (XKF3 IVN, IVE) stayed constant over the 30 s hold (they change when a velocity is fused, as in gn_fallback_30m_s1 after set 1). It held like gnss_setup (apsim/gnss_results.txt, RMS / max m): 30 m seed 1 0.57 / 0.93, 10 m seed 1 0.50 / 1.03. Same pilot steps as gnss_setup. PX4 would need EKF2_GPS_CTRL 4 + EKF2_EV_CTRL 1 (not tested; the program refuses gnss_mode on PX4).",
+  "gnss_mode": "velocity: the program acts as in setup.",
+  "params_ardupilot.EK3_SRC2_VELXY": "3 = GPS velocity in set 2. EKF3 4.6 ignores it while EK3_SRC2_POSXY is 6."
+ },
+ "gnss_mode": "velocity",
+ "params_ardupilot": {
+  "GPS1_TYPE": 1,
+  "EK3_SRC1_POSXY": 3,
+  "EK3_SRC1_VELXY": 3,
+  "EK3_SRC1_POSZ": 1,
+  "EK3_SRC1_VELZ": 0,
+  "EK3_SRC1_YAW": 1,
+  "EK3_SRC2_POSXY": 6,
+  "EK3_SRC2_VELXY": 3,
+  "EK3_SRC2_POSZ": 1,
+  "EK3_SRC2_VELZ": 0,
+  "EK3_SRC2_YAW": 1,
+  "EK3_SRC_OPTIONS": 0
+ }
+}

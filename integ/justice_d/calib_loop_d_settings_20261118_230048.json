@@ -1,0 +1,16 @@
+{
+ "top": "left",
+ "mirror": false,
+ "tilt_deg": [
+  1.7345124808380734,
+  -1.130173650164294
+ ],
+ "twist_deg": 1.5658196793151928,
+ "focal_scale": 1.0,
+ "readout_s": 0.010999999999999972,
+ "video_delay_s": 0.057999999999999996,
+ "lens_name": "Justice D calibrated 2026-11-18 23:01",
+ "calibrated": true,
+ "calib_capture": "digital ?x?@60 reduce=2 640x360",
+ "lens_file": "integ/justice_d/calib_loop_d_lens_20261118_230048.json"
+}

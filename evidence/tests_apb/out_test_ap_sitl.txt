@@ -1,0 +1,11 @@
+B. baud scan (stub FC: answers only at 57600)
+  PASS tried [230400, 115200, 57600], connected at 57600
+  PASS UDP device: one try only ([230400])
+A. ArduCopter SITL (real firmware)
+  PASS firmware detected: ardupilot 
+  PASS height before any position: 12 rows from GLOBAL_POSITION_INT, LOCAL_POSITION_NED 0 Hz
+  PASS parameter check on the real names: 
+  PASS MAV_CMD_DO_SET_HOME after the origin: ack 0 (0 = accepted)
+  PASS EKF origin set: ['EKF3 IMU0 origin set', 'EKF3 IMU1 origin set']
+  PASS companion HEARTBEAT (ONBOARD_CONTROLLER, component 197) routed to the GCS link
+ALL PASS

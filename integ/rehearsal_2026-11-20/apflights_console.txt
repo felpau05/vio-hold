@@ -1,0 +1,9 @@
+reh_jd_wig_60m_s31 {"rms": 1.1239696828844965, "p95": 1.8714390718539589, "max": 2.2249187257669356, "fixes": 696, "fix_rate_hz": 11.599050167702067, "reanchors": 2, "wiggle_t": [36.806132850000225, 44.827670183003534], "climb_s": 24.7, "age_ms_p50": 159.5, "events": [[0.0, "hold starts, mode 5, 0.0 s after the Loiter request started"]]} load [2.19, 3.3, 2.48]
+load 6.04 > 4: wait 30 s
+load 4.20 > 4: wait 30 s
+reh_jd_wig_100m_s31 {"rms": 9.853398786568144, "p95": 12.734423760943763, "max": 13.734697229897003, "fixes": 610, "fix_rate_hz": 10.165997338079848, "reanchors": 9, "wiggle_t": [44.637058299003286, 52.63706497599679], "climb_s": 32.6, "age_ms_p50": 159.2, "events": [[0.0, "hold starts, mode 5, 0.0 s after the Loiter request started"]]} load [2.82, 3.63, 2.77]
+load 4.49 > 4: wait 30 s
+reh_jd_wig_30m_s31 {"rms": 0.726406459859287, "p95": 1.2087758228159906, "max": 1.4851776735117845, "fixes": 732, "fix_rate_hz": 12.199181925095841, "reanchors": 0, "wiggle_t": [30.092022281004933, 38.10209753199993], "climb_s": 18.0, "age_ms_p50": 159.0, "events": [[0.0, "hold starts, mode 5, 0.0 s after the Loiter request started"]]} load [3.22, 3.64, 2.9]
+load 6.34 > 4: wait 30 s
+load 4.20 > 4: wait 30 s
+reh_jd_wig_10m_s31 {"rms": 0.6051193544933978, "p95": 0.9991508789823466, "max": 1.1772366618682018, "fixes": 560, "fix_rate_hz": 9.332558808722915, "reanchors": 5, "wiggle_t": [25.336031872004913, 33.33603900300362], "climb_s": 13.3, "age_ms_p50": 158.4, "events": [[0.0, "hold starts, mode 5, 0.0 s after the Loiter request started"]]} load [2.9, 4.04, 3.23]

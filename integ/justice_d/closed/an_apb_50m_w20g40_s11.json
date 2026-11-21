@@ -1,0 +1,336 @@
+{
+ "case": "an_apb_50m_w20g40_s11",
+ "cfg": {
+  "variant": "apb",
+  "vehicle": "medium",
+  "height": 50.0,
+  "wind": "w20g40",
+  "hold_s": 60.0,
+  "seed": 11,
+  "wind_from_deg": 270.0,
+  "ground": "ottawa2019fall",
+  "video": "PAL",
+  "readout_s": 0.0184,
+  "exposure_s": 0.004,
+  "video_delay_s": 0.04,
+  "stamp_err_s": 0.0,
+  "proc_s": 0.0,
+  "noise": 3.7,
+  "noise_corr_px": 1.5,
+  "vib_deg": 0.2,
+  "true_lens": "Round 1 Metashape fisheye",
+  "model_lens": "Round 1 independent k2",
+  "focal_scale": 1.0,
+  "pp_shift": [
+   0.0,
+   0.0
+  ],
+  "cam_top": "front",
+  "cam_mirror": false,
+  "cam_tilt": [
+   0.0,
+   0.0
+  ],
+  "cam_twist": 0.0,
+  "est_top": null,
+  "est_mirror": null,
+  "est_tilt": null,
+  "est_twist": null,
+  "osd": false,
+  "osd_mask": true,
+  "breakup": 0.0,
+  "freeze": null,
+  "repeat": 0.0,
+  "freeze_noise": false,
+  "att_hz": 200.0,
+  "hgt_bias_m": 0.0,
+  "hgt_noise_m": 0.0,
+  "ev_delay_s": null,
+  "speed": 1.0,
+  "flyaway_m": 30.0,
+  "label": "an_apb_50m_w20g40_s11",
+  "engage_wait_s": 25.0,
+  "att_source": "px4",
+  "att_tau_s": 20.0,
+  "px4": {},
+  "hold_cfg": {},
+  "outage": null,
+  "breakup_from": -Infinity,
+  "settings": {
+   "fc_device": "udpin:127.0.0.1:15002",
+   "origin_lat_lon_alt": [
+    45.417,
+    -75.715,
+    70.0
+   ]
+  },
+  "cpu_factor": 10.0,
+  "reanchor_on_lost": null,
+  "sync_wait_s": 0.0,
+  "est_delay_err_s": 0.0,
+  "still_start": false,
+  "flicker_hz": 0.0,
+  "flicker_depth": 0.5,
+  "people": 0,
+  "reflect": false,
+  "ceiling_m": null,
+  "props": false,
+  "mask_corners": 0.0,
+  "mask_border": 0,
+  "baro_wander_m": 0.0,
+  "baro_tau_s": 20.0,
+  "mag_yaw_deg": 0.0,
+  "mag_yaw_dps": 0.0,
+  "instance": 0,
+  "speedup": null,
+  "pilot_speed_up": 500,
+  "wind_turb": 1.0,
+  "cpu_model": "fixed",
+  "board_s": 0.08,
+  "feed_delay_s": 0.0,
+  "feed_noise_m": 0.0,
+  "feed_hz": 25.0,
+  "ap": {},
+  "wiggle_s": 0.0,
+  "wiggle_pwm": 150,
+  "wiggle_hz": 0.7,
+  "pilot_guided": 0.0
+ },
+ "events": [
+  [
+   0.0,
+   "hold starts, mode 5, 0.0 s after the Loiter request started"
+  ]
+ ],
+ "ap_params": {
+  "ARMING_CHECK": 0,
+  "PILOT_SPEED_UP": 500,
+  "SIM_WIND_T": 1,
+  "SIM_WIND_SPD": 0,
+  "SIM_WIND_TURB": 0,
+  "SIM_WIND_DIR": 270.0,
+  "SERIAL1_BAUD": 115,
+  "VISO_TYPE": 1,
+  "EK3_SRC1_POSXY": 6,
+  "EK3_SRC1_VELXY": 0,
+  "EK3_SRC1_POSZ": 1,
+  "EK3_SRC1_VELZ": 0,
+  "EK3_SRC1_YAW": 1,
+  "GPS1_TYPE": 0,
+  "VISO_DELAY_MS": 140
+ },
+ "link_bps": 11520,
+ "truth_q_check_deg": 0.0,
+ "climb_s": 21.9,
+ "ekf_yaw_minus_true_deg": 2.43,
+ "onboard": [
+  [
+   6.05,
+   "connected",
+   "ardupilot, clock ready True, ATTITUDE 100 Hz"
+  ],
+  [
+   94.43,
+   "done",
+   "stopped after 1 start(s); frame age when taken p50 29 ms, p95 55 ms; SCALED_IMU 0 Hz, 0 rows kept"
+  ]
+ ],
+ "params_fail": [],
+ "onboard_exit": 0,
+ "clock_err_ms_mean": 3.436925386739039,
+ "clock_err_ms_absmax": 3.643633792258072,
+ "handover_ms_p50": 16.459463500268612,
+ "handover_ms_p95": 19.857837150448173,
+ "frames": 1500,
+ "processed": 721,
+ "fixes": 721,
+ "fix_rate_hz": 12.015862553529145,
+ "pct_frames_fix": 48.06666666666667,
+ "frac_init": 0.0,
+ "frac_ok": 1.0,
+ "frac_degraded": 0.0,
+ "frac_lost": 0.0,
+ "proc_ms_mean": 81.38710124826629,
+ "age_ms_p50": 170.3,
+ "age_ms_p95": 188.8,
+ "hold_why": {},
+ "reanchors": 0,
+ "rms": 0.34008299282667726,
+ "p95": 0.6823251395887427,
+ "max": 0.7600418068671401,
+ "end": 0.38007168599305935,
+ "drift_m_per_min": 0.31333600808920337,
+ "roll_rms_deg": 8.58208469799764,
+ "pitch_rms_deg": 2.567998110557001,
+ "tilt_mean_deg": 12.158041531328783,
+ "judge_rms": 13.716472811569355,
+ "judge_p95": 24.36541616774155,
+ "judge_max": 28.25411552871113,
+ "judge_jitter_rms": 8.508878246230253,
+ "height_mean": 49.76012555546027,
+ "seconds": 60.00401525800053,
+ "link": {
+  "down": {
+   "bytes_per_s": 5529,
+   "sent": {
+    "30": 9138,
+    "33": 913,
+    "32": 746,
+    "22": 619,
+    "0": 188,
+    "253": 24,
+    "77": 16,
+    "111": 9,
+    "49": 2,
+    "242": 1
+   },
+   "dropped": {}
+  },
+  "up": {
+   "bytes_per_s": 790,
+   "sent": {
+    "102": 871,
+    "0": 91,
+    "76": 15,
+    "111": 9,
+    "20": 8,
+    "48": 1,
+    "75": 1
+   },
+   "dropped": {}
+  }
+ },
+ "onboard_att_hz": 109.7,
+ "onboard_att_dropped_hz": 0.0,
+ "ap_text": [
+  [
+   0.0,
+   "Barometer 1 calibration complete"
+  ],
+  [
+   0.0,
+   "Barometer 2 calibration complete"
+  ],
+  [
+   0.0,
+   "ArduPilot Ready"
+  ],
+  [
+   0.0,
+   "AHRS: DCM active"
+  ],
+  [
+   0.0,
+   "RC7: SaveWaypoint LOW"
+  ],
+  [
+   0.0,
+   "No ap_message for mavlink id (331)"
+  ],
+  [
+   0.0,
+   "No ap_message for mavlink id (290)"
+  ],
+  [
+   0.0,
+   "No ap_message for mavlink id (291)"
+  ],
+  [
+   0.0,
+   "No ap_message for mavlink id (231)"
+  ],
+  [
+   0.0,
+   "No ap_message for mavlink id (141)"
+  ],
+  [
+   0.0,
+   "EKF3 IMU0 initialised"
+  ],
+  [
+   0.0,
+   "EKF3 IMU1 initialised"
+  ],
+  [
+   0.0,
+   "AHRS: EKF3 active"
+  ],
+  [
+   0.0,
+   "EKF3 IMU0 tilt alignment complete"
+  ],
+  [
+   0.0,
+   "EKF3 IMU1 tilt alignment complete"
+  ],
+  [
+   0.0,
+   "EKF3 IMU0 MAG0 initial yaw alignment complete"
+  ],
+  [
+   0.0,
+   "EKF3 IMU1 MAG0 initial yaw alignment complete"
+  ],
+  [
+   0.0,
+   "Radio Failsafe - Disarming"
+  ],
+  [
+   0.0,
+   "Warning: Arming Checks Disabled"
+  ],
+  [
+   0.0,
+   "Arming motors"
+  ],
+  [
+   0.0,
+   "Radio Failsafe Cleared"
+  ],
+  [
+   0.0,
+   "EKF3 IMU0 origin set"
+  ],
+  [
+   0.0,
+   "EKF3 IMU1 origin set"
+  ],
+  [
+   0.0,
+   "EKF3 IMU1 MAG0 in-flight yaw alignment complete"
+  ],
+  [
+   0.0,
+   "EKF3 IMU0 MAG0 in-flight yaw alignment complete"
+  ],
+  [
+   0.0,
+   "EKF3 IMU1 is using external nav data"
+  ],
+  [
+   0.0,
+   "EKF3 IMU1 initial pos NED = -0.0,-0.0,-18.9 (m)"
+  ],
+  [
+   0.0,
+   "EKF3 IMU0 is using external nav data"
+  ],
+  [
+   0.0,
+   "EKF3 IMU0 initial pos NED = -0.0,-0.0,-18.9 (m)"
+  ]
+ ],
+ "hold_s_flown": 60.0,
+ "load_1min_at_start": 3.24,
+ "load_1min_at_end": 1.8,
+ "wall_s": 95.6,
+ "started": "2026-11-18 23:15:14",
+ "case_args": {
+  "variant": "apb",
+  "height": 50.0,
+  "wind": "w20g40",
+  "hold_s": 60.0,
+  "label": "an_apb_50m_w20g40_s11",
+  "seed": 11
+ }
+}

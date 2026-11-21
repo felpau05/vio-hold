@@ -1,0 +1,11 @@
+### the [Service] lines of the boot-on unit, as a transient user unit on this laptop (no root):
+### WorkingDirectory, ExecStart /bin/sh -c '... exec PY -u apb_main.py run --raw >> logs/console.txt 2>&1', KillSignal=SIGINT, Restart=on-failure
+Running as unit: vio-run-test.service; invocation ID: 7b6ba514719c40a49ce80efad54a574f
+### after 4 s: active, main process: 1123517 HOME/.venvs/vio/bin/python -u apb_main.py run --raw
+### logs/console.txt:
+[ WARN:0@3.018] global cap.cpp:212 open VIDEOIO(V4L2): backend is generally available but can't be used to capture by name
+FAIL cannot open video device /dev/no_camera_here. Check the grabber and video_device in settings.json.
+### after systemctl stop (SIGINT): unit inactive; apb_main.py processes left: 0
+### last console lines:
+    time.sleep(1.0)
+KeyboardInterrupt

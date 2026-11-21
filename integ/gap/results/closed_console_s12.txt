@@ -1,0 +1,4 @@
+ 00:44:58 up  3:35,  1 user,  load average: 3.59, 5.79, 5.68
+[gapfix_jd_apb_100m_w20g40_s12] hold starts, mode 5, 0.0 s after the Loiter request started
+[gapfix_jd_apb_100m_w20g40_s12] rms 0.485  p95 0.794  max 0.883  drift_m_per_min 0.573  roll_rms_deg 5.5  pitch_rms_deg 2.15  judge_rms 26.4  fix_rate_hz 12.2  pct_frames_fix 20.4  age_ms_p50 129  onboard_att_hz 108
+gapfix_jd_apb_100m_w20g40_s12 rms 0.485 max 0.883 p95 0.794 fix_rate_hz 12.2 pct_frames_fix 20.4 age_ms_p50 129 handover_ms_p50 6.5 handover_ms_p95 15.2 proc_ms_mean 80.9 processed 732 frames 3.6e+03 [(np.float64(0.0), 'hold starts, mode 5, 0.0 s after the Loiter request started')]
