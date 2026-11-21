@@ -89,6 +89,18 @@ tru = np.array([angles(Rs[i]) for i in idx])
 err = np.degrees(np.abs(out[:, 1:3] - tru[:, :2])).max(0)
 check(err.max() < 2.0, f"roll/pitch error with a 1.5 m/s^2 walking bob: max {err.round(2)} deg (limit 2)")
 
+# 2b: a 5 deg tilt error shrinks toward gravity with the time constant (sign of the correction)
+gyro, accel, Rs, t = synth(still_s=40.0, seed=5)            # still the whole time: truth is level
+f = E.ApbAtt()
+f.update(gyro[t < 2.5], accel[t < 2.5])
+f.R = euler_R(math.radians(5.0), math.radians(-3.0), 0.0)   # wrong start
+o1 = np.array(f.update(gyro[(t >= 2.5) & (t < 7.5)], accel[(t >= 2.5) & (t < 7.5)]))
+o2 = np.array(f.update(gyro[t >= 7.5], accel[t >= 7.5]))
+e5 = np.degrees(np.abs(o1[-1, 1:3])).max()
+e30 = np.degrees(np.abs(o2[-1, 1:3])).max()
+check(e5 < 5.0 * math.exp(-5.0 / E.APB["apb_att_tau_s"]) + 0.3 and e30 < 0.2,
+      f"tilt error 5 deg -> {e5:.2f} deg after 5 s, {e30:.3f} deg after 37 s (converges toward gravity)")
+
 # 3: never still -> no attitude at all (not ready), never a guess
 gyro, accel, _, _ = synth(still_s=0.0, seed=3)
 f, out = run(gyro, accel)

@@ -134,7 +134,8 @@ class _Judge:
                 (not self.analog or strong_marks(img) < MARKS_MIN or sensor_noise(img) < NOISE_MIN):
             return "flat picture (no signal?)"
         prev, self.prev = self.prev, img
-        if prev is not None and prev.shape == img.shape and cv2.absdiff(img, prev).mean() < self.s["repeat_mad"]:
+        # cv2.mean, not numpy .mean(): same value, ~10x faster on the APB's A53 (the check cost ~11 ms per frame)
+        if prev is not None and prev.shape == img.shape and cv2.mean(cv2.absdiff(img, prev))[0] < self.s["repeat_mad"]:
             return "repeated frame"
         return None
 

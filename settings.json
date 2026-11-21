@@ -38,7 +38,7 @@
  "field": "frame",
  "repeat_mad": 1.0,
  "no_signal_mad": 2.0,
- "top": "front",
+ "top": "rear",
  "mirror": false,
  "tilt_deg": [
   0.0,
@@ -68,8 +68,8 @@
  "calib_info": {},
  "video_kind": "csi",
  "video_size": [
-  1280,
-  720
+  1920,
+  1080
  ],
  "video_fps": 60.0,
  "video_pipeline": "",

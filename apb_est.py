@@ -73,50 +73,128 @@ class ApbAtt:
         roll, pitch = math.atan2(d[1], d[2]), math.atan2(-d[0], math.hypot(d[1], d[2]))
         return euler_R(roll, pitch, yaw)
 
+    @property
+    def R(self):
+        return None if self.q is None else _q2R(self.q)
+
+    @R.setter
+    def R(self, R):
+        self.q = None if R is None else _R2q(R)
+
     def update(self, gyro, accel):
-        """gyro, accel: arrays of (t, x, y, z) rows, sensor axes, sorted. Returns new attitude rows."""
+        """gyro, accel: arrays of (t, x, y, z) rows, sensor axes, sorted. Returns new attitude rows.
+        Plain-float quaternion maths per sample: the first version (cv2.Rodrigues + SVD per sample) cost
+        0.9 ms per gyro sample on the APB, 6 ms per frame."""
         out = []
         if not len(gyro):
             return out
         gyro, accel = np.asarray(gyro, float), np.asarray(accel, float)
-        ab = (self.Rsb @ accel[:, 1:4].T).T if len(accel) else np.zeros((0, 3))
-        ia = 0
-        for row in gyro:
-            t = row[0]
-            w = self.Rsb @ row[1:4]
-            while ia < len(accel) and accel[ia, 0] <= t:
+        W = (self.Rsb @ gyro[:, 1:4].T).T.tolist()
+        ab = (self.Rsb @ accel[:, 1:4].T).T.tolist() if len(accel) else []
+        at = accel[:, 0].tolist() if len(accel) else []
+        tg = gyro[:, 0].tolist()
+        ia, na = 0, len(at)
+        for k in range(len(tg)):
+            t, w = tg[k], W[k]
+            while ia < na and at[ia] <= t:
                 self.acc = ab[ia]
                 ia += 1
             if self.acc is None:
                 continue
             if self.bias is None:
-                b = self._still_bias(t, w, self.acc)
+                b = self._still_bias(t, np.array(w), np.array(self.acc))
                 if b is None:
                     continue
                 self.bias, self.note = b, None
-                self.R = self._gravity_R(self.acc, 0.0)
-                self.t, self.w = t, w - b
+                self.R = self._gravity_R(np.array(self.acc), 0.0)
+                self.t, self.w = t, [w[0] - b[0], w[1] - b[1], w[2] - b[2]]
                 continue
-            wc = w - self.bias
+            bx, by, bz = self.bias
+            wc = [w[0] - bx, w[1] - by, w[2] - bz]
             dt = t - self.t
             if dt <= 0:
                 continue
+            q = self.q
             if dt > 0.2:                            # gap: restart from gravity, keep yaw
-                yaw = math.atan2(self.R[1, 0], self.R[0, 0])
-                self.R = self._gravity_R(self.acc, yaw)
-            else:
-                self.R = self.R @ cv2.Rodrigues((wc + self.w) / 2 * dt)[0]
-                if abs(np.linalg.norm(self.acc) - G0) < self.gate:
-                    yaw = math.atan2(self.R[1, 0], self.R[0, 0])
-                    e = cv2.Rodrigues(self._gravity_R(self.acc, yaw) @ self.R.T)[0]
-                    self.R = cv2.Rodrigues(e * min(1.0, dt / self.tau))[0] @ self.R
-                u, _, vt = np.linalg.svd(self.R)
-                self.R = u @ vt
-            self.t, self.w = t, wc
-            R = self.R
-            out.append((t, math.atan2(R[2, 1], R[2, 2]), -math.asin(max(-1.0, min(1.0, R[2, 0]))),
-                        math.atan2(R[1, 0], R[0, 0]), *wc))
+                self.R = self._gravity_R(np.array(self.acc), _q_yaw(q))
+                q = self.q
+            else:                                   # body-frame turn by the mean rate over dt
+                q = _q_mul(q, _q_rot(0.5 * (wc[0] + self.w[0]) * dt, 0.5 * (wc[1] + self.w[1]) * dt,
+                                     0.5 * (wc[2] + self.w[2]) * dt))
+                ax, ay, az = self.acc
+                an = math.sqrt(ax * ax + ay * ay + az * az)
+                if abs(an - G0) < self.gate:
+                    # tilt error: measured down (body) vs predicted down (body); turn the body toward it
+                    mx, my, mz = -ax / an, -ay / an, -az / an
+                    px, py, pz = _q_down_body(q)
+                    # q <- q * rot(e) moves the predicted down by p x e; e = m x p moves it toward m
+                    ex, ey, ez = my * pz - mz * py, mz * px - mx * pz, mx * py - my * px
+                    k_ = min(1.0, dt / self.tau)
+                    q = _q_mul(q, _q_rot(ex * k_, ey * k_, ez * k_))
+                n = math.sqrt(q[0] * q[0] + q[1] * q[1] + q[2] * q[2] + q[3] * q[3])
+                q = (q[0] / n, q[1] / n, q[2] / n, q[3] / n)
+            self.q, self.t, self.w = q, t, wc
+            roll, pitch, yaw = _q_euler(q)
+            out.append((t, roll, pitch, yaw, *wc))
         return out
+
+
+def _q_mul(a, b):
+    aw, ax, ay, az = a
+    bw, bx, by, bz = b
+    return (aw * bw - ax * bx - ay * by - az * bz, aw * bx + ax * bw + ay * bz - az * by,
+            aw * by - ax * bz + ay * bw + az * bx, aw * bz + ax * by - ay * bx + az * bw)
+
+
+def _q_rot(x, y, z):
+    """Quaternion of the rotation vector (x, y, z) (rad)."""
+    a = math.sqrt(x * x + y * y + z * z)
+    if a < 1e-12:
+        return (1.0, 0.5 * x, 0.5 * y, 0.5 * z)
+    s = math.sin(a / 2) / a
+    return (math.cos(a / 2), x * s, y * s, z * s)
+
+
+def _q_down_body(q):
+    """NED down (0, 0, 1) in body axes: R^T e_z, for q body -> NED."""
+    w, x, y, z = q
+    return (2 * (x * z - w * y), 2 * (y * z + w * x), 1 - 2 * (x * x + y * y))
+
+
+def _q_euler(q):
+    w, x, y, z = q
+    roll = math.atan2(2 * (w * x + y * z), 1 - 2 * (x * x + y * y))
+    pitch = math.asin(max(-1.0, min(1.0, 2 * (w * y - z * x))))
+    yaw = math.atan2(2 * (w * z + x * y), 1 - 2 * (y * y + z * z))
+    return roll, pitch, yaw
+
+
+def _q_yaw(q):
+    return _q_euler(q)[2]
+
+
+def _q2R(q):
+    w, x, y, z = q
+    return np.array([[1 - 2 * (y * y + z * z), 2 * (x * y - w * z), 2 * (x * z + w * y)],
+                     [2 * (x * y + w * z), 1 - 2 * (x * x + z * z), 2 * (y * z - w * x)],
+                     [2 * (x * z - w * y), 2 * (y * z + w * x), 1 - 2 * (x * x + y * y)]])
+
+
+def _R2q(R):
+    tr = R[0, 0] + R[1, 1] + R[2, 2]
+    if tr > 0:
+        s = math.sqrt(tr + 1.0) * 2
+        q = (0.25 * s, (R[2, 1] - R[1, 2]) / s, (R[0, 2] - R[2, 0]) / s, (R[1, 0] - R[0, 1]) / s)
+    elif R[0, 0] > R[1, 1] and R[0, 0] > R[2, 2]:
+        s = math.sqrt(1.0 + R[0, 0] - R[1, 1] - R[2, 2]) * 2
+        q = ((R[2, 1] - R[1, 2]) / s, 0.25 * s, (R[0, 1] + R[1, 0]) / s, (R[0, 2] + R[2, 0]) / s)
+    elif R[1, 1] > R[2, 2]:
+        s = math.sqrt(1.0 + R[1, 1] - R[0, 0] - R[2, 2]) * 2
+        q = ((R[0, 2] - R[2, 0]) / s, (R[0, 1] + R[1, 0]) / s, 0.25 * s, (R[1, 2] + R[2, 1]) / s)
+    else:
+        s = math.sqrt(1.0 + R[2, 2] - R[0, 0] - R[1, 1]) * 2
+        q = ((R[1, 0] - R[0, 1]) / s, (R[0, 2] + R[2, 0]) / s, (R[1, 2] + R[2, 1]) / s, 0.25 * s)
+    return tuple(float(v) for v in q)
 
 
 class BaroHeight:
