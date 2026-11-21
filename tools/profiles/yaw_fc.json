@@ -1,0 +1,6 @@
+{
+ "_why": {
+  "att_source": "gyro_fcyaw: roll and pitch from the integrated gyro rates as before, the yaw as the flight controller sends it. Why: after take-off ArduCopter aligns its yaw in flight (a step). The default feed follows that step only with att_tau_s (20 s): unit test, 18 deg of yaw error left 2 s after a 20 deg step (tests_apb/test_att_yaw.py Y3). Gain: NOT shown in open-loop replays (integ/diag10/README.txt: with the onboard start the yaw explains about 0.05 m at 10 m). The closed-loop simulator A/B of 2026-11-21 is in integ/kfmap/README.txt: read it before you use this profile. Risk: the FC's yaw goes into our fix, and a wrong position can bend the FC's yaw (apsim/safety_results.txt, case c). Apply your profile names again without yaw_fc to switch it off."
+ },
+ "att_source": "gyro_fcyaw"
+}

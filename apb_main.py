@@ -73,10 +73,14 @@ class GyroAtt:
     with time constant tau_s. Why: while the FC fuses our fix, PX4 turns its gravity (tilt) fusion off
     (EKF2 gravity_fusion.cpp: !isHorizontalAidingActive()), so its tilt follows our fix, and our fix
     follows its tilt with gain = height. Closed loop in PX4 SITL with the raw FC attitude: fly-away past
-    30 m at 50, 100 and 122 m (px4sim/results.txt). Call with each ATTITUDE row in time order."""
+    30 m at 50, 100 and 122 m (px4sim/results.txt). Call with each ATTITUDE row in time order.
+    fc_yaw (att_source "gyro_fcyaw", off by default): roll and pitch as above, the yaw as the FC sends it. Why:
+    after take-off ArduCopter aligns its yaw in flight (a step), and with tau_s 20 s our yaw follows it for many
+    seconds (tests_apb/test_att_yaw.py Y3: 18 deg left 2 s after a 20 deg step). The tilt loop above has no yaw
+    part. Gain in closed loop: see the simulator A/B in integ/kfmap/README.txt before you use it."""
 
-    def __init__(self, tau_s):
-        self.tau, self.R, self.t, self.w = tau_s, None, None, None
+    def __init__(self, tau_s, fc_yaw=False):
+        self.tau, self.R, self.t, self.w, self.fc_yaw = tau_s, None, None, None, fc_yaw
 
     def target(self, row):
         """The slow reference the integrated rates lean toward: here the FC's attitude."""
@@ -98,6 +102,10 @@ class GyroAtt:
             self.R = u @ vt
         self.t, self.w = t, w
         R = self.R
+        if self.fc_yaw:                       # our roll and pitch, the FC's yaw: in the state too, for the next step
+            roll, pitch = math.atan2(R[2, 1], R[2, 2]), -math.asin(max(-1.0, min(1.0, R[2, 0])))
+            self.R = euler_R(roll, pitch, row[3])
+            return (t, roll, pitch, row[3], *row[4:])
         return (t, math.atan2(R[2, 1], R[2, 2]), -math.asin(max(-1.0, min(1.0, R[2, 0]))),
                 math.atan2(R[1, 0], R[0, 0]), *row[4:])
 
@@ -128,6 +136,8 @@ class ImuAtt(GyroAtt):
 def att_filter(s, fc=None):
     if s["att_source"] == "imu" and fc is not None:
         return ImuAtt(s["att_tau_s"], fc.imu)
+    if s["att_source"] == "gyro_fcyaw":
+        return GyroAtt(s["att_tau_s"], fc_yaw=True)
     # shortcut: replay has no accelerometer log, so "imu" replays as "gyro"; record SCALED_IMU in Raw to replay it.
     return GyroAtt(s["att_tau_s"]) if s["att_source"] in ("gyro", "imu") else None
 
@@ -499,6 +509,16 @@ def live_gate(s, fc):
     return None
 
 
+def turn_problems(s):
+    """Hold's option dense_turn (the whole-picture path solves the yaw turn) must fly only with att_source
+    "gyro_fcyaw". ArduCopter SITL, 10 m, 2 seeds (integ/kfmap/closed/ab_table.txt): with "gyro" the FC's yaw moved
+    by 8.7 and 11.7 deg during the hold, with "gyro_fcyaw" by 2.2 and 1.6 deg. Empty list = no problem."""
+    if s["hold_cfg"].get("dense_turn") and s["att_source"] != "gyro_fcyaw":
+        return [f"hold_cfg dense_turn needs att_source gyro_fcyaw, but att_source is {s['att_source']}. Apply the "
+                "profile low_height as a whole (tools/use_profile.py), or set dense_turn to false."]
+    return []
+
+
 def start_problems(s, fc, src, shape):
     """Reasons run must not start (H14). Empty list = go."""
     out = []
@@ -518,7 +538,7 @@ def start_problems(s, fc, src, shape):
         out.append(f"firmware {fc.firmware} is not supported.")
     if fc.firmware == "ardupilot" and s["origin_lat_lon_alt"] is None:
         out.append("ArduPilot needs origin_lat_lon_alt in settings.json (lat, lon, alt of the field).")
-    return out + gnss_problems(s, fc.firmware)
+    return out + gnss_problems(s, fc.firmware) + turn_problems(s)
 
 
 def delay_advice(ages_ms, n=100):
@@ -888,6 +908,9 @@ def mode_check(s, args, say=print):
         if s["gnss_mode"] != "none":                  # the level's parameters are checked one by one above
             bad = gnss_problems(s, fc.firmware)
             line(not bad, bad[0] if bad else f"gnss_mode {s['gnss_mode']}: settings match the level")
+        if s["hold_cfg"].get("dense_turn"):           # the low-height option: never without the FC yaw
+            bad = turn_problems(s)
+            line(not bad, bad[0] if bad else "hold_cfg dense_turn with att_source gyro_fcyaw")
         if fc.firmware == "ardupilot":
             line(s["origin_lat_lon_alt"] is not None, "origin set" if s["origin_lat_lon_alt"] else
                  "origin_lat_lon_alt is empty. Put the field's lat, lon, alt in settings.json.")

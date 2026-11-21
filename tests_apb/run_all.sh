@@ -7,6 +7,7 @@ for t in test_basics test_digital test_robust test_fc_link test_run test_bench t
   echo "$t: rc=$? $(tail -1 tests_apb/out_$t.txt)"
 done
 timeout 295 "$PY" tests_apb/test_gnss.py > tests_apb/out_test_gnss.txt 2>&1; echo "test_gnss: rc=$? $(tail -1 tests_apb/out_test_gnss.txt)"
+timeout 295 "$PY" tests_apb/test_att_yaw.py > tests_apb/out_test_att_yaw.txt 2>&1; echo "test_att_yaw: rc=$? $(tail -1 tests_apb/out_test_att_yaw.txt)"
 timeout 295 "$PY" tests_apb/test_ground_tools.py > tests_apb/out_test_ground_tools.txt 2>&1
 echo "test_ground_tools: rc=$? $(tail -1 tests_apb/out_test_ground_tools.txt)"
 timeout 295 "$PY" -c "import sim_test; sim_test.timing_test(); print('timing_test PASSED')" > tests_apb/out_timing_test.txt 2>&1

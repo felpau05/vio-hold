@@ -1,0 +1,91 @@
+{"ev": "wait", "load": 3.35, "arducopter": [], "sim_py": [], "px4_sim": false, "t": "05:07:02"}
+{"ev": "wait", "load": 3.08, "arducopter": [], "sim_py": [], "px4_sim": false, "t": "05:07:07"}
+{"ev": "start", "copy": "ab", "label": "lowap_apb_60m_w20g40_s2_base", "attempt": 1, "load": [2.83154296875, 2.58544921875, 3.44921875], "waited_s": 10, "t": "05:07:12"}
+{"ev": "end", "copy": "ab", "label": "lowap_apb_60m_w20g40_s2_base", "attempt": 1, "rc": 0, "wall_s": 101, "bad": null, "rms": 0.45701919103178856, "load_start_runner": [2.83154296875, 2.58544921875, 3.44921875], "hold_md5": "d78329d32c349ef061282fea1192d320", "hold_cfg": {"repeat_diff": 0.01, "h_min": 2.0}, "t": "05:08:53"}
+{"ev": "final", "copy": "ab", "label": "lowap_apb_60m_w20g40_s2_base", "status": "ok", "t": "05:08:53"}
+{"ev": "wait", "load": 6.11, "arducopter": [], "sim_py": [], "px4_sim": false, "t": "05:08:53"}
+{"ev": "wait", "load": 5.62, "arducopter": [], "sim_py": [], "px4_sim": false, "t": "05:08:58"}
+{"ev": "start", "copy": "ab", "label": "lowap_apb_60m_w20g40_s2_pyb", "attempt": 1, "load": [2.87890625, 3.09228515625, 3.5361328125], "waited_s": 45, "t": "05:09:39"}
+{"ev": "end", "copy": "ab", "label": "lowap_apb_60m_w20g40_s2_pyb", "attempt": 1, "rc": 0, "wall_s": 101, "bad": null, "rms": 0.5502970798806714, "load_start_runner": [2.87890625, 3.09228515625, 3.5361328125], "hold_md5": "d78329d32c349ef061282fea1192d320", "hold_cfg": {"repeat_diff": 0.01, "h_min": 2.0, "dense_local": true, "dense_turn": true}, "t": "05:11:19"}
+{"ev": "final", "copy": "ab", "label": "lowap_apb_60m_w20g40_s2_pyb", "status": "ok", "t": "05:11:19"}
+{"ev": "wait", "load": 3.7, "arducopter": [], "sim_py": [], "px4_sim": false, "t": "05:11:20"}
+{"ev": "wait", "load": 3.49, "arducopter": [], "sim_py": [], "px4_sim": false, "t": "05:11:25"}
+{"ev": "start", "copy": "ab", "label": "lowap_apb_10m_w20g40_s13_base_ottawa2022", "attempt": 1, "load": [2.94970703125, 3.3232421875, 3.5830078125], "waited_s": 15, "t": "05:11:35"}
+{"ev": "end", "copy": "ab", "label": "lowap_apb_10m_w20g40_s13_base_ottawa2022", "attempt": 1, "rc": 0, "wall_s": 90, "bad": null, "rms": 1.26584620742653, "load_start_runner": [2.94970703125, 3.3232421875, 3.5830078125], "hold_md5": "d78329d32c349ef061282fea1192d320", "hold_cfg": {"repeat_diff": 0.01, "h_min": 2.0}, "t": "05:13:05"}
+{"ev": "final", "copy": "ab", "label": "lowap_apb_10m_w20g40_s13_base_ottawa2022", "status": "ok", "t": "05:13:05"}
+{"ev": "wait", "load": 9.51, "arducopter": [], "sim_py": [], "px4_sim": false, "t": "05:13:05"}
+{"ev": "wait", "load": 8.75, "arducopter": [], "sim_py": [], "px4_sim": false, "t": "05:13:10"}
+{"ev": "wait", "load": 3.61, "arducopter": [], "sim_py": [], "px4_sim": false, "t": "05:14:05"}
+{"ev": "wait", "load": 3.32, "arducopter": [], "sim_py": [], "px4_sim": false, "t": "05:14:10"}
+{"ev": "start", "copy": "ab", "label": "lowap_apb_10m_w20g40_s13_pyb_ottawa2022", "attempt": 1, "load": [2.80810546875, 4.01416015625, 3.86474609375], "waited_s": 76, "t": "05:14:20"}
+{"ev": "end", "copy": "ab", "label": "lowap_apb_10m_w20g40_s13_pyb_ottawa2022", "attempt": 1, "rc": 0, "wall_s": 90, "bad": null, "rms": 0.45337022549923384, "load_start_runner": [2.80810546875, 4.01416015625, 3.86474609375], "hold_md5": "d78329d32c349ef061282fea1192d320", "hold_cfg": {"repeat_diff": 0.01, "h_min": 2.0, "dense_local": true, "dense_turn": true}, "t": "05:15:50"}
+{"ev": "final", "copy": "ab", "label": "lowap_apb_10m_w20g40_s13_pyb_ottawa2022", "status": "ok", "t": "05:15:50"}
+{"ev": "wait", "load": 7.18, "arducopter": [], "sim_py": [], "px4_sim": false, "t": "05:15:50"}
+{"ev": "wait", "load": 6.61, "arducopter": [], "sim_py": [], "px4_sim": false, "t": "05:15:56"}
+{"ev": "start", "copy": "ab", "label": "lowap_apb_10m_w20g40_s11_base_farmland", "attempt": 1, "load": [2.80078125, 4.2109375, 4.00439453125], "waited_s": 60, "t": "05:16:51"}
+{"ev": "end", "copy": "ab", "label": "lowap_apb_10m_w20g40_s11_base_farmland", "attempt": 1, "rc": 0, "wall_s": 90, "bad": null, "rms": 0.38625675009998217, "load_start_runner": [2.80078125, 4.2109375, 4.00439453125], "hold_md5": "d78329d32c349ef061282fea1192d320", "hold_cfg": {"repeat_diff": 0.01, "h_min": 2.0}, "t": "05:18:21"}
+{"ev": "final", "copy": "ab", "label": "lowap_apb_10m_w20g40_s11_base_farmland", "status": "ok", "t": "05:18:21"}
+{"ev": "wait", "load": 8.21, "arducopter": [], "sim_py": [], "px4_sim": false, "t": "05:18:21"}
+{"ev": "wait", "load": 7.56, "arducopter": [], "sim_py": [], "px4_sim": false, "t": "05:18:26"}
+{"ev": "wait", "load": 3.06, "arducopter": [], "sim_py": [], "px4_sim": false, "t": "05:19:21"}
+{"ev": "start", "copy": "ab", "label": "lowap_apb_10m_w20g40_s11_pyb_farmland", "attempt": 1, "load": [2.814453125, 4.51953125, 4.20947265625], "waited_s": 66, "t": "05:19:27"}
+{"ev": "end", "copy": "ab", "label": "lowap_apb_10m_w20g40_s11_pyb_farmland", "attempt": 1, "rc": 0, "wall_s": 90, "bad": null, "rms": 0.37694405091380995, "load_start_runner": [2.814453125, 4.51953125, 4.20947265625], "hold_md5": "d78329d32c349ef061282fea1192d320", "hold_cfg": {"repeat_diff": 0.01, "h_min": 2.0, "dense_local": true, "dense_turn": true}, "t": "05:20:57"}
+{"ev": "final", "copy": "ab", "label": "lowap_apb_10m_w20g40_s11_pyb_farmland", "status": "ok", "t": "05:20:57"}
+{"ev": "wait", "load": 11.78, "arducopter": [], "sim_py": [], "px4_sim": false, "t": "05:20:57"}
+{"ev": "wait", "load": 10.84, "arducopter": [], "sim_py": [], "px4_sim": false, "t": "05:21:02"}
+{"ev": "wait", "load": 4.47, "arducopter": [], "sim_py": [], "px4_sim": false, "t": "05:21:57"}
+{"ev": "wait", "load": 4.11, "arducopter": [], "sim_py": [], "px4_sim": false, "t": "05:22:02"}
+{"ev": "start", "copy": "ab", "label": "lowap_apb_5m_w20g40_s11_base_ottawa2022", "attempt": 1, "load": [2.90576171875, 5.0478515625, 4.5595703125], "waited_s": 91, "t": "05:22:28"}
+{"ev": "end", "copy": "ab", "label": "lowap_apb_5m_w20g40_s11_base_ottawa2022", "attempt": 1, "rc": 0, "wall_s": 90, "bad": null, "rms": 0.7963882461504709, "load_start_runner": [2.90576171875, 5.0478515625, 4.5595703125], "hold_md5": "d78329d32c349ef061282fea1192d320", "hold_cfg": {"repeat_diff": 0.01, "h_min": 2.0}, "t": "05:23:58"}
+{"ev": "final", "copy": "ab", "label": "lowap_apb_5m_w20g40_s11_base_ottawa2022", "status": "ok", "t": "05:23:58"}
+{"ev": "wait", "load": 7.65, "arducopter": [], "sim_py": [], "px4_sim": false, "t": "05:23:58"}
+{"ev": "wait", "load": 7.03, "arducopter": [], "sim_py": [], "px4_sim": false, "t": "05:24:03"}
+{"ev": "start", "copy": "ab", "label": "lowap_apb_5m_w20g40_s11_pyb_ottawa2022", "attempt": 1, "load": [2.95947265625, 4.96875, 4.6513671875], "waited_s": 60, "t": "05:24:59"}
+{"ev": "end", "copy": "ab", "label": "lowap_apb_5m_w20g40_s11_pyb_ottawa2022", "attempt": 1, "rc": 0, "wall_s": 91, "bad": null, "rms": 0.4320019990361057, "load_start_runner": [2.95947265625, 4.96875, 4.6513671875], "hold_md5": "d78329d32c349ef061282fea1192d320", "hold_cfg": {"repeat_diff": 0.01, "h_min": 2.0, "dense_local": true, "dense_turn": true}, "t": "05:26:29"}
+{"ev": "final", "copy": "ab", "label": "lowap_apb_5m_w20g40_s11_pyb_ottawa2022", "status": "ok", "t": "05:26:29"}
+{"ev": "wait", "load": 10.78, "arducopter": [], "sim_py": [], "px4_sim": false, "t": "05:26:29"}
+{"ev": "wait", "load": 9.92, "arducopter": [], "sim_py": [], "px4_sim": false, "t": "05:26:34"}
+{"ev": "wait", "load": 3.81, "arducopter": [], "sim_py": [], "px4_sim": false, "t": "05:27:30"}
+{"ev": "wait", "load": 3.51, "arducopter": [], "sim_py": [], "px4_sim": false, "t": "05:27:35"}
+{"ev": "start", "copy": "ab", "label": "lowap_apb_10m_w20g40_s3_base", "attempt": 1, "load": [2.79833984375, 5.14892578125, 4.85498046875], "waited_s": 81, "t": "05:27:50"}
+{"ev": "end", "copy": "ab", "label": "lowap_apb_10m_w20g40_s3_base", "attempt": 1, "rc": 0, "wall_s": 90, "bad": null, "rms": 0.7983316047328257, "load_start_runner": [2.79833984375, 5.14892578125, 4.85498046875], "hold_md5": "d78329d32c349ef061282fea1192d320", "hold_cfg": {"repeat_diff": 0.01, "h_min": 2.0}, "t": "05:29:20"}
+{"ev": "final", "copy": "ab", "label": "lowap_apb_10m_w20g40_s3_base", "status": "ok", "t": "05:29:20"}
+{"ev": "wait", "load": 9.85, "arducopter": [], "sim_py": [], "px4_sim": false, "t": "05:29:20"}
+{"ev": "wait", "load": 9.06, "arducopter": [], "sim_py": [], "px4_sim": false, "t": "05:29:25"}
+{"ev": "wait", "load": 3.77, "arducopter": [], "sim_py": [], "px4_sim": false, "t": "05:30:21"}
+{"ev": "wait", "load": 3.47, "arducopter": [], "sim_py": [], "px4_sim": false, "t": "05:30:26"}
+{"ev": "start", "copy": "ab", "label": "lowap_apb_10m_w20g40_s3_pyb", "attempt": 1, "load": [2.93701171875, 5.48193359375, 5.12451171875], "waited_s": 76, "t": "05:30:36"}
+{"ev": "end", "copy": "ab", "label": "lowap_apb_10m_w20g40_s3_pyb", "attempt": 1, "rc": 0, "wall_s": 91, "bad": null, "rms": 0.3825839266023381, "load_start_runner": [2.93701171875, 5.48193359375, 5.12451171875], "hold_md5": "d78329d32c349ef061282fea1192d320", "hold_cfg": {"repeat_diff": 0.01, "h_min": 2.0, "dense_local": true, "dense_turn": true}, "t": "05:32:06"}
+{"ev": "final", "copy": "ab", "label": "lowap_apb_10m_w20g40_s3_pyb", "status": "ok", "t": "05:32:06"}
+{"ev": "wait", "load": 7.25, "arducopter": [], "sim_py": [], "px4_sim": false, "t": "05:32:06"}
+{"ev": "wait", "load": 6.67, "arducopter": [], "sim_py": [], "px4_sim": false, "t": "05:32:11"}
+{"ev": "start", "copy": "ab", "label": "lowap_apb_5m_w20g40_s3_base", "attempt": 1, "load": [2.9326171875, 5.25830078125, 5.14013671875], "waited_s": 55, "t": "05:33:02"}
+{"ev": "end", "copy": "ab", "label": "lowap_apb_5m_w20g40_s3_base", "attempt": 1, "rc": 0, "wall_s": 90, "bad": null, "rms": 0.7417243819208543, "load_start_runner": [2.9326171875, 5.25830078125, 5.14013671875], "hold_md5": "d78329d32c349ef061282fea1192d320", "hold_cfg": {"repeat_diff": 0.01, "h_min": 2.0}, "t": "05:34:32"}
+{"ev": "final", "copy": "ab", "label": "lowap_apb_5m_w20g40_s3_base", "status": "ok", "t": "05:34:32"}
+{"ev": "wait", "load": 5.39, "arducopter": [], "sim_py": [], "px4_sim": false, "t": "05:34:32"}
+{"ev": "wait", "load": 5.04, "arducopter": [], "sim_py": [], "px4_sim": false, "t": "05:34:37"}
+{"ev": "start", "copy": "ab", "label": "lowap_apb_5m_w20g40_s3_pyb", "attempt": 1, "load": [2.9228515625, 4.97607421875, 5.08642578125], "waited_s": 40, "t": "05:35:13"}
+{"ev": "end", "copy": "ab", "label": "lowap_apb_5m_w20g40_s3_pyb", "attempt": 1, "rc": 0, "wall_s": 91, "bad": null, "rms": 0.4051062726778716, "load_start_runner": [2.9228515625, 4.97607421875, 5.08642578125], "hold_md5": "d78329d32c349ef061282fea1192d320", "hold_cfg": {"repeat_diff": 0.01, "h_min": 2.0, "dense_local": true, "dense_turn": true}, "t": "05:36:43"}
+{"ev": "final", "copy": "ab", "label": "lowap_apb_5m_w20g40_s3_pyb", "status": "ok", "t": "05:36:43"}
+{"ev": "wait", "load": 7.1, "arducopter": [], "sim_py": [], "px4_sim": false, "t": "05:36:43"}
+{"ev": "wait", "load": 6.61, "arducopter": [], "sim_py": [], "px4_sim": false, "t": "05:36:48"}
+{"ev": "start", "copy": "ab", "label": "lowap_apb_10m_w20g40_s12_base_farmland", "attempt": 1, "load": [2.90478515625, 4.85693359375, 5.06982421875], "waited_s": 55, "t": "05:37:38"}
+{"ev": "end", "copy": "ab", "label": "lowap_apb_10m_w20g40_s12_base_farmland", "attempt": 1, "rc": 0, "wall_s": 89, "bad": null, "rms": 0.36746456448229387, "load_start_runner": [2.90478515625, 4.85693359375, 5.06982421875], "hold_md5": "d78329d32c349ef061282fea1192d320", "hold_cfg": {"repeat_diff": 0.01, "h_min": 2.0}, "t": "05:39:07"}
+{"ev": "final", "copy": "ab", "label": "lowap_apb_10m_w20g40_s12_base_farmland", "status": "ok", "t": "05:39:07"}
+{"ev": "wait", "load": 10.41, "arducopter": [], "sim_py": [], "px4_sim": false, "t": "05:39:07"}
+{"ev": "wait", "load": 9.58, "arducopter": [], "sim_py": [], "px4_sim": false, "t": "05:39:12"}
+{"ev": "wait", "load": 4.05, "arducopter": [], "sim_py": [], "px4_sim": false, "t": "05:40:08"}
+{"ev": "wait", "load": 3.73, "arducopter": [], "sim_py": [], "px4_sim": false, "t": "05:40:13"}
+{"ev": "start", "copy": "ab", "label": "lowap_apb_10m_w20g40_s12_pyb_farmland", "attempt": 1, "load": [2.90087890625, 5.3388671875, 5.3212890625], "waited_s": 81, "t": "05:40:28"}
+{"ev": "end", "copy": "ab", "label": "lowap_apb_10m_w20g40_s12_pyb_farmland", "attempt": 1, "rc": 0, "wall_s": 90, "bad": null, "rms": 0.2825623453873752, "load_start_runner": [2.90087890625, 5.3388671875, 5.3212890625], "hold_md5": "d78329d32c349ef061282fea1192d320", "hold_cfg": {"repeat_diff": 0.01, "h_min": 2.0, "dense_local": true, "dense_turn": true}, "t": "05:41:58"}
+{"ev": "final", "copy": "ab", "label": "lowap_apb_10m_w20g40_s12_pyb_farmland", "status": "ok", "t": "05:41:58"}
+{"ev": "wait", "load": 3.99, "arducopter": [], "sim_py": [], "px4_sim": false, "t": "05:41:58"}
+{"ev": "wait", "load": 3.67, "arducopter": [], "sim_py": [], "px4_sim": false, "t": "05:42:03"}
+{"ev": "start", "copy": "ab", "label": "lowap_apb_5m_w20g40_s12_base_ottawa2022", "attempt": 1, "load": [2.95263671875, 4.6962890625, 5.0947265625], "waited_s": 35, "t": "05:42:33"}
+{"ev": "end", "copy": "ab", "label": "lowap_apb_5m_w20g40_s12_base_ottawa2022", "attempt": 1, "rc": 0, "wall_s": 88, "bad": null, "rms": 0.7578528648644061, "load_start_runner": [2.95263671875, 4.6962890625, 5.0947265625], "hold_md5": "d78329d32c349ef061282fea1192d320", "hold_cfg": {"repeat_diff": 0.01, "h_min": 2.0}, "t": "05:44:01"}
+{"ev": "final", "copy": "ab", "label": "lowap_apb_5m_w20g40_s12_base_ottawa2022", "status": "ok", "t": "05:44:01"}
+{"ev": "wait", "load": 6.11, "arducopter": [], "sim_py": [], "px4_sim": false, "t": "05:44:01"}
+{"ev": "wait", "load": 5.62, "arducopter": [], "sim_py": [], "px4_sim": false, "t": "05:44:06"}
+{"ev": "start", "copy": "ab", "label": "lowap_apb_5m_w20g40_s12_pyb_ottawa2022", "attempt": 1, "load": [2.8232421875, 4.783203125, 5.1318359375], "waited_s": 60, "t": "05:45:01"}
+{"ev": "end", "copy": "ab", "label": "lowap_apb_5m_w20g40_s12_pyb_ottawa2022", "attempt": 1, "rc": 0, "wall_s": 89, "bad": null, "rms": 0.30668410444896194, "load_start_runner": [2.8232421875, 4.783203125, 5.1318359375], "hold_md5": "d78329d32c349ef061282fea1192d320", "hold_cfg": {"repeat_diff": 0.01, "h_min": 2.0, "dense_local": true, "dense_turn": true}, "t": "05:46:30"}
+{"ev": "final", "copy": "ab", "label": "lowap_apb_5m_w20g40_s12_pyb_ottawa2022", "status": "ok", "t": "05:46:30"}

@@ -29,6 +29,9 @@ DEFAULTS = {
     # Attitude for Hold. "gyro": the FC's body rates integrated, leaning toward the FC attitude with
     # att_tau_s (apb_main.GyroAtt). "fc": the FC attitude as sent; in PX4 SITL it flew away at 50-122 m,
     # because PX4's tilt follows our fix while it fuses it (px4sim/results.txt).
+    # "gyro_fcyaw": roll and pitch as "gyro", the yaw as the FC sends it (profile tools/profiles/yaw_fc.json).
+    # Added 2026-11-21, off by default: the yaw of "gyro" follows an FC yaw step only with att_tau_s. Its gain in
+    # closed loop is in integ/kfmap/README.txt (simulator A/B). Open-loop replays showed no gain (integ/diag10).
     "att_source": "gyro",
     "att_tau_s": 20.0,                 # assumed: far slower than the 2-3 s period of that loop at 50-122 m (SITL)
     # "imu": as "gyro", but roll and pitch lean toward the accelerometer's gravity direction (SCALED_IMU at
@@ -173,7 +176,7 @@ DEFAULTS = {
 }
 
 CHOICES = {"video_standard": ("auto", "PAL", "NTSC", "none"), "field": ("top", "bottom", "frame"),
-           "top": ("front", "right", "rear", "left"), "att_source": ("gyro", "fc", "imu"), "camera": ("analog", "digital"),
+           "top": ("front", "right", "rear", "left"), "att_source": ("gyro", "fc", "imu", "gyro_fcyaw"), "camera": ("analog", "digital"),
            "gnss_mode": ("none", "setup", "fallback", "velocity")}
 LENS_KEYS = ("fx", "fy", "cx", "cy", "k1", "k2", "k3", "k4")     # lens_measured's numbers
 

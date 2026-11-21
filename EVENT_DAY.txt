@@ -55,6 +55,9 @@ STEP 0A. BOARD SETUP, ONCE FOR EACH BOARD (10 min; details: tools/bundle/README.
    BOARD_DIR=... Put those two lines into tools/deploy.env. After that, push, start, stop, status and pull use them.
    If check says "libstdc++.so.6" (or libgcc_s.so.1, libz.so.1) "cannot open shared object file":
    tools/bundle/README.txt, CASE B, item 3.
+   Then type on the laptop: NO_RESTART=1 tools/deploy.sh. It copies the program into the bundle's folder.
+   In case B, each board command of this checklist changes in two ways: type the PY value of tools/deploy.env in
+   place of python3, and type the command in the BOARD_DIR folder. tools/deploy.sh does both by itself.
 6. Type board_check again (case B: with the bundle's Python, tools/bundle/README.txt, CASE B, item 4).
 Pass: Every package line shows PASS.
 If the flight controller line shows no heartbeat: on the board, type: sh tools/board_check.sh --route
@@ -69,6 +72,10 @@ STEP 0. JUSTICE D SETUP, ON THE LAPTOP (3 min)
 1. On the laptop, type: python3 tools/use_profile.py apply <profile names> justice_d
    (Later in the day, first type: tools/deploy.sh pull. It gets the values that the board wrote.)
    Name every profile that you use, for example: outdoor_day goal_a ardupilot justice_d
+   Holds at 5 to 10 m only: add low_height after justice_d, for example:
+   outdoor_day goal_a ardupilot justice_d low_height   (DECISION_CARD row 47: in the simulator the hold error at
+   10 m fell by about half, and at 5 m by 20 to 44 %. At 60 m it was worse: for a hold above 30 m, apply the
+   profiles again without it.)
    No SD (Secure Digital) card in the aircraft: add no_sd last, for example: outdoor_day goal_a ardupilot justice_d no_sd
 2. With an SD card: open settings.json. Set log_dir to /sdcard/logs.
    No SD card: keep log_dir at "logs" (the 4 GB eMMC, the board's own flash memory).
@@ -94,7 +101,10 @@ STEP 1. FLIGHT CONTROLLER PARAMETERS (4 min)
    (Stage 1, page 8: "Bench work, configuration changes and flight activity will follow the event procedures and
    designated crew's instructions." No document that we have names the arming checks or the failsafe values.)
 2b. Save the aircraft's own values. Type: python3 tools/fc_params.py save
-   Pass: the last line shows "PASS saved". The file is <log_dir>/fc_params_before.json. It is never overwritten.
+   Pass: the last line shows "PASS saved" (the first time of the day) or "PASS ... saved already" (each later time).
+   The file is <log_dir>/fc_params_before.json. The tool never overwrites it: the first save holds the aircraft's
+   own values. Do not rename it. Do not delete it. It also holds the parameters of each GNSS level (DECISION_CARD
+   row 45), so a level that you add later in the day can be put back too.
    On the laptop, type: tools/deploy.sh pull. Keep the file: step 8 puts these values back.
    A line "<name>: no answer" means that this firmware does not have that parameter. (The event firmware can be
    newer than the ArduCopter 4.6 of our simulator.) Write the name down. Item 3 then shows FAIL for it.
@@ -272,7 +282,9 @@ STEP 6B. MODE SWITCH, PROPELLERS OFF (4 min, before the first flight)
 The aircraft manual gives the stock switch positions: Acro, Position Hold (with GPS) and Return to Home. The hold
 needs one position for Altitude mode and one for Position mode.
 1. Propellers off. Battery and cable connected.
-2. On the laptop, type: tools/deploy.sh. Pass: the last line shows "running: yes".
+2. On the laptop, type: tools/deploy.sh pull. Then type: tools/deploy.sh start
+   (mask and calib wrote settings.json on the board. A copy before a pull stops: "the board's calibration differs".)
+   Pass: the line after "--- running:" shows yes.
 3. Ask the pilot to move the switch to each position, one at a time.
 4. After each move, on the board, type: tail -n 1 $(ls -t <log_dir>/run_*.csv | head -1)
    The last word of the line is the flight mode that the program reads.
@@ -294,14 +306,20 @@ EKF2_GPS_CTRL 0). If one of those lines shows FAIL, do not fly.
 STEP 6C. TAKEOVER DEMONSTRATION FOR THE PILOT, PROPELLERS OFF (10 min, before the first flight)
 The pilot must see that the pilot can take over, before the pilot flies our hold. The pilot decides if the aircraft flies.
 1. Give the pilot the page PILOT_SAFETY.txt (print it, or show it on the laptop). Give the pilot time to read it.
-2. Do the bench steps B0 to B7 of integ/pilot_safety/README.txt, section 6, with the pilot. B1 is step 6B: if the
+2. Ask the crew to set these values before the bench steps. The crew sets them. We do not.
+     FS_EKF_ACTION 2 (AltHold when our position stops; 1 = Land if the pilot prefers)
+     FS_THR_ENABLE 3 (Land on a radio loss; the default 1 = RTL flies on our position)
+     BATT_FS_LOW_ACT 0 or 1, BATT_FS_CRT_ACT 1 (Land; never RTL)
+     FS_DR_ENABLE 1, and no Return to Home position on the mode switch
+     The arming check of step 1 item 4a. (The full list and the reasons: integ/pilot_safety/README.txt, section 5.)
+3. Do the bench steps B0 to B7 of integ/pilot_safety/README.txt, section 6, with the pilot. B1 is step 6B: if the
    pilot watched step 6B, do not do it again. The steps show: the failsafe parameters, the mode of each switch
    position, no arming in Position mode with no position, the program frozen, the camera covered, the program
    killed, and the switch that changes the mode at once.
    Bench step B2 with the vision arming check on shows "VisOdom: not healthy". It shows the refusal for a missing
    position ("Need Position Estimate") only after the crew turned off the vision arming check (step 1, item 4a).
-3. Tell the pilot the three things that the bench cannot show (the same page, section 4, last two lines, and section 5).
-4. Ask the pilot for the failsafe values of PILOT_SAFETY.txt section 3. The crew sets them. We do not.
+4. Tell the pilot the things that the bench cannot show: the two first-flight items at the end of section 4 of the
+   page, and section 5 (what is not tested).
 Pass: Each bench step passed, or the pilot accepts the difference. The pilot says that the aircraft can fly.
 If the pilot does not agree, do not fly. Write down what the pilot wants to see first.
 (No bench step has run on the real aircraft. The pass rules come from the ArduPilot source.)
@@ -315,11 +333,12 @@ From item 1 to item 9 the pilot does not move the switch to Position mode, excep
 15 s in the air in Altitude mode before the switch.
 1. On the laptop, type: tools/deploy.sh
    It copies the program, stops a running copy, and starts "apb_main.py run --raw" on the board in the background.
-Pass: The last line shows "running: yes".
+Pass: The line after "--- running:" shows yes.
 2. Unplug the USB-C cable. The program keeps running.
    (deploy.sh starts it with setsid and nohup. Do not start the hold with "python3 apb_main.py run" in an ssh
-   session: it stops when the session ends (rehearsal hang-up test). On the board, type the same start as deploy.sh:
-   setsid nohup python3 -u apb_main.py run --raw > logs/console.txt 2>&1 < /dev/null &)
+   session: it stops when the session ends (rehearsal hang-up test). Only if tools/deploy.sh cannot run, type this
+   on the board in its place, one time: setsid nohup python3 -u apb_main.py run --raw > logs/console.txt 2>&1 < /dev/null &
+   Never do both: two copies of the program fight for the camera and the flight controller link.)
 3. At the flight line, install the propellers. Keep the battery connected: with no power the program stops.
 4. PX4: tell the pilot to wait 60 seconds or more after item 1 before the pilot selects Position mode.
    (PX4 uses the time stamps of the fixes only after 50 seconds of time synchronization.)
@@ -333,7 +352,16 @@ Pass: The last line shows "running: yes".
    (This is the proof that the hold cannot start before our program is ready, judging area D.)
 6. Ask the pilot to climb to 20 m. The outdoor profiles send nothing below 3 m (indoor: 1 m).
 7. Ask the pilot not to yaw the aircraft. Yaw moves the fix (H8).
-8. Ask the pilot to hold the aircraft still for 5 seconds.
+8. Ask the pilot to hold the aircraft still before the switch. Count the seconds aloud.
+   Without the profile low_height: 15 seconds. With low_height: 5 seconds.
+   If the crew's ground station shows the text "EKF3 IMU0 is using external nav data", count from that text.
+   Why 15 s: the flight controller needs our position for some seconds before it holds well on it. ArduCopter
+   simulator, 10 m, wind 20 gusting 40 km/h, 2 seeds: with a 4 s hover the hold was 0.79 and 0.71 m RMS, with a
+   15 s hover 0.51 and 0.41 m (integ/kfmap/closed/ab_table.txt). At 30 m and higher the climb already gives that time.
+   Why 5 s with low_height: there the 15 s gave no more gain (0.42 and 0.35 m with both), and in 2 of 4 runs the
+   flight controller's yaw moved by about 4 degrees in the hold (DECISION_CARD row 47).
+   (On the flight with the timing wiggle, items 8a and 8b, the settle time stays 4 s: that flight measures the
+   timing, not the hold.)
 8a. For the timing wiggle: ask the pilot to climb to 40 m or higher in Altitude mode (clear area). Then hold the
    aircraft still for 5 seconds. (If the pilot cannot fly 40 m, skip items 8a and 8b and keep the delay and readout
    of the ground calibration, step 4. The hold of items 9 and 10 is then at 20 m.)
@@ -343,13 +371,14 @@ Pass: The last line shows "running: yes".
    before the switch: they must hold the whole wiggle. If the switch comes later: ask the pilot for the wiggle again
    (8 s), settle 4 s, then item 9.
 9. Ask the pilot to select Position mode. The pilot moves the switch that starts our hold.
-10. Let the aircraft hold for 30 seconds. The pilot does not touch the sticks.
+10. Let the aircraft hold for 30 seconds. First flight: 10 seconds, then item 10a. The pilot does not touch the sticks.
 Pass: The drone stays above the same ground point. It does not move away.
 If the drone moves away, tell the pilot to select Altitude mode immediately. The flight controller does not detect a
 slow, wrong position: only the pilot can stop it (PILOT_SAFETY.txt).
 10a. Ask the pilot to select Altitude mode. Write down the time. Altitude mode does not hold the position: tell the
    pilot before the flight to fly against the wind at once. (Simulator, wind 20 gusting 40 km/h, sticks centred:
    the mode changed in 0.01 s, the height stayed within 0.05 m, and the aircraft drifted 36 m in 10 s.)
+   Then the pilot can select the pilot's own manual mode (Acro or Stabilize). The simulator did not fly Acro.
 Pass: The mode changes at once and the aircraft answers the sticks. The run log shows a "released" note.
 (This is the proof of the pilot's exit, judging area D. On the first flight, do it after 10 seconds, not 30.)
 11. Ask the pilot to land and to disarm.
@@ -436,4 +465,8 @@ Apply the command again without the name to switch it off.
 - drag_fusion (ArduPilot only): do not use it. In SITL it did not hold position through a 20 s video outage
   (1 seed), and the largest drift of normal holds was higher with it (apsim/drag_results.txt).
   It also needs FS_DR_ENABLE set by the event crew: the default 2 starts RTL when the EKF dead-reckons.
+- low_height: for holds at 5 to 10 m. No gain from 10 to 30 m. Never above 30 m (DECISION_CARD row 47). It sets three values together. Never set
+  hold_cfg dense_turn by hand: the program refuses it without att_source gyro_fcyaw.
+- att_gap: only when the run log shows many "attitude stale" rows (DECISION_CARD row 44).
+- gnss_setup, gnss_fallback: the GNSS level (DECISION_CARD row 45).
 - no_sd: for a board with no SD card (step 0). Name it last, after justice_d.

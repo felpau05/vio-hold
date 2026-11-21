@@ -352,7 +352,7 @@ def run_case(case, quiet=False):
             link.throttle = 500 + math.copysign(float(np.clip(abs(err) * 60, 120, 480)), err)
             time.sleep(0.01)
         link.throttle = 500
-        link.wait_for(4.0)
+        link.wait_for(c.get("hover_s", 4.0))     # case key hover_s: steady hover before the switch (default 4 s; integ/kfmap)
         res["climb_s"] = round(link.now() - t_climb, 1)
         if c["wiggle_s"] > 0:                                   # the timing wiggle, then 4 s to settle
             t_w = link.now()

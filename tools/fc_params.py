@@ -10,7 +10,8 @@ example GPS1_TYPE 0). Save the aircraft's own values BEFORE that step. Restore t
   --settings PATH                      another settings file than settings.json (as apb_main.py)
 
 Run it on the board, propellers off, with the program stopped (tools/deploy.sh stop): the FC link has one user.
-save never overwrites its file: the first save holds the aircraft's own values. Reboot the FC after restore.
+save never overwrites its file: the first save holds the aircraft's own values. A later save reads nothing and shows
+PASS, so the checklist step can be repeated. Reboot the FC after restore.
 """
 import json
 import os
@@ -22,8 +23,16 @@ sys.path.insert(0, ROOT)
 FILE = "fc_params_before.json"
 
 
+# Each parameter that a GNSS level can write (apb_main.GNSS_AP; selftest compares the two lists). save reads them
+# also when no level is chosen yet, so a level that the team adds later in the day can be put back too.
+GNSS_NAMES = ["GPS1_TYPE", "EK3_SRC1_POSXY", "EK3_SRC1_VELXY", "EK3_SRC1_POSZ", "EK3_SRC1_VELZ", "EK3_SRC1_YAW",
+              "EK3_SRC2_POSXY", "EK3_SRC2_VELXY", "EK3_SRC2_POSZ", "EK3_SRC2_VELZ", "EK3_SRC2_YAW", "EK3_SRC_OPTIONS"]
+
+
 def names(s, fc):
-    return list(s["params_px4"] if fc.firmware == "px4" else s["params_ardupilot"])
+    if fc.firmware == "px4":
+        return list(s["params_px4"])
+    return list(dict.fromkeys(list(s["params_ardupilot"]) + GNSS_NAMES))
 
 
 def read(fc, name, alias):
@@ -37,8 +46,10 @@ def read(fc, name, alias):
 def save(s, fc, alias, say=print):
     path = os.path.join(s["log_dir"], FILE)
     if os.path.exists(path):
-        say(f"FAIL {path} exists. It holds the values of the first save. Keep it. To save again, rename it first.")
-        return 1
+        old = json.load(open(path))
+        say(f"PASS the aircraft's own values are saved already ({old.get('saved')}, {len(old['values'])} parameters). "
+            f"Nothing read, nothing changed. Keep {path}. Do not rename or delete it.")
+        return 0
     values = {}
     for want in names(s, fc):
         name, got = read(fc, want, alias)
@@ -85,7 +96,7 @@ def selftest():
         firmware = "ardupilot"
 
         def __init__(self):
-            self.p = {"GPS_TYPE": 1.0, "EK3_SRC1_POSXY": 3.0, "VISO_TYPE": 0.0}     # the aircraft's own values
+            self.p = {"GPS_TYPE": 1.0, "EK3_SRC1_POSXY": 3.0, "VISO_TYPE": 0.0, "EK3_SRC2_POSXY": 0.0}   # the aircraft's own
 
         def get_param(self, name):
             return self.p.get(name)
@@ -99,12 +110,21 @@ def selftest():
         fc, out, alias = Fake(), [], {"GPS1_TYPE": "GPS_TYPE"}
         assert save(s, fc, alias, out.append) == 0
         own = dict(fc.p)
-        assert save(s, fc, alias, out.append) == 1, "a second save must not overwrite the first"
+        before = open(os.path.join(d, FILE)).read()
         fc.p.update(GPS_TYPE=0.0, EK3_SRC1_POSXY=6.0, VISO_TYPE=1.0)                 # what --set-params does
+        assert save(s, fc, alias, out.append) == 0 and "saved already" in out[-1], out[-1]
+        assert open(os.path.join(d, FILE)).read() == before, "a second save must not change the first"
+        fc.p.update(EK3_SRC2_POSXY=6.0)               # a GNSS level added later: its parameter was saved at the start
         assert restore(s, fc, out.append) == 0 and fc.p == own, fc.p
         assert any("NOT_THERE: not saved" in line for line in out)
         fc.firmware = "px4"
         assert restore(s, fc, out.append) == 1, "another firmware must write nothing"
+    try:
+        import apb_main
+        want = sorted({k for level in apb_main.GNSS_AP.values() for k in level})
+        assert sorted(GNSS_NAMES) == want, (sorted(GNSS_NAMES), want)
+    except ImportError as e:
+        print(f"INFO GNSS_NAMES not compared with apb_main ({e})")
     print("selftest ALL PASSED")
     return 0
 

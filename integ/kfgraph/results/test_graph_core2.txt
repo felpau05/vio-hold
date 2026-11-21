@@ -1,0 +1,3 @@
+kf_graph.py synthetic checks (assumed noise: chain 3 cm per change, local yaw 0.3 deg, meas 2 cm / 0.2 deg)
+  clean                                        : frame error RMS graph 0.017 m (max 0.041) | single keyframe 0.099 m (max 0.236) | solve 2.01 ms median, 2.25 ms p99, gated blocks 0, edge frames gated 1
+  with a wrong edge and wrong frame matches    : frame error RMS graph 0.018 m (max 0.050) | single keyframe 0.099 m (max 0.236) | solve 2.05 ms median, 2.22 ms p99, gated blocks 15, edge frames gated 11

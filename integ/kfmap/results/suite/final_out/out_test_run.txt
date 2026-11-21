@@ -1,0 +1,12 @@
+connected: px4, ATTITUDE 100 Hz, clock fitted True
+  PASS normal: 229 fixes in 8 s (28.6/s), position error vs truth rms 0.13 m, max 0.22 m; fix age 76 ms
+  PASS normal: error under 1 m RMS at 50 m (hold anchored to the FC position)
+  PASS fix fields: z -50.84, angles NaN, covariance[0] 0.0386 [6] 0.0387 [11] 0.0
+  PASS frozen picture: last fix 0.00 s after the freeze; 0 fixes later than 0.5 s
+  PASS after the freeze: 110 fixes in 4 s; first 0.34 s after the picture moved again
+  PASS attitude stopped: last fix 0.03 s after; 0 fixes later than 0.2 s
+  PASS after attitude returned: 97 fixes in 4 s
+  PASS restart: 108 fixes; first fix 0.21 m from the truth (no jump)
+  PASS log 558 rows; reasons {'': 440, 'repeated frame': 60, 'good fix': 27, 'attitude 0': 8, 'attitude stale': 4, 'attitude 25': 2, 'attitude 1': 2, 'init': 1}; first note 'FC mode main mode 0; re-anchored to FC position 0.62 0.81'
+  PASS replay of the first raw chunk (3 chunks): {'frames': 301, 'sent': 230, 'init': 1, 'ok': 240} in 1 s
+ALL PASS in 28 s (files in /tmp/tmpobn47m6_)

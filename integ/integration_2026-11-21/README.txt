@@ -61,3 +61,38 @@ NOT DONE
 - att_gap in closed loop. fc_params.py on a real FC.
 - PX4 for the GNSS levels and for the takeover cases. Acro, RTL and the radio failsafe in SITL.
 - A merge with origin/spec-justice-d: only text was taken from it (roles, questions, record sheet, Q&A questions).
+
+
+SECOND PART OF THE NIGHT (03:15 to 08:15): REVIEW, LOW HEIGHT, FORWARD CAMERA, FIVE SESSIONS
+Five sessions worked on this folder. Session 1f (this record) led and owned the documents, the flight program files
+and the bundle. Session 0a owned hold.py and the simulators. Sessions 16, 2f and 32 checked status, rules and sources.
+
+COMMIT 8939114 (03:25): the tested state of the first part, with the hold.py of the 02:08 bundle. Not pushed.
+
+DOCUMENT REVIEW (an independent reader, 21 findings, all corrected)
+The worst ones: the parameter save of EVENT_DAY step 1 item 2b failed on a second pass (tools/fc_params.py now
+shows PASS and keeps the first file); EIGHT_HOURS put EVENT_DAY step 8 (give the aircraft back) before the scored
+trial; no hour did step 6C; a board with no usable Python (case B) had no instructions for the board commands; the
+GNSS-level parameters were not in the save (fc_params.py now saves them always).
+
+LOW HEIGHT (sessions 0a and 1f; integ/diag10, integ/kfmap)
+- Cause found in the simulator: at 5 to 10 m most fixes come from Hold's whole-picture path, which took the yaw
+  from the attitude feed. 1 degree of yaw error moved the fix by 0.26 m at 10 m.
+- hold.py (0a): options dense_local, dense_turn, dense_nadir_deg, kf_map. All off by default. With them off Hold
+  gives the same fixes as before (integ/kfmap/README.txt section 3).
+- apb_main.py, settings.py (1f): att_source "gyro_fcyaw" (roll and pitch from GyroAtt, the yaw of the FC as sent),
+  and the interlock apb_main.turn_problems: dense_turn does not start without gyro_fcyaw. tests_apb/test_att_yaw.py.
+- Profile tools/profiles/low_height.json = dense_local + dense_turn + gyro_fcyaw. Only for holds at 5 to 10 m.
+  ArduCopter SITL A/B: integ/kfmap/closed/ab_table.txt. DECISION_CARD row 47 has the numbers and the limits.
+- The pilot's hover before the switch: 15 s (EVENT_DAY step 7 item 8).
+- A first diagnosis ("the yaw explains the full 1 m") was wrong and was withdrawn by its author within 10 minutes:
+  its replay started the attitude feed at another moment than the program does.
+
+FORWARD CAMERA (prototype, not evaluated, not in the program): fwd_cam.py, tools/fwd_rec.py, tools/fwd_check.py,
+tests_apb/test_fwd_cam.py (not in run_all.sh, never run), integ/fwdcam/README.txt. Not for use in a flight today.
+
+SOURCE CHECK OF THE TALK (session 32): the four quotes of slide 1 and the bridge quote are the same as the text of
+their pages (talk/quotes_check_2026-11-21.md). The price of the comparable drone could not be confirmed.
+
+OTHER SMALL CHANGES: tools/profiles/att_gap.json and yaw_fc.json, DECISION_CARD rows 44 to 47, EVENT_DAY step 0
+(low_height), the question bank of PRESENTATION.md (items 37 and 38), CONTRIBUTION.md (one row).

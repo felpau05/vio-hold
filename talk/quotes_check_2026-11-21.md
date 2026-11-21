@@ -25,7 +25,17 @@ Result: all four quotes are **same** as the page text. Notes below each row say 
 
 - **6a.** The next sentence on the page supports a position-hold argument directly: "Losing a GPS signal may eliminate or reduce the airframe's ability to hold a certain position and altitude, requiring the remote pilot to manually control the aircraft or rely on other sensors (ultrasonic proximity sensors or first-person view cameras) for stability."
 
-ROW_3C_PENDING
+| Row | Result |
+|---|---|
+| 3c | **Not checked on the live page.** https://www.modalai.com/products/starling-2 returned HTTP 429 (rate limit) at 03:18 and again at 03:20; the product-data address (`starling-2.js`) also returned HTTP 429. |
+
+What the archived copy shows (Internet Archive, captured 2026-02-15 06:05 UTC: http://web.archive.org/web/20260215060503/https://www.modalai.com/products/starling-2, opened 03:19 EST):
+- Comparison block: "Starling 2 / Price: from $2,949.99" and "Starling 2 Max / Price: from $2,999.99".
+- Starling 2 variants run from $2,849.99 (drone only, no radios) to $3,899.99 (2 batteries, controller and case).
+- **$3,199.99 does not appear** in this copy. Prices on this page change over time, so the table's figure may be newer, or it may be wrong.
+- Image sensors in this copy: Starling 2 has "Triple AR0144 fisheye CV image sensor"; Starling 2 Max has "Dual AR0144 fisheye CV image sensor". Row 5 of business_sources.md says Starling 2 has dual AR0144: that matches the Max, not the Starling 2.
+
+Advice: do not say an exact price. "A commercial visual-navigation development drone (ModalAI Starling 2) costs about $3,000" is true of both the archived copy and the table. Open the live page in a normal browser before the talk if an exact number is needed.
 
 ## Page URLs as opened
 
