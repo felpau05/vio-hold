@@ -171,7 +171,7 @@ const r=document.getElementById('ready');r.textContent=s.ready?'READY':'NOT READ
 document.getElementById('why').textContent=s.ready?'':(s.why||'');
 document.getElementById('fwd').textContent=f(s.fwd);document.getElementById('right').textContent=f(s.right);
 document.getElementById('dist').textContent=s.dist==null?'-':s.dist.toFixed(2);document.getElementById('dh').textContent=f(s.dh);
-document.getElementById('info').textContent=`height ${s.h==null?'-':s.h.toFixed(2)} m · ${s.state||'-'} · ${s.n??'-'} points · ${s.fps?.toFixed(1)??'-'} fps · process ${s.proc_ms?.toFixed(0)??'-'} ms · frame age ${s.age_ms?.toFixed(0)??'-'} ms · SoC ${s.soc?.toFixed(0)??'-'} °C · up ${s.up?.toFixed(0)??'-'} s`;
+document.getElementById('info').textContent=`height ${s.h==null?'-':s.h.toFixed(2)} m · baro ${s.baro_age==null?'none':s.baro_age.toFixed(1)+' s ago'} (${s.baro_n??'-'} rows, ${s.baro_rej??'-'} rejected) · ${s.state||'-'} · ${s.n??'-'} points · ${s.fps?.toFixed(1)??'-'} fps · process ${s.proc_ms?.toFixed(0)??'-'} ms · frame age ${s.age_ms?.toFixed(0)??'-'} ms · SoC ${s.soc?.toFixed(0)??'-'} °C · up ${s.up?.toFixed(0)??'-'} s`;
 }catch(e){document.getElementById('why').textContent='no connection to the APB';document.getElementById('ready').className='';}}
 setInterval(tick,200);tick();
 </script></body></html>"""
@@ -245,7 +245,9 @@ def run(s, port=8080, fps=30.0, seconds=None, log_dir="/data/vio/logs", say=prin
         last_h = None                                   # (t, h) of the newest barometer height
         floor_window = []                               # (t, Pa) for the floor zero
         floor_until = time.monotonic() + 2.0            # first 2 s: on the floor
-        zero = None                                     # dict(pos, h, c, s) of the position zero
+        zero = None                                     # dict(pos, c, s) of the position zero
+        pos_zero_pending = False                        # "Zero here" pressed with no fix: zero at the next fix
+        h_zero = None                                   # lens height at the zero (B3). Needs no fix.
         fps_t = deque(maxlen=60)
         while seconds is None or time.monotonic() - t_start < seconds:
             r = grab.get()
@@ -309,18 +311,23 @@ def run(s, port=8080, fps=30.0, seconds=None, log_dir="/data/vio/logs", say=prin
             st = dict(ready=bool(ok), why=why2, state=e.state if e else None, n=e.n if e else None, h=h,
                       proc_ms=proc, age_ms=(time.monotonic() - t_eof) * 1e3, soc=A.soc_temp_c(),
                       up=time.monotonic() - t_start,
-                      fps=(len(fps_t) - 1) / (fps_t[-1] - fps_t[0]) if len(fps_t) > 2 else None)
+                      fps=(len(fps_t) - 1) / (fps_t[-1] - fps_t[0]) if len(fps_t) > 2 else None,
+                      baro_age=time.monotonic() - last_b if last_b > -math.inf else None,
+                      baro_n=baro.count, baro_rej=getattr(baro, "rejected", 0))
+            # height zero: at "Zero here" (at once, fix or not), else at the first position zero.
+            # The height change is shown on every frame: a lift can stop the fix, and B3 needs no fix.
+            if zero_req:
+                pos_zero_pending, h_zero = True, h
             if e is not None and e.var is not None:
                 yaw = float(np.interp(t0, *np.array(att.rows)[-200:, [0, 3]].T))
-                if zero is None or zero_req:
-                    zero = dict(pos=e.pos[:2].copy(), h=h, c=math.cos(yaw), s=math.sin(yaw))
+                if zero is None or pos_zero_pending:
+                    zero = dict(pos=e.pos[:2].copy(), c=math.cos(yaw), s=math.sin(yaw))
+                    h_zero = h if h_zero is None else h_zero
+                    pos_zero_pending = False
                 d = e.pos[:2] - zero["pos"]
                 st.update(fwd=float(d[0] * zero["c"] + d[1] * zero["s"]),
-                          right=float(-d[0] * zero["s"] + d[1] * zero["c"]), dist=float(np.hypot(*d)),
-                          dh=None if h is None or zero["h"] is None else float(h - zero["h"]))
-            elif zero_req and zero is not None:
-                with shared.lock:
-                    shared.zero_req = True              # no fix now: zero at the next one
+                          right=float(-d[0] * zero["s"] + d[1] * zero["c"]), dist=float(np.hypot(*d)))
+            st["dh"] = None if h is None or h_zero is None else float(h - h_zero)
             shared.put(**st)
             log.row(fr, e, ok, why2, proc, st["age_ms"], h, pipe.note)
     except KeyboardInterrupt:
