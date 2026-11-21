@@ -33,8 +33,9 @@ A walk can also just be **recorded** now and replayed later, so calibration can 
 
 ## 2. Distances right (before any judged session)
 
-- [ ] **[you] Lens calibration recording:** 30 s, drone upside down, camera at the ceiling, slow turns in every
-      direction around the lens. Repeat outdoors later to confirm.
+- [ ] **[you] Lens calibration recording:** checkerboard (10x7 squares) on a screen or paper, 40 s of views across
+      the whole picture with `apb_rec.py`, then `~/.venvs/vio4/bin/python tools/lens_calib.py "rec/board_*.npz" --step 5 --name ...`.
+      Tool checked on synthetic views of a known lens (focal within 0.4 %). Ceiling rotation stays for the IMU axes and timing.
 - [ ] **[code] `calib` on apb_rec recordings:** focal length, lens centre, camera-to-IMU rotation (`imu_R_sb`),
       camera delay, rolling-shutter readout. Today's lens profile is a spec-sheet guess and the visible fisheye
       circle says it is far off (about 300 px focal, not 482, at 960 px width).
@@ -47,7 +48,7 @@ A walk can also just be **recorded** now and replayed later, so calibration can 
 
 ## 3. Bench items C, D, E (needed before we may fly)
 
-- [ ] **[code] MSP link from the APB:** send `MSP_SET_RAW_RC` at 50 Hz **from start-up**; not ready = roll,
+- [ ] **[code] MSP link from the APB** (framing and parsing: reuse `msp_link.py`): send `MSP_SET_RAW_RC` at 50 Hz **from start-up**; not ready = roll,
       pitch, yaw 1500 and a hold-height throttle, never minimum values. Read CH10 (engage), RC, attitude, altitude.
 - [ ] **[you + code] Confirm the channel order** on the Betaflight Receiver tab, props off, before any real
       command (Stage 2 says roll, pitch, throttle, yaw; `MSP_RC` reads back roll, pitch, yaw, throttle).

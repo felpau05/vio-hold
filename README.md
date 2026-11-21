@@ -1,13 +1,17 @@
 # VIO position hold
 
 Hold a drone in place with no GPS. A downward camera watches the ground. Our program turns the
-picture motion, plus the tilt from the flight controller (FC), into a position. It sends that
-position to the autopilot (ArduPilot or PX4) over MAVLink, and the autopilot holds it.
+picture motion, plus the tilt from an IMU, into a position.
 
 Target: the Contested Battlefield Aerial Operations challenge (Grand Final), on the Orqa M2-AI. The program runs
 on its APB (Auto Pilot Board, an i.MX8M Plus computer next to the FC) and reads the downward **Justice D**
-(digital MIPI CSI, 1280x720 at 60 fps, 114 x 86 deg). The rules come from Stage 1 (rev 1.3);
-`SPEC.md` lists them and what is still open. The old analog Justice A path stays behind `video_kind="analog"`.
+(digital MIPI CSI, 1920x1080 at 60 fps on the event aircraft, strong fisheye).
+
+**Stage 2 (2026-11-21):** the FC runs Betaflight 2025.12.5, commanded over MSP (`MSP_SET_RAW_RC` while CH10 is
+on). The Stage 2 path uses only the APB's camera, IMU and barometer: `apb_live.py`. What is done and what is left:
+`TODO.md`. Measured hardware facts: `HARDWARE_BRINGUP.md`. Rules: the Stage 1 package (rev 1.3) and the Stage 2
+participant package; `SPEC.md` lists the Stage 1 rules. The older MAVLink path (ArduPilot / PX4,
+`apb_main.py run`) and the simulators stay for reference.
 
 ## Folders
 
@@ -18,6 +22,13 @@ on its APB (Auto Pilot Board, an i.MX8M Plus computer next to the FC) and reads 
 | `EVIDENCE.md` | Evidence log, who-wrote-what and presentation outline for the judges |
 | `ORGANIZER_QUESTIONS.md` | Open questions to send to the organizers |
 | `hold.py` | The estimator: picture + tilt + height in, position out |
+| `apb_live.py` | **Stage 2 live program on the APB**: camera + APB IMU + barometer -> position; web page on :8080; `--rec` records |
+| `apb_est.py` | APB attitude filter, barometer height, replay of APB recordings (`apb_est.py replay rec/x_*.npz`) |
+| `apb_sensors.py`, `v4l2_mmap.py`, `apb_rec.py` | APB IMU/barometer (IIO), Justice D capture (V4L2 mmap, 1920x1080 only), recorder |
+| `tools/apb_ctl.sh` | On the board: `sh /data/vio/apb_ctl.sh start [--rec LABEL] / stop / status` |
+| `tools/lens_calib.py` | Checkerboard fisheye calibration (run with OpenCV 4: `~/.venvs/vio4`) |
+| `msp_link.py`, `betasim/` | MSP framing (to reuse for `MSP_SET_RAW_RC`); Betaflight SITL closed loop (from the stage1-justice-d branch) |
+| `TODO.md` | Everything left before the presentation, by points |
 | `apb_main.py` | The onboard program: camera, FC link, Hold, sends positions. Modes: `run`, `check`, `mask`, `calib`, `bench`, `replay`, `delay`, `timing` |
 | `fc_link.py`, `capture.py`, `calib.py`, `settings.py` | FC link (MAVLink), camera input, camera calibration, settings |
 | `settings.json`, `tools/profiles/` | Settings; ready profiles (indoor, outdoor day/night, goal A/B, ArduPilot, PX4) |
@@ -57,6 +68,17 @@ docker run --rm -u $(id -u):$(id -g) -e HOME=/tmp -v $PWD:/ardupilot -w /ardupil
 ```
 
 ## Run
+
+On the APB (copy the files to `/data/vio`; OpenCV is in `/data/vio/pylib`):
+
+```sh
+ssh root@192.168.75.1 sh /data/vio/apb_ctl.sh start             # live position, page http://192.168.75.1:8080
+ssh root@192.168.75.1 sh /data/vio/apb_ctl.sh start --rec walk1 # same, and record for replay
+ssh root@192.168.75.1 sh /data/vio/apb_ctl.sh stop
+~/.venvs/vio/bin/python apb_est.py replay 'rec/walk1_*.npz'     # replay a recording on the laptop
+```
+
+On the laptop:
 
 ```sh
 sh tests_apb/run_all.sh                                        # all onboard-program tests
