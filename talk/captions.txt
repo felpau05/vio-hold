@@ -1,0 +1,26 @@
+Talk figures. Every number is read from a result file by talk/make_figures.py. All results are simulation or synthetic pictures. Nothing flew.
+
+fusion.png
+Caption: Run log of one closed-loop run: sent fix position, program state, fixes per second, fix age and processing time, tracked points, height, and the reasons for unsent frames. Justice D camera model, 100 m, wind 20 gusting 40 km/h. The first 224 frames are refused because the height is under 15 m.
+Source files: integ/gap/results/closed/gapfix_jdcal_apb_100m_w20g40_s11_onboard.csv (plotted by tools/plot_log.py).
+Runs: 1 (ArduCopter SITL, closed loop). Seeds: 11.
+
+outage_view.png
+Caption: Simulated camera view during a video outage. Copy of the existing picture; this script does not redraw it.
+Source files: integ/judge_outage_21s.png.
+Runs: 1. Seeds: not stated in the file.
+
+rolling_shutter.png
+Caption: RMS position error at 100 m for three readout models: the true readout, readout 0, and the wrong sign. The differences are smaller than the spread between seeds. Open loop, Justice D crop lens, wind 20 gusting 40 km/h.
+Source files: integ/justice_d/summary.txt (rows "JD_crop 100 main", "readout_0", "readout_wrong_sign").
+Runs: 9 (3 variants x 3 seeds). Seeds: 11, 12, 13.
+
+hold_vs_height.png
+Caption: RMS distance from the hold point over a 60 s hold, against height. Circles: PX4 SITL with our fixes. Squares: ArduCopter SITL with our fixes. Open diamonds: a perfect position (the true position sent as the fix), PX4 and ArduCopter drawn slightly left and right of each height. Justice D camera model, wind 20 gusting 40 km/h. Each mark is one run. Different heights come from different run sets, so compare points at the same height only.
+Source files: px4sim/low_outage_results.txt (PX4 at 5 and 10 m; perfect position at 5 and 10 m), apsim/low_ap_results.txt (ArduCopter at 5 and 10 m; perfect position at 5 and 10 m), integ/justice_d/summary.txt (ArduCopter closed-loop rows jd_apb_50m_w20g40_s11 and jd_apb_100m_w20g40_s11 to s13). Runs with a video outage and calm runs are left out.
+Runs: PX4 4 (5 m: 2, 10 m: 2). ArduCopter 8 (5 m: 2, 10 m: 2, 50 m: 1, 100 m: 3). Perfect position 4 (one per autopilot and height). Seeds: PX4 1, 2; ArduCopter 1, 2 at 5 and 10 m, 11 at 50 m, 11 to 13 at 100 m; perfect position seed 1. There is no PX4 run at 50 or 100 m and no run above 100 m.
+
+betaflight_modes.png
+Caption: Betaflight simulator, 60 s Position Hold on our flow and rangefinder messages, GPS off. Mode v1 has no position lock. Mode v2 has a position lock with gain 0.2 per s. The fix is synthetic (true position plus 0.05 m noise, speed with a constant 0.10 m/s error), not our camera estimate. Wind 2 m/s with 1 m/s gusts. Two seeds only.
+Source files: betasim/results/closed_g0_s1.json, closed_g0_s2.json, closed_g0.2_s1.json, closed_g0.2_s2.json (field rms_m); summary in betasim/results/matrix.txt.
+Runs: 4 (2 modes x 2 seeds). Seeds: 1, 2.
