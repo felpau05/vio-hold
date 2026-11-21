@@ -12,7 +12,9 @@ stamping code, att (M, 4+) [t, roll, pitch, yaw, ...] mapped by the live clock c
 lens profile at this picture size (focal scale 1).
 """
 import itertools
+import json
 import math
+import os
 import time
 
 import cv2
@@ -221,3 +223,17 @@ def write(s, result, capture_mode):
     s["calib_info"]["previous_delay_s"] = prev.get("delay_s")
     s["calib_info"]["delay_s"] = result["video_delay_s"]
     return s
+
+
+def add_profile(path, p):
+    """Append lens profile p to the lens file through a temporary file and a rename. Refuses a name that exists.
+    (From the stage1-justice-d branch, for tools/lens_calib.py.)"""
+    d = json.load(open(path))
+    if any(m["name"] == p["name"] for m in d["models"]):
+        raise ValueError(f"lens profile '{p['name']}' exists in {path}. Pick another name.")
+    d["models"].append(p)
+    tmp = path + ".tmp"
+    with open(tmp, "w") as f:
+        json.dump(d, f, indent=2)
+        f.write("\n")
+    os.replace(tmp, path)

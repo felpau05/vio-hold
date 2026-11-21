@@ -1,0 +1,70 @@
+PILOT SAFETY: TEAM POSITION-HOLD PROGRAM (ArduCopter, event day 2026-11-21)
+Labels: (source) = read in the ArduPilot code. (sim) = simulator test. (not tested) = never tried.
+Nothing ran on this aircraft yet. You decide if it flies. Evidence: integ/pilot_safety/README.txt.
+
+TO TAKE OVER: move the mode switch to AltHold, Stabilize or Acro. (source)
+The FC accepts these modes at any time in flight. (source)
+Do not use Return to Home to take over. With GPS off, it flies on our position, or the FC refuses it. (source)
+The FC does not detect a slow, wrong drift of our position. Watch the aircraft in Loiter. (source, sim)
+
+1. WHAT OUR PROGRAM CAN AND CANNOT DO
+- It sends a position about 10 times each second. In Loiter, this is the only position the FC has. (source)
+- It never arms the aircraft. (source)
+- With our event settings, it never changes the flight mode. (source)
+- It never sends a flight target. It never moves your sticks. (source)
+- It sets Home to a field point in its settings. RTL flies to that point. (source)
+- With the outdoor profile, it sends no position below 3 m. (source)
+- With the crew's agreement, our checklist writes FC parameters on the ground. It turns the GPS off for the autopilot.
+- We save the aircraft's own values first. We write them back after our last test (checklist step 1 item 2b, step 8).
+- With a gnss_setup or gnss_fallback profile, the program also tells the FC which position source to use. (sim)
+- With these profiles, Position Hold also starts when our program is not ready. The FC then holds on GNSS. (sim)
+- With gnss_fallback, the FC holds on GNSS after 3 s with no fix from us. (sim)
+
+2. HOW TO TAKE OVER
+- Move the switch to AltHold, Stabilize or Acro. These modes do not use our position. (source)
+- AltHold keeps the height but not the position. Fly against the wind at once. (sim)
+- Sim, sticks centred, wind 20 km/h with gusts of 40 km/h: AltHold drifted 36 m in 10 s, up to 6.5 m/s. (sim)
+- If Loiter does not start, the FC stays in the old mode. It shows "Mode change to LOITER failed". (source)
+- To try Loiter again, move the switch out of Position Hold and back. (source)
+
+3. FAILURES: WHAT THE AIRCRAFT DOES, WHAT YOU DO
+- Slow wrong position: the aircraft moves away in Loiter with no warning. Select AltHold. Fly it back. (source, sim)
+- Sim: a 1 m/s error gave no FC text. A takeover 3 s after the first 3 m came at 7.1 and 8.4 m. (sim)
+- Our position stops (program stop, camera covered): 7 to 8 s later the FC shows "EKF variance" and
+  "EKF Failsafe" and changes to Land. With FS_EKF_ACTION 2 it changes to AltHold. (sim: 7.2 s and 7.9 s)
+- Correction: in the sim the aircraft stayed within 2 m until the failsafe. Our first page said it drifts. (sim)
+- Do not wait for the failsafe. A real sensor can drift more. Select AltHold when the aircraft moves. (source)
+- In Land, the aircraft waits 4 s, then descends and drifts with the wind. Select AltHold, Stabilize or Acro. (source)
+- After this failsafe, Loiter does not engage. Fly manually and land. (source)
+- Position jump: the FC refuses it at once and shows "EKF3 lane switch". The aircraft does not move. (sim)
+- About 7 s later the FC can accept the jump, still without a move. Home and RTL then move by the jump. (sim)
+- Radio loss: by default the FC starts RTL in every mode, also in Acro. RTL then flies on our position. (source)
+- We ask the crew for FS_THR_ENABLE 3 (Land) and FS_EKF_ACTION 2 (AltHold; 1 = Land if you prefer). (source)
+- Also BATT_FS_LOW_ACT 0 or 1, BATT_FS_CRT_ACT 1 (Land), FS_DR_ENABLE 1. A battery RTL flies on our position. (source)
+- One board holds the FC and our computer. A board power loss stops the FC. (source: Orqa documents)
+- We do not know if a computer restart stops the FC. Bench step B7 checks this. (not tested)
+- A wrong position bends the attitude a little: up to 2.4 deg of tilt and 12 deg of heading error. (sim)
+- AltHold and Stabilize still held height and attitude after the takeover. Acro was not flown in the sim. (sim)
+- If the aircraft does not answer the sticks normally after the switch, land at once. (not tested)
+
+4. ARMING, AND WHAT WE ASK YOU TO CHECK ON THE BENCH (propellers off, 10 minutes)
+- With the vision arming check on, the FC refuses to arm. You see "PreArm: VisOdom: not healthy". (sim)
+- The crew can turn off only that check: ARMING_CHECK 1835006 (ArduPilot 4.6). (sim)
+- On ArduPilot 4.7 and later, the same change is ARMING_SKIPCHK 262144. (source, not tested)
+- With that change, the simulated aircraft armed, climbed to 10 m and held with no warning. (sim)
+- Do not let anyone set ARMING_CHECK 0 or ARMING_SKIPCHK -1. That turns off every arming check. (source)
+- B0: the crew shows FS_EKF_ACTION, FS_THR_ENABLE, BATT_FS_*_ACT, FS_DR_ENABLE and the arming checks. (not tested)
+- B1: each switch position shows the mode name you expect. No position gives RTL. (= checklist step 6B) (sim)
+- B2: our program is off. In Position Hold the aircraft must not arm. (sim: "VisOdom: not healthy")
+- B3: we freeze our program. The FC must show "EKF variance" within 15 s. The mode stays. (source)
+- B4: we cover the camera for 15 s. The FC must show "EKF variance" again. (source)
+- B5: we kill our program. It must not restart. B6: each switch move changes the mode within 1 s. (source)
+- B7: we restart our computer. The FC must keep running. (not tested)
+- First low flight, 2 m, AltHold: select Position Hold. The FC must refuse it (not with a gnss profile). (source)
+- First flight, at 20 m: Loiter 10 s, then AltHold. Then Acro or Stabilize if you want. It must answer at once. (not tested)
+
+5. WHAT IS NOT TESTED
+- Sim only: Loiter to AltHold and Stabilize, a program stop, a slow wrong position and a jump, at 10 m and 30 m.
+- One simulator run per case: one site, one wind, ideal sensors. Acro was not flown. (sim)
+- No test of a radio failsafe or of RTL.
+- PX4: Position mode changes to Altitude mode when our position stops. (source) (sim) Other PX4 paths: not tested.
