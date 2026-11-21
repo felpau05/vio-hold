@@ -112,3 +112,12 @@ as the project files. The bundle of 02:08 is kept as tools/bundle/vio-bundle-aar
 Commits on stage1-justice-d, not pushed: 8939114 (03:25), bf23797 (06:50), and one last small commit.
 NOT DONE at the end: tools/fc_params.py against the simulator after its last change; test_lens_d on mains power.
 
+AFTER THE CHARGER WAS CONNECTED (07:01)
+- tests_apb/test_lens_d.py alone, 07:02 to 07:05: 0 FAIL, 1 KNOWN LIMIT in 172 s, as at 01:26. The time limit of
+  06:30 was the battery. State of the suite: 17 of 18 groups with no FAIL (test_live, the known overlay FAIL).
+- tools/fc_params.py against ArduCopter SITL, 07:05 (fc_params_sitl.txt): 14 of 14 values saved (8 that we write and
+  6 of the GNSS levels), a second save kept the first file and showed PASS, check --set-params changed 6, restore
+  wrote them back, and the values after a restart equal the saved values.
+- The bundle was built again after the last change to EVENT_DAY.txt (see tools/bundle/README.txt for its facts).
+The two NOT DONE lines above are now done.
+
